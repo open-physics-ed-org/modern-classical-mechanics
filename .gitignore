@@ -44,6 +44,9 @@ docs/_build/
 venv/
 
 # PDF, DOCX, and other build artifacts
+# Allow chapter PDFs and DOCX to be tracked
+!chapters/*.pdf
+!chapters/*.docx
 *.pdf
 *.docx
 *.tex
