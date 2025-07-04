@@ -68,6 +68,13 @@ modern-classical-mechanics/
 
 ## ️ Build & Utility Scripts
 
+### New and Updated Scripts (2025)
+
+- **fix_notebook_image_paths.sh**: Normalizes all image paths in Jupyter notebooks, replacing any `../../images` references with `../images` for consistency and reproducibility. Run after moving or updating image directories.
+- **fix_youtube_thumbnails.sh**: Scans all notebooks and replaces local YouTube thumbnail image calls with the correct remote thumbnail URLs based on the video ID. Ensures that YouTube video previews always display correctly and are not overwritten by a local file.
+- **generate_chapters_index.sh**: Automatically generates `docs/chapter_index.md` with links to all chapter files (Markdown, PDF, DOCX) and lists all images and figures by week. Keeps the index up to date for easy navigation and reproducibility.
+
+
 All build and utility scripts are in the `scripts/` directory. Run any script with `bash scripts/<scriptname>.sh` from the project root.
 
 - **build_chapters.sh**: Converts all Jupyter notebooks in `notebooks/` to Markdown, PDF, and DOCX in `chapters/`. Fetches remote images and copies figures/images for reproducibility.
