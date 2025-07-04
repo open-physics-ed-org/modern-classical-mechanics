@@ -10,7 +10,7 @@ Differential equations are the language of classical mechanics. They describe ho
 
 ### Differential equations, a tourist's guide (27 min)
 
-[![YouTube thumbnail](https://img.youtube.com/vi/p_di4Zn4wz4/hqdefault.jpg)](https://www.youtube.com/watch?v=p_di4Zn4wz4)
+[![YouTube thumbnail](images/notes/week1//hqdefault.jpg)](https://www.youtube.com/watch?v=p_di4Zn4wz4)
 
 Source: <https://www.youtube.com/watch?v=p_di4Zn4wz4>
 
@@ -26,7 +26,7 @@ We will go into the details of how to construct and develop phase portraits in c
 
 ### Drawing Phase Portraits for Nonlinear Systems (26 min)
 
-[![YouTube thumbnail](https://img.youtube.com/vi/vBwyD4JJlSs/hqdefault.jpg)](https://www.youtube.com/watch?v=vBwyD4JJlSs)
+[![YouTube thumbnail](images/notes/week1//hqdefault.jpg)](https://www.youtube.com/watch?v=vBwyD4JJlSs)
 
 Source: <https://www.youtube.com/watch?v=vBwyD4JJlSs>
 

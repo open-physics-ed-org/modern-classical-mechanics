@@ -302,7 +302,7 @@ $$\dfrac{\sin(\theta_1)}{v_1} = \dfrac{\sin(\theta_2)}{v_2}$$
 
 The [Brachistochrone problem](https://en.wikipedia.org/wiki/Brachistochrone_problem) is a classic problem in the Calculus of Variations. It asks the question: "What is the shape of the curve that a bead will follow under the influence of gravity to reach the bottom in the shortest time?"  Here's a great video from [Steven Strogatz](https://en.wikipedia.org/wiki/Steven_Strogatz) that explains the problem and its solution.
 
-[![YouTube thumbnail](https://img.youtube.com/vi/Cld0p3a43fU/hqdefault.jpg)](https://www.youtube.com/watch?v=Cld0p3a43fU)
+[![YouTube thumbnail](images/notes/week1//hqdefault.jpg)](https://www.youtube.com/watch?v=Cld0p3a43fU)
 
 Source: <https://www.youtube.com/watch?v=Cld0p3a43fU>
 

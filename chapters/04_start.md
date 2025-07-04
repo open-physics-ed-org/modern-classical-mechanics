@@ -55,7 +55,7 @@ Not all fluids are Newtonian, and some fluids have a viscosity that changes with
 
 Below is a video from [America's Test Kitchen](https://www.americastestkitchen.com/) that demonstrates the behavior of a non-Newtonian fluid. The fluid is made from cornstarch and water, and it's called [oobleck](https://en.wikipedia.org/wiki/Oobleck). 
 
-[![YouTube thumbnail](https://img.youtube.com/vi/FrLh1GILomc/hqdefault.jpg)](https://youtube.com/watch?v=FrLh1GILomc)
+[![YouTube thumbnail](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=FrLh1GILomc)
 
 Source: <https://www.youtube.com/watch?v=FrLh1GILomc>
 
@@ -69,7 +69,7 @@ A low Reynolds number flow is a flow where the viscous forces dominate the inert
 
 This video focuses on the biological aspects of the problem as the physics of low Reynolds numbers is important for understanding the motion of microorganisms. 
 
-[![YouTube thumbnail](https://img.youtube.com/vi/gZk2bMaqs1E/hqdefault.jpg)](https://youtube.com/watch?v=gZk2bMaqs1E)
+[![YouTube thumbnail](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=gZk2bMaqs1E)
 
 Source: <https://youtube.com/watch?v=gZk2bMaqs1E>
 
@@ -77,7 +77,7 @@ Source: <https://youtube.com/watch?v=gZk2bMaqs1E>
 
 This video is a classic from [G.I. Taylor](https://en.wikipedia.org/wiki/Geoffrey_Ingram_Taylor) who was a physicist interested in sharing the conceptual beauty of physics with the general public. He was also a pioneer in the field of fluid mechanics. In fact, Taylor's [groundbreaking paper](../../docs/papers/taylor_1922.pdf) on the stability of fluid flows between two rotating cylinders set off studies into turbulence. The [Taylor-Couette flow](https://en.wikipedia.org/wiki/Taylor%E2%80%93Couette_flow) is a critical tool for [studies of turbulence](https://pubmed.ncbi.nlm.nih.gov/20365623/).
 
-[![YouTube thumbnail](https://img.youtube.com/vi/8Dst6V4CQME/hqdefault.jpg)](https://youtube.com/watch?v=8Dst6V4CQME)
+[![YouTube thumbnail](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=8Dst6V4CQME)
 
 Source: <https://youtube.com/watch?v=8Dst6V4CQME>
 
@@ -89,7 +89,7 @@ In high Reynolds number flows, the inertial forces dominate the viscous forces. 
 
 The [von Kármán vortex street](https://en.wikipedia.org/wiki/Von_K%C3%A1rm%C3%A1n_vortex_street) is a pattern of alternating vortices that can form when a fluid flows past a "bluff" body, such as a cylinder or a sphere. The vortices are shed from the body in a regular pattern, creating a repeating pattern of alternating vortices. The von Kármán vortex street is an example of a high Reynolds number flow, and it can be used to study the behavior of turbulent flows. Below is a video of a von Kármán vortex street simulation.
 
-[![YouTube thumbnail](https://img.youtube.com/vi/f3LmjJ1N7YE/hqdefault.jpg)](https://youtube.com/watch?v=f3LmjJ1N7YE)
+[![YouTube thumbnail](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=f3LmjJ1N7YE)
 
 Source: <https://youtube.com/watch?v=f3LmjJ1N7YE>
 
@@ -97,7 +97,7 @@ Source: <https://youtube.com/watch?v=f3LmjJ1N7YE>
 
 Turbulence is a major research area in science. We don't fully understand it. We are trying to determine what triggers it, how to control it, and how to predict if and when it will occur. The problem of turbulence is frequently multi-scale such that behavior at one time or length scale is not well explained or connected to another scale. Additionally, the mathematics of turbulence is very difficult. It makes for an interesting and challenging research area. Below is a video that explains the some of the physics of turbulence. The first 4 minutes or so are at least worth watching.
 
-[![YouTube thumbnail](https://img.youtube.com/vi/RkewD966Y90/hqdefault.jpg)](https://youtube.com/watch?v=RkewD966Y90)
+[![YouTube thumbnail](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=RkewD966Y90)
 
 Source: <https://youtube.com/watch?v=RkewD966Y90>
 
