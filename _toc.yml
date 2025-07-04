@@ -4,7 +4,6 @@ format: jb-book
 root: intro.md
 # Main chapters
 chapters:
-  - file: README.md
   - file: notebooks/01_start.ipynb
   - file: notebooks/01_notes.ipynb
   - file: notebooks/02_start.ipynb
@@ -25,11 +24,11 @@ chapters:
   - file: notebooks/09_start.ipynb
   - file: notebooks/09_notes.ipynb
   - file: notebooks/10_start.ipynb
-  #- file: notebooks/10_notes.ipynb
+  - file: notebooks/10_notes.ipynb
   - file: notebooks/11_start.ipynb
-  #- file: notebooks/11_notes.ipynb
-  #- file: notebooks/12_start.ipynb
-  #- file: notebooks/12_notes.ipynb
+  - file: notebooks/11_notes.ipynb
+  - file: notebooks/12_start.ipynb
+  - file: notebooks/12_notes.ipynb
   - file: notebooks/13_start.ipynb
-  #- file: notebooks/13_notes.ipynb
+  - file: notebooks/13_notes.ipynb
 # Add more chapters as needed
