@@ -7,4 +7,6 @@ chapters:
   - file: README.md
   - file: notebooks/01_start.ipynb
   - file: notebooks/01_notes.ipynb
+  - file: notebooks/02_start.ipynb
+  - file: notebooks/02_notes.ipynb
 # Add more chapters as needed

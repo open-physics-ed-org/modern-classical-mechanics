@@ -178,6 +178,8 @@
 
 <li class="toctree-l1"><a class="reference internal" href="notebooks/01_start.html">Week 1 - Overture: What is Classical Physics?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/01_notes.html">Week 1 - Notes: Introduction to Classical Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/02_start.html">Week 2 - Computing as a tool for science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/02_notes.html">Week 2 - Notes: Mathematical Preliminaries</a></li>
 </ul>
 
     </div>
@@ -393,9 +395,9 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">🌐 About &amp; Webpage</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modern-classical-mechanics">📚 Modern Classical Mechanics</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-this">🚀 What is this?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-structure">� Project Structure</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-scripts-overview">�🛠️ Build Scripts Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-documentation">📄 Additional Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-structure">🗂️ Project Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-utility-scripts">️ Build &amp; Utility Scripts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapters-and-figures-index">📄 Chapters and Figures Index</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">🚀 What is this?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">📦 Project Structure</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-build-locally">🛠️ How to Build Locally</a></li>
@@ -451,45 +453,40 @@ document.write(`
 <li><p><strong>Fun:</strong> Physics is awesome, and so is open science 🌟</p></li>
 </ul>
 </section>
-<hr class="docutils" />
 <section id="project-structure">
-<h2>� Project Structure<a class="headerlink" href="#project-structure" title="Link to this heading">#</a></h2>
+<h2>🗂️ Project Structure<a class="headerlink" href="#project-structure" title="Link to this heading">#</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>modern-classical-mechanics/
 ├── notebooks/        # Source Jupyter notebooks (edit here!)
-├── chapters/         # Auto-generated Markdown, PDF, DOCX, figures
-├── book/             # Website build (Jupyter Book)
-├── docs/             # GitHub Pages output (optional)
-├── scripts/          # Build and utility scripts
-├── .github/workflows # GitHub Actions CI/CD
-├── Dockerfile, docker-compose.yml
-├── _config.yml, _toc.yml, book_metadata.yml
+├── chapters/         # Auto-generated Markdown, PDF, DOCX, and figures (do not edit by hand)
+│   ├── figures/      # All figures used in chapters
+│   └── images/       # All images used in chapters
+├── book/             # Auto-generated full-book outputs (PDF, DOCX, Markdown, images)
+├── docs/             # Website output for GitHub Pages (auto-generated, do not edit)
+├── scripts/          # Build and utility scripts (edit here)
+├── .github/workflows # GitHub Actions CI/CD workflows
+├── _config.yml, _toc.yml, book_metadata.yml  # Jupyter Book and build config
 └── README.md         # You are here!
 </pre></div>
 </div>
 </section>
 <hr class="docutils" />
-<section id="build-scripts-overview">
-<h2>�🛠️ Build Scripts Overview<a class="headerlink" href="#build-scripts-overview" title="Link to this heading">#</a></h2>
-<p>All build and utility scripts are in the <code class="docutils literal notranslate"><span class="pre">scripts/</span></code> directory. Here’s what each one does:</p>
+<section id="build-utility-scripts">
+<h2>️ Build &amp; Utility Scripts<a class="headerlink" href="#build-utility-scripts" title="Link to this heading">#</a></h2>
+<p>All build and utility scripts are in the <code class="docutils literal notranslate"><span class="pre">scripts/</span></code> directory. Run any script with <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">scripts/&lt;scriptname&gt;.sh</span></code> from the project root.</p>
+<p>All build and utility scripts are in the <code class="docutils literal notranslate"><span class="pre">scripts/</span></code> directory. Run any script with <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">scripts/&lt;scriptname&gt;.sh</span></code> from the project root. Each script is documented in detail:</p>
 <ul class="simple">
-<li><p><strong>build_chapters.sh</strong>: Converts all Jupyter notebooks in <code class="docutils literal notranslate"><span class="pre">notebooks/</span></code> to Markdown, PDF, and DOCX in <code class="docutils literal notranslate"><span class="pre">chapters/</span></code>. Also fetches remote images and copies figures.</p></li>
-<li><p><strong>build_book.sh</strong>: Builds the full book (website and other formats) from the chapters and configuration files.</p></li>
-<li><p><strong>build_website.sh</strong>: Builds the HTML website version of the book using Jupyter Book.</p></li>
-<li><p><strong>build_all.sh</strong>: Runs all build steps in sequence (chapters, book, website, etc.).</p></li>
-<li><p><strong>fetch_remote_images.sh</strong>: Finds, downloads, and relinks any remote images referenced in notebooks or markdown files, ensuring all images are local for reproducibility.</p></li>
+<li><p><a class="reference internal" href="docs/scripts_build_chapters.html"><span class="std std-doc"><strong>build_chapters.sh</strong></span></a>: Converts all Jupyter notebooks in <code class="docutils literal notranslate"><span class="pre">notebooks/</span></code> to Markdown, PDF, and DOCX in <code class="docutils literal notranslate"><span class="pre">chapters/</span></code>. Fetches remote images and copies figures/images for reproducibility.</p></li>
+<li><p><a class="reference internal" href="docs/scripts_build_book.html"><span class="std std-doc"><strong>build_book.sh</strong></span></a>: Concatenates all chapter markdown files and converts to a single PDF and DOCX for the full book in <code class="docutils literal notranslate"><span class="pre">book/</span></code>. Copies images for correct rendering.</p></li>
+<li><p><a class="reference internal" href="docs/scripts_build_website.html"><span class="std std-doc"><strong>build_website.sh</strong></span></a>: Builds the HTML website version of the book using Jupyter Book, copies all static assets and images to <code class="docutils literal notranslate"><span class="pre">docs/</span></code> for GitHub Pages, and ensures <code class="docutils literal notranslate"><span class="pre">.nojekyll</span></code> is present.</p></li>
+<li><p><a class="reference internal" href="docs/scripts_build_all.html"><span class="std std-doc"><strong>build_all.sh</strong></span></a>: Runs all build steps in sequence (fetch images, chapters, book, website, etc.).</p></li>
+<li><p><a class="reference internal" href="docs/scripts_fetch_remote_images.html"><span class="std std-doc"><strong>fetch_remote_images.sh</strong></span></a>: Finds, downloads, and relinks any remote images referenced in notebooks or markdown files, ensuring all images are local for reproducibility.</p></li>
 </ul>
-<p>Run any script with <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">scripts/&lt;scriptname&gt;.sh</span></code> from the project root.</p>
 </section>
 <hr class="docutils" />
-<section id="additional-documentation">
-<h2>📄 Additional Documentation<a class="headerlink" href="#additional-documentation" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference internal" href="docs/chapters_index.html"><span class="std std-doc">Chapters and Figures Index</span></a></p></li>
-<li><p><a class="reference internal" href="docs/scripts_build_chapters.html"><span class="std std-doc">Script: build_chapters.sh</span></a></p></li>
-<li><p><a class="reference internal" href="docs/scripts_build_website.html"><span class="std std-doc">Script: build_website.sh</span></a></p></li>
-<li><p><a class="reference internal" href="docs/scripts_fetch_remote_images.html"><span class="std std-doc">Script: fetch_remote_images.sh</span></a></p></li>
-<li><p><a class="reference internal" href="#docs/scripts_build_all.md"><span class="xref myst">Script: build_all.sh</span></a></p></li>
-</ul>
+<section id="chapters-and-figures-index">
+<h2>📄 Chapters and Figures Index<a class="headerlink" href="#chapters-and-figures-index" title="Link to this heading">#</a></h2>
+<p>See <a class="reference internal" href="docs/chapters_index.html"><span class="std std-doc">docs/chapters_index.md</span></a> for direct links to all chapters in every available format (notebook, markdown, PDF, DOCX) and to all figures used in the book.</p>
+<hr class="docutils" />
 </section>
 <hr class="docutils" />
 <section id="id1">
@@ -672,9 +669,9 @@ pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </s
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">🌐 About &amp; Webpage</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modern-classical-mechanics">📚 Modern Classical Mechanics</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-this">🚀 What is this?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-structure">� Project Structure</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-scripts-overview">�🛠️ Build Scripts Overview</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-documentation">📄 Additional Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-structure">🗂️ Project Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-utility-scripts">️ Build &amp; Utility Scripts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapters-and-figures-index">📄 Chapters and Figures Index</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">🚀 What is this?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">📦 Project Structure</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-build-locally">🛠️ How to Build Locally</a></li>

@@ -178,6 +178,8 @@
 
 <li class="toctree-l1"><a class="reference internal" href="../notebooks/01_start.html">Week 1 - Overture: What is Classical Physics?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notebooks/01_notes.html">Week 1 - Notes: Introduction to Classical Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/02_start.html">Week 2 - Computing as a tool for science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/02_notes.html">Week 2 - Notes: Mathematical Preliminaries</a></li>
 </ul>
 
     </div>
@@ -392,8 +394,6 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-it-does">What it does</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-in-detail">Steps in detail</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">See also</a></li>
 </ul>
             </nav>
         </div>
@@ -411,12 +411,12 @@ document.write(`
 <section id="what-it-does">
 <h2>What it does<a class="headerlink" href="#what-it-does" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Fetches and relinks remote images for reproducibility</p></li>
-<li><p>Builds the Jupyter Book website from source</p></li>
-<li><p>Cleans and copies the build output to the <code class="docutils literal notranslate"><span class="pre">docs/</span></code> directory</p></li>
-<li><p>Ensures all static assets and figures are present</p></li>
-<li><p>Copies <code class="docutils literal notranslate"><span class="pre">intro.html</span></code> to <code class="docutils literal notranslate"><span class="pre">index.html</span></code> for correct homepage</p></li>
-<li><p>Creates <code class="docutils literal notranslate"><span class="pre">.nojekyll</span></code> so GitHub Pages serves all static files (including CSS/JS)</p></li>
+<li><p>Fetches and relinks remote images for reproducibility (calls <code class="docutils literal notranslate"><span class="pre">fetch_remote_images.sh</span></code>).</p></li>
+<li><p>Builds the Jupyter Book website from source.</p></li>
+<li><p>Cleans and copies the build output to the <code class="docutils literal notranslate"><span class="pre">docs/</span></code> directory.</p></li>
+<li><p>Ensures all static assets and figures are present.</p></li>
+<li><p>Copies <code class="docutils literal notranslate"><span class="pre">intro.html</span></code> to <code class="docutils literal notranslate"><span class="pre">index.html</span></code> for correct homepage.</p></li>
+<li><p>Creates <code class="docutils literal notranslate"><span class="pre">.nojekyll</span></code> so GitHub Pages serves all static files (including CSS/JS).</p></li>
 </ul>
 </section>
 <section id="usage">
@@ -424,53 +424,6 @@ document.write(`
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>scripts/build_website.sh
 </pre></div>
 </div>
-</section>
-<section id="steps-in-detail">
-<h2>Steps in detail<a class="headerlink" href="#steps-in-detail" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p><strong>Fetch remote images:</strong></p>
-<ul class="simple">
-<li><p>Calls <code class="docutils literal notranslate"><span class="pre">fetch_remote_images.sh</span></code> to download and relink any remote images in notebooks or markdown files.</p></li>
-</ul>
-</li>
-<li><p><strong>Build the book:</strong></p>
-<ul class="simple">
-<li><p>Runs <code class="docutils literal notranslate"><span class="pre">jupyter-book</span> <span class="pre">build</span> <span class="pre">.</span></code> to generate the HTML site in <code class="docutils literal notranslate"><span class="pre">_build/html/</span></code>.</p></li>
-</ul>
-</li>
-<li><p><strong>Clean docs/:</strong></p>
-<ul class="simple">
-<li><p>Removes old files in <code class="docutils literal notranslate"><span class="pre">docs/</span></code> (except <code class="docutils literal notranslate"><span class="pre">.git</span></code> and <code class="docutils literal notranslate"><span class="pre">.nojekyll</span></code>).</p></li>
-</ul>
-</li>
-<li><p><strong>Copy build output:</strong></p>
-<ul class="simple">
-<li><p>Copies everything from <code class="docutils literal notranslate"><span class="pre">_build/html/</span></code> to <code class="docutils literal notranslate"><span class="pre">docs/</span></code>.</p></li>
-</ul>
-</li>
-<li><p><strong>Copy figures:</strong></p>
-<ul class="simple">
-<li><p>Ensures figures from <code class="docutils literal notranslate"><span class="pre">chapters/figures/</span></code> are available in <code class="docutils literal notranslate"><span class="pre">docs/figures/</span></code>.</p></li>
-</ul>
-</li>
-<li><p><strong>Homepage fix:</strong></p>
-<ul class="simple">
-<li><p>Copies <code class="docutils literal notranslate"><span class="pre">intro.html</span></code> to <code class="docutils literal notranslate"><span class="pre">index.html</span></code> so the homepage works on GitHub Pages.</p></li>
-</ul>
-</li>
-<li><p><strong>.nojekyll:</strong></p>
-<ul class="simple">
-<li><p>Ensures <code class="docutils literal notranslate"><span class="pre">.nojekyll</span></code> is present in <code class="docutils literal notranslate"><span class="pre">docs/</span></code> for static asset support.</p></li>
-</ul>
-</li>
-</ol>
-</section>
-<section id="see-also">
-<h2>See also<a class="headerlink" href="#see-also" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference internal" href="scripts_build_chapters.html"><span class="std std-doc">build_chapters.sh</span></a></p></li>
-<li><p><a class="reference internal" href="scripts_fetch_remote_images.html"><span class="std std-doc">fetch_remote_images.sh</span></a></p></li>
-</ul>
 </section>
 </section>
 
@@ -522,8 +475,6 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-it-does">What it does</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-in-detail">Steps in detail</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#see-also">See also</a></li>
 </ul>
   </nav></div>
 
