@@ -1,3 +1,4 @@
+
 # _config.yml for Jupyter Book
 
 # Book settings
@@ -29,8 +30,3 @@ execute:
 
 # Table of contents file
 # (You will need to create _toc.yml to list your chapters)
-
-repository:
-  url: https://github.com/dannycab/modern-classical-mechanics
-  path_to_book: .
-  branch: main

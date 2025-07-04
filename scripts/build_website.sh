@@ -1,3 +1,5 @@
+# Ensure .nojekyll is present for GitHub Pages static assets
+touch docs/.nojekyll
 #!/bin/bash
 # build_website.sh
 # Build a static website from notebooks using Jupyter Book
