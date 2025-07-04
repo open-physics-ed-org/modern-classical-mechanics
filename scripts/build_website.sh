@@ -18,13 +18,20 @@ fi
 jupyter-book build .
 
 
-# Copy the built site to docs/
-cp -r _build/html/* docs/
+# Remove any old docs/ content (except .git and .nojekyll if present)
+find docs/ -mindepth 1 ! -regex 'docs/\(.git\|.nojekyll\).*' -delete
+
+# Copy the entire built site to docs/, preserving all files (including .nojekyll)
+cp -a _build/html/. docs/
 
 # Copy figures to both output locations for image rendering
 if [ -d "../chapters/figures" ]; then
-  cp -r ../chapters/figures _build/html/figures
   cp -r ../chapters/figures docs/figures
 fi
 
-echo "Website built in docs/"
+# Remove any manual index.html redirect if present
+if [ -f docs/index.html ]; then
+  grep -q 'url=README.html' docs/index.html && rm docs/index.html
+fi
+
+echo "Website built in docs/ (ready for GitHub Pages)"
