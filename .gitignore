@@ -69,3 +69,8 @@ node_modules/
 
 # Ignore figures in chapters if built/copied
 chapters/figures/
+
+# Ignore Sphinx/Jupyter Book build artifacts in docs/
+docs/.buildinfo
+docs/.doctrees/
+docs/.DS_Store
