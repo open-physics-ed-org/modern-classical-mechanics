@@ -29,9 +29,9 @@ if [ -d "../chapters/figures" ]; then
   cp -r ../chapters/figures docs/figures
 fi
 
-# Remove any manual index.html redirect if present
-if [ -f docs/index.html ]; then
-  grep -q 'url=README.html' docs/index.html && rm docs/index.html
+# Ensure the homepage is correct for GitHub Pages
+if [ -f docs/intro.html ]; then
+  cp docs/intro.html docs/index.html
 fi
 
 echo "Website built in docs/ (ready for GitHub Pages)"
