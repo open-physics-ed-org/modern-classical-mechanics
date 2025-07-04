@@ -38,47 +38,44 @@ Welcome to the home of **Modern Classical Mechanics**! This is a living, collabo
 - **Open:** Contributions, issues, and pull requests are *highly* encouraged!
 - **Fun:** Physics is awesome, and so is open science 🌟
 
----
 
-## � Project Structure
+## 🗂️ Project Structure
 
 ```
 modern-classical-mechanics/
 ├── notebooks/        # Source Jupyter notebooks (edit here!)
-├── chapters/         # Auto-generated Markdown, PDF, DOCX, figures
-├── book/             # Website build (Jupyter Book)
-├── docs/             # GitHub Pages output (optional)
-├── scripts/          # Build and utility scripts
-├── .github/workflows # GitHub Actions CI/CD
-├── Dockerfile, docker-compose.yml
-├── _config.yml, _toc.yml, book_metadata.yml
+├── chapters/         # Auto-generated Markdown, PDF, DOCX, and figures (do not edit by hand)
+│   ├── figures/      # All figures used in chapters
+│   └── images/       # All images used in chapters
+├── book/             # Auto-generated full-book outputs (PDF, DOCX, Markdown, images)
+├── docs/             # Website output for GitHub Pages (auto-generated, do not edit)
+├── scripts/          # Build and utility scripts (edit here)
+├── .github/workflows # GitHub Actions CI/CD workflows
+├── _config.yml, _toc.yml, book_metadata.yml  # Jupyter Book and build config
 └── README.md         # You are here!
 ```
 
 ---
 
-## �🛠️ Build Scripts Overview
+## ️ Build & Utility Scripts
 
-All build and utility scripts are in the `scripts/` directory. Here’s what each one does:
+All build and utility scripts are in the `scripts/` directory. Run any script with `bash scripts/<scriptname>.sh` from the project root.
 
-- **build_chapters.sh**: Converts all Jupyter notebooks in `notebooks/` to Markdown, PDF, and DOCX in `chapters/`. Also fetches remote images and copies figures.
-- **build_book.sh**: Builds the full book (website and other formats) from the chapters and configuration files.
-- **build_website.sh**: Builds the HTML website version of the book using Jupyter Book.
-- **build_all.sh**: Runs all build steps in sequence (chapters, book, website, etc.).
-- **fetch_remote_images.sh**: Finds, downloads, and relinks any remote images referenced in notebooks or markdown files, ensuring all images are local for reproducibility.
+All build and utility scripts are in the `scripts/` directory. Run any script with `bash scripts/<scriptname>.sh` from the project root. Each script is documented in detail:
 
-
-Run any script with `bash scripts/<scriptname>.sh` from the project root.
+- [**build_chapters.sh**](docs/scripts_build_chapters.md): Converts all Jupyter notebooks in `notebooks/` to Markdown, PDF, and DOCX in `chapters/`. Fetches remote images and copies figures/images for reproducibility.
+- [**build_book.sh**](docs/scripts_build_book.md): Concatenates all chapter markdown files and converts to a single PDF and DOCX for the full book in `book/`. Copies images for correct rendering.
+- [**build_website.sh**](docs/scripts_build_website.md): Builds the HTML website version of the book using Jupyter Book, copies all static assets and images to `docs/` for GitHub Pages, and ensures `.nojekyll` is present.
+- [**build_all.sh**](docs/scripts_build_all.md): Runs all build steps in sequence (fetch images, chapters, book, website, etc.).
+- [**fetch_remote_images.sh**](docs/scripts_fetch_remote_images.md): Finds, downloads, and relinks any remote images referenced in notebooks or markdown files, ensuring all images are local for reproducibility.
 
 ---
 
-## 📄 Additional Documentation
+## 📄 Chapters and Figures Index
 
-- [Chapters and Figures Index](docs/chapters_index.md)
-- [Script: build_chapters.sh](docs/scripts_build_chapters.md)
-- [Script: build_website.sh](docs/scripts_build_website.md)
-- [Script: fetch_remote_images.sh](docs/scripts_fetch_remote_images.md)
-- [Script: build_all.sh](docs/scripts_build_all.md)
+See [docs/chapters_index.md](docs/chapters_index.md) for direct links to all chapters in every available format (notebook, markdown, PDF, DOCX) and to all figures used in the book.
+
+---
 
 ---
 
