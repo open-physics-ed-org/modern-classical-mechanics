@@ -19,9 +19,8 @@ for nb in "$NOTEBOOK_DIR"/*.ipynb; do
     # Convert to Markdown
     jupyter nbconvert --to markdown "$nb" --output "$base.md" --output-dir="$CHAPTERS_DIR"
     # Convert to PDF (ensure images are found, use absolute path)
-    jupyter nbconvert --to markdown "$nb" --stdout | pandoc --resource-path="$(realpath "$CHAPTERS_DIR")" -f markdown -o "$CHAPTERS_DIR/$base.pdf"
-    # Convert to DOCX (ensure images are found, use absolute path)
-    jupyter nbconvert --to markdown "$nb" --stdout | pandoc --resource-path="$(realpath "$CHAPTERS_DIR")" -f markdown -o "$CHAPTERS_DIR/$base.docx"
+    jupyter nbconvert --to markdown "$nb" --stdout | pandoc --resource-path="$(realpath "$CHAPTERS_DIR"):$(realpath "$NOTEBOOK_DIR")/images" -f markdown -o "$CHAPTERS_DIR/$base.pdf"
+    jupyter nbconvert --to markdown "$nb" --stdout | pandoc --resource-path="$(realpath "$CHAPTERS_DIR"):$(realpath "$NOTEBOOK_DIR")/images" -f markdown -o "$CHAPTERS_DIR/$base.docx"
 done
 
 
