@@ -51,6 +51,7 @@ modern-classical-mechanics/
 ├── docs/             # Website output for GitHub Pages (auto-generated, do not edit)
 ├── scripts/          # Build and utility scripts (edit here)
 ├── .github/workflows # GitHub Actions CI/CD workflows
+├── Dockerfile, docker-compose.yml  # Containerized build environment
 ├── _config.yml, _toc.yml, book_metadata.yml  # Jupyter Book and build config
 └── README.md         # You are here!
 ```
@@ -61,19 +62,17 @@ modern-classical-mechanics/
 
 All build and utility scripts are in the `scripts/` directory. Run any script with `bash scripts/<scriptname>.sh` from the project root.
 
-All build and utility scripts are in the `scripts/` directory. Run any script with `bash scripts/<scriptname>.sh` from the project root. Each script is documented in detail:
-
-- [**build_chapters.sh**](docs/scripts_build_chapters.md): Converts all Jupyter notebooks in `notebooks/` to Markdown, PDF, and DOCX in `chapters/`. Fetches remote images and copies figures/images for reproducibility.
-- [**build_book.sh**](docs/scripts_build_book.md): Concatenates all chapter markdown files and converts to a single PDF and DOCX for the full book in `book/`. Copies images for correct rendering.
-- [**build_website.sh**](docs/scripts_build_website.md): Builds the HTML website version of the book using Jupyter Book, copies all static assets and images to `docs/` for GitHub Pages, and ensures `.nojekyll` is present.
-- [**build_all.sh**](docs/scripts_build_all.md): Runs all build steps in sequence (fetch images, chapters, book, website, etc.).
-- [**fetch_remote_images.sh**](docs/scripts_fetch_remote_images.md): Finds, downloads, and relinks any remote images referenced in notebooks or markdown files, ensuring all images are local for reproducibility.
+- **build_chapters.sh**: Converts all Jupyter notebooks in `notebooks/` to Markdown, PDF, and DOCX in `chapters/`. Fetches remote images and copies figures/images for reproducibility.
+- **build_book.sh**: Concatenates all chapter markdown files and converts to a single PDF and DOCX for the full book in `book/`. Copies images for correct rendering.
+- **build_website.sh**: Builds the HTML website version of the book using Jupyter Book, copies all static assets and images to `docs/` for GitHub Pages, and ensures `.nojekyll` is present.
+- **build_all.sh**: Runs all build steps in sequence (fetch images, chapters, book, website, etc.).
+- **fetch_remote_images.sh**: Finds, downloads, and relinks any remote images referenced in notebooks or markdown files, ensuring all images are local for reproducibility.
 
 ---
 
 ## 📄 Chapters and Figures Index
 
-See [docs/chapters_index.md](docs/chapters_index.md) for direct links to all chapters in every available format (notebook, markdown, PDF, DOCX) and to all figures used in the book.
+See [docs/chapter_index.md](docs/chapter_index.md) for direct links to all chapters in every available format (notebook, markdown, PDF, DOCX) and to all figures used in the book.
 
 ---
 
