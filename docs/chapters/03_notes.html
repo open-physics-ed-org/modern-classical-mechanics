@@ -1,0 +1,848 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 3 - Notes: Making Classical Models &#8212; Modern Classical Mechanics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/03_notes';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Modern Classical Mechanics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to Modern Classical Mechanics!
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_start.html">Week 1 - Overture: What is Classical Physics?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_notes.html">Week 1 - Notes: Introduction to Classical Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/02_start.html">Week 2 - Computing as a tool for science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/02_notes.html">Week 2 - Notes: Mathematical Preliminaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_start.html">Week 3 - What is Mathematical Modeling?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_notes.html">Week 3 - Notes: Making Classical Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/04_start.html">Week 4 - Why does fluid drag complicate things?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/04_notes.html">Week 4 - Notes: Equations of Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/05_start.html">Week 5 - Conservation Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/05_notes.html">Week 5 - Notes: Conservation of Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/06_start.html">Week 6 - Stability and Equilibria</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/06_notes.html">Week 6 - Notes: Stability and Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/06_notes_2.html">Week 6 - Notes: Linear and Angular Momentum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/07_start.html">Week 7 - Nonlinear Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/07_notes.html">Week 7 - Notes: Critical Points; Phase Space; Trajectories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/08_start.html">Week 8 - Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/08_notes.html">Week 8 - Notes: Oscillators and Modeling Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/09_start.html">Week 9 - Driven Oscillators and Resonance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/09_notes.html">Week 9 - Notes: Driven Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/10_start.html">Week 10 - Chaotic Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/10_notes.html">Week 10 - Activity: Modeling Chaotic Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/11_start.html">Week 11 - Calculus of Variations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/11_notes.html">Week 11 - Notes: The Euler-Lagrange Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/12_notes.html">Week 12 - Notes: Introduction to Lagrangian Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/13_start.html">Week 13 - Lagrangian Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/13_notes.html">Week 13 - Notes: Examples of Lagrangian Mechanics</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/dannycab/modern-classical-mechanics" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/dannycab/modern-classical-mechanics/edit/main/./chapters/03_notes.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/dannycab/modern-classical-mechanics/issues/new?title=Issue%20on%20page%20%2Fchapters/03_notes.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/03_notes.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 3 - Notes: Making Classical Models</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#newtonian-examples-of-classical-models">Newtonian Examples of Classical Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-falling-ball-with-no-air-resistance">Example: Falling Ball with No Air Resistance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-simple-harmonic-oscillator">Example: Simple Harmonic Oscillator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#turning-observations-into-models">Turning Observations into Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-process">Modeling Process</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-falling-ball-in-1d">Example: Falling Ball in 1D</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#question-what-happens-with-ddot-y-0">Question: What happens with <span class="math notranslate nohighlight">\(\ddot{y} = 0\)</span>?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#question-can-we-solve-this-differential-equation">Question can we solve this differential equation?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-formulation-of-newtonian-mechanics">Discrete Formulation of Newtonian Mechanics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#euler-cromer-step">Euler-Cromer Step</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-solutions-to-the-air-resistance-problem">Analytical Solutions to the Air-Resistance Problem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-drag">Linear Drag</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quadratic-drag">Quadratic Drag</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#assume-we-start-at-rest-v-0-0">Assume we start at rest, <span class="math notranslate nohighlight">\(v(0) = 0\)</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-3-notes-making-classical-models">
+<h1>Week 3 - Notes: Making Classical Models<a class="headerlink" href="#week-3-notes-making-classical-models" title="Link to this heading">#</a></h1>
+<p>The central enterprise of physics is making and testing models of physical systems. These models we developed are based on the assumptions we make about the physical systems we are studying. As we characterize the system, we make simplifying assumptions that allow us to describe the system in terms of a few key quantities. These quantities are often called the <a class="reference external" href="https://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry)">“degrees of freedom”</a> of the system.</p>
+<p>In Classical Mechanics, we will use formulations of physics, such as <a class="reference external" href="https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion">Newton’s Laws</a>, to describe the motion of particles. We can also use the <a class="reference external" href="https://en.wikipedia.org/wiki/Lagrangian_mechanics">Lagrangian</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Hamiltonian_mechanics">Hamiltonian</a> formulations of mechanics. These formulations are mathematical expressions of the physical laws that govern the motion of particles.</p>
+<p>Typically, those expressions are <a class="reference external" href="https://en.wikipedia.org/wiki/Differential_equation">differential equations</a> that describe how the system evolves in time. Our work in classical mechanics is to develop techniques and tools that let us investigate the solutions to these equations. These differential equations are commonly called <a class="reference external" href="https://en.wikipedia.org/wiki/Equations_of_motion">equations of motion</a> (EOM). An equation of motion describes the evolution of the agents (particles) as they interact with their surroundings and each other.</p>
+<section id="newtonian-examples-of-classical-models">
+<h2>Newtonian Examples of Classical Models<a class="headerlink" href="#newtonian-examples-of-classical-models" title="Link to this heading">#</a></h2>
+<p>From a Newtonian perspective, our equations of motion are often second-order differential equations. This stems from the fact that Newton’s second law relates the acceleration of a particle to the forces acting on it. The second law is given by the equation:</p>
+<div class="math notranslate nohighlight">
+\[\vec{F}_{\text{net}} = m \vec{a} = m\ddot{\vec{x}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\vec{x}\)</span> is the position vector and <span class="math notranslate nohighlight">\(\ddot{\vec{x}}=\frac{d^2\vec{x}}{dt^2}\)</span> is the acceleration vector. Thus, Newton’s second law is a general EOM that describes the dynamics of a particle of mass, <span class="math notranslate nohighlight">\(m\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\frac{d^2\vec{x}}{dt^2} = \dfrac{\vec{F}_{\text{net}}}{m}\]</div>
+<div class="admonition-what-is-dynamics admonition">
+<p class="admonition-title">What is Dynamics?</p>
+<p>Dynamics is the study of the time evolution of a system in question. In classical mechanics, dynamics is the study of the motion of particles and the forces that cause that motion. In other physics, dynamics can refer to the study of the evolution of a system in time and space. And here, space might be an abstraction, such as a <a class="reference external" href="https://en.wikipedia.org/wiki/Phase_space">phase space</a>. We study phase spaces later in the term.</p>
+</div>
+<section id="example-falling-ball-with-no-air-resistance">
+<h3>Example: Falling Ball with No Air Resistance<a class="headerlink" href="#example-falling-ball-with-no-air-resistance" title="Link to this heading">#</a></h3>
+<p>Consider a ball of mass <span class="math notranslate nohighlight">\(m\)</span> falling down. We define the positive <span class="math notranslate nohighlight">\(y\)</span> direction to be down as in the figure showing the FBD of the ball.</p>
+<p><img alt="FBD of a falling ball" src="../images/notes/week3/1d-ball-fbd.png" /></p>
+<p>We can apply Newton’s laws to obtain the specific EOM for the ball.</p>
+<div class="math notranslate nohighlight">
+\[\vec{F}_{\text{net}} = m \vec{a} = m\ddot{\vec{x}}\]</div>
+<p>This is a 1D case in the <span class="math notranslate nohighlight">\(y\)</span> direction,</p>
+<div class="math notranslate nohighlight">
+\[F_{\text{net,y}} = W = mg = m \ddot{y}\]</div>
+<p>Thus,</p>
+<div class="math notranslate nohighlight">
+\[\ddot{y} = g\]</div>
+<p>is the specific EOM for the ball.</p>
+</section>
+<section id="example-simple-harmonic-oscillator">
+<h3>Example: Simple Harmonic Oscillator<a class="headerlink" href="#example-simple-harmonic-oscillator" title="Link to this heading">#</a></h3>
+<p>We will spend a lot of time studying the <a class="reference external" href="https://en.wikipedia.org/wiki/Harmonic_oscillator">simple harmonic oscillator</a> (SHO) in this course. The SHO is a system that oscillates back and forth around an equilibrium position. It is a very common system in physics and is used a base model for many more complex systems. Consider a mass, <span class="math notranslate nohighlight">\(m\)</span>, attached to a spring with spring constant, <span class="math notranslate nohighlight">\(k\)</span>, sitting on a frictionless horizontal plane as in the figure below.</p>
+<p><img alt="FBD of a simple harmonic oscillator" src="../images/notes/week3/sho_horizontal.png" /></p>
+<p>The EOM for the SHO can be derived form Newton’s Second Law.</p>
+<div class="math notranslate nohighlight">
+\[\vec{F}_{\text{net}} = m \vec{a} = m\ddot{\vec{x}}\]</div>
+<p>This is a 1D case in the <span class="math notranslate nohighlight">\(x\)</span> direction,</p>
+<div class="math notranslate nohighlight">
+\[F_{\text{net,x}} = F_{\text{spring}} = -kx = m \ddot{x}\]</div>
+<p>And thus,</p>
+<div class="math notranslate nohighlight">
+\[\ddot{x} = -\dfrac{k}{m}x\]</div>
+<p>is the specific EOM for the SHO. As we will learn, this restoring force causes the mass to oscillate back and forth around the equilibrium position, with a well known frequency, <span class="math notranslate nohighlight">\(\omega = \sqrt{\dfrac{k}{m}}\)</span>.</p>
+</section>
+</section>
+<section id="turning-observations-into-models">
+<h2>Turning Observations into Models<a class="headerlink" href="#turning-observations-into-models" title="Link to this heading">#</a></h2>
+<p>One of the more challenging aspects of physics is how we work to make models of the observations we have. This a long and challenging process in general, but if we have a general schematic, we can make progress. The hand drawn figure below provides such a schematic.</p>
+<p><img alt="Framework for making models" src="../images/notes/week3/prelim_framework.png" /></p>
+<p>In the schematic, our observations are the starting point. Using our framework for physics (e.g., Newton’s Laws) and making the appropriate assumptions (in blue), we can develop a model (in red) of the system. By conducting analysis and investgating the evolution of the model, we produce predictions (in green). We can then compare tose predictions to our observations to evaluate how well our model describes the system.</p>
+<p>In this class, we mostly focus on the elements circled in purple where we develop models, and use them to predict. The core part of this class is the orange circled elements of modeling and predicting. We will spend a lot of time developing the tools and techniques to make these predictions.</p>
+<section id="modeling-process">
+<h3>Modeling Process<a class="headerlink" href="#modeling-process" title="Link to this heading">#</a></h3>
+<p>Making models of physical systems is greatly helped by considering the following steps:</p>
+<ul class="simple">
+<li><p>Identify the phenomenon or system of interest.</p></li>
+<li><p>Identify the interactions the system has with its surroundings.</p></li>
+<li><p>Choose an appropriate physics framework to investigate the system (Newton? Lagrange? Hamilton? Continuous or Discrete?).</p></li>
+<li><p>Sketch the system and identify the interactions, name them, and assign them to the appropriate framework.</p></li>
+<li><p>Choose your coordinate system and define your variables.</p></li>
+<li><p>Apply the appropriate physics framework to the system.</p></li>
+<li><p><strong>Obtain the equations of motion</strong>, and make predictions.</p></li>
+</ul>
+<p>Let’s turn to an example you have seen before: the falling ball.</p>
+</section>
+<section id="example-falling-ball-in-1d">
+<h3>Example: Falling Ball in 1D<a class="headerlink" href="#example-falling-ball-in-1d" title="Link to this heading">#</a></h3>
+<p>Consider a ball of mass <span class="math notranslate nohighlight">\(m\)</span> falling with air resistance. Here, we have already done some of the work above. We have identified the phenomenon, and started to indicate the interactions.</p>
+<p><img alt="FBD of a falling ball with air resistance" src="../images/notes/week3/1d-ball-fbd-air.png" /></p>
+<p>In the figure above, we have identified the forces acting on the ball. We have the gravitational force, <span class="math notranslate nohighlight">\(W = mg\)</span>, and the air resistance, <span class="math notranslate nohighlight">\(F_{\text{air}}\)</span>. We have chosen the linear mode for air-resistance, which is a choice of model given the assumption that the ball moves very slowly – <em>this is not a good assumption in this case</em>, but makes the mathematical analysis simpler.</p>
+<p>We have also chosen our coordinate system, with the positive <span class="math notranslate nohighlight">\(y\)</span> direction pointing down.</p>
+<p>We choose a Newtonian framework for our physics because we are familiar with it. And thus, we can develop the EOM:</p>
+<div class="math notranslate nohighlight">
+\[\vec{F}_{\text{net}} = m \vec{a} = m\ddot{\vec{x}}\]</div>
+<p>In 1d,</p>
+<div class="math notranslate nohighlight">
+\[F_{\text{net,y}} = W - F_{\text{air}} = mg - bv = m \ddot{y}\]</div>
+<p>So that the EOM is,</p>
+<div class="math notranslate nohighlight">
+\[\ddot{y} = g - \dfrac{b}{m}v\]</div>
+<section id="question-what-happens-with-ddot-y-0">
+<h4>Question: What happens with <span class="math notranslate nohighlight">\(\ddot{y} = 0\)</span>?<a class="headerlink" href="#question-what-happens-with-ddot-y-0" title="Link to this heading">#</a></h4>
+<p>Once the ball has no acceleration, the two forces are balanced. This is the terminal velocity of the ball. We can solve for this by setting <span class="math notranslate nohighlight">\(\ddot{y} = 0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[0 = g - \dfrac{b}{m}v_{\text{term}}\]</div>
+<div class="math notranslate nohighlight">
+\[v_{\text{term}} = \dfrac{mg}{b}\]</div>
+<p>This is the terminal velocity of the ball for linear drag. When the ball reaches this speed (and does so asymptotically), the forces are balanced and the ball will fall at a constant speed.</p>
+</section>
+<section id="question-can-we-solve-this-differential-equation">
+<h4>Question can we solve this differential equation?<a class="headerlink" href="#question-can-we-solve-this-differential-equation" title="Link to this heading">#</a></h4>
+<p>The differential equation <span class="math notranslate nohighlight">\(\ddot{y} = g - \dfrac{b}{m}v\)</span> is a second-order differential equation for <span class="math notranslate nohighlight">\(y\)</span>. We can solve this equation analytically by recasting it as a first-order differential equation for <span class="math notranslate nohighlight">\(v\)</span>, which we solve for and then integrate to find <span class="math notranslate nohighlight">\(y(t)\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\dot{v} = g - \dfrac{b}{m}v\]</div>
+<p>We will do that later, for now, let’s hack off the drag bit and return to the simple falling ball. Our simplified EOM is:</p>
+<div class="math notranslate nohighlight">
+\[\ddot{y} = g\]</div>
+<p>Note this is written as a second order ODE for <span class="math notranslate nohighlight">\(y\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{d^2y}{dt^2} = g\]</div>
+<p>It is possible also to recast these kinds of second-order differential equations as a pair of 1st order differential equations for <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(v\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{dv}{dt} = g \qquad \dfrac{dy}{dt} = v\]</div>
+<p>This is a common technique in physics and engineering to solve second-order differential equations. Let’s solve this for completeness.</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{dv}{dt} = g \longrightarrow \textrm{a constant}\]</div>
+<p>We can integrate:</p>
+<div class="math notranslate nohighlight">
+\[\int_{v_0}^{v(t)} dv = \int_{0}^{t} g dt\]</div>
+<div class="math notranslate nohighlight">
+\[v(t) - v_0 = gt\]</div>
+<p>We obtain the velocity as a function of time for constant acceleration:</p>
+<div class="math notranslate nohighlight">
+\[v(t) = v_0 + gt\]</div>
+<p>Now we can integrate the velocity to obtain the position as a function of time:</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{dy}{dt} = v \longrightarrow \textrm{a function of time}\]</div>
+<div class="math notranslate nohighlight">
+\[\int_{y_0}^{y(t)} dy = \int_{0}^{t} v_0 + gt dt\]</div>
+<div class="math notranslate nohighlight">
+\[y(t) - y_0 = v_0 t + \dfrac{1}{2}gt^2\]</div>
+<p>We obtain the position as a function of time for constant acceleration, the standard kinematic equation:</p>
+<div class="math notranslate nohighlight">
+\[y(t) = y_0 + v_0 t + \dfrac{1}{2}gt^2\]</div>
+<p>Why the ‘plus’ sign on the last term? Because we choose positive <span class="math notranslate nohighlight">\(y\)</span> to be down, and the ball is accelerating down.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is really useful, but is contingent on finding or knowing the anti-derivative of the functions we are integrating. That is not always possible. What might we do if we weren’t sure that we could find the anti-derivative?</p>
+</div>
+</section>
+</section>
+</section>
+<section id="discrete-formulation-of-newtonian-mechanics">
+<h2>Discrete Formulation of Newtonian Mechanics<a class="headerlink" href="#discrete-formulation-of-newtonian-mechanics" title="Link to this heading">#</a></h2>
+<p>Most of our experience so far has been solving problems where we can find continuous functions that are the anti-derivatives of the functions we are integrating. This leads to standard formulae that we can use to predict or plot our results.</p>
+<p>However, there are very few systems for which we can write down EOMs that have known solutions. In these cases, we need to turn to numerical methods to solve the equations of motion. To do this, we need a discrete formulation of the EOMs.</p>
+<p>Let’s focus on 1D:</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{d^2y}{dt^2} = \dfrac{F}{m}\]</div>
+<p>We can write this as a pair of first-order differential equations:</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{dy}{dt} = v \quad \textrm{and} \quad \dfrac{dv}{dt} = \dfrac{F}{m}\]</div>
+<p>Let’s allow ourselves to consider instead a small time interval of the evolution, <span class="math notranslate nohighlight">\(\Delta t\)</span>. We can then write the velocity equation as:</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{dv}{dt} = \dfrac{\Delta v}{\Delta t}= \dfrac{v(t+\Delta t) - v(t)}{\Delta t} = \dfrac{F}{m}\]</div>
+<p>We can turn this into a discrete equation by multiplying through by <span class="math notranslate nohighlight">\(\Delta t\)</span>: prediction of the velocity at the next time step:</p>
+<div class="math notranslate nohighlight">
+\[v(t+\Delta t) = v(t) + \dfrac{F}{m} \Delta t\]</div>
+<p>This is the “velocity update” equation, or more generally, the <a class="reference external" href="https://en.wikipedia.org/wiki/Euler_method">Euler step</a> for velocity. Given the information at time <span class="math notranslate nohighlight">\(t\)</span>, <span class="math notranslate nohighlight">\(F(t)\)</span>, <span class="math notranslate nohighlight">\(m\)</span>, and <span class="math notranslate nohighlight">\(v(t)\)</span>, we can predict the velocity at the next time step.</p>
+<div class="math notranslate nohighlight">
+\[v(t+\Delta t) = v(t) + \dfrac{F(t)}{m} \Delta t\]</div>
+<p>Great! But that is just for velocity, can we do the same for position?</p>
+<p><strong>Yes</strong></p>
+<p>We can use the same logic to predict the position at the next time step:</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{dy}{dt} = v\]</div>
+<p>If we discretize this, we realize we just have the definition of the average velocity:</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{dy}{dt} = v_{\textrm{avg}}\]</div>
+<p>We can then write the position update equation:</p>
+<div class="math notranslate nohighlight">
+\[y(t+\Delta t) = y(t) + v_{\textrm{avg}} \Delta t\]</div>
+<p>What is left is to determine what should be the estimate for <span class="math notranslate nohighlight">\(v_{\textrm{avg}}\)</span>.</p>
+<div class="note admonition">
+<p class="admonition-title">Choosing <span class="math notranslate nohighlight">\(v_{\textrm{avg}}\)</span></p>
+<p>The idea that we have to pick a value for <span class="math notranslate nohighlight">\(v_{\textrm{avg}}\)</span> is a key point in numerical methods. It might seem silly or overly subtle and it certainly the latter. We can select <span class="math notranslate nohighlight">\(v(t)\)</span>, <span class="math notranslate nohighlight">\(v(t+\Delta t)\)</span>, or some average of the two. The choice of <span class="math notranslate nohighlight">\(v_{\textrm{avg}}\)</span> is the key to the accuracy of the method.</p>
+<p>As we will show in a later homework, the best choice is <span class="math notranslate nohighlight">\(v(t+\Delta t)\)</span> as it preserves the energy of the system.</p>
+</div>
+<section id="euler-cromer-step">
+<h3>Euler-Cromer Step<a class="headerlink" href="#euler-cromer-step" title="Link to this heading">#</a></h3>
+<p>Taken together, we obtain the <a class="reference external" href="https://en.wikipedia.org/wiki/Semi-implicit_Euler_method">Euler-Cromer</a> step for the position and velocity:</p>
+<div class="math notranslate nohighlight">
+\[v(t+\Delta t) = v(t) + \dfrac{F(t)}{m} \Delta t\]</div>
+<div class="math notranslate nohighlight">
+\[y(t+\Delta t) = y(t) + v(t+\Delta t) \Delta t\]</div>
+<p>This method was accidentaly discovered by a high physics student called Abby Aspel. It was later explored by <a class="reference external" href="https://en.wikipedia.org/wiki/Alan_Cromer">Alan Cromer</a> whote wrote up this <a class="reference external" href="https://aapt.scitation.org/doi/10.1119/1.10903">method in the American Journal of Physics</a>.</p>
+<p>In three-dimensions, this method is simply written in a vector form:</p>
+<div class="math notranslate nohighlight">
+\[\vec{v}(t+\Delta t) = \vec{v}(t) + \dfrac{\vec{F}(t)}{m} \Delta t\]</div>
+<div class="math notranslate nohighlight">
+\[\vec{r}(t+\Delta t) = \vec{r}(t) + \vec{v}(t+\Delta t) \Delta t\]</div>
+<div class="note admonition">
+<p class="admonition-title">Erasing Contributions in Physics</p>
+<p>This method should be called the Euler-Aspel-Cromer method because Euler started it, Aspel discovered it, and Cromer formalized it.</p>
+<p>It is not because physics and physicists tend to erase the contributions of marginalized groups including young people, women, and folks from non-dominant groups.</p>
+<p><strong>Don’t believe it?</strong></p>
+<p>Read about the <a class="reference external" href="https://physics.mit.edu/about-physics/our-history/">history of the MIT physics department</a> and try to find the contributions of the many technical staff, non-tenure track faculty, and students who have made the department what it is today.</p>
+</div>
+</section>
+</section>
+<section id="analytical-solutions-to-the-air-resistance-problem">
+<h2>Analytical Solutions to the Air-Resistance Problem<a class="headerlink" href="#analytical-solutions-to-the-air-resistance-problem" title="Link to this heading">#</a></h2>
+<p>We can solve the air-resistance problem analytically. We have the EOM for velocity:</p>
+<div class="math notranslate nohighlight">
+\[\dot{v} = g - \dfrac{b}{m}v - \dfrac{c}{m}v^2\]</div>
+<section id="linear-drag">
+<h3>Linear Drag<a class="headerlink" href="#linear-drag" title="Link to this heading">#</a></h3>
+<p>Let’s take the linear limit first, <span class="math notranslate nohighlight">\(c=0\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\dot{v} = g - \dfrac{b}{m}v\]</div>
+<p>We can solve this equation by separating variables:</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{dv}{g - \dfrac{b}{m}v} = dt\]</div>
+<p>We can integrate both sides:</p>
+<div class="math notranslate nohighlight">
+\[\int \dfrac{dv}{g - \dfrac{b}{m}v} = \int dt\]</div>
+<div class="math notranslate nohighlight">
+\[-\dfrac{m}{b} \ln|g - \dfrac{b}{m}v| = t + C\]</div>
+<p>We can solve for <span class="math notranslate nohighlight">\(v(t)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[g - \dfrac{b}{m}v = e^{-\dfrac{b}{m}t - C}\]</div>
+<div class="math notranslate nohighlight">
+\[v(t) = \dfrac{mg}{b} - e^{-\dfrac{b}{m}t - C}\]</div>
+<p>We can solve for the constant <span class="math notranslate nohighlight">\(C\)</span> by using the initial condition <span class="math notranslate nohighlight">\(v(0) = v_0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[v_0 = \dfrac{mg}{b} - e^{-C}\]</div>
+<div class="math notranslate nohighlight">
+\[e^{-C} = \dfrac{mg}{b} - v_0\]</div>
+<div class="math notranslate nohighlight">
+\[v(t) = \dfrac{mg}{b} - \left(\dfrac{mg}{b} - v_0\right)e^{-\dfrac{b}{m}t}\]</div>
+<p>When <span class="math notranslate nohighlight">\(v_0 = 0\)</span>, we find:</p>
+<div class="math notranslate nohighlight">
+\[v(t) = \dfrac{mg}{b}\left(1 - e^{-\dfrac{b}{m}t}\right)\]</div>
+<p>And as <span class="math notranslate nohighlight">\(t \to \infty\)</span>, we find the terminal velocity:</p>
+<div class="math notranslate nohighlight">
+\[v_{\text{term}} = \lim_{t \to \infty} v(t) = \dfrac{mg}{b}\]</div>
+</section>
+<section id="quadratic-drag">
+<h3>Quadratic Drag<a class="headerlink" href="#quadratic-drag" title="Link to this heading">#</a></h3>
+<p>In the case of quadratic drag, we have:</p>
+<div class="math notranslate nohighlight">
+\[\dot{v} = g - \dfrac{c}{m}v^2\]</div>
+<p>We can find the terminal velocity by setting <span class="math notranslate nohighlight">\(\dot{v} = 0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[0 = g - \dfrac{c}{m}v_{\text{term}}^2\]</div>
+<div class="math notranslate nohighlight">
+\[v_{\text{term}} = \sqrt{\dfrac{mg}{c}}\]</div>
+<p>Thus, we recast the problem in terms of the terminal velocity:</p>
+<div class="math notranslate nohighlight">
+\[\dot{v} = g\left(1 - \dfrac{v^2}{v_{\text{term}}^2}\right)\]</div>
+<p>We can separate variables and integrate:</p>
+<div class="math notranslate nohighlight">
+\[\int \dfrac{dv}{1 - \dfrac{v^2}{v_{\text{term}}^2}} = \int g dt\]</div>
+<section id="assume-we-start-at-rest-v-0-0">
+<h4>Assume we start at rest, <span class="math notranslate nohighlight">\(v(0) = 0\)</span><a class="headerlink" href="#assume-we-start-at-rest-v-0-0" title="Link to this heading">#</a></h4>
+<p>We can solve for <span class="math notranslate nohighlight">\(v(t)\)</span>, by using the proper limits:</p>
+<div class="math notranslate nohighlight">
+\[\int_{0}^{v(t)} \dfrac{dv}{1 - \dfrac{v^2}{v_{\text{term}}^2}} = \int_{0}^{t} g dt\]</div>
+<p>This is a known integral and yields:</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{v_{\text{term}}}{2}\ln\left|\dfrac{v_{\text{term}} + v}{v_{\text{term}} - v}\right| = gt\]</div>
+<p>With the initial condition <span class="math notranslate nohighlight">\(v(0) = 0\)</span>, we find:</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{v_{\text{term}}}{g} \tanh^{-1}\left(\dfrac{v}{v_{\text{term}}}\right) = t\]</div>
+<p>And thus, we find the velocity as a function of time:</p>
+<div class="math notranslate nohighlight">
+\[v(t) = v_{\text{term}}\tanh\left(\dfrac{gt}{v_{\text{term}}}\right)\]</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#newtonian-examples-of-classical-models">Newtonian Examples of Classical Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-falling-ball-with-no-air-resistance">Example: Falling Ball with No Air Resistance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-simple-harmonic-oscillator">Example: Simple Harmonic Oscillator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#turning-observations-into-models">Turning Observations into Models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-process">Modeling Process</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-falling-ball-in-1d">Example: Falling Ball in 1D</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#question-what-happens-with-ddot-y-0">Question: What happens with <span class="math notranslate nohighlight">\(\ddot{y} = 0\)</span>?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#question-can-we-solve-this-differential-equation">Question can we solve this differential equation?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-formulation-of-newtonian-mechanics">Discrete Formulation of Newtonian Mechanics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#euler-cromer-step">Euler-Cromer Step</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analytical-solutions-to-the-air-resistance-problem">Analytical Solutions to the Air-Resistance Problem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-drag">Linear Drag</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quadratic-drag">Quadratic Drag</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#assume-we-start-at-rest-v-0-0">Assume we start at rest, <span class="math notranslate nohighlight">\(v(0) = 0\)</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Marcos D. Caballero
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

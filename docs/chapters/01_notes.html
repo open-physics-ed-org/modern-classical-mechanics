@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -176,12 +176,32 @@
             </li>
         </ul>
         <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../README.html">🌐 About &amp; Webpage</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="../notebooks/01_start.html">Week 1 - Overture: What is Classical Physics?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notebooks/01_notes.html">Week 1 - Notes: Introduction to Classical Mechanics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notebooks/02_start.html">Week 2 - Computing as a tool for science</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notebooks/02_notes.html">Week 2 - Notes: Mathematical Preliminaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_start.html">Week 3 - What is Mathematical Modeling?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_notes.html">Week 3 - Notes: Making Classical Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/04_start.html">Week 4 - Why does fluid drag complicate things?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/04_notes.html">Week 4 - Notes: Equations of Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/05_start.html">Week 5 - Conservation Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/05_notes.html">Week 5 - Notes: Conservation of Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/06_start.html">Week 6 - Stability and Equilibria</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/06_notes.html">Week 6 - Notes: Stability and Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/06_notes_2.html">Week 6 - Notes: Linear and Angular Momentum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/07_start.html">Week 7 - Nonlinear Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/07_notes.html">Week 7 - Notes: Critical Points; Phase Space; Trajectories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/08_start.html">Week 8 - Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/08_notes.html">Week 8 - Notes: Oscillators and Modeling Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/09_start.html">Week 9 - Driven Oscillators and Resonance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/09_notes.html">Week 9 - Notes: Driven Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/10_start.html">Week 10 - Chaotic Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/10_notes.html">Week 10 - Activity: Modeling Chaotic Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/11_start.html">Week 11 - Calculus of Variations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/11_notes.html">Week 11 - Notes: The Euler-Lagrange Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/12_notes.html">Week 12 - Notes: Introduction to Lagrangian Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/13_start.html">Week 13 - Lagrangian Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/13_notes.html">Week 13 - Notes: Examples of Lagrangian Mechanics</a></li>
 </ul>
 
     </div>
@@ -446,7 +466,7 @@ F_{net,z} &amp;= m a_z
 <h3>Example: A Block on an Inclined Ramp<a class="headerlink" href="#example-a-block-on-an-inclined-ramp" title="Link to this heading">#</a></h3>
 <p>Consider the box (mass, <span class="math notranslate nohighlight">\(m\)</span>) above on an inclined ramp (angle, <span class="math notranslate nohighlight">\(\theta\)</span>). The box is at rest subject to static friction, <span class="math notranslate nohighlight">\(\mu_s\)</span>. <em>What angle of inclination will cause the box to start sliding down the ramp?</em></p>
 <p>We start by drawing the <a class="reference external" href="https://en.wikipedia.org/wiki/Free_body_diagram">Free Body Diagram</a> (FBD) of the box.</p>
-<p><img alt="Free Body Diagram of Box on a Inclined Ramp; the arrows label the direction of forces acting on the box" src="../_images/box_fbd2.png" /><br>
+<p><img alt="Free Body Diagram of Box on a Inclined Ramp; the arrows label the direction of forces acting on the box" src="../_images/box_fbd1.png" /><br>
 <a class="reference download internal" download="" href="../_downloads/896213945a664ec650c61eea794dffd7/box_fbd_remote.png"><span class="xref download myst">Source: homework.study.com</span></a></p>
 <p>The FBD is a diagram that shows all the forces acting on the object. In this case, the forces acting on the box are:</p>
 <ul class="simple">
@@ -505,7 +525,7 @@ F_{net,z} &amp;= m a_z
 <li><p>The force of gravity/weight, <span class="math notranslate nohighlight">\(W=mg\)</span>, acting downwards.</p></li>
 <li><p>The force due to air resistance, <span class="math notranslate nohighlight">\(F_{air}\)</span>, acting upwards.</p></li>
 </ul>
-<p><img alt="Free Body Diagram of Falling Object; the arrows label the direction of forces acting on the object" src="../_images/falling_object2.png" /><br>
+<p><img alt="Free Body Diagram of Falling Object; the arrows label the direction of forces acting on the object" src="../_images/falling_object1.png" /><br>
 <a class="reference download internal" download="" href="../_downloads/42b22c12f145f71e8d98b2f916c1c119/falling_object_remote.gif"><span class="xref download myst">Source: ibphysicsguide.weebly.com</span></a></p>
 <p>Here we have chosen positive <span class="math notranslate nohighlight">\(y\)</span> to be the downward direction. We want to predict the motion (<span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(v\)</span>, <span class="math notranslate nohighlight">\(y\)</span>) of the object as a function of time. This is a very common problem for classical mechanics.</p>
 <section id="air-drag">
