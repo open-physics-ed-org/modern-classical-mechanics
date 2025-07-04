@@ -1,0 +1,36 @@
+# _config.yml for Jupyter Book
+
+# Book settings
+root: README.md
+title: "Modern Classical Mechanics"
+author: "Marcos D. Caballero"
+logo: ""
+language: en
+
+# Launch buttons (for Binder, Colab, etc.)
+launch_buttons:
+  notebook_interface: classic
+  colab_url: ""
+  binderhub_url: ""
+
+# HTML settings
+html:
+  favicon: ""
+  use_repository_button: true
+  use_issues_button: true
+  use_edit_page_button: true
+  repository_url: https://github.com/dannycab/modern-classical-mechanics
+  repository_branch: main
+  path_to_book: .
+
+# Parse and execute notebooks
+execute:
+  execute_notebooks: "off"
+
+# Table of contents file
+# (You will need to create _toc.yml to list your chapters)
+
+repository:
+  url: https://github.com/dannycab/modern-classical-mechanics
+  path_to_book: .
+  branch: main
