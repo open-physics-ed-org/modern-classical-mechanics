@@ -1,8 +1,10 @@
 # Table of contents for Jupyter Book
 # Add your notebook files here in order
 format: jb-book
-root: README.md
+root: intro.md
+# Main chapters
 chapters:
+  - file: README.md
   - file: notebooks/01_start.ipynb
   - file: notebooks/01_notes.ipynb
 # Add more chapters as needed

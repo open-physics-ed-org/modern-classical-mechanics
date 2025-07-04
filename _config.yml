@@ -1,7 +1,7 @@
 # _config.yml for Jupyter Book
 
 # Book settings
-root: README.md
+root: intro.md
 title: "Modern Classical Mechanics"
 author: "Marcos D. Caballero"
 logo: ""
