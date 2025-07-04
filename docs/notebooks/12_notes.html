@@ -63,7 +63,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Week 13 - Lagrangian Mechanics" href="13_start.html" />
-    <link rel="prev" title="Week 11 - Notes: The Euler-Lagrange Equation" href="11_notes.html" />
+    <link rel="prev" title="Week 12 - The Principle of Least Action" href="12_start.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -199,6 +199,7 @@
 <li class="toctree-l1"><a class="reference internal" href="10_notes.html">Week 10 - Activity: Modeling Chaotic Systems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_start.html">Week 11 - Calculus of Variations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_notes.html">Week 11 - Notes: The Euler-Lagrange Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_start.html">Week 12 - The Principle of Least Action</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 12 - Notes: Introduction to Lagrangian Mechanics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13_start.html">Week 13 - Lagrangian Mechanics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13_notes.html">Week 13 - Notes: Examples of Lagrangian Mechanics</a></li>
@@ -447,7 +448,7 @@ document.write(`
 <h2>Deriving Newton’s Second Law in Plane Polar Coordinates<a class="headerlink" href="#deriving-newton-s-second-law-in-plane-polar-coordinates" title="Link to this heading">#</a></h2>
 <p>To get started with Lagrangian mechanics, we will start by deriving Newton’s second law in plane polar coordinates. This is not a necessary step for anything we will do in Lagrangian mechanics, but it is a good way to get comfortable with the coordinate system. And it will also help us see how we can think about forces in a coordinate system that is not Cartesian because Lagrangian mechanics can be used with <a class="reference external" href="https://en.wikipedia.org/wiki/Generalized_coordinates">generalized coordinates</a>.</p>
 <p>We start by sketching the location of a particle in plane polar coordinates, as shown below:</p>
-<p><img alt="Position vector in polar coordinates" src="../images/notes/week12/coordinate-system.png" /></p>
+<p><img alt="Position vector in polar coordinates" src="../_images/coordinate-system.png" /></p>
 <p>The red arrow represents the position vector <span class="math notranslate nohighlight">\(\vec{r}\)</span>, which is a length <span class="math notranslate nohighlight">\(r\)</span> from the origin at an angle <span class="math notranslate nohighlight">\(\phi\)</span> from the <span class="math notranslate nohighlight">\(x\)</span>-axis. At the tip of the vector we have drawn the Cartesian unit vectors <span class="math notranslate nohighlight">\(\hat{x}\)</span> and <span class="math notranslate nohighlight">\(\hat{y}\)</span> in blue, and the polar unit vectors <span class="math notranslate nohighlight">\(\hat{r}\)</span> and <span class="math notranslate nohighlight">\(\hat{\phi}\)</span> in green. Notice that the polar unit vectors are rotated by an angle <span class="math notranslate nohighlight">\(\phi\)</span> from the Cartesian unit vectors. We can simply write the position vector in terms of these unit vectors as:</p>
 <div class="math notranslate nohighlight">
 \[\vec{r} = r \hat{r}\;\text{where}\;r = |\vec{r}|.\]</div>
@@ -509,9 +510,9 @@ document.write(`
 <section id="skateboard-example">
 <h3>Skateboard Example<a class="headerlink" href="#skateboard-example" title="Link to this heading">#</a></h3>
 <p>Let’s see the utility of using polar coordinates by applying it to a skateboarder moving on a circular track. In this case, the skateboarder is constrained to move along a circular path of radius <span class="math notranslate nohighlight">\(r\)</span>. Consider a skateboarder moving on that circular track as shown below:</p>
-<p><img alt="Skateboarder on a circular track" src="../images/notes/week12/skateboard.png" /></p>
+<p><img alt="Skateboarder on a circular track" src="../_images/skateboard.png" /></p>
 <p>At this point in the track, we can draw the free body diagram of the skateboarder. The forces acting on the skateboarder are the Earth’s gravitational force and the normal force of the ramp.</p>
-<p><img alt="Free body diagram of skateboarder" src="../images/notes/week12/skateboard-free-body.png" /></p>
+<p><img alt="Free body diagram of skateboarder" src="../_images/skateboard-free-body.png" /></p>
 <p>We can use Newton’s law in polar coordinates to analyze the forces acting on the skateboarder. This is because the normal force is always perpendicular to the surface of the ramp and will only have a radial component in polar coordinates. Thus we need only decompose the gravitational force into its radial and angular components.</p>
 <p>The sum of all forces in the radial direction are given by:</p>
 <div class="math notranslate nohighlight">
@@ -663,7 +664,7 @@ document.write(`
 <h2>Example: Plane Pendulum<a class="headerlink" href="#example-plane-pendulum" title="Link to this heading">#</a></h2>
 <p>To get some intuition for how Lagrangian mechanics works, let’s consider an example we have seen before: the plane pendulum.</p>
 <p>A pendulum bob of mass <span class="math notranslate nohighlight">\(m\)</span> is attached to a fixed point by a rod of length <span class="math notranslate nohighlight">\(l\)</span>. The bob swings in a vertical plane under the influence of gravity as shown below. We define <span class="math notranslate nohighlight">\(U=0\)</span> at the top of ceiling where the rod is attached.</p>
-<p><img alt="Pendulum Diagram" src="../images/notes/week12/plane-pendulum.png" /></p>
+<p><img alt="Pendulum Diagram" src="../_images/plane-pendulum.png" /></p>
 <p>The location of the bob is <span class="math notranslate nohighlight">\(\langle x, y \rangle\)</span>. We can use the <span class="math notranslate nohighlight">\(x,y\)</span> coordinates to “naively” setup the Lagrangian and see what happens.</p>
 <p>The kinetic energy <span class="math notranslate nohighlight">\(T\)</span> of the pendulum bob is given by:</p>
 <div class="math notranslate nohighlight">
@@ -769,12 +770,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="11_notes.html"
+       href="12_start.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Week 11 - Notes: The Euler-Lagrange Equation</p>
+        <p class="prev-next-title">Week 12 - The Principle of Least Action</p>
       </div>
     </a>
     <a class="right-next"

@@ -199,6 +199,7 @@
 <li class="toctree-l1"><a class="reference internal" href="10_notes.html">Week 10 - Activity: Modeling Chaotic Systems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_start.html">Week 11 - Calculus of Variations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_notes.html">Week 11 - Notes: The Euler-Lagrange Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_start.html">Week 12 - The Principle of Least Action</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12_notes.html">Week 12 - Notes: Introduction to Lagrangian Mechanics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13_start.html">Week 13 - Lagrangian Mechanics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13_notes.html">Week 13 - Notes: Examples of Lagrangian Mechanics</a></li>
@@ -465,7 +466,7 @@ $<span class="math notranslate nohighlight">\(m\ddot{x} + b \dot{x} + k x = 0\)<
 <p>Now we will add a driving force <span class="math notranslate nohighlight">\(F(t)\)</span> to the system, so that the equation of motion becomes
 $<span class="math notranslate nohighlight">\(m\ddot{x} +b \dot{x} + k x = F(t)\)</span>$</p>
 <p>We can represent that setup in the picture below. The blue spring with spring constant <span class="math notranslate nohighlight">\(k\)</span> is attached to a red mass <span class="math notranslate nohighlight">\(m\)</span>. There is a dashpot (damping) in green with damping constant <span class="math notranslate nohighlight">\(b=2\beta\)</span>. The driving force <span class="math notranslate nohighlight">\(F(t)\)</span> is shown in black and called “driver”.</p>
-<p><img alt="driven oscillator" src="../images/notes/week9/driven_oscillator.png" /></p>
+<p><img alt="driven oscillator" src="../_images/driven_oscillator.png" /></p>
 <p>We write that differential equation as:</p>
 <div class="math notranslate nohighlight">
 \[\ddot{x} + 2\beta \dot{x} + \omega_0^2 x = F(t)/m=f(t)\]</div>
@@ -661,7 +662,7 @@ $<span class="math notranslate nohighlight">\(m\ddot{x} +b \dot{x} + k x = F(t)\
 \[A^2 = \dfrac{f_0^2}{\left(\omega_0^2 - \omega^2\right)^2 + 4\beta^2 \omega^2}.\]</div>
 <p>Let’s allow <span class="math notranslate nohighlight">\(\beta\)</span> to be small so that <span class="math notranslate nohighlight">\(4\beta^2 \omega^2\)</span> is small. If we focus on the denominator, we can see that the amplitude will be small when <span class="math notranslate nohighlight">\(\omega\)</span> is far from <span class="math notranslate nohighlight">\(\omega_0\)</span>. But if we choose <span class="math notranslate nohighlight">\(\omega\)</span> to be close to <span class="math notranslate nohighlight">\(\omega_0\)</span>, then the denominator will be small, and the amplitude will be large.</p>
 <p>The second result is a <a class="reference external" href="https://en.wikipedia.org/wiki/Resonance">resonance</a> effect. The system will resonate at a particular frequency, <span class="math notranslate nohighlight">\(\omega_0\)</span>, and the amplitude of the oscillations will be large. Below is a sketch of the response of a driven damped harmonic oscillator to a sinusoidal driving force. The amplitude of the oscillations is plotted as a function of the driving frequency <span class="math notranslate nohighlight">\(\omega\)</span>.</p>
-<p><img alt="Resonance Sketch" src="../images/notes/week9/resonance.png" /></p>
+<p><img alt="Resonance Sketch" src="../_images/resonance.png" /></p>
 <section id="achieving-resonance">
 <h3>Achieving Resonance<a class="headerlink" href="#achieving-resonance" title="Link to this heading">#</a></h3>
 <p>There’s two ways that we can approach this. Let’s focus on the denominator of the amplitude equation:</p>

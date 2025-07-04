@@ -198,6 +198,7 @@
 <li class="toctree-l1"><a class="reference internal" href="10_notes.html">Week 10 - Activity: Modeling Chaotic Systems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_start.html">Week 11 - Calculus of Variations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_notes.html">Week 11 - Notes: The Euler-Lagrange Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_start.html">Week 12 - The Principle of Least Action</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12_notes.html">Week 12 - Notes: Introduction to Lagrangian Mechanics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13_start.html">Week 13 - Lagrangian Mechanics</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 13 - Notes: Examples of Lagrangian Mechanics</a></li>
@@ -451,7 +452,7 @@ document.write(`
 <section id="example-the-atwood-machine">
 <h2>Example: The Atwood Machine<a class="headerlink" href="#example-the-atwood-machine" title="Link to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Atwood_machine">Atwood machine</a> consists of two masses, <span class="math notranslate nohighlight">\(M\)</span> and <span class="math notranslate nohighlight">\(m\)</span>, connected by a massless string that passes over a massless pulley. The system is subject to gravity alone. The figure below shows the system along with a choice of coordinates <span class="math notranslate nohighlight">\(y_1\)</span> and <span class="math notranslate nohighlight">\(y_2\)</span> for the two masses.</p>
-<p><img alt="Atwood Machine" src="../images/notes/week13/atwood.png" /></p>
+<p><img alt="Atwood Machine" src="../_images/atwood.png" /></p>
 <p>These coordinates are measured from the center of the pulley and positive <span class="math notranslate nohighlight">\(y_1\)</span> and <span class="math notranslate nohighlight">\(y_2\)</span> are taken to be upward. Let’s try to use the Lagrangian formalism to find the equations of motion for this system.</p>
 <div class="math notranslate nohighlight">
 \[V = + Mgy_1 + mgy_2\]</div>
@@ -463,7 +464,7 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[y_1 + \pi R + y_2 = l\]</div>
 <p>where <span class="math notranslate nohighlight">\(R\)</span> is the radius of the pulley. That is shown in the figure below.</p>
-<p><img alt="Unraveled String" src="../images/notes/week13/string-unraveled.png" /></p>
+<p><img alt="Unraveled String" src="../_images/string-unraveled.png" /></p>
 <p>The equation above is called an <strong>equation of constraint</strong>. It relates the coordinates <span class="math notranslate nohighlight">\(y_1\)</span> and <span class="math notranslate nohighlight">\(y_2\)</span> to each other. We can use this equation to eliminate one of the coordinates. Let’s eliminate <span class="math notranslate nohighlight">\(y_2\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[l = y_1 + \pi R + y_2 \rightarrow y_1 = (l - \pi R) - y_2\]</div>
@@ -614,7 +615,7 @@ V(\phi) &amp;= (M-m)gy_1 + U_0 \\
 <div class="math notranslate nohighlight">
 \[z = \dfrac{1}{2}c(x^2 + y^2)\]</div>
 <p>where <span class="math notranslate nohighlight">\(c\)</span> is a constant that describes the curvature of the bowl. The figure below shows the system.</p>
-<p><img alt="Bead in a Parabolic Bowl" src="../images/notes/week13/paraboloid.png" /></p>
+<p><img alt="Bead in a Parabolic Bowl" src="../_images/paraboloid.png" /></p>
 <p>In this case the system is better solved in cylindrical coordinates. The coordinates are <span class="math notranslate nohighlight">\((r, \phi, z)\)</span>, where <span class="math notranslate nohighlight">\(r\)</span> is the distance from the <span class="math notranslate nohighlight">\(z\)</span>-axis, <span class="math notranslate nohighlight">\(\phi\)</span> is the angle around the <span class="math notranslate nohighlight">\(z\)</span>-axis, and <span class="math notranslate nohighlight">\(z\)</span> is the height above the <span class="math notranslate nohighlight">\(xy\)</span>-plane as shown above.</p>
 <p>With <span class="math notranslate nohighlight">\(\langle \rho, \phi, z\rangle\)</span> as the coordinates, equation for the constraint is:</p>
 <div class="math notranslate nohighlight">

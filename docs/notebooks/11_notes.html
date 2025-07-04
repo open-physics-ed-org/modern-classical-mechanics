@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/11_notes';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Week 12 - Notes: Introduction to Lagrangian Mechanics" href="12_notes.html" />
+    <link rel="next" title="Week 12 - The Principle of Least Action" href="12_start.html" />
     <link rel="prev" title="Week 11 - Calculus of Variations" href="11_start.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -199,6 +199,7 @@
 <li class="toctree-l1"><a class="reference internal" href="10_notes.html">Week 10 - Activity: Modeling Chaotic Systems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="11_start.html">Week 11 - Calculus of Variations</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 11 - Notes: The Euler-Lagrange Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_start.html">Week 12 - The Principle of Least Action</a></li>
 <li class="toctree-l1"><a class="reference internal" href="12_notes.html">Week 12 - Notes: Introduction to Lagrangian Mechanics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13_start.html">Week 13 - Lagrangian Mechanics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="13_notes.html">Week 13 - Notes: Examples of Lagrangian Mechanics</a></li>
@@ -657,7 +658,7 @@ y'(x) &amp;= \pm \sqrt{\frac{C^2}{1 - C^2}}\\
 <h2>Example: Snell’s Law<a class="headerlink" href="#example-snell-s-law" title="Link to this heading">#</a></h2>
 <p>Let’s assume you are walking on the beach and need to get to a location in the water quickly. Where do you enter the water to minimize the time it takes to reach the location in the water? This is a classic problem in physics and can be solved using the Calculus of Variations.</p>
 <p>Consider the picture below where you can move at a speed <span class="math notranslate nohighlight">\(v_1\)</span> on the shore and a speed <span class="math notranslate nohighlight">\(v_2\)</span> in the water. We know that <span class="math notranslate nohighlight">\(v_1 &gt; v_2\)</span>, so you can move faster on the shore than in the water. We aim to minimize the time it takes to reach the point <span class="math notranslate nohighlight">\(\langle x_2, y_2 \rangle\)</span> in the water from point <span class="math notranslate nohighlight">\(\langle x_1, y_1 \rangle\)</span> on the shore. We take the shoreline to be a line at <span class="math notranslate nohighlight">\(x = 0\)</span>. and the location we cross the shoreline is <span class="math notranslate nohighlight">\(\langle 0, y \rangle\)</span>.</p>
-<p><img alt="Snell's Law Diagram" src="../images/notes/week11/snells_shore.png" /></p>
+<p><img alt="Snell's Law Diagram" src="../_images/snells_shore.png" /></p>
 <p>Notice the angle that we approach the shoreline at, <span class="math notranslate nohighlight">\(\theta_1\)</span>, and the angle that we approach the target in the water, <span class="math notranslate nohighlight">\(\theta_2\)</span>.</p>
 <p>The total time to travel from <span class="math notranslate nohighlight">\(\langle x_1, y_1 \rangle\)</span> to <span class="math notranslate nohighlight">\(\langle 0, y \rangle\)</span> and then to <span class="math notranslate nohighlight">\(\langle x_2, y_2 \rangle\)</span> is:</p>
 <div class="math notranslate nohighlight">
@@ -697,10 +698,10 @@ y'(x) &amp;= \pm \sqrt{\frac{C^2}{1 - C^2}}\\
 <section id="example-brachistochrone-problem">
 <h2>Example: Brachistochrone Problem<a class="headerlink" href="#example-brachistochrone-problem" title="Link to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Brachistochrone_problem">Brachistochrone problem</a> is a classic problem in the Calculus of Variations. It asks the question: “What is the shape of the curve that a bead will follow under the influence of gravity to reach the bottom in the shortest time?”  Here’s a great video from <a class="reference external" href="https://en.wikipedia.org/wiki/Steven_Strogatz">Steven Strogatz</a> that explains the problem and its solution.</p>
-<p><a class="reference external" href="https://www.youtube.com/watch?v=Cld0p3a43fU"><img alt="Youtube Video on the Brachistochrone Problem" src="../_images/hqdefault2.jpg" /></a></p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=Cld0p3a43fU"><img alt="YouTube thumbnail" src="https://img.youtube.com/vi/Cld0p3a43fU/hqdefault.jpg" /></a></p>
 <p>Source: <a class="reference external" href="https://www.youtube.com/watch?v=Cld0p3a43fU">https://www.youtube.com/watch?v=Cld0p3a43fU</a></p>
 <p>The setup is below, there’s two points separated by a distance vertically and horizontally. What shape should we make a track so that a bead will roll down it in the shortest time?</p>
-<p><img alt="The Brachistochrone Problem" src="../images/notes/week11/brachistochrone.png" /></p>
+<p><img alt="The Brachistochrone Problem" src="../_images/brachistochrone.png" /></p>
 <p>The time it takes for the bead to roll down the curve is given by:</p>
 <div class="math notranslate nohighlight">
 \[T = \int_{1}^{2} \dfrac{ds}{v}\]</div>
@@ -872,11 +873,11 @@ x(y(\theta)) &amp;= a \int \sqrt{\frac{(1-\cos\theta)^2(1+\cos\theta)}{(1+\cos\t
       </div>
     </a>
     <a class="right-next"
-       href="12_notes.html"
+       href="12_start.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Week 12 - Notes: Introduction to Lagrangian Mechanics</p>
+        <p class="prev-next-title">Week 12 - The Principle of Least Action</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
