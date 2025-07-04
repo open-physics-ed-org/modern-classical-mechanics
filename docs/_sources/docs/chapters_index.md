@@ -22,16 +22,17 @@ This page provides direct links to all chapters in the book, in every available 
 
 ## Figures
 
-All figures used in the chapters are available in the `chapters/figures/` directory:
 
-- [640px-Modernphysicsfields.svg.png](../chapters/figures/640px-Modernphysicsfields.svg.png)
-- [File:Modernphysicsfields.svg](../chapters/figures/File:Modernphysicsfields.svg)
-- [box_fbd.png](../chapters/figures/box_fbd.png)
-- [box_fbd_remote.png](../chapters/figures/box_fbd_remote.png)
-- [falling_object.png](../chapters/figures/falling_object.png)
-- [falling_object_remote.gif](../chapters/figures/falling_object_remote.gif)
-- [youtube_Qme07fA3Fj4.jpg](../chapters/figures/youtube_Qme07fA3Fj4.jpg)
-- [youtube_myuD81326_o.jpg](../chapters/figures/youtube_myuD81326_o.jpg)
+All figures used in the chapters are available in the `figures/` directory (relative to this page):
+
+- [640px-Modernphysicsfields.svg.png](figures/640px-Modernphysicsfields.svg.png)
+- [File:Modernphysicsfields.svg](figures/File:Modernphysicsfields.svg)
+- [box_fbd.png](figures/box_fbd.png)
+- [box_fbd_remote.png](figures/box_fbd_remote.png)
+- [falling_object.png](figures/falling_object.png)
+- [falling_object_remote.gif](figures/falling_object_remote.gif)
+- [youtube_Qme07fA3Fj4.jpg](figures/youtube_Qme07fA3Fj4.jpg)
+- [youtube_myuD81326_o.jpg](figures/youtube_myuD81326_o.jpg)
 
 ---
 

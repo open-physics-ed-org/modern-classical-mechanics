@@ -26,9 +26,18 @@ find docs/ -mindepth 1 ! -regex 'docs/\(.git\|.nojekyll\).*' -delete
 # Copy the entire built site to docs/, preserving all files (including .nojekyll)
 cp -a _build/html/. docs/
 
+
 # Copy figures to both output locations for image rendering
 if [ -d "../chapters/figures" ]; then
   cp -r ../chapters/figures docs/figures
+fi
+
+# Copy images to docs/images/notes/week1 for correct notebook/chapter rendering
+IMAGES_SRC="../notebooks/images/notes/week1"
+IMAGES_DST="docs/images/notes/week1"
+if [ -d "$IMAGES_SRC" ]; then
+  mkdir -p "$IMAGES_DST"
+  cp "$IMAGES_SRC"/* "$IMAGES_DST/"
 fi
 
 # Ensure the homepage is correct for GitHub Pages

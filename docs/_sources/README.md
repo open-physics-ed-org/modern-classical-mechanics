@@ -1,3 +1,15 @@
+## 🌐 About & Webpage
+
+**Modern Classical Mechanics** is an open-source, interactive, and reproducible book for PHY 321: Classical Mechanics 1 at Michigan State University, authored by Marcos D. Caballero.
+
+- **Webpage:** [View the Book Online](https://dannycaballero.info/modern-classical-mechanics/)
+- **GitHub Repo:** [github.com/dannycab/modern-classical-mechanics](https://github.com/dannycab/modern-classical-mechanics)
+- **License:** CC BY-NC 4.0 (free for non-commercial use)
+- **Contact:** caball14@msu.edu
+
+All content is built from Jupyter notebooks and published automatically to the web. Contributions, issues, and pull requests are welcome!
+
+---
 
 
 <div align="center">
@@ -55,7 +67,18 @@ All build and utility scripts are in the `scripts/` directory. Here’s what eac
 - **build_all.sh**: Runs all build steps in sequence (chapters, book, website, etc.).
 - **fetch_remote_images.sh**: Finds, downloads, and relinks any remote images referenced in notebooks or markdown files, ensuring all images are local for reproducibility.
 
+
 Run any script with `bash scripts/<scriptname>.sh` from the project root.
+
+---
+
+## 📄 Additional Documentation
+
+- [Chapters and Figures Index](docs/chapters_index.md)
+- [Script: build_chapters.sh](docs/scripts_build_chapters.md)
+- [Script: build_website.sh](docs/scripts_build_website.md)
+- [Script: fetch_remote_images.sh](docs/scripts_fetch_remote_images.md)
+- [Script: build_all.sh](docs/scripts_build_all.md)
 
 ---
 
