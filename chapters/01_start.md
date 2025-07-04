@@ -51,7 +51,7 @@ While it might appear there's little room for using Classical Mechanics in resea
 [Researchers at Los Alamos National Lab](https://www.lanl.gov/org/ddste/aldsc/theoretical/fluid-dynamics-solid-mechanics/index.php) do a variety of research using fluid mechanics models.
 
 
-[![YouTube thumbnail](https://img.youtube.com/vi/myuD81326_o/hqdefault.jpg)](https://youtube.com/watch?v=myuD81326_o)
+[![YouTube thumbnail](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=myuD81326_o)
 
 Source: <https://www.youtube.com/watch?v=myuD81326_o>
 
@@ -59,7 +59,7 @@ Source: <https://www.youtube.com/watch?v=myuD81326_o>
 
 A [research lab at Georgia Tech](https://crablab.gatech.edu/) uses Classical Mechanics to model the motion of animals and then uses that information to build robots that can move like animals.
 
-[![YouTube thumbnail](https://img.youtube.com/vi/Qme07fA3Fj4/hqdefault.jpg)](https://youtube.com/watch?v=Qme07fA3Fj4)
+[![YouTube thumbnail](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=Qme07fA3Fj4)
 
 Source: <https://www.youtube.com/watch?v=Qme07fA3Fj4>
 

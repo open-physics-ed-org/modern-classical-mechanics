@@ -34,7 +34,7 @@ An understanding of physics formulated through [Lagrangian Mechanics](https://en
 
 The video below provides an introduction to this equation and the Standard Model.
 
-[![YouTube thumbnail](https://img.youtube.com/vi/PHiyQID7SBs/hqdefault.jpg)](https://youtube.com/watch?v=PHiyQID7SBs)
+[![YouTube thumbnail](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=PHiyQID7SBs)
 
 
 

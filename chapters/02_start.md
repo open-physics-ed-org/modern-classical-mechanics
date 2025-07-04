@@ -45,7 +45,7 @@ The history of scientific computing is deeply intertwined with the evolution of 
 
 To get an introductory overview, the video below from Futurology is a helpful resource, but it is by no means comprehensive or critical.
 
-[![YouTube thumbnail](https://img.youtube.com/vi/-M6lANfzFsM/hqdefault.jpg)](https://youtube.com/watch?v=-M6lANfzFsM)
+[![YouTube thumbnail](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=-M6lANfzFsM)
 
 Source: <https://www.youtube.com/watch?v=-M6lANfzFsM>
 
