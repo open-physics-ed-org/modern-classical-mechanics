@@ -20,12 +20,12 @@ Chaotic systems are typically [nonlinear](https://en.wikipedia.org/wiki/Nonlinea
 
 We have seen how systems can have fixed points - both stable and unstable - and we have seen periodic behavior. These are common in many dynamical systems. In our study of the harmonic oscillator, we observed that the system can exhibit periodic behavior when undamped or driven, but we also saw how it can settle to a stable fixed point when damped. As we move to study chaotic systems, we begin to see other kinds of behavior. Systems can have [limit cycles](https://en.wikipedia.org/wiki/Limit_cycle) - periodic orbits that are stable or unstable. Below we show the limit cycle of the [Van der Pol oscillator](https://en.wikipedia.org/wiki/Van_der_Pol_oscillator), 
 
-![Limit Cycle](images/notes/week1/640px-VanDerPolPhaseSpace.png)
+![Limit Cycle](images/notes/week1//640px-VanDerPolPhaseSpace.png)
 
 
 One of the most interesting types of [attractors](https://en.wikipedia.org/wiki/Attractor) in dynamical systems is the [strange attractor](https://en.wikipedia.org/wiki/Strange_attractor). These are fractal structures in phase space towards which the system evolves over time. Strange attractors are complex and often exhibit self-similarity, meaning they look similar at different scales. The [Lorenz attractor](https://en.wikipedia.org/wiki/Lorenz_system) is a famous example of a strange attractor, displaying a butterfly-shaped pattern.
 
-![Lorenz Attractor](images/notes/week1/A_Trajectory_Through_Phase_Space_in_a_Lorenz_Attractor.gif)
+![Lorenz Attractor](images/notes/week1//A_Trajectory_Through_Phase_Space_in_a_Lorenz_Attractor.gif)
 
 ### Long-term Unpredictability
 

@@ -136,7 +136,7 @@ These values of $C_1$ and $C_2$ are the complex conjugates of each other. The co
 
 We can draw these in the complex plane where the $x$-axis is the real part and the $y$-axis is the imaginary part.
 
-![Complex Conjugates](../../images/notes/week8/conjugates_graph.png)
+![Complex Conjugates](../images/notes/week8/conjugates_graph.png)
 
 In the graph we can see that the complex conjugates are a reflection of each other. This is because the imaginary part of the complex conjugate is the negative of the original imaginary part.
 

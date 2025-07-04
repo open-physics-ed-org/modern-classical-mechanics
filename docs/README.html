@@ -197,6 +197,7 @@
 <li class="toctree-l1"><a class="reference internal" href="notebooks/10_notes.html">Week 10 - Activity: Modeling Chaotic Systems</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/11_start.html">Week 11 - Calculus of Variations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/11_notes.html">Week 11 - Notes: The Euler-Lagrange Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/12_start.html">Week 12 - The Principle of Least Action</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/12_notes.html">Week 12 - Notes: Introduction to Lagrangian Mechanics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/13_start.html">Week 13 - Lagrangian Mechanics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/13_notes.html">Week 13 - Notes: Examples of Lagrangian Mechanics</a></li>
@@ -420,7 +421,10 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modern-classical-mechanics">📚 Modern Classical Mechanics</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-this">🚀 What is this?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-structure">🗂️ Project Structure</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-utility-scripts">️ Build &amp; Utility Scripts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-utility-scripts">️ Build &amp; Utility Scripts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-and-updated-scripts-2025">New and Updated Scripts (2025)</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapters-and-figures-index">📄 Chapters and Figures Index</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">🚀 What is this?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">📦 Project Structure</a></li>
@@ -507,6 +511,13 @@ document.write(`
 <hr class="docutils" />
 <section id="build-utility-scripts">
 <h2>️ Build &amp; Utility Scripts<a class="headerlink" href="#build-utility-scripts" title="Link to this heading">#</a></h2>
+<section id="new-and-updated-scripts-2025">
+<h3>New and Updated Scripts (2025)<a class="headerlink" href="#new-and-updated-scripts-2025" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>fix_notebook_image_paths.sh</strong>: Normalizes all image paths in Jupyter notebooks, replacing any <code class="docutils literal notranslate"><span class="pre">../../images</span></code> references with <code class="docutils literal notranslate"><span class="pre">../images</span></code> for consistency and reproducibility. Run after moving or updating image directories.</p></li>
+<li><p><strong>fix_youtube_thumbnails.sh</strong>: Scans all notebooks and replaces local YouTube thumbnail image calls with the correct remote thumbnail URLs based on the video ID. Ensures that YouTube video previews always display correctly and are not overwritten by a local file.</p></li>
+<li><p><strong>generate_chapters_index.sh</strong>: Automatically generates <code class="docutils literal notranslate"><span class="pre">docs/chapter_index.md</span></code> with links to all chapter files (Markdown, PDF, DOCX) and lists all images and figures by week. Keeps the index up to date for easy navigation and reproducibility.</p></li>
+</ul>
 <p>All build and utility scripts are in the <code class="docutils literal notranslate"><span class="pre">scripts/</span></code> directory. Run any script with <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">scripts/&lt;scriptname&gt;.sh</span></code> from the project root.</p>
 <ul class="simple">
 <li><p><strong>build_chapters.sh</strong>: Converts all Jupyter notebooks in <code class="docutils literal notranslate"><span class="pre">notebooks/</span></code> to Markdown, PDF, and DOCX in <code class="docutils literal notranslate"><span class="pre">chapters/</span></code>. Fetches remote images and copies figures/images for reproducibility.</p></li>
@@ -515,6 +526,7 @@ document.write(`
 <li><p><strong>build_all.sh</strong>: Runs all build steps in sequence (fetch images, chapters, book, website, etc.).</p></li>
 <li><p><strong>fetch_remote_images.sh</strong>: Finds, downloads, and relinks any remote images referenced in notebooks or markdown files, ensuring all images are local for reproducibility.</p></li>
 </ul>
+</section>
 </section>
 <hr class="docutils" />
 <section id="chapters-and-figures-index">
@@ -690,7 +702,10 @@ pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </s
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modern-classical-mechanics">📚 Modern Classical Mechanics</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-this">🚀 What is this?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-structure">🗂️ Project Structure</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-utility-scripts">️ Build &amp; Utility Scripts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-utility-scripts">️ Build &amp; Utility Scripts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-and-updated-scripts-2025">New and Updated Scripts (2025)</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chapters-and-figures-index">📄 Chapters and Figures Index</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">🚀 What is this?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">📦 Project Structure</a></li>

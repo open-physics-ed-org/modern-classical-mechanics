@@ -1,7 +1,11 @@
 #!/bin/bash
 # build_website.sh
 # Ensure .nojekyll is always present in docs for GitHub Pages
-touch docs/.nojekyll
+mkdir -p docs
+if [ ! -f docs/.nojekyll ]; then
+  echo "Creating docs/.nojekyll to disable Jekyll processing on GitHub Pages"
+  touch docs/.nojekyll
+fi
 
 # Build a static website from notebooks using Jupyter Book
 
@@ -19,9 +23,6 @@ fi
 # Build the website
 jupyter-book build .
 
-
-# Remove any old docs/ content (except .git and .nojekyll if present)
-find docs/ -mindepth 1 ! -regex 'docs/\(.git\|.nojekyll\).*' -delete
 
 # Copy the entire built site to docs/, preserving all files (including .nojekyll)
 cp -a _build/html/. docs/

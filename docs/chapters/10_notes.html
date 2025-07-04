@@ -718,7 +718,7 @@ document.write(`
 <h3>📝 Plotting the results<a class="headerlink" href="#plotting-the-results" title="Link to this heading">#</a></h3>
 <p>Once you have simulated the Duffing oscillator, you can plot the results to visualize its behavior over time. Your plot should be similar to the one above where you plot at least the position <span class="math notranslate nohighlight">\(x\)</span> over time, and then a phase space plot of <span class="math notranslate nohighlight">\(x\)</span> vs. <span class="math notranslate nohighlight">\(v\)</span>. Make sure that you label your axes and include a title for your plot; add starting and ending points to your plot so you are sure about the direction of the motion.</p>
 <p>This first set of plots should look similar to the one below.</p>
-<p><img alt="Duffing" src="../images/notes/week10/first_duffing.png" /></p>
+<p><img alt="Duffing" src="../_images/first_duffing.png" /></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## Plot the time series and phase space</span>
 <span class="c1">## Your Code Here</span>
 </pre></div>
@@ -763,8 +763,8 @@ document.write(`
 <h3>📝 Numerically Integrate the Lorenz Attractor<a class="headerlink" href="#numerically-integrate-the-lorenz-attractor" title="Link to this heading">#</a></h3>
 <p>In the cells below, we scaffold some of the code to simulate the Lorenz attractor. You will need to fill in the missing pieces. Once you plot the solution, you should be able to produce time series, and phase space plots of the Lorenz attractor. <strong>Note that the phase space for the Lorenz attractor is 3D (x,y,z), so you will need to use a 3D plotting function or plot projections.</strong></p>
 <p>For the parameters, we will use the canonical values of <span class="math notranslate nohighlight">\(\sigma = 10\)</span>, <span class="math notranslate nohighlight">\(\rho = 28\)</span>, and <span class="math notranslate nohighlight">\(\beta = \frac{8}{3}\)</span>. Choose initial conditions of <span class="math notranslate nohighlight">\(x=1\)</span>, <span class="math notranslate nohighlight">\(y=1\)</span>, and <span class="math notranslate nohighlight">\(z=1\)</span> and simulate for 50 time units. If you do, your solution will look like the one below.</p>
-<p><img alt="Lorenz Time Series" src="../images/notes/week10/lorenz-1.png" /></p>
-<p><img alt="Lorenz Phase Space" src="../images/notes/week10/lorenz-2.png" /></p>
+<p><img alt="Lorenz Time Series" src="../_images/lorenz-1.png" /></p>
+<p><img alt="Lorenz Phase Space" src="../_images/lorenz-2.png" /></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">gridspec</span>

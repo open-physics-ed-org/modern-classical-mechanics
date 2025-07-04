@@ -12,7 +12,7 @@ This is where [Lagrangian Mechanics](https://en.wikipedia.org/wiki/Lagrangian_me
 
 The video below discusses the concept of the Principle of Least Action, which is the foundation of Lagrangian Mechanics.
 
-[![The Principle of Least Action](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=Q_CQDSlmboA)
+[![YouTube thumbnail](https://img.youtube.com/vi/Q_CQDSlmboA/hqdefault.jpg)](https://youtube.com/watch?v=Q_CQDSlmboA)
 
 Source: <https://youtube.com/watch?v=Q_CQDSlmboA>
 
@@ -30,7 +30,7 @@ The basic steps are:
 
 But we need practice applying these steps to get comfortable with the process. Parth G. has a lovely video below about the basics of Lagrangian Dynamics. We will do a lot of this in class and go over many examples. This video is a nice introduction to the concept.
 
-[![Introduction to Lagrangian Dynamics](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=KpLno70oYHE)
+[![YouTube thumbnail](https://img.youtube.com/vi/KpLno70oYHE/hqdefault.jpg)](https://youtube.com/watch?v=KpLno70oYHE)
 
 Source: <https://youtube.com/watch?v=KpLno70oYHE>
 

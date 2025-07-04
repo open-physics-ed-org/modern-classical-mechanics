@@ -542,7 +542,7 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[x = {x_0, x_1, x_2, \ldots, x_n}\]</div>
 <p>At each of these spatial intervals, we experience a different net force, like in the figure below.</p>
-<p><img alt="Work done by a net force" src="../images/notes/week5/discrete-force-intervals.png" /></p>
+<p><img alt="Work done by a net force" src="../_images/discrete-force-intervals.png" /></p>
 <div class="math notranslate nohighlight">
 \[F_{net} = {F_{net,0}, F_{net,1}, F_{net,2}, \ldots, F_{net,n}}\]</div>
 <p>The work done by this force is the change in kinetic energy of the object:</p>
@@ -563,7 +563,7 @@ document.write(`
 <section id="work-done-in-more-than-one-dimension">
 <h3>Work done in more than one dimension<a class="headerlink" href="#work-done-in-more-than-one-dimension" title="Link to this heading">#</a></h3>
 <p>Consider a path <span class="math notranslate nohighlight">\(C\)</span> that we have discretized into <span class="math notranslate nohighlight">\(n\)</span> intervals. The object starts at <span class="math notranslate nohighlight">\(\vec{r}_0\)</span> and ends at <span class="math notranslate nohighlight">\(\vec{r}_n\)</span>. Each interval is <span class="math notranslate nohighlight">\(\Delta \vec{r}_i\)</span> and the net force is <span class="math notranslate nohighlight">\(\vec{F}_{net,i}\)</span>. The figure below shows the work done by the net force in each interval.</p>
-<p><img alt="Work done by a net force" src="../images/notes/week5/path-integral-work.png" /></p>
+<p><img alt="Work done by a net force" src="../_images/path-integral-work.png" /></p>
 <p>The work done by the net force is:</p>
 <div class="math notranslate nohighlight">
 \[W_{\text{net}} = \sum_{i=0}^{n} \vec{F}_{net,i}\cdot\Delta \vec{r}_i.\]</div>
@@ -613,7 +613,7 @@ document.write(`
 <section id="example-a-lattice-chain">
 <h2>Example: A Lattice Chain<a class="headerlink" href="#example-a-lattice-chain" title="Link to this heading">#</a></h2>
 <p>A less obivous example that produces a potential energy function is a <a class="reference external" href="https://en.wikipedia.org/wiki/Lattice_chain">lattice chain</a>. Here we model an electron moving in 1D near but not too near a long chain of atoms. The picture below shows the model.</p>
-<p><img alt="Lattice chain model" src="../images/notes/week5/lattice-chain.png" /></p>
+<p><img alt="Lattice chain model" src="../_images/lattice-chain.png" /></p>
 <p>Here the location of the particle and it’s initial velocty are zero. The force model for a chain of atoms in this arrangement is:</p>
 <div class="math notranslate nohighlight">
 \[F(x) = -F_0 \sin \left(\dfrac{2\pi x}{b}\right)\]</div>
@@ -662,7 +662,7 @@ document.write(`
 \[\oint_C \vec{F}\cdot d\vec{r} = 0.\]</div>
 <p>This is true for any closed path <span class="math notranslate nohighlight">\(C\)</span>. This is the second statement above.</p>
 <p>We can equivalent write the integral of the force around a closed path as the work around a different path. The figure below shows these paths <span class="math notranslate nohighlight">\(C_1\)</span> and <span class="math notranslate nohighlight">\(C_2\)</span> that make up the first loop, and the paths <span class="math notranslate nohighlight">\(C_3\)</span> and <span class="math notranslate nohighlight">\(C_4\)</span> that make up the second loop. The work done by the force along each path is shown in the figure.</p>
-<p><img alt="Work done by a net force" src="../images/notes/week5/closed-path-work.png" /></p>
+<p><img alt="Work done by a net force" src="../_images/closed-path-work.png" /></p>
 <p>We can take the integral of both paths and write:</p>
 <div class="math notranslate nohighlight">
 \[\oint_C \vec{F}\cdot d\vec{r} = \int_{C_1} \vec{F}\cdot d\vec{r} + \int_{C_2} \vec{F}\cdot d\vec{r} = \int_{C_3} \vec{F}\cdot d\vec{r} + \int_{C_4} \vec{F}\cdot d\vec{r} = 0.\]</div>
