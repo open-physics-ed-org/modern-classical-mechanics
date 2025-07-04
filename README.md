@@ -1,3 +1,18 @@
+---
+
+## 🛠️ Build Scripts Overview
+
+All build and utility scripts are in the `scripts/` directory. Here’s what each one does:
+
+- **build_chapters.sh**: Converts all Jupyter notebooks in `notebooks/` to Markdown, PDF, and DOCX in `chapters/`. Also fetches remote images and copies figures.
+- **build_book.sh**: Builds the full book (website and other formats) from the chapters and configuration files.
+- **build_website.sh**: Builds the HTML website version of the book using Jupyter Book.
+- **build_all.sh**: Runs all build steps in sequence (chapters, book, website, etc.).
+- **fetch_remote_images.sh**: Finds, downloads, and relinks any remote images referenced in notebooks or markdown files, ensuring all images are local for reproducibility.
+
+Run any script with `bash scripts/<scriptname>.sh` from the project root.
+
+---
 
 <div align="center">
 
@@ -51,10 +66,6 @@ modern-classical-mechanics/
    python3 -m venv .venv
    source .venv/bin/activate
    pip install -r requirements.txt
-   ```
-   Or use Docker:
-   ```bash
-   docker compose up --build
    ```
 3. **Build everything:**
    ```bash
