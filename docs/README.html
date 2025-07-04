@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Modern Classical Mechanics &#8212; Modern Classical Mechanics</title>
+    <title>📚 Modern Classical Mechanics &#8212; Modern Classical Mechanics</title>
   
   
   
@@ -172,7 +172,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
                 <a class="reference internal" href="#">
-                    Modern Classical Mechanics
+                    📚 Modern Classical Mechanics
                 </a>
             </li>
         </ul>
@@ -381,7 +381,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Modern Classical Mechanics</h1>
+    <h1>📚 Modern Classical Mechanics</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -391,10 +391,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directory-structure">Directory Structure</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metadata">Metadata</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-reporting">Issue Reporting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-this">🚀 What is this?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-structure">� Project Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-scripts-overview">�🛠️ Build Scripts Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">🚀 What is this?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">📦 Project Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-build-locally">🛠️ How to Build Locally</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automated-builds-ci-cd">🤖 Automated Builds (CI/CD)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#images-figures">🖼️ Images &amp; Figures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license">📝 License</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing">💡 Contributing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgments">🙏 Acknowledgments</a></li>
 </ul>
             </nav>
         </div>
@@ -406,43 +413,167 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="modern-classical-mechanics">
-<h1>Modern Classical Mechanics<a class="headerlink" href="#modern-classical-mechanics" title="Link to this heading">#</a></h1>
-<p>This repository contains the open-source book for PHY 321: Classical Mechanics 1, Michigan State University, Spring 2025.</p>
-<section id="directory-structure">
-<h2>Directory Structure<a class="headerlink" href="#directory-structure" title="Link to this heading">#</a></h2>
+  <div align="center">
+<section class="tex2jax_ignore mathjax_ignore" id="modern-classical-mechanics">
+<h1>📚 Modern Classical Mechanics<a class="headerlink" href="#modern-classical-mechanics" title="Link to this heading">#</a></h1>
+<p><strong>An open, free, and ever-evolving set of notes and resources for learning and teaching classical mechanics.</strong></p>
+<br>
+<strong>Author:</strong> Marcos D. Caballero  
+<strong>Contact:</strong> caball14@msu.edu  
+<strong>Michigan State University</strong>
+<p><img alt="Build" src="https://img.shields.io/badge/build-passing-brightgreen" /> <img alt="License: CC BY-NC 4.0" src="https://img.shields.io/badge/license-CC--BY--NC%204.0-blue" /></p>
+</div>
+<hr class="docutils" />
+<section id="what-is-this">
+<h2>🚀 What is this?<a class="headerlink" href="#what-is-this" title="Link to this heading">#</a></h2>
+<p>Welcome to the home of <strong>Modern Classical Mechanics</strong>! This is a living, collaborative, and open-source book built from Jupyter notebooks, designed for students, educators, and the curious. All content is free to use, adapt, and remix for non-commercial purposes.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">notebooks/</span></code> — Place your weekly Jupyter notebooks here (e.g., <code class="docutils literal notranslate"><span class="pre">week01.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">week02a.ipynb</span></code>, …).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">chapters/</span></code> — Generated chapter files (Markdown, PDF, DOCX, etc.).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">book/</span></code> — The full book in all formats (PDF, DOCX, etc.).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">docs/</span></code> — The website output (for GitHub Pages).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">scripts/</span></code> — Build and conversion scripts.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">.github/workflows/</span></code> — GitHub Actions workflows for automated builds and releases.</p></li>
+<li><p><strong>Multiple formats:</strong> Website, PDF, DOCX, Markdown</p></li>
+<li><p><strong>Reproducible:</strong> All code, figures, and outputs are version-controlled and built automatically</p></li>
+<li><p><strong>Open:</strong> Contributions, issues, and pull requests are <em>highly</em> encouraged!</p></li>
+<li><p><strong>Fun:</strong> Physics is awesome, and so is open science 🌟</p></li>
 </ul>
 </section>
-<section id="getting-started">
-<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p><strong>Copy your Jupyter notebooks</strong> into the <code class="docutils literal notranslate"><span class="pre">notebooks/</span></code> directory.</p></li>
-<li><p><strong>Build scripts and workflows</strong> will convert these into chapters, the full book, and the website.</p></li>
-<li><p><strong>On release</strong>, all formats will be published as GitHub Releases.</p></li>
+<hr class="docutils" />
+<section id="project-structure">
+<h2>� Project Structure<a class="headerlink" href="#project-structure" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>modern-classical-mechanics/
+├── notebooks/        # Source Jupyter notebooks (edit here!)
+├── chapters/         # Auto-generated Markdown, PDF, DOCX, figures
+├── book/             # Website build (Jupyter Book)
+├── docs/             # GitHub Pages output (optional)
+├── scripts/          # Build and utility scripts
+├── .github/workflows # GitHub Actions CI/CD
+├── Dockerfile, docker-compose.yml
+├── _config.yml, _toc.yml, book_metadata.yml
+└── README.md         # You are here!
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="build-scripts-overview">
+<h2>�🛠️ Build Scripts Overview<a class="headerlink" href="#build-scripts-overview" title="Link to this heading">#</a></h2>
+<p>All build and utility scripts are in the <code class="docutils literal notranslate"><span class="pre">scripts/</span></code> directory. Here’s what each one does:</p>
+<ul class="simple">
+<li><p><strong>build_chapters.sh</strong>: Converts all Jupyter notebooks in <code class="docutils literal notranslate"><span class="pre">notebooks/</span></code> to Markdown, PDF, and DOCX in <code class="docutils literal notranslate"><span class="pre">chapters/</span></code>. Also fetches remote images and copies figures.</p></li>
+<li><p><strong>build_book.sh</strong>: Builds the full book (website and other formats) from the chapters and configuration files.</p></li>
+<li><p><strong>build_website.sh</strong>: Builds the HTML website version of the book using Jupyter Book.</p></li>
+<li><p><strong>build_all.sh</strong>: Runs all build steps in sequence (chapters, book, website, etc.).</p></li>
+<li><p><strong>fetch_remote_images.sh</strong>: Finds, downloads, and relinks any remote images referenced in notebooks or markdown files, ensuring all images are local for reproducibility.</p></li>
+</ul>
+<p>Run any script with <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">scripts/&lt;scriptname&gt;.sh</span></code> from the project root.</p>
+</section>
+<hr class="docutils" />
+<section id="id1">
+<h2>🚀 What is this?<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Welcome to the home of <strong>Modern Classical Mechanics</strong>! This is a living, collaborative, and open-source book built from Jupyter notebooks, designed for students, educators, and the curious. All content is free to use, adapt, and remix for non-commercial purposes.</p>
+<ul class="simple">
+<li><p><strong>Multiple formats:</strong> Website, PDF, DOCX, Markdown</p></li>
+<li><p><strong>Reproducible:</strong> All code, figures, and outputs are version-controlled and built automatically</p></li>
+<li><p><strong>Open:</strong> Contributions, issues, and pull requests are <em>highly</em> encouraged!</p></li>
+<li><p><strong>Fun:</strong> Physics is awesome, and so is open science 🌟</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="id2">
+<h2>📦 Project Structure<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>modern-classical-mechanics/
+├── notebooks/        # Source Jupyter notebooks (edit here!)
+├── chapters/         # Auto-generated Markdown, PDF, DOCX, figures
+├── book/             # Website build (Jupyter Book)
+├── docs/             # GitHub Pages output (optional)
+├── scripts/          # Build and utility scripts
+├── .github/workflows # GitHub Actions CI/CD
+├── Dockerfile, docker-compose.yml
+├── _config.yml, _toc.yml, book_metadata.yml
+└── README.md         # You are here!
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="how-to-build-locally">
+<h2>🛠️ How to Build Locally<a class="headerlink" href="#how-to-build-locally" title="Link to this heading">#</a></h2>
+<ol class="arabic">
+<li><p><strong>Clone the repo:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/dannycab/modern-classical-mechanics.git
+<span class="nb">cd</span><span class="w"> </span>modern-classical-mechanics
+</pre></div>
+</div>
+</li>
+<li><p><strong>Set up Python environment:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</li>
+<li><p><strong>Build everything:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./scripts/build_all.sh
+</pre></div>
+</div>
+<p>Or build just the chapters:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./scripts/build_chapters.sh
+</pre></div>
+</div>
+</li>
+<li><p><strong>View outputs:</strong></p>
+<ul class="simple">
+<li><p>Website: <code class="docutils literal notranslate"><span class="pre">book/_build/html/index.html</span></code></p></li>
+<li><p>PDFs/DOCX: <code class="docutils literal notranslate"><span class="pre">chapters/</span></code></p></li>
+</ul>
+</li>
 </ol>
 </section>
-<section id="metadata">
-<h2>Metadata<a class="headerlink" href="#metadata" title="Link to this heading">#</a></h2>
+<hr class="docutils" />
+<section id="automated-builds-ci-cd">
+<h2>🤖 Automated Builds (CI/CD)<a class="headerlink" href="#automated-builds-ci-cd" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Title: Modern Classical Mechanics</p></li>
-<li><p>Author: Marcos D. Caballero</p></li>
-<li><p>License: CC-BY-4.0</p></li>
-<li><p>Institute: Michigan State University</p></li>
-<li><p>Contact: <a class="reference external" href="mailto:caball14&#37;&#52;&#48;msu&#46;edu">caball14<span>&#64;</span>msu<span>&#46;</span>edu</a></p></li>
+<li><p>GitHub Actions automatically build the book and website on every push.</p></li>
+<li><p>All assets (notebooks, images, outputs) are kept in sync.</p></li>
+<li><p>Want to help improve the workflow? <a class="reference external" href="https://github.com/dannycab/modern-classical-mechanics/issues">Open an issue</a> or <a class="reference external" href="https://github.com/dannycab/modern-classical-mechanics/pulls">send a pull request</a>!</p></li>
 </ul>
 </section>
-<section id="issue-reporting">
-<h2>Issue Reporting<a class="headerlink" href="#issue-reporting" title="Link to this heading">#</a></h2>
-<p>Each chapter and webpage will include a link to report issues directly to the GitHub repository.</p>
 <hr class="docutils" />
-<p>For more details, see the scripts and workflow files.</p>
+<section id="images-figures">
+<h2>🖼️ Images &amp; Figures<a class="headerlink" href="#images-figures" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>All images are stored locally for reproducibility and PDF/LaTeX compatibility.</p></li>
+<li><p>Remote images are automatically downloaded and relinked by our scripts.</p></li>
+<li><p>Want to add a cool diagram? Just drop it in <code class="docutils literal notranslate"><span class="pre">notebooks/images/</span></code> and reference it in your notebook!</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="license">
+<h2>📝 License<a class="headerlink" href="#license" title="Link to this heading">#</a></h2>
+<p>This book and all its content are licensed under <a class="reference external" href="https://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)</a>.</p>
+<ul class="simple">
+<li><p><strong>You are free to:</strong> Share, adapt, and remix for non-commercial purposes, with attribution.</p></li>
+<li><p><strong>You may not:</strong> Use for commercial purposes without permission.</p></li>
+</ul>
+<p>See <a class="reference internal" href="#LICENSE"><span class="xref myst">LICENSE</span></a> for details.</p>
+</section>
+<hr class="docutils" />
+<section id="contributing">
+<h2>💡 Contributing<a class="headerlink" href="#contributing" title="Link to this heading">#</a></h2>
+<p><strong>Everyone is welcome!</strong></p>
+<ul class="simple">
+<li><p>Found a typo? Have a suggestion? <a class="reference external" href="https://github.com/dannycab/modern-classical-mechanics/issues">Open an issue</a>!</p></li>
+<li><p>Want to add a new example, fix a bug, or improve the build? <a class="reference external" href="https://github.com/dannycab/modern-classical-mechanics/pulls">Send a pull request</a>!</p></li>
+<li><p>New to open source? Check out our <a class="reference internal" href="#CONTRIBUTING.md"><span class="xref myst">contributing guide</span></a> (coming soon) or just ask a question in the issues.</p></li>
+</ul>
+<p>Let’s make physics education better, together! 🚀</p>
+</section>
+<hr class="docutils" />
+<section id="acknowledgments">
+<h2>🙏 Acknowledgments<a class="headerlink" href="#acknowledgments" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Inspired by the open science and Jupyter communities</p></li>
+<li><p>Built with <a class="reference external" href="https://jupyterbook.org/">Jupyter Book</a>, <a class="reference external" href="https://nbconvert.readthedocs.io/">nbconvert</a>, and lots of ❤️</p></li>
+</ul>
+<hr class="docutils" />
+<div align="center">
+<p><em>Made with 🧑‍🔬, ☕, and a love for teaching physics.</em></p>
+</div>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -503,10 +634,17 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directory-structure">Directory Structure</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metadata">Metadata</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#issue-reporting">Issue Reporting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-this">🚀 What is this?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-structure">� Project Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#build-scripts-overview">�🛠️ Build Scripts Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">🚀 What is this?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">📦 Project Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-build-locally">🛠️ How to Build Locally</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automated-builds-ci-cd">🤖 Automated Builds (CI/CD)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#images-figures">🖼️ Images &amp; Figures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license">📝 License</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing">💡 Contributing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acknowledgments">🙏 Acknowledgments</a></li>
 </ul>
   </nav></div>
 
