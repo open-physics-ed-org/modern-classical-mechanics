@@ -281,7 +281,7 @@ Once you have simulated the Duffing oscillator, you can plot the results to visu
 
 This first set of plots should look similar to the one below.
 
-![Duffing](../../images/notes/week10/first_duffing.png)
+![Duffing](../images/notes/week10/first_duffing.png)
 
 
 ```python
@@ -339,9 +339,9 @@ In the cells below, we scaffold some of the code to simulate the Lorenz attracto
 
 For the parameters, we will use the canonical values of $\sigma = 10$, $\rho = 28$, and $\beta = \frac{8}{3}$. Choose initial conditions of $x=1$, $y=1$, and $z=1$ and simulate for 50 time units. If you do, your solution will look like the one below.
 
-![Lorenz Time Series](../../images/notes/week10/lorenz-1.png)
+![Lorenz Time Series](../images/notes/week10/lorenz-1.png)
 
-![Lorenz Phase Space](../../images/notes/week10/lorenz-2.png)
+![Lorenz Phase Space](../images/notes/week10/lorenz-2.png)
 
 
 ```python

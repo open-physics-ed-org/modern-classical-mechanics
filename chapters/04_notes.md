@@ -18,7 +18,7 @@ where $D$ is the drag coefficient and $\vec{v}$ is the velocity vector. Note tha
 
 To start this analysis, we need to define a coordinate system. Below, we draw the particle at some random time with the vecolicty vector shown. The axes are typical: $x$ is horizontal and $y$ is vertical. The drag force is always opposite to the velocity vector, so it will always be in the opposite direction of the velocity vector. 
 
-![Coordinate System](../../images/notes/week4/2d-falling-ball.png)
+![Coordinate System](../images/notes/week4/2d-falling-ball.png)
 
 In this coordinate system, the properties of the particle are:
 
@@ -30,7 +30,7 @@ where $\hat{x}$ and $\hat{y}$ are the unit vectors in the $x$ and $y$ directions
 
 The free body diagram at the point in time shown above is shown below. You see the gravitational force pointing directly downward and the drag force pointing in the opposite direction of the velocity vector. We continue to apply our coordinate system to the forces.
 
-![Free Body Diagram](../../images/notes/week4/2d-falling-ball-fbd.png)
+![Free Body Diagram](../images/notes/week4/2d-falling-ball-fbd.png)
 
 ### Apply Newton's Second Law
 
@@ -85,7 +85,7 @@ where $\gamma$ is a proxy for the drag coefficient. The linear drag force is pro
 
 We have the same set up as before and same FBD.
 
-![Coordinate System](../../images/notes/week4/2d-falling-ball.png)
+![Coordinate System](../images/notes/week4/2d-falling-ball.png)
 
 And thus the same coordinate system. The properties of the particle are the same as above. 
 
@@ -188,11 +188,11 @@ where $G$ is the gravitational constant, $m_1$ and $m_2$ are the masses of the o
 
 But we need to be more clear about the forces and the vector relationships. Consider the figure below with the massive object at the origin and the satellite at some distance $r$ from the origin. What is the vector $\vec{r}$ that describes the location of the satellite?
 
-![Gravitational Bound System](../../images/notes/week4/grav_01.png)
+![Gravitational Bound System](../images/notes/week4/grav_01.png)
 
 If we move the sun from the origin a little, we can start to see what $\vec{r}$ is. The vector $\vec{r}$ is the vector from the sun to the satellite. See the figure below to see the sketch.
 
-![Gravitational Bound System](../../images/notes/week4/grav_02.png)
+![Gravitational Bound System](../images/notes/week4/grav_02.png)
 
 So if the location of the sun is $\vec{r}_{sun}$ and the Earth is $\vec{r}_{earth}$, then the vector $\vec{r}$ is:
 
@@ -208,7 +208,7 @@ where $M_{sun} = 2\times10^{30} \mathrm{kg}$ is the mass of the sun and $M_{eart
 
 In the figure below, we show the earth at some distance $r$ from the origin at an angle $\phi$ from the $x$-axis. This distance is about $1.5 \times 10^{11}\;\mathrm{m}$ or $1\;\mathrm{A.U.}$ ([astronomical unit](https://en.wikipedia.org/wiki/Astronomical_unit)). While not entirely obvious, the scale of these numbers allow us to assume the Sun is at the origin, and doesn't move. Although this is not a good assumption for the real solar system, the sun orbits the [barycenter](https://en.wikipedia.org/wiki/Barycenter) of the solar system, which is about 1 solar radii from the center of the sun.
 
-![Gravitational Bound System](../../images/notes/week4/grav_03.png)
+![Gravitational Bound System](../images/notes/week4/grav_03.png)
 
 Let's use the standard $x$ and $y$ axes to write the equations of motion. We can apply Newton's Second Law to the earth in the chosen coordinate system. 
 
@@ -246,7 +246,7 @@ $$F = -ks$$
 
 where $k$ is the spring constant and $s$ is the displacement from the equilibrium position, $x-L_0$. The quantity $L_0$ is the relaxed length of the spring. The figure below shows the typical horizontal spring system.
 
-![SHO](../../images/notes/week3/sho_horizontal.png)
+![SHO](../images/notes/week3/sho_horizontal.png)
 
 We can typically choose to measure the displacement from the equilibrium position, and write the force instead as:
 

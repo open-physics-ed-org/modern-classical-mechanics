@@ -3,17 +3,14 @@
 There are many different fields of physics; they are both distinct and overlapping. If we were to take a view of what kinds of physical systems that we wanted to investigate with different physics, we could organize them based on the system's size and speed of change:
 
 - [Classical physics](https://en.wikipedia.org/wiki/Classical_physics): large, slow systems
-
 - [Statistical](https://en.wikipedia.org/wiki/Statistical_mechanics) and [quantum mechanics](https://en.wikipedia.org/wiki/Quantum_mechanics): small, slow systems
-
 - [General relativity](https://en.wikipedia.org/wiki/General_relativity): large, fast systems
-
 - [Quantum field theory](https://en.wikipedia.org/wiki/Quantum_field_theory): small, fast systems
 
 These are not hard and fast rules, and, in fact, we often bring physics from different spaces together to solve complex problems. For examples, the fields of [climate modeling](https://en.wikipedia.org/wiki/Climate_model), [non-linear dynamics](https://en.wikipedia.org/wiki/Nonlinear_system), [astrophysics](https://en.wikipedia.org/wiki/Astrophysics), and [particle physics](https://en.wikipedia.org/wiki/Particle_physics) use physical models and tools for each of the fields above. How we organize physics for ourselves depends on how we decide we want to look at it. However the first view where we organize the field by size and speed is a useful way to think about the different kinds of physics that we have developed thus far. The figure below shows how we might organize physics by size and speed.
 
-![Physics by size and speed](images/notes/week1/640px-Modernphysicsfields.svg.png)<br>
-*Source: [Wikipedia](images/notes/week1/File:Modernphysicsfields.svg)*
+![Physics by size and speed](../images/notes/week1/640px-Modernphysicsfields.svg.png)<br>
+*Source: [Wikipedia](images/notes/week1//File:Modernphysicsfields.svg)*
 
 Classical Physics is the physics that we developed before discovering relativity and quantum mechanics. It typically covers both mechanical systems and electromagnetic systems. It is also [the physics that we read about historically](https://en.wikipedia.org/wiki/History_of_physics), which has its [roots in ancient astronomy](https://en.wikipedia.org/wiki/History_of_astronomy) and has existed across many different cultures. 
 
@@ -48,22 +45,21 @@ Ultimately, Classical Mechanics is a physics that allows us to interrogate the b
 
 While it might appear there's little room for using Classical Mechanics in research or in industry now, it turns out there's tons of room. It is still the physics that enables us to understand fluid systems, nonlinear mechanical effects, continuum mechanics, animal locomotion, and many other systems. Below are several examples of how Classical Mechanics is used in research and industry. We encourage to watch these videos as they demonstrate how the physics we will learn in class is really central to continuing to understand nature.
 
+
 ### Fluid Mechanics at LANL (6 minute video)
 
 [Researchers at Los Alamos National Lab](https://www.lanl.gov/org/ddste/aldsc/theoretical/fluid-dynamics-solid-mechanics/index.php) do a variety of research using fluid mechanics models.
 
-[![](images/notes/week1/youtube_myuD81326_o.jpg)](https://youtube.com/watch?v=myuD81326_o)
+
+[![YouTube thumbnail](https://img.youtube.com/vi/myuD81326_o/hqdefault.jpg)](https://youtube.com/watch?v=myuD81326_o)
 
 Source: <https://www.youtube.com/watch?v=myuD81326_o>
 
 ### Biologically-Inspired Robotics (2 minute video)
 
-
 A [research lab at Georgia Tech](https://crablab.gatech.edu/) uses Classical Mechanics to model the motion of animals and then uses that information to build robots that can move like animals.
 
-
-[![](images/notes/week1/youtube_Qme07fA3Fj4.jpg)](https://youtube.com/watch?v=Qme07fA3Fj4)
-
+[![YouTube thumbnail](https://img.youtube.com/vi/Qme07fA3Fj4/hqdefault.jpg)](https://youtube.com/watch?v=Qme07fA3Fj4)
 
 Source: <https://www.youtube.com/watch?v=Qme07fA3Fj4>
 
@@ -157,4 +153,6 @@ understanding how to apply available, generic software to solve a
 particular problem.
 
 _However, verification of algorithms and understanding their limitations requires much of the classical knowledge about continuous models._
+
+
 

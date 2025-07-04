@@ -25,10 +25,10 @@ done
 
 
 # Copy images to all required locations for chapters, website, and PDF/DOCX builds
-IMAGES_SRC="$(dirname "$0")/../notebooks/images/notes/week1"
+IMAGES_SRC="$(dirname "$0")/../notebooks/images/notes"
 FIGURES_DST="$CHAPTERS_DIR/figures"
 DOCS_FIGURES_DST="$(dirname "$0")/../docs/figures"
-IMAGES_DST="$CHAPTERS_DIR/images/notes/week1"
+IMAGES_DST="$CHAPTERS_DIR/images/notes"
 if [ -d "$IMAGES_SRC" ]; then
   mkdir -p "$FIGURES_DST" "$DOCS_FIGURES_DST" "$IMAGES_DST"
   cp "$IMAGES_SRC"/* "$FIGURES_DST/"
