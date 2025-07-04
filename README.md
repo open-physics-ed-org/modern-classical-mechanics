@@ -1,3 +1,11 @@
+## ⚠️ Current Status
+
+> **Note:** Only the HTML/web version of the book is currently up to date and working consistently. The DOCX, Markdown, and PDF versions are not yet current and may be missing chapters or figures. Please use the web version for the most complete and accurate content.
+
+---
+
+# This README was updated with the help of Ollama (AI). All status and build notes are current as of July 4, 2025.
+
 ## 🌐 About & Webpage
 
 **Modern Classical Mechanics** is an open-source, interactive, and reproducible book for PHY 321: Classical Mechanics 1 at Michigan State University, authored by Marcos D. Caballero.
