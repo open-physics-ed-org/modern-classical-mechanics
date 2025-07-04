@@ -7,14 +7,17 @@ set -e
 
 # Regex for remote image URLs
 IMG_REGEX='https?://[^)"'\'' ]+\.(png|jpg|jpeg|gif|svg)'
+YOUTUBE_REGEX=^https://img\.youtube\.com/vi/.*/hqdefault\.jpg$
 
 # Regex for local image references in markdown: ![desc](path)
 LOCAL_IMG_REGEX='!\\[[^\\]]*\\]\\(([^)]+\\.(png|jpg|jpeg|gif|svg))\\)'
+YOUTUBE_REGEX=^https://img\.youtube\.com/vi/.*/hqdefault\.jpg$
 
 # --- Remote image handling (as before) ---
 for ext in ipynb md; do
   find notebooks chapters -type f -name "*.$ext" | while read -r file; do
     grep -Eo "$IMG_REGEX" "$file" | sort -u | while read -r url; do
+YOUTUBE_REGEX=^https://img\.youtube\.com/vi/.*/hqdefault\.jpg$
       fname=$(basename "$url" | cut -d'?' -f1)
       IMG_DIR=""
       for dir in notebooks/images/notes/*/; do
@@ -40,6 +43,8 @@ for ext in ipynb md; do
       fi
       rel_dir=$(echo "$IMG_DIR" | sed 's|^notebooks/||')
       if grep -q "$url" "$file"; then
+      # Skip replacing YouTube thumbnails
+      if [[ "$url" =~ $YOUTUBE_REGEX ]]; then continue; fi
         sed -i '' "s|$url|$rel_dir/$fname|g" "$file"
         echo "[INFO] Replaced $url with $rel_dir/$fname in $file"
       fi
@@ -53,6 +58,7 @@ for ext in ipynb md; do
   find notebooks chapters -type f -name "*.$ext" | while read -r file; do
     # Extract all local image references
     grep -Eo "$LOCAL_IMG_REGEX" "$file" | sed -E 's/.*\(([^)]+)\).*/\\1/' | sort -u | while read -r imgpath; do
+YOUTUBE_REGEX=^https://img\.youtube\.com/vi/.*/hqdefault\.jpg$
       # Remove possible leading/trailing whitespace
       imgpath=$(echo "$imgpath" | xargs)
       # Only check if not a remote URL

@@ -33,8 +33,8 @@ if [ -d "../chapters/figures" ]; then
 fi
 
 # Copy images to docs/images/notes/week1 for correct notebook/chapter rendering
-IMAGES_SRC="../notebooks/images/notes/week1"
-IMAGES_DST="docs/images/notes/week1"
+IMAGES_SRC="../notebooks/images/notes"
+IMAGES_DST="docs/images/notes"
 if [ -d "$IMAGES_SRC" ]; then
   mkdir -p "$IMAGES_DST"
   cp "$IMAGES_SRC"/* "$IMAGES_DST/"
