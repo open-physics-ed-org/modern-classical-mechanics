@@ -29,17 +29,41 @@ All content is built from Jupyter notebooks and published automatically to the w
 
 ---
 
+
 ## 🚀 What is this?
 
 Welcome to the home of **Modern Classical Mechanics**! This is a living, collaborative, and open-source book built from Jupyter notebooks, designed for students, educators, and the curious. All content is free to use, adapt, and remix for non-commercial purposes.
 
 - **Multiple formats:** Website, PDF, DOCX, Markdown
 - **Reproducible:** All code, figures, and outputs are version-controlled and built automatically
+- **Automated workflow:** Robust scripts ensure all images are local, YouTube thumbnails are correct, and LaTeX/math is PDF-compatible before export
 - **Open:** Contributions, issues, and pull requests are *highly* encouraged!
 - **Fun:** Physics is awesome, and so is open science 🌟
 
+---
 
-## 🗂️ Project Structure
+## �️ Automated Build & Fix Workflow
+
+This project features a robust, automated workflow to ensure reproducibility, PDF/LaTeX compatibility, and ease of contribution:
+
+- **Image Handling:**
+  - `scripts/fetch_remote_images.sh` finds, downloads, and relinks all remote images (including YouTube thumbnails) so every image is local before PDF export.
+  - YouTube thumbnails are batch-checked and fixed using `scripts/fix_youtube_thumbnails.sh` and `scripts/fix_all_youtube_thumbnails.py`.
+- **Notebook & Markdown Repair:**
+  - `scripts/fix_notebook_json_escapes.py` auto-fixes invalid JSON in notebooks (e.g., unescaped backslashes).
+  - LaTeX/math environments are batch-checked and repaired for PDF/LaTeX compatibility.
+- **PDF Export:**
+  - `scripts/build_pdf.sh` runs all fix scripts, then uses `nbconvert` for notebook-to-PDF conversion.
+- **Batch Operations:**
+  - All fix and build scripts can be run in batch mode for the entire book, ensuring consistency and reproducibility.
+- **GitHub Issues & Labels:**
+  - Workflow improvements, bugs, and enhancements are tracked via GitHub Issues and custom labels (e.g., `pdf`, `build`, `workflow`, `incremental`, `activities`, `teaching-guide`).
+
+---
+
+
+
+## �🗂️ Project Structure
 
 ```
 modern-classical-mechanics/
@@ -58,7 +82,8 @@ modern-classical-mechanics/
 
 ---
 
-## ️ Build & Utility Scripts
+
+## 🏗️ Build & Utility Scripts
 
 All build and utility scripts are in the `scripts/` directory. Run any script with `bash scripts/<scriptname>.sh` from the project root.
 
@@ -69,6 +94,7 @@ All build and utility scripts are in the `scripts/` directory. Run any script wi
 - **fetch_remote_images.sh**: Finds, downloads, and relinks any remote images referenced in notebooks or markdown files, ensuring all images are local for reproducibility.
 
 ---
+
 
 ## 📄 Chapters and Figures Index
 
@@ -106,6 +132,7 @@ modern-classical-mechanics/
 
 ---
 
+
 ## 🛠️ How to Build Locally
 
 1. **Clone the repo:**
@@ -133,6 +160,7 @@ modern-classical-mechanics/
 
 ---
 
+
 ## 🤖 Automated Builds (CI/CD)
 
 - GitHub Actions automatically build the book and website on every push.
@@ -141,6 +169,7 @@ modern-classical-mechanics/
 
 ---
 
+
 ## 🖼️ Images & Figures
 
 - All images are stored locally for reproducibility and PDF/LaTeX compatibility.
@@ -148,6 +177,7 @@ modern-classical-mechanics/
 - Want to add a cool diagram? Just drop it in `notebooks/images/` and reference it in your notebook!
 
 ---
+
 
 ## 📝 License
 
@@ -159,6 +189,7 @@ This book and all its content are licensed under [Creative Commons Attribution-N
 See [LICENSE](LICENSE) for details.
 
 ---
+
 
 ## 💡 Contributing
 
@@ -172,7 +203,25 @@ Let's make physics education better, together! 🚀
 
 ---
 
+
 ## 🙏 Acknowledgments
+
+---
+
+## 🚦 Development Roadmap
+
+The following improvements are planned or in progress:
+
+- **Batch-fix and verify YouTube thumbnail links in all notebooks**
+- **Run JSON escape fix on all problematic notebooks and confirm validity**
+- **Automate search and repair of malformed LaTeX/math environments in all source files**
+- **Confirm clean PDF build for all chapters/notebooks after all fixes**
+- **Integrate activities into the book as part of the build process**
+- **Write and include an instructional guide for teachers**
+- **Implement incremental and selective builds for faster development**
+- **Continue to improve GitHub workflow, issue labeling, and documentation**
+
+See [GitHub Issues](https://github.com/dannycab/modern-classical-mechanics/issues) for up-to-date progress and to contribute ideas or feedback!
 
 - Inspired by the open science and Jupyter communities
 - Built with [Jupyter Book](https://jupyterbook.org/), [nbconvert](https://nbconvert.readthedocs.io/), and lots of ❤️
