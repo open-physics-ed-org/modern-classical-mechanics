@@ -6,7 +6,7 @@ The first form ($F \sim v^2$) describes the behavior of things like a skydiver f
 
 This form of air resistance cannot describe the behavior of objects approaching the speed of sound in the fluid. Objects moving a speeds that high can produce [shock fronts](https://en.wikipedia.org/wiki/Shock_wave) that forces the fluid to go through abrupt changes in density, pressure, and temperature. Below is a figure of a shock front produced the nose of a jet flying at supersonic speeds.
 
-![A shock front from a supersonic jet](images/notes/week1//Schlierenfoto_Mach_1-2_Pfeilfl%C3%BCgel_-_NASA.jpg)
+![A shock front from a supersonic jet](../images/notes/week4/shock_front.jpg))
 
 The second form ($F \sim v$) describes the flow of a viscous fluid around a solid object. You might think of this as pulling an object through some viscous oil, honey, or even molasses. The movement of the fluid around the object exerts a force and slows the motion of the object.  In water, this form can explain the motion of some of the smallest creatures on Earth, like the [water bear](https://en.wikipedia.org/wiki/Tardigrade), an amoeba, or a paramecium. 
 

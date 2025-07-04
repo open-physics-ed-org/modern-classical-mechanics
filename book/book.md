@@ -33,8 +33,8 @@ Consider the box (mass, $m$) above on an inclined ramp (angle, $\theta$). The bo
 
 We start by drawing the [Free Body Diagram](https://en.wikipedia.org/wiki/Free_body_diagram) (FBD) of the box. 
 
-![Free Body Diagram of Box on a Inclined Ramp; the arrows label the direction of forces acting on the box](images/notes/week1/box_fbd.png)<br>
-[Source: homework.study.com](images/notes/week1/box_fbd_remote.png)
+![Free Body Diagram of Box on a Inclined Ramp; the arrows label the direction of forces acting on the box](../images/notes/week1/box_fbd.png)<br>
+[Source: homework.study.com](images/notes/week1/diagram_2_450x3002352212273710292.png)
 
 The FBD is a diagram that shows all the forces acting on the object. In this case, the forces acting on the box are:
 - The force of gravity, $mg$, acting downwards.
@@ -92,8 +92,8 @@ Consider an object of mass $m$ falling, but it is subject to air resistance. The
 - The force of gravity/weight, $W=mg$, acting downwards.
 - The force due to air resistance, $F_{air}$, acting upwards.
 
-![Free Body Diagram of Falling Object; the arrows label the direction of forces acting on the object](images/notes/week1/falling_object.png)<br>
-[Source: ibphysicsguide.weebly.com](images/notes/week1/falling_object_remote.gif)
+![Free Body Diagram of Falling Object; the arrows label the direction of forces acting on the object](../images/notes/week1/falling_object.png)<br>
+[Source: ibphysicsguide.weebly.com](images/notes/week1/570899611.gif)
 
 Here we have chosen positive $y$ to be the downward direction. We want to predict the motion ($a$, $v$, $y$) of the object as a function of time. This is a very common problem for classical mechanics.
 
@@ -167,17 +167,14 @@ A few things to note:
 There are many different fields of physics; they are both distinct and overlapping. If we were to take a view of what kinds of physical systems that we wanted to investigate with different physics, we could organize them based on the system's size and speed of change:
 
 - [Classical physics](https://en.wikipedia.org/wiki/Classical_physics): large, slow systems
-
 - [Statistical](https://en.wikipedia.org/wiki/Statistical_mechanics) and [quantum mechanics](https://en.wikipedia.org/wiki/Quantum_mechanics): small, slow systems
-
 - [General relativity](https://en.wikipedia.org/wiki/General_relativity): large, fast systems
-
 - [Quantum field theory](https://en.wikipedia.org/wiki/Quantum_field_theory): small, fast systems
 
 These are not hard and fast rules, and, in fact, we often bring physics from different spaces together to solve complex problems. For examples, the fields of [climate modeling](https://en.wikipedia.org/wiki/Climate_model), [non-linear dynamics](https://en.wikipedia.org/wiki/Nonlinear_system), [astrophysics](https://en.wikipedia.org/wiki/Astrophysics), and [particle physics](https://en.wikipedia.org/wiki/Particle_physics) use physical models and tools for each of the fields above. How we organize physics for ourselves depends on how we decide we want to look at it. However the first view where we organize the field by size and speed is a useful way to think about the different kinds of physics that we have developed thus far. The figure below shows how we might organize physics by size and speed.
 
-![Physics by size and speed](images/notes/week1/640px-Modernphysicsfields.svg.png)<br>
-*Source: [Wikipedia](images/notes/week1/File:Modernphysicsfields.svg)*
+![Physics by size and speed](../images/notes/week1/640px-Modernphysicsfields.svg.png)<br>
+*Source: [Wikipedia](images/notes/week1//File:Modernphysicsfields.svg)*
 
 Classical Physics is the physics that we developed before discovering relativity and quantum mechanics. It typically covers both mechanical systems and electromagnetic systems. It is also [the physics that we read about historically](https://en.wikipedia.org/wiki/History_of_physics), which has its [roots in ancient astronomy](https://en.wikipedia.org/wiki/History_of_astronomy) and has existed across many different cultures. 
 
@@ -212,22 +209,21 @@ Ultimately, Classical Mechanics is a physics that allows us to interrogate the b
 
 While it might appear there's little room for using Classical Mechanics in research or in industry now, it turns out there's tons of room. It is still the physics that enables us to understand fluid systems, nonlinear mechanical effects, continuum mechanics, animal locomotion, and many other systems. Below are several examples of how Classical Mechanics is used in research and industry. We encourage to watch these videos as they demonstrate how the physics we will learn in class is really central to continuing to understand nature.
 
+
 ### Fluid Mechanics at LANL (6 minute video)
 
 [Researchers at Los Alamos National Lab](https://www.lanl.gov/org/ddste/aldsc/theoretical/fluid-dynamics-solid-mechanics/index.php) do a variety of research using fluid mechanics models.
 
-[![](images/notes/week1/youtube_myuD81326_o.jpg)](https://youtube.com/watch?v=myuD81326_o)
+
+[![YouTube thumbnail](https://img.youtube.com/vi/myuD81326_o/hqdefault.jpg)](https://youtube.com/watch?v=myuD81326_o)
 
 Source: <https://www.youtube.com/watch?v=myuD81326_o>
 
 ### Biologically-Inspired Robotics (2 minute video)
 
-
 A [research lab at Georgia Tech](https://crablab.gatech.edu/) uses Classical Mechanics to model the motion of animals and then uses that information to build robots that can move like animals.
 
-
-[![](images/notes/week1/youtube_Qme07fA3Fj4.jpg)](https://youtube.com/watch?v=Qme07fA3Fj4)
-
+[![YouTube thumbnail](https://img.youtube.com/vi/Qme07fA3Fj4/hqdefault.jpg)](https://youtube.com/watch?v=Qme07fA3Fj4)
 
 Source: <https://www.youtube.com/watch?v=Qme07fA3Fj4>
 
@@ -321,6 +317,8 @@ understanding how to apply available, generic software to solve a
 particular problem.
 
 _However, verification of algorithms and understanding their limitations requires much of the classical knowledge about continuous models._
+
+
 
 # Week 2 - Notes: Mathematical Preliminaries
 
@@ -463,7 +461,7 @@ As you have noticed, much of what we do in classical mechanics involves solving 
 
 The figure below shows a vector in two dimensions. 
 
-![Vector in Two Dimensions; the vector is defined by its magnitude, $A$, and its direction, $\theta$](../../images/notes/week2/2dvector.png)
+![Vector in Two Dimensions; the vector is defined by its magnitude, $A$, and its direction, $\theta$](../images/notes/week2/2dvector.png)
 
 The vector is defined by its magnitude, $A$, and its direction, $\theta$. The vector can be decomposed into two components, $A_x$ and $A_y$, in the $x$ and $y$ directions, respectively.
 
@@ -528,10 +526,10 @@ $$\vec{a} \cdot \vec{b} = |\vec{a}||\vec{b}|\cos(\phi).$$
 
 The figure below shows the relationship between the vectors and the angle.
 
-![Dot Product of Two Vectors; the dot product is the product of the magnitudes of the vectors and the cosine of the angle between them](../../images/notes/week2/Dot-product.png) 
+![Dot Product of Two Vectors; the dot product is the product of the magnitudes of the vectors and the cosine of the angle between them](../images/notes/week2/Dot-product.png) 
 
 <br>
-Source: [Wikipedia](images/notes/week1/File:Dot-product-1.svg)
+Source: [Wikipedia](images/notes/week1//File:Dot-product-1.svg)
 
 Much like scalar multiplication, a dot produce is distributive:
 
@@ -653,7 +651,7 @@ The history of scientific computing is deeply intertwined with the evolution of 
 
 To get an introductory overview, the video below from Futurology is a helpful resource, but it is by no means comprehensive or critical.
 
-[![](images/notes/week1/hqdefault.jpg)](https://youtube.com/watch?v=-M6lANfzFsM)
+[![YouTube thumbnail](https://img.youtube.com/vi/-M6lANfzFsM/hqdefault.jpg)](https://youtube.com/watch?v=-M6lANfzFsM)
 
 Source: <https://www.youtube.com/watch?v=-M6lANfzFsM>
 
@@ -668,11 +666,11 @@ Of course, the development of electronic computers was a huge development for sc
 
 Frequently the work was done by those with less power in the laboratory and broader society (e.g., women, immigrants, and folks of color). A notable and well-known example is the work of the [Harvard Computers](https://en.wikipedia.org/wiki/Harvard_Computers) in the late 19th and early 20th centuries where women were employed to do the calculations that led to significant discoveries in astronomy. 
 
-![Harvard Computers](../../images/notes/week2/harvard-computers.png)
+![Harvard Computers](../images/notes/week2/harvard-computers.png)
 
 One of the most important examples is the work done by African-American women at NASA in the 1960s, as depicted in the book and movie [Hidden Figures](https://en.wikipedia.org/wiki/Hidden_Figures).
 
-![Hidden Figures](../../images/notes/week2/nasa-computers-hidden-figures.png)
+![Hidden Figures](../images/notes/week2/nasa-computers-hidden-figures.png)
 
 Women highlighted in this work include: [Williamina Fleming](https://en.wikipedia.org/wiki/Williamina_Fleming), [Florence Cushman](https://en.wikipedia.org/wiki/Florence_Cushman), [Katherine Johnson](https://en.wikipedia.org/wiki/Katherine_Johnson), [Dorothy Vaughan](https://en.wikipedia.org/wiki/Dorothy_Vaughan), and [Mary Jackson](https://en.wikipedia.org/wiki/Mary_Jackson).
 ```
@@ -693,14 +691,14 @@ For deeper dives into these ideas, consider the following materials:
 
 | Resource | Description |
 |----------|-------------|
-| [George Dyson’s *Turing’s Cathedral*](https://www.penguinrandomhouse.com/books/44425/turings-cathedral-by-george-dyson/) ![Turing's Cathedral](../../images/notes/week2/dyson.png) | Chronicles the origins of the modern computer, focusing on [John von Neumann](https://en.wikipedia.org/wiki/John_von_Neumann) and his team at Princeton in the 1940s. This book delves into the intersection of mathematics, physics, and computation, highlighting the development of the first stored-program computers and their role in shaping the digital age. |
-| [James Gleick’s *The Information*](https://www.penguinrandomhouse.com/books/60765/the-information-by-james-gleick/) ![The Information](../../images/notes/week2/gleick.png) | Explores the transformative impact of information theory on science, technology, and culture. From the invention of writing to the digital age, Gleick highlights key figures like Michigander [Claude Shannon](https://en.wikipedia.org/wiki/Claude_Shannon), who revolutionized communication with his groundbreaking mathematical theory of information. |
-| [Steven Levy’s *Hackers*](https://www.stevenlevy.com/hackers-heroes-of-the-computer-revolution) ![Hackers](../../images/notes/week2/levy.png) | Chronicles the rise of hacker culture, from early computer pioneers to the creators of the personal computer revolution. Levy examines the "hacker ethic," emphasizing creativity, open access, and the joy of problem-solving, which shaped the tools and technologies we use today. |
-| [Cathy O’Neil’s *Weapons of Math Destruction*](https://www.penguinrandomhouse.com/books/241363/weapons-of-math-destruction-by-cathy-oneil/) ![Weapons of Math Destruction](../../images/notes/week2/oneill.png) | Explores how algorithms, often marketed as objective, exacerbate inequality in policing, hiring, and credit scoring. O’Neil critically examines the dangers of data-driven systems that disproportionately harm marginalized communities while remaining opaque and unregulated. |
-| [Ruha Benjamin’s *Race After Technology*](https://www.ruhabenjamin.com/race-after-technology) ![Race After Technology](../../images/notes/week2/benjamin.png) | Analyzes how algorithms and technologies reinforce systemic racism under the guise of neutrality. Benjamin introduces the concept of the “New Jim Code,” highlighting the ways in which technological tools amplify inequities while appearing fair and impartial. |
-| [Simone Browne’s *Dark Matters*](https://www.dukeupress.edu/dark-matters) ![Dark Matters](../../images/notes/week2/browne.png) | Examines how surveillance technologies are deeply rooted in practices of racialized social control. Browne connects historical practices like slave surveillance to modern tools like facial recognition and predictive policing, revealing the persistence of systemic inequities in new forms. |
-| [Kate Crawford’s *Atlas of AI*](https://katecrawford.net/atlas) ![Atlas of AI](../../images/notes/week2/crawford.png) | Explores the hidden costs of artificial intelligence, from resource extraction to labor exploitation and military applications. Crawford critiques AI as an extractive industry that reshapes power dynamics and perpetuates global inequalities while causing significant environmental damage. |
-| [Shoshana Zuboff’s *The Age of Surveillance Capitalism*](https://shoshanazuboff.com/book/about/) ![Age of Surveillance Capitalism](../../images/notes/week2/zuboff.png) | Investigates how corporations and governments exploit personal data for profit and control. Zuboff coins the term "surveillance capitalism" to describe how the tech industry commodifies human behavior, eroding privacy and autonomy while reshaping society’s power structures. |
+| [George Dyson’s *Turing’s Cathedral*](https://www.penguinrandomhouse.com/books/44425/turings-cathedral-by-george-dyson/) ![Turing's Cathedral](../images/notes/week2/dyson.png) | Chronicles the origins of the modern computer, focusing on [John von Neumann](https://en.wikipedia.org/wiki/John_von_Neumann) and his team at Princeton in the 1940s. This book delves into the intersection of mathematics, physics, and computation, highlighting the development of the first stored-program computers and their role in shaping the digital age. |
+| [James Gleick’s *The Information*](https://www.penguinrandomhouse.com/books/60765/the-information-by-james-gleick/) ![The Information](../images/notes/week2/gleick.png) | Explores the transformative impact of information theory on science, technology, and culture. From the invention of writing to the digital age, Gleick highlights key figures like Michigander [Claude Shannon](https://en.wikipedia.org/wiki/Claude_Shannon), who revolutionized communication with his groundbreaking mathematical theory of information. |
+| [Steven Levy’s *Hackers*](https://www.stevenlevy.com/hackers-heroes-of-the-computer-revolution) ![Hackers](../images/notes/week2/levy.png) | Chronicles the rise of hacker culture, from early computer pioneers to the creators of the personal computer revolution. Levy examines the "hacker ethic," emphasizing creativity, open access, and the joy of problem-solving, which shaped the tools and technologies we use today. |
+| [Cathy O’Neil’s *Weapons of Math Destruction*](https://www.penguinrandomhouse.com/books/241363/weapons-of-math-destruction-by-cathy-oneil/) ![Weapons of Math Destruction](../images/notes/week2/oneill.png) | Explores how algorithms, often marketed as objective, exacerbate inequality in policing, hiring, and credit scoring. O’Neil critically examines the dangers of data-driven systems that disproportionately harm marginalized communities while remaining opaque and unregulated. |
+| [Ruha Benjamin’s *Race After Technology*](https://www.ruhabenjamin.com/race-after-technology) ![Race After Technology](../images/notes/week2/benjamin.png) | Analyzes how algorithms and technologies reinforce systemic racism under the guise of neutrality. Benjamin introduces the concept of the “New Jim Code,” highlighting the ways in which technological tools amplify inequities while appearing fair and impartial. |
+| [Simone Browne’s *Dark Matters*](https://www.dukeupress.edu/dark-matters) ![Dark Matters](../images/notes/week2/browne.png) | Examines how surveillance technologies are deeply rooted in practices of racialized social control. Browne connects historical practices like slave surveillance to modern tools like facial recognition and predictive policing, revealing the persistence of systemic inequities in new forms. |
+| [Kate Crawford’s *Atlas of AI*](https://katecrawford.net/atlas) ![Atlas of AI](../images/notes/week2/crawford.png) | Explores the hidden costs of artificial intelligence, from resource extraction to labor exploitation and military applications. Crawford critiques AI as an extractive industry that reshapes power dynamics and perpetuates global inequalities while causing significant environmental damage. |
+| [Shoshana Zuboff’s *The Age of Surveillance Capitalism*](https://shoshanazuboff.com/book/about/) ![Age of Surveillance Capitalism](../images/notes/week2/zuboff.png) | Investigates how corporations and governments exploit personal data for profit and control. Zuboff coins the term "surveillance capitalism" to describe how the tech industry commodifies human behavior, eroding privacy and autonomy while reshaping society’s power structures. |
 
 
 
@@ -731,7 +729,7 @@ Dynamics is the study of the time evolution of a system in question. In classica
 
 Consider a ball of mass $m$ falling down. We define the positive $y$ direction to be down as in the figure showing the FBD of the ball. 
 
-![FBD of a falling ball](../../images/notes/week3/1d-ball-fbd.png)
+![FBD of a falling ball](../images/notes/week3/1d-ball-fbd.png)
 
 We can apply Newton's laws to obtain the specific EOM for the ball.
 
@@ -751,7 +749,7 @@ is the specific EOM for the ball.
 
 We will spend a lot of time studying the [simple harmonic oscillator](https://en.wikipedia.org/wiki/Harmonic_oscillator) (SHO) in this course. The SHO is a system that oscillates back and forth around an equilibrium position. It is a very common system in physics and is used a base model for many more complex systems. Consider a mass, $m$, attached to a spring with spring constant, $k$, sitting on a frictionless horizontal plane as in the figure below.
 
-![FBD of a simple harmonic oscillator](../../images/notes/week3/sho_horizontal.png)
+![FBD of a simple harmonic oscillator](../images/notes/week3/sho_horizontal.png)
 
 The EOM for the SHO can be derived form Newton's Second Law.
 
@@ -771,7 +769,7 @@ is the specific EOM for the SHO. As we will learn, this restoring force causes t
 
 One of the more challenging aspects of physics is how we work to make models of the observations we have. This a long and challenging process in general, but if we have a general schematic, we can make progress. The hand drawn figure below provides such a schematic.
 
-![Framework for making models](../../images/notes/week3/prelim_framework.png)
+![Framework for making models](../images/notes/week3/prelim_framework.png)
 
 In the schematic, our observations are the starting point. Using our framework for physics (e.g., Newton's Laws) and making the appropriate assumptions (in blue), we can develop a model (in red) of the system. By conducting analysis and investgating the evolution of the model, we produce predictions (in green). We can then compare tose predictions to our observations to evaluate how well our model describes the system.
 
@@ -795,7 +793,7 @@ Let's turn to an example you have seen before: the falling ball.
 
 Consider a ball of mass $m$ falling with air resistance. Here, we have already done some of the work above. We have identified the phenomenon, and started to indicate the interactions. 
 
-![FBD of a falling ball with air resistance](../../images/notes/week3/1d-ball-fbd-air.png)
+![FBD of a falling ball with air resistance](../images/notes/week3/1d-ball-fbd-air.png)
 
 In the figure above, we have identified the forces acting on the ball. We have the gravitational force, $W = mg$, and the air resistance, $F_{\text{air}}$. We have chosen the linear mode for air-resistance, which is a choice of model given the assumption that the ball moves very slowly -- *this is not a good assumption in this case*, but makes the mathematical analysis simpler.
 
@@ -1069,7 +1067,7 @@ Modeling is the process of constructing a model. This process is often iterative
 
 Geoscientist [John Aiken](https://mnky9800n.github.io/) made this short video when he was a graduate student at Georgia Tech. John cut clips from a lecture [Richard Feynman](https://en.wikipedia.org/wiki/Richard_Feynman) gave. In this lecture, Feynman talks about the nature of models and the process of science.  John also interviewed different science researchers and teachers about their understanding of what a model is. 
 
-[![](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=dkTncoPqo5Y)
+[![YouTube thumbnail](https://img.youtube.com/vi/dkTncoPqo5Y/hqdefault.jpg)](https://youtube.com/watch?v=dkTncoPqo5Y)
 
 Source: <https://www.youtube.com/watch?v=dkTncoPqo5Y>
 
@@ -1081,7 +1079,7 @@ Source: <https://www.youtube.com/watch?v=dkTncoPqo5Y>
 
 Feynman was a gifted communicator; his lectures are lively and conceptual. Here's the longer version of the lecture he gave on the nature of models and the process of science.
 
-[![](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=EYPapE-3FRw)
+[![YouTube thumbnail](https://img.youtube.com/vi/EYPapE-3FRw/hqdefault.jpg)](https://youtube.com/watch?v=EYPapE-3FRw)
 
 Source: <https://www.youtube.com/watch?v=EYPapE-3FRw>
 
@@ -1124,7 +1122,7 @@ where $D$ is the drag coefficient and $\vec{v}$ is the velocity vector. Note tha
 
 To start this analysis, we need to define a coordinate system. Below, we draw the particle at some random time with the vecolicty vector shown. The axes are typical: $x$ is horizontal and $y$ is vertical. The drag force is always opposite to the velocity vector, so it will always be in the opposite direction of the velocity vector. 
 
-![Coordinate System](../../images/notes/week4/2d-falling-ball.png)
+![Coordinate System](../images/notes/week4/2d-falling-ball.png)
 
 In this coordinate system, the properties of the particle are:
 
@@ -1136,7 +1134,7 @@ where $\hat{x}$ and $\hat{y}$ are the unit vectors in the $x$ and $y$ directions
 
 The free body diagram at the point in time shown above is shown below. You see the gravitational force pointing directly downward and the drag force pointing in the opposite direction of the velocity vector. We continue to apply our coordinate system to the forces.
 
-![Free Body Diagram](../../images/notes/week4/2d-falling-ball-fbd.png)
+![Free Body Diagram](../images/notes/week4/2d-falling-ball-fbd.png)
 
 ### Apply Newton's Second Law
 
@@ -1191,7 +1189,7 @@ where $\gamma$ is a proxy for the drag coefficient. The linear drag force is pro
 
 We have the same set up as before and same FBD.
 
-![Coordinate System](../../images/notes/week4/2d-falling-ball.png)
+![Coordinate System](../images/notes/week4/2d-falling-ball.png)
 
 And thus the same coordinate system. The properties of the particle are the same as above. 
 
@@ -1294,11 +1292,11 @@ where $G$ is the gravitational constant, $m_1$ and $m_2$ are the masses of the o
 
 But we need to be more clear about the forces and the vector relationships. Consider the figure below with the massive object at the origin and the satellite at some distance $r$ from the origin. What is the vector $\vec{r}$ that describes the location of the satellite?
 
-![Gravitational Bound System](../../images/notes/week4/grav_01.png)
+![Gravitational Bound System](../images/notes/week4/grav_01.png)
 
 If we move the sun from the origin a little, we can start to see what $\vec{r}$ is. The vector $\vec{r}$ is the vector from the sun to the satellite. See the figure below to see the sketch.
 
-![Gravitational Bound System](../../images/notes/week4/grav_02.png)
+![Gravitational Bound System](../images/notes/week4/grav_02.png)
 
 So if the location of the sun is $\vec{r}_{sun}$ and the Earth is $\vec{r}_{earth}$, then the vector $\vec{r}$ is:
 
@@ -1314,7 +1312,7 @@ where $M_{sun} = 2\times10^{30} \mathrm{kg}$ is the mass of the sun and $M_{eart
 
 In the figure below, we show the earth at some distance $r$ from the origin at an angle $\phi$ from the $x$-axis. This distance is about $1.5 \times 10^{11}\;\mathrm{m}$ or $1\;\mathrm{A.U.}$ ([astronomical unit](https://en.wikipedia.org/wiki/Astronomical_unit)). While not entirely obvious, the scale of these numbers allow us to assume the Sun is at the origin, and doesn't move. Although this is not a good assumption for the real solar system, the sun orbits the [barycenter](https://en.wikipedia.org/wiki/Barycenter) of the solar system, which is about 1 solar radii from the center of the sun.
 
-![Gravitational Bound System](../../images/notes/week4/grav_03.png)
+![Gravitational Bound System](../images/notes/week4/grav_03.png)
 
 Let's use the standard $x$ and $y$ axes to write the equations of motion. We can apply Newton's Second Law to the earth in the chosen coordinate system. 
 
@@ -1352,7 +1350,7 @@ $$F = -ks$$
 
 where $k$ is the spring constant and $s$ is the displacement from the equilibrium position, $x-L_0$. The quantity $L_0$ is the relaxed length of the spring. The figure below shows the typical horizontal spring system.
 
-![SHO](../../images/notes/week3/sho_horizontal.png)
+![SHO](../images/notes/week3/sho_horizontal.png)
 
 We can typically choose to measure the displacement from the equilibrium position, and write the force instead as:
 
@@ -1412,7 +1410,7 @@ The first form ($F \sim v^2$) describes the behavior of things like a skydiver f
 
 This form of air resistance cannot describe the behavior of objects approaching the speed of sound in the fluid. Objects moving a speeds that high can produce [shock fronts](https://en.wikipedia.org/wiki/Shock_wave) that forces the fluid to go through abrupt changes in density, pressure, and temperature. Below is a figure of a shock front produced the nose of a jet flying at supersonic speeds.
 
-![A shock front from a supersonic jet](images/notes/week1/Schlierenfoto_Mach_1-2_Pfeilfl%C3%BCgel_-_NASA.jpg)
+![A shock front from a supersonic jet](../images/notes/week4/shock_front.jpg))
 
 The second form ($F \sim v$) describes the flow of a viscous fluid around a solid object. You might think of this as pulling an object through some viscous oil, honey, or even molasses. The movement of the fluid around the object exerts a force and slows the motion of the object.  In water, this form can explain the motion of some of the smallest creatures on Earth, like the [water bear](https://en.wikipedia.org/wiki/Tardigrade), an amoeba, or a paramecium. 
 
@@ -1461,7 +1459,7 @@ Not all fluids are Newtonian, and some fluids have a viscosity that changes with
 
 Below is a video from [America's Test Kitchen](https://www.americastestkitchen.com/) that demonstrates the behavior of a non-Newtonian fluid. The fluid is made from cornstarch and water, and it's called [oobleck](https://en.wikipedia.org/wiki/Oobleck). 
 
-[![America's Test Kitchen Non-Newtonian Fluids](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=FrLh1GILomc)
+[![YouTube thumbnail](https://img.youtube.com/vi/FrLh1GILomc/hqdefault.jpg)](https://youtube.com/watch?v=FrLh1GILomc)
 
 Source: <https://www.youtube.com/watch?v=FrLh1GILomc>
 
@@ -1475,7 +1473,7 @@ A low Reynolds number flow is a flow where the viscous forces dominate the inert
 
 This video focuses on the biological aspects of the problem as the physics of low Reynolds numbers is important for understanding the motion of microorganisms. 
 
-[![Physics of Life - Life at Low Reynolds Number](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=gZk2bMaqs1E)
+[![YouTube thumbnail](https://img.youtube.com/vi/gZk2bMaqs1E/hqdefault.jpg)](https://youtube.com/watch?v=gZk2bMaqs1E)
 
 Source: <https://youtube.com/watch?v=gZk2bMaqs1E>
 
@@ -1483,7 +1481,7 @@ Source: <https://youtube.com/watch?v=gZk2bMaqs1E>
 
 This video is a classic from [G.I. Taylor](https://en.wikipedia.org/wiki/Geoffrey_Ingram_Taylor) who was a physicist interested in sharing the conceptual beauty of physics with the general public. He was also a pioneer in the field of fluid mechanics. In fact, Taylor's [groundbreaking paper](../../docs/papers/taylor_1922.pdf) on the stability of fluid flows between two rotating cylinders set off studies into turbulence. The [Taylor-Couette flow](https://en.wikipedia.org/wiki/Taylor%E2%80%93Couette_flow) is a critical tool for [studies of turbulence](https://pubmed.ncbi.nlm.nih.gov/20365623/).
 
-[![G.I. Taylor's Low Reynolds Number Flows](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=8Dst6V4CQME)
+[![YouTube thumbnail](https://img.youtube.com/vi/8Dst6V4CQME/hqdefault.jpg)](https://youtube.com/watch?v=8Dst6V4CQME)
 
 Source: <https://youtube.com/watch?v=8Dst6V4CQME>
 
@@ -1495,7 +1493,7 @@ In high Reynolds number flows, the inertial forces dominate the viscous forces. 
 
 The [von Kármán vortex street](https://en.wikipedia.org/wiki/Von_K%C3%A1rm%C3%A1n_vortex_street) is a pattern of alternating vortices that can form when a fluid flows past a "bluff" body, such as a cylinder or a sphere. The vortices are shed from the body in a regular pattern, creating a repeating pattern of alternating vortices. The von Kármán vortex street is an example of a high Reynolds number flow, and it can be used to study the behavior of turbulent flows. Below is a video of a von Kármán vortex street simulation.
 
-[![Von Karman's Vortex Street](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=f3LmjJ1N7YE)
+[![YouTube thumbnail](https://img.youtube.com/vi/f3LmjJ1N7YE/hqdefault.jpg)](https://youtube.com/watch?v=f3LmjJ1N7YE)
 
 Source: <https://youtube.com/watch?v=f3LmjJ1N7YE>
 
@@ -1503,7 +1501,7 @@ Source: <https://youtube.com/watch?v=f3LmjJ1N7YE>
 
 Turbulence is a major research area in science. We don't fully understand it. We are trying to determine what triggers it, how to control it, and how to predict if and when it will occur. The problem of turbulence is frequently multi-scale such that behavior at one time or length scale is not well explained or connected to another scale. Additionally, the mathematics of turbulence is very difficult. It makes for an interesting and challenging research area. Below is a video that explains the some of the physics of turbulence. The first 4 minutes or so are at least worth watching.
 
-[![Turbulence](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=RkewD966Y90)
+[![YouTube thumbnail](https://img.youtube.com/vi/RkewD966Y90/hqdefault.jpg)](https://youtube.com/watch?v=RkewD966Y90)
 
 Source: <https://youtube.com/watch?v=RkewD966Y90>
 
@@ -1646,7 +1644,7 @@ $$x = {x_0, x_1, x_2, \ldots, x_n}$$
 
 At each of these spatial intervals, we experience a different net force, like in the figure below.
 
-![Work done by a net force](../../images/notes/week5/discrete-force-intervals.png)
+![Work done by a net force](../images/notes/week5/discrete-force-intervals.png)
 
 $$F_{net} = {F_{net,0}, F_{net,1}, F_{net,2}, \ldots, F_{net,n}}$$
 
@@ -1672,7 +1670,7 @@ What about in more than one dimension?
 
 Consider a path $C$ that we have discretized into $n$ intervals. The object starts at $\vec{r}_0$ and ends at $\vec{r}_n$. Each interval is $\Delta \vec{r}_i$ and the net force is $\vec{F}_{net,i}$. The figure below shows the work done by the net force in each interval.
 
-![Work done by a net force](../../images/notes/week5/path-integral-work.png)
+![Work done by a net force](../images/notes/week5/path-integral-work.png)
 
 
 The work done by the net force is:
@@ -1741,7 +1739,7 @@ We need to have a [conservative force](https://en.wikipedia.org/wiki/Conservativ
 
 A less obivous example that produces a potential energy function is a [lattice chain](https://en.wikipedia.org/wiki/Lattice_chain). Here we model an electron moving in 1D near but not too near a long chain of atoms. The picture below shows the model.
 
-![Lattice chain model](../../images/notes/week5/lattice-chain.png)
+![Lattice chain model](../images/notes/week5/lattice-chain.png)
 
 Here the location of the particle and it's initial velocty are zero. The force model for a chain of atoms in this arrangement is:
 
@@ -1804,7 +1802,7 @@ This is true for any closed path $C$. This is the second statement above.
 
 We can equivalent write the integral of the force around a closed path as the work around a different path. The figure below shows these paths $C_1$ and $C_2$ that make up the first loop, and the paths $C_3$ and $C_4$ that make up the second loop. The work done by the force along each path is shown in the figure.
 
-![Work done by a net force](../../images/notes/week5/closed-path-work.png)
+![Work done by a net force](../images/notes/week5/closed-path-work.png)
 
 We can take the integral of both paths and write:
 
@@ -1875,7 +1873,7 @@ Richard Feynman is known to have had a disdain for the wildly different units of
 
 ### Feynman on the units of energy (2 minute video)
 
-[![Feynman on the units of energy](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=roX2NXDUTsM)
+[![YouTube thumbnail](https://img.youtube.com/vi/roX2NXDUTsM/hqdefault.jpg)](https://youtube.com/watch?v=roX2NXDUTsM)
 
 Feynman is quoted as saying: 
 > *"It is important to realize that in physics today, we have no knowledge of what energy is."*
@@ -1896,7 +1894,7 @@ To frame how interesting and complex energy can be, consider this video from Ver
 
 ### How do we get light from a circuit when we close a switch? (14 minute video)
 
-[![The Big Misconception About Electricity](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=bHIhgxav9LY)
+[![YouTube thumbnail](https://img.youtube.com/vi/bHIhgxav9LY/hqdefault.jpg)](https://youtube.com/watch?v=bHIhgxav9LY)
 
 There a many potential forms of energy and lots of processes that convert energy from one form to another. Below is a table of some common forms in physics. In addition, we have listed subsets of these forms that are often useful to distinguish. We will do analyses that include most of these forms.
 
@@ -1924,7 +1922,7 @@ Critical to the understanding of energy is that it is a property of a system. A 
 
 The video below is from an introductory physics course at Georgia Tech. It covers the important aspects of a point particle and how we miss some of the details when we focus exclusively on the point particle model.
 
-[![Point Particle and Real Models](images/notes/week1//hqdefault.jpg)](https://www.youtube.com/watch?v=fbiNKrqVajM)
+[![YouTube thumbnail](https://img.youtube.com/vi/fbiNKrqVajM/hqdefault.jpg)](https://www.youtube.com/watch?v=fbiNKrqVajM)
 
 ### Kinetic Energy of a Point Mass
 
@@ -2577,13 +2575,13 @@ To introduce some of those initial ideas here are two videos from different phys
 
 In this video, Derek Muller uses the typical example of the Butterfly Effect to introduce the idea of chaos theory. The philosophical aspects of the butterfly effect are interesting, but not real in any physical sense. Instead, it's a metaphor for the idea that small changes in initial conditions can lead to large changes in the system. Muller contrasts our understanding of determinism with uncertainty; he introduces the concepts of sensitivity to initial conditions and discusses the idea of an attractor. 
 
-[![Chaos Theory](images/notes/week1//hqdefault.jpg)](https://www.youtube.com/watch?v=fDek6cYijxI)
+[![YouTube thumbnail](https://img.youtube.com/vi/fDek6cYijxI/hqdefault.jpg)](https://www.youtube.com/watch?v=fDek6cYijxI)
 
 ### University of Bristol - Chaos Theory and Randomness (8 minute video)
 
 In this video, two researchers from the University of Bristol ([Jens Marklof](https://people.maths.bris.ac.uk/~majm/) and [Henna Koivusalo](https://people.maths.bris.ac.uk/~te20281/)) discuss the idea of chaos theory from a more mathematical perspective - remdining us of the differences between randomness and chaos. The overlap between physicists and mathematicians in the study of chaos is significant. One important contribution is [Dynamical systems](https://en.wikipedia.org/wiki/Dynamical_system), which is a mathematical framework that is used to study these behaviors. The researchers who do this work are mathematicians, physicists, engineers, and computer scientists. They do experiments, but they also do a lot of mathematical modeling.
 
-[![Chaos Theory](images/notes/week1//hqdefault.jpg)](https://www.youtube.com/watch?v=5fRhasVmcUE)
+[![YouTube thumbnail](https://img.youtube.com/vi/5fRhasVmcUE/hqdefault.jpg)](https://www.youtube.com/watch?v=5fRhasVmcUE)
 
 
 # Week 7 - Notes: Critical Points; Phase Space; Trajectories
@@ -3142,7 +3140,7 @@ Differential equations are the language of classical mechanics. They describe ho
 
 ### Differential equations, a tourist's guide (27 min)
 
-[![Differential Equations](images/notes/week1//hqdefault.jpg)](https://www.youtube.com/watch?v=p_di4Zn4wz4)
+[![YouTube thumbnail](https://img.youtube.com/vi/p_di4Zn4wz4/hqdefault.jpg)](https://www.youtube.com/watch?v=p_di4Zn4wz4)
 
 Source: <https://www.youtube.com/watch?v=p_di4Zn4wz4>
 
@@ -3158,7 +3156,7 @@ We will go into the details of how to construct and develop phase portraits in c
 
 ### Drawing Phase Portraits for Nonlinear Systems (26 min)
 
-[![Drawing Phase Portraits for Nonlinear Systems](images/notes/week1//hqdefault.jpg)](https://www.youtube.com/watch?v=vBwyD4JJlSs)
+[![YouTube thumbnail](https://img.youtube.com/vi/vBwyD4JJlSs/hqdefault.jpg)](https://www.youtube.com/watch?v=vBwyD4JJlSs)
 
 Source: <https://www.youtube.com/watch?v=vBwyD4JJlSs>
 
@@ -3301,7 +3299,7 @@ These values of $C_1$ and $C_2$ are the complex conjugates of each other. The co
 
 We can draw these in the complex plane where the $x$-axis is the real part and the $y$-axis is the imaginary part.
 
-![Complex Conjugates](../../images/notes/week8/conjugates_graph.png)
+![Complex Conjugates](../images/notes/week8/conjugates_graph.png)
 
 In the graph we can see that the complex conjugates are a reflection of each other. This is because the imaginary part of the complex conjugate is the negative of the original imaginary part.
 
@@ -3750,7 +3748,7 @@ When oscillators couple (or influence each other), we begin to see behavior that
 
  The video below is a good introduction to the topic of synchronization and worth a watch. 
 
-[![The Surprising Secret of Synchronization](images/notes/week1//hqdefault.jpg)](https://www.youtube.com/watch?v=t-_VPRCtiUg)
+[![YouTube thumbnail](https://img.youtube.com/vi/t-_VPRCtiUg/hqdefault.jpg)](https://www.youtube.com/watch?v=t-_VPRCtiUg)
 
 
 # Week 9 - Notes: Driven Oscillations
@@ -3788,7 +3786,7 @@ $$m\ddot{x} +b \dot{x} + k x = F(t)$$
 
 We can represent that setup in the picture below. The blue spring with spring constant $k$ is attached to a red mass $m$. There is a dashpot (damping) in green with damping constant $b=2\beta$. The driving force $F(t)$ is shown in black and called "driver".
 
-![driven oscillator](../../images/notes/week9/driven_oscillator.png)
+![driven oscillator](../images/notes/week9/driven_oscillator.png)
 
 We write that differential equation as:
 
@@ -4031,7 +4029,7 @@ Let's allow $\beta$ to be small so that $4\beta^2 \omega^2$ is small. If we focu
 
 The second result is a [resonance](https://en.wikipedia.org/wiki/Resonance) effect. The system will resonate at a particular frequency, $\omega_0$, and the amplitude of the oscillations will be large. Below is a sketch of the response of a driven damped harmonic oscillator to a sinusoidal driving force. The amplitude of the oscillations is plotted as a function of the driving frequency $\omega$.
 
-![Resonance Sketch](../../images/notes/week9/resonance.png)
+![Resonance Sketch](../images/notes/week9/resonance.png)
 
 ### Achieving Resonance
 
@@ -4085,7 +4083,7 @@ Driven oscillators are a specific type of driven system, we expect them to demon
 
 Resonance is the phenomenon that caused the [collapse of the Tacoma Narrows Bridge](https://en.wikipedia.org/wiki/Tacoma_Narrows_Bridge_(1940)) in 1940. The video below describes the collapse and how the bridge was rebuilt to avoid the same problem. 
 
-[![Why the Tacoma Narrows Bridge Collapsed](images/notes/week1//hqdefault.jpg)](https://www.youtube.com/watch?v=mXTSnZgrfxM)
+[![YouTube thumbnail](https://img.youtube.com/vi/mXTSnZgrfxM/hqdefault.jpg)](https://www.youtube.com/watch?v=mXTSnZgrfxM)
 
 ## Quantum Mechanical Resonance
 
@@ -4395,7 +4393,7 @@ Once you have simulated the Duffing oscillator, you can plot the results to visu
 
 This first set of plots should look similar to the one below.
 
-![Duffing](../../images/notes/week10/first_duffing.png)
+![Duffing](../images/notes/week10/first_duffing.png)
 
 
 ```python
@@ -4453,9 +4451,9 @@ In the cells below, we scaffold some of the code to simulate the Lorenz attracto
 
 For the parameters, we will use the canonical values of $\sigma = 10$, $\rho = 28$, and $\beta = \frac{8}{3}$. Choose initial conditions of $x=1$, $y=1$, and $z=1$ and simulate for 50 time units. If you do, your solution will look like the one below.
 
-![Lorenz Time Series](../../images/notes/week10/lorenz-1.png)
+![Lorenz Time Series](../images/notes/week10/lorenz-1.png)
 
-![Lorenz Phase Space](../../images/notes/week10/lorenz-2.png)
+![Lorenz Phase Space](../images/notes/week10/lorenz-2.png)
 
 
 ```python
@@ -4537,12 +4535,12 @@ Chaotic systems are typically [nonlinear](https://en.wikipedia.org/wiki/Nonlinea
 
 We have seen how systems can have fixed points - both stable and unstable - and we have seen periodic behavior. These are common in many dynamical systems. In our study of the harmonic oscillator, we observed that the system can exhibit periodic behavior when undamped or driven, but we also saw how it can settle to a stable fixed point when damped. As we move to study chaotic systems, we begin to see other kinds of behavior. Systems can have [limit cycles](https://en.wikipedia.org/wiki/Limit_cycle) - periodic orbits that are stable or unstable. Below we show the limit cycle of the [Van der Pol oscillator](https://en.wikipedia.org/wiki/Van_der_Pol_oscillator), 
 
-![Limit Cycle](images/notes/week1/640px-VanDerPolPhaseSpace.png)
+![Limit Cycle](images/notes/week1//640px-VanDerPolPhaseSpace.png)
 
 
 One of the most interesting types of [attractors](https://en.wikipedia.org/wiki/Attractor) in dynamical systems is the [strange attractor](https://en.wikipedia.org/wiki/Strange_attractor). These are fractal structures in phase space towards which the system evolves over time. Strange attractors are complex and often exhibit self-similarity, meaning they look similar at different scales. The [Lorenz attractor](https://en.wikipedia.org/wiki/Lorenz_system) is a famous example of a strange attractor, displaying a butterfly-shaped pattern.
 
-![Lorenz Attractor](images/notes/week1/A_Trajectory_Through_Phase_Space_in_a_Lorenz_Attractor.gif)
+![Lorenz Attractor](images/notes/week1//A_Trajectory_Through_Phase_Space_in_a_Lorenz_Attractor.gif)
 
 ### Long-term Unpredictability
 
@@ -4808,7 +4806,7 @@ Let's assume you are walking on the beach and need to get to a location in the w
 
 Consider the picture below where you can move at a speed $v_1$ on the shore and a speed $v_2$ in the water. We know that $v_1 > v_2$, so you can move faster on the shore than in the water. We aim to minimize the time it takes to reach the point $\langle x_2, y_2 \rangle$ in the water from point $\langle x_1, y_1 \rangle$ on the shore. We take the shoreline to be a line at $x = 0$. and the location we cross the shoreline is $\langle 0, y \rangle$.
 
-![Snell's Law Diagram](../../images/notes/week11/snells_shore.png)
+![Snell's Law Diagram](../images/notes/week11/snells_shore.png)
 
 Notice the angle that we approach the shoreline at, $\theta_1$, and the angle that we approach the target in the water, $\theta_2$.
 
@@ -4854,13 +4852,13 @@ $$\dfrac{\sin(\theta_1)}{v_1} = \dfrac{\sin(\theta_2)}{v_2}$$
 
 The [Brachistochrone problem](https://en.wikipedia.org/wiki/Brachistochrone_problem) is a classic problem in the Calculus of Variations. It asks the question: "What is the shape of the curve that a bead will follow under the influence of gravity to reach the bottom in the shortest time?"  Here's a great video from [Steven Strogatz](https://en.wikipedia.org/wiki/Steven_Strogatz) that explains the problem and its solution.
 
-[![Youtube Video on the Brachistochrone Problem](images/notes/week1//hqdefault.jpg)](https://www.youtube.com/watch?v=Cld0p3a43fU)
+[![YouTube thumbnail](https://img.youtube.com/vi/Cld0p3a43fU/hqdefault.jpg)](https://www.youtube.com/watch?v=Cld0p3a43fU)
 
 Source: <https://www.youtube.com/watch?v=Cld0p3a43fU>
 
 The setup is below, there's two points separated by a distance vertically and horizontally. What shape should we make a track so that a bead will roll down it in the shortest time?
 
-![The Brachistochrone Problem](../../images/notes/week11/brachistochrone.png)
+![The Brachistochrone Problem](../images/notes/week11/brachistochrone.png)
 
 The time it takes for the bead to roll down the curve is given by:
 
@@ -5021,7 +5019,7 @@ This section is mathematically intensive and will require you to have a solid un
 
 The Brachistochrone is a well known problem and its history is quite interesting. The video below discusses the problem and it history in detail. It's what helped spur the development of the calculus of variations and the work of Lagrange and others. The problem is deceptively simple: given two points in a vertical plane, find the curve down which a bead will slide (without friction) from one point to the other in the shortest time. The solution to this problem is not a straight line, but rather a cycloid curve.
 
-[![Youtube Video on the Brachistochrone Problem](images/notes/week1//hqdefault.jpg)](https://www.youtube.com/watch?v=Cld0p3a43fU)
+[![YouTube thumbnail](https://img.youtube.com/vi/Cld0p3a43fU/hqdefault.jpg)](https://www.youtube.com/watch?v=Cld0p3a43fU)
 
 Source: <https://www.youtube.com/watch?v=Cld0p3a43fU>
 
@@ -5029,7 +5027,7 @@ Source: <https://www.youtube.com/watch?v=Cld0p3a43fU>
 
 In the video below, we learn about the [Soap Bubble Problem](https://en.wikipedia.org/wiki/Soap_bubble), which is another classic problem in the calculus of variations. The goal is to find the shape of a soap bubble that minimizes surface area for a given volume.
 
-[![The Math of Bubbles: Minimal Surfaces & the Calculus of Variations](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=8SABptOYUVk))
+[![YouTube thumbnail](https://img.youtube.com/vi/8SABptOYUVk/hqdefault.jpg)](https://youtube.com/watch?v=8SABptOYUVk))
 
 Source: <https://youtube.com/watch?v=8SABptOYUVk>
 
@@ -5045,7 +5043,7 @@ To get started with Lagrangian mechanics, we will start by deriving Newton's sec
 
 We start by sketching the location of a particle in plane polar coordinates, as shown below:
 
-![Position vector in polar coordinates](../../images/notes/week12/coordinate-system.png)
+![Position vector in polar coordinates](../images/notes/week12/coordinate-system.png)
 
 The red arrow represents the position vector $\vec{r}$, which is a length $r$ from the origin at an angle $\phi$ from the $x$-axis. At the tip of the vector we have drawn the Cartesian unit vectors $\hat{x}$ and $\hat{y}$ in blue, and the polar unit vectors $\hat{r}$ and $\hat{\phi}$ in green. Notice that the polar unit vectors are rotated by an angle $\phi$ from the Cartesian unit vectors. We can simply write the position vector in terms of these unit vectors as:
 
@@ -5123,11 +5121,11 @@ This gives us the net force in terms of the radial and angular components in pol
 
 Let's see the utility of using polar coordinates by applying it to a skateboarder moving on a circular track. In this case, the skateboarder is constrained to move along a circular path of radius $r$. Consider a skateboarder moving on that circular track as shown below:
 
-![Skateboarder on a circular track](../../images/notes/week12/skateboard.png)
+![Skateboarder on a circular track](../images/notes/week12/skateboard.png)
 
 At this point in the track, we can draw the free body diagram of the skateboarder. The forces acting on the skateboarder are the Earth's gravitational force and the normal force of the ramp.
 
-![Free body diagram of skateboarder](../../images/notes/week12/skateboard-free-body.png)
+![Free body diagram of skateboarder](../images/notes/week12/skateboard-free-body.png)
 
 We can use Newton's law in polar coordinates to analyze the forces acting on the skateboarder. This is because the normal force is always perpendicular to the surface of the ramp and will only have a radial component in polar coordinates. Thus we need only decompose the gravitational force into its radial and angular components.
 
@@ -5315,7 +5313,7 @@ To get some intuition for how Lagrangian mechanics works, let's consider an exam
 
 A pendulum bob of mass $m$ is attached to a fixed point by a rod of length $l$. The bob swings in a vertical plane under the influence of gravity as shown below. We define $U=0$ at the top of ceiling where the rod is attached.
 
-![Pendulum Diagram](../../images/notes/week12/plane-pendulum.png)
+![Pendulum Diagram](../images/notes/week12/plane-pendulum.png)
 
 The location of the bob is $\langle x, y \rangle$. We can use the $x,y$ coordinates to "naively" setup the Lagrangian and see what happens.
 
@@ -5426,7 +5424,7 @@ This is where [Lagrangian Mechanics](https://en.wikipedia.org/wiki/Lagrangian_me
 
 The video below discusses the concept of the Principle of Least Action, which is the foundation of Lagrangian Mechanics.
 
-[![The Principle of Least Action](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=Q_CQDSlmboA)
+[![YouTube thumbnail](https://img.youtube.com/vi/Q_CQDSlmboA/hqdefault.jpg)](https://youtube.com/watch?v=Q_CQDSlmboA)
 
 Source: <https://youtube.com/watch?v=Q_CQDSlmboA>
 
@@ -5444,9 +5442,307 @@ The basic steps are:
 
 But we need practice applying these steps to get comfortable with the process. Parth G. has a lovely video below about the basics of Lagrangian Dynamics. We will do a lot of this in class and go over many examples. This video is a nice introduction to the concept.
 
-[![Introduction to Lagrangian Dynamics](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=KpLno70oYHE)
+[![YouTube thumbnail](https://img.youtube.com/vi/KpLno70oYHE/hqdefault.jpg)](https://youtube.com/watch?v=KpLno70oYHE)
 
 Source: <https://youtube.com/watch?v=KpLno70oYHE>
+
+
+# Week 13 - Notes: Examples of Lagrangian Mechanics
+
+
+
+We've seen the Lagrangian formulation of mechanics, and we have seen how to use it to derive the equations of motion for a system. We will cover a few common examples of Lagrangian mechanics and point out some of the subtleties that arise in each case.
+
+## Example: The Atwood Machine
+
+The [Atwood machine](https://en.wikipedia.org/wiki/Atwood_machine) consists of two masses, $M$ and $m$, connected by a massless string that passes over a massless pulley. The system is subject to gravity alone. The figure below shows the system along with a choice of coordinates $y_1$ and $y_2$ for the two masses. 
+
+![Atwood Machine](../images/notes/week13/atwood.png)
+
+These coordinates are measured from the center of the pulley and positive $y_1$ and $y_2$ are taken to be upward. Let's try to use the Lagrangian formalism to find the equations of motion for this system.
+
+$$V = + Mgy_1 + mgy_2$$
+
+$$T = \dfrac{1}{2}M\dot{y}_1^2 + \dfrac{1}{2}m\dot{y}_2^2$$
+
+### Equation of Constraint
+
+But notice that $y_1$ and $y_2$ are no independent coordinates. If we unravel the string that is over the pulley, we find that (assume length of string is $l$):
+
+$$y_1 + \pi R + y_2 = l$$
+
+where $R$ is the radius of the pulley. That is shown in the figure below.
+
+![Unraveled String](../images/notes/week13/string-unraveled.png)
+
+The equation above is called an **equation of constraint**. It relates the coordinates $y_1$ and $y_2$ to each other. We can use this equation to eliminate one of the coordinates. Let's eliminate $y_2$:
+
+$$l = y_1 + \pi R + y_2 \rightarrow y_1 = (l - \pi R) - y_2$$ 
+
+This constraint has implications for velocities,
+
+$$\dfrac{dy_1}{dt} = \dfrac{d}{dt}\left((l-\pi R) - y_2\right) = -\dfrac{dy_2}{dt}$$
+
+$$\dot{y}_1 = -\dot{y}_2.$$
+
+This is likely what we could have expected, that the two masses move in opposite directions at the same speed.
+
+### Constructing the Lagrangian
+
+Let's use this constraint to reduce the number of coordinates in the Lagrangian. 
+
+$$\mathcal{L}(y_1, y_2, \dot{y}_1, \dot{y}_2) \rightarrow \mathcal{L}(y_1, \dot{y}_1)$$
+
+We can do this by substituting $y_2$ in terms of $y_1$ into the energy equations:
+
+$$T(y_1, \dot{y}_1) = \dfrac{1}{2}M\dot{y}_1^2 + \dfrac{1}{2}m\dot{y}_2^2 = \dfrac{1}{2}(M+m)\dot{y}_1^2 = T(\dot{y}_1)$$
+
+$$\begin{align}
+V(y_1, y_2) &= +Mgy_1 + mgy_2 \\
+& = Mgy_1 + mg((l-\pi R) - y_1) \\
+& = (M-m)g y_1 + mg(l-\pi R) \\
+V(y_1) & = (M-m)g y_1 + U_0
+\end{align}$$
+
+where $U_0 = mg(l-\pi R)$ is a constant and will not affect the equations of motion.
+
+$$\mathcal{L}(y_1, \dot{y}_1) = T(\dot{y}_1) - V(y_1) = \dfrac{1}{2}(M+m)\dot{y}_1^2 - (M-m)g y_1$$
+
+$$\dfrac{\partial \mathcal{L}}{\partial y_1} = -(M-m)g$$
+
+$$\dfrac{\partial \mathcal{L}}{\partial \dot{y}_1} = (M+m)\dot{y}_1$$
+
+These derivatives give the following equation of motion:
+
+$$-(M-m) g - \dfrac{d}{dt}\left((M+m)\dot{y}_1\right) = 0$$
+
+#### Generalized Force
+
+Notice that the first term in the above equation is the force on the mass $M$ in the Newtonian picture: the weight of $M$ minus the weight of $m$. That makes sense because the Lagrangian formalism is supposed to reproduce Newton's laws, and the spatial derivative of the Lagrangian produces a [generalized force](https://en.wikipedia.org/wiki/Generalized_force).
+
+$$\dfrac{\partial \mathcal{L}}{\partial q_i} = -\dfrac{\partial V}{\partial q_i} = F_i$$
+
+The kinetic term has no spatial dependence, so it does not contribute to the generalized force.
+
+#### Generalized Momentum
+
+The second term in the above equation is the time derivative of the momentum of the system using $y_1$ as the coordinate:
+
+$$(M+m)\dot{y}_1 = M\dot{y}_1 - m\dot{y}_2 = p_{y_1}$$
+
+Again, that is a sensible result because the Lagrangian formalism is supposed to reproduce Newton's laws, and the generalized force is related to the time derivative of the [generalized momentum](https://phys.libretexts.org/Bookshelves/Classical_Mechanics/Variational_Principles_in_Classical_Mechanics_(Cline)/07%3A_Symmetries_Invariance_and_the_Hamiltonian/7.02%3A_Generalized_Momentum).
+
+$$\dfrac{d}{dt}\left(\dfrac{\partial \mathcal{L}}{\partial \dot{q}_i}\right) = \dfrac{d}{dt}\left(\dfrac{\partial T}{\partial \dot{q}_i}\right) = \dfrac{dp_{q_i}}{dt}$$
+
+### Equation of Motion
+
+The equation of motion can be written as
+
+$$(M=m)\ddot{y}_1 = -(M-m)g$$
+$$\ddot{y}_1 = -\dfrac{(M-m)}{(M+m)}g.$$
+
+With $M > m$, this acceleration is downward as the larger mass $M$ accelerates down. With $\dot{y}_1 = -\dot{y}_2$, we know $$\ddot{y}_2 = -\ddot{y}_1$$, so that:
+
+$$\ddot{y}_2 = \dfrac{(M-m)}{(M+m)}g$$
+
+Again, with $M > m$, this acceleration is upward as the smaller mass $m$ accelerates up.
+
+## Example: Atwood Machine with Rotating Pulley
+
+In the previous example, we didn't take into account the energy needed to rotate the pulley. Let's do that now. Beucase the rope cannot slip, any small rotation $Rd\phi$ of the pulley give a change $dy_1$ in the position of mass $M$. This is the [no slip constraint](https://en.wikipedia.org/wiki/No-slip_condition).
+
+If the pulley has a mass $M_p$ and radius $R$, then we must introduce it's kinetic energy:
+
+$$T_{pulley} =  \dfrac{1}{2} I \omega^2$$
+
+where $I$ is the [moment of inertia](https://en.wikipedia.org/wiki/List_of_moments_of_inertia) of the pulley and $\omega$ is the angular velocity of the pulley, $\omega = \dot{\phi}$. This angular velocity is related to the linear velocities of the masses.
+
+$$I = \dfrac{1}{2}M_p R^2$$
+
+$$T_{pulley} =  \dfrac{1}{2} \left(\dfrac{1}{2}M_p R^2\right) \dot{\phi}^2$$
+$$T_{pulley} =  \dfrac{1}{4}M_p R^2 \dot{\phi}^2$$
+
+We now map this additional kinetic energy into the problem.
+
+$$T(\dot{y}_1, \dot{\phi}) = \dfrac{1}{2}(M+m)\dot{y}_1^2 + \dfrac{1}{4}M_p R^2 \dot{\phi}^2$$
+
+But the constraint is such that, 
+
+$$\dot{y}_1 = Rd\phi \rightarrow y_1 = R\phi +\underbrace{R\phi_0}_{\textrm{const.}}$$
+
+$$\dot{y}_1 = R\dot{\phi}$$
+
+We work these back into $T$, $V$, and $\mathcal{L}$.
+
+$$\begin{align}
+T(\dot{\phi}) &= \dfrac{1}{2}(M+m)\dot{y}_1^2 + \dfrac{1}{4}M_p R^2 \dot{\phi}^2\\
+&= \dfrac{1}{2}(M+m+\frac{1}{2}M_p)R^2 \dot{\phi}^2\\
+\end{align}$$
+
+$$\begin{align}
+V(\phi) &= (M-m)gy_1 + U_0 \\
+&= (M-m)g(R\phi + R\phi_0) + U_0\\
+&= (M-m)gR\phi + \tilde{U}_0\\
+\end{align}$$
+
+where $\tilde{U}_0 = (M-m)gR\phi_0 + U_0$ is another constant that will not affect the equations of motion.
+
+$$\begin{align}
+\mathcal{L}(\phi, \dot{\phi}) &= T(\dot{\phi}) - V(\phi)\\
+& = \dfrac{1}{2}(M+m+\frac{1}{2}M_p)R^2 \dot{\phi}^2 - (M-m)gR\phi\\
+\end{align}$$
+
+### Torque and Angular Momentum
+
+Our generalized coordinate is $\phi$ and our generalized velocity is $\dot{\phi}$. We apply the Euler-Lagrange equation. We obtain the generalized force:
+
+$$\dfrac{\partial \mathcal{L}}{\partial \phi} = -(M-m)gR = F_{\phi}$$
+
+Notice that in this case, the generalized force is not the same as the force on mass $M$ in the Newtonian picture. It's a torque around the pulley.
+
+We can find the generalized momentum in a similar way:
+
+$$\dfrac{\partial \mathcal{L}}{\partial \dot{\phi}} = (M+m+\frac{1}{2}M_p)R^2\dot{\phi} = p_{\phi}$$
+
+This is the angular momentum of the system about the axle. We can see that by breaking down each part and adding them up.
+
+$$\vec{L}_{total} = \vec{L}_{disk} + \vec{L}_{M} + \vec{L}_{m}$$
+
+$$\vec{L}_{disk} = I_{disk}\omega = \dfrac{1}{2}M_p R^2 \dot{\phi}\,\text{(out of the page)}$$
+
+$$\vec{L}_{M} = M\vec{r}_{M}\times \vec{v}_{M} = M(R\hat{r})\times (R\dot{\phi}\hat{\phi}) = MR^2 \dot{\phi}\,\text{(out of the page)}$$
+
+$$\vec{L}_{m} = M\vec{r}_{m}\times \vec{v}_{m} = m(R\hat{r})\times (R\dot{\phi}\hat{\phi}) = mR^2 \dot{\phi}\,\text{(out of the page)}$$
+
+Add them up:
+
+$$\vec{L}_{total} = \left(\dfrac{1}{2}M_p + M + m\right)R^2 \dot{\phi}\,\text{(out of the page)}$$
+
+Or the magnitude:
+
+$$L_{total} = \left(\dfrac{1}{2}M_p + M + m\right)R^2 \dot{\phi}$$
+$$p_{\phi} = L_{total}$$
+
+### Equation of Motion
+
+We return to the diffeferential equation of motion:
+
+$$-(M-m)gR - \dfrac{d}{dt}((M+m+\frac{1}{2}M_p)R^2\dot{\phi} = 0$$
+$$-(M-m)gR - (M+m+\frac{1}{2}M_p)R^2\ddot{\phi} = 0$$
+
+which produces the following equation of motion:
+
+$$\ddot{\phi} = -\dfrac{g}{R}\dfrac{(M-m)}{(M+m+\frac{1}{2}M_p)}$$
+
+which is a constant acceleration.
+
+## Example: Bead in a Parabolic Bowl
+
+A bead of mass $m$ is constrained to move along a parabolic bowl. There is a gravitational force acting on the bead. The bowl is symmetric about the $z$-axis and the bead is constrained to move along the surface without friction or rolling. The bowl is described by the equation:
+
+$$z = \dfrac{1}{2}c(x^2 + y^2)$$
+
+where $c$ is a constant that describes the curvature of the bowl. The figure below shows the system.
+
+![Bead in a Parabolic Bowl](../images/notes/week13/paraboloid.png)
+
+In this case the system is better solved in cylindrical coordinates. The coordinates are $(r, \phi, z)$, where $r$ is the distance from the $z$-axis, $\phi$ is the angle around the $z$-axis, and $z$ is the height above the $xy$-plane as shown above.
+
+With $\langle \rho, \phi, z\rangle$ as the coordinates, equation for the constraint is:
+
+$$z = \dfrac{1}{2}c(x^2 + y^2) = \dfrac{1}{2}c\rho^2.$$
+
+Note that $c$ has units.
+
+$$[z] = m \quad [\rho^2] = m^2 \quad [c] = \dfrac{1}{m}$$
+
+The speed in cylindrical coordinates can be derived from the expressions in Cartesian coordinates, but we quote the result here:
+
+$$v^2 = \dot{\rho}^2 + \rho^2\dot{\phi}^2 + \dot{z}^2.$$
+
+### Constructing the Lagrangian
+
+We write the kinetic and potential energy of the bead in terms of the coordinates $(r, \phi, z)$.
+
+$$T = \dfrac{1}{2}m\left(\dot{\rho}^2 + \rho^2\dot{\phi}^2 + \dot{z}^2\right)$$
+
+$$V = mgz$$
+
+In principle, the Lagrangian can depend on all three coordinates and all three velocities. 
+
+$$\mathcal{L}(\rho, \dot{\rho}, \phi, \dot{\phi}, z, \dot{z}, t) = T - V$$
+
+There is no explicit time dependence, so we can ignore $t$. When the Lagrangian has no explicit time dependence, we should expect the energy to be conserved. This form of Lagrangian analysis does not account for dissipation.
+
+$$\mathcal{L}(\rho, \dot{\rho}, \phi, \dot{\phi}, z, \dot{z})$$
+
+Moreover, with the symmetry of the problem, we can expect no $\phi$ dependence. That is the gravitational potential energy only depends on $z$ and not on $\phi$. This is a consequence of the symmetry of the problem and indicates that $\phi$ is a [cyclic coordinate](https://phys.libretexts.org/Bookshelves/Classical_Mechanics/Variational_Principles_in_Classical_Mechanics_(Cline)/07%3A_Symmetries_Invariance_and_the_Hamiltonian/7.05%3A_Cyclic_Coordinates). We thus expect angular momentum to be conserved about the $z$-axis.
+
+$$\mathcal{L}(\rho, \dot{\rho}, \dot{\phi}, z, \dot{z})$$
+
+Lastly, the constraint equation gives us $z$ in terms of $\rho$:
+
+$$z = \dfrac{1}{2}c\rho^2$$
+
+And thus we can find the time derivative of $z$:
+
+$$\dot{z} = 2c\rho\dot{\rho}.$$
+
+So the Lagrangian can be simplified three variables:
+
+$$\mathcal{L}(\rho, \dot{\rho}, \dot{\phi}) = T - V$$
+
+$$\mathcal{L}(\rho, \dot{\rho}, \dot{\phi}) = \dfrac{1}{2}m\left(\dot{\rho}^2 + \rho^2\dot{\phi}^2 + 4c^2\rho^2\dot{\rho}^2\right) - mg\dfrac{1}{2}c\rho^2$$
+
+### Equations of Motion
+
+We can now apply the Euler-Lagrange equations to find the equations of motion. We will do this for each coordinate. Let's start with $\phi$ because there is only one term in the Lagrangian that depends on $\dot{\phi}$.
+
+$$\underbrace{\dfrac{\partial \mathcal{L}}{\partial \phi}}_0 - \dfrac{d}{dt}\left(\dfrac{\partial \mathcal{L}}{\partial \dot{\phi}}\right) = 0$$
+
+$$\dfrac{d}{dt}\left(\dfrac{\partial \mathcal{L}}{\partial \dot{\phi}}\right) = \dfrac{d}{dt}\underbrace{\left(m\rho^2\dot{\phi}\right)}_{L_z} = 0$$
+
+This equation of motion indicates that the angular momentum about the $z$-axis is conserved, as we expected from the symmetry of the problem.
+
+For the coordinate $\rho$, we have:
+
+$$\dfrac{\partial \mathcal{L}}{\partial \rho} - \dfrac{d}{dt}\left(\dfrac{\partial \mathcal{L}}{\partial \dot{\rho}}\right) = 0$$
+
+$$\dfrac{\partial \mathcal{L}}{\partial \rho} = m\rho\dot{\phi}^2 + 4c^2m\rho\dot{\rho}^2 - 2mgc\rho$$
+
+$$\dfrac{\partial \mathcal{L}}{\partial \dot{\rho}} = m\dot{\rho} + 4mc^2\rho^2\dot{\rho}$$
+
+$$\dfrac{d}{dt}\left(\dfrac{\partial \mathcal{L}}{\partial \dot{\rho}}\right) = m\ddot{\rho} + 8mc^2\rho\dot{\rho}^2 + 4mc^2\rho^2\ddot{\rho}$$
+
+We can now write the equation of motion:
+
+$$m\rho\dot{\phi}^2 + 4c^2m\rho\dot{\rho}^2 - 2mgc\rho - m\ddot{\rho} - 8mc^2\rho\dot{\rho}^2 - 4mc^2\rho^2\ddot{\rho} = 0$$
+
+We can clean this up a little bit:
+
+$$\ddot{\rho}(1+4c^2\rho^2) + 8c^2\rho\dot{\rho}^2 = \rho\dot{\phi}^2 + 4c^2\rho\dot{\rho}^2 - 2gc\rho$$
+
+$$\ddot{\rho}(1+4c^2\rho^2) + 4c^2\rho\dot{\rho}^2 - \rho\dot{\phi}^2 + 2gc\rho = 0$$
+
+We try to write both equations in terms of their accelerations. We have:
+
+$$\ddot{\rho} = -\dfrac{4c^2\rho\dot{\rho}^2 - \rho\dot{\phi}^2 + 2gc\rho}{1+4c^2\rho^2}$$
+
+$$\ddot{\phi} = - \dfrac{2\rho\dot{\rho}\dot{\phi}}{\rho^2}$$
+
+For which we can develop a solution anywhere away from the origin ($\rho \neq 0$). 
+
+### Preparing for Numerical Solution
+
+We need to write these equations in a form that is ready for numerical solution. We can do this by writing the equations in terms of the first derivatives. Let $\omega = \dot{\phi}$ and $v = \dot{\rho}$. We get 4 1st order equations:
+
+$$\dot{\rho} = v$$
+$$\dot{\phi} = \omega$$
+$$\dot{v} = -\dfrac{4c^2\rho v^2 - \rho\omega^2 + 2gc\rho}{1+4c^2\rho^2}$$
+$$\dot{\omega} = - \dfrac{2 v\omega}{\rho^2}$$
+
+
+
 
 
 # Week 13 - Lagrangian Mechanics
@@ -5485,164 +5781,7 @@ An understanding of physics formulated through [Lagrangian Mechanics](https://en
 
 The video below provides an introduction to this equation and the Standard Model.
 
-[![Standard Model Lagrangian](images/notes/week1//hqdefault.jpg)](https://youtube.com/watch?v=PHiyQID7SBs)
+[![YouTube thumbnail](https://img.youtube.com/vi/PHiyQID7SBs/hqdefault.jpg)](https://youtube.com/watch?v=PHiyQID7SBs)
 
 
 
-# Chapters Index
-
-- [01_notes.md](01_notes.md)
-- [01_start.md](01_start.md)
-- [02_notes.md](02_notes.md)
-- [02_start.md](02_start.md)
-- [index.md](index.md)
-- [01_notes.pdf](01_notes.pdf)
-- [01_start.pdf](01_start.pdf)
-- [02_notes.pdf](02_notes.pdf)
-- [02_start.pdf](02_start.pdf)
-- [01_notes.docx](01_notes.docx)
-- [01_start.docx](01_start.docx)
-- [02_notes.docx](02_notes.docx)
-- [02_start.docx](02_start.docx)
-
-## Images by Week
-
-### week1
-- images/notes/week1/640px-Modernphysicsfields.svg.png
-- images/notes/week1/box_fbd_remote.png
-- images/notes/week1/box_fbd.png
-- images/notes/week1/falling_object_remote.gif
-- images/notes/week1/falling_object.png
-- images/notes/week1/File:Dot-product-1.svg
-- images/notes/week1/File:Modernphysicsfields.svg
-- images/notes/week1/hqdefault.jpg
-- images/notes/week1/youtube_myuD81326_o.jpg
-- images/notes/week1/youtube_Qme07fA3Fj4.jpg
-
-### week10
-- images/notes/week10/chen.png
-- images/notes/week10/damped-long-term.png
-- images/notes/week10/dei_talk.png
-- images/notes/week10/duffing-chaos.png
-- images/notes/week10/duffing.png
-- images/notes/week10/first_duffing.png
-- images/notes/week10/hellmo.gif
-- images/notes/week10/lorenz-1.png
-- images/notes/week10/lorenz-2.png
-- images/notes/week10/lorenz-trajectories.png
-- images/notes/week10/lorenz.png
-- images/notes/week10/lyapunov.png
-- images/notes/week10/sprott.png
-- images/notes/week10/van-der-pol-limit-cycle.gif
-
-### week11
-- images/notes/week11/brachistochrone.png
-- images/notes/week11/snells_shore.png
-- images/notes/week11/soap_bubble.png
-
-### week12
-- images/notes/week12/coordinate-system.png
-- images/notes/week12/newton-scared.jpg
-- images/notes/week12/plane-pendulum.png
-- images/notes/week12/skateboard-free-body.png
-- images/notes/week12/skateboard.png
-- images/notes/week12/standup.png
-
-### week13
-- images/notes/week13/action.001.png
-- images/notes/week13/andy-lagrange.jpeg
-- images/notes/week13/atwood.png
-- images/notes/week13/era.png
-- images/notes/week13/lion-lagrange.jpg
-- images/notes/week13/march.png
-- images/notes/week13/paraboloid.png
-- images/notes/week13/string-unraveled.png
-
-### week2
-- images/notes/week2/2dvector.png
-- images/notes/week2/benjamin.png
-- images/notes/week2/browne.png
-- images/notes/week2/crawford.png
-- images/notes/week2/Dot-product.png
-- images/notes/week2/dyson.png
-- images/notes/week2/gleick.png
-- images/notes/week2/harvard-computers.png
-- images/notes/week2/levy.png
-- images/notes/week2/nasa-computers-hidden-figures.png
-- images/notes/week2/oneill.png
-- images/notes/week2/zuboff.png
-
-### week3
-- images/notes/week3/1d-ball-fbd-air.png
-- images/notes/week3/1d-ball-fbd.png
-- images/notes/week3/ai_vote_s2025.png
-- images/notes/week3/cq6-3.png
-- images/notes/week3/drag.png
-- images/notes/week3/prelim_framework.png
-- images/notes/week3/quack.png
-- images/notes/week3/sho_horizontal.png
-- images/notes/week3/stokes.png
-- images/notes/week3/trans_rally.png
-- images/notes/week3/von_karman.png
-- images/notes/week3/vortex-shedding.png
-
-### week4
-- images/notes/week4/2d-falling-ball-fbd.png
-- images/notes/week4/2d-falling-ball.png
-- images/notes/week4/grav_01.png
-- images/notes/week4/grav_02.png
-- images/notes/week4/grav_03.png
-- images/notes/week4/numerical_integration.png
-- images/notes/week4/paramecium-swimming.png
-
-### week5
-- images/notes/week5/closed-path-work.png
-- images/notes/week5/conservation-of-energy.png
-- images/notes/week5/conservative-forces.png
-- images/notes/week5/cq_left_field.png
-- images/notes/week5/cq_right_field.png
-- images/notes/week5/discrete-force-intervals.png
-- images/notes/week5/gravedigger.png
-- images/notes/week5/lattice-chain.png
-- images/notes/week5/path-integral-work.png
-
-### week6
-- images/notes/week6/cq15-5.png
-- images/notes/week6/mexican-hat-potential.png
-- images/notes/week6/pendulum-potential-energy.png
-- images/notes/week6/quark-potential.png
-- images/notes/week6/quarks.png
-- images/notes/week6/resisting.png
-- images/notes/week6/sho-potential-energy.png
-
-### week7
-- images/notes/week7/1st-order-ode-ex-1.png
-- images/notes/week7/1st-order-ode-ex-2.png
-- images/notes/week7/roessler.png
-
-### week8
-- images/notes/week8/conjugates_graph.png
-- images/notes/week8/cq19-1a.png
-- images/notes/week8/cq19-1b.png
-- images/notes/week8/cq19-1c.png
-- images/notes/week8/cq19-5.png
-- images/notes/week8/cq19-6.png
-
-### week9
-- images/notes/week9/animated-driven-pendulum.gif
-- images/notes/week9/car_shock.png
-- images/notes/week9/complex_plane.png
-- images/notes/week9/driven_oscillator.png
-- images/notes/week9/large_angle_pendulum.png
-- images/notes/week9/plane.png
-- images/notes/week9/real_part.png
-- images/notes/week9/resonance.png
-- images/notes/week9/time_trace.png
-- images/notes/week9/tuning-fork.png
-
-
-## Figures
-
-- ../docs/figures/640px-Modernphysicsfields.svg.png
-- ../docs/figures/youtube_myuD81326_o.jpg
-- ../docs/figures/youtube_Qme07fA3Fj4.jpg

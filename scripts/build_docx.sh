@@ -22,5 +22,13 @@ for nb in "$NOTEBOOK_DIR"/*.ipynb; do
     pandoc "$CHAPTERS_DIR/$base.md" -o "$CHAPTERS_DIR/$base.docx" --resource-path="$CHAPTERS_DIR:$NOTEBOOK_DIR"
 done
 
+echo "Concatenating all Markdown files into a single book file..."
+cat "$CHAPTERS_DIR"/*.md > "$BOOK_DIR/book.md"
+echo "Combined Markdown saved to $BOOK_DIR/book.md"
+
+echo "Converting the concatenated Markdown file to DOCX..."
+pandoc "$BOOK_DIR/book.md" -o "$BOOK_DIR/book.docx" --resource-path="$CHAPTERS_DIR:$NOTEBOOK_DIR"
+echo "DOCX book saved to $BOOK_DIR/book.docx"
+
 echo "Markdown and DOCX chapters built in $CHAPTERS_DIR"
 echo "All tasks completed successfully."
