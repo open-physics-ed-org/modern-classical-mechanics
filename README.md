@@ -1,6 +1,51 @@
+
+
+<div align="center">
+
+# 📚 Modern Classical Mechanics
+
+**An open, free, and ever-evolving set of notes and resources for learning and teaching classical mechanics.**
+
+<br>
+<strong>Author:</strong> Marcos D. Caballero  
+<strong>Contact:</strong> caball14@msu.edu  
+<strong>Michigan State University</strong>
+
+![Build](https://img.shields.io/badge/build-passing-brightgreen) ![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC--BY--NC%204.0-blue)
+
+</div>
+
 ---
 
-## 🛠️ Build Scripts Overview
+## 🚀 What is this?
+
+Welcome to the home of **Modern Classical Mechanics**! This is a living, collaborative, and open-source book built from Jupyter notebooks, designed for students, educators, and the curious. All content is free to use, adapt, and remix for non-commercial purposes.
+
+- **Multiple formats:** Website, PDF, DOCX, Markdown
+- **Reproducible:** All code, figures, and outputs are version-controlled and built automatically
+- **Open:** Contributions, issues, and pull requests are *highly* encouraged!
+- **Fun:** Physics is awesome, and so is open science 🌟
+
+---
+
+## � Project Structure
+
+```
+modern-classical-mechanics/
+├── notebooks/        # Source Jupyter notebooks (edit here!)
+├── chapters/         # Auto-generated Markdown, PDF, DOCX, figures
+├── book/             # Website build (Jupyter Book)
+├── docs/             # GitHub Pages output (optional)
+├── scripts/          # Build and utility scripts
+├── .github/workflows # GitHub Actions CI/CD
+├── Dockerfile, docker-compose.yml
+├── _config.yml, _toc.yml, book_metadata.yml
+└── README.md         # You are here!
+```
+
+---
+
+## �🛠️ Build Scripts Overview
 
 All build and utility scripts are in the `scripts/` directory. Here’s what each one does:
 
@@ -11,18 +56,6 @@ All build and utility scripts are in the `scripts/` directory. Here’s what eac
 - **fetch_remote_images.sh**: Finds, downloads, and relinks any remote images referenced in notebooks or markdown files, ensuring all images are local for reproducibility.
 
 Run any script with `bash scripts/<scriptname>.sh` from the project root.
-
----
-
-<div align="center">
-
-# 📚 Modern Classical Mechanics
-
-**An open, free, and ever-evolving set of notes and resources for learning and teaching classical mechanics.**
-
-![Build](https://img.shields.io/badge/build-passing-brightgreen) ![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC--BY--NC%204.0-blue)
-
-</div>
 
 ---
 
