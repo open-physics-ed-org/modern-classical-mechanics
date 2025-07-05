@@ -2,7 +2,7 @@
 # List of all potential notebook files to be converted to PDF.
 # Edit this file to add or remove notebooks. Paths are relative to the notebooks directory.
 notebooks:
-  - 01_start.ipynb
+  # - 01_start.ipynb
   # - 01_notes.ipynb
   # - 02_start.ipynb
   # - 02_notes.ipynb
