@@ -255,6 +255,7 @@ def main():
     # 4. Convert notebooks to HTML with custom CSS and template
     import json
     css_path = repo_root / 'static' / 'css' / 'main.css'
+    custom_menu_css_path = repo_root / 'static' / 'css' / 'custom-menu.css'
     css_rel = 'css/main.css'
 
     # --- Load menu structure from _menu.yml using basic_yaml2json.py ---
@@ -280,7 +281,11 @@ def main():
         html = ''
         if not menu_items:
             return html
-        html += f'<ul class="menu-level-{level}">'  # Add class for styling
+        # Use horizontal-menu for top-level menu
+        if level == 0:
+            html += f'<ul class="horizontal-menu">'
+        else:
+            html += f'<ul class="menu-level-{level}">'  # Add class for styling
         for item in menu_items:
             title = item.get('title', '')
             path = item.get('path', None)
@@ -301,7 +306,7 @@ def main():
         if menu_data:
             nav_html = build_menu_html(menu_data)
         else:
-            nav_html = '''<ul class="menu-level-0">
+            nav_html = '''<ul class="horizontal-menu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="01_notes.html">Chapters</a></li>
                 <li><a href="resources.html">Resources</a></li>
@@ -313,26 +318,16 @@ def main():
     def get_html_template(title, body):
         nav_html = get_nav_html()
         return f"""<!DOCTYPE html>
-    <html lang="en">
+    <html lang=\"en\">
     <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta charset=\"UTF-8\">
+      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
       <title>{title}</title>
-      <link href="css/main.css" rel="stylesheet">
+      <link href=\"css/custom-menu.css\" rel=\"stylesheet\">
+      <link href=\"css/main.css\" rel=\"stylesheet\">
       <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>
     </head>
-    <body class="dark">
-      {nav_html}
-      <div class="container">
-        <main id="main-content">
-          {body}
-        </main>
-      </div>
-      <footer>
-        <p>&copy; Modern Classical Mechanics. All rights reserved.</p>
-      </footer>
-    </body>
-    </html>"""
+    <body class=\"dark\">\n      {nav_html}\n      <div class=\"container\">\n        <main id=\"main-content\">\n          {body}\n        </main>\n      </div>\n      <footer>\n        <p>&copy; Modern Classical Mechanics. All rights reserved.</p>\n      </footer>\n    </body>\n    </html>"""
 
     # --- Process intro.md as index.html ---
     intro_md = repo_root / 'intro.md'
@@ -371,6 +366,7 @@ def main():
             f.write(html)
 
     # 5. Copy everything to docs/
+
     docs_css_dir = docs_dir / 'css'
     docs_css_dir.mkdir(parents=True, exist_ok=True)
     for item in docs_dir.iterdir():
@@ -386,7 +382,14 @@ def main():
             shutil.copytree(item, dest)
         else:
             shutil.copy2(item, dest)
+    # Copy both main.css and custom-menu.css to docs/css and _build/html/css
     shutil.copy2(css_path, docs_css_dir / 'main.css')
+    build_css_dir = build_dir / 'css'
+    build_css_dir.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(css_path, build_css_dir / 'main.css')
+    if custom_menu_css_path.exists():
+        shutil.copy2(custom_menu_css_path, docs_css_dir / 'custom-menu.css')
+        shutil.copy2(custom_menu_css_path, build_css_dir / 'custom-menu.css')
     images_docs_dir = docs_dir / 'images'
     images_docs_dir.mkdir(parents=True, exist_ok=True)
     for img_file in images_dir.glob('*'):

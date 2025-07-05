@@ -1,0 +1,114 @@
+/* --- Modern horizontal menu inspired by stupidrss.hellmo.space --- */
+body {
+    font-family: 'Inter', 'Segoe UI', Arial, 'Liberation Sans', sans-serif;
+    background: #23272e;
+    margin: 0;
+    padding: 0;
+    color: #e6e6e6;
+}
+
+.horizontal-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: #181b20;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-bottom: 2px solid #23272e;
+    min-height: 56px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    border-radius: 0;
+}
+
+.horizontal-menu > li {
+    position: relative;
+    margin: 0 0.5em;
+}
+
+.horizontal-menu > li > a {
+    display: block;
+    color: #e6e6e6;
+    text-decoration: none;
+    padding: 1em 1.5em;
+    font-size: 1.1em;
+    font-weight: 500;
+    border-radius: 6px 6px 0 0;
+    transition: background 0.2s, color 0.2s;
+    letter-spacing: 0.02em;
+}
+
+.horizontal-menu > li > a:hover,
+.horizontal-menu > li > a.active {
+    background: #23272e;
+    color: #ffb347;
+}
+
+.horizontal-menu li ul {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: #181b20;
+    min-width: 200px;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    z-index: 100;
+    padding: 0;
+    margin: 0;
+}
+
+.horizontal-menu li:hover > ul {
+    display: block;
+}
+
+.horizontal-menu li ul li a {
+    padding: 12px 24px;
+    color: #e6e6e6;
+    background: none;
+    font-size: 1em;
+    transition: background 0.2s, color 0.2s;
+}
+
+.horizontal-menu li ul li a:hover {
+    background: #23272e;
+    color: #ffb347;
+}
+
+.container {
+    max-width: 900px;
+    margin: 2em auto 2em auto;
+    background: #23272e;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+    padding: 2em 2em 2em 2em;
+    color: #e6e6e6;
+}
+
+.toggle-dark {
+    background: none;
+    border: none;
+    color: #ffb347;
+    font-size: 1.5em;
+    margin-left: 1em;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.toggle-dark:hover, .toggle-dark:focus {
+    color: #fff;
+}
+
+@media (max-width: 700px) {
+    .container {
+        padding: 12px 4vw 24px 4vw;
+    }
+    .horizontal-menu {
+        flex-direction: column;
+        border-radius: 0;
+    }
+    .horizontal-menu > li > a {
+        padding: 14px 18px;
+        font-size: 1em;
+    }
+}
