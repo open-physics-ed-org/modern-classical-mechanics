@@ -1,17 +1,31 @@
 #!/usr/bin/env python3
-"""
-build-web.py - Convert all Jupyter notebooks in notebooks/ to HTML and copy to docs/ for static website hosting (e.g., GitHub Pages).
-"""
 import os
 import shutil
+import re
+import hashlib
+import requests
+import nbformat
 from pathlib import Path
-import subprocess
+from nbconvert import HTMLExporter
 
-def run(cmd):
-    print(f"[RUN] {' '.join(str(x) for x in cmd)}")
-    result = subprocess.run(cmd)
-    if result.returncode != 0:
-        raise RuntimeError(f"Command failed: {' '.join(str(x) for x in cmd)}")
+def flatten_image_name(rel_path):
+    return rel_path.replace('/', '_').replace('\\', '_')
+
+def fetch_youtube_thumbnail(video_id, dest_path):
+    urls = [
+        f"https://img.youtube.com/vi/{video_id}/maxresdefault.jpg",
+        f"https://img.youtube.com/vi/{video_id}/hqdefault.jpg"
+    ]
+    for url in urls:
+        try:
+            resp = requests.get(url, timeout=10)
+            resp.raise_for_status()
+            with open(dest_path, 'wb') as f:
+                f.write(resp.content)
+            return True
+        except Exception:
+            continue
+    return False
 
 def main():
     repo_root = Path(__file__).parent.resolve()
@@ -20,143 +34,142 @@ def main():
     build_dir = repo_root / '_build' / 'html'
     build_dir.mkdir(parents=True, exist_ok=True)
 
-    # Ensure .nojekyll for GitHub Pages (will be copied at the end)
+    # Ensure docs/ exists and .nojekyll for GitHub Pages
+    docs_dir.mkdir(parents=True, exist_ok=True)
     nojekyll = docs_dir / '.nojekyll'
     if not nojekyll.exists():
-        print("Creating docs/.nojekyll to disable Jekyll processing on GitHub Pages")
         nojekyll.touch()
 
-    # Step 1: Fetch all remote images and update notebook references (like build.py)
-    import nbformat
-    import requests
-    import re
-    import hashlib
+
+    # 1. Copy all images (notebook-prefixed name) from notebooks/images/** to _build/html/images and docs/images
+    images_root = notebooks_dir / 'images'
+    all_image_files = list(images_root.rglob('*'))
+    images_dir = build_dir / 'images'
+    images_dir.mkdir(parents=True, exist_ok=True)
+
+    # 1. For each notebook, update image references and copy images using a path-derived prefix
+    def path_to_output_name(rel_path):
+        print(f"[DEBUG:path_to_output_name] Input rel_path: {rel_path}")
+        # Remove any leading 'images/'
+        if rel_path.startswith('images/'):
+            rel_path = rel_path[7:]
+            print(f"[DEBUG:path_to_output_name] Stripped 'images/': {rel_path}")
+        # Use the first two path components as prefix if possible
+        parts = rel_path.split('/')
+        print(f"[DEBUG:path_to_output_name] parts: {parts}")
+        if len(parts) >= 3:
+            # e.g., notes/week1/box_fbd.png -> 01_notes_box_fbd.png
+            prefix = parts[0]  # e.g., 'notes'
+            week = parts[1]    # e.g., 'week1'
+            base = parts[-1]
+            print(f"[DEBUG:path_to_output_name] prefix: {prefix}, week: {week}, base: {base}")
+            # Try to extract NN from week (e.g., week1 -> 01)
+            m = re.match(r'week(\d+)', week)
+            if m:
+                nn = m.group(1).zfill(2)
+                out_name = f"{nn}_{prefix}_{base}"
+                print(f"[DEBUG:path_to_output_name] Matched week: {week} -> nn: {nn}, out_name: {out_name}")
+            else:
+                out_name = f"{prefix}_{week}_{base}"
+                print(f"[DEBUG:path_to_output_name] No week match, out_name: {out_name}")
+        else:
+            out_name = rel_path.replace('/', '_')
+            print(f"[DEBUG:path_to_output_name] Fallback out_name: {out_name}")
+        return out_name
 
     for nb_path in notebooks_dir.glob('*.ipynb'):
-        try:
-            nb_data = nbformat.read(str(nb_path), as_version=4)
-        except Exception as e:
-            print(f"[WARN] Could not read notebook {nb_path}: {e}")
-            continue
+        nb_data = nbformat.read(str(nb_path), as_version=4)
         changed = False
-        remote_image_pattern = re.compile(r'!\[[^\]]*\]\((https?://[^)]+)\)')
+        referenced_images = set()
         for cell in nb_data.cells:
             if cell.cell_type != 'markdown':
                 continue
-            def repl(match):
-                url = match.group(1)
-                hash_digest = hashlib.md5(url.encode('utf-8')).hexdigest()[:8]
-                ext = os.path.splitext(url.split('?')[0])[1] or '.img'
-                local_name = f"remote_{hash_digest}{ext}"
-                local_path = nb_path.parent / local_name
-                if not local_path.exists():
-                    try:
-                        resp = requests.get(url, timeout=10)
-                        resp.raise_for_status()
-                        with open(local_path, 'wb') as f:
-                            f.write(resp.content)
-                        print(f"[INFO] Downloaded {url} -> {local_path}")
-                    except Exception as e:
-                        print(f"[WARN] Failed to fetch {url}: {e}")
-                        return match.group(0)
+            def update_img_link(match):
+                alt_text = match.group(1)
+                img_path = match.group(2).strip()
+                # Try to resolve the real image path relative to images_root
+                # If the path is already absolute, use as is; otherwise, try images_root / img_path
+                img_path_clean = img_path
+                if img_path_clean.startswith('images/'):
+                    img_path_clean = img_path_clean[7:]
+                # Try to find the file in images_root
+                real_img_path = images_root / img_path_clean
+                if not real_img_path.exists():
+                    # Try to resolve relative to the notebook's directory (for legacy or odd references)
+                    possible = nb_path.parent / img_path
+                    if possible.exists():
+                        # Get the path relative to images_root
+                        try:
+                            rel_path = possible.relative_to(images_root)
+                        except ValueError:
+                            rel_path = img_path_clean
+                        real_img_path = images_root / rel_path
+                    else:
+                        rel_path = img_path_clean
                 else:
-                    print(f"[INFO] Already downloaded {url} -> {local_path}")
-                changed_local = match.group(0).replace(url, local_name)
-                return changed_local
-            new_src = remote_image_pattern.sub(repl, cell.source)
+                    rel_path = img_path_clean
+                new_img_name = path_to_output_name(str(rel_path))
+                print(f"[DEBUG] Notebook: {nb_path.name} | Markdown ref: {img_path} | resolved rel_path: {rel_path} | real_img_path: {real_img_path} | output: images/{new_img_name}")
+                referenced_images.add((real_img_path, images_dir / new_img_name))
+                return f"![{alt_text}](images/{new_img_name})"
+            new_src = re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', update_img_link, cell.source)
             if new_src != cell.source:
                 cell.source = new_src
                 changed = True
         if changed:
-            try:
-                nbformat.write(nb_data, str(nb_path))
-                print(f"[INFO] Updated notebook with local images: {nb_path}")
-            except Exception as e:
-                print(f"[WARN] Could not write notebook {nb_path}: {e}")
-
-    # Step 2: Copy all images referenced in notebooks to docs/images/ and update references
-    images_dir = build_dir / 'images'
-    images_dir.mkdir(parents=True, exist_ok=True)
-    for nb_path in notebooks_dir.glob('*.ipynb'):
-        nb_data = nbformat.read(str(nb_path), as_version=4)
-        changed = False
-        for cell in nb_data.cells:
-            if cell.cell_type != 'markdown':
-                continue
-            def copy_and_update(match):
-                img_path = match.group(2)
-                if img_path.startswith('http'):
-                    return match.group(0)
-                src_img = (nb_path.parent / img_path).resolve()
-                if not src_img.exists():
-                    print(f"[WARN] Image not found: {src_img}")
-                    return match.group(0)
-                flat_name = f"{nb_path.stem}_{os.path.basename(img_path)}"
-                dst_img = images_dir / flat_name
-                shutil.copy2(src_img, dst_img)
-                return f"!{match.group(1)}(images/{flat_name})"
-            # Update image links: ![alt](path)
-            import re
-            md_content_new = re.sub(r'(!\[[^\]]*\])\(([^)]+)\)', copy_and_update, cell.source)
-            if md_content_new != cell.source:
-                cell.source = md_content_new
-                changed = True
-        if changed:
             nbformat.write(nb_data, str(nb_path))
             print(f"[INFO] Updated image links in notebook: {nb_path}")
+        # Copy all referenced images for this notebook
+        for src_img, dest_img in referenced_images:
+            if src_img.exists():
+                dest_img.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(src_img, dest_img)
+            else:
+                print(f"[WARNING] Image not found: {src_img}")
 
-    # Step 3: Convert all notebooks to HTML using a custom template and copy to _build/html/
-    template_path = repo_root / 'static' / 'html_template.html'
-    if not template_path.exists():
-        with open(template_path, 'w') as f:
-            f.write('''<!DOCTYPE html>
+
+    # (Removed redundant second pass for flattening image names)
+
+    # 4. Convert notebooks to HTML with custom CSS and template
+    css_path = repo_root / 'static' / 'css' / 'book.css'
+    css_rel = 'css/book.css'
+    html_template = f'''<!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{title}</title>
-  <link href="/static/css/tailwind.css" rel="stylesheet">
+  <title>{{{{title}}}}</title>
+  <link href="{css_rel}" rel="stylesheet">
   <script>
-    function toggleDark() {
+    function toggleDark() {{
       document.documentElement.classList.toggle('dark');
       localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-    }
+    }}
     if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
   </script>
 </head>
-<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-200">
+<body>
   <button class="toggle-dark" onclick="toggleDark()">🌗</button>
-  <div class="container mx-auto px-4 max-w-3xl">
-    {body}
+  <div class="container">
+    {{{{body}}}}
   </div>
 </body>
-</html>''')
-        print(f"[INFO] Created default HTML template at {template_path}")
+</html>'''
+    build_css_dir = build_dir / 'css'
+    build_css_dir.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(css_path, build_css_dir / 'book.css')
 
-    import nbconvert
-    from nbconvert import HTMLExporter
     for nb in notebooks_dir.glob('*.ipynb'):
         html_name = nb.with_suffix('.html').name
         html_path = build_dir / html_name
-        print(f"Converting {nb} to {html_path} with custom template")
         exporter = HTMLExporter()
         (body, resources) = exporter.from_filename(str(nb))
-        # Extract title from notebook filename or metadata
         title = nb.stem.replace('_', ' ').title()
-        with open(template_path) as f:
-            template = f.read()
-        html = template.replace('{title}', title).replace('{body}', body)
+        html = html_template.replace('{{title}}', title).replace('{{body}}', body)
         with open(html_path, 'w', encoding='utf-8') as f:
             f.write(html)
 
-    # Copy static/css/book.css to _build/html/css/
-    static_css = repo_root / 'static' / 'css' / 'book.css'
-    build_css_dir = build_dir / 'css'
-    build_css_dir.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(static_css, build_css_dir / 'book.css')
-
-    # Copy everything from _build/html/ to docs/, preserving .nojekyll
-    print("Copying _build/html/ to docs/ (preserving .nojekyll)...")
+    # 5. Copy everything to docs/
     docs_css_dir = docs_dir / 'css'
     docs_css_dir.mkdir(parents=True, exist_ok=True)
     for item in docs_dir.iterdir():
@@ -172,11 +185,13 @@ def main():
             shutil.copytree(item, dest)
         else:
             shutil.copy2(item, dest)
-    # Copy static/css/book.css to docs/css/
-    shutil.copy2(static_css, docs_css_dir / 'book.css')
+    shutil.copy2(css_path, docs_css_dir / 'book.css')
+    images_docs_dir = docs_dir / 'images'
+    images_docs_dir.mkdir(parents=True, exist_ok=True)
+    for img_file in images_dir.glob('*'):
+        shutil.copy2(img_file, images_docs_dir / img_file.name)
 
-    print("All notebooks converted to HTML and copied to docs/.")
-    print("You can now deploy docs/ as a static website (e.g., with GitHub Pages).")
+    print("All notebooks converted to HTML and copied to docs/ with images and CSS.")
 
 if __name__ == '__main__':
     main()
