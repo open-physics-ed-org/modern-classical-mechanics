@@ -1,0 +1,80 @@
+/* Modern Classical Mechanics - robust light/dark mode CSS */
+
+:root {
+  --color-bg: #f9f9fb;
+  --color-fg: #181a1b;
+  --color-card: #fff;
+  --color-border: #e0e0e0;
+  --color-link: #0057b8;
+  --color-link-hover: #003d7a;
+}
+body.dark {
+  --color-bg: #181a1b;
+  --color-fg: #f9f9fb;
+  --color-card: #23272e;
+  --color-border: #333;
+  --color-link: #7abaff;
+  --color-link-hover: #fff;
+}
+
+html, body {
+  background: var(--color-bg) !important;
+  color: var(--color-fg) !important;
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  background: var(--color-card) !important;
+  color: var(--color-fg) !important;
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+}
+nav a {
+  color: var(--color-link);
+  text-decoration: none;
+  margin: 0 1em;
+  transition: color 0.2s;
+}
+nav a:hover {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+}
+
+footer {
+  text-align: center;
+  padding: 2em 0 1em 0;
+  font-size: 0.9em;
+  color: var(--color-border);
+  background: var(--color-card) !important;
+  border-top: 1px solid var(--color-border);
+}
+
+main {
+  max-width: 700px;
+  margin: 2em auto;
+  padding: 1em;
+  background: var(--color-card) !important;
+  color: var(--color-fg) !important;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+}
+
+.toggle-dark {
+  float: right;
+  background: var(--color-link);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  font-size: 1.3em;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.toggle-dark:focus, .toggle-dark:hover {
+  background: var(--color-link-hover);
+  color: #fff;
+}
