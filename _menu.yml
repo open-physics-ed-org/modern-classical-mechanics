@@ -5,53 +5,55 @@ menu:
     children:
       - title: Week 1: Start
         path: 01_start.html
-      - title: Week 1: Introduction
+      - title: Week 1: Introduction to Classical Mechanics
         path: 01_notes.html
-      - title: Week 2: Start
+      - title: Week 2: Computing as a tool for science
         path: 02_start.html
-      - title: Week 2: Newton's Laws
+      - title: Week 2: Mathematical Preliminaries
         path: 02_notes.html
-      - title: Week 3: Start
+      - title: Week 3: What is Mathematical Modeling?
         path: 03_start.html
-      - title: Week 3: Topic
+      - title: Week 3: Making Classical Models
         path: 03_notes.html
-      - title: Week 4: Start
+      - title: Week 4: Why does fluid drag complicate things?
         path: 04_start.html
-      - title: Week 4: Topic
+      - title: Week 4: Equations of Motion
         path: 04_notes.html
-      - title: Week 5: Start
+      - title: Week 5: Conservation Laws
         path: 05_start.html
-      - title: Week 5: Topic
+      - title: Week 5: Conservation of Energy
         path: 05_notes.html
-      - title: Week 6: Start
+      - title: Week 6: Stability and Equilibria
         path: 06_start.html
-      - title: Week 6: Topic
+      - title: Week 6: Stability and Energy
         path: 06_notes.html
-      - title: Week 7: Start
+      - title: Week 6: Linear and Angular Momentum
+        path: 06_notes_2.html
+      - title: Week 7: Nonlinear Dynamics
         path: 07_start.html
-      - title: Week 7: Topic
+      - title: Week 7: Critical Points; Phase Space; Trajectories
         path: 07_notes.html
-      - title: Week 8: Start
+      - title: Week 8: Oscillations
         path: 08_start.html
-      - title: Week 8: Topic
+      - title: Week 8: Oscillators and Modeling Oscillations
         path: 08_notes.html
-      - title: Week 9: Start
+      - title: Week 9: Driven Oscillators and Resonance
         path: 09_start.html
-      - title: Week 9: Topic
+      - title: Week 9: Driven Oscillations
         path: 09_notes.html
-      - title: Week 10: Start
+      - title: Week 10: Chaotic Dynamics
         path: 10_start.html
-      - title: Week 10: Topic
+      - title: Week 10: Activity: Modeling Chaotic Systems
         path: 10_notes.html
-      - title: Week 11: Start
+      - title: Week 11: Calculus of Variations
         path: 11_start.html
-      - title: Week 11: Topic
+      - title: Week 11: The Euler-Lagrange Equation
         path: 11_notes.html
-      - title: Week 12: Start
+      - title: Week 12: The Principle of Least Action
         path: 12_start.html
-      - title: Week 12: Topic
+      - title: Week 12: Introduction to Lagrangian Mechanics
         path: 12_notes.html
-      - title: Week 13: Start
+      - title: Week 13: Lagrangian Mechanics
         path: 13_start.html
-      - title: Week 13: Topic
+      - title: Week 13: Examples of Lagrangian Mechanics
         path: 13_notes.html
