@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>03 Notes</title>
-  <link href="css/book.css" rel="stylesheet">
-  <script>
-    function toggleDark() {
-      document.documentElement.classList.toggle('dark');
-      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-    }
-    if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
-  </script>
+  <link href="css/main.css" rel="stylesheet">
+  <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>
 </head>
-<body>
-  <button class="toggle-dark" onclick="toggleDark()">🌗</button>
+<body class="dark">
+  <nav>
+    <a href="index.html">Home</a> |
+    <a href="01_notes.html">Chapters</a> |
+    <a href="resources.html">Resources</a> |
+    <a href="about.html">About</a>
+    <button class="toggle-dark" aria-label="Toggle dark/light mode" onclick="document.body.classList.toggle('dark')">🌗</button>
+  </nav>
   <div class="container">
-    <!DOCTYPE html>
+    <main id="main-content">
+      <div class="markdown-body"><!DOCTYPE html>
 
 <html lang="en">
 <head><meta charset="utf-8"/>
@@ -7552,7 +7553,7 @@ a.anchor-link {
 <p>$$\vec{F}_{\text{net}} = m \vec{a} = m\ddot{\vec{x}}$$</p>
 <p>where $\vec{x}$ is the position vector and $\ddot{\vec{x}}=\frac{d^2\vec{x}}{dt^2}$ is the acceleration vector. Thus, Newton's second law is a general EOM that describes the dynamics of a particle of mass, $m$:</p>
 <p>$$\frac{d^2\vec{x}}{dt^2} = \dfrac{\vec{F}_{\text{net}}}{m}$$</p>
-<div class="admonition admonition"><div class="admonition-title">Admonition</div>
+<div aria-label="Admonition" class="admonition admonition" role="region"><div class="admonition-title">What is Dynamics?</div>
 Dynamics is the study of the time evolution of a system in question. In classical mechanics, dynamics is the study of the motion of particles and the forces that cause that motion. In other physics, dynamics can refer to the study of the evolution of a system in time and space. And here, space might be an abstraction, such as a [phase space](https://en.wikipedia.org/wiki/Phase_space). We study phase spaces later in the term.
 </div>
 </div>
@@ -7654,7 +7655,7 @@ Dynamics is the study of the time evolution of a system in question. In classica
 <p>We obtain the position as a function of time for constant acceleration, the standard kinematic equation:</p>
 <p>$$y(t) = y_0 + v_0 t + \dfrac{1}{2}gt^2$$</p>
 <p>Why the 'plus' sign on the last term? Because we choose positive $y$ to be down, and the ball is accelerating down.</p>
-<div class="admonition note"><div class="admonition-title">Note</div>
+<div aria-label="Note" class="admonition note" role="region"><div class="admonition-title">Note</div>
 This is really useful, but is contingent on finding or knowing the anti-derivative of the functions we are integrating. That is not always possible. What might we do if we weren't sure that we could find the anti-derivative?
 </div>
 </div>
@@ -7698,12 +7699,11 @@ This is really useful, but is contingent on finding or knowing the anti-derivati
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>What is left is to determine what should be the estimate for $v_{\textrm{avg}}$.</p>
-<div class="admonition admonition"><div class="admonition-title">Admonition</div>
+<div aria-label="Admonition" class="admonition admonition" role="region"><div class="admonition-title">Choosing $v_{\textrm{avg}}$</div>
 :class: note
 
-The idea that we have to pick a value for $v_{\textrm{avg}}$ is a key point in numerical methods. It might seem silly or overly subtle and it certainly the latter. We can select $v(t)$, $v(t+\Delta t)$, or some average of the two. The choice of $v_{\textrm{avg}}$ is the key to the accuracy of the method.
-
-As we will show in a later homework, the best choice is $v(t+\Delta t)$ as it preserves the energy of the system.
+<p>The idea that we have to pick a value for $v_{\textrm{avg}}$ is a key point in numerical methods. It might seem silly or overly subtle and it certainly the latter. We can select $v(t)$, $v(t+\Delta t)$, or some average of the two. The choice of $v_{\textrm{avg}}$ is the key to the accuracy of the method.</p>
+<p>As we will show in a later homework, the best choice is $v(t+\Delta t)$ as it preserves the energy of the system.</p>
 </div>
 </div>
 </div>
@@ -7732,15 +7732,13 @@ $$\vec{r}(t+\Delta t) = \vec{r}(t) + \vec{v}(t+\Delta t) \Delta t$$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<div class="admonition admonition"><div class="admonition-title">Admonition</div>
+<div aria-label="Admonition" class="admonition admonition" role="region"><div class="admonition-title">Erasing Contributions in Physics</div>
 :class: note
 This method should be called the Euler-Aspel-Cromer method because Euler started it, Aspel discovered it, and Cromer formalized it. 
 
-It is not because physics and physicists tend to erase the contributions of marginalized groups including young people, women, and folks from non-dominant groups.
-
-**Don't believe it?**
-
-Read about the [history of the MIT physics department](https://physics.mit.edu/about-physics/our-history/) and try to find the contributions of the many technical staff, non-tenure track faculty, and students who have made the department what it is today.
+<p>It is not because physics and physicists tend to erase the contributions of marginalized groups including young people, women, and folks from non-dominant groups.</p>
+<p><strong>Don't believe it?</strong></p>
+<p>Read about the <a href="https://physics.mit.edu/about-physics/our-history/">history of the MIT physics department</a> and try to find the contributions of the many technical staff, non-tenure track faculty, and students who have made the department what it is today.</p>
 </div>
 </div>
 </div>
@@ -7830,7 +7828,11 @@ Read about the [history of the MIT physics department](https://physics.mit.edu/a
 </main>
 </body>
 </html>
-
+</div>
+    </main>
   </div>
+  <footer>
+    <p>&copy; Modern Classical Mechanics. All rights reserved.</p>
+  </footer>
 </body>
 </html>

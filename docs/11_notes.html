@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>11 Notes</title>
-  <link href="css/book.css" rel="stylesheet">
-  <script>
-    function toggleDark() {
-      document.documentElement.classList.toggle('dark');
-      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-    }
-    if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
-  </script>
+  <link href="css/main.css" rel="stylesheet">
+  <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>
 </head>
-<body>
-  <button class="toggle-dark" onclick="toggleDark()">🌗</button>
+<body class="dark">
+  <nav>
+    <a href="index.html">Home</a> |
+    <a href="01_notes.html">Chapters</a> |
+    <a href="resources.html">Resources</a> |
+    <a href="about.html">About</a>
+    <button class="toggle-dark" aria-label="Toggle dark/light mode" onclick="document.body.classList.toggle('dark')">🌗</button>
+  </nav>
   <div class="container">
-    <!DOCTYPE html>
+    <main id="main-content">
+      <div class="markdown-body"><!DOCTYPE html>
 
 <html lang="en">
 <head><meta charset="utf-8"/>
@@ -7705,12 +7706,11 @@ S &amp;= \int_{x_1}^{x_2} f(Y(x),Y'(x),x) dx \\
 \dfrac{dS}{d\alpha} &amp;= \int_{x_1}^{x_2}\left[ \eta(x)\dfrac{\partial f}{\partial y} - \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) \right] dx = 0.\\
 &amp; = \int_{x_1}^{x_2} \eta(x) \left[ \dfrac{\partial f}{\partial y} - \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) \right] dx = 0.\\
 \end{align}$$</p>
-<div class="admonition important"><div class="admonition-title">Important</div>
+<div aria-label="Important" class="admonition important" role="region"><div class="admonition-title">Important</div>
 The last statement is true for any arbitrary function $\eta(x)$, so we can conclude that the term in square brackets must be zero:
 
-$$\dfrac{\partial f}{\partial y} - \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) = 0.$$
-
-This is the **[Euler-Lagrange equation](https://en.wikipedia.org/wiki/Euler%E2%80%93Lagrange_equation)** for a 1D problem.
+<p>$$\dfrac{\partial f}{\partial y} - \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) = 0.$$</p>
+<p>This is the <strong><a href="https://en.wikipedia.org/wiki/Euler%E2%80%93Lagrange_equation">Euler-Lagrange equation</a></strong> for a 1D problem.</p>
 </div>
 </div>
 </div>
@@ -7791,10 +7791,10 @@ $$d_2 = \sqrt{x_2^2 + (y_2 - y)^2}$$</p>
 $$\sin(\theta_2) = \frac{y_2 - y}{d_2}$$</p>
 <p>This gives us:</p>
 <p>$$\dfrac{\sin(\theta_1)}{v_1} - \dfrac{\sin(\theta_2)}{v_2} = 0$$</p>
-<div class="admonition important"><div class="admonition-title">Important</div>
+<div aria-label="Important" class="admonition important" role="region"><div class="admonition-title">Important</div>
 This is [**Snell's Law**](https://en.wikipedia.org/wiki/Snell%27s_law)! It tells us that the ratio of the sine of the angles to the velocities is constant. This is a classic result in optics, but it also applies to this problem of finding the shortest path in a plane.
 
-$$\dfrac{\sin(\theta_1)}{v_1} = \dfrac{\sin(\theta_2)}{v_2}$$
+<p>$$\dfrac{\sin(\theta_1)}{v_1} = \dfrac{\sin(\theta_2)}{v_2}$$</p>
 </div>
 </div>
 </div>
@@ -7950,7 +7950,11 @@ $$y(\theta) = a(1 - \cos(\theta)).$$</p>
 </main>
 </body>
 </html>
-
+</div>
+    </main>
   </div>
+  <footer>
+    <p>&copy; Modern Classical Mechanics. All rights reserved.</p>
+  </footer>
 </body>
 </html>

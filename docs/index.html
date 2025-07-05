@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Modern Classical Mechanics</title>
-  <link href="css/book.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+  <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>
 </head>
-<body>
+<body class="dark">
+  <nav>
+    <a href="index.html">Home</a> |
+    <a href="01_notes.html">Chapters</a> |
+    <a href="resources.html">Resources</a> |
+    <a href="about.html">About</a>
+    <button class="toggle-dark" aria-label="Toggle dark/light mode" onclick="document.body.classList.toggle('dark')">🌗</button>
+  </nav>
   <div class="container">
-    <div class="markdown-body"><h1 id="welcome-to-modern-classical-mechanics">Welcome to Modern Classical Mechanics!</h1>
+    <main id="main-content">
+      <div class="markdown-body"><h1 id="welcome-to-modern-classical-mechanics">Welcome to Modern Classical Mechanics!</h1>
 <p>This is the interactive, open, and ever-evolving book for PHY 321: Classical Mechanics 1 at Michigan State University.</p>
 <ul>
 <li>📚 Explore the chapters using the sidebar</li>
@@ -24,7 +33,15 @@
 <li>Clear explanations and worked examples</li>
 <li>Local images and reproducible builds</li>
 <li>Multiple output formats (web, PDF, DOCX)</li>
-</ul></div>
+</ul><section class="card-grid" aria-label="Main sections">
+  <div class="card" tabindex="0"><h2><a href="01_notes.html">Chapters</a></h2><p>Lecture notes and weekly content</p></div>
+  <div class="card" tabindex="0"><h2><a href="resources.html">Resources</a></h2><p>Reference materials, links, and tools</p></div>
+  <div class="card" tabindex="0"><h2><a href="about.html">About</a></h2><p>Course info, instructor, and policies</p></div>
+</section></div>
+    </main>
   </div>
+  <footer>
+    <p>&copy; Modern Classical Mechanics. All rights reserved.</p>
+  </footer>
 </body>
 </html>

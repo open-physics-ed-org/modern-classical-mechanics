@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>01 Start</title>
-  <link href="css/book.css" rel="stylesheet">
-  <script>
-    function toggleDark() {
-      document.documentElement.classList.toggle('dark');
-      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-    }
-    if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
-  </script>
+  <link href="css/main.css" rel="stylesheet">
+  <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>
 </head>
-<body>
-  <button class="toggle-dark" onclick="toggleDark()">🌗</button>
+<body class="dark">
+  <nav>
+    <a href="index.html">Home</a> |
+    <a href="01_notes.html">Chapters</a> |
+    <a href="resources.html">Resources</a> |
+    <a href="about.html">About</a>
+    <button class="toggle-dark" aria-label="Toggle dark/light mode" onclick="document.body.classList.toggle('dark')">🌗</button>
+  </nav>
   <div class="container">
-    <!DOCTYPE html>
+    <main id="main-content">
+      <div class="markdown-body"><!DOCTYPE html>
 
 <html lang="en">
 <head><meta charset="utf-8"/>
@@ -7546,14 +7547,12 @@ a.anchor-link {
 <p><img alt="Physics by size and speed" src="images/.._.._640px-Modernphysicsfields.svg.png"/><br/>
 <em>Source: <a href="https://commons.wikimedia.org/wiki/File:Modernphysicsfields.svg">Wikipedia</a></em></p>
 <p>Classical Physics is the physics that we developed before discovering relativity and quantum mechanics. It typically covers both mechanical systems and electromagnetic systems. It is also <a href="https://en.wikipedia.org/wiki/History_of_physics">the physics that we read about historically</a>, which has its <a href="https://en.wikipedia.org/wiki/History_of_astronomy">roots in ancient astronomy</a> and has existed across many different cultures.</p>
-<div class="admonition admonition"><div class="admonition-title">Admonition</div>
+<div aria-label="Admonition" class="admonition admonition" role="region"><div class="admonition-title">Wherever there were people, there was Classical Physics.</div>
 :class: note
 
-You might have heard of the development physics in the [Hellensitic age](https://en.wikipedia.org/wiki/Science_in_classical_antiquity#Hellenistic_age) where the Greeks used mathematics to study astronomical objects, or how [Newton's Laws of motion](https://en.wikipedia.org/wiki/Newton's_laws_of_motion) came to be. These are both examples of classical physics. 
-
-But there are many more including [astronomical analyses in Sub-Saharan Africa](https://www.science.org/doi/10.1126/science.200.4343.766) in 300 BCE, massive [scientific expansion in China](https://en.wikipedia.org/wiki/Science_and_technology_of_the_Song_dynasty) during the Song dynasty, and studies that pushed the fields of optics, mechanics, and astronomy in the [Islamic Golden Age](https://en.wikipedia.org/wiki/Islamic_Golden_Age). 
-
-While we do not often present it, much to the detriment of our own field, [physics and astronomy were a large part of indigenous cultures](https://en.wikipedia.org/wiki/Indigenous_astronomy) across the world including in what become the United States.
+<p>You might have heard of the development physics in the <a href="https://en.wikipedia.org/wiki/Science_in_classical_antiquity#Hellenistic_age">Hellensitic age</a> where the Greeks used mathematics to study astronomical objects, or how <a href="https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion">Newton's Laws of motion</a> came to be. These are both examples of classical physics.</p>
+<p>But there are many more including <a href="https://www.science.org/doi/10.1126/science.200.4343.766">astronomical analyses in Sub-Saharan Africa</a> in 300 BCE, massive <a href="https://en.wikipedia.org/wiki/Science_and_technology_of_the_Song_dynasty">scientific expansion in China</a> during the Song dynasty, and studies that pushed the fields of optics, mechanics, and astronomy in the <a href="https://en.wikipedia.org/wiki/Islamic_Golden_Age">Islamic Golden Age</a>.</p>
+<p>While we do not often present it, much to the detriment of our own field, <a href="https://en.wikipedia.org/wiki/Indigenous_astronomy">physics and astronomy were a large part of indigenous cultures</a> across the world including in what become the United States.</p>
 </div>
 </div>
 </div>
@@ -7711,7 +7710,11 @@ particular problem.</p>
 </main>
 </body>
 </html>
-
+</div>
+    </main>
   </div>
+  <footer>
+    <p>&copy; Modern Classical Mechanics. All rights reserved.</p>
+  </footer>
 </body>
 </html>

@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>02 Start</title>
-  <link href="css/book.css" rel="stylesheet">
-  <script>
-    function toggleDark() {
-      document.documentElement.classList.toggle('dark');
-      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-    }
-    if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
-  </script>
+  <link href="css/main.css" rel="stylesheet">
+  <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>
 </head>
-<body>
-  <button class="toggle-dark" onclick="toggleDark()">🌗</button>
+<body class="dark">
+  <nav>
+    <a href="index.html">Home</a> |
+    <a href="01_notes.html">Chapters</a> |
+    <a href="resources.html">Resources</a> |
+    <a href="about.html">About</a>
+    <button class="toggle-dark" aria-label="Toggle dark/light mode" onclick="document.body.classList.toggle('dark')">🌗</button>
+  </nav>
   <div class="container">
-    <!DOCTYPE html>
+    <main id="main-content">
+      <div class="markdown-body"><!DOCTYPE html>
 
 <html lang="en">
 <head><meta charset="utf-8"/>
@@ -7566,16 +7567,13 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<div class="admonition admonition"><div class="admonition-title">Admonition</div>
+<div aria-label="Admonition" class="admonition admonition" role="region"><div class="admonition-title">Limitations of only working with analytically solvable problems</div>
 :class: note
 
-The problems that we often present in physics classes lend themselves to analytical solutions because we (collectively as a physics community) decided on the kinds of illustrative problems for students to work and solve. We did this at a time when computing was inaccessible and less pervasive in society, but also when we knew little about how people learn.
-
-The choices we made in the past convey a false impression that most physics problems can be solved analytically. But more importantly, our choices convey that finding the solution is the goal of physics. This is not the case. The goal of physics is to understand the world around us. When we continue to focus exclusively on systems that can be solved analytically, we continue to perpetuate those impressions. 
-
-There's a movement of physics instructors across the world building these forward-looking pedagogies and curricula. They work loosely through a collective called the [Partnership for Integration of Computation into Undergraduate Physics (PICUP)](https://www.compadre.org/PICUP/). 
-
-In our class, we aim to build a set of investigative tools and approaches that we can use in Classical Mechanics.
+<p>The problems that we often present in physics classes lend themselves to analytical solutions because we (collectively as a physics community) decided on the kinds of illustrative problems for students to work and solve. We did this at a time when computing was inaccessible and less pervasive in society, but also when we knew little about how people learn.</p>
+<p>The choices we made in the past convey a false impression that most physics problems can be solved analytically. But more importantly, our choices convey that finding the solution is the goal of physics. This is not the case. The goal of physics is to understand the world around us. When we continue to focus exclusively on systems that can be solved analytically, we continue to perpetuate those impressions.</p>
+<p>There's a movement of physics instructors across the world building these forward-looking pedagogies and curricula. They work loosely through a collective called the <a href="https://www.compadre.org/PICUP/">Partnership for Integration of Computation into Undergraduate Physics (PICUP)</a>.</p>
+<p>In our class, we aim to build a set of investigative tools and approaches that we can use in Classical Mechanics.</p>
 </div>
 </div>
 </div>
@@ -7604,20 +7602,15 @@ In our class, we aim to build a set of investigative tools and approaches that w
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="A-Critical-Perspective-on-Computing">A Critical Perspective on Computing<a class="anchor-link" href="#A-Critical-Perspective-on-Computing">¶</a></h2><p>While the history of computing is often celebrated as a story of innovation, it is deeply entangled with systems of power, exploitation, and violence. Computing technologies have not only been tools of scientific progress but also instruments for surveillance, war, and perpetuation of systemic biases.</p>
-<div class="admonition admonition"><div class="admonition-title">Admonition</div>
+<div aria-label="Admonition" class="admonition admonition" role="region"><div class="admonition-title">Humans as Computers</div>
 :class: note
 
-Of course, the development of electronic computers was a huge development for science. Prior to that, humans were employed to do the calculations that we now do with computational algorithms. This work occurred in a wide variety of labs where data were entered into tables, calculations were done by hand, and the results were tabulated manually. 
-
-Frequently the work was done by those with less power in the laboratory and broader society (e.g., women, immigrants, and folks of color). A notable and well-known example is the work of the [Harvard Computers](https://en.wikipedia.org/wiki/Harvard_Computers) in the late 19th and early 20th centuries where women were employed to do the calculations that led to significant discoveries in astronomy. 
-
-![Harvard Computers](images/.._.._harvard-computers.png)
-
-One of the most important examples is the work done by African-American women at NASA in the 1960s, as depicted in the book and movie [Hidden Figures](https://en.wikipedia.org/wiki/Hidden_Figures).
-
-![Hidden Figures](images/.._.._nasa-computers-hidden-figures.png)
-
-Women highlighted in this work include: [Williamina Fleming](https://en.wikipedia.org/wiki/Williamina_Fleming), [Florence Cushman](https://en.wikipedia.org/wiki/Florence_Cushman), [Katherine Johnson](https://en.wikipedia.org/wiki/Katherine_Johnson), [Dorothy Vaughan](https://en.wikipedia.org/wiki/Dorothy_Vaughan), and [Mary Jackson](https://en.wikipedia.org/wiki/Mary_Jackson).
+<p>Of course, the development of electronic computers was a huge development for science. Prior to that, humans were employed to do the calculations that we now do with computational algorithms. This work occurred in a wide variety of labs where data were entered into tables, calculations were done by hand, and the results were tabulated manually.</p>
+<p>Frequently the work was done by those with less power in the laboratory and broader society (e.g., women, immigrants, and folks of color). A notable and well-known example is the work of the <a href="https://en.wikipedia.org/wiki/Harvard_Computers">Harvard Computers</a> in the late 19th and early 20th centuries where women were employed to do the calculations that led to significant discoveries in astronomy.</p>
+<p><img alt="Harvard Computers" src="images/.._.._harvard-computers.png"/></p>
+<p>One of the most important examples is the work done by African-American women at NASA in the 1960s, as depicted in the book and movie <a href="https://en.wikipedia.org/wiki/Hidden_Figures">Hidden Figures</a>.</p>
+<p><img alt="Hidden Figures" src="images/.._.._nasa-computers-hidden-figures.png"/></p>
+<p>Women highlighted in this work include: <a href="https://en.wikipedia.org/wiki/Williamina_Fleming">Williamina Fleming</a>, <a href="https://en.wikipedia.org/wiki/Florence_Cushman">Florence Cushman</a>, <a href="https://en.wikipedia.org/wiki/Katherine_Johnson">Katherine Johnson</a>, <a href="https://en.wikipedia.org/wiki/Dorothy_Vaughan">Dorothy Vaughan</a>, and <a href="https://en.wikipedia.org/wiki/Mary_Jackson">Mary Jackson</a>.</p>
 </div>
 <p>The algorithms driving modern computing are not neutral—they reflect the biases of the societies that create them. In <a href="https://www.penguinrandomhouse.com/books/241363/weapons-of-math-destruction-by-cathy-oneil/">Cathy O’Neil’s <em>Weapons of Math Destruction</em></a>, the author explores how algorithms used in areas like policing, hiring, and education often reinforce systemic inequality, disproportionately harming marginalized communities. Similarly, <a href="https://www.ruhabenjamin.com/race-after-technology">Ruha Benjamin’s <em>Race After Technology</em></a> examines how race and technology intersect, showing how seemingly “objective” systems encode and perpetuate racial biases.</p>
 <p>The use of AI in policing is another area of concern. <a href="https://www.dukeupress.edu/dark-matters">Simone Browne’s <em>Dark Matters</em></a> highlights how surveillance technologies, from facial recognition to predictive policing, are rooted in practices of racialized social control, extending systems of oppression into the digital realm.</p>
@@ -7694,7 +7687,11 @@ Women highlighted in this work include: [Williamina Fleming](https://en.wikipedi
 </main>
 </body>
 </html>
-
+</div>
+    </main>
   </div>
+  <footer>
+    <p>&copy; Modern Classical Mechanics. All rights reserved.</p>
+  </footer>
 </body>
 </html>

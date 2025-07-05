@@ -90,60 +90,28 @@ def main():
             if cell.cell_type != 'markdown':
                 continue
             # --- Admonition conversion ---
-            def convert_admonitions(md):
-                # Handle MyST/Markdown admonitions: ::: type, !!! type, {admonition} ...
-                # 1. ::: type [title]\n...\n:::
-                def block_admonition(match):
-                    ad_type = match.group(1).strip().lower()
-                    title = match.group(2) or ad_type.title()
-                    content = match.group(3)
-                    return f'<div class="admonition {ad_type}"><div class="admonition-title">{title}</div>\n{content}\n</div>'
-                # ::: type [title]\n...\n:::
-                md = re.sub(r"^::: *([a-zA-Z0-9_-]+)(?: *(.*))?\n([\s\S]+?)^:::$", block_admonition, md, flags=re.MULTILINE)
-
-                # 2. !!! type [title]\n    ...
-                def bang_admonition(match):
-                    ad_type = match.group(1).strip().lower()
-                    title = match.group(2) or ad_type.title()
-                    content = match.group(3)
-                    # Remove leading indentation from content
-                    content = re.sub(r'^    ', '', content, flags=re.MULTILINE)
-                    return f'<div class="admonition {ad_type}"><div class="admonition-title">{title}</div>\n{content}\n</div>'
-                # Fixed regex: optional title is unquoted, match up to newline
-                md = re.sub(r'^!!! *([a-zA-Z0-9_-]+)(?: +([^\n]+))?\n((?:[ ]{4}.+\n?)+)', bang_admonition, md, flags=re.MULTILINE)
-
-                # 3. {admonition} [type] [title]\n...\n{/admonition}
-                def curly_admonition(match):
-                    ad_type = match.group(1).strip().lower()
-                    title = match.group(2) or ad_type.title()
-                    content = match.group(3)
-                    return f'<div class="admonition {ad_type}"><div class="admonition-title">{title}</div>\n{content}\n</div>'
-                md = re.sub(r"\{admonition\} *([a-zA-Z0-9_-]+)(?: +([^\n]+))?\n([\s\S]+?)\n\{/admonition\}", curly_admonition, md, flags=re.MULTILINE)
-
-                # 4. Single-line curly-brace block: {admonition}, {tip}, {note}, etc.
-                def singleline_admonition(match):
-                    ad_type = match.group(1).strip().lower()
-                    return f'<div class="admonition {ad_type}"><div class="admonition-title">{ad_type.title()}</div>'
-                # Replace opening {admonition}, {tip}, {note}, etc. with HTML open
-                md = re.sub(r'\{(admonition|tip|note|warning|caution|important)\}', singleline_admonition, md)
-                # Replace closing {/admonition}, {/tip}, etc. with HTML close
-                md = re.sub(r'\{/([a-zA-Z0-9_-]+)\}', '</div>', md)
-
-                # 0. Code-fence style admonitions: ```{admonition} Check\n...\n```
+            # Preprocess code-fence style admonitions (```{tip} ... ```) to HTML before nbconvert
+            orig_src = cell.source
+            # Only process if code-fence style admonition is present
+            if re.search(r'```\{(admonition|tip|note|warning|caution|important|hint|danger|error|success|question|quote|seealso)\}', orig_src):
+                # Replace all code-fence style admonitions in the markdown cell
                 def codefence_admonition(match):
                     ad_type = match.group(1).strip().lower()
-                    title = match.group(2) or ad_type.title()
+                    title = match.group(2)
                     content = match.group(3)
-                    # Remove leading/trailing blank lines
+                    if not title or title.strip() == '':
+                        title = ad_type.title()
                     content = content.strip('\n')
-                    return f'<div class="admonition {ad_type}"><div class="admonition-title">{title}</div>\n{content}\n</div>'
-                # Handles ```{admonition} type [title]\n...\n```
-                md = re.sub(r'```\{([a-zA-Z0-9_-]+)\}(?: +([^\n]+))?\n([\s\S]+?)\n```', codefence_admonition, md)
-
-                return md
-
-            # Convert admonitions before image handling
-            cell.source = convert_admonitions(cell.source)
+                    return (
+                        f'<div class="admonition {ad_type}" role="region" aria-label="{ad_type.title()}">' 
+                        f'<div class="admonition-title">{title}</div>\n{content}\n</div>'
+                    )
+                new_src = re.sub(
+                    r'```\{(admonition|tip|note|warning|caution|important|hint|danger|error|success|question|quote|seealso)\}(?: +([^\n]+))?\n([\s\S]+?)\n```',
+                    codefence_admonition, orig_src)
+                if new_src != orig_src:
+                    cell.source = new_src
+                    changed = True
             def update_img_link(match):
                 alt_text = match.group(1)
                 img_path = match.group(2).strip()
@@ -298,6 +266,7 @@ def main():
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
   <title>{title}</title>
   <link href=\"css/main.css\" rel=\"stylesheet\">
+  <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>
 </head>
 <body class=\"dark\">
   <nav>
