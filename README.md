@@ -23,9 +23,34 @@ This project is not just a collection of Jupyter notebooks—it builds a fully s
 
 **Built with custom Python scripts (not Jupyter Book)** to convert Jupyter notebooks into a static, accessible website and multiple downloadable formats.
 
-**Upcoming:** File downloads for each chapter/page will be available in PDF, Markdown, DOCX, Jupyter Notebook (.ipynb), and LaTeX formats directly from the site.
 
-**Note:** The current HTML pages do not yet have fully functional navigation menus—this is planned for a future update.
+---
+
+## 🚧 Work in Progress: Major Site Modernization (2025)
+
+This project is currently undergoing a major overhaul to modernize the navigation, accessibility, and download experience:
+
+- **Modern, accessible navigation:**
+  - Single horizontal menu with dropdowns for children, centered below the site title.
+  - Responsive hamburger menu for mobile.
+  - Fully accessible and keyboard-friendly.
+  - Built at build time from `_menu.yml` (no client-side JS for menu data).
+- **Robust light/dark mode:**
+  - All backgrounds and borders are forced to white (light) or black (dark) for seamless appearance.
+  - No white lines or borders in dark mode.
+- **Minimal, reproducible spacing:**
+  - All vertical gaps between nav and content are minimized and consistent.
+- **Legacy code removed:**
+  - All old side-nav/side-menu code is gone.
+- **Planned:**
+  - Per-page download menus for PDF, DOCX, Markdown, LaTeX, and Jupyter Notebook formats (see [issue #11](https://github.com/dannycab/modern-classical-mechanics/issues/11)).
+  - Merge `build.py` and `build-web.py` into a single unified build script (see [issue #12](https://github.com/dannycab/modern-classical-mechanics/issues/12)).
+
+**This is a work in progress!**
+
+Some features and download links may be missing or incomplete as we continue to improve the site. Please [open an issue](https://github.com/dannycab/modern-classical-mechanics/issues) if you spot a bug or want to help.
+
+---
 
 - **Webpage:** [View the Book Online](https://dannycaballero.info/modern-classical-mechanics/)
 - **GitHub Repo:** [github.com/dannycab/modern-classical-mechanics](https://github.com/dannycab/modern-classical-mechanics)
@@ -71,7 +96,8 @@ modern-classical-mechanics/
 ---
 
 
-## 🚀 Features
+
+## 🚀 Features (Current & Planned)
 
 - **Static, accessible HTML site** built from Jupyter notebooks, with robust dark/light mode and accessible color theming.
 - **Admonition support:** Converts all common admonition syntaxes (MyST, Markdown, code-fence, curly-brace, etc.) to accessible, visually distinct HTML blocks with LaTeX/MathJax support.
@@ -86,8 +112,11 @@ modern-classical-mechanics/
 - **Automatic copying** of all outputs and assets to the `docs/` directory for GitHub Pages hosting.
 - **Accessible design:** All HTML output is designed for screen readers and keyboard navigation.
 - **Dark mode toggle** in the HTML output.
-- **Planned:** Download links for each chapter/page in all supported formats (PDF, Markdown, DOCX, LaTeX, ipynb).
-- **Planned:** Improved navigation menus and site-wide navigation.
+
+**In Progress:**
+- Per-page download menus for all formats (PDF, DOCX, Markdown, LaTeX, ipynb)
+- Unified build script for all outputs
+- Further accessibility and navigation improvements
 
 ---
 
