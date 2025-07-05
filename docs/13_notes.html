@@ -1,4 +1,22 @@
 <!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>13 Notes</title>
+  <link href="css/book.css" rel="stylesheet">
+  <script>
+    function toggleDark() {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    }
+    if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+  </script>
+</head>
+<body>
+  <button class="toggle-dark" onclick="toggleDark()">🌗</button>
+  <div class="container">
+    <!DOCTYPE html>
 
 <html lang="en">
 <head><meta charset="utf-8"/>
@@ -7540,14 +7558,14 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Example:-The-Atwood-Machine">Example: The Atwood Machine<a class="anchor-link" href="#Example:-The-Atwood-Machine">¶</a></h2><p>The <a href="https://en.wikipedia.org/wiki/Atwood_machine">Atwood machine</a> consists of two masses, $M$ and $m$, connected by a massless string that passes over a massless pulley. The system is subject to gravity alone. The figure below shows the system along with a choice of coordinates $y_1$ and $y_2$ for the two masses.</p>
-<p><img alt="Atwood Machine" src="../images/notes/week13/atwood.png"/></p>
+<p><img alt="Atwood Machine" src="images/.._.._atwood.png"/></p>
 <p>These coordinates are measured from the center of the pulley and positive $y_1$ and $y_2$ are taken to be upward. Let's try to use the Lagrangian formalism to find the equations of motion for this system.</p>
 <p>$$V = + Mgy_1 + mgy_2$$</p>
 <p>$$T = \dfrac{1}{2}M\dot{y}_1^2 + \dfrac{1}{2}m\dot{y}_2^2$$</p>
 <h3 id="Equation-of-Constraint">Equation of Constraint<a class="anchor-link" href="#Equation-of-Constraint">¶</a></h3><p>But notice that $y_1$ and $y_2$ are no independent coordinates. If we unravel the string that is over the pulley, we find that (assume length of string is $l$):</p>
 <p>$$y_1 + \pi R + y_2 = l$$</p>
 <p>where $R$ is the radius of the pulley. That is shown in the figure below.</p>
-<p><img alt="Unraveled String" src="../images/notes/week13/string-unraveled.png"/></p>
+<p><img alt="Unraveled String" src="images/.._.._string-unraveled.png"/></p>
 <p>The equation above is called an <strong>equation of constraint</strong>. It relates the coordinates $y_1$ and $y_2$ to each other. We can use this equation to eliminate one of the coordinates. Let's eliminate $y_2$:</p>
 <p>$$l = y_1 + \pi R + y_2 \rightarrow y_1 = (l - \pi R) - y_2$$</p>
 <p>This constraint has implications for velocities,</p>
@@ -7559,7 +7577,7 @@ a.anchor-link {
 <p>We can do this by substituting $y_2$ in terms of $y_1$ into the energy equations:</p>
 <p>$$T(y_1, \dot{y}_1) = \dfrac{1}{2}M\dot{y}_1^2 + \dfrac{1}{2}m\dot{y}_2^2 = \dfrac{1}{2}(M+m)\dot{y}_1^2 = T(\dot{y}_1)$$</p>
 <p>$$\begin{align}
-V(y_1, y_2) = +Mgy_1 + mgy_2 \\
+V(y_1, y_2) &amp;= +Mgy_1 + mgy_2 \\
 &amp; = Mgy_1 + mg((l-\pi R) - y_1) \\
 &amp; = (M-m)g y_1 + mg(l-\pi R) \\
 V(y_1) &amp; = (M-m)g y_1 + U_0
@@ -7597,17 +7615,17 @@ $$T_{pulley} =  \dfrac{1}{4}M_p R^2 \dot{\phi}^2$$</p>
 <p>$$\dot{y}_1 = R\dot{\phi}$$</p>
 <p>We work these back into $T$, $V$, and $\mathcal{L}$.</p>
 <p>$$\begin{align}
-T(\dot{\phi}) = \dfrac{1}{2}(M+m)\dot{y}_1^2 + \dfrac{1}{4}M_p R^2 \dot{\phi}^2\\
-= \dfrac{1}{2}(M+m+\frac{1}{2}M_p)R^2 \dot{\phi}^2\\
+T(\dot{\phi}) &amp;= \dfrac{1}{2}(M+m)\dot{y}_1^2 + \dfrac{1}{4}M_p R^2 \dot{\phi}^2\\
+&amp;= \dfrac{1}{2}(M+m+\frac{1}{2}M_p)R^2 \dot{\phi}^2\\
 \end{align}$$</p>
 <p>$$\begin{align}
-V(\phi) = (M-m)gy_1 + U_0 \\
-= (M-m)g(R\phi + R\phi_0) + U_0\\
-= (M-m)gR\phi + \tilde{U}_0\\
+V(\phi) &amp;= (M-m)gy_1 + U_0 \\
+&amp;= (M-m)g(R\phi + R\phi_0) + U_0\\
+&amp;= (M-m)gR\phi + \tilde{U}_0\\
 \end{align}$$</p>
 <p>where $\tilde{U}_0 = (M-m)gR\phi_0 + U_0$ is another constant that will not affect the equations of motion.</p>
 <p>$$\begin{align}
-\mathcal{L}(\phi, \dot{\phi}) = T(\dot{\phi}) - V(\phi)\\
+\mathcal{L}(\phi, \dot{\phi}) &amp;= T(\dot{\phi}) - V(\phi)\\
 &amp; = \dfrac{1}{2}(M+m+\frac{1}{2}M_p)R^2 \dot{\phi}^2 - (M-m)gR\phi\\
 \end{align}$$</p>
 <h3 id="Torque-and-Angular-Momentum">Torque and Angular Momentum<a class="anchor-link" href="#Torque-and-Angular-Momentum">¶</a></h3><p>Our generalized coordinate is $\phi$ and our generalized velocity is $\dot{\phi}$. We apply the Euler-Lagrange equation. We obtain the generalized force:</p>
@@ -7644,7 +7662,7 @@ $$-(M-m)gR - (M+m+\frac{1}{2}M_p)R^2\ddot{\phi} = 0$$</p>
 <h2 id="Example:-Bead-in-a-Parabolic-Bowl">Example: Bead in a Parabolic Bowl<a class="anchor-link" href="#Example:-Bead-in-a-Parabolic-Bowl">¶</a></h2><p>A bead of mass $m$ is constrained to move along a parabolic bowl. There is a gravitational force acting on the bead. The bowl is symmetric about the $z$-axis and the bead is constrained to move along the surface without friction or rolling. The bowl is described by the equation:</p>
 <p>$$z = \dfrac{1}{2}c(x^2 + y^2)$$</p>
 <p>where $c$ is a constant that describes the curvature of the bowl. The figure below shows the system.</p>
-<p><img alt="Bead in a Parabolic Bowl" src="../images/notes/week13/paraboloid.png"/></p>
+<p><img alt="Bead in a Parabolic Bowl" src="images/.._.._paraboloid.png"/></p>
 <p>In this case the system is better solved in cylindrical coordinates. The coordinates are $(r, \phi, z)$, where $r$ is the distance from the $z$-axis, $\phi$ is the angle around the $z$-axis, and $z$ is the height above the $xy$-plane as shown above.</p>
 <p>With $\langle \rho, \phi, z\rangle$ as the coordinates, equation for the constraint is:</p>
 <p>$$z = \dfrac{1}{2}c(x^2 + y^2) = \dfrac{1}{2}c\rho^2.$$</p>
@@ -7706,5 +7724,9 @@ $$\dot{\omega} = - \dfrac{2 v\omega}{\rho^2}$$</p>
 </div>
 </div>
 </main>
+</body>
+</html>
+
+  </div>
 </body>
 </html>

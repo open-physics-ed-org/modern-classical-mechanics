@@ -1,4 +1,22 @@
 <!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10 Notes</title>
+  <link href="css/book.css" rel="stylesheet">
+  <script>
+    function toggleDark() {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    }
+    if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+  </script>
+</head>
+<body>
+  <button class="toggle-dark" onclick="toggleDark()">🌗</button>
+  <div class="container">
+    <!DOCTYPE html>
 
 <html lang="en">
 <head><meta charset="utf-8"/>
@@ -7539,10 +7557,10 @@ $$</p>
 <p>where $\theta$ is the angle of the pendulum, $\beta$ is the damping coefficient, $A$ is the amplitude of the driving force, and $\omega_D$ is the angular frequency of the driving force. We've absorbed some constants into the parameters for simplicity.</p>
 <h3 id="Using-solve_ivp">Using solve_ivp<a class="anchor-link" href="#Using-solve_ivp">¶</a></h3><p>To use <code>solve_ivp</code>, we need to convert this second-order ODE into a system of first-order ODEs. We can do this by introducing a new variable for the angular velocity:</p>
 <p>$$
-\$$egin{aligned}
-\dot{\theta} = \omega \\
-\dot{\omega} = -\sin(\theta) - \beta \omega + A \cos(\omega_D t)
-\end{aligned}$$
+\begin{align*}
+\dot{\theta} &amp;= \omega \\
+\dot{\omega} &amp;= -\sin(\theta) - \beta \omega + A \cos(\omega_D t)
+\end{align*}
 $$</p>
 <p>where $\omega$ is the angular velocity of the pendulum NOT the driver.</p>
 <p>Let's implement this system using <code>solve_ivp</code> and simulate its behavior over time.</p>
@@ -7558,7 +7576,7 @@ $$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">gridspec</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
@@ -7610,7 +7628,7 @@ $$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">gs</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">height_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">width_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 
 
@@ -7693,7 +7711,7 @@ $$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="c1"># Note this block runs the integration again but only returns the last 60 seconds of the simulation</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Note this block runs the integration again but only returns the last 60 seconds of the simulation</span>
 <span class="n">startTime</span> <span class="o">=</span> <span class="mi">60</span>
 <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">solution</span><span class="o">.</span><span class="n">t</span> <span class="o">&gt;</span> <span class="n">startTime</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
@@ -7794,10 +7812,10 @@ $$</p>
 <p>$$\frac{d^2x}{dt^2} + \delta \frac{dx}{dt} + \alpha x + \beta x^3 = \gamma \cos(\omega t)$$</p>
 <p>We can rewrite this as a system of first-order ODEs by introducing a new variable for the velocity:</p>
 <p>$$
-\$$egin{aligned}
-\dot{x} = v \\
-\dot{v} = -\delta v - \alpha x - \beta x^3 + \gamma \cos(\omega t).
-\end{aligned}$$
+\begin{align*}
+\dot{x} &amp;= v \\
+\dot{v} &amp;= -\delta v - \alpha x - \beta x^3 + \gamma \cos(\omega t).
+\end{align*}
 $$</p>
 <h3 id="%F0%9F%93%9D-Numerically-Integrate-the-Duffing-Oscillator">📝 Numerically Integrate the Duffing Oscillator<a class="anchor-link" href="#%F0%9F%93%9D-Numerically-Integrate-the-Duffing-Oscillator">¶</a></h3><p>For our simulation we will observe the effect of the driving strength $\gamma$ on the behavior of the system. We start with the following parameters:</p>
 <table>
@@ -7871,7 +7889,7 @@ $$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">gridspec</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
@@ -7889,7 +7907,7 @@ $$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="c1">## def duffing(t, y, delta, alpha, beta, gamma, omega):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">## def duffing(t, y, delta, alpha, beta, gamma, omega):</span>
     <span class="c1">## Your Code Here</span>
 
 <span class="c1"># Parameters</span>
@@ -7922,7 +7940,7 @@ $$</p>
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="%F0%9F%93%9D-Plotting-the-results">📝 Plotting the results<a class="anchor-link" href="#%F0%9F%93%9D-Plotting-the-results">¶</a></h3><p>Once you have simulated the Duffing oscillator, you can plot the results to visualize its behavior over time. Your plot should be similar to the one above where you plot at least the position $x$ over time, and then a phase space plot of $x$ vs. $v$. Make sure that you label your axes and include a title for your plot; add starting and ending points to your plot so you are sure about the direction of the motion.</p>
 <p>This first set of plots should look similar to the one below.</p>
-<p><img alt="Duffing" src="../images/notes/week10/first_duffing.png"/></p>
+<p><img alt="Duffing" src="images/.._.._first_duffing.png"/></p>
 </div>
 </div>
 </div>
@@ -7934,7 +7952,7 @@ $$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="c1">## Plot the time series and phase space</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">## Plot the time series and phase space</span>
 <span class="c1">## Your Code Here</span>
 </pre></div>
 </div>
@@ -7960,7 +7978,7 @@ $$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="c1">## Plot the time series and phase space</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">## Plot the time series and phase space</span>
 <span class="c1">## Your Code Here</span>
 </pre></div>
 </div>
@@ -8000,7 +8018,7 @@ $$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="c1">## Your Code Here</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">## Your Code Here</span>
 </pre></div>
 </div>
 </div>
@@ -8022,8 +8040,8 @@ $$\frac{dz}{dt} = xy - \beta z$$</p>
 <p>Where $\sigma$, $\rho$, and $\beta$ are system parameters. The canonical values are $\sigma = 10$, $\rho = 28$, and $\beta = \frac{8}{3}$.</p>
 <h3 id="%F0%9F%93%9D-Numerically-Integrate-the-Lorenz-Attractor">📝 Numerically Integrate the Lorenz Attractor<a class="anchor-link" href="#%F0%9F%93%9D-Numerically-Integrate-the-Lorenz-Attractor">¶</a></h3><p>In the cells below, we scaffold some of the code to simulate the Lorenz attractor. You will need to fill in the missing pieces. Once you plot the solution, you should be able to produce time series, and phase space plots of the Lorenz attractor. <strong>Note that the phase space for the Lorenz attractor is 3D (x,y,z), so you will need to use a 3D plotting function or plot projections.</strong></p>
 <p>For the parameters, we will use the canonical values of $\sigma = 10$, $\rho = 28$, and $\beta = \frac{8}{3}$. Choose initial conditions of $x=1$, $y=1$, and $z=1$ and simulate for 50 time units. If you do, your solution will look like the one below.</p>
-<p><img alt="Lorenz Time Series" src="../images/notes/week10/lorenz-1.png"/></p>
-<p><img alt="Lorenz Phase Space" src="../images/notes/week10/lorenz-2.png"/></p>
+<p><img alt="Lorenz Time Series" src="images/.._.._lorenz-1.png"/></p>
+<p><img alt="Lorenz Phase Space" src="images/.._.._lorenz-2.png"/></p>
 </div>
 </div>
 </div>
@@ -8035,7 +8053,7 @@ $$\frac{dz}{dt} = xy - \beta z$$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">gridspec</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
@@ -8053,7 +8071,7 @@ $$\frac{dz}{dt} = xy - \beta z$$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="c1">## def lorenz(t, y, sigma, beta, rho):</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">## def lorenz(t, y, sigma, beta, rho):</span>
     <span class="c1">## Your Code Here</span>
 
 <span class="c1"># Parameters for the Lorenz system</span>
@@ -8097,7 +8115,7 @@ $$\frac{dz}{dt} = xy - \beta z$$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="c1">## Your Code Here</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">## Your Code Here</span>
 </pre></div>
 </div>
 </div>
@@ -8125,7 +8143,7 @@ $$\frac{dz}{dt} = xy - \beta z$$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="c1">## Your Code Here</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">## Your Code Here</span>
 </pre></div>
 </div>
 </div>
@@ -8133,5 +8151,9 @@ $$\frac{dz}{dt} = xy - \beta z$$</p>
 </div>
 </div>
 </main>
+</body>
+</html>
+
+  </div>
 </body>
 </html>

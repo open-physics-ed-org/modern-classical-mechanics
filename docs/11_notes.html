@@ -1,4 +1,22 @@
 <!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>11 Notes</title>
+  <link href="css/book.css" rel="stylesheet">
+  <script>
+    function toggleDark() {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    }
+    if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+  </script>
+</head>
+<body>
+  <button class="toggle-dark" onclick="toggleDark()">🌗</button>
+  <div class="container">
+    <!DOCTYPE html>
 
 <html lang="en">
 <head><meta charset="utf-8"/>
@@ -7542,7 +7560,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">'seaborn-v0_8-colorblind'</span><span class="p">)</span>
 
@@ -7629,12 +7647,12 @@ a.anchor-link {
 <p>$$\dfrac{dS}{d\alpha}|_{\alpha=0} = 0.$$</p>
 <p>We start that analysis by differentiating the integral with respect to $\alpha$:</p>
 <p>$$\begin{align}
-S = \int_{x_1}^{x_2} f(Y(x),Y'(x),x) dx \\
-= \int_{x_1}^{x_2} f(y(x) + \alpha\eta(x), y'(x) + \alpha\eta'(x), x) dx.\\
+S &amp;= \int_{x_1}^{x_2} f(Y(x),Y'(x),x) dx \\
+&amp;= \int_{x_1}^{x_2} f(y(x) + \alpha\eta(x), y'(x) + \alpha\eta'(x), x) dx.\\
 \end{align}$$</p>
 <p>We can now differentiate.</p>
 <p>$$\begin{align}
-\dfrac{dS}{d\alpha} = \int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial Y}\dfrac{dY}{d\alpha} + \dfrac{\partial f}{\partial Y'}\dfrac{dY'}{d\alpha}+ \dfrac{\partial f}{\partial x}\dfrac{dx}{d\alpha} \right] dx.\\
+\dfrac{dS}{d\alpha} &amp;= \int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial Y}\dfrac{dY}{d\alpha} + \dfrac{\partial f}{\partial Y'}\dfrac{dY'}{d\alpha}+ \dfrac{\partial f}{\partial x}\dfrac{dx}{d\alpha} \right] dx.\\
 \end{align}$$</p>
 <p>Let's take each term in turn. The first term is:</p>
 <p>$$\dfrac{df}{dY}\dfrac{dY}{d\alpha}.$$</p>
@@ -7649,16 +7667,16 @@ S = \int_{x_1}^{x_2} f(Y(x),Y'(x),x) dx \\
 <p>This term is a bit different. The $dx$ term is independent of $\alpha$, so we can treat it as a constant with respect to $\alpha$. Therefore, this term will not contribute to the derivative with respect to $\alpha$, and we can ignore it in our analysis.</p>
 <p>Putting it all together, we have:</p>
 <p>$$\begin{align}
-\dfrac{dS}{d\alpha} = \int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial Y}\eta(x) + \dfrac{\partial f}{\partial Y'}\eta'(x) \right] dx.\\
+\dfrac{dS}{d\alpha} &amp;= \int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial Y}\eta(x) + \dfrac{\partial f}{\partial Y'}\eta'(x) \right] dx.\\
 \end{align}$$</p>
 <p>Our expression is still in terms of $Y(x)$, the incorrect function. We want to express it in terms of $y(x)$, the correct function. Let's look at the derivatives $\dfrac{\partial f}{\partial Y}$ and $\dfrac{\partial f}{\partial Y'}$. We can use the chain rule to express these derivatives in terms of $y(x)$:</p>
 <p>$$\begin{align}
-\dfrac{\partial f}{\partial Y} = \dfrac{\partial f}{\partial y}\dfrac{\partial y}{\partial Y} = \dfrac{\partial f}{\partial y},\\
-\dfrac{\partial f}{\partial Y'} = \dfrac{\partial f}{\partial y'}\dfrac{\partial y'}{\partial Y'} = \dfrac{\partial f}{\partial y'}.\\
+\dfrac{\partial f}{\partial Y} &amp;= \dfrac{\partial f}{\partial y}\dfrac{\partial y}{\partial Y} = \dfrac{\partial f}{\partial y},\\
+\dfrac{\partial f}{\partial Y'} &amp;= \dfrac{\partial f}{\partial y'}\dfrac{\partial y'}{\partial Y'} = \dfrac{\partial f}{\partial y'}.\\
 \end{align}$$</p>
 <p><strong>Why?</strong> Because $\dfrac{\partial y}{\partial Y} = 1$ and $\dfrac{\partial y'}{\partial Y'} = 1$ when we are differentiating with respect to the correct function $y(x)$. This means that we can express the derivatives in terms of the correct function $y(x)$.</p>
 <p>$$\begin{align}
-\dfrac{dS}{d\alpha} = \int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial y}\eta(x) + \dfrac{\partial f}{\partial y'}\eta'(x) \right] dx.\\
+\dfrac{dS}{d\alpha} &amp;= \int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial y}\eta(x) + \dfrac{\partial f}{\partial y'}\eta'(x) \right] dx.\\
 \end{align}$$</p>
 <p>We are seeking $\dfrac{dS}{d\alpha}$ at $\alpha = 0$, so we set the integral to zero:</p>
 <p>$$\begin{align}
@@ -7679,12 +7697,12 @@ S = \int_{x_1}^{x_2} f(Y(x),Y'(x),x) dx \\
 <p>The first term $[uv]$ is called the "surface term" because it is the result of the integral and is evaluated at the boundaries of the integral, $x_1$ and $x_2$. We will apply integration by parts only to the second term in the integral.</p>
 <p>Here, we note $u = \eta(x)$ and $v = \dfrac{\partial f}{\partial y'}$. Then, we can express the second term in the integral as follows:</p>
 <p>$$\begin{align}
-\int_{x_1}^{x_2} \eta'(x) \dfrac{\partial f}{\partial y'} dx = \underbrace{\left[ \eta(x) \dfrac{\partial f}{\partial y'} \right]_{x_1}^{x_2}}_{\eta(x_1)=\eta(x_2)=0} - \int_{x_1}^{x_2} \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) dx\\
-= - \int_{x_1}^{x_2} \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) dx
+\int_{x_1}^{x_2} \eta'(x) \dfrac{\partial f}{\partial y'} dx &amp;= \underbrace{\left[ \eta(x) \dfrac{\partial f}{\partial y'} \right]_{x_1}^{x_2}}_{\eta(x_1)=\eta(x_2)=0} - \int_{x_1}^{x_2} \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) dx\\
+&amp;= - \int_{x_1}^{x_2} \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) dx
 \end{align}$$</p>
 <p>Notice that the surface term evaluates to zero because we have fixed the endpoints of the path, so $\eta(x_1) = \eta(x_2) = 0$.  We put this all together to get:</p>
 <p>$$\begin{align}
-\dfrac{dS}{d\alpha} = \int_{x_1}^{x_2}\left[ \eta(x)\dfrac{\partial f}{\partial y} - \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) \right] dx = 0.\\
+\dfrac{dS}{d\alpha} &amp;= \int_{x_1}^{x_2}\left[ \eta(x)\dfrac{\partial f}{\partial y} - \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) \right] dx = 0.\\
 &amp; = \int_{x_1}^{x_2} \eta(x) \left[ \dfrac{\partial f}{\partial y} - \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) \right] dx = 0.\\
 \end{align}$$</p>
 <pre><code class="language-{important}">{important}
@@ -7714,14 +7732,14 @@ This is the **[Euler-Lagrange equation](https://en.wikipedia.org/wiki/Euler%E2%8
 <p>$$\dfrac{\partial f}{\partial y} = 0$$</p>
 <p>since $f$ does not depend on $y$, only on $y'$. Now let's compute the second term:</p>
 <p>$$\begin{align}
-\dfrac{\partial f}{\partial y'} = \dfrac{\partial}{\partial y'}\left( \sqrt{1 + y'(x)^2} \right)\\
-= \dfrac{1}{2} \left(1 + y'(x)^2\right)^{-1/2} 2y'(x)\\
-= \frac{y'(x)}{\sqrt{1 + y'(x)^2}}.\\
+\dfrac{\partial f}{\partial y'} &amp;= \dfrac{\partial}{\partial y'}\left( \sqrt{1 + y'(x)^2} \right)\\
+&amp;= \dfrac{1}{2} \left(1 + y'(x)^2\right)^{-1/2} 2y'(x)\\
+&amp;= \frac{y'(x)}{\sqrt{1 + y'(x)^2}}.\\
 \end{align}$$</p>
 <p>Let's put all this together:</p>
 <p>$$\begin{align}
-0 = \dfrac{\partial f}{\partial y} - \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right)\\
-0 = 0 - \dfrac{d}{dx}\left(\frac{y'(x)}{\sqrt{1 + y'(x)^2}}\right).\\
+0 &amp;= \dfrac{\partial f}{\partial y} - \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right)\\
+0 &amp;= 0 - \dfrac{d}{dx}\left(\frac{y'(x)}{\sqrt{1 + y'(x)^2}}\right).\\
 \end{align}$$</p>
 <p>This means that,</p>
 <p>$$\dfrac{d}{dx}\left(\frac{y'(x)}{\sqrt{1 + y'(x)^2}}\right) = 0$$</p>
@@ -7729,11 +7747,11 @@ This is the **[Euler-Lagrange equation](https://en.wikipedia.org/wiki/Euler%E2%8
 <p>$$\frac{y'(x)}{\sqrt{1 + y'(x)^2}} = C = \textrm{a constant}.$$</p>
 <p>Or rearranging gives us:</p>
 <p>$$\begin{align}
-y'(x) = C\sqrt{1 + y'(x)^2}\\
-y'(x)^2 = C^2(1 + y'(x)^2)\\
-(1 - C^2)y'(x)^2 = C^2\\
-y'(x)^2 = \frac{C^2}{1 - C^2}\\
-y'(x) = \pm \sqrt{\frac{C^2}{1 - C^2}}\\
+y'(x) &amp;= C\sqrt{1 + y'(x)^2}\\
+y'(x)^2 &amp;= C^2(1 + y'(x)^2)\\
+(1 - C^2)y'(x)^2 &amp;= C^2\\
+y'(x)^2 &amp;= \frac{C^2}{1 - C^2}\\
+y'(x) &amp;= \pm \sqrt{\frac{C^2}{1 - C^2}}\\
 \end{align}$$</p>
 <p>So that, $y'(x)$ is a constant, call it $m$, which produces a linear solution.</p>
 <p>$$\dfrac{dy}{dx} = \sqrt{\frac{C^2}{1 - C^2}} = m$$</p>
@@ -7752,7 +7770,7 @@ y'(x) = \pm \sqrt{\frac{C^2}{1 - C^2}}\\
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Example:-Snell's-Law">Example: Snell's Law<a class="anchor-link" href="#Example:-Snell's-Law">¶</a></h2><p>Let's assume you are walking on the beach and need to get to a location in the water quickly. Where do you enter the water to minimize the time it takes to reach the location in the water? This is a classic problem in physics and can be solved using the Calculus of Variations.</p>
 <p>Consider the picture below where you can move at a speed $v_1$ on the shore and a speed $v_2$ in the water. We know that $v_1 &gt; v_2$, so you can move faster on the shore than in the water. We aim to minimize the time it takes to reach the point $\langle x_2, y_2 \rangle$ in the water from point $\langle x_1, y_1 \rangle$ on the shore. We take the shoreline to be a line at $x = 0$. and the location we cross the shoreline is $\langle 0, y \rangle$.</p>
-<p><img alt="Snell's Law Diagram" src="../images/notes/week11/snells_shore.png"/></p>
+<p><img alt="Snell's Law Diagram" src="images/.._.._snells_shore.png"/></p>
 <p>Notice the angle that we approach the shoreline at, $\theta_1$, and the angle that we approach the target in the water, $\theta_2$.</p>
 <p>The total time to travel from $\langle x_1, y_1 \rangle$ to $\langle 0, y \rangle$ and then to $\langle x_2, y_2 \rangle$ is:</p>
 <p>$$T = t_1 + t_2 = \dfrac{d_1}{v_1} + \dfrac{d_2}{v_2}$$</p>
@@ -7764,9 +7782,9 @@ $$d_2 = \sqrt{x_2^2 + (y_2 - y)^2}$$</p>
 <p>We want to minimize this time, $T$, by choosing the optimal point $y$ where we cross the shoreline. We compute the derivative of $T$ with respect to $y$ and set it to zero:</p>
 <p>$$\dfrac{dT}{dy} = 0$$</p>
 <p>$$\begin{align}
-\dfrac{dT}{dy} = \dfrac{1}{2}\dfrac{1}{v_1}\left(x_1^2 + (y-y_1)^2\right)^{-1/2}(2)(y-y_1) + \dfrac{1}{2}\dfrac{1}{v_2}\left(x_2^2 + (y_2-y)^2\right)^{-1/2}(-2)(y_2-y) = 0\\
-= \dfrac{1}{v_1}\left(\dfrac{y-y_1}{\sqrt{x_1^2 + (y-y_1)^2}}\right) - \dfrac{1}{v_2}\left(\dfrac{y_2-y}{\sqrt{x_2^2 + (y_2-y)^2}}\right) = 0\\
-= \dfrac{1}{v_1}\left(\dfrac{y-y_1}{d_1}\right) - \dfrac{1}{v_2}\left(\dfrac{y_2-y}{d_2}\right) = 0\\
+\dfrac{dT}{dy} &amp;= \dfrac{1}{2}\dfrac{1}{v_1}\left(x_1^2 + (y-y_1)^2\right)^{-1/2}(2)(y-y_1) + \dfrac{1}{2}\dfrac{1}{v_2}\left(x_2^2 + (y_2-y)^2\right)^{-1/2}(-2)(y_2-y) = 0\\
+&amp;= \dfrac{1}{v_1}\left(\dfrac{y-y_1}{\sqrt{x_1^2 + (y-y_1)^2}}\right) - \dfrac{1}{v_2}\left(\dfrac{y_2-y}{\sqrt{x_2^2 + (y_2-y)^2}}\right) = 0\\
+&amp;= \dfrac{1}{v_1}\left(\dfrac{y-y_1}{d_1}\right) - \dfrac{1}{v_2}\left(\dfrac{y_2-y}{d_2}\right) = 0\\
 \end{align}$$</p>
 <p>where the last step is just substituting in the expressions for $d_1$ and $d_2$. Notice that those expressions are related to the angles we defined earlier. We can rewrite the expression in terms of the angles $\theta_1$ and $\theta_2$:</p>
 <p>$$\sin(\theta_1) = \frac{y - y_1}{d_1}$$
@@ -7789,10 +7807,10 @@ $$\dfrac{\sin(\theta_1)}{v_1} = \dfrac{\sin(\theta_2)}{v_2}$$
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Example:-Brachistochrone-Problem">Example: Brachistochrone Problem<a class="anchor-link" href="#Example:-Brachistochrone-Problem">¶</a></h2><p>The <a href="https://en.wikipedia.org/wiki/Brachistochrone_problem">Brachistochrone problem</a> is a classic problem in the Calculus of Variations. It asks the question: "What is the shape of the curve that a bead will follow under the influence of gravity to reach the bottom in the shortest time?"  Here's a great video from <a href="https://en.wikipedia.org/wiki/Steven_Strogatz">Steven Strogatz</a> that explains the problem and its solution.</p>
-<p><a href="https://www.youtube.com/watch?v=Cld0p3a43fU"><img alt="YouTube thumbnail" src="images/youtube-img/Cld0p3a43fU.jpg"/></a></p>
+<p><a href="https://www.youtube.com/watch?v=Cld0p3a43fU"><img alt="Youtube Video on the Brachistochrone Problem" src="images/https:__hqdefault.jpg"/></a></p>
 <p>Source: <a href="https://www.youtube.com/watch?v=Cld0p3a43fU">https://www.youtube.com/watch?v=Cld0p3a43fU</a></p>
 <p>The setup is below, there's two points separated by a distance vertically and horizontally. What shape should we make a track so that a bead will roll down it in the shortest time?</p>
-<p><img alt="The Brachistochrone Problem" src="../images/notes/week11/brachistochrone.png"/></p>
+<p><img alt="The Brachistochrone Problem" src="images/.._.._brachistochrone.png"/></p>
 </div>
 </div>
 </div>
@@ -7841,16 +7859,16 @@ $$x'^2 = \frac{y}{2a - y},$$</p>
 <p>This integral will give us the shape of the curve $x(y)$, but to solve it we need to use a substitution.</p>
 <p>Let $y = a(1 - \cos(\theta))$. Thus, $dy = a\sin(\theta)d\theta$. This gives us:</p>
 <p>$$\begin{align}
-x(y(\theta)) = \int \sqrt{\frac{y(\theta)}{2a - y(\theta)}} dy\\
-= \int \sqrt{\frac{a(1 - \cos(\theta))}{2a - a(1 - \cos(\theta))}} a\sin(\theta)d\theta\\
-= a \int \sqrt{\frac{(1-\cos\theta)}{(1+\cos\theta)}} \sin(\theta)d\theta.\\
+x(y(\theta)) &amp;= \int \sqrt{\frac{y(\theta)}{2a - y(\theta)}} dy\\
+&amp;= \int \sqrt{\frac{a(1 - \cos(\theta))}{2a - a(1 - \cos(\theta))}} a\sin(\theta)d\theta\\
+&amp;= a \int \sqrt{\frac{(1-\cos\theta)}{(1+\cos\theta)}} \sin(\theta)d\theta.\\
 \end{align}$$</p>
 <p>Note that $\sin \theta = \sqrt{1 - \cos^2 \theta} = \sqrt{(1 - \cos\theta)(1 + \cos\theta)}$. This allows us to simplify the integral:</p>
 <p>$$\begin{align}
-x(y(\theta)) = a \int \sqrt{\frac{(1-\cos\theta)^2(1+\cos\theta)}{(1+\cos\theta)}} d\theta\\
-= a \int \sqrt{(1 - \cos\theta)^2} d\theta\\
-= a \int (1 - \cos\theta) d\theta\\
-= a \left(\theta - \sin(\theta)\right) + C\\
+x(y(\theta)) &amp;= a \int \sqrt{\frac{(1-\cos\theta)^2(1+\cos\theta)}{(1+\cos\theta)}} d\theta\\
+&amp;= a \int \sqrt{(1 - \cos\theta)^2} d\theta\\
+&amp;= a \int (1 - \cos\theta) d\theta\\
+&amp;= a \left(\theta - \sin(\theta)\right) + C\\
 \end{align}$$</p>
 <p>where $C$ is a constant of integration.</p>
 <p>With initial conditions $x(0) = 0$ when $y(0) = 0$ at $t=0$ and $\theta = 0$, we find that $C = 0$. So the solution is:</p>
@@ -7869,7 +7887,7 @@ $$y(\theta) = a(1 - \cos(\theta)).$$</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="c1">## Plot a cycloid path for comparison</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">## Plot a cycloid path for comparison</span>
 <span class="c1">## $$x(\theta) = a\left(\theta - \sin(\theta)\right)$$</span>
 <span class="c1">## $$y(\theta) = a(1 - \cos(\theta)).$$</span>
 
@@ -7930,5 +7948,9 @@ $$y(\theta) = a(1 - \cos(\theta)).$$</p>
 </div>
 </div>
 </main>
+</body>
+</html>
+
+  </div>
 </body>
 </html>

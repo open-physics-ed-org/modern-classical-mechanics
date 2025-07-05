@@ -1,4 +1,22 @@
 <!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>08 Start</title>
+  <link href="css/book.css" rel="stylesheet">
+  <script>
+    function toggleDark() {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    }
+    if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+  </script>
+</head>
+<body>
+  <button class="toggle-dark" onclick="toggleDark()">🌗</button>
+  <div class="container">
+    <!DOCTYPE html>
 
 <html lang="en">
 <head><meta charset="utf-8"/>
@@ -7584,7 +7602,7 @@ $$x(t) = C_1 e^{i \omega t} + C_2 e^{-i \omega t}.$$</p>
 <p>When oscillators couple (or influence each other), we begin to see behavior that is more complex than the sole oscillator. These "coupled oscillators" can demonstrate a wide variety of behaviors, including synchronization. They also form the basis for important technologies like <a href="https://en.wikipedia.org/wiki/Laser">lasers</a> and <a href="https://en.wikipedia.org/wiki/Radio_transmitter">radio transmitters</a>.</p>
 <p>We will begin our study of oscillations with the <a href="https://en.wikipedia.org/wiki/Simple_harmonic_motion">simple harmonic oscillator</a>, then we add a little <a href="https://en.wikipedia.org/wiki/Damping">damping</a> to the system, and then move to more complex systems (e.g., <a href="https://en.wikipedia.org/wiki/Duffing_equation">the Duffing oscillator</a>).</p>
 <p>The video below is a good introduction to the topic of synchronization and worth a watch.</p>
-<p><a href="https://www.youtube.com/watch?v=t-_VPRCtiUg"><img alt="YouTube thumbnail" src="images/youtube-img/t-_VPRCtiUg.jpg"/></a></p>
+<p><a href="https://www.youtube.com/watch?v=t-_VPRCtiUg"><img alt="The Surprising Secret of Synchronization" src="images/https:__hqdefault.jpg"/></a></p>
 </div>
 </div>
 </div>
@@ -7600,5 +7618,9 @@ $$x(t) = C_1 e^{i \omega t} + C_2 e^{-i \omega t}.$$</p>
 </div>
 </div>
 </main>
+</body>
+</html>
+
+  </div>
 </body>
 </html>

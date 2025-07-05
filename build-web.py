@@ -77,6 +77,11 @@ def main():
             print(f"[DEBUG:path_to_output_name] Fallback out_name: {out_name}")
         return out_name
 
+
+    # --- Aggregate missing images and YouTube thumbnails across all notebooks ---
+    all_missing_images = set()
+    all_youtube_ids = set()
+
     for nb_path in notebooks_dir.glob('*.ipynb'):
         nb_data = nbformat.read(str(nb_path), as_version=4)
         changed = False
@@ -87,18 +92,13 @@ def main():
             def update_img_link(match):
                 alt_text = match.group(1)
                 img_path = match.group(2).strip()
-                # Try to resolve the real image path relative to images_root
-                # If the path is already absolute, use as is; otherwise, try images_root / img_path
                 img_path_clean = img_path
                 if img_path_clean.startswith('images/'):
                     img_path_clean = img_path_clean[7:]
-                # Try to find the file in images_root
                 real_img_path = images_root / img_path_clean
                 if not real_img_path.exists():
-                    # Try to resolve relative to the notebook's directory (for legacy or odd references)
                     possible = nb_path.parent / img_path
                     if possible.exists():
-                        # Get the path relative to images_root
                         try:
                             rel_path = possible.relative_to(images_root)
                         except ValueError:
@@ -111,8 +111,19 @@ def main():
                 new_img_name = path_to_output_name(str(rel_path))
                 print(f"[DEBUG] Notebook: {nb_path.name} | Markdown ref: {img_path} | resolved rel_path: {rel_path} | real_img_path: {real_img_path} | output: images/{new_img_name}")
                 referenced_images.add((real_img_path, images_dir / new_img_name))
+                # Track missing images
+                if not real_img_path.exists():
+                    all_missing_images.add((str(real_img_path), str(nb_path), img_path))
+                    # Check for YouTube thumbnail pattern
+                    yt_match = re.match(r'https?://img\.youtube\.com/vi/([\w-]{11})/', img_path)
+                    if yt_match:
+                        all_youtube_ids.add(yt_match.group(1))
                 return f"![{alt_text}](images/{new_img_name})"
             new_src = re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', update_img_link, cell.source)
+            # Also look for YouTube links in plain text
+            yt_links = re.findall(r'(?:youtube.com/watch\?v=|youtu.be/)([\w-]{11})', cell.source)
+            for video_id in yt_links:
+                all_youtube_ids.add(video_id)
             if new_src != cell.source:
                 cell.source = new_src
                 changed = True
@@ -126,6 +137,31 @@ def main():
                 shutil.copy2(src_img, dest_img)
             else:
                 print(f"[WARNING] Image not found: {src_img}")
+
+    # --- Summary of missing images ---
+    if all_missing_images:
+        print("\n[SUMMARY] Missing images across all notebooks:")
+        for missing_path, nb_name, orig_ref in sorted(all_missing_images):
+            print(f"  - {missing_path} (notebook: {nb_name}, original ref: {orig_ref})")
+    else:
+        print("[SUMMARY] No missing images!")
+
+    # --- Fetch all unique YouTube thumbnails ---
+    if all_youtube_ids:
+        print("\n[INFO] Attempting to fetch YouTube thumbnails:")
+        for video_id in sorted(all_youtube_ids):
+            dest_path = images_dir / f"youtube_{video_id}.jpg"
+            if not dest_path.exists():
+                print(f"  Fetching thumbnail for video ID: {video_id} -> {dest_path}")
+                ok = fetch_youtube_thumbnail(video_id, dest_path)
+                if ok:
+                    print(f"    [OK] Downloaded thumbnail for {video_id}")
+                else:
+                    print(f"    [FAIL] Could not fetch thumbnail for {video_id}")
+            else:
+                print(f"  [SKIP] Thumbnail already exists for {video_id}")
+    else:
+        print("[INFO] No YouTube thumbnails to fetch.")
 
 
     # (Removed redundant second pass for flattening image names)

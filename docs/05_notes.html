@@ -1,4 +1,22 @@
 <!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>05 Notes</title>
+  <link href="css/book.css" rel="stylesheet">
+  <script>
+    function toggleDark() {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    }
+    if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
+  </script>
+</head>
+<body>
+  <button class="toggle-dark" onclick="toggleDark()">🌗</button>
+  <div class="container">
+    <!DOCTYPE html>
 
 <html lang="en">
 <head><meta charset="utf-8"/>
@@ -7622,7 +7640,7 @@ where $\Delta E_{\text{object}}$ is the change in energy of the object and $W_{\
 <p>Consider a discrete set of $n$ spatial intervals, $\Delta x_i$, where $i$ is the index of the interval.</p>
 <p>$$x = {x_0, x_1, x_2, \ldots, x_n}$$</p>
 <p>At each of these spatial intervals, we experience a different net force, like in the figure below.</p>
-<p><img alt="Work done by a net force" src="../images/notes/week5/discrete-force-intervals.png"/></p>
+<p><img alt="Work done by a net force" src="images/.._.._discrete-force-intervals.png"/></p>
 <p>$$F_{net} = {F_{net,0}, F_{net,1}, F_{net,2}, \ldots, F_{net,n}}$$</p>
 <p>The work done by this force is the change in kinetic energy of the object:</p>
 <p>$$W_{\text{net}} = \sum_{i=0}^{n} F_{net,i}\Delta x_i = \Delta T.$$</p>
@@ -7644,7 +7662,7 @@ where $\Delta E_{\text{object}}$ is the change in energy of the object and $W_{\
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Work-done-in-more-than-one-dimension">Work done in more than one dimension<a class="anchor-link" href="#Work-done-in-more-than-one-dimension">¶</a></h3><p>Consider a path $C$ that we have discretized into $n$ intervals. The object starts at $\vec{r}_0$ and ends at $\vec{r}_n$. Each interval is $\Delta \vec{r}_i$ and the net force is $\vec{F}_{net,i}$. The figure below shows the work done by the net force in each interval.</p>
-<p><img alt="Work done by a net force" src="../images/notes/week5/path-integral-work.png"/></p>
+<p><img alt="Work done by a net force" src="images/.._.._path-integral-work.png"/></p>
 <p>The work done by the net force is:</p>
 <p>$$W_{\text{net}} = \sum_{i=0}^{n} \vec{F}_{net,i}\cdot\Delta \vec{r}_i.$$</p>
 <p>as $\Delta \vec{r}_i \rightarrow 0$ and $n \rightarrow \infty$, we have a continuous function of the net force. We can write that as:</p>
@@ -7695,7 +7713,7 @@ where $\Delta E_{\text{object}}$ is the change in energy of the object and $W_{\
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Example:-A-Lattice-Chain">Example: A Lattice Chain<a class="anchor-link" href="#Example:-A-Lattice-Chain">¶</a></h2><p>A less obivous example that produces a potential energy function is a <a href="https://en.wikipedia.org/wiki/Lattice_chain">lattice chain</a>. Here we model an electron moving in 1D near but not too near a long chain of atoms. The picture below shows the model.</p>
-<p><img alt="Lattice chain model" src="../images/notes/week5/lattice-chain.png"/></p>
+<p><img alt="Lattice chain model" src="images/.._.._lattice-chain.png"/></p>
 <p>Here the location of the particle and it's initial velocty are zero. The force model for a chain of atoms in this arrangement is:</p>
 <p>$$F(x) = -F_0 \sin \left(\dfrac{2\pi x}{b}\right)$$</p>
 <p>where $b$ is the spacing between the atoms and $F_0$ is a constant.</p>
@@ -7738,7 +7756,7 @@ where $C$ is a constant. We can choose $C$ so that $U(0) = 0$; only the differen
 <p>$$\oint_C \vec{F}\cdot d\vec{r} = 0.$$</p>
 <p>This is true for any closed path $C$. This is the second statement above.</p>
 <p>We can equivalent write the integral of the force around a closed path as the work around a different path. The figure below shows these paths $C_1$ and $C_2$ that make up the first loop, and the paths $C_3$ and $C_4$ that make up the second loop. The work done by the force along each path is shown in the figure.</p>
-<p><img alt="Work done by a net force" src="../images/notes/week5/closed-path-work.png"/></p>
+<p><img alt="Work done by a net force" src="images/.._.._closed-path-work.png"/></p>
 <p>We can take the integral of both paths and write:</p>
 <p>$$\oint_C \vec{F}\cdot d\vec{r} = \int_{C_1} \vec{F}\cdot d\vec{r} + \int_{C_2} \vec{F}\cdot d\vec{r} = \int_{C_3} \vec{F}\cdot d\vec{r} + \int_{C_4} \vec{F}\cdot d\vec{r} = 0.$$</p>
 <p>Because both paths are closed and start and return to the same point, we can know that each contribution on each part of the path is equal and opposite. Thus, we can write:</p>
@@ -7792,5 +7810,9 @@ $$\nabla \times \vec{F} = \begin{vmatrix}\hat{i} &amp; \hat{j} &amp; \hat{k} \\ 
 </div>
 </div>
 </main>
+</body>
+</html>
+
+  </div>
 </body>
 </html>
