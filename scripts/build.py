@@ -59,9 +59,37 @@ def main():
     build_pdf = args.pdf or not args.html
     build_html = args.html or not args.pdf
 
-    # Always update _toc.yml
-    print(f"[INFO] Syncing _toc.yml from {notebooks_yaml}...")
-    run([str(update_toc)])
+    # Always generate _toc.yml from notebooks.yaml using Python (robust, no timestamp logic)
+    toc_yml = repo_root / '_toc.yml'
+    print(f"[INFO] Generating _toc.yml from {notebooks_yaml} using Python...")
+    if not notebooks_yaml.exists():
+        print(f"[ERROR] {notebooks_yaml} not found.", file=sys.stderr)
+        sys.exit(1)
+    notebooks = parse_yaml_list(notebooks_yaml)
+    toc_content = [
+        "# Auto-generated _toc.yml from notebooks.yaml",
+        "format: jb-book",
+        "root: intro",
+        "chapters:",
+    ]
+    for nb in notebooks:
+        nb_path = Path(nb)
+        toc_content.append(f"  - file: notebooks/{nb_path.stem}")
+    # If intro.md does not exist, use the first notebook as root and the rest as chapters
+    intro_md = repo_root / 'intro.md'
+    if not intro_md.exists() and notebooks:
+        toc_content = [
+            "# Auto-generated _toc.yml from notebooks.yaml",
+            "format: jb-book",
+            f"root: notebooks/{Path(notebooks[0]).stem}",
+            "chapters:",
+        ]
+        for nb in notebooks[1:]:
+            nb_path = Path(nb)
+            toc_content.append(f"  - file: notebooks/{nb_path.stem}")
+    with open(toc_yml, 'w') as f:
+        f.write('\n'.join(toc_content) + '\n')
+    print(f"[INFO] _toc.yml generated with {len(notebooks)} chapters.")
 
     # Always fetch remote images and update references
     print(f"[INFO] Fetching remote images and updating references...")
@@ -87,59 +115,35 @@ def main():
                 run(['jupyter', 'nbconvert', '--to', 'pdf', str(nb_path), '--output', pdf_path.name, '--output-dir', str(chapters_dir)])
             else:
                 print(f"[SKIP] {pdf_path} is up to date.")
-        # Build full book PDF
-        config_yml = repo_root / '_config.yml'
-        toc_yml = repo_root / '_toc.yml'
-        if config_yml.exists() and toc_yml.exists():
-            print(f"[INFO] Building full book PDF with Jupyter Book...")
-            # Use repo_root as path-output to avoid nested _build/_build
-            run(['jupyter-book', 'build', str(repo_root), '--path-output', str(repo_root), '--builder', 'pdflatex'])
-            # Find the generated book PDF (named after the project directory)
-            project_pdf = chapters_dir / (repo_root.name + '.pdf')
-            final_pdf = chapters_dir / 'book.pdf'
-            book_pdf_found = False
-            if project_pdf.exists():
-                print(f"[INFO] Full book PDF found at {project_pdf}")
-                # Optionally copy/rename to book.pdf for consistency
+        # Clean up _build: remove all files/folders except chapter PDFs in latex, and keep html, md, docx folders
+        keep_files = {Path(nb).stem + '.pdf' for nb in notebooks}
+        for f in chapters_dir.iterdir():
+            if f.is_file() and f.name not in keep_files:
                 try:
-                    shutil.copy(project_pdf, final_pdf)
-                    print(f"[INFO] Copied {project_pdf} to {final_pdf}")
-                    book_pdf_found = True
+                    f.unlink()
+                    print(f"[INFO] Removed {f}")
                 except Exception as e:
-                    print(f"[WARN] Could not copy {project_pdf} to {final_pdf}: {e}")
-            else:
-                # Fallback: look for any PDF in chapters_dir not matching chapter PDFs
-                pdf_candidates = list(chapters_dir.glob('*.pdf'))
-                chapter_pdfs = {Path(nb).stem + '.pdf' for nb in notebooks}
-                book_pdfs = [p for p in pdf_candidates if p.name not in chapter_pdfs]
-                if book_pdfs:
-                    print(f"[INFO] Full book PDF found at {book_pdfs[0]}")
-                    try:
-                        shutil.copy(book_pdfs[0], final_pdf)
-                        print(f"[INFO] Copied {book_pdfs[0]} to {final_pdf}")
-                        book_pdf_found = True
-                    except Exception as e:
-                        print(f"[WARN] Could not copy {book_pdfs[0]} to {final_pdf}: {e}")
-                else:
-                    print(f"[WARN] Full book PDF was not generated in {chapters_dir}")
-
-            # Remove all files and _sphinx_design_static folder in chapters_dir except chapter PDFs and book.pdf
-            keep_files = {final_pdf.name} | {Path(nb).stem + '.pdf' for nb in notebooks}
-            for f in chapters_dir.iterdir():
-                if f.is_file() and f.name not in keep_files:
-                    try:
-                        f.unlink()
-                        print(f"[INFO] Removed {f}")
-                    except Exception as e:
-                        print(f"[WARN] Could not remove {f}: {e}")
-                elif f.is_dir() and f.name.startswith('_sphinx'):
-                    try:
-                        shutil.rmtree(f)
-                        print(f"[INFO] Removed directory {f}")
-                    except Exception as e:
-                        print(f"[WARN] Could not remove directory {f}: {e}")
-        else:
-            print(f"[WARN] _config.yml and/or _toc.yml not found. Skipping full book PDF build.")
+                    print(f"[WARN] Could not remove {f}: {e}")
+            elif f.is_dir() and f.name not in {'html', 'md', 'docx'}:
+                try:
+                    shutil.rmtree(f)
+                    print(f"[INFO] Removed directory {f}")
+                except Exception as e:
+                    print(f"[WARN] Could not remove directory {f}: {e}")
+        # Remove all folders in _build except latex, html, md, docx
+        for f in build_dir.iterdir():
+            if f.is_dir() and f.name not in {'latex', 'html', 'md', 'docx'}:
+                try:
+                    shutil.rmtree(f)
+                    print(f"[INFO] Removed directory {f}")
+                except Exception as e:
+                    print(f"[WARN] Could not remove directory {f}: {e}")
+            elif f.is_file():
+                try:
+                    f.unlink()
+                    print(f"[INFO] Removed {f}")
+                except Exception as e:
+                    print(f"[WARN] Could not remove {f}: {e}")
 
     # Build HTML
     if build_html:
