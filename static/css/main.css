@@ -64,26 +64,29 @@ body.dark .markdown-body * {
 
 /* Modern Classical Mechanics - robust light/dark mode CSS */
 
+
+/* Unified background color for all backgrounds in both modes */
 :root {
-  --color-bg: #f9f9fb;
+  --color-bg: #f9f9fb;         /* Light background */
   --color-fg: #181a1b;
-  --color-card: #fff;
+  --color-card: #f3f7fa;       /* Unified light card/menu/container background */
   --color-border: #e0e0e0;
   --color-link: #0057b8;
   --color-link-hover: #003d7a;
 }
 body.dark {
-  --color-bg: #181a1b;
+  --color-bg: #181a1b;         /* Dark background */
   --color-fg: #f9f9fb;
-  --color-card: #23272e;
+  --color-card: #23272e;       /* Unified dark card/menu/container background */
   --color-border: #333;
   --color-link: #7abaff;
   --color-link-hover: #fff;
 }
 
 
+
 html, body, .markdown-body {
-  background: var(--color-bg) !important;
+  background: var(--color-card) !important;
   color: var(--color-fg) !important;
   font-family: system-ui, sans-serif;
   margin: 0 !important;
@@ -93,10 +96,10 @@ html, body, .markdown-body {
 
 /* Header and Title */
 .site-header {
-  background: none;
+  background: var(--color-card);
   margin: 0;
   padding: 0.7em 0 0.7em 0;
-  border-bottom: 1px solid var(--color-bg); /* Hide line by matching bg */
+  border-bottom: 1px solid var(--color-card); /* Hide line by matching bg */
 }
 .site-title {
   text-align: center;
@@ -111,14 +114,14 @@ html, body, .markdown-body {
 .layout-main {
   display: flex;
   min-height: 80vh;
-  background: var(--color-bg);
+  background: var(--color-card);
 }
 
 .side-nav {
   width: 260px;
   min-width: 200px;
   background: var(--color-card);
-  border-right: 1px solid var(--color-bg); /* Hide line by matching bg */
+  border-right: 1px solid var(--color-card); /* Hide line by matching bg */
   padding: 0;
   position: relative;
   z-index: 100;
@@ -134,7 +137,7 @@ html, body, .markdown-body {
     width: 100%;
     min-width: 0;
     border-right: none;
-    border-bottom: 1px solid var(--color-bg); /* Hide line by matching bg */
+    border-bottom: 1px solid var(--color-card); /* Hide line by matching bg */
     box-shadow: none;
     position: static;
   }
@@ -147,7 +150,7 @@ html, body, .markdown-body {
   display: flex;
   flex-direction: column;
   gap: 0.2em;
-  background: none;
+  background: var(--color-card);
   font-size: 1.08em;
   transition: max-height 0.3s;
 }
@@ -309,12 +312,12 @@ footer {
   font-size: 0.9em;
   color: var(--color-border);
   background: var(--color-card) !important;
-  border-top: 1px solid var(--color-bg); /* Hide line by matching bg */
+  border-top: 1px solid var(--color-card); /* Hide line by matching bg */
 }
 body.dark footer {
   color: var(--color-fg);
   background: var(--color-card) !important;
-  border-top: 1px solid var(--color-bg); /* Hide line by matching bg */
+  border-top: 1px solid var(--color-card); /* Hide line by matching bg */
 }
 
 main {
