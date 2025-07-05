@@ -294,10 +294,16 @@ def main():
     intro_md = repo_root / 'intro.md'
     index_html_path = build_dir / 'index.html'
     if intro_md.exists():
+        # Use Python markdown library for proper HTML conversion
+        try:
+            import markdown
+        except ImportError:
+            import sys
+            print("[ERROR] The 'markdown' package is required. Install it with 'pip install markdown'.")
+            sys.exit(1)
         with open(intro_md, 'r', encoding='utf-8') as f:
             intro_content = f.read()
-        # Simple Markdown to HTML conversion (very basic for test)
-        body = '<div class="markdown-body">' + re.sub(r'\n', '<br>', intro_content) + '</div>'
+        body = '<div class="markdown-body">' + markdown.markdown(intro_content, extensions=['extra', 'toc', 'admonition']) + '</div>'
         title = "Modern Classical Mechanics"
         html_template = f'''<!DOCTYPE html>
 <html lang="en" class="dark">
