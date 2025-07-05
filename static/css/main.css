@@ -91,19 +91,21 @@ html, body, .markdown-body {
 }
 
 
+/* Header and Title */
 .site-header {
   background: none;
   margin: 0;
-  padding: 0.5em 0 0.5em 0;
-  border-bottom: 1px solid var(--color-border);
+  padding: 0.7em 0 0.7em 0;
+  border-bottom: 1px solid var(--color-bg); /* Hide line by matching bg */
 }
 .site-title {
   text-align: center;
   margin: 0;
-  font-size: 2.2em;
-  font-weight: 700;
+  font-size: 3.2em;
+  font-weight: 800;
   color: var(--color-link);
   letter-spacing: 0.01em;
+  line-height: 1.1;
 }
 /* --- Modern, accessible, responsive sidebar navigation --- */
 .layout-main {
@@ -116,7 +118,7 @@ html, body, .markdown-body {
   width: 260px;
   min-width: 200px;
   background: var(--color-card);
-  border-right: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-bg); /* Hide line by matching bg */
   padding: 0;
   position: relative;
   z-index: 100;
@@ -132,7 +134,7 @@ html, body, .markdown-body {
     width: 100%;
     min-width: 0;
     border-right: none;
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-bg); /* Hide line by matching bg */
     box-shadow: none;
     position: static;
   }
@@ -175,7 +177,7 @@ html, body, .markdown-body {
   list-style: none;
   margin: 0 0 0 0.5em;
   padding: 0 0 0 1em;
-  border-left: 2px solid var(--color-border);
+  border-left: 2px solid var(--color-bg); /* Hide line by matching bg */
 }
 .side-menu .menu-level-1 {
   font-size: 0.98em;
@@ -190,7 +192,7 @@ html, body, .markdown-body {
     top: 0;
     min-width: 200px;
     background: var(--color-card);
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--color-bg); /* Hide line by matching bg */
     border-radius: 8px;
     box-shadow: 2px 4px 16px rgba(0,0,0,0.08);
     z-index: 200;
@@ -288,7 +290,7 @@ nav {
   color: var(--color-fg) !important;
   padding: 1rem;
   text-align: center;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-bg); /* Hide line by matching bg */
 }
 nav a {
   color: var(--color-link);
@@ -307,12 +309,12 @@ footer {
   font-size: 0.9em;
   color: var(--color-border);
   background: var(--color-card) !important;
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-bg); /* Hide line by matching bg */
 }
 body.dark footer {
   color: var(--color-fg);
   background: var(--color-card) !important;
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--color-bg); /* Hide line by matching bg */
 }
 
 main {
