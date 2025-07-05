@@ -257,13 +257,24 @@ def main():
     css_path = repo_root / 'static' / 'css' / 'main.css'
     css_rel = 'css/main.css'
 
-        # --- Load menu structure from _menu.yml ---
-    menu_json = repo_root / '_menu.json'
-    if menu_json.exists():
-        with open(menu_json, 'r', encoding='utf-8') as f:
-            menu_data = json.load(f)["menu"]
-    else:
-        menu_data = None
+    # --- Load menu structure from _menu.yml using basic_yaml2json.py ---
+    menu_yml = repo_root / '_menu.yml'
+    menu_data = None
+    if menu_yml.exists():
+        import subprocess
+        try:
+            result = subprocess.run([
+                'python3', str(repo_root / 'basic_yaml2json.py'), str(menu_yml)
+            ], capture_output=True, check=True)
+            menu_json = result.stdout.decode('utf-8')
+            menu_obj = json.loads(menu_json)
+            if isinstance(menu_obj, dict) and 'menu' in menu_obj:
+                menu_data = menu_obj['menu']
+            else:
+                menu_data = menu_obj
+        except Exception as e:
+            print(f'[ERROR] Could not convert _menu.yml to JSON using basic_yaml2json.py: {e}')
+            menu_data = None
 
     def build_menu_html(menu_items, level=0):
         html = ''

@@ -3,11 +3,55 @@ menu:
     path: index.html
   - title: Chapters
     children:
+      - title: Week 1: Start
+        path: 01_start.html
       - title: Week 1: Introduction
         path: 01_notes.html
+      - title: Week 2: Start
+        path: 02_start.html
       - title: Week 2: Newton's Laws
         path: 02_notes.html
-  - title: Resources
-    path: resources.html
-  - title: About
-    path: about.html
+      - title: Week 3: Start
+        path: 03_start.html
+      - title: Week 3: Topic
+        path: 03_notes.html
+      - title: Week 4: Start
+        path: 04_start.html
+      - title: Week 4: Topic
+        path: 04_notes.html
+      - title: Week 5: Start
+        path: 05_start.html
+      - title: Week 5: Topic
+        path: 05_notes.html
+      - title: Week 6: Start
+        path: 06_start.html
+      - title: Week 6: Topic
+        path: 06_notes.html
+      - title: Week 7: Start
+        path: 07_start.html
+      - title: Week 7: Topic
+        path: 07_notes.html
+      - title: Week 8: Start
+        path: 08_start.html
+      - title: Week 8: Topic
+        path: 08_notes.html
+      - title: Week 9: Start
+        path: 09_start.html
+      - title: Week 9: Topic
+        path: 09_notes.html
+      - title: Week 10: Start
+        path: 10_start.html
+      - title: Week 10: Topic
+        path: 10_notes.html
+      - title: Week 11: Start
+        path: 11_start.html
+      - title: Week 11: Topic
+        path: 11_notes.html
+      - title: Week 12: Start
+        path: 12_start.html
+      - title: Week 12: Topic
+        path: 12_notes.html
+      - title: Week 13: Start
+        path: 13_start.html
+      - title: Week 13: Topic
+        path: 13_notes.html
