@@ -89,6 +89,61 @@ def main():
         for cell in nb_data.cells:
             if cell.cell_type != 'markdown':
                 continue
+            # --- Admonition conversion ---
+            def convert_admonitions(md):
+                # Handle MyST/Markdown admonitions: ::: type, !!! type, {admonition} ...
+                # 1. ::: type [title]\n...\n:::
+                def block_admonition(match):
+                    ad_type = match.group(1).strip().lower()
+                    title = match.group(2) or ad_type.title()
+                    content = match.group(3)
+                    return f'<div class="admonition {ad_type}"><div class="admonition-title">{title}</div>\n{content}\n</div>'
+                # ::: type [title]\n...\n:::
+                md = re.sub(r"^::: *([a-zA-Z0-9_-]+)(?: *(.*))?\n([\s\S]+?)^:::$", block_admonition, md, flags=re.MULTILINE)
+
+                # 2. !!! type [title]\n    ...
+                def bang_admonition(match):
+                    ad_type = match.group(1).strip().lower()
+                    title = match.group(2) or ad_type.title()
+                    content = match.group(3)
+                    # Remove leading indentation from content
+                    content = re.sub(r'^    ', '', content, flags=re.MULTILINE)
+                    return f'<div class="admonition {ad_type}"><div class="admonition-title">{title}</div>\n{content}\n</div>'
+                # Fixed regex: optional title is unquoted, match up to newline
+                md = re.sub(r'^!!! *([a-zA-Z0-9_-]+)(?: +([^\n]+))?\n((?:[ ]{4}.+\n?)+)', bang_admonition, md, flags=re.MULTILINE)
+
+                # 3. {admonition} [type] [title]\n...\n{/admonition}
+                def curly_admonition(match):
+                    ad_type = match.group(1).strip().lower()
+                    title = match.group(2) or ad_type.title()
+                    content = match.group(3)
+                    return f'<div class="admonition {ad_type}"><div class="admonition-title">{title}</div>\n{content}\n</div>'
+                md = re.sub(r"\{admonition\} *([a-zA-Z0-9_-]+)(?: +([^\n]+))?\n([\s\S]+?)\n\{/admonition\}", curly_admonition, md, flags=re.MULTILINE)
+
+                # 4. Single-line curly-brace block: {admonition}, {tip}, {note}, etc.
+                def singleline_admonition(match):
+                    ad_type = match.group(1).strip().lower()
+                    return f'<div class="admonition {ad_type}"><div class="admonition-title">{ad_type.title()}</div>'
+                # Replace opening {admonition}, {tip}, {note}, etc. with HTML open
+                md = re.sub(r'\{(admonition|tip|note|warning|caution|important)\}', singleline_admonition, md)
+                # Replace closing {/admonition}, {/tip}, etc. with HTML close
+                md = re.sub(r'\{/([a-zA-Z0-9_-]+)\}', '</div>', md)
+
+                # 0. Code-fence style admonitions: ```{admonition} Check\n...\n```
+                def codefence_admonition(match):
+                    ad_type = match.group(1).strip().lower()
+                    title = match.group(2) or ad_type.title()
+                    content = match.group(3)
+                    # Remove leading/trailing blank lines
+                    content = content.strip('\n')
+                    return f'<div class="admonition {ad_type}"><div class="admonition-title">{title}</div>\n{content}\n</div>'
+                # Handles ```{admonition} type [title]\n...\n```
+                md = re.sub(r'```\{([a-zA-Z0-9_-]+)\}(?: +([^\n]+))?\n([\s\S]+?)\n```', codefence_admonition, md)
+
+                return md
+
+            # Convert admonitions before image handling
+            cell.source = convert_admonitions(cell.source)
             def update_img_link(match):
                 alt_text = match.group(1)
                 img_path = match.group(2).strip()
@@ -258,11 +313,54 @@ def main():
     build_css_dir.mkdir(parents=True, exist_ok=True)
     shutil.copy2(css_path, build_css_dir / 'book.css')
 
+    # --- Admonition conversion utility ---
+    def convert_admonitions(html):
+        # Convert MyST/Markdown/nbconvert admonitions to HTML blocks
+        # Handles: ::: type, !!! type, {admonition} type, code-fence style, and legacy blockquotes
+        def repl_myst(match):
+            typ = match.group(1).lower()
+            title = match.group(2) or typ.title()
+            content = match.group(3)
+            return f'<div class="admonition {typ}"><div class="admonition-title">{title}</div>\n{content}\n</div>'
+        # ::: type [optional title]\n...content...\n:::
+        html = re.sub(r'<p>:::\s*(\w+)(?:\s+([^\n<]+))?</p>\s*([\s\S]*?)<p>:::</p>', repl_myst, html, flags=re.IGNORECASE)
+        # !!! type [optional title]\n...content...\n!!!
+        html = re.sub(r'<p>!!!\s*(\w+)(?:\s+([^\n<]+))?</p>\s*([\s\S]*?)<p>!!!</p>', repl_myst, html, flags=re.IGNORECASE)
+        # {admonition} type [optional title]\n...content...\n{/admonition}
+        html = re.sub(r'<p>\{admonition\}\s*(\w+)(?:\s+([^\n<]+))?</p>\s*([\s\S]*?)<p>\{/admonition\}</p>', repl_myst, html, flags=re.IGNORECASE)
+
+        # Code-fence style: <pre><code class="language-{admonition}">{admonition}\n...\n</code></pre>
+        def repl_codefence(match):
+            code = match.group(1)
+            # Try to match {type} [optional title]\ncontent
+            m = re.match(r'\{([a-zA-Z0-9_-]+)\}(.*?)(?:\n|$)([\s\S]*)', code)
+            if m:
+                typ = m.group(1).strip().lower()
+                title = m.group(2).strip() or typ.title()
+                content = m.group(3)
+                # Remove trailing closing fence if present
+                content = re.sub(r'\n*```$', '', content.strip())
+                return f'<div class="admonition {typ}"><div class="admonition-title">{title}</div>\n{content}\n</div>'
+            else:
+                return match.group(0)
+        # Match <pre><code class="language-{admonition}">{admonition}\n...\n</code></pre>
+        html = re.sub(r'<pre><code(?: class="[^"]*language-\{[a-zA-Z0-9_-]+\}")?>([\s\S]*?)</code></pre>', repl_codefence, html, flags=re.IGNORECASE)
+
+        # Legacy blockquote with Note/Warning etc. (e.g. <blockquote>\n<p><strong>Note:</strong> ...)
+        def repl_blockquote(m):
+            typ = m.group(1).lower()
+            content = m.group(2)
+            return f'<div class="admonition {typ}"><div class="admonition-title">{typ.title()}</div>\n{content}\n</div>'
+        html = re.sub(r'<blockquote>\s*<p><strong>(Note|Warning|Tip|Caution|Important):</strong>([\s\S]*?)</p>\s*</blockquote>', repl_blockquote, html, flags=re.IGNORECASE)
+        return html
+
     for nb in notebooks_dir.glob('*.ipynb'):
         html_name = nb.with_suffix('.html').name
         html_path = build_dir / html_name
         exporter = HTMLExporter()
         (body, resources) = exporter.from_filename(str(nb))
+        # Convert admonitions in HTML body
+        body = convert_admonitions(body)
         title = nb.stem.replace('_', ' ').title()
         html = html_template.replace('{{title}}', title).replace('{{body}}', body)
         with open(html_path, 'w', encoding='utf-8') as f:
