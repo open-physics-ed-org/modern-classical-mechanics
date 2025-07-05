@@ -1,10 +1,14 @@
 # Jupyter Book Configuration
 # Minimal config for testing build
 
+
 # Book settings
 title: Modern Classical Mechanics
 author: Danny Caballero
 logo: images/logo.png
+
+# Custom footer (optional)
+footer: "&copy; Modern Classical Mechanics. All rights reserved. | Built with ❤️ by the MSU Physics team."
 
 # Launch buttons (optional)
 launch_buttons:
