@@ -17,7 +17,14 @@
 
 ## 🌐 About & Webpage
 
-**Modern Classical Mechanics** is an open-source, interactive, and reproducible book for PHY 321: Classical Mechanics 1 at Michigan State University, authored by Marcos D. Caballero.
+
+**Modern Classical Mechanics** is an open-source, interactive, and accessible static website and resource set for PHY 321: Classical Mechanics 1 at Michigan State University, authored by Marcos D. Caballero.
+
+This project is not just a collection of Jupyter notebooks—it builds a fully static, accessible set of web pages from notebooks, with robust support for dark/light mode, accessible admonitions, and MathJax/LaTeX rendering. The site is designed for clarity, accessibility, and future extensibility.
+
+**Upcoming:** File downloads for each chapter/page will be available in PDF, Markdown, DOCX, Jupyter Notebook (.ipynb), and LaTeX formats directly from the site.
+
+**Note:** The current HTML pages do not yet have fully functional navigation menus—this is planned for a future update.
 
 - **Webpage:** [View the Book Online](https://dannycaballero.info/modern-classical-mechanics/)
 - **GitHub Repo:** [github.com/dannycab/modern-classical-mechanics](https://github.com/dannycab/modern-classical-mechanics)
@@ -62,19 +69,24 @@ modern-classical-mechanics/
 
 ---
 
+
 ## 🚀 Features
 
-- **Notebook to HTML conversion** using `nbconvert` with custom template and CSS.
-- **Admonition support:** Converts MyST/Markdown/nbconvert admonitions (e.g., `::: tip`, `!!! warning`, `{admonition} note`, and code-fence style) to HTML blocks.
-- **Image handling:** Copies and renames images referenced in notebooks, including YouTube thumbnails (auto-fetched if referenced).
+- **Static, accessible HTML site** built from Jupyter notebooks, with robust dark/light mode and accessible color theming.
+- **Admonition support:** Converts all common admonition syntaxes (MyST, Markdown, code-fence, curly-brace, etc.) to accessible, visually distinct HTML blocks with LaTeX/MathJax support.
+- **Image and YouTube handling:** Copies and renames all images, auto-fetches YouTube thumbnails, and ensures all references are correct in the static site.
 - **Multiple output formats:**
   - HTML (website, in `docs/`)
   - PDF (`_build/pdf/`)
   - DOCX (`_build/docx/`)
   - LaTeX (`_build/latex/`)
   - Markdown (`_build/md/`)
+  - Jupyter Notebook (.ipynb) (planned for direct download)
 - **Automatic copying** of all outputs and assets to the `docs/` directory for GitHub Pages hosting.
+- **Accessible design:** All HTML output is designed for screen readers and keyboard navigation.
 - **Dark mode toggle** in the HTML output.
+- **Planned:** Download links for each chapter/page in all supported formats (PDF, Markdown, DOCX, LaTeX, ipynb).
+- **Planned:** Improved navigation menus and site-wide navigation.
 
 ---
 
