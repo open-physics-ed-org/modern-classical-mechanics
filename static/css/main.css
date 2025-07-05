@@ -1,3 +1,21 @@
+
+/* Minimal: Remove left gutter from notebook/nbconvert containers only */
+.markdown-body .container,
+.markdown-body .container-lg,
+.markdown-body [style*="padding-left"],
+.markdown-body [style*="margin-left"] {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+/* Fix dark mode for notebook/nbconvert content only */
+body.dark .markdown-body,
+body.dark .markdown-body * {
+  color: var(--color-fg) !important;
+  background: var(--color-bg) !important;
+  border-color: var(--color-border) !important;
+}
+
 /* Modern Classical Mechanics - robust light/dark mode CSS */
 
 :root {
@@ -17,13 +35,16 @@ body.dark {
   --color-link-hover: #fff;
 }
 
-html, body {
+
+html, body, .markdown-body {
   background: var(--color-bg) !important;
   color: var(--color-fg) !important;
   font-family: system-ui, sans-serif;
-  margin: 0;
-  padding: 0;
+  margin: 0 !important;
+  padding: 0 !important;
 }
+
+/* ...existing code... */
 
 nav {
   background: var(--color-card) !important;
