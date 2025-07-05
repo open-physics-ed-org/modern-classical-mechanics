@@ -176,10 +176,10 @@ def main():
             if not md_path.exists():
                 print(f"[WARN] Markdown not found: {md_path}")
                 continue
-            print(f"Converting {md_path} to {docx_path} using pandoc")
+            print(f"Converting {md_path} to {docx_path} using pandoc with resource-path {md_dir}:{images_dir}")
             run([
-                'pandoc', str(md_path), '-o', str(docx_path), '--resource-path', str(images_dir)
-            ])
+                'pandoc', str(md_path), '-o', str(docx_path), '--resource-path', f"{md_dir}:{images_dir}"
+            ], cwd=md_dir)
         print(f"[INFO] All markdown files converted to DOCX using pandoc and saved in {docx_dir}")
 
     # Always generate _toc.yml from notebooks.yaml using Python (robust, no timestamp logic)
