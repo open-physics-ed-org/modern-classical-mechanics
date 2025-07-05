@@ -343,8 +343,9 @@ def main():
                     footer_html = config['footer']
         if not footer_html:
             footer_html = f"&copy; {book_title}. All rights reserved."
+        # Center the title and remove extra white header
         return f"""<!DOCTYPE html>
-    <html lang=\"en\">\n    <head>\n      <meta charset=\"UTF-8\">\n      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n      <title>{book_title}</title>\n      <link href=\"css/main.css\" rel=\"stylesheet\">\n      <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>\n    </head>\n    <body class=\"dark\">\n      <header class=\"site-header\">\n        <h1>{book_title}</h1>\n      </header>\n      <div class=\"layout-main\">\n        <aside class=\"side-nav\">\n          {nav_html}\n        </aside>\n        <div class=\"container\">\n          <main id=\"main-content\">\n            {body}\n          </main>\n        </div>\n      </div>\n      <footer>\n        <p>{footer_html}</p>\n      </footer>\n    </body>\n    </html>"""
+    <html lang=\"en\">\n    <head>\n      <meta charset=\"UTF-8\">\n      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n      <title>{book_title}</title>\n      <link href=\"css/main.css\" rel=\"stylesheet\">\n      <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>\n    </head>\n    <body class=\"dark\">\n      <header class=\"site-header\">\n        <h1 class=\"site-title\">{book_title}</h1>\n      </header>\n      <div class=\"layout-main\">\n        <aside class=\"side-nav\">\n          {nav_html}\n        </aside>\n        <div class=\"container\">\n          <main id=\"main-content\">\n            {body}\n          </main>\n        </div>\n      </div>\n      <footer>\n        <p>{footer_html}</p>\n      </footer>\n    </body>\n    </html>"""
 
     # --- Process intro.md as index.html ---
     intro_md = repo_root / 'intro.md'
