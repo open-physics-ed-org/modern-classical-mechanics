@@ -281,9 +281,9 @@ def main():
         html = ''
         if not menu_items:
             return html
-        # Use horizontal-menu for top-level menu
+        # Use side-menu for top-level menu
         if level == 0:
-            html += f'<ul class="horizontal-menu">'
+            html += f'<ul class="side-menu">'
         else:
             html += f'<ul class="menu-level-{level}">'  # Add class for styling
         for item in menu_items:
@@ -303,31 +303,53 @@ def main():
 
     def get_nav_html():
         nav_html = ''
+        # Hamburger button for mobile (for side menu)
+        nav_html += '<button class="menu-toggle" aria-label="Toggle menu" onclick="document.querySelector(\'.side-menu\').classList.toggle(\'open\')">☰</button>'
         if menu_data:
-            nav_html = build_menu_html(menu_data)
+            nav_html += build_menu_html(menu_data)
         else:
-            nav_html = '''<ul class="horizontal-menu">
+            nav_html += '''<ul class="side-menu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="01_notes.html">Chapters</a></li>
                 <li><a href="resources.html">Resources</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>'''
         nav_html += '<button class="toggle-dark" aria-label="Toggle dark/light mode" onclick="document.body.classList.toggle(\'dark\')">🌗</button>'
+        # Add a small script for closing menu on click (mobile UX)
+        nav_html += '''<script>document.addEventListener('DOMContentLoaded',function(){
+  var menu=document.querySelector('.side-menu');
+  if(menu){
+    menu.querySelectorAll('a').forEach(function(link){
+      link.addEventListener('click',function(){
+        if(window.innerWidth<=900){menu.classList.remove('open');}
+      });
+    });
+  }
+});</script>'''
         return f'<nav>{nav_html}</nav>'
 
     def get_html_template(title, body):
         nav_html = get_nav_html()
+        # Read the book title from _config.yml
+        import yaml
+        config_path = Path(__file__).parent / '_config.yml'
+        book_title = title
+        if config_path.exists():
+            with open(config_path, 'r') as f:
+                config = yaml.safe_load(f)
+                if 'title' in config:
+                    book_title = config['title']
         return f"""<!DOCTYPE html>
     <html lang=\"en\">
     <head>
       <meta charset=\"UTF-8\">
       <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-      <title>{title}</title>
+      <title>{book_title}</title>
       <link href=\"css/custom-menu.css\" rel=\"stylesheet\">
       <link href=\"css/main.css\" rel=\"stylesheet\">
       <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>
     </head>
-    <body class=\"dark\">\n      {nav_html}\n      <div class=\"container\">\n        <main id=\"main-content\">\n          {body}\n        </main>\n      </div>\n      <footer>\n        <p>&copy; Modern Classical Mechanics. All rights reserved.</p>\n      </footer>\n    </body>\n    </html>"""
+    <body class=\"dark\">\n      <header class=\"site-header\">\n        <h1>{book_title}</h1>\n      </header>\n      <div class=\"layout-main\">\n        <aside class=\"side-nav\">\n          {nav_html}\n        </aside>\n        <div class=\"container\">\n          <main id=\"main-content\">\n            {body}\n          </main>\n        </div>\n      </div>\n      <footer>\n        <p>&copy; {book_title}. All rights reserved.</p>\n      </footer>\n    </body>\n    </html>"""
 
     # --- Process intro.md as index.html ---
     intro_md = repo_root / 'intro.md'
