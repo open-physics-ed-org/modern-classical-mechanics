@@ -17,3 +17,13 @@ Modern Classical Mechanics is designed for students, educators, and anyone curio
 - Clear explanations and worked examples
 - Local images and reproducible builds
 - Multiple output formats (web, PDF, DOCX)
+
+---
+
+## How This Site Works
+
+This is not just a collection of Jupyter notebooks—it's a fully static, accessible website built from notebooks, with robust support for dark/light mode, accessible color theming, and MathJax/LaTeX rendering. All admonitions (notes, tips, warnings, etc.) are rendered as accessible, visually distinct boxes.
+
+**Planned:** Soon, you will be able to download each chapter/page as PDF, Markdown, DOCX, Jupyter Notebook (.ipynb), and LaTeX directly from the site.
+
+**Note:** The navigation menus are not yet fully functional, but improved navigation and download options are coming soon!
