@@ -9,35 +9,65 @@ import json
 
 def parse_menu_yaml(filename):
     menu = []
-    with open(filename, 'r', encoding='utf-8') as f:
-        lines = [line.rstrip() for line in f if line.strip() and not line.strip().startswith('#')]
-    i = 0
-    while i < len(lines):
-        line = lines[i]
-        if line.strip().startswith('- title:'):
-            title = line.split(':', 1)[1].strip()
-            i += 1
-            # Look ahead for path or children
-            if i < len(lines) and 'path:' in lines[i]:
-                path = lines[i].split(':', 1)[1].strip()
-                menu.append({'title': title, 'path': path})
-                i += 1
-            elif i < len(lines) and 'children:' in lines[i]:
-                i += 1
-                children = []
-                while i < len(lines) and lines[i].strip().startswith('- title:'):
-                    child_title = lines[i].split(':', 1)[1].strip()
-                    i += 1
-                    if i < len(lines) and 'path:' in lines[i]:
-                        child_path = lines[i].split(':', 1)[1].strip()
-                        children.append({'title': child_title, 'path': child_path})
-                        i += 1
-                menu.append({'title': title, 'children': children})
+    def parse_items(lines, start_idx, parent_indent):
+        items = []
+        idx = start_idx
+        while idx < len(lines):
+            line = lines[idx]
+            if not line.strip():
+                idx += 1
+                continue
+            indent = len(line) - len(line.lstrip(' '))
+            stripped = line.strip()
+            if indent <= parent_indent:
+                break
+            if stripped.startswith('- title:'):
+                title = stripped.split(':', 1)[1].strip()
+                item = {'title': title}
+                idx += 1
+                # Parse properties and children
+                while idx < len(lines):
+                    if idx >= len(lines):
+                        break
+                    prop_line = lines[idx]
+                    prop_indent = len(prop_line) - len(prop_line.lstrip(' '))
+                    prop_stripped = prop_line.strip()
+                    if prop_indent <= indent:
+                        break
+                    if prop_stripped.startswith('path:'):
+                        item['path'] = prop_stripped.split(':', 1)[1].strip()
+                        idx += 1
+                        continue
+                    if prop_stripped.startswith('children:'):
+                        # Recursively parse children
+                        children = parse_items(lines, idx + 1, prop_indent)
+                        item['children'] = children
+                        # Move idx to after children
+                        child_end = idx + 1
+                        while child_end < len(lines):
+                            child_line = lines[child_end]
+                            child_indent = len(child_line) - len(child_line.lstrip(' '))
+                            if child_indent <= prop_indent:
+                                break
+                            child_end += 1
+                        idx = child_end
+                        continue
+                    idx += 1
+                items.append(item)
             else:
-                i += 1
-        else:
-            i += 1
-    return {'menu': menu}
+                idx += 1
+        return items
+
+    with open(filename, 'r', encoding='utf-8') as f:
+        lines = [line.rstrip('\n') for line in f if line.strip() and not line.strip().startswith('#')]
+    # Find the root menu key and preserve hierarchy
+    for idx, line in enumerate(lines):
+        if line.strip().startswith('menu:'):
+            # parse_items returns a list of top-level menu items
+            menu = parse_items(lines, idx + 1, len(line) - len(line.lstrip(' ')))
+            # If any item has 'children', keep as is; otherwise, just return as is
+            return {'menu': menu}
+    return {'menu': []}
 
 def main():
     if len(sys.argv) != 2:
