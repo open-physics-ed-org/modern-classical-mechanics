@@ -1,4 +1,3 @@
-
 #!/bin/bash
 # build_pdf.sh
 #
@@ -29,9 +28,18 @@
 
 
 set -e
+
+# Set directory variables early
+CURRENT_DIR="$(cd "$(dirname "$0")" && pwd)"
+BOOK_DIR="${CURRENT_DIR}/../_build/latex"
+NOTEBOOK_DIR="${CURRENT_DIR}/../notebooks"
+CHAPTERS_DIR="${CURRENT_DIR}/../_build/latex"
+
 # Parse flags
 BUILD_PDF=false
 BUILD_HTML=false
+
+
 if [ $# -eq 0 ]; then
   BUILD_PDF=true
   BUILD_HTML=true
@@ -58,20 +66,22 @@ else
     BUILD_PDF=false
   fi
 fi
+
+# Always sync _toc.yml from notebooks.yaml before any build
+REPO_ROOT="$(dirname "$0")/.."
+echo "[INFO] Syncing _toc.yml from notebooks.yaml..."
+"$REPO_ROOT/scripts/update_toc.sh"
+
 # Fetch remote images before building book
 echo "[INFO] Fetching remote images and updating references..."
-"$(dirname "$0")/fetch_remote_images.sh"
+"$CURRENT_DIR/fetch_remote_images.sh"
 echo "[INFO] Remote image fetch and update complete."
-
-NOTEBOOK_DIR="$(dirname "$0")/../notebooks"
-CHAPTERS_DIR="$(dirname "$0")/../chapters"
-BOOK_DIR="$(dirname "$0")/../book"
-
 
 echo "[INFO] Creating book output directory: $BOOK_DIR"
 mkdir -p "$BOOK_DIR"
 
-echo "Individual chapter PDFs built in $CHAPTERS_DIR"
+
+echo "Individual chapter PDFs will be built in $CHAPTERS_DIR"
 
 
 
@@ -86,7 +96,7 @@ if $BUILD_PDF; then
   if [ -f "$NOTEBOOKS_YAML" ]; then
     # Extract notebook paths from YAML (ignoring comments and blank lines)
     while IFS= read -r line; do
-      line="${line#- }"
+      line="$(echo "$line" | sed 's/^ *- *//')"
       [[ "$line" =~ ^notebooks:|^#|^$ ]] && continue
       NOTEBOOKS+=("$NOTEBOOK_DIR/$line")
     done < "$NOTEBOOKS_YAML"
@@ -95,14 +105,45 @@ if $BUILD_PDF; then
     exit 1
   fi
 
+
+  mkdir -p "$CHAPTERS_DIR"
   for nb in "${NOTEBOOKS[@]}"; do
-    [ -f "$nb" ] || continue
-    base=$(basename "$nb" .ipynb)
-    echo "[INFO] Converting $nb to $CHAPTERS_DIR/$base.pdf using nbconvert (best math support)"
-    jupyter nbconvert --to pdf "$nb" --output "$base.pdf" --output-dir "$CHAPTERS_DIR"
+    if [ -f "$nb" ]; then
+      base=$(basename "$nb" .ipynb)
+      pdf_file="$CHAPTERS_DIR/$base.pdf"
+      # Only build if notebook is newer than PDF or PDF does not exist
+      if [ ! -f "$pdf_file" ] || [ "$nb" -nt "$pdf_file" ]; then
+        echo "[INFO] Converting $nb to $pdf_file using nbconvert (best math support)"
+        jupyter nbconvert --to pdf "$nb" --output "$base.pdf" --output-dir "$CHAPTERS_DIR"
+      else
+        echo "[SKIP] $pdf_file is up to date. Skipping."
+      fi
+    else
+      echo "[WARN] File not found: $nb"
+    fi
   done
+
+
   echo "[INFO] Individual chapter PDFs built in $CHAPTERS_DIR using nbconvert."
+
+  # Build full book PDF using Jupyter Book if config files exist
+  if [ -f "$REPO_ROOT/_config.yml" ] && [ -f "$REPO_ROOT/_toc.yml" ]; then
+    echo "[INFO] Building full book PDF using Jupyter Book (pdflatex builder)..."
+    jupyter-book build "$REPO_ROOT" --path-output "$BOOK_DIR" --builder pdflatex || {
+      echo "[WARN] Jupyter Book PDF build failed. Check LaTeX errors above.";
+    }
+    # Leave the generated PDF in _build/latex as per Jupyter Book convention
+    PDF_PATH="$BOOK_DIR/_build/latex/book.pdf"
+    if [ -f "$PDF_PATH" ]; then
+      echo "[INFO] Full book PDF available at $PDF_PATH"
+    else
+      echo "[WARN] Full book PDF was not generated."
+    fi
+  else
+    echo "[WARN] _config.yml and/or _toc.yml not found in $REPO_ROOT. Skipping full book PDF build."
+  fi
 fi
+
 
 
 
@@ -117,12 +158,21 @@ if $BUILD_HTML; then
   echo "[INFO] Checking for Jupyter Book config files in $REPO_ROOT..."
   if [ -f "$REPO_ROOT/_config.yml" ] && [ -f "$REPO_ROOT/_toc.yml" ]; then
       echo "[INFO] Found _config.yml and _toc.yml in repo root. Building Jupyter Book..."
-      jupyter-book build "$REPO_ROOT" --path-output "$BOOK_DIR"
-      echo "[INFO] Jupyter Book build complete. Output in $BOOK_DIR/_build."
+      # Always build the book into the book directory
+      jupyter-book build "$REPO_ROOT" --path-output "${CURRENT_DIR}"
+      # Move the built HTML files to ${CURRENT_DIR} if not already there
+      if [ -d "${CURRENT_DIR}/_build/html" ]; then
+        echo "[INFO] Moving built HTML files to ${CURRENT_DIR}..."
+        cp -a "${CURRENT_DIR}/_build/html/." "${CURRENT_DIR}/"
+      fi
+      echo "[INFO] Jupyter Book build complete. Output in ${CURRENT_DIR}."
   else
       echo "[WARN] _config.yml and/or _toc.yml not found in $REPO_ROOT. Jupyter Book build skipped."
   fi
 fi
 
 
-echo "[INFO] Book build process finished. Output directory: $BOOK_DIR"
+echo "[INFO] Book build process finished. Output directory: ${CURRENT_DIR}"
+
+echo "$BOOK_DIR"
+echo "$CHAPTERS_DIR"
