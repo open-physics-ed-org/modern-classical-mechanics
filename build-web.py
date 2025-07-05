@@ -303,7 +303,7 @@ def main():
     def get_nav_html():
         nav_html = ''
         # Hamburger for mobile
-        nav_html += '<button class="menu-toggle" aria-label="Toggle menu" onclick="document.getElementById(\'site-nav\').classList.toggle(\'open\')">☰</button>'
+        nav_html += '<button class="menu-toggle" aria-label="Toggle menu">☰</button>'
         if menu_data:
             nav_html += build_menu_html(menu_data)
         else:
