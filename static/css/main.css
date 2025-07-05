@@ -176,12 +176,59 @@ body.dark {
 
 
 
+
+
 html, body, .markdown-body {
   background: var(--color-card) !important;
   color: var(--color-fg) !important;
   font-family: system-ui, sans-serif;
   margin: 0 !important;
   padding: 0 !important;
+}
+
+/* --- Remove all borders, box-shadows, and outlines from containers, cards, nav, main, side-nav, and footer --- */
+.container,
+main,
+.side-nav,
+nav,
+.card,
+footer,
+.card:focus,
+.card:hover,
+.side-menu ul,
+.side-menu,
+.admonition,
+.admonition-title,
+.markdown-body .container,
+.markdown-body .container-lg {
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Remove border-radius for a fully seamless look */
+.container,
+main,
+.side-nav,
+.card,
+footer {
+  border-radius: 0 !important;
+}
+
+/* --- Override Jupyter notebook background variables for robust unification --- */
+:root,
+.markdown-body {
+  --jp-cell-editor-background: var(--color-card) !important;
+  --jp-cell-editor-active-background: var(--color-card) !important;
+  --jp-layout-color0: var(--color-card) !important;
+  --jp-layout-color1: var(--color-card) !important;
+  --jp-layout-color2: var(--color-card) !important;
+  --jp-layout-color3: var(--color-card) !important;
+  --jp-rendermime-error-background: var(--color-card) !important;
+  --jp-input-background: var(--color-card) !important;
+  --jp-toolbar-background: var(--color-card) !important;
+  --jp-notebook-select-background: var(--color-card) !important;
+  --jp-output-area-background: var(--color-card) !important;
 }
 
 
