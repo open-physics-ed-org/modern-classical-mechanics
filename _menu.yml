@@ -1,12 +1,13 @@
-- title: Home
-  path: index.html
-- title: Chapters
-  children:
-    - title: Week 1: Introduction
-      path: 01_notes.html
-    - title: Week 2: Newton's Laws
-      path: 02_notes.html
-- title: Resources
-  path: resources.html
-- title: About
-  path: about.html
+menu:
+  - title: Home
+    path: index.html
+  - title: Chapters
+    children:
+      - title: Week 1: Introduction
+        path: 01_notes.html
+      - title: Week 2: Newton's Laws
+        path: 02_notes.html
+  - title: Resources
+    path: resources.html
+  - title: About
+    path: about.html

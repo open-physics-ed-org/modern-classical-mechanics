@@ -253,39 +253,75 @@ def main():
     # (Removed redundant second pass for flattening image names)
 
     # 4. Convert notebooks to HTML with custom CSS and template
-    import yaml
+    import json
     css_path = repo_root / 'static' / 'css' / 'main.css'
     css_rel = 'css/main.css'
 
-    # HTML template for all pages (minimal, no inline CSS/JS, just main.css, dark by default)
+        # --- Load menu structure from _menu.yml ---
+    menu_json = repo_root / '_menu.json'
+    if menu_json.exists():
+        with open(menu_json, 'r', encoding='utf-8') as f:
+            menu_data = json.load(f)["menu"]
+    else:
+        menu_data = None
+
+    def build_menu_html(menu_items, level=0):
+        html = ''
+        if not menu_items:
+            return html
+        html += f'<ul class="menu-level-{level}">'  # Add class for styling
+        for item in menu_items:
+            title = item.get('title', '')
+            path = item.get('path', None)
+            children = item.get('children', None)
+            html += '<li>'
+            if path:
+                html += f'<a href="{path}">{title}</a>'
+            else:
+                html += f'<span>{title}</span>'
+            if children:
+                html += build_menu_html(children, level+1)
+            html += '</li>'
+        html += '</ul>'
+        return html
+
+    def get_nav_html():
+        nav_html = ''
+        if menu_data:
+            nav_html = build_menu_html(menu_data)
+        else:
+            nav_html = '''<ul class="menu-level-0">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="01_notes.html">Chapters</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>'''
+        nav_html += '<button class="toggle-dark" aria-label="Toggle dark/light mode" onclick="document.body.classList.toggle(\'dark\')">🌗</button>'
+        return f'<nav>{nav_html}</nav>'
+
     def get_html_template(title, body):
+        nav_html = get_nav_html()
         return f"""<!DOCTYPE html>
-<html lang=\"en\">
-<head>
-  <meta charset=\"UTF-8\">
-  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-  <title>{title}</title>
-  <link href=\"css/main.css\" rel=\"stylesheet\">
-  <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>
-</head>
-<body class=\"dark\">
-  <nav>
-    <a href=\"index.html\">Home</a> |
-    <a href=\"01_notes.html\">Chapters</a> |
-    <a href=\"resources.html\">Resources</a> |
-    <a href=\"about.html\">About</a>
-    <button class=\"toggle-dark\" aria-label=\"Toggle dark/light mode\" onclick=\"document.body.classList.toggle('dark')\">🌗</button>
-  </nav>
-  <div class=\"container\">
-    <main id=\"main-content\">
-      {body}
-    </main>
-  </div>
-  <footer>
-    <p>&copy; Modern Classical Mechanics. All rights reserved.</p>
-  </footer>
-</body>
-</html>"""
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>{title}</title>
+      <link href="css/main.css" rel="stylesheet">
+      <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>
+    </head>
+    <body class="dark">
+      {nav_html}
+      <div class="container">
+        <main id="main-content">
+          {body}
+        </main>
+      </div>
+      <footer>
+        <p>&copy; Modern Classical Mechanics. All rights reserved.</p>
+      </footer>
+    </body>
+    </html>"""
 
     # --- Process intro.md as index.html ---
     intro_md = repo_root / 'intro.md'
