@@ -17,10 +17,11 @@
 
 ## 🌐 About & Webpage
 
-
 **Modern Classical Mechanics** is an open-source, interactive, and accessible static website and resource set for PHY 321: Classical Mechanics 1 at Michigan State University, authored by Marcos D. Caballero.
 
 This project is not just a collection of Jupyter notebooks—it builds a fully static, accessible set of web pages from notebooks, with robust support for dark/light mode, accessible admonitions, and MathJax/LaTeX rendering. The site is designed for clarity, accessibility, and future extensibility.
+
+**Built with custom Python scripts (not Jupyter Book)** to convert Jupyter notebooks into a static, accessible website and multiple downloadable formats.
 
 **Upcoming:** File downloads for each chapter/page will be available in PDF, Markdown, DOCX, Jupyter Notebook (.ipynb), and LaTeX formats directly from the site.
 

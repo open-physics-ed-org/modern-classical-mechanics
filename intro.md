@@ -4,7 +4,7 @@ This is the interactive, open, and ever-evolving book for PHY 321: Classical Mec
 
 - 📚 Explore the chapters using the sidebar
 - 🧑‍🔬 All content is open source and free to use for non-commercial purposes
-- 🛠️ Built with Jupyter Book, so you can run, edit, and contribute
+- 🛠️ Built with custom scripts (not Jupyter Book) to generate a fully static, accessible website from Jupyter notebooks
 - 💡 Found a typo or want to contribute? [Open an issue or pull request!](https://github.com/dannycab/modern-classical-mechanics)
 
 ---
@@ -27,3 +27,5 @@ This is not just a collection of Jupyter notebooks—it's a fully static, access
 **Planned:** Soon, you will be able to download each chapter/page as PDF, Markdown, DOCX, Jupyter Notebook (.ipynb), and LaTeX directly from the site.
 
 **Note:** The navigation menus are not yet fully functional, but improved navigation and download options are coming soon!
+
+---
