@@ -1,17 +1,3 @@
-## 🌐 About & Webpage
-
-**Modern Classical Mechanics** is an open-source, interactive, and reproducible book for PHY 321: Classical Mechanics 1 at Michigan State University, authored by Marcos D. Caballero.
-
-- **Webpage:** [View the Book Online](https://dannycaballero.info/modern-classical-mechanics/)
-- **GitHub Repo:** [github.com/dannycab/modern-classical-mechanics](https://github.com/dannycab/modern-classical-mechanics)
-- **License:** CC BY-NC 4.0 (free for non-commercial use)
-- **Contact:** caball14@msu.edu
-
-All content is built from Jupyter notebooks and published automatically to the web. Contributions, issues, and pull requests are welcome!
-
----
-
-
 <div align="center">
 
 # 📚 Modern Classical Mechanics
@@ -29,6 +15,18 @@ All content is built from Jupyter notebooks and published automatically to the w
 
 ---
 
+## 🌐 About & Webpage
+
+**Modern Classical Mechanics** is an open-source, interactive, and reproducible book for PHY 321: Classical Mechanics 1 at Michigan State University, authored by Marcos D. Caballero.
+
+- **Webpage:** [View the Book Online](https://dannycaballero.info/modern-classical-mechanics/)
+- **GitHub Repo:** [github.com/dannycab/modern-classical-mechanics](https://github.com/dannycab/modern-classical-mechanics)
+- **License:** CC BY-NC 4.0 (free for non-commercial use)
+- **Contact:** caball14@msu.edu
+
+All content is built from Jupyter notebooks and published automatically to the web. Contributions, issues, and pull requests are welcome!
+
+---
 
 ## 🚀 What is this?
 
@@ -42,96 +40,36 @@ Welcome to the home of **Modern Classical Mechanics**! This is a living, collabo
 
 ---
 
-## �️ Automated Build & Fix Workflow
-
-This project features a robust, automated workflow to ensure reproducibility, PDF/LaTeX compatibility, and ease of contribution:
-
-- **Image Handling:**
-  - `scripts/fetch_remote_images.sh` finds, downloads, and relinks all remote images (including YouTube thumbnails) so every image is local before PDF export.
-  - YouTube thumbnails are batch-checked and fixed using `scripts/fix_youtube_thumbnails.sh` and `scripts/fix_all_youtube_thumbnails.py`.
-- **Notebook & Markdown Repair:**
-  - `scripts/fix_notebook_json_escapes.py` auto-fixes invalid JSON in notebooks (e.g., unescaped backslashes).
-  - LaTeX/math environments are batch-checked and repaired for PDF/LaTeX compatibility.
-- **PDF Export:**
-  - `scripts/build_pdf.sh` runs all fix scripts, then uses `nbconvert` for notebook-to-PDF conversion.
-- **Batch Operations:**
-  - All fix and build scripts can be run in batch mode for the entire book, ensuring consistency and reproducibility.
-- **GitHub Issues & Labels:**
-  - Workflow improvements, bugs, and enhancements are tracked via GitHub Issues and custom labels (e.g., `pdf`, `build`, `workflow`, `incremental`, `activities`, `teaching-guide`).
-
----
-
-
-
-## �🗂️ Project Structure
+## 🗂️ Project Structure
 
 ```
 modern-classical-mechanics/
 ├── notebooks/        # Source Jupyter notebooks (edit here!)
-├── chapters/         # Auto-generated Markdown, PDF, DOCX, and figures (do not edit by hand)
-│   ├── figures/      # All figures used in chapters
-│   └── images/       # All images used in chapters
-├── book/             # Auto-generated full-book outputs (PDF, DOCX, Markdown, images)
+├── _build/           # Auto-generated Markdown, PDF, DOCX, and figures (do not edit by hand)
+│   ├── latex/        # LaTeX files
+│   ├── pdf/          # PDF files
+│   ├── md/           # Markdown files
+│   │   └── images/   # All images referenced in Markdown/DOCX
+│   └── docx/         # DOCX files
 ├── docs/             # Website output for GitHub Pages (auto-generated, do not edit)
 ├── scripts/          # Build and utility scripts (edit here)
 ├── .github/workflows # GitHub Actions CI/CD workflows
 ├── Dockerfile, docker-compose.yml  # Containerized build environment
-├── _config.yml, _toc.yml, book_metadata.yml  # Jupyter Book and build config
+├── _config.yml, _toc.yml, book_metadata.yml  # Build config
 └── README.md         # You are here!
 ```
 
 ---
-
 
 ## 🏗️ Build & Utility Scripts
 
 All build and utility scripts are in the `scripts/` directory. Run any script with `bash scripts/<scriptname>.sh` from the project root.
 
-- **build_chapters.sh**: Converts all Jupyter notebooks in `notebooks/` to Markdown, PDF, and DOCX in `chapters/`. Fetches remote images and copies figures/images for reproducibility.
-- **build_book.sh**: Concatenates all chapter markdown files and converts to a single PDF and DOCX for the full book in `book/`. Copies images for correct rendering.
-- **build_website.sh**: Builds the HTML website version of the book using Jupyter Book, copies all static assets and images to `docs/` for GitHub Pages, and ensures `.nojekyll` is present.
-- **build_all.sh**: Runs all build steps in sequence (fetch images, chapters, book, website, etc.).
+- **build.py**: Main Python build script for converting notebooks to Markdown, PDF, DOCX, and handling all image logic.
+- **build-web.py**: Builds the HTML website version of the book for GitHub Pages.
 - **fetch_remote_images.sh**: Finds, downloads, and relinks any remote images referenced in notebooks or markdown files, ensuring all images are local for reproducibility.
 
 ---
-
-
-## 📄 Chapters and Figures Index
-
-See [docs/chapters_index.md](docs/chapters_index.md) for direct links to all chapters in every available format (notebook, markdown, PDF, DOCX) and to all figures used in the book.
-
----
-
----
-
-## 🚀 What is this?
-
-Welcome to the home of **Modern Classical Mechanics**! This is a living, collaborative, and open-source book built from Jupyter notebooks, designed for students, educators, and the curious. All content is free to use, adapt, and remix for non-commercial purposes.
-
-- **Multiple formats:** Website, PDF, DOCX, Markdown
-- **Reproducible:** All code, figures, and outputs are version-controlled and built automatically
-- **Open:** Contributions, issues, and pull requests are *highly* encouraged!
-- **Fun:** Physics is awesome, and so is open science 🌟
-
----
-
-## 📦 Project Structure
-
-```
-modern-classical-mechanics/
-├── notebooks/        # Source Jupyter notebooks (edit here!)
-├── chapters/         # Auto-generated Markdown, PDF, DOCX, figures
-├── book/             # Website build (Jupyter Book)
-├── docs/             # GitHub Pages output (optional)
-├── scripts/          # Build and utility scripts
-├── .github/workflows # GitHub Actions CI/CD
-├── Dockerfile, docker-compose.yml
-├── _config.yml, _toc.yml, book_metadata.yml
-└── README.md         # You are here!
-```
-
----
-
 
 ## 🛠️ How to Build Locally
 
@@ -146,20 +84,27 @@ modern-classical-mechanics/
    source .venv/bin/activate
    pip install -r requirements.txt
    ```
-3. **Build everything:**
+3. **Install Jupyter and Pandoc:**
+   - Jupyter: `pip install jupyter nbconvert`
+   - Pandoc: [Install from pandoc.org](https://pandoc.org/installing.html)
+4. **Build everything:**
    ```bash
-   ./scripts/build_all.sh
+   python build.py
    ```
    Or build just the chapters:
    ```bash
-   ./scripts/build_chapters.sh
+   python build.py --md --pdf --docx
    ```
-4. **View outputs:**
-   - Website: `book/_build/html/index.html`
-   - PDFs/DOCX: `chapters/`
+5. **Build the website:**
+   ```bash
+   python build-web.py
+   ```
+6. **View outputs:**
+   - Website: `docs/index.html`
+   - PDFs/DOCX: `_build/pdf/`, `_build/docx/`
+   - Markdown: `_build/md/`
 
 ---
-
 
 ## 🤖 Automated Builds (CI/CD)
 
@@ -169,7 +114,6 @@ modern-classical-mechanics/
 
 ---
 
-
 ## 🖼️ Images & Figures
 
 - All images are stored locally for reproducibility and PDF/LaTeX compatibility.
@@ -178,6 +122,11 @@ modern-classical-mechanics/
 
 ---
 
+## 📄 Chapters and Figures Index
+
+See [docs/chapters_index.md](docs/chapters_index.md) for direct links to all chapters in every available format (notebook, markdown, PDF, DOCX) and to all figures used in the book.
+
+---
 
 ## 📝 License
 
@@ -189,7 +138,6 @@ This book and all its content are licensed under [Creative Commons Attribution-N
 See [LICENSE](LICENSE) for details.
 
 ---
-
 
 ## 💡 Contributing
 
@@ -203,25 +151,7 @@ Let's make physics education better, together! 🚀
 
 ---
 
-
 ## 🙏 Acknowledgments
-
----
-
-## 🚦 Development Roadmap
-
-The following improvements are planned or in progress:
-
-- **Batch-fix and verify YouTube thumbnail links in all notebooks**
-- **Run JSON escape fix on all problematic notebooks and confirm validity**
-- **Automate search and repair of malformed LaTeX/math environments in all source files**
-- **Confirm clean PDF build for all chapters/notebooks after all fixes**
-- **Integrate activities into the book as part of the build process**
-- **Write and include an instructional guide for teachers**
-- **Implement incremental and selective builds for faster development**
-- **Continue to improve GitHub workflow, issue labeling, and documentation**
-
-See [GitHub Issues](https://github.com/dannycab/modern-classical-mechanics/issues) for up-to-date progress and to contribute ideas or feedback!
 
 - Inspired by the open science and Jupyter communities
 - Built with [Jupyter Book](https://jupyterbook.org/), [nbconvert](https://nbconvert.readthedocs.io/), and lots of ❤️
