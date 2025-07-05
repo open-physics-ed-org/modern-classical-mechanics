@@ -118,7 +118,7 @@ def main():
 
     if build_md or build_docx:
         md_dir = build_dir / 'md'
-        images_dir = build_dir / 'images'
+        images_dir = md_dir / 'images'
         md_dir.mkdir(parents=True, exist_ok=True)
         images_dir.mkdir(parents=True, exist_ok=True)
         print(f"[INFO] Building Markdown files for notebooks in {notebook_dir} -> {md_dir}")
@@ -165,7 +165,7 @@ def main():
 
     if build_docx:
         md_dir = build_dir / 'md'
-        images_dir = build_dir / 'images'
+        images_dir = md_dir / 'images'
         docx_dir = build_dir / 'docx'
         docx_dir.mkdir(parents=True, exist_ok=True)
         for nb in notebooks:
