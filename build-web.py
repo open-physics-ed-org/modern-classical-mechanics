@@ -363,16 +363,20 @@ def main():
         if not footer_html:
             footer_html = f"&copy; {book_title}. All rights reserved."
         # Center the title and remove extra white header
-        # Inject style for full-page light/dark background
+        # Inject style for full-page light/dark background and remove all borders/lines
         override_style = """
 <style id=\"site-bg-override\">
 html, body, .markdown-body, .container, main, .site-header, .site-nav, nav, footer, .card, .admonition, .card-grid, .dropdown-menu, .site-nav-menu, .layout-main {
   background: #fff !important;
   color: #181a1b !important;
+  border: 0 !important;
+  box-shadow: none !important;
 }
 body.dark html, body.dark body, body.dark .markdown-body, body.dark .container, body.dark main, body.dark .site-header, body.dark .site-nav, body.dark nav, body.dark footer, body.dark .card, body.dark .admonition, body.dark .card-grid, body.dark .dropdown-menu, body.dark .site-nav-menu, body.dark .layout-main {
   background: #181a1b !important;
   color: #f9f9fb !important;
+  border: 0 !important;
+  box-shadow: none !important;
 }
 </style>
 """
