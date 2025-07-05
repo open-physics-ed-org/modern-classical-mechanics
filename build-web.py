@@ -280,11 +280,11 @@ def main():
         html = ''
         if not menu_items:
             return html
-        # Use side-menu for top-level menu
+        # Top-level: horizontal menu
         if level == 0:
-            html += f'<ul class="side-menu">'
+            html += '<ul class="site-nav-menu">'
         else:
-            html += f'<ul class="menu-level-{level}">'  # Add class for styling
+            html += f'<ul class="dropdown-menu menu-level-{level}">'  # Dropdown for children
         for item in menu_items:
             title = item.get('title', '')
             path = item.get('path', None)
@@ -293,7 +293,7 @@ def main():
             if path:
                 html += f'<a href="{path}">{title}</a>'
             else:
-                html += f'<span>{title}</span>'
+                html += f'<span tabindex="0">{title}</span>'
             if children:
                 html += build_menu_html(children, level+1)
             html += '</li>'
@@ -302,30 +302,49 @@ def main():
 
     def get_nav_html():
         nav_html = ''
-        # Hamburger button for mobile (for side menu)
-        nav_html += '<button class="menu-toggle" aria-label="Toggle menu" onclick="document.querySelector(\'.side-menu\').classList.toggle(\'open\')">☰</button>'
+        # Hamburger for mobile
+        nav_html += '<button class="menu-toggle" aria-label="Toggle menu" onclick="document.getElementById(\'site-nav\').classList.toggle(\'open\')">☰</button>'
         if menu_data:
             nav_html += build_menu_html(menu_data)
         else:
-            nav_html += '''<ul class="side-menu">
+            nav_html += '''<ul class="site-nav-menu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="01_notes.html">Chapters</a></li>
                 <li><a href="resources.html">Resources</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>'''
         nav_html += '<button class="toggle-dark" aria-label="Toggle dark/light mode" onclick="document.body.classList.toggle(\'dark\')">🌗</button>'
-        # Add a small script for closing menu on click (mobile UX)
+        # JS for dropdowns and hamburger
         nav_html += '''<script>document.addEventListener('DOMContentLoaded',function(){
-  var menu=document.querySelector('.side-menu');
-  if(menu){
+  var nav = document.getElementById('site-nav');
+  var menu = nav && nav.querySelector('.site-nav-menu');
+  var toggle = nav && nav.querySelector('.menu-toggle');
+  if(menu && toggle){
+    toggle.addEventListener('click',function(){
+      nav.classList.toggle('open');
+    });
     menu.querySelectorAll('a').forEach(function(link){
       link.addEventListener('click',function(){
-        if(window.innerWidth<=900){menu.classList.remove('open');}
+        if(window.innerWidth<=900){nav.classList.remove('open');}
       });
+    });
+    // Dropdowns: open on hover (desktop), click/tap (mobile)
+    menu.querySelectorAll('li').forEach(function(li){
+      var submenu = li.querySelector('ul');
+      if(submenu){
+        li.addEventListener('mouseenter',function(){if(window.innerWidth>900){li.classList.add('open');}});
+        li.addEventListener('mouseleave',function(){if(window.innerWidth>900){li.classList.remove('open');}});
+        li.addEventListener('click',function(e){if(window.innerWidth<=900){li.classList.toggle('open');e.stopPropagation();}});
+      }
+    });
+    document.addEventListener('click',function(e){
+      if(window.innerWidth<=900 && nav.classList.contains('open') && !nav.contains(e.target)){
+        nav.classList.remove('open');
+      }
     });
   }
 });</script>'''
-        return f'<nav>{nav_html}</nav>'
+        return nav_html
 
     def get_html_template(title, body):
         nav_html = get_nav_html()
@@ -344,8 +363,21 @@ def main():
         if not footer_html:
             footer_html = f"&copy; {book_title}. All rights reserved."
         # Center the title and remove extra white header
+        # Inject style for full-page light/dark background
+        override_style = """
+<style id=\"site-bg-override\">
+html, body, .markdown-body, .container, main, .site-header, .site-nav, nav, footer, .card, .admonition, .card-grid, .dropdown-menu, .site-nav-menu, .layout-main {
+  background: #fff !important;
+  color: #181a1b !important;
+}
+body.dark html, body.dark body, body.dark .markdown-body, body.dark .container, body.dark main, body.dark .site-header, body.dark .site-nav, body.dark nav, body.dark footer, body.dark .card, body.dark .admonition, body.dark .card-grid, body.dark .dropdown-menu, body.dark .site-nav-menu, body.dark .layout-main {
+  background: #181a1b !important;
+  color: #f9f9fb !important;
+}
+</style>
+"""
         return f"""<!DOCTYPE html>
-    <html lang=\"en\">\n    <head>\n      <meta charset=\"UTF-8\">\n      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n      <title>{book_title}</title>\n      <link href=\"css/main.css\" rel=\"stylesheet\">\n      <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>\n    </head>\n    <body class=\"dark\">\n      <header class=\"site-header\">\n        <h1 class=\"site-title\">{book_title}</h1>\n      </header>\n      <div class=\"layout-main\">\n        <aside class=\"side-nav\">\n          {nav_html}\n        </aside>\n        <div class=\"container\">\n          <main id=\"main-content\">\n            {body}\n          </main>\n        </div>\n      </div>\n      <footer>\n        <p>{footer_html}</p>\n      </footer>\n    </body>\n    </html>"""
+    <html lang=\"en\">\n    <head>\n      <meta charset=\"UTF-8\">\n      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n      <title>{book_title}</title>\n      <link href=\"css/main.css\" rel=\"stylesheet\">\n      <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>\n    </head>\n    <body class=\"dark\">\n      <header class=\"site-header\">\n        <h1 class=\"site-title\">{book_title}</h1>\n      </header>\n      <nav class=\"site-nav\" id=\"site-nav\">{nav_html}</nav>\n      <div class=\"layout-main\">\n        <div class=\"container\">\n          <main id=\"main-content\">\n            {body}\n          </main>\n        </div>\n      </div>\n      <footer>\n        <p>{footer_html}</p>\n      </footer>\n      {override_style}\n    </body>\n    </html>"""
 
     # --- Process intro.md as index.html ---
     intro_md = repo_root / 'intro.md'

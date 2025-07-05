@@ -174,7 +174,7 @@ body.dark footer {
   align-items: center;
   gap: 2em;
   background: var(--color-card);
-  margin: 0 0 2em 0;
+  margin: 0 0 0.5em 0;
   padding: 0.5em 0;
   border: none;
   box-shadow: none;
