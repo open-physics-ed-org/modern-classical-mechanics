@@ -69,6 +69,119 @@ def main():
     build_latex = args.latex or (not args.pdf and not args.md and not args.docx and not args.html)
     build_html = False  # HTML build disabled
 
+
+    # Always generate _toc.yml from notebooks.yaml using Python (robust, no timestamp logic)
+    toc_yml = repo_root / '_toc.yml'
+    print(f"[INFO] Generating _toc.yml from {notebooks_yaml} using Python...")
+    if not notebooks_yaml.exists():
+        print(f"[ERROR] {notebooks_yaml} not found.", file=sys.stderr)
+        sys.exit(1)
+    notebooks = parse_yaml_list(notebooks_yaml)
+
+    # --- Output build logic for LaTeX, PDF, DOCX, Markdown ---
+    if build_latex:
+        chapters_dir.mkdir(parents=True, exist_ok=True)
+        print(f"[INFO] Building LaTeX files for notebooks in {notebook_dir} -> {chapters_dir}")
+        for nb in notebooks:
+            nb_path = notebook_dir / nb
+            if not nb_path.exists():
+                print(f"[WARN] Notebook not found: {nb_path}")
+                continue
+            tex_name = nb_path.with_suffix('.tex').name
+            tex_path = chapters_dir / tex_name
+            print(f"Converting {nb_path} to {tex_path}")
+            run([
+                'jupyter', 'nbconvert', '--to', 'latex', str(nb_path),
+                '--output', tex_name, '--output-dir', str(chapters_dir)
+            ])
+        print(f"[INFO] All notebooks converted to LaTeX and saved in {chapters_dir}")
+
+    if build_pdf:
+        pdf_dir = build_dir / 'pdf'
+        pdf_dir.mkdir(parents=True, exist_ok=True)
+        print(f"[INFO] Building PDF files for notebooks in {notebook_dir} -> {pdf_dir}")
+        for nb in notebooks:
+            nb_path = notebook_dir / nb
+            if not nb_path.exists():
+                print(f"[WARN] Notebook not found: {nb_path}")
+                continue
+            pdf_name = nb_path.with_suffix('.pdf').name
+            pdf_path = pdf_dir / pdf_name
+            print(f"Converting {nb_path} to {pdf_path}")
+            run([
+                'jupyter', 'nbconvert', '--to', 'pdf', str(nb_path),
+                '--output', pdf_name, '--output-dir', str(pdf_dir)
+            ])
+        print(f"[INFO] All notebooks converted to PDF and saved in {pdf_dir}")
+
+    # DOCX is now always built from Markdown using Pandoc (see below)
+
+    if build_md or build_docx:
+        md_dir = build_dir / 'md'
+        images_dir = build_dir / 'images'
+        md_dir.mkdir(parents=True, exist_ok=True)
+        images_dir.mkdir(parents=True, exist_ok=True)
+        print(f"[INFO] Building Markdown files for notebooks in {notebook_dir} -> {md_dir}")
+        for nb in notebooks:
+            nb_path = notebook_dir / nb
+            if not nb_path.exists():
+                print(f"[WARN] Notebook not found: {nb_path}")
+                continue
+            md_name = nb_path.with_suffix('.md').name
+            md_path = md_dir / md_name
+            print(f"Converting {nb_path} to {md_path}")
+            run([
+                'jupyter', 'nbconvert', '--to', 'markdown', str(nb_path),
+                '--output', md_name, '--output-dir', str(md_dir)
+            ])
+            # Post-process markdown to copy images and update paths
+            with open(md_path, 'r', encoding='utf-8') as f:
+                md_content = f.read()
+            import re
+            def copy_and_update(match):
+                img_path = match.group(2)
+                # Only process local images (not http/https)
+                if img_path.startswith('http'):
+                    return match.group(0)
+                # Try to find the image in the notebook's folder or in the generated _build/md subfolders
+                src_img = (nb_path.parent / img_path).resolve()
+                if not src_img.exists():
+                    # Try _build/md/<notebook_stem>_files/<img>
+                    alt_img = md_dir / f"{nb_path.stem}_files" / os.path.basename(img_path)
+                    if alt_img.exists():
+                        src_img = alt_img
+                    else:
+                        print(f"[WARN] Image not found: {src_img}")
+                        return match.group(0)
+                flat_name = f"{nb_path.stem}_{os.path.basename(img_path)}"
+                dst_img = images_dir / flat_name
+                shutil.copy2(src_img, dst_img)
+                return f"!{match.group(1)}(images/{flat_name})"
+            # Update image links: ![alt](path)
+            md_content_new = re.sub(r'(!\[[^\]]*\])\(([^)]+)\)', copy_and_update, md_content)
+            with open(md_path, 'w', encoding='utf-8') as f:
+                f.write(md_content_new)
+        print(f"[INFO] All notebooks converted to Markdown and images copied to {images_dir}")
+
+    if build_docx:
+        md_dir = build_dir / 'md'
+        images_dir = build_dir / 'images'
+        docx_dir = build_dir / 'docx'
+        docx_dir.mkdir(parents=True, exist_ok=True)
+        for nb in notebooks:
+            md_name = Path(nb).with_suffix('.md').name
+            md_path = md_dir / md_name
+            docx_name = Path(nb).with_suffix('.docx').name
+            docx_path = docx_dir / docx_name
+            if not md_path.exists():
+                print(f"[WARN] Markdown not found: {md_path}")
+                continue
+            print(f"Converting {md_path} to {docx_path} using pandoc")
+            run([
+                'pandoc', str(md_path), '-o', str(docx_path), '--resource-path', str(images_dir)
+            ])
+        print(f"[INFO] All markdown files converted to DOCX using pandoc and saved in {docx_dir}")
+
     # Always generate _toc.yml from notebooks.yaml using Python (robust, no timestamp logic)
     toc_yml = repo_root / '_toc.yml'
     print(f"[INFO] Generating _toc.yml from {notebooks_yaml} using Python...")
