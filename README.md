@@ -5,7 +5,7 @@
 **An open, free, and ever-evolving set of notes and resources for learning and teaching classical mechanics.**
 
 <br>
-<strong>Author:</strong> Marcos D. Caballero  
+<strong>Author:</strong> Danny Caballero  
 <strong>Contact:</strong> caball14@msu.edu  
 <strong>Michigan State University</strong>
 
@@ -52,9 +52,6 @@ modern-classical-mechanics/
 │   │   └── images/   # All images referenced in Markdown/DOCX
 │   └── docx/         # DOCX files
 ├── docs/             # Website output for GitHub Pages (auto-generated, do not edit)
-├── scripts/          # Build and utility scripts (edit here)
-├── .github/workflows # GitHub Actions CI/CD workflows
-├── Dockerfile, docker-compose.yml  # Containerized build environment
 ├── _config.yml, _toc.yml, book_metadata.yml  # Build config
 └── README.md         # You are here!
 ```
@@ -63,11 +60,10 @@ modern-classical-mechanics/
 
 ## 🏗️ Build & Utility Scripts
 
-All build and utility scripts are in the `scripts/` directory. Run any script with `bash scripts/<scriptname>.sh` from the project root.
+All build scripts are in the main directory. 
 
 - **build.py**: Main Python build script for converting notebooks to Markdown, PDF, DOCX, and handling all image logic.
 - **build-web.py**: Builds the HTML website version of the book for GitHub Pages.
-- **fetch_remote_images.sh**: Finds, downloads, and relinks any remote images referenced in notebooks or markdown files, ensuring all images are local for reproducibility.
 
 ---
 
@@ -119,12 +115,6 @@ All build and utility scripts are in the `scripts/` directory. Run any script wi
 - All images are stored locally for reproducibility and PDF/LaTeX compatibility.
 - Remote images are automatically downloaded and relinked by our scripts.
 - Want to add a cool diagram? Just drop it in `notebooks/images/` and reference it in your notebook!
-
----
-
-## 📄 Chapters and Figures Index
-
-See [docs/chapters_index.md](docs/chapters_index.md) for direct links to all chapters in every available format (notebook, markdown, PDF, DOCX) and to all figures used in the book.
 
 ---
 
