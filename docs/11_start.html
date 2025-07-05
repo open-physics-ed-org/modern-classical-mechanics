@@ -11,35 +11,31 @@
       <header class="site-header">
         <h1 class="site-title">Modern Classical Mechanics</h1>
       </header>
-      <nav class="site-nav" id="site-nav"><button class="menu-toggle" aria-label="Toggle menu" onclick="document.getElementById('site-nav').classList.toggle('open')">☰</button><ul class="site-nav-menu"><li><a href="index.html">Home</a></li><li><span tabindex="0">Chapters</span><ul class="dropdown-menu menu-level-1"><li><a href="01_start.html">Week 1: Start</a></li><li><a href="01_notes.html">Week 1: Introduction</a></li><li><a href="02_start.html">Week 2: Start</a></li><li><a href="02_notes.html">Week 2: Newton's Laws</a></li><li><a href="03_start.html">Week 3: Start</a></li><li><a href="03_notes.html">Week 3: Topic</a></li><li><a href="04_start.html">Week 4: Start</a></li><li><a href="04_notes.html">Week 4: Topic</a></li><li><a href="05_start.html">Week 5: Start</a></li><li><a href="05_notes.html">Week 5: Topic</a></li><li><a href="06_start.html">Week 6: Start</a></li><li><a href="06_notes.html">Week 6: Topic</a></li><li><a href="07_start.html">Week 7: Start</a></li><li><a href="07_notes.html">Week 7: Topic</a></li><li><a href="08_start.html">Week 8: Start</a></li><li><a href="08_notes.html">Week 8: Topic</a></li><li><a href="09_start.html">Week 9: Start</a></li><li><a href="09_notes.html">Week 9: Topic</a></li><li><a href="10_start.html">Week 10: Start</a></li><li><a href="10_notes.html">Week 10: Topic</a></li><li><a href="11_start.html">Week 11: Start</a></li><li><a href="11_notes.html">Week 11: Topic</a></li><li><a href="12_start.html">Week 12: Start</a></li><li><a href="12_notes.html">Week 12: Topic</a></li><li><a href="13_start.html">Week 13: Start</a></li><li><a href="13_notes.html">Week 13: Topic</a></li></ul></li></ul><button class="toggle-dark" aria-label="Toggle dark/light mode" onclick="document.body.classList.toggle('dark')">🌗</button><script>document.addEventListener('DOMContentLoaded',function(){
-  var nav = document.getElementById('site-nav');
-  var menu = nav && nav.querySelector('.site-nav-menu');
-  var toggle = nav && nav.querySelector('.menu-toggle');
-  if(menu && toggle){
-    toggle.addEventListener('click',function(){
-      nav.classList.toggle('open');
-    });
-    menu.querySelectorAll('a').forEach(function(link){
-      link.addEventListener('click',function(){
-        if(window.innerWidth<=900){nav.classList.remove('open');}
-      });
-    });
-    // Dropdowns: open on hover (desktop), click/tap (mobile)
-    menu.querySelectorAll('li').forEach(function(li){
-      var submenu = li.querySelector('ul');
-      if(submenu){
-        li.addEventListener('mouseenter',function(){if(window.innerWidth>900){li.classList.add('open');}});
-        li.addEventListener('mouseleave',function(){if(window.innerWidth>900){li.classList.remove('open');}});
-        li.addEventListener('click',function(e){if(window.innerWidth<=900){li.classList.toggle('open');e.stopPropagation();}});
-      }
-    });
-    document.addEventListener('click',function(e){
-      if(window.innerWidth<=900 && nav.classList.contains('open') && !nav.contains(e.target)){
-        nav.classList.remove('open');
-      }
-    });
-  }
-});</script></nav>
+      <nav class="site-nav" id="site-nav"><ul class="site-nav-menu" role="menubar">
+            <li role="none"><a role="menuitem" href="index.html">Home</a></li>
+            <li role="none">
+                <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#chapters-submenu" tabindex="0">Chapters</a>
+                <ul class="dropdown-menu" id="chapters-submenu" role="menu">
+                    <li role="none"><a role="menuitem" href="01_start.html">Week 1: Start</a></li>
+                    <li role="none"><a role="menuitem" href="01_notes.html">Week 1: Introduction to Classical Mechanics</a></li>
+                    <li role="none"><a role="menuitem" href="02_start.html">Week 2: Computing as a tool for science</a></li>
+                    <li role="none"><a role="menuitem" href="02_notes.html">Week 2: Mathematical Preliminaries</a></li>
+                    <li role="none"><a role="menuitem" href="03_start.html">Week 3: What is Mathematical Modeling?</a></li>
+                    <li role="none"><a role="menuitem" href="03_notes.html">Week 3: Making Classical Models</a></li>
+                    <!-- Add more chapters as needed -->
+                </ul>
+            </li>
+            <li role="none">
+                <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#activities-submenu" tabindex="0">Activities</a>
+                <ul class="dropdown-menu" id="activities-submenu" role="menu">
+                    <li role="none"><a role="menuitem" href="hw1.html">Homework Assignment 1</a></li>
+                    <li role="none"><a role="menuitem" href="hw2.html">Homework Assignment 2</a></li>
+                    <!-- Add more activities as needed -->
+                </ul>
+            </li>
+            <li role="none"><a role="menuitem" href="resources.html">Resources</a></li>
+            <li role="none"><a role="menuitem" href="about.html">About</a></li>
+        </ul><button class="toggle-dark" aria-label="Toggle dark/light mode" onclick="document.body.classList.toggle('dark')">🌗</button></nav>
       <div class="layout-main">
         <div class="container">
           <main id="main-content">
@@ -7607,21 +7603,5 @@ a.anchor-link {
       <footer>
         <p>&copy; Modern Classical Mechanics. All rights reserved. | Built with ❤️ by the MSU Physics team.</p>
       </footer>
-      
-<style id="site-bg-override">
-html, body, .markdown-body, .container, main, .site-header, .site-nav, nav, footer, .card, .admonition, .card-grid, .dropdown-menu, .site-nav-menu, .layout-main {
-  background: #fff !important;
-  color: #181a1b !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-body.dark html, body.dark body, body.dark .markdown-body, body.dark .container, body.dark main, body.dark .site-header, body.dark .site-nav, body.dark nav, body.dark footer, body.dark .card, body.dark .admonition, body.dark .card-grid, body.dark .dropdown-menu, body.dark .site-nav-menu, body.dark .layout-main {
-  background: #181a1b !important;
-  color: #f9f9fb !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-</style>
-
     </body>
     </html>

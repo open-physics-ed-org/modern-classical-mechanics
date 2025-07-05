@@ -301,49 +301,35 @@ def main():
         return html
 
     def get_nav_html():
+        # Minimal, accessible, robust nav: no hamburger, no legacy JS, just semantic HTML
         nav_html = ''
-        # Hamburger for mobile
-        nav_html += '<button class="menu-toggle" aria-label="Toggle menu">☰</button>'
-        if menu_data:
-            nav_html += build_menu_html(menu_data)
-        else:
-            nav_html += '''<ul class="site-nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="01_notes.html">Chapters</a></li>
-                <li><a href="resources.html">Resources</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>'''
+        nav_html += '''<ul class="site-nav-menu" role="menubar">
+            <li role="none"><a role="menuitem" href="index.html">Home</a></li>
+            <li role="none">
+                <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#chapters-submenu" tabindex="0">Chapters</a>
+                <ul class="dropdown-menu" id="chapters-submenu" role="menu">
+                    <li role="none"><a role="menuitem" href="01_start.html">Week 1: Start</a></li>
+                    <li role="none"><a role="menuitem" href="01_notes.html">Week 1: Introduction to Classical Mechanics</a></li>
+                    <li role="none"><a role="menuitem" href="02_start.html">Week 2: Computing as a tool for science</a></li>
+                    <li role="none"><a role="menuitem" href="02_notes.html">Week 2: Mathematical Preliminaries</a></li>
+                    <li role="none"><a role="menuitem" href="03_start.html">Week 3: What is Mathematical Modeling?</a></li>
+                    <li role="none"><a role="menuitem" href="03_notes.html">Week 3: Making Classical Models</a></li>
+                    <!-- Add more chapters as needed -->
+                </ul>
+            </li>
+            <li role="none">
+                <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#activities-submenu" tabindex="0">Activities</a>
+                <ul class="dropdown-menu" id="activities-submenu" role="menu">
+                    <li role="none"><a role="menuitem" href="hw1.html">Homework Assignment 1</a></li>
+                    <li role="none"><a role="menuitem" href="hw2.html">Homework Assignment 2</a></li>
+                    <!-- Add more activities as needed -->
+                </ul>
+            </li>
+            <li role="none"><a role="menuitem" href="resources.html">Resources</a></li>
+            <li role="none"><a role="menuitem" href="about.html">About</a></li>
+        </ul>'''
         nav_html += '<button class="toggle-dark" aria-label="Toggle dark/light mode" onclick="document.body.classList.toggle(\'dark\')">🌗</button>'
-        # JS for dropdowns and hamburger
-        nav_html += '''<script>document.addEventListener('DOMContentLoaded',function(){
-  var nav = document.getElementById('site-nav');
-  var menu = nav && nav.querySelector('.site-nav-menu');
-  var toggle = nav && nav.querySelector('.menu-toggle');
-  if(menu && toggle){
-    toggle.addEventListener('click',function(){
-      nav.classList.toggle('open');
-    });
-    menu.querySelectorAll('a').forEach(function(link){
-      link.addEventListener('click',function(){
-        if(window.innerWidth<=900){nav.classList.remove('open');}
-      });
-    });
-    // Dropdowns: open on hover (desktop), click/tap (mobile)
-    menu.querySelectorAll('li').forEach(function(li){
-      var submenu = li.querySelector('ul');
-      if(submenu){
-        li.addEventListener('mouseenter',function(){if(window.innerWidth>900){li.classList.add('open');}});
-        li.addEventListener('mouseleave',function(){if(window.innerWidth>900){li.classList.remove('open');}});
-        li.addEventListener('click',function(e){if(window.innerWidth<=900){li.classList.toggle('open');e.stopPropagation();}});
-      }
-    });
-    document.addEventListener('click',function(e){
-      if(window.innerWidth<=900 && nav.classList.contains('open') && !nav.contains(e.target)){
-        nav.classList.remove('open');
-      }
-    });
-  }
-});</script>'''
+        # No JS for nav: all accessibility and dropdowns handled by CSS and semantic HTML
         return nav_html
 
     def get_html_template(title, body):
@@ -363,25 +349,9 @@ def main():
         if not footer_html:
             footer_html = f"&copy; {book_title}. All rights reserved."
         # Center the title and remove extra white header
-        # Inject style for full-page light/dark background and remove all borders/lines
-        override_style = """
-<style id=\"site-bg-override\">
-html, body, .markdown-body, .container, main, .site-header, .site-nav, nav, footer, .card, .admonition, .card-grid, .dropdown-menu, .site-nav-menu, .layout-main {
-  background: #fff !important;
-  color: #181a1b !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-body.dark html, body.dark body, body.dark .markdown-body, body.dark .container, body.dark main, body.dark .site-header, body.dark .site-nav, body.dark nav, body.dark footer, body.dark .card, body.dark .admonition, body.dark .card-grid, body.dark .dropdown-menu, body.dark .site-nav-menu, body.dark .layout-main {
-  background: #181a1b !important;
-  color: #f9f9fb !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-</style>
-"""
+        # No override style injected; main.css controls all site appearance
         return f"""<!DOCTYPE html>
-    <html lang=\"en\">\n    <head>\n      <meta charset=\"UTF-8\">\n      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n      <title>{book_title}</title>\n      <link href=\"css/main.css\" rel=\"stylesheet\">\n      <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>\n    </head>\n    <body class=\"dark\">\n      <header class=\"site-header\">\n        <h1 class=\"site-title\">{book_title}</h1>\n      </header>\n      <nav class=\"site-nav\" id=\"site-nav\">{nav_html}</nav>\n      <div class=\"layout-main\">\n        <div class=\"container\">\n          <main id=\"main-content\">\n            {body}\n          </main>\n        </div>\n      </div>\n      <footer>\n        <p>{footer_html}</p>\n      </footer>\n      {override_style}\n    </body>\n    </html>"""
+    <html lang=\"en\">\n    <head>\n      <meta charset=\"UTF-8\">\n      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n      <title>{book_title}</title>\n      <link href=\"css/main.css\" rel=\"stylesheet\">\n      <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>\n    </head>\n    <body class=\"dark\">\n      <header class=\"site-header\">\n        <h1 class=\"site-title\">{book_title}</h1>\n      </header>\n      <nav class=\"site-nav\" id=\"site-nav\">{nav_html}</nav>\n      <div class=\"layout-main\">\n        <div class=\"container\">\n          <main id=\"main-content\">\n            {body}\n          </main>\n        </div>\n      </div>\n      <footer>\n        <p>{footer_html}</p>\n      </footer>\n    </body>\n    </html>"""
 
     # --- Process intro.md as index.html ---
     intro_md = repo_root / 'intro.md'
