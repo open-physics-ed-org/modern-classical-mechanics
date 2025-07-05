@@ -12,29 +12,47 @@
   --color-link: #0057b8;
   --color-link-hover: #003d7a;
   --color-focus: #ffb700;
-  --color-dark-bg: #181a1b;
-  --color-dark-fg: #f9f9fb;
-  --color-dark-card: #23272e;
-  --color-dark-border: #333;
-  --color-dark-link: #7abaff;
-  --color-dark-link-hover: #fff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: var(--color-dark-bg);
-    --color-fg: var(--color-dark-fg);
-    --color-card: var(--color-dark-card);
-    --color-border: var(--color-dark-border);
-    --color-link: var(--color-dark-link);
-    --color-link-hover: var(--color-dark-link-hover);
-  }
+body.dark {
+  --color-bg: #181a1b;
+  --color-fg: #f9f9fb;
+  --color-card: #23272e;
+  --color-border: #333;
+  --color-link: #7abaff;
+  --color-link-hover: #fff;
+}
+body:not(.dark) {
+  --color-bg: #f9f9fb;
+  --color-fg: #181a1b;
+  --color-card: #fff;
+  --color-border: #e0e0e0;
+  --color-link: #0057b8;
+  --color-link-hover: #003d7a;
+}
+
+
+
+
+
+
+html, body, main {
+  background: var(--color-bg) !important;
+  color: var(--color-fg) !important;
+}
+
+.markdown-body {
+  background: transparent !important;
+  color: var(--color-fg) !important;
+}
+
+.container, .card {
+  background: var(--color-card) !important;
+  color: var(--color-fg) !important;
 }
 
 html {
   font-size: 18px;
-  background: var(--color-bg);
-  color: var(--color-fg);
   font-family: var(--font-main);
   scroll-behavior: smooth;
   width: 100%;
@@ -43,8 +61,6 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--color-bg);
-  color: var(--color-fg);
   width: 100%;
 }
 
@@ -198,10 +214,11 @@ nav[aria-label] {
   margin-top: 1.5em;
 }
 
+
 .markdown-body pre, .markdown-body code {
   font-family: var(--font-mono);
-  background: #f4f4f4;
-  color: #222;
+  background: var(--color-card) !important;
+  color: var(--color-fg) !important;
   border-radius: 4px;
   padding: 0.2em 0.4em;
 }
@@ -210,6 +227,67 @@ nav[aria-label] {
   padding: 1em;
   overflow-x: auto;
 }
+
+body.dark .markdown-body pre, body.dark .markdown-body code {
+  background: #23272e !important;
+  color: #f9f9fb !important;
+}
+
+/* --- Notebook/Jupyter/nbconvert overrides for dark mode and theming --- */
+
+.jp-Notebook,
+.jp-Cell,
+.jp-CodeCell,
+.jp-OutputArea,
+.jp-InputArea,
+.output_area,
+.input_area {
+  background: var(--color-card) !important;
+  color: var(--color-fg) !important;
+  box-shadow: none !important;
+}
+
+body.dark .markdown-body {
+  background: transparent !important;
+  color: #f9f9fb !important;
+}
+body.dark .jp-Notebook,
+body.dark .jp-Cell,
+body.dark .jp-CodeCell,
+body.dark .jp-OutputArea,
+body.dark .jp-InputArea,
+body.dark .output_area,
+body.dark .input_area {
+  background: #23272e !important;
+  color: #f9f9fb !important;
+  box-shadow: none !important;
+}
+
+/* Code/pre blocks in notebook */
+.markdown-body pre, .markdown-body code,
+.jp-Notebook pre, .jp-Notebook code,
+.jp-CodeCell pre, .jp-CodeCell code {
+  background: var(--color-card) !important;
+  color: var(--color-fg) !important;
+}
+body.dark .markdown-body pre, body.dark .markdown-body code,
+body.dark .jp-Notebook pre, body.dark .jp-Notebook code,
+body.dark .jp-CodeCell pre, body.dark .jp-CodeCell code {
+  background: #23272e !important;
+  color: #f9f9fb !important;
+}
+
+/* Output area (e.g., matplotlib, text output) */
+.jp-OutputArea-output, .output_area pre {
+  background: var(--color-card) !important;
+  color: var(--color-fg) !important;
+}
+body.dark .jp-OutputArea-output, body.dark .output_area pre {
+  background: #23272e !important;
+  color: #f9f9fb !important;
+}
+
+/* Remove forced inherit for all children, only override problematic nbconvert classes above */
 
 .markdown-body a {
   color: var(--color-link);
@@ -242,22 +320,7 @@ nav[aria-label] {
   transition: background 0.2s;
   z-index: 10;
 /* Force dark mode by default */
-html,
-body {
-  background: var(--color-dark-bg) !important;
-  color: var(--color-dark-fg) !important;
-}
-.container, .card, .navbar, header, footer, .markdown-body, .card-grid {
-  background: var(--color-dark-card) !important;
-  color: var(--color-dark-fg) !important;
-  border-color: var(--color-dark-border) !important;
-}
-a, .navbar a, .navbar button, .markdown-body a {
-  color: var(--color-dark-link) !important;
-}
-a:hover, .navbar a:hover, .navbar button:hover, .markdown-body a:hover {
-  color: var(--color-dark-link-hover) !important;
-}
+
 }
 .toggle-dark:focus {
   outline: 2px solid var(--color-focus);
