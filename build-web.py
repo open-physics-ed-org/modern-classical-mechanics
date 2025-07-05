@@ -286,15 +286,42 @@ def main():
 
     # 4. Convert notebooks to HTML with custom CSS and template
     import yaml
-    css_path = repo_root / 'static' / 'css' / 'book.css'
-    css_rel = 'css/book.css'
+    css_path = repo_root / 'static' / 'css' / 'main.css'
+    css_rel = 'css/main.css'
 
-    # Remove menu YAML and menu HTML generation for this test
-    # Only process intro.md as index.html
+    # HTML template for all pages (minimal, no inline CSS/JS, just main.css, dark by default)
+    def get_html_template(title, body):
+        return f"""<!DOCTYPE html>
+<html lang=\"en\">
+<head>
+  <meta charset=\"UTF-8\">
+  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+  <title>{title}</title>
+  <link href=\"css/main.css\" rel=\"stylesheet\">
+</head>
+<body class=\"dark\">
+  <nav>
+    <a href=\"index.html\">Home</a> |
+    <a href=\"01_notes.html\">Chapters</a> |
+    <a href=\"resources.html\">Resources</a> |
+    <a href=\"about.html\">About</a>
+    <button class=\"toggle-dark\" aria-label=\"Toggle dark/light mode\" onclick=\"document.body.classList.toggle('dark')\">🌗</button>
+  </nav>
+  <div class=\"container\">
+    <main id=\"main-content\">
+      {body}
+    </main>
+  </div>
+  <footer>
+    <p>&copy; Modern Classical Mechanics. All rights reserved.</p>
+  </footer>
+</body>
+</html>"""
+
+    # --- Process intro.md as index.html ---
     intro_md = repo_root / 'intro.md'
     index_html_path = build_dir / 'index.html'
     if intro_md.exists():
-        # Use Python markdown library for proper HTML conversion
         try:
             import markdown
         except ImportError:
@@ -303,24 +330,28 @@ def main():
             sys.exit(1)
         with open(intro_md, 'r', encoding='utf-8') as f:
             intro_content = f.read()
-        body = '<div class="markdown-body">' + markdown.markdown(intro_content, extensions=['extra', 'toc', 'admonition']) + '</div>'
-        title = "Modern Classical Mechanics"
-        html_template = f'''<!DOCTYPE html>
-<html lang="en" class="dark">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{{{title}}}}</title>
-  <link href="css/book.css" rel="stylesheet">
-</head>
-<body>
-  <div class="container">
-    {{{{body}}}}
-  </div>
-</body>
-</html>'''
-        html = html_template.replace('{{title}}', title).replace('{{body}}', body)
+        main_html = markdown.markdown(intro_content, extensions=['extra', 'toc', 'admonition'])
+        card_grid = '''<section class="card-grid" aria-label="Main sections">
+  <div class="card" tabindex="0"><h2><a href="01_notes.html">Chapters</a></h2><p>Lecture notes and weekly content</p></div>
+  <div class="card" tabindex="0"><h2><a href="resources.html">Resources</a></h2><p>Reference materials, links, and tools</p></div>
+  <div class="card" tabindex="0"><h2><a href="about.html">About</a></h2><p>Course info, instructor, and policies</p></div>
+</section>'''
+        body = f'<div class="markdown-body">{main_html}{card_grid}</div>'
+        html = get_html_template("Modern Classical Mechanics", body)
         with open(index_html_path, 'w', encoding='utf-8') as f:
+            f.write(html)
+
+    # --- Process all notebooks as HTML with the same template ---
+    for nb in notebooks_dir.glob('*.ipynb'):
+        html_name = nb.with_suffix('.html').name
+        html_path = build_dir / html_name
+        exporter = HTMLExporter()
+        (body, resources) = exporter.from_filename(str(nb))
+        # Do not convert admonitions in HTML body; already handled in markdown preprocessing
+        body = f'<div class="markdown-body">{body}</div>'
+        title = nb.stem.replace('_', ' ').title()
+        html = get_html_template(title, body)
+        with open(html_path, 'w', encoding='utf-8') as f:
             f.write(html)
 
     # 5. Copy everything to docs/
@@ -339,7 +370,7 @@ def main():
             shutil.copytree(item, dest)
         else:
             shutil.copy2(item, dest)
-    shutil.copy2(css_path, docs_css_dir / 'book.css')
+    shutil.copy2(css_path, docs_css_dir / 'main.css')
     images_docs_dir = docs_dir / 'images'
     images_docs_dir.mkdir(parents=True, exist_ok=True)
     for img_file in images_dir.glob('*'):
