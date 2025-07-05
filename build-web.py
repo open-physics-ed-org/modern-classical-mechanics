@@ -255,7 +255,6 @@ def main():
     # 4. Convert notebooks to HTML with custom CSS and template
     import json
     css_path = repo_root / 'static' / 'css' / 'main.css'
-    custom_menu_css_path = repo_root / 'static' / 'css' / 'custom-menu.css'
     css_rel = 'css/main.css'
 
     # --- Load menu structure from _menu.yml using basic_yaml2json.py ---
@@ -340,16 +339,7 @@ def main():
                 if 'title' in config:
                     book_title = config['title']
         return f"""<!DOCTYPE html>
-    <html lang=\"en\">
-    <head>
-      <meta charset=\"UTF-8\">
-      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-      <title>{book_title}</title>
-      <link href=\"css/custom-menu.css\" rel=\"stylesheet\">
-      <link href=\"css/main.css\" rel=\"stylesheet\">
-      <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>
-    </head>
-    <body class=\"dark\">\n      <header class=\"site-header\">\n        <h1>{book_title}</h1>\n      </header>\n      <div class=\"layout-main\">\n        <aside class=\"side-nav\">\n          {nav_html}\n        </aside>\n        <div class=\"container\">\n          <main id=\"main-content\">\n            {body}\n          </main>\n        </div>\n      </div>\n      <footer>\n        <p>&copy; {book_title}. All rights reserved.</p>\n      </footer>\n    </body>\n    </html>"""
+    <html lang=\"en\">\n    <head>\n      <meta charset=\"UTF-8\">\n      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n      <title>{book_title}</title>\n      <link href=\"css/main.css\" rel=\"stylesheet\">\n      <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>\n    </head>\n    <body class=\"dark\">\n      <header class=\"site-header\">\n        <h1>{book_title}</h1>\n      </header>\n      <div class=\"layout-main\">\n        <aside class=\"side-nav\">\n          {nav_html}\n        </aside>\n        <div class=\"container\">\n          <main id=\"main-content\">\n            {body}\n          </main>\n        </div>\n      </div>\n      <footer>\n        <p>&copy; {book_title}. All rights reserved.</p>\n      </footer>\n    </body>\n    </html>"""
 
     # --- Process intro.md as index.html ---
     intro_md = repo_root / 'intro.md'
@@ -404,14 +394,11 @@ def main():
             shutil.copytree(item, dest)
         else:
             shutil.copy2(item, dest)
-    # Copy both main.css and custom-menu.css to docs/css and _build/html/css
+    # Copy only main.css to docs/css and _build/html/css
     shutil.copy2(css_path, docs_css_dir / 'main.css')
     build_css_dir = build_dir / 'css'
     build_css_dir.mkdir(parents=True, exist_ok=True)
     shutil.copy2(css_path, build_css_dir / 'main.css')
-    if custom_menu_css_path.exists():
-        shutil.copy2(custom_menu_css_path, docs_css_dir / 'custom-menu.css')
-        shutil.copy2(custom_menu_css_path, build_css_dir / 'custom-menu.css')
     images_docs_dir = docs_dir / 'images'
     images_docs_dir.mkdir(parents=True, exist_ok=True)
     for img_file in images_dir.glob('*'):
