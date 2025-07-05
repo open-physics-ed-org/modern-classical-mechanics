@@ -57,7 +57,11 @@ def main():
     notebook_dir = repo_root / 'notebooks'
     notebooks_yaml = repo_root / 'notebooks.yaml'
     update_toc = repo_root / 'scripts' / 'update_toc.sh'
-    fetch_images = repo_root / 'scripts' / 'fetch_remote_images.sh'
+
+    import nbformat
+    import requests
+    import re
+    import hashlib
 
     build_pdf = args.pdf or (not args.md and not args.docx and not args.latex and not args.html)
     build_md = args.md or (not args.pdf and not args.docx and not args.latex and not args.html)
@@ -97,9 +101,55 @@ def main():
         f.write('\n'.join(toc_content) + '\n')
     print(f"[INFO] _toc.yml generated with {len(notebooks)} chapters.")
 
-    # Always fetch remote images and update references
-    print(f"[INFO] Fetching remote images and updating references...")
-    run([str(fetch_images)])
+
+    # Always fetch remote images and update references (Python implementation)
+    print(f"[INFO] Fetching remote images and updating references in notebooks...")
+    remote_image_pattern = re.compile(r'!\[[^\]]*\]\((https?://[^)]+)\)')
+    for nb in notebooks:
+        nb_path = notebook_dir / nb
+        if not nb_path.exists():
+            print(f"[WARN] Notebook not found: {nb_path}")
+            continue
+        try:
+            nb_data = nbformat.read(str(nb_path), as_version=4)
+        except Exception as e:
+            print(f"[WARN] Could not read notebook {nb_path}: {e}")
+            continue
+        changed = False
+        for cell in nb_data.cells:
+            if cell.cell_type != 'markdown':
+                continue
+            def repl(match):
+                url = match.group(1)
+                # Create a flat, unique filename for the image
+                hash_digest = hashlib.md5(url.encode('utf-8')).hexdigest()[:8]
+                ext = os.path.splitext(url.split('?')[0])[1] or '.img'
+                local_name = f"remote_{hash_digest}{ext}"
+                local_path = nb_path.parent / local_name
+                if not local_path.exists():
+                    try:
+                        resp = requests.get(url, timeout=10)
+                        resp.raise_for_status()
+                        with open(local_path, 'wb') as f:
+                            f.write(resp.content)
+                        print(f"[INFO] Downloaded {url} -> {local_path}")
+                    except Exception as e:
+                        print(f"[WARN] Failed to fetch {url}: {e}")
+                        return match.group(0)
+                else:
+                    print(f"[INFO] Already downloaded {url} -> {local_path}")
+                changed_local = match.group(0).replace(url, local_name)
+                return changed_local
+            new_src = remote_image_pattern.sub(repl, cell.source)
+            if new_src != cell.source:
+                cell.source = new_src
+                changed = True
+        if changed:
+            try:
+                nbformat.write(nb_data, str(nb_path))
+                print(f"[INFO] Updated notebook with local images: {nb_path}")
+            except Exception as e:
+                print(f"[WARN] Could not write notebook {nb_path}: {e}")
     print(f"[INFO] Remote image fetch and update complete.")
 
 
