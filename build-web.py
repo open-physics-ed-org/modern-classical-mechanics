@@ -301,35 +301,79 @@ def main():
         return html
 
     def get_nav_html():
-        # Minimal, accessible, robust nav: no hamburger, no legacy JS, just semantic HTML
-        nav_html = ''
-        nav_html += '''<ul class="site-nav-menu" role="menubar">
-            <li role="none"><a role="menuitem" href="index.html">Home</a></li>
-            <li role="none">
-                <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#chapters-submenu" tabindex="0">Chapters</a>
-                <ul class="dropdown-menu" id="chapters-submenu" role="menu">
-                    <li role="none"><a role="menuitem" href="01_start.html">Week 1: Start</a></li>
-                    <li role="none"><a role="menuitem" href="01_notes.html">Week 1: Introduction to Classical Mechanics</a></li>
-                    <li role="none"><a role="menuitem" href="02_start.html">Week 2: Computing as a tool for science</a></li>
-                    <li role="none"><a role="menuitem" href="02_notes.html">Week 2: Mathematical Preliminaries</a></li>
-                    <li role="none"><a role="menuitem" href="03_start.html">Week 3: What is Mathematical Modeling?</a></li>
-                    <li role="none"><a role="menuitem" href="03_notes.html">Week 3: Making Classical Models</a></li>
-                    <!-- Add more chapters as needed -->
-                </ul>
-            </li>
-            <li role="none">
-                <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#activities-submenu" tabindex="0">Activities</a>
-                <ul class="dropdown-menu" id="activities-submenu" role="menu">
-                    <li role="none"><a role="menuitem" href="hw1.html">Homework Assignment 1</a></li>
-                    <li role="none"><a role="menuitem" href="hw2.html">Homework Assignment 2</a></li>
-                    <!-- Add more activities as needed -->
-                </ul>
-            </li>
-            <li role="none"><a role="menuitem" href="resources.html">Resources</a></li>
-            <li role="none"><a role="menuitem" href="about.html">About</a></li>
-        </ul>'''
-        nav_html += '<button class="toggle-dark" aria-label="Toggle dark/light mode" onclick="document.body.classList.toggle(\'dark\')">🌗</button>'
-        # No JS for nav: all accessibility and dropdowns handled by CSS and semantic HTML
+        # Accessible nav: desktop and mobile, with ARIA and toggle
+        nav_html = (
+            '<button class="site-nav-toggle" aria-label="Open menu" aria-controls="site-nav-menu" aria-expanded="false" tabindex="0">☰</button>'
+            '<ul class="site-nav-menu" id="site-nav-menu" role="menubar">'
+            '<li role="none"><a role="menuitem" href="index.html" tabindex="0">Home</a></li>'
+            '<li role="none">'
+                '<a role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="chapters-submenu" href="#chapters-submenu" tabindex="0">Chapters</a>'
+                '<ul class="dropdown-menu" id="chapters-submenu" role="menu">'
+                    '<li role="none"><a role="menuitem" href="01_start.html" tabindex="0">Week 1: Start</a></li>'
+                    '<li role="none"><a role="menuitem" href="01_notes.html" tabindex="0">Week 1: Introduction to Classical Mechanics</a></li>'
+                    '<li role="none"><a role="menuitem" href="02_start.html" tabindex="0">Week 2: Computing as a tool for science</a></li>'
+                    '<li role="none"><a role="menuitem" href="02_notes.html" tabindex="0">Week 2: Mathematical Preliminaries</a></li>'
+                    '<li role="none"><a role="menuitem" href="03_start.html" tabindex="0">Week 3: What is Mathematical Modeling?</a></li>'
+                    '<li role="none"><a role="menuitem" href="03_notes.html" tabindex="0">Week 3: Making Classical Models</a></li>'
+                    '<!-- Add more chapters as needed -->'
+                '</ul>'
+            '</li>'
+            '<li role="none">'
+                '<a role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="activities-submenu" href="#activities-submenu" tabindex="0">Activities</a>'
+                '<ul class="dropdown-menu" id="activities-submenu" role="menu">'
+                    '<li role="none"><a role="menuitem" href="hw1.html" tabindex="0">Homework Assignment 1</a></li>'
+                    '<li role="none"><a role="menuitem" href="hw2.html" tabindex="0">Homework Assignment 2</a></li>'
+                    '<!-- Add more activities as needed -->'
+                '</ul>'
+            '</li>'
+            '<li role="none"><a role="menuitem" href="resources.html" tabindex="0">Resources</a></li>'
+            '<li role="none"><a role="menuitem" href="about.html" tabindex="0">About</a></li>'
+            '</ul>'
+            '<button class="toggle-dark" aria-label="Toggle dark/light mode" onclick="document.body.classList.toggle(\'dark\')">🌗</button>'
+        )
+        # Add minimal JS for ARIA and toggle (as a Python string, not inside triple single quotes)
+        nav_html += """
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var nav = document.getElementById('site-nav');
+  var menu = document.getElementById('site-nav-menu');
+  var toggle = document.querySelector('.site-nav-toggle');
+  if(menu && toggle){
+    toggle.addEventListener('click',function(){
+      var expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded',!expanded);
+      menu.classList.toggle('open');
+    });
+    toggle.addEventListener('keydown',function(e){
+      if(e.key==='Enter'||e.key===' '){
+        e.preventDefault();
+        toggle.click();
+      }
+    });
+    // Keyboard nav for menu items
+    menu.querySelectorAll('a,span').forEach(function(el){
+      el.setAttribute('tabindex','0');
+    });
+    // Dropdown ARIA
+    menu.querySelectorAll('a[aria-haspopup="true"]').forEach(function(link){
+      link.addEventListener('click',function(e){
+        var expanded = link.getAttribute('aria-expanded') === 'true';
+        link.setAttribute('aria-expanded',!expanded);
+        var submenu = document.getElementById(link.getAttribute('aria-controls'));
+        if(submenu) submenu.style.display = expanded ? 'none' : 'block';
+        e.preventDefault();
+      });
+      link.addEventListener('keydown',function(e){
+        if(e.key==='Enter'||e.key===' '){
+          e.preventDefault();
+          link.click();
+        }
+      });
+    });
+  }
+});
+</script>
+"""
         return nav_html
 
     def get_html_template(title, body):
@@ -366,11 +410,13 @@ def main():
         with open(intro_md, 'r', encoding='utf-8') as f:
             intro_content = f.read()
         main_html = markdown.markdown(intro_content, extensions=['extra', 'toc', 'admonition'])
-        card_grid = '''<section class="card-grid" aria-label="Main sections">
-  <div class="card" tabindex="0"><h2><a href="01_notes.html">Chapters</a></h2><p>Lecture notes and weekly content</p></div>
-  <div class="card" tabindex="0"><h2><a href="resources.html">Resources</a></h2><p>Reference materials, links, and tools</p></div>
-  <div class="card" tabindex="0"><h2><a href="about.html">About</a></h2><p>Course info, instructor, and policies</p></div>
-</section>'''
+        card_grid = ("""
+<section class=\"card-grid\" aria-label=\"Main sections\">
+  <div class=\"card\" tabindex=\"0\"><h2><a href=\"01_notes.html\">Chapters</a></h2><p>Lecture notes and weekly content</p></div>
+  <div class=\"card\" tabindex=\"0\"><h2><a href=\"resources.html\">Resources</a></h2><p>Reference materials, links, and tools</p></div>
+  <div class=\"card\" tabindex=\"0\"><h2><a href=\"about.html\">About</a></h2><p>Course info, instructor, and policies</p></div>
+</section>
+""")
         body = f'<div class="markdown-body">{main_html}{card_grid}</div>'
         html = get_html_template("Modern Classical Mechanics", body)
         with open(index_html_path, 'w', encoding='utf-8') as f:
