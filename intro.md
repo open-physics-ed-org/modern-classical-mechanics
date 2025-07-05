@@ -17,9 +17,3 @@ Modern Classical Mechanics is designed for students, educators, and anyone curio
 - Clear explanations and worked examples
 - Local images and reproducible builds
 - Multiple output formats (web, PDF, DOCX)
-
----
-
-Enjoy learning and exploring!
-
-— Marcos D. Caballero

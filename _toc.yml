@@ -1,34 +1,9 @@
-# Table of contents for Jupyter Book
-# Add your notebook files here in order
+# Auto-generated _toc.yml from notebooks.yaml
 format: jb-book
-root: intro.md
-# Main chapters
+root: intro
 chapters:
-  - file: notebooks/01_start.ipynb
-  - file: notebooks/01_notes.ipynb
-  - file: notebooks/02_start.ipynb
-  - file: notebooks/02_notes.ipynb
-  - file: notebooks/03_start.ipynb
-  - file: notebooks/03_notes.ipynb
-  - file: notebooks/04_start.ipynb
-  - file: notebooks/04_notes.ipynb
-  - file: notebooks/05_start.ipynb
-  - file: notebooks/05_notes.ipynb
-  - file: notebooks/06_start.ipynb
-  - file: notebooks/06_notes.ipynb
-  - file: notebooks/06_notes_2.ipynb
-  - file: notebooks/07_start.ipynb
-  - file: notebooks/07_notes.ipynb
-  - file: notebooks/08_start.ipynb
-  - file: notebooks/08_notes.ipynb
-  - file: notebooks/09_start.ipynb
-  - file: notebooks/09_notes.ipynb
-  - file: notebooks/10_start.ipynb
-  - file: notebooks/10_notes.ipynb
-  - file: notebooks/11_start.ipynb
-  - file: notebooks/11_notes.ipynb
-  - file: notebooks/12_start.ipynb
-  - file: notebooks/12_notes.ipynb
-  - file: notebooks/13_start.ipynb
-  - file: notebooks/13_notes.ipynb
-# Add more chapters as needed
+  - file: notebooks/01_start
+  - file: notebooks/01_notes
+  - file: notebooks/02_start
+  - file: notebooks/02_notes
+  - file: notebooks/03_start

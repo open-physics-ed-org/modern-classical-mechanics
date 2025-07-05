@@ -1,0 +1,31 @@
+# notebooks.yaml
+# List of all potential notebook files to be converted to PDF.
+# Edit this file to add or remove notebooks. Paths are relative to the notebooks directory.
+notebooks:
+  - 01_start.ipynb
+  - 01_notes.ipynb
+  - 02_start.ipynb
+  - 02_notes.ipynb
+  - 03_start.ipynb
+  # - 03_notes.ipynb
+  # - 04_start.ipynb
+  # - 04_notes.ipynb
+  # - 05_start.ipynb
+  # - 05_notes.ipynb
+  # - 06_start.ipynb
+  # - 06_notes.ipynb
+  # - 06_notes_2.ipynb
+  # - 07_start.ipynb
+  # - 07_notes.ipynb
+  # - 08_start.ipynb
+  # - 08_notes.ipynb
+  # - 09_start.ipynb
+  # - 09_notes.ipynb
+  # - 10_start.ipynb
+  # - 10_notes.ipynb
+  # - 11_start.ipynb
+  # - 11_notes.ipynb
+  # - 12_start.ipynb
+  # - 12_notes.ipynb
+  # - 13_start.ipynb
+  # - 13_notes.ipynb
