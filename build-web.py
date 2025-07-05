@@ -92,6 +92,68 @@ def main():
             def update_img_link(match):
                 alt_text = match.group(1)
                 img_path = match.group(2).strip()
+                # --- YOUTUBE THUMBNAIL HANDLING ---
+                # 1. Direct YouTube thumbnail URL
+                yt_match = re.match(r'https?://img\.youtube\.com/vi/([\w-]{11})/', img_path)
+                if yt_match:
+                    video_id = yt_match.group(1)
+                    local_img_name = f"youtube_{video_id}.jpg"
+                    print(f"[DEBUG] Rewriting YouTube thumbnail: {img_path} -> images/{local_img_name}")
+                    referenced_images.add((images_dir / local_img_name, images_dir / local_img_name))
+                    all_youtube_ids.add(video_id)
+                    return f"![{alt_text}](images/{local_img_name})"
+
+                # 2. Mangled YouTube thumbnail (e.g. images/youtube___hqdefault.jpg)
+                yt_mangled = re.match(r'images/youtube___(hqdefault|maxresdefault)\.jpg', img_path)
+                if yt_mangled:
+                    # Try to find a YouTube video ID in the cell source
+                    video_id = None
+                    # Try to extract from alt_text if it looks like a video ID
+                    if re.match(r'^[\w-]{11}$', alt_text):
+                        video_id = alt_text
+                    # Try to extract from the cell source (look for a YouTube link)
+                    if not video_id:
+                        yt_links = re.findall(r'(?:youtube.com/watch\?v=|youtu.be/)([\w-]{11})', cell.source)
+                        if yt_links:
+                            video_id = yt_links[0]
+                    if video_id:
+                        local_img_name = f"youtube_{video_id}.jpg"
+                        print(f"[DEBUG] Rewriting mangled YouTube thumbnail: {img_path} -> images/{local_img_name}")
+                        referenced_images.add((images_dir / local_img_name, images_dir / local_img_name))
+                        all_youtube_ids.add(video_id)
+                        return f"![{alt_text}](images/{local_img_name})"
+                    else:
+                        print(f"[WARNING] Could not extract YouTube video ID for mangled thumbnail: {img_path}")
+                        # fallback: leave as is
+                        return match.group(0)
+
+                # 3. Other mangled YouTube thumbnail (e.g. images/https:__hqdefault.jpg)
+                if (img_path.endswith('hqdefault.jpg') or img_path.endswith('maxresdefault.jpg')) and ('youtube' in img_path or 'http' in img_path or img_path.startswith('images/https')):
+                    video_id = None
+                    # Try to extract from alt_text if it looks like a video ID
+                    if re.match(r'^[\w-]{11}$', alt_text):
+                        video_id = alt_text
+                    # Try to extract from the image path
+                    if not video_id:
+                        m = re.search(r'([\w-]{11})', img_path)
+                        if m:
+                            video_id = m.group(1)
+                    # Try to extract from the cell source (look for a YouTube link)
+                    if not video_id:
+                        yt_links = re.findall(r'(?:youtube.com/watch\?v=|youtu.be/)([\w-]{11})', cell.source)
+                        if yt_links:
+                            video_id = yt_links[0]
+                    if video_id:
+                        local_img_name = f"youtube_{video_id}.jpg"
+                        print(f"[DEBUG] Rewriting mangled YouTube thumbnail: {img_path} -> images/{local_img_name}")
+                        referenced_images.add((images_dir / local_img_name, images_dir / local_img_name))
+                        all_youtube_ids.add(video_id)
+                        return f"![{alt_text}](images/{local_img_name})"
+                    else:
+                        print(f"[WARNING] Could not extract YouTube video ID for mangled thumbnail: {img_path}")
+                        return match.group(0)
+
+                # --- NORMAL IMAGE HANDLING ---
                 img_path_clean = img_path
                 if img_path_clean.startswith('images/'):
                     img_path_clean = img_path_clean[7:]
@@ -114,10 +176,6 @@ def main():
                 # Track missing images
                 if not real_img_path.exists():
                     all_missing_images.add((str(real_img_path), str(nb_path), img_path))
-                    # Check for YouTube thumbnail pattern
-                    yt_match = re.match(r'https?://img\.youtube\.com/vi/([\w-]{11})/', img_path)
-                    if yt_match:
-                        all_youtube_ids.add(yt_match.group(1))
                 return f"![{alt_text}](images/{new_img_name})"
             new_src = re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', update_img_link, cell.source)
             # Also look for YouTube links in plain text
@@ -134,7 +192,12 @@ def main():
         for src_img, dest_img in referenced_images:
             if src_img.exists():
                 dest_img.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(src_img, dest_img)
+                # Avoid copying a file onto itself
+                try:
+                    if os.path.abspath(src_img) != os.path.abspath(dest_img):
+                        shutil.copy2(src_img, dest_img)
+                except Exception as e:
+                    print(f"[ERROR] Copying {src_img} to {dest_img}: {e}")
             else:
                 print(f"[WARNING] Image not found: {src_img}")
 
