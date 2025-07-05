@@ -31,9 +31,11 @@ set -e
 
 # Set directory variables early
 CURRENT_DIR="$(cd "$(dirname "$0")" && pwd)"
-BOOK_DIR="${CURRENT_DIR}/../_build/latex"
+BUILD_DIR="${CURRENT_DIR}/../_build"
+BOOK_DIR="${CURRENT_DIR}/.."  # for reference, not used for output
 NOTEBOOK_DIR="${CURRENT_DIR}/../notebooks"
-CHAPTERS_DIR="${CURRENT_DIR}/../_build/latex"
+CHAPTERS_DIR="$BUILD_DIR/latex"
+HTML_DIR="$BUILD_DIR/html"
 
 # Parse flags
 BUILD_PDF=false
@@ -77,8 +79,8 @@ echo "[INFO] Fetching remote images and updating references..."
 "$CURRENT_DIR/fetch_remote_images.sh"
 echo "[INFO] Remote image fetch and update complete."
 
-echo "[INFO] Creating book output directory: $BOOK_DIR"
-mkdir -p "$BOOK_DIR"
+echo "[INFO] Creating chapters directory: $CHAPTERS_DIR"
+mkdir -p "$CHAPTERS_DIR"
 
 
 echo "Individual chapter PDFs will be built in $CHAPTERS_DIR"
@@ -129,15 +131,18 @@ if $BUILD_PDF; then
   # Build full book PDF using Jupyter Book if config files exist
   if [ -f "$REPO_ROOT/_config.yml" ] && [ -f "$REPO_ROOT/_toc.yml" ]; then
     echo "[INFO] Building full book PDF using Jupyter Book (pdflatex builder)..."
-    jupyter-book build "$REPO_ROOT" --path-output "$BOOK_DIR" --builder pdflatex || {
+    jupyter-book build "$REPO_ROOT" --path-output "$BUILD_DIR" --builder pdflatex || {
       echo "[WARN] Jupyter Book PDF build failed. Check LaTeX errors above.";
     }
-    # Leave the generated PDF in _build/latex as per Jupyter Book convention
-    PDF_PATH="$BOOK_DIR/_build/latex/book.pdf"
-    if [ -f "$PDF_PATH" ]; then
-      echo "[INFO] Full book PDF available at $PDF_PATH"
+    # Find the generated PDF (usually _build/latex/book.pdf inside the output dir)
+    INTERNAL_PDF="$BUILD_DIR/latex/book.pdf"
+    FINAL_PDF="$CHAPTERS_DIR/book.pdf"
+    if [ -f "$INTERNAL_PDF" ]; then
+      echo "[INFO] Copying full book PDF from $INTERNAL_PDF to $FINAL_PDF"
+      cp "$INTERNAL_PDF" "$FINAL_PDF"
+      echo "[INFO] Full book PDF available at $FINAL_PDF"
     else
-      echo "[WARN] Full book PDF was not generated."
+      echo "[WARN] Full book PDF was not generated at $INTERNAL_PDF."
     fi
   else
     echo "[WARN] _config.yml and/or _toc.yml not found in $REPO_ROOT. Skipping full book PDF build."
@@ -150,6 +155,7 @@ fi
 
 
 # Build Jupyter Book website if requested
+
 if $BUILD_HTML; then
   REPO_ROOT="$(dirname "$0")/.."
   echo "[INFO] Updating _toc.yml from notebooks.yaml..."
@@ -158,21 +164,22 @@ if $BUILD_HTML; then
   echo "[INFO] Checking for Jupyter Book config files in $REPO_ROOT..."
   if [ -f "$REPO_ROOT/_config.yml" ] && [ -f "$REPO_ROOT/_toc.yml" ]; then
       echo "[INFO] Found _config.yml and _toc.yml in repo root. Building Jupyter Book..."
-      # Always build the book into the book directory
-      jupyter-book build "$REPO_ROOT" --path-output "${CURRENT_DIR}"
-      # Move the built HTML files to ${CURRENT_DIR} if not already there
-      if [ -d "${CURRENT_DIR}/_build/html" ]; then
-        echo "[INFO] Moving built HTML files to ${CURRENT_DIR}..."
-        cp -a "${CURRENT_DIR}/_build/html/." "${CURRENT_DIR}/"
+      # Always build the book into _build/html
+      jupyter-book build "$REPO_ROOT" --path-output "$BUILD_DIR" --builder html
+      # HTML output will be in $HTML_DIR
+      if [ -d "$HTML_DIR" ]; then
+        echo "[INFO] Jupyter Book HTML build complete. Output in $HTML_DIR."
+      else
+        echo "[WARN] HTML output directory not found: $HTML_DIR"
       fi
-      echo "[INFO] Jupyter Book build complete. Output in ${CURRENT_DIR}."
   else
       echo "[WARN] _config.yml and/or _toc.yml not found in $REPO_ROOT. Jupyter Book build skipped."
   fi
 fi
 
 
-echo "[INFO] Book build process finished. Output directory: ${CURRENT_DIR}"
-
-echo "$BOOK_DIR"
+echo "$BUILD_DIR"
+echo "$CHAPTERS_DIR"
+echo "[INFO] Book build process finished. Output directory: $BUILD_DIR"
+echo "$BUILD_DIR"
 echo "$CHAPTERS_DIR"
