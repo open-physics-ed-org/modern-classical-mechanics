@@ -389,7 +389,7 @@ document.addEventListener('DOMContentLoaded',function(){
         main_html = markdown.markdown(intro_content, extensions=['extra', 'toc', 'admonition'])
         card_grid = ("""
 <section class=\"card-grid\" aria-label=\"Main sections\">
-  <div class=\"card\" tabindex=\"0\"><h2><a href=\"01_notes.html\">Chapters</a></h2><p>Lecture notes and weekly content</p></div>
+  <div class=\"card\" tabindex=\"0\"><h2><a href=\"chapters.html\">Chapters</a></h2><p>Lecture notes and weekly content</p></div>
   <div class=\"card\" tabindex=\"0\"><h2><a href=\"resources.html\">Resources</a></h2><p>Reference materials, links, and tools</p></div>
   <div class=\"card\" tabindex=\"0\"><h2><a href=\"about.html\">About</a></h2><p>Course info, instructor, and policies</p></div>
 </section>
@@ -398,6 +398,30 @@ document.addEventListener('DOMContentLoaded',function(){
         html = get_html_template("Modern Classical Mechanics", body)
         with open(index_html_path, 'w', encoding='utf-8') as f:
             f.write(html)
+
+    # --- Build chapters.html dynamically from _menu.yml ---
+    chapters_html_path = build_dir / 'chapters.html'
+    def build_chapters_page(menu_data):
+        # Find the 'Chapters' section in menu_data
+        chapters = None
+        for item in menu_data:
+            if item.get('title', '').lower() == 'chapters' and 'children' in item:
+                chapters = item['children']
+                break
+        if not chapters:
+            return '<p>No chapters found in menu.</p>'
+        html = '<section class="chapters-list" aria-label="Chapters"><h2>Chapters</h2><ul>'
+        for ch in chapters:
+            title = ch.get('title', '')
+            path = ch.get('path', '')
+            html += f'<li><a href="{path}">{title}</a></li>'
+        html += '</ul></section>'
+        return html
+    if menu_data:
+        chapters_body = build_chapters_page(menu_data)
+        chapters_html = get_html_template("Chapters", chapters_body)
+        with open(chapters_html_path, 'w', encoding='utf-8') as f:
+            f.write(chapters_html)
 
     # --- Process all notebooks as HTML with the same template ---
     for nb in notebooks_dir.glob('*.ipynb'):
