@@ -1,3 +1,11 @@
+# Modern Classical Mechanics
+
+Welcome to the course site! Here you will find all chapters, activities, and homeworks as interactive Jupyter notebooks and downloadable files in multiple formats (PDF, DOCX, Markdown, LaTeX, and Jupyter Notebook).
+
+**Note:** PDF generation is currently being improved. Some PDFs may be missing or incomplete if there are LaTeX errors (e.g., missing images). All other formats are complete and up to date.
+
+---
+
 # Welcome to Modern Classical Mechanics!
 
 This is the interactive, open, and ever-evolving book for PHY 321: Classical Mechanics 1 at Michigan State University.
@@ -27,5 +35,3 @@ This is not just a collection of Jupyter notebooks—it's a fully static, access
 **Planned:** Soon, you will be able to download each chapter/page as PDF, Markdown, DOCX, Jupyter Notebook (.ipynb), and LaTeX directly from the site.
 
 **Note:** The navigation menus are not yet fully functional, but improved navigation and download options are coming soon!
-
----

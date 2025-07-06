@@ -55,7 +55,8 @@ def main():
     chapters_dir = build_dir / 'latex'
     html_dir = build_dir / 'html'
     notebook_dir = repo_root / 'notebooks'
-    notebooks_yaml = repo_root / 'notebooks.yaml'
+    # Use _notebooks.yaml instead of notebooks.yaml
+    notebooks_yaml = repo_root / '_notebooks.yaml'
     update_toc = repo_root / 'scripts' / 'update_toc.sh'
 
     import nbformat
@@ -134,34 +135,26 @@ def main():
                 'jupyter', 'nbconvert', '--to', 'markdown', str(nb_path),
                 '--output', md_name, '--output-dir', str(md_dir)
             ])
-            # Post-process markdown to copy images and update paths
+            # Copy local images referenced in the markdown to the images directory, but do not change any image links in the markdown file
             with open(md_path, 'r', encoding='utf-8') as f:
                 md_content = f.read()
             import re
-            def copy_and_update(match):
-                img_path = match.group(2)
-                # Only process local images (not http/https)
+            for match in re.finditer(r'!\[[^\]]*\]\(([^)]+)\)', md_content):
+                img_path = match.group(1)
                 if img_path.startswith('http'):
-                    return match.group(0)
-                # Try to find the image in the notebook's folder or in the generated _build/md subfolders
+                    continue  # Do not process remote images
                 src_img = (nb_path.parent / img_path).resolve()
                 if not src_img.exists():
-                    # Try _build/md/<notebook_stem>_files/<img>
                     alt_img = md_dir / f"{nb_path.stem}_files" / os.path.basename(img_path)
                     if alt_img.exists():
                         src_img = alt_img
                     else:
                         print(f"[WARN] Image not found: {src_img}")
-                        return match.group(0)
+                        continue
                 flat_name = f"{nb_path.stem}_{os.path.basename(img_path)}"
                 dst_img = images_dir / flat_name
                 shutil.copy2(src_img, dst_img)
-                return f"!{match.group(1)}(images/{flat_name})"
-            # Update image links: ![alt](path)
-            md_content_new = re.sub(r'(!\[[^\]]*\])\(([^)]+)\)', copy_and_update, md_content)
-            with open(md_path, 'w', encoding='utf-8') as f:
-                f.write(md_content_new)
-        print(f"[INFO] All notebooks converted to Markdown and images copied to {images_dir}")
+        print(f"[INFO] All notebooks converted to Markdown. Local images copied to {images_dir}. No image links were changed.")
 
     if build_docx:
         md_dir = build_dir / 'md'
@@ -215,55 +208,8 @@ def main():
     print(f"[INFO] _toc.yml generated with {len(notebooks)} chapters.")
 
 
-    # Always fetch remote images and update references (Python implementation)
-    print(f"[INFO] Fetching remote images and updating references in notebooks...")
-    remote_image_pattern = re.compile(r'!\[[^\]]*\]\((https?://[^)]+)\)')
-    for nb in notebooks:
-        nb_path = notebook_dir / nb
-        if not nb_path.exists():
-            print(f"[WARN] Notebook not found: {nb_path}")
-            continue
-        try:
-            nb_data = nbformat.read(str(nb_path), as_version=4)
-        except Exception as e:
-            print(f"[WARN] Could not read notebook {nb_path}: {e}")
-            continue
-        changed = False
-        for cell in nb_data.cells:
-            if cell.cell_type != 'markdown':
-                continue
-            def repl(match):
-                url = match.group(1)
-                # Create a flat, unique filename for the image
-                hash_digest = hashlib.md5(url.encode('utf-8')).hexdigest()[:8]
-                ext = os.path.splitext(url.split('?')[0])[1] or '.img'
-                local_name = f"remote_{hash_digest}{ext}"
-                local_path = nb_path.parent / local_name
-                if not local_path.exists():
-                    try:
-                        resp = requests.get(url, timeout=10)
-                        resp.raise_for_status()
-                        with open(local_path, 'wb') as f:
-                            f.write(resp.content)
-                        print(f"[INFO] Downloaded {url} -> {local_path}")
-                    except Exception as e:
-                        print(f"[WARN] Failed to fetch {url}: {e}")
-                        return match.group(0)
-                else:
-                    print(f"[INFO] Already downloaded {url} -> {local_path}")
-                changed_local = match.group(0).replace(url, local_name)
-                return changed_local
-            new_src = remote_image_pattern.sub(repl, cell.source)
-            if new_src != cell.source:
-                cell.source = new_src
-                changed = True
-        if changed:
-            try:
-                nbformat.write(nb_data, str(nb_path))
-                print(f"[INFO] Updated notebook with local images: {nb_path}")
-            except Exception as e:
-                print(f"[WARN] Could not write notebook {nb_path}: {e}")
-    print(f"[INFO] Remote image fetch and update complete.")
+    # [DISABLED] Never modify notebooks or their image links. Remote images are not fetched or rewritten.
+    print(f"[INFO] Skipping remote image fetch and notebook modification. Notebooks are never altered.")
 
 
 
