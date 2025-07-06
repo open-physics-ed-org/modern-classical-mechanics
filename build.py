@@ -119,6 +119,7 @@ def main():
         notebooks = parse_yaml_list(notebooks_yaml)
 
     # --- Build LaTeX ---
+    jupyter_bin = str(repo_root / '.venv' / 'bin' / 'jupyter')
     if build_latex:
         chapters_dir.mkdir(parents=True, exist_ok=True)
         print(f"[INFO] Building LaTeX files for notebooks in {notebook_dir} -> {chapters_dir}")
@@ -131,7 +132,7 @@ def main():
             tex_path = chapters_dir / tex_name
             print(f"Converting {nb_path} to {tex_path}")
             run([
-                'jupyter', 'nbconvert', '--to', 'latex', str(nb_path),
+                jupyter_bin, 'nbconvert', '--to', 'latex', str(nb_path),
                 '--output', tex_name, '--output-dir', str(chapters_dir)
             ])
         print(f"[INFO] All notebooks converted to LaTeX and saved in {chapters_dir}")
@@ -176,16 +177,16 @@ def main():
             md_path = md_dir / md_name
             print(f"Converting {nb_path} to {md_path}")
             run([
-                'jupyter', 'nbconvert', '--to', 'markdown', str(nb_path),
+                jupyter_bin, 'nbconvert', '--to', 'markdown', str(nb_path),
                 '--output', md_name, '--output-dir', str(md_dir)
             ])
-            # Copy local images referenced in the markdown to the images directory, but do not change any image links in the markdown file
+            # Copy local images referenced in the markdown to the images directory and update links
             with open(md_path, 'r', encoding='utf-8') as f:
                 md_content = f.read()
-            for match in re.finditer(r'!\[[^\]]*\]\(([^)]+)\)', md_content):
+            def replace_img_link(match):
                 img_path = match.group(1)
                 if img_path.startswith('http'):
-                    continue  # Do not process remote images
+                    return match.group(0)  # leave remote images unchanged
                 src_img = (nb_path.parent / img_path).resolve()
                 if not src_img.exists():
                     alt_img = md_dir / f"{nb_path.stem}_files" / os.path.basename(img_path)
@@ -193,11 +194,20 @@ def main():
                         src_img = alt_img
                     else:
                         print(f"[WARN] Image not found: {src_img}")
-                        continue
+                        return match.group(0)
                 flat_name = f"{nb_path.stem}_{os.path.basename(img_path)}"
                 dst_img = images_dir / flat_name
-                shutil.copy2(src_img, dst_img)
-        print(f"[INFO] All notebooks converted to Markdown. Local images copied to {images_dir}. No image links were changed.")
+                try:
+                    shutil.copy2(src_img, dst_img)
+                except Exception as e:
+                    print(f"[WARN] Could not copy image {src_img} to {dst_img}: {e}")
+                # Update the link to point to images/flat_name
+                return match.group(0).replace(img_path, f"images/{flat_name}")
+            # Replace all image links in the markdown
+            new_md_content = re.sub(r'!\[[^\]]*\]\(([^)]+)\)', replace_img_link, md_content)
+            with open(md_path, 'w', encoding='utf-8') as f:
+                f.write(new_md_content)
+        print(f"[INFO] All notebooks converted to Markdown. Local images copied to {images_dir}. All image links updated.")
 
     # --- Build DOCX from Markdown ---
     if build_docx:
