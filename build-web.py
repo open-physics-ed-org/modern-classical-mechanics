@@ -449,32 +449,40 @@ document.addEventListener('DOMContentLoaded',function(){
             thumb_alt = ''
             html_path = docs_dir / path
             section = 'chapters'
-            # Try to find the first flat image in the corresponding section folder (ignore .._.._ prefix)
-            section_img_dir = docs_dir / 'images' / section
-            img_file = None
-            if section_img_dir.exists():
-                for f in sorted(section_img_dir.iterdir()):
-                    if f.is_file() and f.suffix.lower() in ['.png', '.jpg', '.jpeg', '.gif', '.svg'] and not f.name.startswith('.._.._'):
-                        img_file = f
-                        break
-            if img_file:
-                thumb_img = f'images/{section}/{img_file.name}'
-                thumb_alt = title
-            else:
-                # fallback to old logic (scan HTML)
-                if html_path.exists():
-                    try:
-                        with open(html_path, 'r', encoding='utf-8') as f:
-                            for line in f:
-                                m = re.search(r'<img [^>]*src=["\']([^"\']+)["\'][^>]*', line)
-                                if m:
-                                    thumb_img = m.group(1)
-                                    alt_m = re.search(r'alt=["\']([^"\']*)["\']', line)
-                                    if alt_m:
-                                        thumb_alt = alt_m.group(1)
-                                    break
-                    except Exception as e:
-                        print(f"[WARN] Could not read {html_path}: {e}")
+            # Improved: Scan the chapter HTML for the first <img> tag and use that as the thumbnail if found
+            thumb_img = None
+            thumb_alt = title
+            if html_path.exists():
+                try:
+                    with open(html_path, 'r', encoding='utf-8') as f:
+                        for line in f:
+                            m = re.search(r'<img [^>]*src=["\']([^"\']+)["\'][^>]*', line)
+                            if m:
+                                thumb_img = m.group(1)
+                                alt_m = re.search(r'alt=["\']([^"\']*)["\']', line)
+                                if alt_m:
+                                    thumb_alt = alt_m.group(1)
+                                break
+                except Exception as e:
+                    print(f"[WARN] Could not read {html_path}: {e}")
+            # Fallback: Try to find an image matching the chapter file name in images/chapters
+            if not thumb_img:
+                section_img_dir = docs_dir / 'images' / section
+                base_name = Path(path).stem
+                if section_img_dir.exists():
+                    for ext in ['.png', '.jpg', '.jpeg', '.gif', '.svg']:
+                        candidate = section_img_dir / f"{base_name}{ext}"
+                        if candidate.exists():
+                            thumb_img = f'images/{section}/{candidate.name}'
+                            break
+            # Fallback: Use the first image in the section folder
+            if not thumb_img:
+                section_img_dir = docs_dir / 'images' / section
+                if section_img_dir.exists():
+                    for f in sorted(section_img_dir.iterdir()):
+                        if f.is_file() and f.suffix.lower() in ['.png', '.jpg', '.jpeg', '.gif', '.svg'] and not f.name.startswith('.._.._'):
+                            thumb_img = f'images/{section}/{f.name}'
+                            break
             # Fallback: no image found
             if thumb_img:
                 img_html = f'<a href="{path}"><img class="chapter-thumb" src="{thumb_img}" alt="{thumb_alt}" loading="lazy" style="max-width:100%;max-height:140px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-bottom:1em;"></a>'

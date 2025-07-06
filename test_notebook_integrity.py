@@ -46,7 +46,25 @@ if __name__ == '__main__':
     print("Backing up notebooks...")
     backup_notebooks()
     print("Running build-web.py...")
-    subprocess.run(['python3', 'build-web.py'], check=True)
+    try:
+        result = subprocess.run(
+            ['python3', 'build-web.py'],
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=180
+        )
+        print(result.stdout)
+        if result.stderr:
+            print("[STDERR]", result.stderr)
+    except subprocess.TimeoutExpired:
+        print("[FAIL] build-web.py timed out after 180 seconds.")
+        exit(2)
+    except subprocess.CalledProcessError as e:
+        print(f"[FAIL] build-web.py failed with exit code {e.returncode}")
+        print(e.stdout)
+        print(e.stderr)
+        exit(3)
     print("Comparing notebooks...")
     ok = compare_notebooks()
     exit(0 if ok else 1)
