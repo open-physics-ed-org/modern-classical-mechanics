@@ -34,9 +34,11 @@ def fetch_youtube_thumbnail(video_id, dest_path):
 def main():
     # --- Admonition post-processing for HTML output ---
     def preprocess_custom_admonitions(html):
-        # Look for <pre><code class="language-{admonition}">{admonition}TITLE\nBODY</code></pre>
+        # Look for <pre><code class="language-{admonition}"> block:
         def admonition_code_repl(m):
             code = m.group(1)
+            print('[DEBUG] Matched <pre><code class="language-{admonition}"> block:')
+            print(code)
             lines = code.split('\n', 1)
             if len(lines) == 2:
                 title = lines[0].replace('{admonition}', '').strip()
@@ -44,12 +46,18 @@ def main():
             else:
                 title = lines[0].replace('{admonition}', '').strip()
                 body = ''
+            print(f'[DEBUG] Extracted title: "{title}"')
+            print(f'[DEBUG] Extracted body: "{body}"')
             safe_title = re.sub(r'[^a-z0-9_-]+', '', title.lower().replace(' ', '-'))
-            return f'<div class="admonition {safe_title}"><p class="admonition-title">{title}</p>\n{body}</div>'
+            result = f'<div class="admonition {safe_title}"><p class="admonition-title">{title}</p>\n{body}</div>'
+            print(f'[DEBUG] Replacement HTML: {result}')
+            return result
         html = re.sub(
             r'<pre><code class="language-\{admonition\}">\{admonition\}([\s\S]*?)</code></pre>',
             admonition_code_repl,
             html)
+        print('[DEBUG] preprocess_custom_admonitions result:')
+        print(html[:500])
         return html
 
     def convert_admonitions(html):
@@ -605,9 +613,62 @@ document.addEventListener('DOMContentLoaded',function(){
         html_name = nb.with_suffix('.html').name
         section = menu_html_names.get(html_name, 'other')
         html_path = build_dir / html_name
+        # --- Preprocess notebook for custom admonitions ---
+        import tempfile
+        changed = False
+        nb_data = nbformat.read(str(nb), as_version=4)
+        for i, cell in enumerate(nb_data.cells):
+            if cell.cell_type == 'markdown':
+                orig_source = cell.source
+                # Robustly replace MyST-style code fences for custom admonitions
+                def myst_admonition_repl(match):
+                    title = match.group(1).strip()
+                    body = match.group(2).strip()
+                    safe_title = re.sub(r'[^a-z0-9_-]+', '', title.lower().replace(' ', '-'))
+                    html = f'<div class="admonition {safe_title}"><p class="admonition-title">{title}</p>\n{body}</div>'
+                    print(f"[PREPROCESS] Rewriting MyST admonition in cell {i+1}: title='{title}'")
+                    return html
+                # Handles ```{admonition} Title\nBody\n```
+                new_source = re.sub(
+                    r'```\{admonition\}\s*([^\n]+)\n([\s\S]*?)```',
+                    myst_admonition_repl,
+                    orig_source,
+                    flags=re.MULTILINE
+                )
+                # Also handle indented code blocks (rare)
+                if new_source == orig_source:
+                    new_source2 = re.sub(
+                        r'^\s*\{admonition\}\s+([^\n]+)\n([\s\S]*?)(?=\n\n|\Z)',
+                        lambda m: myst_admonition_repl(m),
+                        orig_source,
+                        flags=re.MULTILINE
+                    )
+                    if new_source2 != orig_source:
+                        print(f"[PREPROCESS] (Indented) Cell {i+1} changed.")
+                        new_source = new_source2
+                if new_source != orig_source:
+                    print(f"[PREPROCESS] Cell {i+1} changed.")
+                    cell.source = new_source
+                    changed = True
+        if changed:
+            with tempfile.NamedTemporaryFile('w', suffix='.ipynb', delete=False) as tf:
+                nbformat.write(nb_data, tf)
+                temp_nb_path = tf.name
+            print(f"[PREPROCESS] Using temp notebook: {temp_nb_path}")
+            nb_to_convert = temp_nb_path
+        else:
+            nb_to_convert = str(nb)
+
         exporter = HTMLExporter()
-        (body, resources) = exporter.from_filename(str(nb))
-        # Rewrite image links in HTML to point to images/<section>/filename, using copied_images mapping
+        (body, resources) = exporter.from_filename(nb_to_convert)
+
+        if changed:
+            try:
+                os.unlink(temp_nb_path)
+                print(f"[PREPROCESS] Deleted temp notebook: {temp_nb_path}")
+            except Exception as e:
+                print(f"[PREPROCESS] Could not delete temp notebook: {temp_nb_path} ({e})")
+
         def rewrite_img_src(match):
             src = match.group(1)
             filename = os.path.basename(src)
@@ -617,12 +678,9 @@ document.addEventListener('DOMContentLoaded',function(){
             return match.group(0)
         body = re.sub(r'src=["\']([^"\']+)["\']', rewrite_img_src, body)
 
-        # --- Admonition pre-processing for custom titles ---
         body = preprocess_custom_admonitions(body)
-        # --- Admonition post-processing ---
         body = convert_admonitions(body)
 
-        # --- Insert download menu at the top of each chapter ---
         chapter_stem = nb.stem
         download_menu = f'''
 <nav class="chapter-downloads" aria-label="Download chapter sources">
