@@ -400,13 +400,30 @@ document.addEventListener('DOMContentLoaded',function(){
         with open(intro_md, 'r', encoding='utf-8') as f:
             intro_content = f.read()
         main_html = markdown.markdown(intro_content, extensions=['extra', 'toc', 'admonition'])
-        card_grid = ("""
-<section class=\"card-grid\" aria-label=\"Main sections\">
-  <div class=\"card\" tabindex=\"0\"><h2><a href=\"chapters.html\">Chapters</a></h2><p>Lecture notes and weekly content</p></div>
-  <div class=\"card\" tabindex=\"0\"><h2><a href=\"resources.html\">Resources</a></h2><p>Reference materials, links, and tools</p></div>
-  <div class=\"card\" tabindex=\"0\"><h2><a href=\"about.html\">About</a></h2><p>Course info, instructor, and policies</p></div>
-</section>
-""")
+        # --- Load cards from _cards.yml ---
+        import yaml
+        cards_yml = repo_root / '_cards.yml'
+        cards = []
+        if cards_yml.exists():
+            with open(cards_yml, 'r', encoding='utf-8') as f:
+                try:
+                    cards_data = yaml.safe_load(f)
+                    if cards_data and 'cards' in cards_data and isinstance(cards_data['cards'], list):
+                        cards = cards_data['cards']
+                except Exception as e:
+                    print(f"[ERROR] Could not parse _cards.yml: {e}")
+        def build_card_grid(cards):
+            if not cards:
+                return ''
+            html = '<section class="card-grid" aria-label="Main sections">\n'
+            for card in cards:
+                title = card.get('title', '')
+                context = card.get('context', '')
+                link = card.get('link', '#')
+                html += f'  <div class="card" tabindex="0"><h2><a href="{link}">{title}</a></h2><p>{context}</p></div>\n'
+            html += '</section>\n'
+            return html
+        card_grid = build_card_grid(cards)
         body = f'<div class="markdown-body">{main_html}{card_grid}</div>'
         html = get_html_template("Modern Classical Mechanics", body)
         with open(index_html_path, 'w', encoding='utf-8') as f:
