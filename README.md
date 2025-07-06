@@ -1,3 +1,12 @@
+<!--
+RELEASE v0.6 "Hamiltonian Heron" (July 2025)
+See [RELEASE-v0.6.md](RELEASE-v0.6.md) for details.
+
+- All admonition blocks in HTML output now have correct emoji and no leftover :class: markup.
+- Robust handling of multi-paragraph and custom admonitions.
+- No source notebook changes; all fixes are post-processing only.
+-->
+
 <div align="center">
 
 # 📚 Modern Classical Mechanics
