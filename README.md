@@ -150,6 +150,14 @@ modern-classical-mechanics/
 
 ---
 
+## 📂 Build Outputs
+
+- All notebooks listed in `_notebooks.yaml` are converted to LaTeX, PDF, Markdown, DOCX, and Jupyter Notebook formats.
+- Downloadable sources are available for each notebook on the course site.
+- **PDF generation is currently being improved.** Some PDFs may be missing or incomplete if LaTeX errors occur (e.g., missing images). All other formats are complete.
+
+---
+
 ## 🛠️ Admonition Syntax Supported
 
 - `::: tip [Title]` ... `:::`

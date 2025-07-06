@@ -1,6 +1,24 @@
-# notebooks.yaml
-# List of all potential notebook files to be converted to PDF.
-# Edit this file to add or remove notebooks. Paths are relative to the notebooks directory.
+###############################################################
+# _notebooks.yaml
+#
+# This file lists all Jupyter notebooks to be included in the build process.
+# Only notebooks listed here will be converted to LaTeX, PDF, Markdown, and DOCX.
+#
+# To include a notebook (chapter, activity, homework, etc.), add its filename
+# (relative to the notebooks/ directory) to the list below. The build system
+# will generate all output formats for every notebook listed here.
+#
+# Notebooks not listed here will be ignored by the build pipeline and will not
+# appear as downloadable sources on the course site.
+#
+# Example: To add an activity or homework, simply add its filename:
+#   - hw1.ipynb
+#   - activity_01.ipynb
+#
+# You can comment out lines with # to temporarily exclude a notebook.
+#
+# Paths are relative to the notebooks directory.
+###############################################################
 notebooks:
   - 01_start.ipynb
   - 01_notes.ipynb
@@ -29,3 +47,12 @@ notebooks:
   - 12_notes.ipynb
   - 13_start.ipynb
   - 13_notes.ipynb
+  # Activities and homeworks (add more as needed):
+  - hw1.ipynb
+  - hw2.ipynb
+  - hw3.ipynb
+  - hw4.ipynb
+  - hw5.ipynb
+  - hw6.ipynb
+  - hw7.ipynb
+  - hw8.ipynb
