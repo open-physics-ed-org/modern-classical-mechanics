@@ -40,15 +40,8 @@ def parse_yaml_list(yaml_path):
         raise ValueError(f"Unexpected YAML structure in {yaml_path}")
 
 def main():
-    parser = argparse.ArgumentParser(description="Build PDFs, Markdown, DOCX, and HTML from Jupyter notebooks and Jupyter Book.")
-    parser.add_argument('--pdf', action='store_true', help='Build PDFs only')
-    parser.add_argument('--md', action='store_true', help='Build Markdown only')
-    parser.add_argument('--docx', action='store_true', help='Build DOCX only')
-    parser.add_argument('--latex', action='store_true', help='Build LaTeX only')
-    parser.add_argument('--html', action='store_true', help='Build HTML only')
-    args = parser.parse_args()
 
-    # Directories
+    # Directories (must be set before logging)
     repo_root = Path(__file__).parent.resolve()
     build_dir = repo_root / '_build'
     build_dir.mkdir(parents=True, exist_ok=True)  # Ensure _build exists
@@ -58,6 +51,29 @@ def main():
     # Use _notebooks.yaml instead of notebooks.yaml
     notebooks_yaml = repo_root / '_notebooks.yaml'
     update_toc = repo_root / 'scripts' / 'update_toc.sh'
+
+    # --- Setup logging ---
+    log_dir = repo_root / 'log'
+    log_dir.mkdir(parents=True, exist_ok=True)
+    build_log = log_dir / 'build.log'
+    prior_log = log_dir / 'build.log.prior'
+    if build_log.exists():
+        shutil.copy2(build_log, prior_log)
+    import contextlib
+    log_file = open(build_log, 'w')
+    log_stream = contextlib.ExitStack()
+    log_stream.enter_context(contextlib.redirect_stdout(log_file))
+    log_stream.enter_context(contextlib.redirect_stderr(log_file))
+    # All print() and errors after this point go to build.log
+
+    parser = argparse.ArgumentParser(description="Build PDFs, Markdown, DOCX, and HTML from Jupyter notebooks and Jupyter Book.")
+    parser.add_argument('--pdf', action='store_true', help='Build PDFs only')
+    parser.add_argument('--md', action='store_true', help='Build Markdown only')
+    parser.add_argument('--docx', action='store_true', help='Build DOCX only')
+    parser.add_argument('--latex', action='store_true', help='Build LaTeX only')
+    parser.add_argument('--html', action='store_true', help='Build HTML only')
+    parser.add_argument('--files', nargs='+', help='One or more notebook files to build (relative to notebooks/ or absolute)')
+    args = parser.parse_args()
 
     import nbformat
     import requests
@@ -70,11 +86,37 @@ def main():
     build_md = args.md or (not args.latex and not args.pdf and not args.docx)
     build_docx = args.docx or (not args.latex and not args.pdf and not args.md)
 
-    # Always parse notebook list
-    if not notebooks_yaml.exists():
-        print(f"[ERROR] {notebooks_yaml} not found.", file=sys.stderr)
-        sys.exit(1)
-    notebooks = parse_yaml_list(notebooks_yaml)
+    # Parse notebook list, or use --files if given
+    if args.files:
+        notebooks = []
+        for f in args.files:
+            nb_path = Path(f)
+            # If already absolute, use as is
+            if nb_path.is_absolute():
+                pass
+            # If already relative to notebook_dir, use as is
+            elif (notebook_dir / nb_path).exists():
+                nb_path = notebook_dir / nb_path
+            # If relative to cwd and exists, use as is
+            elif nb_path.exists():
+                pass
+            else:
+                print(f"[ERROR] Notebook not found: {nb_path}", file=sys.stderr)
+                continue
+            # Store as relative to notebook_dir if possible
+            try:
+                rel = nb_path.relative_to(notebook_dir)
+                notebooks.append(str(rel))
+            except ValueError:
+                notebooks.append(str(nb_path))
+        if not notebooks:
+            print("[ERROR] No valid notebooks specified with --files.", file=sys.stderr)
+            sys.exit(1)
+    else:
+        if not notebooks_yaml.exists():
+            print(f"[ERROR] {notebooks_yaml} not found.", file=sys.stderr)
+            sys.exit(1)
+        notebooks = parse_yaml_list(notebooks_yaml)
 
     # --- Build LaTeX ---
     if build_latex:
@@ -93,6 +135,10 @@ def main():
                 '--output', tex_name, '--output-dir', str(chapters_dir)
             ])
         print(f"[INFO] All notebooks converted to LaTeX and saved in {chapters_dir}")
+
+    # --- End logging ---
+    log_file.close()
+    log_stream.close()
 
     # --- Build PDFs from LaTeX ---
     if build_pdf:
