@@ -234,11 +234,11 @@ moving in one dimension. This week we will be working with a three-dimensional v
 
 Assume we have a soccer ball moving in three dimensions with the following trajectory:
 
-1. $x(t) = 10t\cos{45^{\circ}} $
+$$x(t) = 10t\cos{45^{\circ}}$$
 
-2. $y(t) = 10t\sin{45^{\circ}} $
+$$y(t) = 10t\sin{45^{\circ}}$$
 
-3. $z(t) = 10t - \dfrac{9.81}{2}t^2$
+$$z(t) = 10t-\dfrac{9.81}{2}t^2$$
 
 Now let us create a three-dimensional (3D) plot using these equations. In the cell below
 we write the equations into their respective labels. We fix a final time in the code below.

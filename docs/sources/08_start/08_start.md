@@ -64,6 +64,6 @@ When oscillators couple (or influence each other), we begin to see behavior that
 
  The video below is a good introduction to the topic of synchronization and worth a watch. 
 
-[![The Surprising Secret of Synchronization](https://img.youtube.com/vi/t-_VPRCtiUg/hqdefault.jpg)](https://www.youtube.com/watch?v=t-_VPRCtiUg)
+[![The Surprising Secret of Synchronization](images/08_start_t-_VPRCtiUg.jpg)](https://www.youtube.com/watch?v=t-_VPRCtiUg)
 
 

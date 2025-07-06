@@ -75,7 +75,7 @@ $v_x = 100$ m/s. The electron enters the field when it passes the origin. The fi
 varies with time, causing an acceleration of the electron that varies in time
 
 $$
-\boldsymbol{a}(t)=\left(−20 \mathrm{m/s}^2 −10\mathrm{m/s}^3t\right) \boldsymbol{e}_y
+\vec{a}(t)=\left(-20\mathrm{m/s}^2-10\mathrm{m/s}^3t\right) \vec{e}_y
 $$
 
 * 1a (4pt) Find the velocity as a function of time for the electron.
@@ -145,7 +145,7 @@ force. We will reuse the code we develop here in homework 4 for a position-depen
 
 Here we limit ourselves to a ball that is thrown from a height $h$
 above the ground with an initial velocity
-$\boldsymbol{v}_0$ at time $t=t_0$. We assume the air resistance is proportional to the square velocity. Together with the gravitational force these are the forces acting on our system.
+$\vec{v}_0$ at time $t=t_0$. We assume the air resistance is proportional to the square velocity. Together with the gravitational force these are the forces acting on our system.
 
 ```{note}
 Due to the specific velocity dependence, we cannot find an analytical solution for motion in the $x$ and $y$ directions, see the discussion in Taylor after eq. (2.61).
@@ -153,21 +153,21 @@ Due to the specific velocity dependence, we cannot find an analytical solution f
 
 In order to find an analytical solution we need to assume that the object is falling in the $y$-direction (negative direction) only. 
 
-The position of the ball as function of time is  $\boldsymbol{r}(t)$ where $t$ is time.
+The position of the ball as function of time is  $\vec{r}(t)$ where $t$ is time.
  The position is measured with respect to a coordinate system with origin at the floor.
 
-We assume we have an initial position $\boldsymbol{r}(t_0)=h\boldsymbol{e}_y$ and an initial velocity $\boldsymbol{v}_0=v_{x,0}\boldsymbol{e}_x+v_{y,0}\boldsymbol{e}_y$.
+We assume we have an initial position $\vec{r}(t_0)=h\vec{e}_y$ and an initial velocity $\vec{v}_0=v_{x,0}\vec{e}_x+v_{y,0}\vec{e}_y$.
 
 In this exercise we assume the system is influenced by the gravitational force
 
 $$
-\boldsymbol{F}_{grav}=-mg\boldsymbol{e}_y
+\vec{F}_{grav}=-mg\vec{e}_y
 $$
 
 and an air resistance given by a square law
 
 $$
-\boldsymbol{F}_{drag} = -Dv\boldsymbol{v}.
+\vec{F}_{drag} = -Dv\vec{v}.
 $$
 
 The analytical expressions for velocity and position as functions of

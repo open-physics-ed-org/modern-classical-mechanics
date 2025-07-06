@@ -7,6 +7,7 @@ import requests
 import nbformat
 from pathlib import Path
 from nbconvert import HTMLExporter
+import sys
 
 import string
 def flatten_image_name(rel_path):
@@ -32,6 +33,75 @@ def fetch_youtube_thumbnail(video_id, dest_path):
     return False
 
 def main():
+    # --- Argument parsing for CLI behavior ---
+    import argparse
+    parser = argparse.ArgumentParser(
+        description="Build Modern Classical Mechanics HTML outputs and assets.",
+        add_help=False,
+        usage="python build-web.py --html [--files NOTEBOOK1.ipynb [NOTEBOOK2.ipynb ...]] [--all]"
+    )
+    parser.add_argument('--html', action='store_true', help='Build HTML output (required for --files)')
+    parser.add_argument('--files', nargs='+', help='One or more notebook files to build (must be used with --html)')
+    parser.add_argument('--all', action='store_true', help='Build all notebooks listed in _notebooks.yaml')
+    parser.add_argument('-h', '--help', action='help', help='Show this help message and exit')
+    args, unknown = parser.parse_known_args()
+
+    # No flags: print error and usage
+    if not (args.html or args.files or args.all or unknown):
+        print("\n[ERROR] No flags provided. Usage:")
+        parser.print_usage()
+        print("\nExample: python build-web.py --html [--files NOTEBOOK1.ipynb ...] [--all]\n")
+        sys.exit(2)
+
+    # --files without --html: error
+    if args.files and not args.html:
+        print("\n[ERROR] --files requires --html. Usage:")
+        parser.print_usage()
+        print("\nExample: python build-web.py --html --files NOTEBOOK1.ipynb\n")
+        sys.exit(2)
+
+    # --all: build all notebooks listed in _notebooks.yaml (authoritative list)
+    notebooks_to_process = None
+    if args.all:
+        # Load _notebooks.yaml and build all listed notebooks
+        import yaml
+        repo_root = Path(__file__).parent.resolve()
+        notebooks_yaml = repo_root / '_notebooks.yaml'
+        notebooks_dir = repo_root / 'notebooks'
+        if not notebooks_yaml.exists():
+            print("[ERROR] --all specified but _notebooks.yaml not found!")
+            sys.exit(1)
+        with open(notebooks_yaml, 'r') as f:
+            data = yaml.safe_load(f)
+            if isinstance(data, dict) and 'notebooks' in data:
+                nb_list = data['notebooks']
+            elif isinstance(data, list):
+                nb_list = data
+            else:
+                print("[ERROR] _notebooks.yaml format not recognized.")
+                sys.exit(1)
+        # Build absolute paths to notebooks
+        notebooks_to_process = []
+        for nb in nb_list:
+            nb_path = Path(nb)
+            if not nb_path.is_absolute():
+                nb_path = notebooks_dir / nb_path
+            nb_path = nb_path.resolve()
+            if not nb_path.exists():
+                print(f"[WARNING] Notebook listed in _notebooks.yaml not found: {nb_path}")
+            else:
+                notebooks_to_process.append(nb_path)
+        if not notebooks_to_process:
+            print("[ERROR] No valid notebooks found in _notebooks.yaml.")
+            sys.exit(1)
+    elif args.html and args.files:
+        # Only process the specified files (relative to notebooks_dir)
+        notebooks_to_process = [Path(f) if Path(f).is_absolute() else (Path('notebooks') / f).resolve() for f in args.files]
+    elif args.html:
+        # Process all notebooks in the notebooks/ directory
+        notebooks_to_process = list((Path(__file__).parent / 'notebooks').glob('*.ipynb'))
+    # else: unreachable due to above checks
+
     # --- Admonition post-processing for HTML output ---
     # --- Shared emoji mapping for all admonition classes ---
     ADMONITION_EMOJIS = {
@@ -225,7 +295,7 @@ def main():
             print(f'[DEBUG] [myst-block-multi] Title: {title}')
             print(f'[DEBUG] [myst-block-multi] Content snippet: {repr(content[:80])}')
             return f'<div class="admonition {safe_type}"><p class="admonition-title">{emoji} {title}</p>\n{content}</div>'
-        # Match <p>:::{admonition} ...\n<p>:class: ...</p>\n(content...)<p>:::</p>
+        # Match <p>:::(admonition) ...\n<p>:class: ...</p>\n(content...)<p>:::</p>
         html = re.sub(
             r'<p>:::(admonition|note|warning|tip|caution|important|error|danger|hint|check|question|quote|seealso|example|abstract|info|success|failure|bug|custom) ?([^\n<]*)</p>\n<p>:class: ([^<]*)</p>\n([\s\S]*?)<p>:::</p>',
             myst_block_multi_repl,
@@ -799,7 +869,7 @@ document.addEventListener('DOMContentLoaded',function(){
                 if img_file.is_file():
                     copied_images[img_file.name] = (section, f'images/{section}/{img_file.name}')
 
-    for nb in notebooks_dir.glob('*.ipynb'):
+    for nb in notebooks_to_process:
         html_name = nb.with_suffix('.html').name
         section = menu_html_names.get(html_name, 'other')
         html_path = build_dir / html_name

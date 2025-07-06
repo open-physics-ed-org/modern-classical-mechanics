@@ -8,7 +8,7 @@ Driven oscillators are a specific type of driven system, we expect them to demon
 
 Resonance is the phenomenon that caused the [collapse of the Tacoma Narrows Bridge](https://en.wikipedia.org/wiki/Tacoma_Narrows_Bridge_(1940)) in 1940. The video below describes the collapse and how the bridge was rebuilt to avoid the same problem. 
 
-[![Why the Tacoma Narrows Bridge Collapsed](https://img.youtube.com/vi/mXTSnZgrfxM/hqdefault.jpg)](https://www.youtube.com/watch?v=mXTSnZgrfxM)
+[![Why the Tacoma Narrows Bridge Collapsed](images/09_start_mXTSnZgrfxM.jpg)](https://www.youtube.com/watch?v=mXTSnZgrfxM)
 
 ## Quantum Mechanical Resonance
 

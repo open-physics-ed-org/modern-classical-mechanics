@@ -7698,14 +7698,11 @@ a.anchor-link {
 <p>Because we are looking for a minimum, we notice that when $\alpha = 0$, we have $Y(x) = y(x)$, and the integral is at its minimum. To find the extremum, we can take the derivative of the integral with respect to $\alpha$ and set it to zero:</p>
 <p>$$\dfrac{dS}{d\alpha}|_{\alpha=0} = 0.$$</p>
 <p>We start that analysis by differentiating the integral with respect to $\alpha$:</p>
-<p>$$\begin{align}
-S &amp;= \int_{x_1}^{x_2} f(Y(x),Y'(x),x) dx \\
-&amp;= \int_{x_1}^{x_2} f(y(x) + \alpha\eta(x), y'(x) + \alpha\eta'(x), x) dx.\\
-\end{align}$$</p>
+<p>$$S = \int_{x_1}^{x_2} f(Y(x),Y'(x),x) dx$$
+$$S = \int_{x_1}^{x_2} f(y(x) + \alpha\eta(x), y'(x) + \alpha\eta'(x), x) dx.$$</p>
 <p>We can now differentiate.</p>
-<p>$$\begin{align}
-\dfrac{dS}{d\alpha} &amp;= \int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial Y}\dfrac{dY}{d\alpha} + \dfrac{\partial f}{\partial Y'}\dfrac{dY'}{d\alpha}+ \dfrac{\partial f}{\partial x}\dfrac{dx}{d\alpha} \right] dx.\\
-\end{align}$$</p>
+<p>$$\dfrac{dS}{d\alpha} = \int_{x_1}^{x_2} \left[ \dfrac{\partial f}{\partial Y}\dfrac{dY}{d\alpha} + \dfrac{\partial f}{\partial Y'}\dfrac{dY'}{d\alpha} + \dfrac{\partial f}{\partial x}\dfrac{dx}{d\alpha} \right] dx.$$
+$$\dfrac{dS}{d\alpha} = \dfrac{dY'}{d\alpha}+ \dfrac{\partial f}{\partial x}\dfrac{dx}{d\alpha} dx.$$</p>
 <p>Let's take each term in turn. The first term is:</p>
 <p>$$\dfrac{df}{dY}\dfrac{dY}{d\alpha}.$$</p>
 <p>Let's focus on the second part of that term:</p>
@@ -7718,22 +7715,14 @@ S &amp;= \int_{x_1}^{x_2} f(Y(x),Y'(x),x) dx \\
 <p>$$\dfrac{\partial f}{\partial x}\dfrac{dx}{d\alpha}=0.$$</p>
 <p>This term is a bit different. The $dx$ term is independent of $\alpha$, so we can treat it as a constant with respect to $\alpha$. Therefore, this term will not contribute to the derivative with respect to $\alpha$, and we can ignore it in our analysis.</p>
 <p>Putting it all together, we have:</p>
-<p>$$\begin{align}
-\dfrac{dS}{d\alpha} &amp;= \int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial Y}\eta(x) + \dfrac{\partial f}{\partial Y'}\eta'(x) \right] dx.\\
-\end{align}$$</p>
+<p>$$\dfrac{dS}{d\alpha} = \int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial Y}\eta(x) + \dfrac{\partial f}{\partial Y'}\eta'(x) \right] dx.$$</p>
 <p>Our expression is still in terms of $Y(x)$, the incorrect function. We want to express it in terms of $y(x)$, the correct function. Let's look at the derivatives $\dfrac{\partial f}{\partial Y}$ and $\dfrac{\partial f}{\partial Y'}$. We can use the chain rule to express these derivatives in terms of $y(x)$:</p>
-<p>$$\begin{align}
-\dfrac{\partial f}{\partial Y} &amp;= \dfrac{\partial f}{\partial y}\dfrac{\partial y}{\partial Y} = \dfrac{\partial f}{\partial y},\\
-\dfrac{\partial f}{\partial Y'} &amp;= \dfrac{\partial f}{\partial y'}\dfrac{\partial y'}{\partial Y'} = \dfrac{\partial f}{\partial y'}.\\
-\end{align}$$</p>
+<p>$$\dfrac{\partial f}{\partial Y} = \dfrac{\partial f}{\partial y}\dfrac{\partial y}{\partial Y} = \dfrac{\partial f}{\partial y},$$
+$$\dfrac{\partial f}{\partial Y'} = \dfrac{\partial f}{\partial y'}\dfrac{\partial y'}{\partial Y'} = \dfrac{\partial f}{\partial y'}.$$</p>
 <p><strong>Why?</strong> Because $\dfrac{\partial y}{\partial Y} = 1$ and $\dfrac{\partial y'}{\partial Y'} = 1$ when we are differentiating with respect to the correct function $y(x)$. This means that we can express the derivatives in terms of the correct function $y(x)$.</p>
-<p>$$\begin{align}
-\dfrac{dS}{d\alpha} &amp;= \int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial y}\eta(x) + \dfrac{\partial f}{\partial y'}\eta'(x) \right] dx.\\
-\end{align}$$</p>
+<p>$$\dfrac{dS}{d\alpha} = \int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial y}\eta(x) + \dfrac{\partial f}{\partial y'}\eta'(x) \right] dx.$$</p>
 <p>We are seeking $\dfrac{dS}{d\alpha}$ at $\alpha = 0$, so we set the integral to zero:</p>
-<p>$$\begin{align}
-\int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial y}\eta(x) + \dfrac{\partial f}{\partial y'}\eta'(x) \right] dx = 0.\\
-\end{align}$$</p>
+<p>$$\int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial y}\eta(x) + \dfrac{\partial f}{\partial y'}\eta'(x) \right] dx = 0.$$</p>
 </div>
 </div>
 </div>
@@ -7748,15 +7737,11 @@ S &amp;= \int_{x_1}^{x_2} f(Y(x),Y'(x),x) dx \\
 <p>$$\int u'v dx = [uv] - \int u v' dx$$</p>
 <p>The first term $[uv]$ is called the "surface term" because it is the result of the integral and is evaluated at the boundaries of the integral, $x_1$ and $x_2$. We will apply integration by parts only to the second term in the integral.</p>
 <p>Here, we note $u = \eta(x)$ and $v = \dfrac{\partial f}{\partial y'}$. Then, we can express the second term in the integral as follows:</p>
-<p>$$\begin{align}
-\int_{x_1}^{x_2} \eta'(x) \dfrac{\partial f}{\partial y'} dx &amp;= \underbrace{\left[ \eta(x) \dfrac{\partial f}{\partial y'} \right]_{x_1}^{x_2}}_{\eta(x_1)=\eta(x_2)=0} - \int_{x_1}^{x_2} \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) dx\\
-&amp;= - \int_{x_1}^{x_2} \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) dx
-\end{align}$$</p>
+<p>$$\int_{x_1}^{x_2} \eta'(x) \dfrac{\partial f}{\partial y'} dx = \underbrace{\left[ \eta(x) \dfrac{\partial f}{\partial y'} \right]_{x_1}^{x_2}}_{\eta(x_1)=\eta(x_2)=0} - \int_{x_1}^{x_2} \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) dx$$
+$$\int_{x_1}^{x_2} \eta'(x) \dfrac{\partial f}{\partial y'} dx = - \int_{x_1}^{x_2} \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) dx$$</p>
 <p>Notice that the surface term evaluates to zero because we have fixed the endpoints of the path, so $\eta(x_1) = \eta(x_2) = 0$.  We put this all together to get:</p>
-<p>$$\begin{align}
-\dfrac{dS}{d\alpha} &amp;= \int_{x_1}^{x_2}\left[ \eta(x)\dfrac{\partial f}{\partial y} - \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) \right] dx = 0.\\
-&amp; = \int_{x_1}^{x_2} \eta(x) \left[ \dfrac{\partial f}{\partial y} - \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) \right] dx = 0.\\
-\end{align}$$</p>
+<p>$$\dfrac{dS}{d\alpha} = \int_{x_1}^{x_2}\left[ \eta(x)\dfrac{\partial f}{\partial y} - \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) \right] dx = 0.$$
+$$\dfrac{dS}{d\alpha} = \int_{x_1}^{x_2} \eta(x) \left[ \dfrac{\partial f}{\partial y} - \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) \right] dx = 0.$$</p>
 <div class="admonition important"><p class="admonition-title">❗ Important</p>
 The last statement is true for any arbitrary function $\eta(x)$, so we can conclude that the term in square brackets must be zero:
 
@@ -7782,28 +7767,22 @@ This is the **[Euler-Lagrange equation](https://en.wikipedia.org/wiki/Euler%E2%8
 <p>We take the derivatives:</p>
 <p>$$\dfrac{\partial f}{\partial y} = 0$$</p>
 <p>since $f$ does not depend on $y$, only on $y'$. Now let's compute the second term:</p>
-<p>$$\begin{align}
-\dfrac{\partial f}{\partial y'} &amp;= \dfrac{\partial}{\partial y'}\left( \sqrt{1 + y'(x)^2} \right)\\
-&amp;= \dfrac{1}{2} \left(1 + y'(x)^2\right)^{-1/2} 2y'(x)\\
-&amp;= \frac{y'(x)}{\sqrt{1 + y'(x)^2}}.\\
-\end{align}$$</p>
+<p>$$\dfrac{\partial f}{\partial y'} = \dfrac{\partial}{\partial y'}\left( \sqrt{1 + y'(x)^2} \right)$$
+$$\dfrac{\partial f}{\partial y'} = \dfrac{1}{2} \left(1 + y'(x)^2\right)^{-1/2} 2y'(x)$$
+$$\dfrac{\partial f}{\partial y'} = \frac{y'(x)}{\sqrt{1 + y'(x)^2}}.$$</p>
 <p>Let's put all this together:</p>
-<p>$$\begin{align}
-0 &amp;= \dfrac{\partial f}{\partial y} - \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right)\\
-0 &amp;= 0 - \dfrac{d}{dx}\left(\frac{y'(x)}{\sqrt{1 + y'(x)^2}}\right).\\
-\end{align}$$</p>
+<p>$$0 = \dfrac{\partial f}{\partial y} - \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right)$$
+$$0 = 0 - \dfrac{d}{dx}\left(\frac{y'(x)}{\sqrt{1 + y'(x)^2}}\right).$$</p>
 <p>This means that,</p>
 <p>$$\dfrac{d}{dx}\left(\frac{y'(x)}{\sqrt{1 + y'(x)^2}}\right) = 0$$</p>
 <p>This implies that:</p>
 <p>$$\frac{y'(x)}{\sqrt{1 + y'(x)^2}} = C = \textrm{a constant}.$$</p>
 <p>Or rearranging gives us:</p>
-<p>$$\begin{align}
-y'(x) &amp;= C\sqrt{1 + y'(x)^2}\\
-y'(x)^2 &amp;= C^2(1 + y'(x)^2)\\
-(1 - C^2)y'(x)^2 &amp;= C^2\\
-y'(x)^2 &amp;= \frac{C^2}{1 - C^2}\\
-y'(x) &amp;= \pm \sqrt{\frac{C^2}{1 - C^2}}\\
-\end{align}$$</p>
+<p>$$y'(x) = C\sqrt{1 + y'(x)^2}$$
+$$y'(x)^2 = C^2(1 + y'(x)^2)$$
+$$(1 - C^2)y'(x)^2 = C^2$$
+$$y'(x)^2 = \frac{C^2}{1 - C^2}$$
+$$y'(x) = \pm \sqrt{\frac{C^2}{1 - C^2}}$$</p>
 <p>So that, $y'(x)$ is a constant, call it $m$, which produces a linear solution.</p>
 <p>$$\dfrac{dy}{dx} = \sqrt{\frac{C^2}{1 - C^2}} = m$$</p>
 <p>Integrating gives us:</p>
@@ -7832,11 +7811,9 @@ $$d_2 = \sqrt{x_2^2 + (y_2 - y)^2}$$</p>
 <p>$$T = \dfrac{\sqrt{x_1^2 + (y - y_1)^2}}{v_1} + \dfrac{\sqrt{x_2^2 + (y_2 - y)^2}}{v_2}.$$</p>
 <p>We want to minimize this time, $T$, by choosing the optimal point $y$ where we cross the shoreline. We compute the derivative of $T$ with respect to $y$ and set it to zero:</p>
 <p>$$\dfrac{dT}{dy} = 0$$</p>
-<p>$$\begin{align}
-\dfrac{dT}{dy} &amp;= \dfrac{1}{2}\dfrac{1}{v_1}\left(x_1^2 + (y-y_1)^2\right)^{-1/2}(2)(y-y_1) + \dfrac{1}{2}\dfrac{1}{v_2}\left(x_2^2 + (y_2-y)^2\right)^{-1/2}(-2)(y_2-y) = 0\\
-&amp;= \dfrac{1}{v_1}\left(\dfrac{y-y_1}{\sqrt{x_1^2 + (y-y_1)^2}}\right) - \dfrac{1}{v_2}\left(\dfrac{y_2-y}{\sqrt{x_2^2 + (y_2-y)^2}}\right) = 0\\
-&amp;= \dfrac{1}{v_1}\left(\dfrac{y-y_1}{d_1}\right) - \dfrac{1}{v_2}\left(\dfrac{y_2-y}{d_2}\right) = 0\\
-\end{align}$$</p>
+<p>$$\dfrac{dT}{dy} = \dfrac{1}{2}\dfrac{1}{v_1}\left(x_1^2 + (y-y_1)^2\right)^{-1/2}(2)(y-y_1) + \dfrac{1}{2}\dfrac{1}{v_2}\left(x_2^2 + (y_2-y)^2\right)^{-1/2}(-2)(y_2-y) = 0$$
+$$\dfrac{dT}{dy} = \dfrac{1}{v_1}\left(\dfrac{y-y_1}{\sqrt{x_1^2 + (y-y_1)^2}}\right) - \dfrac{1}{v_2}\left(\dfrac{y_2-y}{\sqrt{x_2^2 + (y_2-y)^2}}\right) = 0$$
+$$\dfrac{dT}{dy} = \dfrac{1}{v_1}\left(\dfrac{y-y_1}{d_1}\right) - \dfrac{1}{v_2}\left(\dfrac{y_2-y}{d_2}\right) = 0$$</p>
 <p>where the last step is just substituting in the expressions for $d_1$ and $d_2$. Notice that those expressions are related to the angles we defined earlier. We can rewrite the expression in terms of the angles $\theta_1$ and $\theta_2$:</p>
 <p>$$\sin(\theta_1) = \frac{y - y_1}{d_1}$$
 $$\sin(\theta_2) = \frac{y_2 - y}{d_2}$$</p>
@@ -7857,7 +7834,7 @@ $$\dfrac{\sin(\theta_1)}{v_1} = \dfrac{\sin(\theta_2)}{v_2}$$</div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Example:-Brachistochrone-Problem">Example: Brachistochrone Problem<a class="anchor-link" href="#Example:-Brachistochrone-Problem">¶</a></h2><p>The <a href="https://en.wikipedia.org/wiki/Brachistochrone_problem">Brachistochrone problem</a> is a classic problem in the Calculus of Variations. It asks the question: "What is the shape of the curve that a bead will follow under the influence of gravity to reach the bottom in the shortest time?"  Here's a great video from <a href="https://en.wikipedia.org/wiki/Steven_Strogatz">Steven Strogatz</a> that explains the problem and its solution.</p>
-<p><a href="https://www.youtube.com/watch?v=Cld0p3a43fU"><img alt="Youtube Video on the Brachistochrone Problem" src="https://img.youtube.com/vi/Cld0p3a43fU/hqdefault.jpg"/></a></p>
+<p><a href="https://www.youtube.com/watch?v=Cld0p3a43fU"><img alt="Youtube Video on the Brachistochrone Problem" src="images/chapters/Cld0p3a43fU.jpg"/></a></p>
 <p>Source: <a href="https://www.youtube.com/watch?v=Cld0p3a43fU">https://www.youtube.com/watch?v=Cld0p3a43fU</a></p>
 <p>The setup is below, there's two points separated by a distance vertically and horizontally. What shape should we make a track so that a bead will roll down it in the shortest time?</p>
 <p><img alt="The Brachistochrone Problem" src="images/chapters/brachistochrone.png"/></p>
@@ -7895,7 +7872,7 @@ $$\dfrac{\sin(\theta_1)}{v_1} = \dfrac{\sin(\theta_2)}{v_2}$$</div>
 <p>$$\dfrac{d}{dy}\left(\dfrac{\partial f}{\partial x'}\right) = 0.$$</p>
 <p>Or that this partial derivative must be a constant:</p>
 <p>$$\dfrac{\partial f}{\partial x'} = \textrm{a constant},$$</p>
-<p>$$dfrac{\partial f}{\partial x'} = \dfrac{x'}{\sqrt{x'^2 + 1}\sqrt{y}} = \sqrt{C},$$</p>
+<p>$$\dfrac{\partial f}{\partial x'} = \dfrac{x'}{\sqrt{x'^2 + 1}\sqrt{y}} = \sqrt{C},$$</p>
 <p>where $C$ is a constant. We square both sides to get:</p>
 <p>$$\dfrac{x'^2}{(x'^2 + 1)y} = C.$$</p>
 <p>Knowing the solution ahead of time, we choose the constant $C = \frac{1}{2a}$. This gives us:</p>
@@ -7908,18 +7885,14 @@ $$x'^2 = \frac{y}{2a - y},$$</p>
 <p>$$x = \int \sqrt{\frac{y}{2a - y}} dy.$$</p>
 <p>This integral will give us the shape of the curve $x(y)$, but to solve it we need to use a substitution.</p>
 <p>Let $y = a(1 - \cos(\theta))$. Thus, $dy = a\sin(\theta)d\theta$. This gives us:</p>
-<p>$$\begin{align}
-x(y(\theta)) &amp;= \int \sqrt{\frac{y(\theta)}{2a - y(\theta)}} dy\\
-&amp;= \int \sqrt{\frac{a(1 - \cos(\theta))}{2a - a(1 - \cos(\theta))}} a\sin(\theta)d\theta\\
-&amp;= a \int \sqrt{\frac{(1-\cos\theta)}{(1+\cos\theta)}} \sin(\theta)d\theta.\\
-\end{align}$$</p>
+<p>$$x(y(\theta)) = \int \sqrt{\frac{y(\theta)}{2a - y(\theta)}} dy$$
+$$x(y(\theta)) = \int \sqrt{\frac{a(1 - \cos(\theta))}{2a - a(1 - \cos(\theta))}} a\sin(\theta)d\theta$$
+$$x(y(\theta)) = a \int \sqrt{\frac{(1-\cos\theta)}{(1+\cos\theta)}} \sin(\theta)d\theta.$$</p>
 <p>Note that $\sin \theta = \sqrt{1 - \cos^2 \theta} = \sqrt{(1 - \cos\theta)(1 + \cos\theta)}$. This allows us to simplify the integral:</p>
-<p>$$\begin{align}
-x(y(\theta)) &amp;= a \int \sqrt{\frac{(1-\cos\theta)^2(1+\cos\theta)}{(1+\cos\theta)}} d\theta\\
-&amp;= a \int \sqrt{(1 - \cos\theta)^2} d\theta\\
-&amp;= a \int (1 - \cos\theta) d\theta\\
-&amp;= a \left(\theta - \sin(\theta)\right) + C\\
-\end{align}$$</p>
+<p>$$x(y(\theta)) = a \int \sqrt{\frac{(1-\cos\theta)^2(1+\cos\theta)}{(1+\cos\theta)}} d\theta$$
+$$x(y(\theta)) = a \int \sqrt{(1 - \cos\theta)^2} d\theta$$
+$$x(y(\theta)) = a \int (1 - \cos\theta) d\theta$$
+$$x(y(\theta)) = a \left(\theta - \sin(\theta)\right) + C$$</p>
 <p>where $C$ is a constant of integration.</p>
 <p>With initial conditions $x(0) = 0$ when $y(0) = 0$ at $t=0$ and $\theta = 0$, we find that $C = 0$. So the solution is:</p>
 <p>$$x(\theta) = a\left(\theta - \sin(\theta)\right)$$

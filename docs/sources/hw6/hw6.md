@@ -156,16 +156,30 @@ We have built all the tools to study 1D unforced oscillators. Now you get to pic
 
 #### Examples of 1D potentials
 
-1. **Simple Pendulum (Nonlinear Small Angle Approximation)**:
-   - Potential: $ V(\theta) = mgh(1 - \cos(\theta)) $, where $m$ is the mass, $g$ is the acceleration due to gravity, $h$ is the length of the pendulum, and $\theta$ is the angular displacement.
-2. **Nonlinear Spring (Hardening or Softening)**:
-   - Potential: $ V(x) = \frac{k}{2} x^2 + \frac{\beta}{3} x^3 $, where $k$ and $\beta$ are constants. Depending on the sign of $\beta$, the spring can exhibit hardening ($\beta > 0$) or softening ($\beta < 0$) nonlinearity.
-3. **Lennard-Jones Potential Oscillator** (for a diatomic molecule model):
-   - Potential: $ V(r) = 4\epsilon \left[ \left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^6 \right] $, where $\epsilon$ is the depth of the potential well, $\sigma$ is the finite distance at which the inter-particle potential is zero, and $r$ is the distance between particles.
-4. **Morse Potential (for molecular vibrations)**:
-   - Potential: $ V(x) = D_e \left(1 - e^{-a(x - x_0)}\right)^2 $, where $D_e$ is the depth of the potential well, $a$ is a constant related to the width of the well, $x$ is the displacement from equilibrium, and $x_0$ is the equilibrium bond length. This potential models the energy of a diatomic molecule as a function of the distance between atoms, showing oscillatory behavior that represents molecular vibrations.
-5. **Double Well Potential**:
-   - Potential: $ V(x) = -\frac{\mu}{2} x^2 + \frac{\lambda}{4} x^4 $, where $\mu$ and $\lambda$ are positive constants. This system exhibits bistability with two stable equilibria, leading to interesting nonlinear dynamics and potential oscillations between the wells under certain conditions.
+##### Simple Pendulum (Nonlinear Small Angle Approximation)
+
+   $$ V(\theta) = mgh(1 - \cos(\theta)) $$
+   where $m$ is the mass, $g$ is the acceleration due to gravity, $h$ is the length of the pendulum, and $\theta$ is the angular displacement.
+
+##### Nonlinear Spring (Hardening or Softening)
+
+   $$ V(x) = \frac{k}{2} x^2 + \frac{\beta}{3} x^3 $$
+   where $k$ and $\beta$ are constants. Depending on the sign of $\beta$, the spring can exhibit hardening ($\beta > 0$) or softening ($\beta < 0$) nonlinearity.
+
+##### Lennard-Jones Potential Oscillator (for a diatomic molecule model):
+
+   $$ V(r) = 4\epsilon \left[ \left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^6 \right] $$
+   where $\epsilon$ is the depth of the potential well, $\sigma$ is the finite distance at which the inter-particle potential is zero, and $r$ is the distance between particles.
+
+##### Morse Potential (for molecular vibrations)
+
+   $$ V(x) = D_e \left(1 - e^{-a(x - x_0)}\right)^2 $$ 
+   where $D_e$ is the depth of the potential well, $a$ is a constant related to the width of the well, $x$ is the displacement from equilibrium, and $x_0$ is the equilibrium bond length. This potential models the energy of a diatomic molecule as a function of the distance between atoms, showing oscillatory behavior that represents molecular vibrations.
+
+##### Double Well Potential
+
+   $$ V(x) = -\frac{\mu}{2} x^2 + \frac{\lambda}{4} x^4 $$
+   where $\mu$ and $\lambda$ are positive constants. This system exhibits bistability with two stable equilibria, leading to interesting nonlinear dynamics and potential oscillations between the wells under certain conditions.
 
 ### Extra Credit - Integrating Classwork With Research
 

@@ -9,75 +9,77 @@ To get started with Lagrangian mechanics, we will start by deriving Newton's sec
 
 We start by sketching the location of a particle in plane polar coordinates, as shown below:
 
-![Position vector in polar coordinates](../../images/notes/week12/coordinate-system.png)
+![Position vector in polar coordinates](images/12_notes_coordinate-system.png)
 
 The red arrow represents the position vector $\vec{r}$, which is a length $r$ from the origin at an angle $\phi$ from the $x$-axis. At the tip of the vector we have drawn the Cartesian unit vectors $\hat{x}$ and $\hat{y}$ in blue, and the polar unit vectors $\hat{r}$ and $\hat{\phi}$ in green. Notice that the polar unit vectors are rotated by an angle $\phi$ from the Cartesian unit vectors. We can simply write the position vector in terms of these unit vectors as:
 
-$$\vec{r} = r \hat{r}\;\text{where}\;r = |\vec{r}|.$$
+$$
+\vec{r} = r \hat{r} \;\text{where}\; r = |\vec{r}|.
+$$
 
 We start by taking the derivative of the position vector $\vec{r}$ with respect to time $t$ to find the velocity $\vec{v}$. Using the product and chain rules, we have:
 
-$$\dfrac{d\vec{r}}{dt} = \frac{d}{dt}(r \hat{r}) = \dot{r} \hat{r} + r \frac{d\hat{r}}{dt}.$$
+$$
+\dfrac{d\vec{r}}{dt} = \frac{d}{dt}(r \hat{r}) = \dot{r} \hat{r} + r \frac{d\hat{r}}{dt}.
+$$
 
-What is $\frac{d\hat{r}}{dt}$? 
+What is $\frac{d\hat{r}}{dt}$?
 
 We note that the green unit vectors for $\hat{r}$ and $\hat{\phi}$ are not constant, they change direction as the particle moves. We can write them in terms of the Cartesian unit vectors, which do not change with time, as follows:
 
-$$\hat{r} = \cos(\phi) \hat{x} + \sin(\phi) \hat{y},\;\;\;\;\;\; \hat{\phi} = -\sin(\phi) \hat{x} + \cos(\phi) \hat{y}.$$
+$$
+\hat{r} = \cos(\phi) \hat{x} + \sin(\phi) \hat{y}, \;\;\;\; \hat{\phi} = -\sin(\phi) \hat{x} + \cos(\phi) \hat{y}.
+$$
 
+Now, we differentiate $\hat{r}$ with respect to time $t$ using the chain rule:
 
-So now,we can differentiate $\hat{r}$ with respect to time $t$ using the chain rule:
+$$
+\frac{d\hat{r}}{dt} = \frac{d}{dt}(\cos(\phi) \hat{x} + \sin(\phi) \hat{y}) = -\sin(\phi) \dot{\phi} \hat{x} + \cos(\phi) \dot{\phi} \hat{y} = \dot{\phi} \hat{\phi}
+$$
 
-$$\begin{align*}
-\frac{d\hat{r}}{dt} &= \frac{d}{dt}(\cos(\phi) \hat{x} + \sin(\phi) \hat{y}) \\
-&= \frac{d}{dt}(\cos(\phi)) \hat{x} + \cos(\phi) \frac{d\hat{x}}{dt} + \frac{d}{dt}(\sin(\phi)) \hat{y} + \sin(\phi) \frac{d\hat{y}}{dt} \\
-&= -\sin(\phi) \dot{\phi} \hat{x} + \cos(\phi) \dot{\phi} \hat{y} \quad (\text{since } \frac{d\hat{x}}{dt} = 0 \text{ and } \frac{d\hat{y}}{dt} = 0) \\
-&= \dot{\phi} \hat{\phi}
-\end{align*}$$
+So our expression for the velocity becomes:
 
-And so our expression for the velocity $\vec{v} = \frac{d\vec{r}}{dt}$ becomes:
+$$
+\vec{v} = \dot{r} \hat{r} + r \dot{\phi} \hat{\phi}.
+$$
 
-$$\vec{v} = \dot{r} \hat{r} + r \dot{\phi} \hat{\phi}.$$
+We differentiate again to find the acceleration $\vec{a} = \frac{d\vec{v}}{dt}$:
 
-We differentiate again to find the acceleration $\vec{a} = \frac{d\vec{v}}{dt}$. Using the product and chain rules again, we have:
+$$
+\frac{d\vec{v}}{dt} = \frac{d}{dt}(\dot{r} \hat{r} + r \dot{\phi} \hat{\phi}) = \ddot{r} \hat{r} + \dot{r} \frac{d\hat{r}}{dt} + \dot{r} \dot{\phi} \hat{\phi} + r \ddot{\phi} \hat{\phi} + r \dot{\phi} \frac{d\hat{\phi}}{dt}
+$$
 
-$$\begin{align*}
-\frac{d\vec{v}}{dt} &= \frac{d}{dt}(\dot{r} \hat{r} + r \dot{\phi} \hat{\phi}) \\
-&= \frac{d}{dt}(\dot{r} \hat{r}) + \frac{d}{dt}(r \dot{\phi} \hat{\phi}) \\
-&= \ddot{r} \hat{r} + \dot{r} \frac{d\hat{r}}{dt} + \dot{r} \dot{\phi} \hat{\phi} + r \ddot{\phi} \hat{\phi} + r \dot{\phi} \frac{d\hat{\phi}}{dt} \\
-\end{align*}$$
+Recall from above that $\frac{d\hat{r}}{dt} = \dot{\phi} \hat{\phi}$. Now, let's find $\frac{d\hat{\phi}}{dt}$:
 
-We found $\frac{d\hat{r}}{dt} = \dot{\phi} \hat{\phi}$ in the previous step, and we also need to find $\frac{d\hat{\phi}}{dt}$. We can differentiate $\hat{\phi}$ in a similar way:
+$$
+\frac{d\hat{\phi}}{dt} = \frac{d}{dt}(-\sin(\phi) \hat{x} + \cos(\phi) \hat{y}) = -\cos(\phi) \dot{\phi} \hat{x} - \sin(\phi) \dot{\phi} \hat{y} = -\dot{\phi} \hat{r}
+$$
 
-$$\begin{align*}
-\frac{d\hat{\phi}}{dt} &= \frac{d}{dt}(-\sin(\phi) \hat{x} + \cos(\phi) \hat{y}) \\
-&= \frac{d}{dt}(-\sin(\phi)) \hat{x} + (-\sin(\phi)) \frac{d\hat{x}}{dt} + \frac{d}{dt}(\cos(\phi)) \hat{y} + \cos(\phi) \frac{d\hat{y}}{dt} \\
-&= -\cos(\phi) \dot{\phi} \hat{x} - \sin(\phi) \dot{\phi} \hat{y} \quad (\text{since } \frac{d\hat{x}}{dt} = 0 \text{ and } \frac{d\hat{y}}{dt} = 0) \\
-&= -\dot{\phi} \hat{r} \quad (\text{since } \hat{r} = \cos(\phi) \hat{x} + \sin(\phi) \hat{y}).\\
-\end{align*}$$
+Substituting these results, the acceleration becomes:
 
-We return to our expression for the acceleration $\vec{a}$:
+<!-- $$
+\begin{align*}
+\vec{a} &= \ddot{r} \hat{r} + \dot{r} (\dot{\phi} \hat{\phi}) + \dot{r} \dot{\phi} \hat{\phi} + r \ddot{\phi} \hat{\phi} + r \dot{\phi} (-\dot{\phi} \hat{r}) \\
+&= \ddot{r} \hat{r} + 2\dot{r} \dot{\phi} \hat{\phi} + r \ddot{\phi} \hat{\phi} - r \dot{\phi}^2 \hat{r} \\
+&= (\ddot{r} - r \dot{\phi}^2) \hat{r} + (2 \dot{r} \dot{\phi} + r \ddot{\phi}) \hat{\phi}
+\end{align*}
+$$ -->
 
-$$\begin{align*}
-\vec{a} &= \ddot{r} \hat{r} + \dot{r} \frac{d\hat{r}}{dt} + \dot{r} \dot{\phi} \hat{\phi} + r \ddot{\phi} \hat{\phi} + r \dot{\phi} \frac{d\hat{\phi}}{dt} \\
-&= \ddot{r} \hat{r} + \dot{r} (\dot{\phi} \hat{\phi}) + \dot{r} \dot{\phi} \hat{\phi} + r \ddot{\phi} \hat{\phi} + r \dot{\phi} (-\dot{\phi} \hat{r}) \\
-&= \ddot{r} \hat{r} + \dot{r} \dot{\phi} \hat{\phi} + \dot{r} \dot{\phi} \hat{\phi} + r \ddot{\phi} \hat{\phi} - r \dot{\phi}^2 \hat{r}.\\
-&= \left(\ddot{r} - r \dot{\phi}^2\right) \hat{r} + \left(2 \dot{r} \dot{\phi} + r \ddot{\phi}\right) \hat{\phi}.
-\end{align*}$$
+Using Newton's second law, $\vec{a} = \vec{F}/m$, we have:
 
-Using Newton's second law, we know that the acceleration $\vec{a}$ is equal to the net force $\vec{F}$ divided by the mass $m$ of the particle:
+$$
+\vec{F}_{net} = m\left[(\ddot{r} - r \dot{\phi}^2) \hat{r} + (2 \dot{r} \dot{\phi} + r \ddot{\phi}) \hat{\phi}\right]
+$$
 
-$$\vec{a} = \frac{\vec{F}}{m}.$$
+So the radial and angular components of the net force are:
 
-Equating the two expressions for $\vec{a}$, we have:
+$$
+\vec{F}_{r} = m(\ddot{r} - r \dot{\phi}^2) \hat{r}
+$$
 
-$$\vec{F}_{net} = m\left[\left(\ddot{r} - r \dot{\phi}^2\right) \hat{r} + \left(2 \dot{r} \dot{\phi} + r \ddot{\phi}\right) \hat{\phi}\right]$$
-$$\vec{F}_{net} = \vec{F}_{r} + \vec{F}_{\phi}$$
-
-Where we can identify the radial and angular components of the net force as:
-
-$$\vec{F}_{r} = m\left(\ddot{r} - r \dot{\phi}^2\right) \hat{r}$$
-$$\vec{F}_{\phi} = m\left(2 \dot{r} \dot{\phi} + r \ddot{\phi}\right) \hat{\phi}$$
+$$
+\vec{F}_{\phi} = m(2 \dot{r} \dot{\phi} + r \ddot{\phi}) \hat{\phi}
+$$
 
 This gives us the net force in terms of the radial and angular components in polar coordinates.
 
@@ -87,11 +89,11 @@ This gives us the net force in terms of the radial and angular components in pol
 
 Let's see the utility of using polar coordinates by applying it to a skateboarder moving on a circular track. In this case, the skateboarder is constrained to move along a circular path of radius $r$. Consider a skateboarder moving on that circular track as shown below:
 
-![Skateboarder on a circular track](../../images/notes/week12/skateboard.png)
+![Skateboarder on a circular track](images/12_notes_skateboard.png)
 
 At this point in the track, we can draw the free body diagram of the skateboarder. The forces acting on the skateboarder are the Earth's gravitational force and the normal force of the ramp.
 
-![Free body diagram of skateboarder](../../images/notes/week12/skateboard-free-body.png)
+![Free body diagram of skateboarder](images/12_notes_skateboard-free-body.png)
 
 We can use Newton's law in polar coordinates to analyze the forces acting on the skateboarder. This is because the normal force is always perpendicular to the surface of the ramp and will only have a radial component in polar coordinates. Thus we need only decompose the gravitational force into its radial and angular components.
 
@@ -101,7 +103,7 @@ $$\sum F_r = ma_r = -F_{ramp} + mg \cos(\phi) = m\left(\ddot{r} - r \dot{\phi}^2
 
 We note that $r=R$, that is the radius is fixed, so 
 
-$$\ddot{r} = 0$$. 
+$$\ddot{r} = 0.$$
 
 Therefore, we can simplify the equation to:
 
@@ -279,7 +281,7 @@ To get some intuition for how Lagrangian mechanics works, let's consider an exam
 
 A pendulum bob of mass $m$ is attached to a fixed point by a rod of length $l$. The bob swings in a vertical plane under the influence of gravity as shown below. We define $U=0$ at the top of ceiling where the rod is attached.
 
-![Pendulum Diagram](../../images/notes/week12/plane-pendulum.png)
+![Pendulum Diagram](images/12_notes_plane-pendulum.png)
 
 The location of the bob is $\langle x, y \rangle$. We can use the $x,y$ coordinates to "naively" setup the Lagrangian and see what happens.
 
@@ -370,9 +372,5 @@ $$\ddot{\phi} = - \frac{g}{l} \sin(\phi).$$
 As we have seen, for small $\phi$, this reduces to simple harmonic motion:
 
 $$\ddot{\phi} \approx -\frac{g}{l} \phi \quad \text{for small } \phi.$$
-
-
-
-
 
 

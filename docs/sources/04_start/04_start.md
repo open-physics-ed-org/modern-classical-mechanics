@@ -6,7 +6,7 @@ The first form ($F \sim v^2$) describes the behavior of things like a skydiver f
 
 This form of air resistance cannot describe the behavior of objects approaching the speed of sound in the fluid. Objects moving a speeds that high can produce [shock fronts](https://en.wikipedia.org/wiki/Shock_wave) that forces the fluid to go through abrupt changes in density, pressure, and temperature. Below is a figure of a shock front produced the nose of a jet flying at supersonic speeds.
 
-![A shock front from a supersonic jet](https://upload.wikimedia.org/wikipedia/commons/7/7b/Schlierenfoto_Mach_1-2_Pfeilfl%C3%BCgel_-_NASA.jpg)
+![A shock front from a supersonic jet](images/04_start_shock_front.jpg)
 
 The second form ($F \sim v$) describes the flow of a viscous fluid around a solid object. You might think of this as pulling an object through some viscous oil, honey, or even molasses. The movement of the fluid around the object exerts a force and slows the motion of the object.  In water, this form can explain the motion of some of the smallest creatures on Earth, like the [water bear](https://en.wikipedia.org/wiki/Tardigrade), an amoeba, or a paramecium. 
 
@@ -55,7 +55,7 @@ Not all fluids are Newtonian, and some fluids have a viscosity that changes with
 
 Below is a video from [America's Test Kitchen](https://www.americastestkitchen.com/) that demonstrates the behavior of a non-Newtonian fluid. The fluid is made from cornstarch and water, and it's called [oobleck](https://en.wikipedia.org/wiki/Oobleck). 
 
-[![America's Test Kitchen Non-Newtonian Fluids](https://img.youtube.com/vi/FrLh1GILomc/hqdefault.jpg)](https://youtube.com/watch?v=FrLh1GILomc)
+[![America's Test Kitchen Non-Newtonian Fluids](images/04_start_FrLh1GILomc.jpg)](https://youtube.com/watch?v=FrLh1GILomc)
 
 Source: <https://www.youtube.com/watch?v=FrLh1GILomc>
 
@@ -69,7 +69,7 @@ A low Reynolds number flow is a flow where the viscous forces dominate the inert
 
 This video focuses on the biological aspects of the problem as the physics of low Reynolds numbers is important for understanding the motion of microorganisms. 
 
-[![Physics of Life - Life at Low Reynolds Number](https://img.youtube.com/vi/gZk2bMaqs1E/hqdefault.jpg)](https://youtube.com/watch?v=gZk2bMaqs1E)
+[![Physics of Life - Life at Low Reynolds Number](images/04_start_gZk2bMaqs1E.jpg))](https://youtube.com/watch?v=gZk2bMaqs1E)
 
 Source: <https://youtube.com/watch?v=gZk2bMaqs1E>
 
@@ -77,7 +77,7 @@ Source: <https://youtube.com/watch?v=gZk2bMaqs1E>
 
 This video is a classic from [G.I. Taylor](https://en.wikipedia.org/wiki/Geoffrey_Ingram_Taylor) who was a physicist interested in sharing the conceptual beauty of physics with the general public. He was also a pioneer in the field of fluid mechanics. In fact, Taylor's [groundbreaking paper](../../docs/papers/taylor_1922.pdf) on the stability of fluid flows between two rotating cylinders set off studies into turbulence. The [Taylor-Couette flow](https://en.wikipedia.org/wiki/Taylor%E2%80%93Couette_flow) is a critical tool for [studies of turbulence](https://pubmed.ncbi.nlm.nih.gov/20365623/).
 
-[![G.I. Taylor's Low Reynolds Number Flows](https://img.youtube.com/vi/8Dst6V4CQME/hqdefault.jpg)](https://youtube.com/watch?v=8Dst6V4CQME)
+[![G.I. Taylor's Low Reynolds Number Flows](images/04_start_8Dst6V4CQME.jpg)](https://youtube.com/watch?v=8Dst6V4CQME)
 
 Source: <https://youtube.com/watch?v=8Dst6V4CQME>
 
@@ -89,7 +89,7 @@ In high Reynolds number flows, the inertial forces dominate the viscous forces. 
 
 The [von Kármán vortex street](https://en.wikipedia.org/wiki/Von_K%C3%A1rm%C3%A1n_vortex_street) is a pattern of alternating vortices that can form when a fluid flows past a "bluff" body, such as a cylinder or a sphere. The vortices are shed from the body in a regular pattern, creating a repeating pattern of alternating vortices. The von Kármán vortex street is an example of a high Reynolds number flow, and it can be used to study the behavior of turbulent flows. Below is a video of a von Kármán vortex street simulation.
 
-[![Von Karman's Vortex Street](https://img.youtube.com/vi/f3LmjJ1N7YE/hqdefault.jpg)](https://youtube.com/watch?v=f3LmjJ1N7YE)
+[![Von Karman's Vortex Street](images/04_start_f3LmjJ1N7YE.jpg)](https://youtube.com/watch?v=f3LmjJ1N7YE)
 
 Source: <https://youtube.com/watch?v=f3LmjJ1N7YE>
 
@@ -97,7 +97,7 @@ Source: <https://youtube.com/watch?v=f3LmjJ1N7YE>
 
 Turbulence is a major research area in science. We don't fully understand it. We are trying to determine what triggers it, how to control it, and how to predict if and when it will occur. The problem of turbulence is frequently multi-scale such that behavior at one time or length scale is not well explained or connected to another scale. Additionally, the mathematics of turbulence is very difficult. It makes for an interesting and challenging research area. Below is a video that explains the some of the physics of turbulence. The first 4 minutes or so are at least worth watching.
 
-[![Turbulence](https://img.youtube.com/vi/RkewD966Y90/hqdefault.jpg)](https://youtube.com/watch?v=RkewD966Y90)
+[![Turbulence](images/04_start_RkewD966Y90.jpg)](https://youtube.com/watch?v=RkewD966Y90)
 
 Source: <https://youtube.com/watch?v=RkewD966Y90>
 

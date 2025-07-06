@@ -47,7 +47,7 @@ plt.show()  # Display the plot
 
 
     
-![png](11_notes_files/11_notes_2_0.png)
+![png](images/11_notes_11_notes_2_0.png)
     
 
 
@@ -101,16 +101,13 @@ $$\dfrac{dS}{d\alpha}|_{\alpha=0} = 0.$$
 
 We start that analysis by differentiating the integral with respect to $\alpha$:
 
-$$\begin{align}
-S &= \int_{x_1}^{x_2} f(Y(x),Y'(x),x) dx \\
-&= \int_{x_1}^{x_2} f(y(x) + \alpha\eta(x), y'(x) + \alpha\eta'(x), x) dx.\\
-\end{align}$$
+$$S = \int_{x_1}^{x_2} f(Y(x),Y'(x),x) dx$$
+$$S = \int_{x_1}^{x_2} f(y(x) + \alpha\eta(x), y'(x) + \alpha\eta'(x), x) dx.$$
 
 We can now differentiate.
 
-$$\begin{align}
-\dfrac{dS}{d\alpha} &= \int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial Y}\dfrac{dY}{d\alpha} + \dfrac{\partial f}{\partial Y'}\dfrac{dY'}{d\alpha}+ \dfrac{\partial f}{\partial x}\dfrac{dx}{d\alpha} \right] dx.\\
-\end{align}$$
+$$\dfrac{dS}{d\alpha} = \int_{x_1}^{x_2} \left[ \dfrac{\partial f}{\partial Y}\dfrac{dY}{d\alpha} + \dfrac{\partial f}{\partial Y'}\dfrac{dY'}{d\alpha} + \dfrac{\partial f}{\partial x}\dfrac{dx}{d\alpha} \right] dx.$$
+$$\dfrac{dS}{d\alpha} = \dfrac{dY'}{d\alpha}+ \dfrac{\partial f}{\partial x}\dfrac{dx}{d\alpha} dx.$$
 
 Let's take each term in turn. The first term is:
 
@@ -136,28 +133,20 @@ This term is a bit different. The $dx$ term is independent of $\alpha$, so we ca
 
 Putting it all together, we have:
 
-$$\begin{align}
-\dfrac{dS}{d\alpha} &= \int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial Y}\eta(x) + \dfrac{\partial f}{\partial Y'}\eta'(x) \right] dx.\\
-\end{align}$$
+$$\dfrac{dS}{d\alpha} = \int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial Y}\eta(x) + \dfrac{\partial f}{\partial Y'}\eta'(x) \right] dx.$$
 
 Our expression is still in terms of $Y(x)$, the incorrect function. We want to express it in terms of $y(x)$, the correct function. Let's look at the derivatives $\dfrac{\partial f}{\partial Y}$ and $\dfrac{\partial f}{\partial Y'}$. We can use the chain rule to express these derivatives in terms of $y(x)$:
 
-$$\begin{align}
-\dfrac{\partial f}{\partial Y} &= \dfrac{\partial f}{\partial y}\dfrac{\partial y}{\partial Y} = \dfrac{\partial f}{\partial y},\\
-\dfrac{\partial f}{\partial Y'} &= \dfrac{\partial f}{\partial y'}\dfrac{\partial y'}{\partial Y'} = \dfrac{\partial f}{\partial y'}.\\
-\end{align}$$
+$$\dfrac{\partial f}{\partial Y} = \dfrac{\partial f}{\partial y}\dfrac{\partial y}{\partial Y} = \dfrac{\partial f}{\partial y},$$
+$$\dfrac{\partial f}{\partial Y'} = \dfrac{\partial f}{\partial y'}\dfrac{\partial y'}{\partial Y'} = \dfrac{\partial f}{\partial y'}.$$
 
 **Why?** Because $\dfrac{\partial y}{\partial Y} = 1$ and $\dfrac{\partial y'}{\partial Y'} = 1$ when we are differentiating with respect to the correct function $y(x)$. This means that we can express the derivatives in terms of the correct function $y(x)$.
 
-$$\begin{align}
-\dfrac{dS}{d\alpha} &= \int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial y}\eta(x) + \dfrac{\partial f}{\partial y'}\eta'(x) \right] dx.\\
-\end{align}$$
+$$\dfrac{dS}{d\alpha} = \int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial y}\eta(x) + \dfrac{\partial f}{\partial y'}\eta'(x) \right] dx.$$
 
 We are seeking $\dfrac{dS}{d\alpha}$ at $\alpha = 0$, so we set the integral to zero:
 
-$$\begin{align}
-\int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial y}\eta(x) + \dfrac{\partial f}{\partial y'}\eta'(x) \right] dx = 0.\\
-\end{align}$$
+$$\int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial y}\eta(x) + \dfrac{\partial f}{\partial y'}\eta'(x) \right] dx = 0.$$
 
 #### Integration by Parts
 
@@ -169,17 +158,13 @@ The first term $[uv]$ is called the "surface term" because it is the result of t
 
 Here, we note $u = \eta(x)$ and $v = \dfrac{\partial f}{\partial y'}$. Then, we can express the second term in the integral as follows:
 
-$$\begin{align}
-\int_{x_1}^{x_2} \eta'(x) \dfrac{\partial f}{\partial y'} dx &= \underbrace{\left[ \eta(x) \dfrac{\partial f}{\partial y'} \right]_{x_1}^{x_2}}_{\eta(x_1)=\eta(x_2)=0} - \int_{x_1}^{x_2} \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) dx\\
-&= - \int_{x_1}^{x_2} \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) dx
-\end{align}$$
+$$\int_{x_1}^{x_2} \eta'(x) \dfrac{\partial f}{\partial y'} dx = \underbrace{\left[ \eta(x) \dfrac{\partial f}{\partial y'} \right]_{x_1}^{x_2}}_{\eta(x_1)=\eta(x_2)=0} - \int_{x_1}^{x_2} \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) dx$$
+$$\int_{x_1}^{x_2} \eta'(x) \dfrac{\partial f}{\partial y'} dx = - \int_{x_1}^{x_2} \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) dx$$
 
 Notice that the surface term evaluates to zero because we have fixed the endpoints of the path, so $\eta(x_1) = \eta(x_2) = 0$.  We put this all together to get:
 
-$$\begin{align}
-\dfrac{dS}{d\alpha} &= \int_{x_1}^{x_2}\left[ \eta(x)\dfrac{\partial f}{\partial y} - \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) \right] dx = 0.\\
-& = \int_{x_1}^{x_2} \eta(x) \left[ \dfrac{\partial f}{\partial y} - \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) \right] dx = 0.\\
-\end{align}$$
+$$\dfrac{dS}{d\alpha} = \int_{x_1}^{x_2}\left[ \eta(x)\dfrac{\partial f}{\partial y} - \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) \right] dx = 0.$$
+$$\dfrac{dS}{d\alpha} = \int_{x_1}^{x_2} \eta(x) \left[ \dfrac{\partial f}{\partial y} - \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right) \right] dx = 0.$$
 
 ```{important}
 The last statement is true for any arbitrary function $\eta(x)$, so we can conclude that the term in square brackets must be zero:
@@ -209,18 +194,14 @@ $$\dfrac{\partial f}{\partial y} = 0$$
 
 since $f$ does not depend on $y$, only on $y'$. Now let's compute the second term:
 
-$$\begin{align}
-\dfrac{\partial f}{\partial y'} &= \dfrac{\partial}{\partial y'}\left( \sqrt{1 + y'(x)^2} \right)\\
-&= \dfrac{1}{2} \left(1 + y'(x)^2\right)^{-1/2} 2y'(x)\\
-&= \frac{y'(x)}{\sqrt{1 + y'(x)^2}}.\\
-\end{align}$$
+$$\dfrac{\partial f}{\partial y'} = \dfrac{\partial}{\partial y'}\left( \sqrt{1 + y'(x)^2} \right)$$
+$$\dfrac{\partial f}{\partial y'} = \dfrac{1}{2} \left(1 + y'(x)^2\right)^{-1/2} 2y'(x)$$
+$$\dfrac{\partial f}{\partial y'} = \frac{y'(x)}{\sqrt{1 + y'(x)^2}}.$$
 
 Let's put all this together:
 
-$$\begin{align}
-0 &= \dfrac{\partial f}{\partial y} - \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right)\\
-0 &= 0 - \dfrac{d}{dx}\left(\frac{y'(x)}{\sqrt{1 + y'(x)^2}}\right).\\
-\end{align}$$
+$$0 = \dfrac{\partial f}{\partial y} - \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y'} \right)$$
+$$0 = 0 - \dfrac{d}{dx}\left(\frac{y'(x)}{\sqrt{1 + y'(x)^2}}\right).$$
 
 This means that,
 
@@ -232,13 +213,13 @@ $$\frac{y'(x)}{\sqrt{1 + y'(x)^2}} = C = \textrm{a constant}.$$
 
 Or rearranging gives us:
 
-$$\begin{align}
-y'(x) &= C\sqrt{1 + y'(x)^2}\\
-y'(x)^2 &= C^2(1 + y'(x)^2)\\
-(1 - C^2)y'(x)^2 &= C^2\\
-y'(x)^2 &= \frac{C^2}{1 - C^2}\\
-y'(x) &= \pm \sqrt{\frac{C^2}{1 - C^2}}\\
-\end{align}$$
+
+$$y'(x) = C\sqrt{1 + y'(x)^2}$$
+$$y'(x)^2 = C^2(1 + y'(x)^2)$$
+$$(1 - C^2)y'(x)^2 = C^2$$
+$$y'(x)^2 = \frac{C^2}{1 - C^2}$$
+$$y'(x) = \pm \sqrt{\frac{C^2}{1 - C^2}}$$
+
 
 So that, $y'(x)$ is a constant, call it $m$, which produces a linear solution.
 
@@ -256,7 +237,7 @@ Let's assume you are walking on the beach and need to get to a location in the w
 
 Consider the picture below where you can move at a speed $v_1$ on the shore and a speed $v_2$ in the water. We know that $v_1 > v_2$, so you can move faster on the shore than in the water. We aim to minimize the time it takes to reach the point $\langle x_2, y_2 \rangle$ in the water from point $\langle x_1, y_1 \rangle$ on the shore. We take the shoreline to be a line at $x = 0$. and the location we cross the shoreline is $\langle 0, y \rangle$.
 
-![Snell's Law Diagram](../../images/notes/week11/snells_shore.png)
+![Snell's Law Diagram](images/11_notes_snells_shore.png)
 
 Notice the angle that we approach the shoreline at, $\theta_1$, and the angle that we approach the target in the water, $\theta_2$.
 
@@ -277,11 +258,10 @@ We want to minimize this time, $T$, by choosing the optimal point $y$ where we c
 
 $$\dfrac{dT}{dy} = 0$$
 
-$$\begin{align}
-\dfrac{dT}{dy} &= \dfrac{1}{2}\dfrac{1}{v_1}\left(x_1^2 + (y-y_1)^2\right)^{-1/2}(2)(y-y_1) + \dfrac{1}{2}\dfrac{1}{v_2}\left(x_2^2 + (y_2-y)^2\right)^{-1/2}(-2)(y_2-y) = 0\\
-&= \dfrac{1}{v_1}\left(\dfrac{y-y_1}{\sqrt{x_1^2 + (y-y_1)^2}}\right) - \dfrac{1}{v_2}\left(\dfrac{y_2-y}{\sqrt{x_2^2 + (y_2-y)^2}}\right) = 0\\
-&= \dfrac{1}{v_1}\left(\dfrac{y-y_1}{d_1}\right) - \dfrac{1}{v_2}\left(\dfrac{y_2-y}{d_2}\right) = 0\\
-\end{align}$$
+
+$$\dfrac{dT}{dy} = \dfrac{1}{2}\dfrac{1}{v_1}\left(x_1^2 + (y-y_1)^2\right)^{-1/2}(2)(y-y_1) + \dfrac{1}{2}\dfrac{1}{v_2}\left(x_2^2 + (y_2-y)^2\right)^{-1/2}(-2)(y_2-y) = 0$$
+$$\dfrac{dT}{dy} = \dfrac{1}{v_1}\left(\dfrac{y-y_1}{\sqrt{x_1^2 + (y-y_1)^2}}\right) - \dfrac{1}{v_2}\left(\dfrac{y_2-y}{\sqrt{x_2^2 + (y_2-y)^2}}\right) = 0$$
+$$\dfrac{dT}{dy} = \dfrac{1}{v_1}\left(\dfrac{y-y_1}{d_1}\right) - \dfrac{1}{v_2}\left(\dfrac{y_2-y}{d_2}\right) = 0$$
 
 where the last step is just substituting in the expressions for $d_1$ and $d_2$. Notice that those expressions are related to the angles we defined earlier. We can rewrite the expression in terms of the angles $\theta_1$ and $\theta_2$:
 
@@ -302,13 +282,13 @@ $$\dfrac{\sin(\theta_1)}{v_1} = \dfrac{\sin(\theta_2)}{v_2}$$
 
 The [Brachistochrone problem](https://en.wikipedia.org/wiki/Brachistochrone_problem) is a classic problem in the Calculus of Variations. It asks the question: "What is the shape of the curve that a bead will follow under the influence of gravity to reach the bottom in the shortest time?"  Here's a great video from [Steven Strogatz](https://en.wikipedia.org/wiki/Steven_Strogatz) that explains the problem and its solution.
 
-[![Youtube Video on the Brachistochrone Problem](https://img.youtube.com/vi/Cld0p3a43fU/hqdefault.jpg)](https://www.youtube.com/watch?v=Cld0p3a43fU)
+[![Youtube Video on the Brachistochrone Problem](images/11_notes_Cld0p3a43fU.jpg)](https://www.youtube.com/watch?v=Cld0p3a43fU)
 
 Source: <https://www.youtube.com/watch?v=Cld0p3a43fU>
 
 The setup is below, there's two points separated by a distance vertically and horizontally. What shape should we make a track so that a bead will roll down it in the shortest time?
 
-![The Brachistochrone Problem](../../images/notes/week11/brachistochrone.png)
+![The Brachistochrone Problem](images/11_notes_brachistochrone.png)
 
 The time it takes for the bead to roll down the curve is given by:
 
@@ -360,7 +340,7 @@ Or that this partial derivative must be a constant:
 
 $$\dfrac{\partial f}{\partial x'} = \textrm{a constant},$$
 
-$$dfrac{\partial f}{\partial x'} = \dfrac{x'}{\sqrt{x'^2 + 1}\sqrt{y}} = \sqrt{C},$$
+$$\dfrac{\partial f}{\partial x'} = \dfrac{x'}{\sqrt{x'^2 + 1}\sqrt{y}} = \sqrt{C},$$
 
 where $C$ is a constant. We square both sides to get:
 
@@ -384,20 +364,16 @@ This integral will give us the shape of the curve $x(y)$, but to solve it we nee
 
 Let $y = a(1 - \cos(\theta))$. Thus, $dy = a\sin(\theta)d\theta$. This gives us:
 
-$$\begin{align}
-x(y(\theta)) &= \int \sqrt{\frac{y(\theta)}{2a - y(\theta)}} dy\\
-&= \int \sqrt{\frac{a(1 - \cos(\theta))}{2a - a(1 - \cos(\theta))}} a\sin(\theta)d\theta\\
-&= a \int \sqrt{\frac{(1-\cos\theta)}{(1+\cos\theta)}} \sin(\theta)d\theta.\\
-\end{align}$$
+$$x(y(\theta)) = \int \sqrt{\frac{y(\theta)}{2a - y(\theta)}} dy$$
+$$x(y(\theta)) = \int \sqrt{\frac{a(1 - \cos(\theta))}{2a - a(1 - \cos(\theta))}} a\sin(\theta)d\theta$$
+$$x(y(\theta)) = a \int \sqrt{\frac{(1-\cos\theta)}{(1+\cos\theta)}} \sin(\theta)d\theta.$$
 
 Note that $\sin \theta = \sqrt{1 - \cos^2 \theta} = \sqrt{(1 - \cos\theta)(1 + \cos\theta)}$. This allows us to simplify the integral:
 
-$$\begin{align}
-x(y(\theta)) &= a \int \sqrt{\frac{(1-\cos\theta)^2(1+\cos\theta)}{(1+\cos\theta)}} d\theta\\
-&= a \int \sqrt{(1 - \cos\theta)^2} d\theta\\
-&= a \int (1 - \cos\theta) d\theta\\
-&= a \left(\theta - \sin(\theta)\right) + C\\
-\end{align}$$
+$$x(y(\theta)) = a \int \sqrt{\frac{(1-\cos\theta)^2(1+\cos\theta)}{(1+\cos\theta)}} d\theta$$
+$$x(y(\theta)) = a \int \sqrt{(1 - \cos\theta)^2} d\theta$$
+$$x(y(\theta)) = a \int (1 - \cos\theta) d\theta$$
+$$x(y(\theta)) = a \left(\theta - \sin(\theta)\right) + C$$
 
 where $C$ is a constant of integration. 
 
@@ -409,8 +385,6 @@ $$y(\theta) = a(1 - \cos(\theta)).$$
 This is the "cycloid" curve that the bead will follow to minimize the time it takes to roll down the track. We can plot this curve to visualize it.
 
 What is so interesting about this curve is that it is [isochronous](https://en.wikipedia.org/wiki/Isochronous), meaning that all beads released from rest at any point on the curve will reach the bottom at the same time, regardless of where they start.
-
-
 
 
 ```python
@@ -450,7 +424,7 @@ plt.show()  # Display the plot
 
 
     
-![png](11_notes_files/11_notes_10_0.png)
+![png](images/11_notes_11_notes_10_0.png)
     
 
 

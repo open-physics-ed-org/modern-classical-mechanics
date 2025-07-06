@@ -25,7 +25,7 @@ As physicists we should feel comfortable with expressions that include $\exp{(\i
 * 1a (4pt): Perform Taylor expansions in powers of $2\pi f t$ of the functions $\cos{(2\pi f t)}$ and $\sin{(2\pi f t)}$. Show your work in producing those Taylor expansions.
 * 1b (3pt): Perform a Taylor expansion of $\exp{(i2\pi f t)}$. Show your work in producing those Taylor expansions.
 * 1c (2pt): Using parts (a) and (b) here, show that $\exp{(\imath2\pi f t)}=\cos{(2\pi f t)}+\imath\sin{(2\pi f t)}$.
-* 1d (2pt): Show that $\ln{(−1)} = \imath\pi$.
+* 1d (2pt): Show that $\ln{(-1)} = \imath\pi$.
 * 1e (4pt): Develop another novel mathematical relationship based on the properties you've discovered in this problem. Explain how your result connects to any of the results parts a-d.
 
 ## Exercise 2 (15 pt), Vector algebra
@@ -56,7 +56,7 @@ The notation that we use for vectors in fairly recently developed in mathematica
 
 The three vectors $\boldsymbol{a}$, $\boldsymbol{b}$, and $\boldsymbol{c}$ are the three sides of a triangle *ABC*. The angles $\alpha$, $\beta$, and $\gamma$ are the angles opposite the sides $\boldsymbol{a}$, $\boldsymbol{b}$, and $\boldsymbol{c}$, respectively. as shown below.
 
-![triangle](../images/assignments/1.15-triangle.png)
+![triangle](images/hw1_1.15-triangle.png)
 
 *(Figure: A triangle with sides $\boldsymbol{a}$, $\boldsymbol{b}$, and $\boldsymbol{c}$ and angles $\alpha$, $\beta$, and $\gamma$; reproduced from JRT.)*
 
@@ -71,9 +71,9 @@ The three vectors $\boldsymbol{a}$, $\boldsymbol{b}$, and $\boldsymbol{c}$ are t
 Our first numerical attempt will involve reading data from file or just setting up two vectors, one for position and one for time. Our data are from  
 
 [![Usain Bolt's world record 100m during the olympic games in Beijing in
-2008](https://markdown-videos-api.jorgenkh.no/youtube/93dC0o2aHto?width=720&height=405)](https://youtube.com/watch?v=93dC0o2aHto)
+2008](images/hw1_93dC0o2aHto.jpg)](https://youtube.com/watch?v=93dC0o2aHto)
 
-- Direct Link: [https://youtube.com/watch?v=93dC0o2aHto](https://youtube.com/watch?v=93dC0o2aHto)
+- Direct Link: [https://youtube.com/watch?v=93dC0o2aHto](https:curl//youtube.com/watch?v=93dC0o2aHto)
 
 The data show the time used in units of 10m (see below). Before we however
 venture into this, we need to repeat some basic Python syntax with an
@@ -231,7 +231,7 @@ plt.show()
 
 
     
-![png](hw1_files/hw1_20_0.png)
+![png](images/hw1_hw1_20_0.png)
     
 
 

@@ -26,18 +26,15 @@ where $\theta$ is the angle of the pendulum, $\beta$ is the damping coefficient,
 
 To use `solve_ivp`, we need to convert this second-order ODE into a system of first-order ODEs. We can do this by introducing a new variable for the angular velocity:
 
-$$
-\begin{align*}
-\dot{\theta} &= \omega \\
-\dot{\omega} &= -\sin(\theta) - \beta \omega + A \cos(\omega_D t)
-\end{align*}
-$$
+$$\dot{\theta} = \omega$$
+$$\dot{\omega} = -\sin(\theta) - \beta \omega + A \cos(\omega_D t)$$
+
 
 where $\omega$ is the angular velocity of the pendulum NOT the driver.
 
 Let's implement this system using `solve_ivp` and simulate its behavior over time.
 
-📝 **Read over this code and run it.** Make sure you make sense of what each part does. You will need to modify it for the next part of the activity.
+**Read over this code and run it.** Make sure you make sense of what each part does. You will need to modify it for the next part of the activity.
 
 
 ```python
@@ -114,11 +111,11 @@ plt.tight_layout()
 
 
     
-![png](10_notes_files/10_notes_4_0.png)
+![png](images/10_notes_10_notes_4_0.png)
     
 
 
-📝 What do you notice about the behavior of this system? Both short and long term? How can you see that in your plots?
+What do you notice about the behavior of this system? Both short and long term? How can you see that in your plots?
 
 **Your Answer Here**
 
@@ -186,11 +183,11 @@ plt.tight_layout()
 
 
     
-![png](10_notes_files/10_notes_7_0.png)
+![png](images/10_notes_10_notes_7_0.png)
     
 
 
-📝 How does this view of the long term solution help us see the periodicity of the motion? How could we check if the motion follows the driving frequency?
+How does this view of the long term solution help us see the periodicity of the motion? How could we check if the motion follows the driving frequency?
 
 **Your Answer Here**
 
@@ -210,14 +207,10 @@ $$\frac{d^2x}{dt^2} + \delta \frac{dx}{dt} + \alpha x + \beta x^3 = \gamma \cos(
 
 We can rewrite this as a system of first-order ODEs by introducing a new variable for the velocity:
 
-$$
-\begin{align*}
-\dot{x} &= v \\
-\dot{v} &= -\delta v - \alpha x - \beta x^3 + \gamma \cos(\omega t).
-\end{align*}
-$$
+$$\dot{x} = v$$
+$$\dot{v} = -\delta v - \alpha x - \beta x^3 + \gamma \cos(\omega t).$$
 
-### 📝 Numerically Integrate the Duffing Oscillator
+### Numerically Integrate the Duffing Oscillator
 
 For our simulation we will observe the effect of the driving strength $\gamma$ on the behavior of the system. We start with the following parameters:
 
@@ -239,9 +232,9 @@ Choose the initial conditions and time span for the simulation:
 
 Below we've provided some of the code, but not the definition of the `duffing` function. You will need to write that function and fill in the missing code to complete the simulation.
 
-📝 **Write the rest of the code necessary to simulate the Duffing oscillator.**
+**Write the rest of the code necessary to simulate the Duffing oscillator.**
 
-📝 **Plot the results of your simulation in the next cell.**
+**Plot the results of your simulation in the next cell.**
 
 
 ```python
@@ -275,13 +268,13 @@ y0 = [1.0, 0.0]
 ## Your Code Here
 ```
 
-### 📝 Plotting the results
+### Plotting the results
 
 Once you have simulated the Duffing oscillator, you can plot the results to visualize its behavior over time. Your plot should be similar to the one above where you plot at least the position $x$ over time, and then a phase space plot of $x$ vs. $v$. Make sure that you label your axes and include a title for your plot; add starting and ending points to your plot so you are sure about the direction of the motion.
 
 This first set of plots should look similar to the one below.
 
-![Duffing](../../images/notes/week10/first_duffing.png)
+![Duffing](images/10_notes_first_duffing.png)
 
 
 ```python
@@ -289,7 +282,7 @@ This first set of plots should look similar to the one below.
 ## Your Code Here
 ```
 
-### 📝 Investigating Periodicity
+### Investigating Periodicity
 
 Now that you have this solution, look at only the last few cycles of the simulation. You can do this by plotting only the last 10 cycles of the simulation. Include a mark at every cycle of the driver, $T = \frac{2\pi}{\omega}$. This will help you see if the system is periodic or not.
 
@@ -299,7 +292,7 @@ Now that you have this solution, look at only the last few cycles of the simulat
 ## Your Code Here
 ```
 
-📝  What did you find the periodicity of this particular set up to be? How did you determine it?
+What did you find the periodicity of this particular set up to be? How did you determine it?
 
 **Your Answer Here**
 
@@ -333,15 +326,15 @@ $$\frac{dz}{dt} = xy - \beta z$$
 
 Where $\sigma$, $\rho$, and $\beta$ are system parameters. The canonical values are $\sigma = 10$, $\rho = 28$, and $\beta = \frac{8}{3}$.
 
-### 📝 Numerically Integrate the Lorenz Attractor
+### Numerically Integrate the Lorenz Attractor
 
 In the cells below, we scaffold some of the code to simulate the Lorenz attractor. You will need to fill in the missing pieces. Once you plot the solution, you should be able to produce time series, and phase space plots of the Lorenz attractor. **Note that the phase space for the Lorenz attractor is 3D (x,y,z), so you will need to use a 3D plotting function or plot projections.**
 
 For the parameters, we will use the canonical values of $\sigma = 10$, $\rho = 28$, and $\beta = \frac{8}{3}$. Choose initial conditions of $x=1$, $y=1$, and $z=1$ and simulate for 50 time units. If you do, your solution will look like the one below.
 
-![Lorenz Time Series](../../images/notes/week10/lorenz-1.png)
+![Lorenz Time Series](images/10_notes_lorenz-1.png)
 
-![Lorenz Phase Space](../../images/notes/week10/lorenz-2.png)
+![Lorenz Phase Space](images/10_notes_lorenz-2.png)
 
 
 ```python
@@ -374,20 +367,20 @@ y0 = [1.0, 1.0, 1.0]
 ## Your Code Here
 ```
 
-### 📝 Exploring Sensitivity to Initial Conditions
+### Exploring Sensitivity to Initial Conditions
 
 Noe that you have a solution to the Lorenz attractor, you can observe how trajectories that start from slightly different initial conditions diverge over time. This is a hallmark of chaotic systems, where small differences in initial conditions can lead to vastly different outcomes. We can visualize this as a bundle of trajectories that start from nearby points in phase space and then diverge over time. For the Lorenz attractor, this is often visualized as a butterfly-shaped structure in phase space.
 
 For this activity, we will simulate the Lorenz attractor for two sets of initial conditions that are close together. We will then plot the trajectories in phase space to observe how they diverge over time.
 
-**📝 Modify the code you wrote above to simulate the Lorenz attractor for two sets of initial conditions that are close together. Plot the trajectories in phase space to observe how they diverge over time. Do this as both a time series and in phase space.**
+**Modify the code you wrote above to simulate the Lorenz attractor for two sets of initial conditions that are close together. Plot the trajectories in phase space to observe how they diverge over time. Do this as both a time series and in phase space.**
 
 
 ```python
 ## Your Code Here
 ```
 
-### 📝 The Strange Attractor
+### The Strange Attractor
 
 The two trajectories that you plotted above should look like they are diverging over time. This is very common in chaotic systems. However, when you plot the trajectories in the phase space, they seem to occupy a bounded region of space - this is especially true as the trajectories evolve.
 

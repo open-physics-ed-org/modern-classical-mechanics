@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded',function(){
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>tmpl9pggi3o</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>tmpmj3hz3g2</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7602,49 +7602,53 @@ a.anchor-link {
 <p>We start by sketching the location of a particle in plane polar coordinates, as shown below:</p>
 <p><img alt="Position vector in polar coordinates" src="images/chapters/coordinate-system.png"/></p>
 <p>The red arrow represents the position vector $\vec{r}$, which is a length $r$ from the origin at an angle $\phi$ from the $x$-axis. At the tip of the vector we have drawn the Cartesian unit vectors $\hat{x}$ and $\hat{y}$ in blue, and the polar unit vectors $\hat{r}$ and $\hat{\phi}$ in green. Notice that the polar unit vectors are rotated by an angle $\phi$ from the Cartesian unit vectors. We can simply write the position vector in terms of these unit vectors as:</p>
-<p>$$\vec{r} = r \hat{r}\;\text{where}\;r = |\vec{r}|.$$</p>
+<p>$$
+\vec{r} = r \hat{r} \;\text{where}\; r = |\vec{r}|.
+$$</p>
 <p>We start by taking the derivative of the position vector $\vec{r}$ with respect to time $t$ to find the velocity $\vec{v}$. Using the product and chain rules, we have:</p>
-<p>$$\dfrac{d\vec{r}}{dt} = \frac{d}{dt}(r \hat{r}) = \dot{r} \hat{r} + r \frac{d\hat{r}}{dt}.$$</p>
+<p>$$
+\dfrac{d\vec{r}}{dt} = \frac{d}{dt}(r \hat{r}) = \dot{r} \hat{r} + r \frac{d\hat{r}}{dt}.
+$$</p>
 <p>What is $\frac{d\hat{r}}{dt}$?</p>
 <p>We note that the green unit vectors for $\hat{r}$ and $\hat{\phi}$ are not constant, they change direction as the particle moves. We can write them in terms of the Cartesian unit vectors, which do not change with time, as follows:</p>
-<p>$$\hat{r} = \cos(\phi) \hat{x} + \sin(\phi) \hat{y},\;\;\;\;\;\; \hat{\phi} = -\sin(\phi) \hat{x} + \cos(\phi) \hat{y}.$$</p>
-<p>So now,we can differentiate $\hat{r}$ with respect to time $t$ using the chain rule:</p>
-<p>$$\begin{align*}
-\frac{d\hat{r}}{dt} &amp;= \frac{d}{dt}(\cos(\phi) \hat{x} + \sin(\phi) \hat{y}) \\
-&amp;= \frac{d}{dt}(\cos(\phi)) \hat{x} + \cos(\phi) \frac{d\hat{x}}{dt} + \frac{d}{dt}(\sin(\phi)) \hat{y} + \sin(\phi) \frac{d\hat{y}}{dt} \\
-&amp;= -\sin(\phi) \dot{\phi} \hat{x} + \cos(\phi) \dot{\phi} \hat{y} \quad (\text{since } \frac{d\hat{x}}{dt} = 0 \text{ and } \frac{d\hat{y}}{dt} = 0) \\
-&amp;= \dot{\phi} \hat{\phi}
-\end{align*}$$</p>
-<p>And so our expression for the velocity $\vec{v} = \frac{d\vec{r}}{dt}$ becomes:</p>
-<p>$$\vec{v} = \dot{r} \hat{r} + r \dot{\phi} \hat{\phi}.$$</p>
-<p>We differentiate again to find the acceleration $\vec{a} = \frac{d\vec{v}}{dt}$. Using the product and chain rules again, we have:</p>
-<p>$$\begin{align*}
-\frac{d\vec{v}}{dt} &amp;= \frac{d}{dt}(\dot{r} \hat{r} + r \dot{\phi} \hat{\phi}) \\
-&amp;= \frac{d}{dt}(\dot{r} \hat{r}) + \frac{d}{dt}(r \dot{\phi} \hat{\phi}) \\
-&amp;= \ddot{r} \hat{r} + \dot{r} \frac{d\hat{r}}{dt} + \dot{r} \dot{\phi} \hat{\phi} + r \ddot{\phi} \hat{\phi} + r \dot{\phi} \frac{d\hat{\phi}}{dt} \\
-\end{align*}$$</p>
-<p>We found $\frac{d\hat{r}}{dt} = \dot{\phi} \hat{\phi}$ in the previous step, and we also need to find $\frac{d\hat{\phi}}{dt}$. We can differentiate $\hat{\phi}$ in a similar way:</p>
-<p>$$\begin{align*}
-\frac{d\hat{\phi}}{dt} &amp;= \frac{d}{dt}(-\sin(\phi) \hat{x} + \cos(\phi) \hat{y}) \\
-&amp;= \frac{d}{dt}(-\sin(\phi)) \hat{x} + (-\sin(\phi)) \frac{d\hat{x}}{dt} + \frac{d}{dt}(\cos(\phi)) \hat{y} + \cos(\phi) \frac{d\hat{y}}{dt} \\
-&amp;= -\cos(\phi) \dot{\phi} \hat{x} - \sin(\phi) \dot{\phi} \hat{y} \quad (\text{since } \frac{d\hat{x}}{dt} = 0 \text{ and } \frac{d\hat{y}}{dt} = 0) \\
-&amp;= -\dot{\phi} \hat{r} \quad (\text{since } \hat{r} = \cos(\phi) \hat{x} + \sin(\phi) \hat{y}).\\
-\end{align*}$$</p>
-<p>We return to our expression for the acceleration $\vec{a}$:</p>
-<p>$$\begin{align*}
-\vec{a} &amp;= \ddot{r} \hat{r} + \dot{r} \frac{d\hat{r}}{dt} + \dot{r} \dot{\phi} \hat{\phi} + r \ddot{\phi} \hat{\phi} + r \dot{\phi} \frac{d\hat{\phi}}{dt} \\
-&amp;= \ddot{r} \hat{r} + \dot{r} (\dot{\phi} \hat{\phi}) + \dot{r} \dot{\phi} \hat{\phi} + r \ddot{\phi} \hat{\phi} + r \dot{\phi} (-\dot{\phi} \hat{r}) \\
-&amp;= \ddot{r} \hat{r} + \dot{r} \dot{\phi} \hat{\phi} + \dot{r} \dot{\phi} \hat{\phi} + r \ddot{\phi} \hat{\phi} - r \dot{\phi}^2 \hat{r}.\\
-&amp;= \left(\ddot{r} - r \dot{\phi}^2\right) \hat{r} + \left(2 \dot{r} \dot{\phi} + r \ddot{\phi}\right) \hat{\phi}.
-\end{align*}$$</p>
-<p>Using Newton's second law, we know that the acceleration $\vec{a}$ is equal to the net force $\vec{F}$ divided by the mass $m$ of the particle:</p>
-<p>$$\vec{a} = \frac{\vec{F}}{m}.$$</p>
-<p>Equating the two expressions for $\vec{a}$, we have:</p>
-<p>$$\vec{F}_{net} = m\left[\left(\ddot{r} - r \dot{\phi}^2\right) \hat{r} + \left(2 \dot{r} \dot{\phi} + r \ddot{\phi}\right) \hat{\phi}\right]$$
-$$\vec{F}_{net} = \vec{F}_{r} + \vec{F}_{\phi}$$</p>
-<p>Where we can identify the radial and angular components of the net force as:</p>
-<p>$$\vec{F}_{r} = m\left(\ddot{r} - r \dot{\phi}^2\right) \hat{r}$$
-$$\vec{F}_{\phi} = m\left(2 \dot{r} \dot{\phi} + r \ddot{\phi}\right) \hat{\phi}$$</p>
+<p>$$
+\hat{r} = \cos(\phi) \hat{x} + \sin(\phi) \hat{y}, \;\;\;\; \hat{\phi} = -\sin(\phi) \hat{x} + \cos(\phi) \hat{y}.
+$$</p>
+<p>Now, we differentiate $\hat{r}$ with respect to time $t$ using the chain rule:</p>
+<p>$$
+\frac{d\hat{r}}{dt} = \frac{d}{dt}(\cos(\phi) \hat{x} + \sin(\phi) \hat{y}) = -\sin(\phi) \dot{\phi} \hat{x} + \cos(\phi) \dot{\phi} \hat{y} = \dot{\phi} \hat{\phi}
+$$</p>
+<p>So our expression for the velocity becomes:</p>
+<p>$$
+\vec{v} = \dot{r} \hat{r} + r \dot{\phi} \hat{\phi}.
+$$</p>
+<p>We differentiate again to find the acceleration $\vec{a} = \frac{d\vec{v}}{dt}$:</p>
+<p>$$
+\frac{d\vec{v}}{dt} = \frac{d}{dt}(\dot{r} \hat{r} + r \dot{\phi} \hat{\phi}) = \ddot{r} \hat{r} + \dot{r} \frac{d\hat{r}}{dt} + \dot{r} \dot{\phi} \hat{\phi} + r \ddot{\phi} \hat{\phi} + r \dot{\phi} \frac{d\hat{\phi}}{dt}
+$$</p>
+<p>Recall from above that $\frac{d\hat{r}}{dt} = \dot{\phi} \hat{\phi}$. Now, let's find $\frac{d\hat{\phi}}{dt}$:</p>
+<p>$$
+\frac{d\hat{\phi}}{dt} = \frac{d}{dt}(-\sin(\phi) \hat{x} + \cos(\phi) \hat{y}) = -\cos(\phi) \dot{\phi} \hat{x} - \sin(\phi) \dot{\phi} \hat{y} = -\dot{\phi} \hat{r}
+$$</p>
+<p>Substituting these results, the acceleration becomes:</p>
+<!-- $$
+\begin{align*}
+\vec{a} &= \ddot{r} \hat{r} + \dot{r} (\dot{\phi} \hat{\phi}) + \dot{r} \dot{\phi} \hat{\phi} + r \ddot{\phi} \hat{\phi} + r \dot{\phi} (-\dot{\phi} \hat{r}) \\
+&= \ddot{r} \hat{r} + 2\dot{r} \dot{\phi} \hat{\phi} + r \ddot{\phi} \hat{\phi} - r \dot{\phi}^2 \hat{r} \\
+&= (\ddot{r} - r \dot{\phi}^2) \hat{r} + (2 \dot{r} \dot{\phi} + r \ddot{\phi}) \hat{\phi}
+\end{align*}
+$$ -->
+<p>Using Newton's second law, $\vec{a} = \vec{F}/m$, we have:</p>
+<p>$$
+\vec{F}_{net} = m\left[(\ddot{r} - r \dot{\phi}^2) \hat{r} + (2 \dot{r} \dot{\phi} + r \ddot{\phi}) \hat{\phi}\right]
+$$</p>
+<p>So the radial and angular components of the net force are:</p>
+<p>$$
+\vec{F}_{r} = m(\ddot{r} - r \dot{\phi}^2) \hat{r}
+$$</p>
+<p>$$
+\vec{F}_{\phi} = m(2 \dot{r} \dot{\phi} + r \ddot{\phi}) \hat{\phi}
+$$</p>
 <p>This gives us the net force in terms of the radial and angular components in polar coordinates.</p>
 </div>
 </div>
@@ -7664,7 +7668,7 @@ $$\vec{F}_{\phi} = m\left(2 \dot{r} \dot{\phi} + r \ddot{\phi}\right) \hat{\phi}
 <p>The sum of all forces in the radial direction are given by:</p>
 <p>$$\sum F_r = ma_r = -F_{ramp} + mg \cos(\phi) = m\left(\ddot{r} - r \dot{\phi}^2\right)$$</p>
 <p>We note that $r=R$, that is the radius is fixed, so</p>
-<p>$$\ddot{r} = 0$$.</p>
+<p>$$\ddot{r} = 0.$$</p>
 <p>Therefore, we can simplify the equation to:</p>
 <p>$$-F_{ramp} + mg \cos(\phi) = -mR \dot{\phi}^2.$$</p>
 <p>In the tangential direction, we have:</p>

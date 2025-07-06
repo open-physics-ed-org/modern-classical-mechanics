@@ -33,7 +33,7 @@ $$m\ddot{x} +b \dot{x} + k x = F(t)$$
 
 We can represent that setup in the picture below. The blue spring with spring constant $k$ is attached to a red mass $m$. There is a dashpot (damping) in green with damping constant $b=2\beta$. The driving force $F(t)$ is shown in black and called "driver".
 
-![driven oscillator](../../images/notes/week9/driven_oscillator.png)
+![driven oscillator](images/09_notes_driven_oscillator.png)
 
 We write that differential equation as:
 
@@ -276,7 +276,7 @@ Let's allow $\beta$ to be small so that $4\beta^2 \omega^2$ is small. If we focu
 
 The second result is a [resonance](https://en.wikipedia.org/wiki/Resonance) effect. The system will resonate at a particular frequency, $\omega_0$, and the amplitude of the oscillations will be large. Below is a sketch of the response of a driven damped harmonic oscillator to a sinusoidal driving force. The amplitude of the oscillations is plotted as a function of the driving frequency $\omega$.
 
-![Resonance Sketch](../../images/notes/week9/resonance.png)
+![Resonance Sketch](images/09_notes_resonance.png)
 
 ### Achieving Resonance
 

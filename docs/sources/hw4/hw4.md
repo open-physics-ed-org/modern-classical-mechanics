@@ -42,7 +42,7 @@ on your code from homework 3 and we will try to make the motion of a falling obj
 
 Consider a particle of mass $m$ moving in two dimensions. The particle moves from $(0,0)$ to $(1,1)$ along three different paths, $a$, $b$ and $c$ as shown in the figure below. 
 
-![Paths](../images/assignments/paths.png)
+![Paths](images/hw4_paths.png)
 
 In this space, the particle experiences a force:
 
@@ -147,12 +147,12 @@ is a strong simplification of the actual deformation process occurring at the co
 between the ball and the floor due to the deformation of both the ball and the floor.
 
 The deformed region corresponds roughly to the region of **overlap** between the
-ball and the floor. The depth of this region is $\Delta y = R − y(t)$, where $R$
+ball and the floor. The depth of this region is $\Delta y = R-y(t)$, where $R$
 is the radius of the ball. This is supposed to represent the compression of the spring.
 Our model for the normal force acting on the ball is then
 
 $$
-\boldsymbol{N} = −k (R − y(t)) \boldsymbol{e}_y.
+\vec{N} = -k (R-y(t)) \vec{e}_y.
 $$
 
 The normal force must act upward when $y < R$,
@@ -162,7 +162,7 @@ contact with the floor, otherwise the normal force is zero. The full formation o
 normal force is therefore
 
 $$
-\boldsymbol{N} = −k (R − y(t)) \boldsymbol{e}_y,
+\vec{N} = -k (R-y(t)) \vec{e}_y,
 $$
 
 when $y(t) < R$ and zero when $y(t) \ge R$.

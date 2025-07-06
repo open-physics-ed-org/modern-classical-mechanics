@@ -7628,12 +7628,10 @@ a.anchor-link {
 <p>$$\mathcal{L}(y_1, y_2, \dot{y}_1, \dot{y}_2) \rightarrow \mathcal{L}(y_1, \dot{y}_1)$$</p>
 <p>We can do this by substituting $y_2$ in terms of $y_1$ into the energy equations:</p>
 <p>$$T(y_1, \dot{y}_1) = \dfrac{1}{2}M\dot{y}_1^2 + \dfrac{1}{2}m\dot{y}_2^2 = \dfrac{1}{2}(M+m)\dot{y}_1^2 = T(\dot{y}_1)$$</p>
-<p>$$\begin{align}
-V(y_1, y_2) &amp;= +Mgy_1 + mgy_2 \\
-&amp; = Mgy_1 + mg((l-\pi R) - y_1) \\
-&amp; = (M-m)g y_1 + mg(l-\pi R) \\
-V(y_1) &amp; = (M-m)g y_1 + U_0
-\end{align}$$</p>
+<p>$$V(y_1, y_2) = +Mgy_1 + mgy_2$$
+$$V(y_1, y_2) = Mgy_1 + mg((l-\pi R) - y_1)$$
+$$V(y_1, y_2) = (M-m)g y_1 + mg(l-\pi R)$$
+$$V(y_1, y_2) = (M-m)g y_1 + U_0$$</p>
 <p>where $U_0 = mg(l-\pi R)$ is a constant and will not affect the equations of motion.</p>
 <p>$$\mathcal{L}(y_1, \dot{y}_1) = T(\dot{y}_1) - V(y_1) = \dfrac{1}{2}(M+m)\dot{y}_1^2 - (M-m)g y_1$$</p>
 <p>$$\dfrac{\partial \mathcal{L}}{\partial y_1} = -(M-m)g$$</p>
@@ -7666,20 +7664,14 @@ $$T_{pulley} =  \dfrac{1}{4}M_p R^2 \dot{\phi}^2$$</p>
 <p>$$\dot{y}_1 = Rd\phi \rightarrow y_1 = R\phi +\underbrace{R\phi_0}_{\textrm{const.}}$$</p>
 <p>$$\dot{y}_1 = R\dot{\phi}$$</p>
 <p>We work these back into $T$, $V$, and $\mathcal{L}$.</p>
-<p>$$\begin{align}
-T(\dot{\phi}) &amp;= \dfrac{1}{2}(M+m)\dot{y}_1^2 + \dfrac{1}{4}M_p R^2 \dot{\phi}^2\\
-&amp;= \dfrac{1}{2}(M+m+\frac{1}{2}M_p)R^2 \dot{\phi}^2\\
-\end{align}$$</p>
-<p>$$\begin{align}
-V(\phi) &amp;= (M-m)gy_1 + U_0 \\
-&amp;= (M-m)g(R\phi + R\phi_0) + U_0\\
-&amp;= (M-m)gR\phi + \tilde{U}_0\\
-\end{align}$$</p>
+<p>$$T(\dot{\phi}) = \dfrac{1}{2}(M+m)\dot{y}_1^2 + \dfrac{1}{4}M_p R^2 \dot{\phi}^2$$
+$$T(\dot{\phi}) = \dfrac{1}{2}(M+m+\frac{1}{2}M_p)R^2 \dot{\phi}^2$$</p>
+<p>$$V(\phi) = (M-m)gy_1 + U_0$$
+$$V(\phi) = (M-m)g(R\phi + R\phi_0) + U_0$$
+$$V(\phi) = (M-m)gR\phi + \tilde{U}_0$$</p>
 <p>where $\tilde{U}_0 = (M-m)gR\phi_0 + U_0$ is another constant that will not affect the equations of motion.</p>
-<p>$$\begin{align}
-\mathcal{L}(\phi, \dot{\phi}) &amp;= T(\dot{\phi}) - V(\phi)\\
-&amp; = \dfrac{1}{2}(M+m+\frac{1}{2}M_p)R^2 \dot{\phi}^2 - (M-m)gR\phi\\
-\end{align}$$</p>
+<p>$$\mathcal{L}(\phi, \dot{\phi}) = T(\dot{\phi}) - V(\phi)$$
+$$\mathcal{L}(\phi, \dot{\phi}) = \dfrac{1}{2}(M+m+\frac{1}{2}M_p)R^2 \dot{\phi}^2 - (M-m)gR\phi$$</p>
 <h3 id="Torque-and-Angular-Momentum">Torque and Angular Momentum<a class="anchor-link" href="#Torque-and-Angular-Momentum">¶</a></h3><p>Our generalized coordinate is $\phi$ and our generalized velocity is $\dot{\phi}$. We apply the Euler-Lagrange equation. We obtain the generalized force:</p>
 <p>$$\dfrac{\partial \mathcal{L}}{\partial \phi} = -(M-m)gR = F_{\phi}$$</p>
 <p>Notice that in this case, the generalized force is not the same as the force on mass $M$ in the Newtonian picture. It's a torque around the pulley.</p>
