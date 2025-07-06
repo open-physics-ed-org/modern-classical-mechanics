@@ -139,7 +139,7 @@ As you have noticed, much of what we do in classical mechanics involves solving 
 
 The figure below shows a vector in two dimensions. 
 
-![Vector in Two Dimensions; the vector is defined by its magnitude, $A$, and its direction, $\theta$](../../images/notes/week2/2dvector.png)
+![Vector in Two Dimensions; the vector is defined by its magnitude, $A$, and its direction, $\theta$](../images/notes/week2/2dvector.png)
 
 The vector is defined by its magnitude, $A$, and its direction, $\theta$. The vector can be decomposed into two components, $A_x$ and $A_y$, in the $x$ and $y$ directions, respectively.
 
@@ -204,7 +204,7 @@ $$\vec{a} \cdot \vec{b} = |\vec{a}||\vec{b}|\cos(\phi).$$
 
 The figure below shows the relationship between the vectors and the angle.
 
-![Dot Product of Two Vectors; the dot product is the product of the magnitudes of the vectors and the cosine of the angle between them](../../images/notes/week2/Dot-product.png) 
+![Dot Product of Two Vectors; the dot product is the product of the magnitudes of the vectors and the cosine of the angle between them](../images/notes/week2/Dot-product.png) 
 
 <br>
 Source: [Wikipedia](https://commons.wikimedia.org/wiki/File:Dot-product-1.svg)

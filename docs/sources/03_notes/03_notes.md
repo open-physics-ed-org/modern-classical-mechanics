@@ -25,7 +25,7 @@ Dynamics is the study of the time evolution of a system in question. In classica
 
 Consider a ball of mass $m$ falling down. We define the positive $y$ direction to be down as in the figure showing the FBD of the ball. 
 
-![FBD of a falling ball](../../images/notes/week3/1d-ball-fbd.png)
+![FBD of a falling ball](../images/notes/week3/1d-ball-fbd.png)
 
 We can apply Newton's laws to obtain the specific EOM for the ball.
 
@@ -45,7 +45,7 @@ is the specific EOM for the ball.
 
 We will spend a lot of time studying the [simple harmonic oscillator](https://en.wikipedia.org/wiki/Harmonic_oscillator) (SHO) in this course. The SHO is a system that oscillates back and forth around an equilibrium position. It is a very common system in physics and is used a base model for many more complex systems. Consider a mass, $m$, attached to a spring with spring constant, $k$, sitting on a frictionless horizontal plane as in the figure below.
 
-![FBD of a simple harmonic oscillator](../../images/notes/week3/sho_horizontal.png)
+![FBD of a simple harmonic oscillator](../images/notes/week3/sho_horizontal.png)
 
 The EOM for the SHO can be derived form Newton's Second Law.
 
@@ -65,7 +65,7 @@ is the specific EOM for the SHO. As we will learn, this restoring force causes t
 
 One of the more challenging aspects of physics is how we work to make models of the observations we have. This a long and challenging process in general, but if we have a general schematic, we can make progress. The hand drawn figure below provides such a schematic.
 
-![Framework for making models](../../images/notes/week3/prelim_framework.png)
+![Framework for making models](../images/notes/week3/prelim_framework.png)
 
 In the schematic, our observations are the starting point. Using our framework for physics (e.g., Newton's Laws) and making the appropriate assumptions (in blue), we can develop a model (in red) of the system. By conducting analysis and investgating the evolution of the model, we produce predictions (in green). We can then compare tose predictions to our observations to evaluate how well our model describes the system.
 
@@ -89,7 +89,7 @@ Let's turn to an example you have seen before: the falling ball.
 
 Consider a ball of mass $m$ falling with air resistance. Here, we have already done some of the work above. We have identified the phenomenon, and started to indicate the interactions. 
 
-![FBD of a falling ball with air resistance](../../images/notes/week3/1d-ball-fbd-air.png)
+![FBD of a falling ball with air resistance](../images/notes/week3/1d-ball-fbd-air.png)
 
 In the figure above, we have identified the forces acting on the ball. We have the gravitational force, $W = mg$, and the air resistance, $F_{\text{air}}$. We have chosen the linear mode for air-resistance, which is a choice of model given the assumption that the ball moves very slowly -- *this is not a good assumption in this case*, but makes the mathematical analysis simpler.
 

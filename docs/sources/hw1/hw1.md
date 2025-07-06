@@ -56,7 +56,7 @@ The notation that we use for vectors in fairly recently developed in mathematica
 
 The three vectors $\boldsymbol{a}$, $\boldsymbol{b}$, and $\boldsymbol{c}$ are the three sides of a triangle *ABC*. The angles $\alpha$, $\beta$, and $\gamma$ are the angles opposite the sides $\boldsymbol{a}$, $\boldsymbol{b}$, and $\boldsymbol{c}$, respectively. as shown below.
 
-![triangle](../images/assignments/1.15-triangle.png)
+![triangle](../images/activities/1.15-triangle.png)
 
 *(Figure: A triangle with sides $\boldsymbol{a}$, $\boldsymbol{b}$, and $\boldsymbol{c}$ and angles $\alpha$, $\beta$, and $\gamma$; reproduced from JRT.)*
 
@@ -71,7 +71,7 @@ The three vectors $\boldsymbol{a}$, $\boldsymbol{b}$, and $\boldsymbol{c}$ are t
 Our first numerical attempt will involve reading data from file or just setting up two vectors, one for position and one for time. Our data are from  
 
 [![Usain Bolt's world record 100m during the olympic games in Beijing in
-2008](https://markdown-videos-api.jorgenkh.no/youtube/93dC0o2aHto?width=720&height=405)](https://youtube.com/watch?v=93dC0o2aHto)
+2008](https://img.youtube.com/vi/93dC0o2aHto/hqdefault.jpg)](https://youtube.com/watch?v=93dC0o2aHto)
 
 - Direct Link: [https://youtube.com/watch?v=93dC0o2aHto](https://youtube.com/watch?v=93dC0o2aHto)
 

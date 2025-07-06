@@ -256,7 +256,7 @@ Let's assume you are walking on the beach and need to get to a location in the w
 
 Consider the picture below where you can move at a speed $v_1$ on the shore and a speed $v_2$ in the water. We know that $v_1 > v_2$, so you can move faster on the shore than in the water. We aim to minimize the time it takes to reach the point $\langle x_2, y_2 \rangle$ in the water from point $\langle x_1, y_1 \rangle$ on the shore. We take the shoreline to be a line at $x = 0$. and the location we cross the shoreline is $\langle 0, y \rangle$.
 
-![Snell's Law Diagram](../../images/notes/week11/snells_shore.png)
+![Snell's Law Diagram](../images/notes/week11/snells_shore.png)
 
 Notice the angle that we approach the shoreline at, $\theta_1$, and the angle that we approach the target in the water, $\theta_2$.
 
@@ -308,7 +308,7 @@ Source: <https://www.youtube.com/watch?v=Cld0p3a43fU>
 
 The setup is below, there's two points separated by a distance vertically and horizontally. What shape should we make a track so that a bead will roll down it in the shortest time?
 
-![The Brachistochrone Problem](../../images/notes/week11/brachistochrone.png)
+![The Brachistochrone Problem](../images/notes/week11/brachistochrone.png)
 
 The time it takes for the bead to roll down the curve is given by:
 
