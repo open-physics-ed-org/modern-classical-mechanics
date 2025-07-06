@@ -136,7 +136,7 @@ $$x = {x_0, x_1, x_2, \ldots, x_n}$$
 
 At each of these spatial intervals, we experience a different net force, like in the figure below.
 
-![Work done by a net force](../images/notes/week5/discrete-force-intervals.png)
+![Work done by a net force](images/05_notes_discrete-force-intervals.png)
 
 $$F_{net} = {F_{net,0}, F_{net,1}, F_{net,2}, \ldots, F_{net,n}}$$
 
@@ -162,7 +162,7 @@ What about in more than one dimension?
 
 Consider a path $C$ that we have discretized into $n$ intervals. The object starts at $\vec{r}_0$ and ends at $\vec{r}_n$. Each interval is $\Delta \vec{r}_i$ and the net force is $\vec{F}_{net,i}$. The figure below shows the work done by the net force in each interval.
 
-![Work done by a net force](../images/notes/week5/path-integral-work.png)
+![Work done by a net force](images/05_notes_path-integral-work.png)
 
 
 The work done by the net force is:
@@ -231,7 +231,7 @@ We need to have a [conservative force](https://en.wikipedia.org/wiki/Conservativ
 
 A less obivous example that produces a potential energy function is a [lattice chain](https://en.wikipedia.org/wiki/Lattice_chain). Here we model an electron moving in 1D near but not too near a long chain of atoms. The picture below shows the model.
 
-![Lattice chain model](../images/notes/week5/lattice-chain.png)
+![Lattice chain model](images/05_notes_lattice-chain.png)
 
 Here the location of the particle and it's initial velocty are zero. The force model for a chain of atoms in this arrangement is:
 
@@ -294,7 +294,7 @@ This is true for any closed path $C$. This is the second statement above.
 
 We can equivalent write the integral of the force around a closed path as the work around a different path. The figure below shows these paths $C_1$ and $C_2$ that make up the first loop, and the paths $C_3$ and $C_4$ that make up the second loop. The work done by the force along each path is shown in the figure.
 
-![Work done by a net force](../images/notes/week5/closed-path-work.png)
+![Work done by a net force](images/05_notes_closed-path-work.png)
 
 We can take the integral of both paths and write:
 

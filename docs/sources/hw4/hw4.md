@@ -42,7 +42,7 @@ on your code from homework 3 and we will try to make the motion of a falling obj
 
 Consider a particle of mass $m$ moving in two dimensions. The particle moves from $(0,0)$ to $(1,1)$ along three different paths, $a$, $b$ and $c$ as shown in the figure below. 
 
-![Paths](../images/activities/paths.png)
+![Paths](images/hw4_paths.png)
 
 In this space, the particle experiences a force:
 

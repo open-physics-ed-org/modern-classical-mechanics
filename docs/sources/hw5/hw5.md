@@ -37,7 +37,7 @@ We give the oscillator a little kick at $t=0$ and let it go. It reaches a maximu
 
 A toy is made from a cylinder mounted on a hemisphere as shown in the figure below. The hemisphere has a radius of $R$ and the center of mass of the whole toy is $h$ above the ground.
 
-![toy](../images/activities/5.2-kid_toy.png)
+![toy](images/hw5_5.2-kid_toy.png)
 
 * 2a (2pt) Find the height of the center of mass of the toy as a function of the angle $\theta$, measured from the vertical.
 
@@ -53,7 +53,7 @@ A toy is made from a cylinder mounted on a hemisphere as shown in the figure bel
 
 We will eventually learn how to solve for equations of motion for generalized coordinates. That work requires us to think about the forces and constraints on a system. Here we will consider a particle moving along a curved path to begin to think about how to describe the motion of a particle in a more general way.
 
-![curved-path](../images/activities/5.3-curved_path.png)
+![curved-path](images/hw5_5.3-curved_path.png)
 
 A bead follows the curved path above, you can imagine it is a wire or a track, and the bead is constrained to move along the path. The bead's position is described by its distance along the path, $s$ as measured from the origin $O$. The $\hat{s}$ direction is always along the path - that is, it's always tangent to the wire.
 
@@ -84,7 +84,7 @@ Ultimately, the projection is the what the potential changes with respect to the
 
 The apparatus below is a massless wheel of radius $R$ that is mounted to a frictionless axle. A small, dense piece of clay with mass $M$ is glued to edge of the wheel as shown. Another mass $m$ hangs from a massless string that is wrapped around the wheel. We can assume the string is inextensible and does not slip, and the system is in a uniform gravitational field.
 
-![apparatus](../images/activities/5.4-apparatus.png)
+![apparatus](images/hw5_5.4-apparatus.png)
 
 We can show that this complicated system is still one-dimensional (at least in space) and then we can see the effects of parameters like $m/M$.
 
@@ -166,7 +166,7 @@ axs[1].set_ylabel(r'$\dot{x}$');
 
 
     
-![png](hw5_files/hw5_20_0.png)
+![png](images/hw5_hw5_20_0.png)
     
 
 
@@ -337,7 +337,7 @@ plt.legend();
 
 
     
-![png](hw5_files/hw5_31_0.png)
+![png](images/hw5_hw5_31_0.png)
     
 
 

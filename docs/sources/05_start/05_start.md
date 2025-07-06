@@ -22,7 +22,7 @@ Richard Feynman is known to have had a disdain for the wildly different units of
 
 ### Feynman on the units of energy (2 minute video)
 
-[![Feynman on the units of energy](../images/notes/week5/roX2NXDUTsM.jpg)](https://youtube.com/watch?v=roX2NXDUTsM)
+[![Feynman on the units of energy](images/05_start_roX2NXDUTsM.jpg)](https://youtube.com/watch?v=roX2NXDUTsM)
 
 Feynman is quoted as saying: 
 > *"It is important to realize that in physics today, we have no knowledge of what energy is."*
@@ -43,7 +43,7 @@ To frame how interesting and complex energy can be, consider this video from Ver
 
 ### How do we get light from a circuit when we close a switch? (14 minute video)
 
-[![The Big Misconception About Electricity](../images/notes/week5/bHIhgxav9LY.jpg)](https://youtube.com/watch?v=bHIhgxav9LY)
+[![The Big Misconception About Electricity](images/05_start_bHIhgxav9LY.jpg)](https://youtube.com/watch?v=bHIhgxav9LY)
 
 There a many potential forms of energy and lots of processes that convert energy from one form to another. Below is a table of some common forms in physics. In addition, we have listed subsets of these forms that are often useful to distinguish. We will do analyses that include most of these forms.
 
@@ -71,7 +71,7 @@ Critical to the understanding of energy is that it is a property of a system. A 
 
 The video below is from an introductory physics course at Georgia Tech. It covers the important aspects of a point particle and how we miss some of the details when we focus exclusively on the point particle model.
 
-[![Point Particle and Real Models](../images/notes/week5/fbiNKrqVajM.jpg))](https://www.youtube.com/watch?v=fbiNKrqVajM)
+[![Point Particle and Real Models](images/05_start_fbiNKrqVajM.jpg))](https://www.youtube.com/watch?v=fbiNKrqVajM)
 
 ### Kinetic Energy of a Point Mass
 

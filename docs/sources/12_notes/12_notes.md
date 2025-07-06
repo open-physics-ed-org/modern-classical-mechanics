@@ -9,7 +9,7 @@ To get started with Lagrangian mechanics, we will start by deriving Newton's sec
 
 We start by sketching the location of a particle in plane polar coordinates, as shown below:
 
-![Position vector in polar coordinates](../images/notes/week12/coordinate-system.png)
+![Position vector in polar coordinates](images/12_notes_coordinate-system.png)
 
 The red arrow represents the position vector $\vec{r}$, which is a length $r$ from the origin at an angle $\phi$ from the $x$-axis. At the tip of the vector we have drawn the Cartesian unit vectors $\hat{x}$ and $\hat{y}$ in blue, and the polar unit vectors $\hat{r}$ and $\hat{\phi}$ in green. Notice that the polar unit vectors are rotated by an angle $\phi$ from the Cartesian unit vectors. We can simply write the position vector in terms of these unit vectors as:
 
@@ -89,11 +89,11 @@ This gives us the net force in terms of the radial and angular components in pol
 
 Let's see the utility of using polar coordinates by applying it to a skateboarder moving on a circular track. In this case, the skateboarder is constrained to move along a circular path of radius $r$. Consider a skateboarder moving on that circular track as shown below:
 
-![Skateboarder on a circular track](../images/notes/week12/skateboard.png)
+![Skateboarder on a circular track](images/12_notes_skateboard.png)
 
 At this point in the track, we can draw the free body diagram of the skateboarder. The forces acting on the skateboarder are the Earth's gravitational force and the normal force of the ramp.
 
-![Free body diagram of skateboarder](../images/notes/week12/skateboard-free-body.png)
+![Free body diagram of skateboarder](images/12_notes_skateboard-free-body.png)
 
 We can use Newton's law in polar coordinates to analyze the forces acting on the skateboarder. This is because the normal force is always perpendicular to the surface of the ramp and will only have a radial component in polar coordinates. Thus we need only decompose the gravitational force into its radial and angular components.
 
@@ -281,7 +281,7 @@ To get some intuition for how Lagrangian mechanics works, let's consider an exam
 
 A pendulum bob of mass $m$ is attached to a fixed point by a rod of length $l$. The bob swings in a vertical plane under the influence of gravity as shown below. We define $U=0$ at the top of ceiling where the rod is attached.
 
-![Pendulum Diagram](../images/notes/week12/plane-pendulum.png)
+![Pendulum Diagram](images/12_notes_plane-pendulum.png)
 
 The location of the bob is $\langle x, y \rangle$. We can use the $x,y$ coordinates to "naively" setup the Lagrangian and see what happens.
 

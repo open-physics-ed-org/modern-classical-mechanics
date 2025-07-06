@@ -9,7 +9,7 @@ There are many different fields of physics; they are both distinct and overlappi
 
 These are not hard and fast rules, and, in fact, we often bring physics from different spaces together to solve complex problems. For examples, the fields of [climate modeling](https://en.wikipedia.org/wiki/Climate_model), [non-linear dynamics](https://en.wikipedia.org/wiki/Nonlinear_system), [astrophysics](https://en.wikipedia.org/wiki/Astrophysics), and [particle physics](https://en.wikipedia.org/wiki/Particle_physics) use physical models and tools for each of the fields above. How we organize physics for ourselves depends on how we decide we want to look at it. However the first view where we organize the field by size and speed is a useful way to think about the different kinds of physics that we have developed thus far. The figure below shows how we might organize physics by size and speed.
 
-![Physics by size and speed](../images/notes/week1/640px-Modernphysicsfields.svg.png)<br>
+![Physics by size and speed](images/01_start_640px-Modernphysicsfields.svg.png)<br>
 *Source: [Wikipedia](https://commons.wikimedia.org/wiki/File:Modernphysicsfields.svg)*
 
 Classical Physics is the physics that we developed before discovering relativity and quantum mechanics. It typically covers both mechanical systems and electromagnetic systems. It is also [the physics that we read about historically](https://en.wikipedia.org/wiki/History_of_physics), which has its [roots in ancient astronomy](https://en.wikipedia.org/wiki/History_of_astronomy) and has existed across many different cultures. 
@@ -51,7 +51,7 @@ While it might appear there's little room for using Classical Mechanics in resea
 [Researchers at Los Alamos National Lab](https://www.lanl.gov/org/ddste/aldsc/theoretical/fluid-dynamics-solid-mechanics/index.php) do a variety of research using fluid mechanics models.
 
 
-[![](../images/notes/week1/myuD81326_o.jpg)](https://youtube.com/watch?v=myuD81326_o)
+[![](images/01_start_myuD81326_o.jpg)](https://youtube.com/watch?v=myuD81326_o)
 
 Source: <https://www.youtube.com/watch?v=myuD81326_o>
 
@@ -59,7 +59,7 @@ Source: <https://www.youtube.com/watch?v=myuD81326_o>
 
 A [research lab at Georgia Tech](https://crablab.gatech.edu/) uses Classical Mechanics to model the motion of animals and then uses that information to build robots that can move like animals.
 
-[![](../images/notes/week1/Qme07fA3Fj4.jpg)](https://youtube.com/watch?v=Qme07fA3Fj4)
+[![](images/01_start_Qme07fA3Fj4.jpg)](https://youtube.com/watch?v=Qme07fA3Fj4)
 
 Source: <https://www.youtube.com/watch?v=Qme07fA3Fj4>
 

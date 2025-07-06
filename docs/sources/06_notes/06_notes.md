@@ -81,7 +81,7 @@ plt.show()
 
 
     
-![png](06_notes_files/06_notes_4_0.png)
+![png](images/06_notes_06_notes_4_0.png)
     
 
 
@@ -160,7 +160,7 @@ plt.show()
 
 
     
-![png](06_notes_files/06_notes_7_0.png)
+![png](images/06_notes_06_notes_7_0.png)
     
 
 

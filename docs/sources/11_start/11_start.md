@@ -12,7 +12,7 @@ This section is mathematically intensive and will require you to have a solid un
 
 The Brachistochrone is a well known problem and its history is quite interesting. The video below discusses the problem and it history in detail. It's what helped spur the development of the calculus of variations and the work of Lagrange and others. The problem is deceptively simple: given two points in a vertical plane, find the curve down which a bead will slide (without friction) from one point to the other in the shortest time. The solution to this problem is not a straight line, but rather a cycloid curve.
 
-[![Youtube Video on the Brachistochrone Problem](../images/notes/week11/Cld0p3a43fU.jpg)](https://www.youtube.com/watch?v=Cld0p3a43fU)
+[![Youtube Video on the Brachistochrone Problem](images/11_start_Cld0p3a43fU.jpg)](https://www.youtube.com/watch?v=Cld0p3a43fU)
 
 Source: <https://www.youtube.com/watch?v=Cld0p3a43fU>
 
@@ -20,7 +20,7 @@ Source: <https://www.youtube.com/watch?v=Cld0p3a43fU>
 
 In the video below, we learn about the [Soap Bubble Problem](https://en.wikipedia.org/wiki/Soap_bubble), which is another classic problem in the calculus of variations. The goal is to find the shape of a soap bubble that minimizes surface area for a given volume.
 
-[![The Math of Bubbles: Minimal Surfaces & the Calculus of Variations](../images/notes/week11/8SABptOYUVk.jpg)](https://youtube.com/watch?v=8SABptOYUVk))
+[![The Math of Bubbles: Minimal Surfaces & the Calculus of Variations](images/11_start_8SABptOYUVk.jpg)](https://youtube.com/watch?v=8SABptOYUVk))
 
 Source: <https://youtube.com/watch?v=8SABptOYUVk>
 

@@ -182,7 +182,7 @@ plt.legend()
 
 
     
-![png](hw7_files/hw7_8_1.png)
+![png](images/hw7_hw7_8_1.png)
     
 
 

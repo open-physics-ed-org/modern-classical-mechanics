@@ -110,7 +110,7 @@ plt.tight_layout()
 
 
     
-![png](07_notes_files/07_notes_2_0.png)
+![png](images/07_notes_07_notes_2_0.png)
     
 
 
@@ -190,7 +190,7 @@ plt.tight_layout()
 
 
     
-![png](07_notes_files/07_notes_5_0.png)
+![png](images/07_notes_07_notes_5_0.png)
     
 
 
@@ -277,7 +277,7 @@ ax.grid()
 
 
     
-![png](07_notes_files/07_notes_8_0.png)
+![png](images/07_notes_07_notes_8_0.png)
     
 
 
@@ -318,7 +318,7 @@ ax.grid()
 
 
     
-![png](07_notes_files/07_notes_10_0.png)
+![png](images/07_notes_07_notes_10_0.png)
     
 
 
@@ -374,7 +374,7 @@ plt.tight_layout()
 
 
     
-![png](07_notes_files/07_notes_12_0.png)
+![png](images/07_notes_07_notes_12_0.png)
     
 
 
@@ -455,7 +455,7 @@ plt.tight_layout()
 
 
     
-![png](07_notes_files/07_notes_15_0.png)
+![png](images/07_notes_07_notes_15_0.png)
     
 
 
@@ -511,7 +511,7 @@ plt.tight_layout()
 
 
     
-![png](07_notes_files/07_notes_17_0.png)
+![png](images/07_notes_07_notes_17_0.png)
     
 
 

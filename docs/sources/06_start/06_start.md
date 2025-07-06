@@ -100,12 +100,12 @@ To introduce some of those initial ideas here are two videos from different phys
 
 In this video, Derek Muller uses the typical example of the Butterfly Effect to introduce the idea of chaos theory. The philosophical aspects of the butterfly effect are interesting, but not real in any physical sense. Instead, it's a metaphor for the idea that small changes in initial conditions can lead to large changes in the system. Muller contrasts our understanding of determinism with uncertainty; he introduces the concepts of sensitivity to initial conditions and discusses the idea of an attractor. 
 
-[![Chaos Theory](../images/notes/week6/fDek6cYijxI.jpg)](https://www.youtube.com/watch?v=fDek6cYijxI)
+[![Chaos Theory](images/06_start_fDek6cYijxI.jpg)](https://www.youtube.com/watch?v=fDek6cYijxI)
 
 ### University of Bristol - Chaos Theory and Randomness (8 minute video)
 
 In this video, two researchers from the University of Bristol ([Jens Marklof](https://people.maths.bris.ac.uk/~majm/) and [Henna Koivusalo](https://people.maths.bris.ac.uk/~te20281/)) discuss the idea of chaos theory from a more mathematical perspective - remdining us of the differences between randomness and chaos. The overlap between physicists and mathematicians in the study of chaos is significant. One important contribution is [Dynamical systems](https://en.wikipedia.org/wiki/Dynamical_system), which is a mathematical framework that is used to study these behaviors. The researchers who do this work are mathematicians, physicists, engineers, and computer scientists. They do experiments, but they also do a lot of mathematical modeling.
 
-[![Chaos Theory](../images/notes/week6/5fRhasVmcUE.jpg)](https://www.youtube.com/watch?v=5fRhasVmcUE)
+[![Chaos Theory](images/06_start_5fRhasVmcUE.jpg)](https://www.youtube.com/watch?v=5fRhasVmcUE)
 
 

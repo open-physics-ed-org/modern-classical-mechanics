@@ -31,7 +31,7 @@ plt.show()
 
 
     
-![png](08_notes_files/08_notes_1_0.png)
+![png](images/08_notes_08_notes_1_0.png)
     
 
 
@@ -136,7 +136,7 @@ These values of $C_1$ and $C_2$ are the complex conjugates of each other. The co
 
 We can draw these in the complex plane where the $x$-axis is the real part and the $y$-axis is the imaginary part.
 
-![Complex Conjugates](../images/notes/week8/conjugates_graph.png)
+![Complex Conjugates](images/08_notes_conjugates_graph.png)
 
 In the graph we can see that the complex conjugates are a reflection of each other. This is because the imaginary part of the complex conjugate is the negative of the original imaginary part.
 
@@ -250,19 +250,19 @@ plt.tight_layout()
 
 
     
-![png](08_notes_files/08_notes_6_0.png)
+![png](images/08_notes_08_notes_6_0.png)
     
 
 
 
     
-![png](08_notes_files/08_notes_6_1.png)
+![png](images/08_notes_08_notes_6_1.png)
     
 
 
 
     
-![png](08_notes_files/08_notes_6_2.png)
+![png](images/08_notes_08_notes_6_2.png)
     
 
 
@@ -421,7 +421,7 @@ plt.show()
 
 
     
-![png](08_notes_files/08_notes_9_0.png)
+![png](images/08_notes_08_notes_9_0.png)
     
 
 
@@ -465,7 +465,7 @@ plt.show()
 
 
     
-![png](08_notes_files/08_notes_11_0.png)
+![png](images/08_notes_08_notes_11_0.png)
     
 
 
@@ -516,6 +516,6 @@ plt.show()
 
 
     
-![png](08_notes_files/08_notes_13_0.png)
+![png](images/08_notes_08_notes_13_0.png)
     
 

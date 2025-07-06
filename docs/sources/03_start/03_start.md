@@ -22,7 +22,7 @@ Modeling is the process of constructing a model. This process is often iterative
 
 Geoscientist [John Aiken](https://mnky9800n.github.io/) made this short video when he was a graduate student at Georgia Tech. John cut clips from a lecture [Richard Feynman](https://en.wikipedia.org/wiki/Richard_Feynman) gave. In this lecture, Feynman talks about the nature of models and the process of science.  John also interviewed different science researchers and teachers about their understanding of what a model is. 
 
-[![](../images/notes/week3/dkTncoPqo5Y.jpg)](https://youtube.com/watch?v=dkTncoPqo5Y)
+[![](images/03_start_dkTncoPqo5Y.jpg)](https://youtube.com/watch?v=dkTncoPqo5Y)
 
 Source: <https://www.youtube.com/watch?v=dkTncoPqo5Y>
 
@@ -34,7 +34,7 @@ Source: <https://www.youtube.com/watch?v=dkTncoPqo5Y>
 
 Feynman was a gifted communicator; his lectures are lively and conceptual. Here's the longer version of the lecture he gave on the nature of models and the process of science.
 
-[![](../images/notes/week3/EYPapE-3FRw.jpg))](https://youtube.com/watch?v=EYPapE-3FRw)
+[![](images/03_start_EYPapE-3FRw.jpg))](https://youtube.com/watch?v=EYPapE-3FRw)
 
 Source: <https://www.youtube.com/watch?v=EYPapE-3FRw>
 

@@ -8,7 +8,7 @@ We've seen the Lagrangian formulation of mechanics, and we have seen how to use 
 
 The [Atwood machine](https://en.wikipedia.org/wiki/Atwood_machine) consists of two masses, $M$ and $m$, connected by a massless string that passes over a massless pulley. The system is subject to gravity alone. The figure below shows the system along with a choice of coordinates $y_1$ and $y_2$ for the two masses. 
 
-![Atwood Machine](../images/notes/week13/atwood.png)
+![Atwood Machine](images/13_notes_atwood.png)
 
 These coordinates are measured from the center of the pulley and positive $y_1$ and $y_2$ are taken to be upward. Let's try to use the Lagrangian formalism to find the equations of motion for this system.
 
@@ -24,7 +24,7 @@ $$y_1 + \pi R + y_2 = l$$
 
 where $R$ is the radius of the pulley. That is shown in the figure below.
 
-![Unraveled String](../images/notes/week13/string-unraveled.png)
+![Unraveled String](images/13_notes_string-unraveled.png)
 
 The equation above is called an **equation of constraint**. It relates the coordinates $y_1$ and $y_2$ to each other. We can use this equation to eliminate one of the coordinates. Let's eliminate $y_2$:
 
@@ -189,7 +189,7 @@ $$z = \dfrac{1}{2}c(x^2 + y^2)$$
 
 where $c$ is a constant that describes the curvature of the bowl. The figure below shows the system.
 
-![Bead in a Parabolic Bowl](../images/notes/week13/paraboloid.png)
+![Bead in a Parabolic Bowl](images/13_notes_paraboloid.png)
 
 In this case the system is better solved in cylindrical coordinates. The coordinates are $(r, \phi, z)$, where $r$ is the distance from the $z$-axis, $\phi$ is the angle around the $z$-axis, and $z$ is the height above the $xy$-plane as shown above.
 
