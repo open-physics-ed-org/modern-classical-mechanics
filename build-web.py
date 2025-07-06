@@ -8,8 +8,12 @@ import nbformat
 from pathlib import Path
 from nbconvert import HTMLExporter
 
+import string
 def flatten_image_name(rel_path):
-    return rel_path.replace('/', '_').replace('\\', '_')
+    # Lowercase, replace / and \ with _, remove spaces, keep only a-z0-9-_.
+    name = rel_path.replace('/', '_').replace('\\', '_').lower().replace(' ', '_')
+    allowed = set(string.ascii_lowercase + string.digits + '-_.')
+    return ''.join(c for c in name if c in allowed)
 
 def fetch_youtube_thumbnail(video_id, dest_path):
     urls = [
@@ -41,181 +45,190 @@ def main():
         nojekyll.touch()
 
 
-    # 1. Copy all images (notebook-prefixed name) from notebooks/images/** to _build/html/images and docs/images
-    images_root = notebooks_dir / 'images'
-    all_image_files = list(images_root.rglob('*'))
+    # --- Load menu structure from _menu.yml using basic_yaml2json.py ---
+    import json
+    menu_yml = repo_root / '_menu.yml'
+    menu_data = None
+    if menu_yml.exists():
+        import subprocess
+        try:
+            result = subprocess.run([
+                'python3', str(repo_root / 'basic_yaml2json.py'), str(menu_yml)
+            ], capture_output=True, check=True)
+            menu_json = result.stdout.decode('utf-8')
+            menu_obj = json.loads(menu_json)
+            if isinstance(menu_obj, dict) and 'menu' in menu_obj:
+                menu_data = menu_obj['menu']
+            else:
+                menu_data = menu_obj
+        except Exception as e:
+            print(f'[ERROR] Could not convert _menu.yml to JSON using basic_yaml2json.py: {e}')
+            menu_data = None
+
+    # --- Section-aware image flattening ---
+    # Support images in both notebooks/images/ and project-root images/
+    images_root_candidates = [repo_root / 'images', notebooks_dir / 'images']
     images_dir = build_dir / 'images'
     images_dir.mkdir(parents=True, exist_ok=True)
 
-    # 1. For each notebook, update image references and copy images using a path-derived prefix
-    def path_to_output_name(rel_path):
-        print(f"[DEBUG:path_to_output_name] Input rel_path: {rel_path}")
+    # Helper: Map notebook HTML name to menu section (e.g., 'chapters', 'activities')
+    def get_section_for_notebook(html_name, menu_data):
+        def search_menu(items, section=None):
+            for item in items:
+                if 'children' in item:
+                    found = search_menu(item['children'], item['title'].lower())
+                    if found:
+                        return found
+                if 'path' in item and item['path'] == html_name:
+                    return section or item['title'].lower()
+            return None
+        return search_menu(menu_data) if menu_data else None
+
+    # Section-aware output image path: images/<section>/<filename>
+    def path_to_output_name(rel_path, section):
         # Remove any leading 'images/'
         if rel_path.startswith('images/'):
             rel_path = rel_path[7:]
-            print(f"[DEBUG:path_to_output_name] Stripped 'images/': {rel_path}")
-        # Use the first two path components as prefix if possible
-        parts = rel_path.split('/')
-        print(f"[DEBUG:path_to_output_name] parts: {parts}")
-        if len(parts) >= 3:
-            # e.g., notes/week1/box_fbd.png -> 01_notes_box_fbd.png
-            prefix = parts[0]  # e.g., 'notes'
-            week = parts[1]    # e.g., 'week1'
-            base = parts[-1]
-            print(f"[DEBUG:path_to_output_name] prefix: {prefix}, week: {week}, base: {base}")
-            # Try to extract NN from week (e.g., week1 -> 01)
-            m = re.match(r'week(\d+)', week)
-            if m:
-                nn = m.group(1).zfill(2)
-                out_name = f"{nn}_{prefix}_{base}"
-                print(f"[DEBUG:path_to_output_name] Matched week: {week} -> nn: {nn}, out_name: {out_name}")
-            else:
-                out_name = f"{prefix}_{week}_{base}"
-                print(f"[DEBUG:path_to_output_name] No week match, out_name: {out_name}")
-        else:
-            out_name = rel_path.replace('/', '_')
-            print(f"[DEBUG:path_to_output_name] Fallback out_name: {out_name}")
-        return out_name
+        filename = os.path.basename(rel_path)
+        # Section folder (lowercase, fallback to 'other')
+        section_folder = section.lower() if section else 'other'
+        return f"{section_folder}/{filename}"
+
+    # Ensure subfolders for each section
+    def ensure_section_dir(section):
+        section_folder = section.lower() if section else 'other'
+        section_dir = images_dir / section_folder
+        section_dir.mkdir(parents=True, exist_ok=True)
+        return section_dir
 
 
     # --- Aggregate missing images and YouTube thumbnails across all notebooks ---
     all_missing_images = set()
     all_youtube_ids = set()
+    all_section_image_map = {}  # {html_name: section}
+    # Precompute menu mapping for all notebooks
+    menu_html_names = {}
+    if menu_data:
+        def collect_paths(items, section=None):
+            for item in items:
+                if 'children' in item:
+                    collect_paths(item['children'], item['title'].lower())
+                if 'path' in item:
+                    menu_html_names[item['path']] = section or item['title'].lower()
+        collect_paths(menu_data)
 
     for nb_path in notebooks_dir.glob('*.ipynb'):
+        html_name = nb_path.with_suffix('.html').name
+        section = menu_html_names.get(html_name, 'other')
+        all_section_image_map[html_name] = section
+        section_dir = ensure_section_dir(section)
         nb_data = nbformat.read(str(nb_path), as_version=4)
-        changed = False
         referenced_images = set()
         for cell in nb_data.cells:
             if cell.cell_type != 'markdown':
                 continue
-            # --- Admonition conversion ---
-            # Preprocess code-fence style admonitions (```{tip} ... ```) to HTML before nbconvert
-            orig_src = cell.source
-            # Only process if code-fence style admonition is present
-            if re.search(r'```\{(admonition|tip|note|warning|caution|important|hint|danger|error|success|question|quote|seealso)\}', orig_src):
-                # Replace all code-fence style admonitions in the markdown cell
-                def codefence_admonition(match):
-                    ad_type = match.group(1).strip().lower()
-                    title = match.group(2)
-                    content = match.group(3)
-                    if not title or title.strip() == '':
-                        title = ad_type.title()
-                    content = content.strip('\n')
-                    return (
-                        f'<div class="admonition {ad_type}" role="region" aria-label="{ad_type.title()}">' 
-                        f'<div class="admonition-title">{title}</div>\n{content}\n</div>'
-                    )
-                new_src = re.sub(
-                    r'```\{(admonition|tip|note|warning|caution|important|hint|danger|error|success|question|quote|seealso)\}(?: +([^\n]+))?\n([\s\S]+?)\n```',
-                    codefence_admonition, orig_src)
-                if new_src != orig_src:
-                    cell.source = new_src
-                    changed = True
             def update_img_link(match):
                 alt_text = match.group(1)
                 img_path = match.group(2).strip()
                 # --- YOUTUBE THUMBNAIL HANDLING ---
-                # 1. Direct YouTube thumbnail URL
                 yt_match = re.match(r'https?://img\.youtube\.com/vi/([\w-]{11})/', img_path)
                 if yt_match:
                     video_id = yt_match.group(1)
                     local_img_name = f"youtube_{video_id}.jpg"
-                    print(f"[DEBUG] Rewriting YouTube thumbnail: {img_path} -> images/{local_img_name}")
-                    referenced_images.add((images_dir / local_img_name, images_dir / local_img_name))
+                    referenced_images.add((images_dir / section.lower() / local_img_name, images_dir / section.lower() / local_img_name, f"{section.lower()}/{local_img_name}"))
                     all_youtube_ids.add(video_id)
-                    return f"![{alt_text}](images/{local_img_name})"
-
-                # 2. Mangled YouTube thumbnail (e.g. images/youtube___hqdefault.jpg)
+                    return
                 yt_mangled = re.match(r'images/youtube___(hqdefault|maxresdefault)\.jpg', img_path)
                 if yt_mangled:
-                    # Try to find a YouTube video ID in the cell source
                     video_id = None
-                    # Try to extract from alt_text if it looks like a video ID
                     if re.match(r'^[\w-]{11}$', alt_text):
                         video_id = alt_text
-                    # Try to extract from the cell source (look for a YouTube link)
                     if not video_id:
                         yt_links = re.findall(r'(?:youtube.com/watch\?v=|youtu.be/)([\w-]{11})', cell.source)
                         if yt_links:
                             video_id = yt_links[0]
                     if video_id:
                         local_img_name = f"youtube_{video_id}.jpg"
-                        print(f"[DEBUG] Rewriting mangled YouTube thumbnail: {img_path} -> images/{local_img_name}")
-                        referenced_images.add((images_dir / local_img_name, images_dir / local_img_name))
+                        referenced_images.add((images_dir / section.lower() / local_img_name, images_dir / section.lower() / local_img_name, f"{section.lower()}/{local_img_name}"))
                         all_youtube_ids.add(video_id)
-                        return f"![{alt_text}](images/{local_img_name})"
-                    else:
-                        print(f"[WARNING] Could not extract YouTube video ID for mangled thumbnail: {img_path}")
-                        # fallback: leave as is
-                        return match.group(0)
-
-                # 3. Other mangled YouTube thumbnail (e.g. images/https:__hqdefault.jpg)
+                    return
                 if (img_path.endswith('hqdefault.jpg') or img_path.endswith('maxresdefault.jpg')) and ('youtube' in img_path or 'http' in img_path or img_path.startswith('images/https')):
                     video_id = None
-                    # Try to extract from alt_text if it looks like a video ID
                     if re.match(r'^[\w-]{11}$', alt_text):
                         video_id = alt_text
-                    # Try to extract from the image path
                     if not video_id:
                         m = re.search(r'([\w-]{11})', img_path)
                         if m:
                             video_id = m.group(1)
-                    # Try to extract from the cell source (look for a YouTube link)
                     if not video_id:
                         yt_links = re.findall(r'(?:youtube.com/watch\?v=|youtu.be/)([\w-]{11})', cell.source)
                         if yt_links:
                             video_id = yt_links[0]
                     if video_id:
                         local_img_name = f"youtube_{video_id}.jpg"
-                        print(f"[DEBUG] Rewriting mangled YouTube thumbnail: {img_path} -> images/{local_img_name}")
-                        referenced_images.add((images_dir / local_img_name, images_dir / local_img_name))
+                        referenced_images.add((images_dir / section.lower() / local_img_name, images_dir / section.lower() / local_img_name, f"{section.lower()}/{local_img_name}"))
                         all_youtube_ids.add(video_id)
-                        return f"![{alt_text}](images/{local_img_name})"
-                    else:
-                        print(f"[WARNING] Could not extract YouTube video ID for mangled thumbnail: {img_path}")
-                        return match.group(0)
-
+                    return
                 # --- NORMAL IMAGE HANDLING ---
                 img_path_clean = img_path
                 if img_path_clean.startswith('images/'):
                     img_path_clean = img_path_clean[7:]
-                real_img_path = images_root / img_path_clean
-                if not real_img_path.exists():
-                    possible = nb_path.parent / img_path
-                    if possible.exists():
-                        try:
-                            rel_path = possible.relative_to(images_root)
-                        except ValueError:
-                            rel_path = img_path_clean
-                        real_img_path = images_root / rel_path
-                    else:
-                        rel_path = img_path_clean
+                if img_path_clean.startswith('.._images_'):
+                    clean_name = img_path_clean.replace('.._images_', '', 1)
+                    search_names = [clean_name, img_path_clean]
                 else:
-                    rel_path = img_path_clean
-                new_img_name = path_to_output_name(str(rel_path))
-                print(f"[DEBUG] Notebook: {nb_path.name} | Markdown ref: {img_path} | resolved rel_path: {rel_path} | real_img_path: {real_img_path} | output: images/{new_img_name}")
-                referenced_images.add((real_img_path, images_dir / new_img_name))
-                # Track missing images
-                if not real_img_path.exists():
+                    clean_name = img_path_clean
+                    search_names = [img_path_clean]
+                found = False
+                real_img_path = None
+                # Try all possible image roots (project root images/, notebooks/images/)
+                for name in search_names:
+                    for images_root in images_root_candidates:
+                        candidate = images_root / name
+                        if candidate.exists():
+                            real_img_path = candidate
+                            found = True
+                            break
+                    if found:
+                        break
+                # Fallback: search all section subfolders for a matching filename
+                if not found:
+                    for images_root in images_root_candidates:
+                        for section_dir in images_root.iterdir():
+                            if section_dir.is_dir():
+                                candidate = section_dir / os.path.basename(clean_name)
+                                if candidate.exists():
+                                    real_img_path = candidate
+                                    found = True
+                                    break
+                        if found:
+                            break
+                # fallback: try _images folders
+                if not found:
+                    for name in search_names:
+                        for fallback_root in [notebooks_dir / '_images', build_dir / '_images', repo_root / '_images']:
+                            candidate = fallback_root / name
+                            if candidate.exists():
+                                real_img_path = candidate
+                                found = True
+                                break
+                        if found:
+                            break
+                if not found:
+                    # fallback: just use the first images_root
+                    real_img_path = images_root_candidates[0] / img_path_clean
+                out_img_name = os.path.basename(clean_name)
+                new_img_name = path_to_output_name(str(out_img_name), section)
+                referenced_images.add((real_img_path, images_dir / new_img_name, new_img_name))
+                if not found:
                     all_missing_images.add((str(real_img_path), str(nb_path), img_path))
-                return f"![{alt_text}](images/{new_img_name})"
-            new_src = re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', update_img_link, cell.source)
-            # Also look for YouTube links in plain text
+            re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', update_img_link, cell.source)
             yt_links = re.findall(r'(?:youtube.com/watch\?v=|youtu.be/)([\w-]{11})', cell.source)
             for video_id in yt_links:
                 all_youtube_ids.add(video_id)
-            if new_src != cell.source:
-                cell.source = new_src
-                changed = True
-        if changed:
-            nbformat.write(nb_data, str(nb_path))
-            print(f"[INFO] Updated image links in notebook: {nb_path}")
-        # Copy all referenced images for this notebook
-        for src_img, dest_img in referenced_images:
+        for src_img, dest_img, new_img_name in referenced_images:
             if src_img.exists():
                 dest_img.parent.mkdir(parents=True, exist_ok=True)
-                # Avoid copying a file onto itself
                 try:
                     if os.path.abspath(src_img) != os.path.abspath(dest_img):
                         shutil.copy2(src_img, dest_img)
@@ -302,37 +315,14 @@ def main():
 
     def get_nav_html():
         # Accessible nav: desktop and mobile, with ARIA and toggle
-        nav_html = (
-            '<button class="site-nav-toggle" aria-label="Open menu" aria-controls="site-nav-menu" aria-expanded="false" tabindex="0">☰</button>'
-            '<ul class="site-nav-menu" id="site-nav-menu" role="menubar">'
-            '<li role="none"><a role="menuitem" href="index.html" tabindex="0">Home</a></li>'
-            '<li role="none">'
-                '<a role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="chapters-submenu" href="#chapters-submenu" tabindex="0">Chapters</a>'
-                '<ul class="dropdown-menu" id="chapters-submenu" role="menu">'
-                    '<li role="none"><a role="menuitem" href="01_start.html" tabindex="0">Week 1: Start</a></li>'
-                    '<li role="none"><a role="menuitem" href="01_notes.html" tabindex="0">Week 1: Introduction to Classical Mechanics</a></li>'
-                    '<li role="none"><a role="menuitem" href="02_start.html" tabindex="0">Week 2: Computing as a tool for science</a></li>'
-                    '<li role="none"><a role="menuitem" href="02_notes.html" tabindex="0">Week 2: Mathematical Preliminaries</a></li>'
-                    '<li role="none"><a role="menuitem" href="03_start.html" tabindex="0">Week 3: What is Mathematical Modeling?</a></li>'
-                    '<li role="none"><a role="menuitem" href="03_notes.html" tabindex="0">Week 3: Making Classical Models</a></li>'
-                    '<!-- Add more chapters as needed -->'
-                '</ul>'
-            '</li>'
-            '<li role="none">'
-                '<a role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="activities-submenu" href="#activities-submenu" tabindex="0">Activities</a>'
-                '<ul class="dropdown-menu" id="activities-submenu" role="menu">'
-                    '<li role="none"><a role="menuitem" href="hw1.html" tabindex="0">Homework Assignment 1</a></li>'
-                    '<li role="none"><a role="menuitem" href="hw2.html" tabindex="0">Homework Assignment 2</a></li>'
-                    '<!-- Add more activities as needed -->'
-                '</ul>'
-            '</li>'
-            '<li role="none"><a role="menuitem" href="resources.html" tabindex="0">Resources</a></li>'
-            '<li role="none"><a role="menuitem" href="about.html" tabindex="0">About</a></li>'
-            '</ul>'
-            '<button class="toggle-dark" aria-label="Toggle dark/light mode" onclick="document.body.classList.toggle(\'dark\')">🌗</button>'
-        )
-        # Add minimal JS for ARIA and toggle (as a Python string, not inside triple single quotes)
+        nav_html = '<button class="site-nav-toggle" aria-label="Open menu" aria-controls="site-nav-menu" aria-expanded="false" tabindex="0">☰</button>'
+        # Use menu_data if available, else fallback
+        if menu_data:
+            nav_html += build_menu_html(menu_data)
+        else:
+            nav_html += '<!-- Menu data not available, fallback menu here -->'
         nav_html += """
+<button class="toggle-dark" aria-label="Toggle dark/light mode" onclick="document.body.classList.toggle('dark')">🌗</button>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
   var nav = document.getElementById('site-nav');
@@ -410,25 +400,128 @@ document.addEventListener('DOMContentLoaded',function(){
         with open(intro_md, 'r', encoding='utf-8') as f:
             intro_content = f.read()
         main_html = markdown.markdown(intro_content, extensions=['extra', 'toc', 'admonition'])
-        card_grid = ("""
-<section class=\"card-grid\" aria-label=\"Main sections\">
-  <div class=\"card\" tabindex=\"0\"><h2><a href=\"01_notes.html\">Chapters</a></h2><p>Lecture notes and weekly content</p></div>
-  <div class=\"card\" tabindex=\"0\"><h2><a href=\"resources.html\">Resources</a></h2><p>Reference materials, links, and tools</p></div>
-  <div class=\"card\" tabindex=\"0\"><h2><a href=\"about.html\">About</a></h2><p>Course info, instructor, and policies</p></div>
-</section>
-""")
+        # --- Load cards from _cards.yml ---
+        import yaml
+        cards_yml = repo_root / '_cards.yml'
+        cards = []
+        if cards_yml.exists():
+            with open(cards_yml, 'r', encoding='utf-8') as f:
+                try:
+                    cards_data = yaml.safe_load(f)
+                    if cards_data and 'cards' in cards_data and isinstance(cards_data['cards'], list):
+                        cards = cards_data['cards']
+                except Exception as e:
+                    print(f"[ERROR] Could not parse _cards.yml: {e}")
+        def build_card_grid(cards):
+            if not cards:
+                return ''
+            html = '<section class="card-grid" aria-label="Main sections">\n'
+            for card in cards:
+                title = card.get('title', '')
+                context = card.get('context', '')
+                link = card.get('link', '#')
+                html += f'  <div class="card" tabindex="0"><h2><a href="{link}">{title}</a></h2><p>{context}</p></div>\n'
+            html += '</section>\n'
+            return html
+        card_grid = build_card_grid(cards)
         body = f'<div class="markdown-body">{main_html}{card_grid}</div>'
         html = get_html_template("Modern Classical Mechanics", body)
         with open(index_html_path, 'w', encoding='utf-8') as f:
             f.write(html)
 
-    # --- Process all notebooks as HTML with the same template ---
+    # --- Build chapters.html dynamically from _menu.yml ---
+    chapters_html_path = build_dir / 'chapters.html'
+    def build_chapters_page(menu_data):
+        # Find the 'Chapters' section in menu_data
+        chapters = None
+        for item in menu_data:
+            if item.get('title', '').lower() == 'chapters' and 'children' in item:
+                chapters = item['children']
+                break
+        if not chapters:
+            return '<p>No chapters found in menu.</p>'
+        html = '<section class="card-grid chapters-grid" aria-label="Chapters">'
+        docs_dir = Path(__file__).parent / 'docs'
+        for ch in chapters:
+            title = ch.get('title', '')
+            path = ch.get('path', '')
+            thumb_img = None
+            thumb_alt = ''
+            html_path = docs_dir / path
+            section = 'chapters'
+            # Improved: Scan the chapter HTML for the first <img> tag and use that as the thumbnail if found
+            thumb_img = None
+            thumb_alt = title
+            if html_path.exists():
+                try:
+                    with open(html_path, 'r', encoding='utf-8') as f:
+                        for line in f:
+                            m = re.search(r'<img [^>]*src=["\']([^"\']+)["\'][^>]*', line)
+                            if m:
+                                thumb_img = m.group(1)
+                                alt_m = re.search(r'alt=["\']([^"\']*)["\']', line)
+                                if alt_m:
+                                    thumb_alt = alt_m.group(1)
+                                break
+                except Exception as e:
+                    print(f"[WARN] Could not read {html_path}: {e}")
+            # Fallback: Try to find an image matching the chapter file name in images/chapters
+            if not thumb_img:
+                section_img_dir = docs_dir / 'images' / section
+                base_name = Path(path).stem
+                if section_img_dir.exists():
+                    for ext in ['.png', '.jpg', '.jpeg', '.gif', '.svg']:
+                        candidate = section_img_dir / f"{base_name}{ext}"
+                        if candidate.exists():
+                            thumb_img = f'images/{section}/{candidate.name}'
+                            break
+            # Fallback: Use the first image in the section folder
+            if not thumb_img:
+                section_img_dir = docs_dir / 'images' / section
+                if section_img_dir.exists():
+                    for f in sorted(section_img_dir.iterdir()):
+                        if f.is_file() and f.suffix.lower() in ['.png', '.jpg', '.jpeg', '.gif', '.svg'] and not f.name.startswith('.._.._'):
+                            thumb_img = f'images/{section}/{f.name}'
+                            break
+            # Fallback: no image found
+            if thumb_img:
+                img_html = f'<a href="{path}"><img class="chapter-thumb" src="{thumb_img}" alt="{thumb_alt}" loading="lazy" style="max-width:100%;max-height:140px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-bottom:1em;"></a>'
+            else:
+                img_html = ''
+            html += f'''<div class="card" tabindex="0">{img_html}<h2><a href="{path}">{title}</a></h2></div>'''
+        html += '</section>'
+        return html
+    if menu_data:
+        chapters_body = build_chapters_page(menu_data)
+        chapters_html = get_html_template("Chapters", chapters_body)
+        with open(chapters_html_path, 'w', encoding='utf-8') as f:
+            f.write(chapters_html)
+
+    # --- Process all notebooks as HTML with the same template, rewriting image links to section subfolders ---
+    # Build a mapping from all copied images: filename -> (section, relpath)
+    copied_images = {}
+    for section_dir in images_dir.iterdir():
+        if section_dir.is_dir():
+            section = section_dir.name
+            for img_file in section_dir.iterdir():
+                if img_file.is_file():
+                    copied_images[img_file.name] = (section, f'images/{section}/{img_file.name}')
+
     for nb in notebooks_dir.glob('*.ipynb'):
         html_name = nb.with_suffix('.html').name
+        section = menu_html_names.get(html_name, 'other')
         html_path = build_dir / html_name
         exporter = HTMLExporter()
         (body, resources) = exporter.from_filename(str(nb))
-        # Do not convert admonitions in HTML body; already handled in markdown preprocessing
+        # Rewrite image links in HTML to point to images/<section>/filename, using copied_images mapping
+        def rewrite_img_src(match):
+            src = match.group(1)
+            filename = os.path.basename(src)
+            if filename in copied_images:
+                new_section, new_rel = copied_images[filename]
+                return f'src="{new_rel}"'
+            return match.group(0)
+        body = re.sub(r'src=["\']([^"\']+)["\']', rewrite_img_src, body)
         body = f'<div class="markdown-body">{body}</div>'
         title = nb.stem.replace('_', ' ').title()
         html = get_html_template(title, body)
@@ -453,16 +546,51 @@ document.addEventListener('DOMContentLoaded',function(){
         else:
             shutil.copy2(item, dest)
     # Copy only main.css to docs/css and _build/html/css
-    shutil.copy2(css_path, docs_css_dir / 'main.css')
+    docs_css_dir.mkdir(parents=True, exist_ok=True)
+    try:
+        shutil.copy2(css_path, docs_css_dir / 'main.css')
+    except Exception as e:
+        print(f"[ERROR] Failed to copy main.css to {docs_css_dir}: {e}")
+        raise
     build_css_dir = build_dir / 'css'
     build_css_dir.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(css_path, build_css_dir / 'main.css')
+    try:
+        shutil.copy2(css_path, build_css_dir / 'main.css')
+    except Exception as e:
+        print(f"[ERROR] Failed to copy main.css to {build_css_dir}: {e}")
+        raise
+    # Copy all images to docs/images/<section>/
     images_docs_dir = docs_dir / 'images'
     images_docs_dir.mkdir(parents=True, exist_ok=True)
-    for img_file in images_dir.glob('*'):
-        shutil.copy2(img_file, images_docs_dir / img_file.name)
+    for section_dir in images_dir.iterdir():
+        if section_dir.is_dir():
+            dest_section_dir = images_docs_dir / section_dir.name
+            dest_section_dir.mkdir(parents=True, exist_ok=True)
+            for img_file in section_dir.iterdir():
+                if img_file.is_file():
+                    shutil.copy2(img_file, dest_section_dir / img_file.name)
 
-    print("All notebooks converted to HTML and copied to docs/ with images, CSS, and accessible menu.")
+    # --- Check: verify all referenced images exist in docs/images/ ---
+    missing_in_docs = []
+    for html_name in all_section_image_map.keys():
+        html_path = docs_dir / html_name
+        if not html_path.exists():
+            continue
+        with open(html_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                for m in re.finditer(r'src=["\'](images/[^/"\']+)["\']', line):
+                    img_rel = m.group(1)
+                    img_abs = docs_dir / img_rel
+                    if not img_abs.exists():
+                        missing_in_docs.append((html_name, img_rel))
+    if missing_in_docs:
+        print("[CHECK] Missing images in docs HTML output:")
+        for html_name, img_rel in missing_in_docs:
+            print(f"  - {img_rel} (referenced in {html_name})")
+    else:
+        print("[CHECK] All referenced images exist in docs output.")
+
+    print("All notebooks converted to HTML and copied to docs/ with sectioned images, CSS, and accessible menu.")
 
 if __name__ == '__main__':
     main()
