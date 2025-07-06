@@ -140,31 +140,25 @@ def main():
     log_file.close()
     log_stream.close()
 
-    # --- Build PDFs from LaTeX ---
+    # --- Build PDFs from LaTeX (compile in place and copy PDFs) ---
     if build_pdf:
         pdf_dir = build_dir / 'pdf'
         pdf_dir.mkdir(parents=True, exist_ok=True)
-        print(f"[INFO] Building PDF files for notebooks in {notebook_dir} -> {pdf_dir}")
-        for nb in notebooks:
-            nb_path = notebook_dir / nb
-            if not nb_path.exists():
-                print(f"[WARN] Notebook not found: {nb_path}")
-                continue
-            tex_name = nb_path.with_suffix('.tex').name
-            tex_path = chapters_dir / tex_name
-            pdf_name = nb_path.with_suffix('.pdf').name
-            pdf_path = pdf_dir / pdf_name
-            if not tex_path.exists():
-                print(f"[INFO] LaTeX not found for {nb_path}, building LaTeX first...")
-                run([
-                    'jupyter', 'nbconvert', '--to', 'latex', str(nb_path),
-                    '--output', tex_name, '--output-dir', str(chapters_dir)
-                ])
-            print(f"Converting {tex_path} to {pdf_path} using pdflatex...")
+        print(f"[INFO] Compiling LaTeX files in {chapters_dir} and copying PDFs to {pdf_dir}")
+        for tex_file in chapters_dir.glob('*.tex'):
+            pdf_name = tex_file.with_suffix('.pdf').name
+            pdf_path = chapters_dir / pdf_name
+            print(f"[INFO] Compiling {tex_file} to {pdf_path} using pdflatex...")
             run([
-                'pdflatex', '-interaction=nonstopmode', '-output-directory', str(pdf_dir), str(tex_path)
-            ])
-        print(f"[INFO] All notebooks converted to PDF and saved in {pdf_dir}")
+                'pdflatex', '-interaction=nonstopmode', str(tex_file)
+            ], cwd=chapters_dir)
+            if pdf_path.exists():
+                dest_pdf = pdf_dir / pdf_name
+                shutil.copy2(pdf_path, dest_pdf)
+                print(f"[INFO] Copied {pdf_path} to {dest_pdf}")
+            else:
+                print(f"[ERROR] PDF not generated for {tex_file}", file=sys.stderr)
+        print(f"[INFO] All LaTeX files compiled and PDFs copied to {pdf_dir}")
 
     # --- Build Markdown ---
     if build_md:

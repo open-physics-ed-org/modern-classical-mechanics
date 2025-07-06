@@ -1,0 +1,4 @@
+[INFO] Building LaTeX files for notebooks in /Users/caballero/repos/teaching/modern-classical-mechanics/notebooks -> /Users/caballero/repos/teaching/modern-classical-mechanics/_build/latex
+Converting /Users/caballero/repos/teaching/modern-classical-mechanics/notebooks/03_notes.ipynb to /Users/caballero/repos/teaching/modern-classical-mechanics/_build/latex/03_notes.tex
+[RUN] jupyter nbconvert --to latex /Users/caballero/repos/teaching/modern-classical-mechanics/notebooks/03_notes.ipynb --output 03_notes.tex --output-dir /Users/caballero/repos/teaching/modern-classical-mechanics/_build/latex
+[INFO] All notebooks converted to LaTeX and saved in /Users/caballero/repos/teaching/modern-classical-mechanics/_build/latex
