@@ -302,37 +302,14 @@ def main():
 
     def get_nav_html():
         # Accessible nav: desktop and mobile, with ARIA and toggle
-        nav_html = (
-            '<button class="site-nav-toggle" aria-label="Open menu" aria-controls="site-nav-menu" aria-expanded="false" tabindex="0">☰</button>'
-            '<ul class="site-nav-menu" id="site-nav-menu" role="menubar">'
-            '<li role="none"><a role="menuitem" href="index.html" tabindex="0">Home</a></li>'
-            '<li role="none">'
-                '<a role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="chapters-submenu" href="#chapters-submenu" tabindex="0">Chapters</a>'
-                '<ul class="dropdown-menu" id="chapters-submenu" role="menu">'
-                    '<li role="none"><a role="menuitem" href="01_start.html" tabindex="0">Week 1: Start</a></li>'
-                    '<li role="none"><a role="menuitem" href="01_notes.html" tabindex="0">Week 1: Introduction to Classical Mechanics</a></li>'
-                    '<li role="none"><a role="menuitem" href="02_start.html" tabindex="0">Week 2: Computing as a tool for science</a></li>'
-                    '<li role="none"><a role="menuitem" href="02_notes.html" tabindex="0">Week 2: Mathematical Preliminaries</a></li>'
-                    '<li role="none"><a role="menuitem" href="03_start.html" tabindex="0">Week 3: What is Mathematical Modeling?</a></li>'
-                    '<li role="none"><a role="menuitem" href="03_notes.html" tabindex="0">Week 3: Making Classical Models</a></li>'
-                    '<!-- Add more chapters as needed -->'
-                '</ul>'
-            '</li>'
-            '<li role="none">'
-                '<a role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="activities-submenu" href="#activities-submenu" tabindex="0">Activities</a>'
-                '<ul class="dropdown-menu" id="activities-submenu" role="menu">'
-                    '<li role="none"><a role="menuitem" href="hw1.html" tabindex="0">Homework Assignment 1</a></li>'
-                    '<li role="none"><a role="menuitem" href="hw2.html" tabindex="0">Homework Assignment 2</a></li>'
-                    '<!-- Add more activities as needed -->'
-                '</ul>'
-            '</li>'
-            '<li role="none"><a role="menuitem" href="resources.html" tabindex="0">Resources</a></li>'
-            '<li role="none"><a role="menuitem" href="about.html" tabindex="0">About</a></li>'
-            '</ul>'
-            '<button class="toggle-dark" aria-label="Toggle dark/light mode" onclick="document.body.classList.toggle(\'dark\')">🌗</button>'
-        )
-        # Add minimal JS for ARIA and toggle (as a Python string, not inside triple single quotes)
+        nav_html = '<button class="site-nav-toggle" aria-label="Open menu" aria-controls="site-nav-menu" aria-expanded="false" tabindex="0">☰</button>'
+        # Use menu_data if available, else fallback
+        if menu_data:
+            nav_html += build_menu_html(menu_data)
+        else:
+            nav_html += '<!-- Menu data not available, fallback menu here -->'
         nav_html += """
+<button class="toggle-dark" aria-label="Toggle dark/light mode" onclick="document.body.classList.toggle('dark')">🌗</button>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
   var nav = document.getElementById('site-nav');
