@@ -522,7 +522,22 @@ document.addEventListener('DOMContentLoaded',function(){
                 return f'src="{new_rel}"'
             return match.group(0)
         body = re.sub(r'src=["\']([^"\']+)["\']', rewrite_img_src, body)
-        body = f'<div class="markdown-body">{body}</div>'
+
+        # --- Insert download menu at the top of each chapter ---
+        chapter_stem = nb.stem
+        download_menu = f'''
+<nav class="chapter-downloads" aria-label="Download chapter sources">
+  <div role="group" aria-label="Download formats">
+    <span class="download-label">Download this chapter as:</span>
+    <a class="download-btn" href="sources/{chapter_stem}/{chapter_stem}.pdf" download><span aria-hidden="true">⬇️</span> PDF</a>
+    <a class="download-btn" href="sources/{chapter_stem}/{chapter_stem}.docx" download><span aria-hidden="true">⬇️</span> DOCX</a>
+    <a class="download-btn" href="sources/{chapter_stem}/{chapter_stem}.md" download><span aria-hidden="true">⬇️</span> MD</a>
+    <a class="download-btn" href="sources/{chapter_stem}/{chapter_stem}.ipynb" download><span aria-hidden="true">⬇️</span> IPYNB</a>
+    <a class="download-btn" href="sources/{chapter_stem}/{chapter_stem}.tex" download><span aria-hidden="true">⬇️</span> TEX</a>
+  </div>
+</nav>
+        '''
+        body = f'{download_menu}<div class="markdown-body">{body}</div>'
         title = nb.stem.replace('_', ' ').title()
         html = get_html_template(title, body)
         with open(html_path, 'w', encoding='utf-8') as f:
