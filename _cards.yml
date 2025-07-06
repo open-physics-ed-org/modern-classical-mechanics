@@ -1,13 +1,25 @@
 cards:
   - title: Chapters
-    context: Lecture notes and weekly content
+    context: |
+      Lecture notes and weekly content.
+
+      Covers all main topics with detailed explanations.
     link: chapters.html
   - title: Activities
-    context: Interactive activities and exercises
+    context: |
+      Interactive activities and exercises.
+
+      (To be added)
     link: activities.html
   - title: Resources
-    context: Reference materials, links, and tools
+    context: |
+      Reference materials, links, and tools.
+
+      (To be added)
     link: resources.html
   - title: About
-    context: Course info, instructor, and policies
+    context: |
+      Course info, instructor, and policies.
+      
+      (To be added)
     link: about.html

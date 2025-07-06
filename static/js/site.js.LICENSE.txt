@@ -1,3 +1,0 @@
-site.js contains original code for Modern Classical Mechanics, copyright (c) 2025.
-
-This file may be reused under the MIT License. See the project root for details.
