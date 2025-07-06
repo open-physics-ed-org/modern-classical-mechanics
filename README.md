@@ -1,10 +1,10 @@
 <!--
-RELEASE v0.6 "Hamiltonian Heron" (July 2025)
-See [RELEASE-v0.6.md](RELEASE-v0.6.md) for details.
+RELEASE v0.7 "Robust Routhian" (July 2025)
+See [RELEASE-v0.7.md](RELEASE-v0.7.md) for details.
 
-- All admonition blocks in HTML output now have correct emoji and no leftover :class: markup.
-- Robust handling of multi-paragraph and custom admonitions.
-- No source notebook changes; all fixes are post-processing only.
+- Robust image handling in Markdown build: all images referenced in notebooks are reliably copied to _build/md/images and all image links in Markdown are rewritten to point to the copied images.
+- No source notebook changes required; all fixes are post-processing only.
+- Closes issues #11 and #12 (per-page download menus and unified build script improvements).
 -->
 
 <div align="center">
@@ -52,8 +52,16 @@ This project is currently undergoing a major overhaul to modernize the navigatio
 - **Legacy code removed:**
   - All old side-nav/side-menu code is gone.
 - **Planned:**
-  - Per-page download menus for PDF, DOCX, Markdown, LaTeX, and Jupyter Notebook formats (see [issue #11](https://github.com/dannycab/modern-classical-mechanics/issues/11)).
-  - Merge `build.py` and `build-web.py` into a single unified build script (see [issue #12](https://github.com/dannycab/modern-classical-mechanics/issues/12)).
+
+
+**Planned / Open Issues:**
+
+- [Integrate activities into the book (#7)](https://github.com/dannycab/modern-classical-mechanics/issues/7) <br>
+  <sub>Labels: bug, enhancement, build, activities</sub>
+- [Write an instructional guide for teachers (#8)](https://github.com/dannycab/modern-classical-mechanics/issues/8) <br>
+  <sub>Labels: documentation, enhancement, teaching-guide</sub>
+- [Mobile menu usability and dark mode issues (#15)](https://github.com/dannycab/modern-classical-mechanics/issues/15) <br>
+  <sub>Labels: accessibility, bug, enhancement, mobile, dark-mode</sub>
 
 **This is a work in progress!**
 
@@ -135,6 +143,12 @@ modern-classical-mechanics/
 ---
 
 
+
+## 📖 Build System Documentation
+
+See [build.md](build.md) for detailed, step-by-step documentation of the build system, including how `build.py` and `build-web.py` work, troubleshooting, and best practices.
+
+---
 
 ## 🚀 Features (Current & Planned)
 
