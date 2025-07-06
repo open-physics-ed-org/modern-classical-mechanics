@@ -521,10 +521,19 @@ document.addEventListener('DOMContentLoaded',function(){
         else:
             shutil.copy2(item, dest)
     # Copy only main.css to docs/css and _build/html/css
-    shutil.copy2(css_path, docs_css_dir / 'main.css')
+    docs_css_dir.mkdir(parents=True, exist_ok=True)
+    try:
+        shutil.copy2(css_path, docs_css_dir / 'main.css')
+    except Exception as e:
+        print(f"[ERROR] Failed to copy main.css to {docs_css_dir}: {e}")
+        raise
     build_css_dir = build_dir / 'css'
     build_css_dir.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(css_path, build_css_dir / 'main.css')
+    try:
+        shutil.copy2(css_path, build_css_dir / 'main.css')
+    except Exception as e:
+        print(f"[ERROR] Failed to copy main.css to {build_css_dir}: {e}")
+        raise
     # Copy all images to docs/images/<section>/
     images_docs_dir = docs_dir / 'images'
     images_docs_dir.mkdir(parents=True, exist_ok=True)
