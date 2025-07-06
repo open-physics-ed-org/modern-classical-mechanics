@@ -5,8 +5,8 @@
 **An open, free, and ever-evolving set of notes and resources for learning and teaching classical mechanics.**
 
 <br>
-<strong>Author:</strong> Danny Caballero  
-<strong>Contact:</strong> caball14@msu.edu  
+<strong>Author:</strong> Danny Caballero<br>
+<strong>Contact:</strong> caball14@msu.edu<br>
 <strong>Michigan State University</strong>
 
 ![Build](https://img.shields.io/badge/build-passing-brightgreen) ![License: CC BY-NC 4.0](https://img.shields.io/badge/license-CC--BY--NC%204.0-blue)
@@ -17,11 +17,11 @@
 
 ## 🌐 About & Webpage
 
-**Modern Classical Mechanics** is an open-source, interactive, and accessible static website and resource set for PHY 321: Classical Mechanics 1 at Michigan State University, authored by Marcos D. Caballero.
+**Modern Classical Mechanics** is an open-source, interactive, and accessible static website and resource set for Classical Mechanics 1 at Michigan State University. It is principally authored by Danny Caballero, but with contributions from many others in the physics education community.
 
 This project is not just a collection of Jupyter notebooks—it builds a fully static, accessible set of web pages from notebooks, with robust support for dark/light mode, accessible admonitions, and MathJax/LaTeX rendering. The site is designed for clarity, accessibility, and future extensibility.
 
-**Built with custom Python scripts (not Jupyter Book)** to convert Jupyter notebooks into a static, accessible website and multiple downloadable formats.
+**Built with custom Python scripts (not Jupyter Book)** to convert Jupyter notebooks into a static, accessible website and multiple downloadable formats. *If you have suggestions for improvements or want to contribute, please [open an issue or pull request](https://github.com/dannycab/modern-classical-mechanics/issues).*
 
 
 ---
@@ -69,27 +69,57 @@ modern-classical-mechanics/
 ├── build-web.py          # Build script for HTML website (docs/)
 ├── notebooks/            # Source Jupyter notebooks and images
 │   ├── 01_notes.ipynb
+│   ├── 01_start.ipynb
 │   ├── 02_notes.ipynb
+│   ├── 02_start.ipynb
+│   ├── ... (all chapters and homeworks)
+│   ├── hw1.ipynb
+│   ├── hw2.ipynb
 │   ├── ...
 │   └── images/
-│       └── ...
+│       ├── notes/
+│       └── youtube-img/
 ├── static/
 │   └── css/
-│       └── book.css      # Custom CSS for the site
+│       └── main.css      # CSS for the site
 ├── _build/
 │   ├── html/             # HTML output (intermediate, not for deployment)
-│   │   ├── images/
+│   │   ├── *.html
 │   │   ├── css/
-│   │   └── *.html
+│   │   ├── images/
+│   │   └── ...
 │   ├── pdf/              # PDF output
+│   │   └── *.pdf
 │   ├── docx/             # DOCX output
+│   │   └── *.docx
 │   ├── latex/            # LaTeX output
+│   │   ├── *.tex
+│   │   └── *_files/
 │   └── md/               # Markdown output
-│       └── images/
+│       ├── *.md
+│       ├── images/
+│       └── *_files/
 ├── docs/                 # Final HTML website for GitHub Pages
-│   ├── images/
+│   ├── *.html
 │   ├── css/
-│   └── *.html
+│   │   └── main.css
+│   ├── images/
+│   │   ├── chapters/
+│   │   └── activities/
+│   └── sources/
+│       ├── 01_notes/
+│       │   ├── 01_notes.ipynb
+│       │   ├── 01_notes.md
+│       │   ├── 01_notes.tex
+│       │   ├── 01_notes.docx
+│       │   └── 01_notes.pdf
+│       ├── ... (all chapters and homeworks)
+│       └── hw8/
+│           ├── hw8.ipynb
+│           ├── hw8.md
+│           ├── hw8.tex
+│           ├── hw8.docx
+│           └── hw8.pdf
 └── .nojekyll             # Ensures GitHub Pages does not use Jekyll
 ```
 
