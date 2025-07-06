@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded',function(){
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>03_notes</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>tmpk6w_e6lx</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7604,7 +7604,7 @@ a.anchor-link {
 <p>$$\vec{F}_{\text{net}} = m \vec{a} = m\ddot{\vec{x}}$$</p>
 <p>where $\vec{x}$ is the position vector and $\ddot{\vec{x}}=\frac{d^2\vec{x}}{dt^2}$ is the acceleration vector. Thus, Newton's second law is a general EOM that describes the dynamics of a particle of mass, $m$:</p>
 <p>$$\frac{d^2\vec{x}}{dt^2} = \dfrac{\vec{F}_{\text{net}}}{m}$$</p>
-<div class="admonition "><p class="admonition-title"></p>
+<div class="admonition what"><p class="admonition-title">ℹ️ What is Dynamics?</p>
 Dynamics is the study of the time evolution of a system in question. In classical mechanics, dynamics is the study of the motion of particles and the forces that cause that motion. In other physics, dynamics can refer to the study of the evolution of a system in time and space. And here, space might be an abstraction, such as a [phase space](https://en.wikipedia.org/wiki/Phase_space). We study phase spaces later in the term.</div>
 </div>
 </div>
@@ -7705,7 +7705,7 @@ Dynamics is the study of the time evolution of a system in question. In classica
 <p>We obtain the position as a function of time for constant acceleration, the standard kinematic equation:</p>
 <p>$$y(t) = y_0 + v_0 t + \dfrac{1}{2}gt^2$$</p>
 <p>Why the 'plus' sign on the last term? Because we choose positive $y$ to be down, and the ball is accelerating down.</p>
-<div class="admonition note"><p class="admonition-title">Note </p>
+<div class="admonition note"><p class="admonition-title">📝 Note</p>
 This is really useful, but is contingent on finding or knowing the anti-derivative of the functions we are integrating. That is not always possible. What might we do if we weren't sure that we could find the anti-derivative?</div>
 </div>
 </div>
@@ -7748,12 +7748,9 @@ This is really useful, but is contingent on finding or knowing the anti-derivati
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>What is left is to determine what should be the estimate for $v_{\textrm{avg}}$.</p>
-<div class="admonition "><p class="admonition-title"></p>
-:class: note
-
-The idea that we have to pick a value for $v_{\textrm{avg}}$ is a key point in numerical methods. It might seem silly or overly subtle and it certainly the latter. We can select $v(t)$, $v(t+\Delta t)$, or some average of the two. The choice of $v_{\textrm{avg}}$ is the key to the accuracy of the method.
-
-As we will show in a later homework, the best choice is $v(t+\Delta t)$ as it preserves the energy of the system.</div>
+<div class="admonition choosing"><p class="admonition-title">ℹ️ Choosing $v_{\textrm{avg}}$</p>
+<p>The idea that we have to pick a value for $v_{\textrm{avg}}$ is a key point in numerical methods. It might seem silly or overly subtle and it certainly the latter. We can select $v(t)$, $v(t+\Delta t)$, or some average of the two. The choice of $v_{\textrm{avg}}$ is the key to the accuracy of the method.</p>
+<p>As we will show in a later homework, the best choice is $v(t+\Delta t)$ as it preserves the energy of the system.</p></div>
 </div>
 </div>
 </div>
@@ -7781,15 +7778,12 @@ $$\vec{r}(t+\Delta t) = \vec{r}(t) + \vec{v}(t+\Delta t) \Delta t$$</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<div class="admonition "><p class="admonition-title"></p>
-:class: note
+<div class="admonition erasing"><p class="admonition-title">ℹ️ Erasing Contributions in Physics</p>
 This method should be called the Euler-Aspel-Cromer method because Euler started it, Aspel discovered it, and Cromer formalized it. 
 
-It is not because physics and physicists tend to erase the contributions of marginalized groups including young people, women, and folks from non-dominant groups.
-
-**Don't believe it?**
-
-Read about the [history of the MIT physics department](https://physics.mit.edu/about-physics/our-history/) and try to find the contributions of the many technical staff, non-tenure track faculty, and students who have made the department what it is today.</div>
+<p>It is not because physics and physicists tend to erase the contributions of marginalized groups including young people, women, and folks from non-dominant groups.</p>
+<p><strong>Don't believe it?</strong></p>
+<p>Read about the <a href="https://physics.mit.edu/about-physics/our-history/">history of the MIT physics department</a> and try to find the contributions of the many technical staff, non-tenure track faculty, and students who have made the department what it is today.</p></div>
 </div>
 </div>
 </div>
