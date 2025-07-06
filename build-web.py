@@ -410,12 +410,12 @@ document.addEventListener('DOMContentLoaded',function(){
                 break
         if not chapters:
             return '<p>No chapters found in menu.</p>'
-        html = '<section class="chapters-list" aria-label="Chapters"><h2>Chapters</h2><ul>'
+        html = '<section class="card-grid chapters-grid" aria-label="Chapters">'
         for ch in chapters:
             title = ch.get('title', '')
             path = ch.get('path', '')
-            html += f'<li><a href="{path}">{title}</a></li>'
-        html += '</ul></section>'
+            html += f'''<div class="card" tabindex="0"><h2><a href="{path}">{title}</a></h2></div>'''
+        html += '</section>'
         return html
     if menu_data:
         chapters_body = build_chapters_page(menu_data)
