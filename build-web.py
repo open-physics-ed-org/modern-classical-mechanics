@@ -543,10 +543,12 @@ document.addEventListener('DOMContentLoaded',function(){
         with open(html_path, 'w', encoding='utf-8') as f:
             f.write(html)
 
-    # 5. Copy everything to docs/
+
+    # 5. Copy everything to docs/ and move source files for download links
 
     docs_css_dir = docs_dir / 'css'
     docs_css_dir.mkdir(parents=True, exist_ok=True)
+    # Clean docs/ except .nojekyll
     for item in docs_dir.iterdir():
         if item.name == '.nojekyll':
             continue
@@ -554,12 +556,14 @@ document.addEventListener('DOMContentLoaded',function(){
             shutil.rmtree(item)
         else:
             item.unlink()
+    # Copy HTML build output to docs/
     for item in build_dir.iterdir():
         dest = docs_dir / item.name
         if item.is_dir():
             shutil.copytree(item, dest)
         else:
             shutil.copy2(item, dest)
+
     # Copy only main.css to docs/css and _build/html/css
     docs_css_dir.mkdir(parents=True, exist_ok=True)
     try:
@@ -574,6 +578,7 @@ document.addEventListener('DOMContentLoaded',function(){
     except Exception as e:
         print(f"[ERROR] Failed to copy main.css to {build_css_dir}: {e}")
         raise
+
     # Copy all images to docs/images/<section>/
     images_docs_dir = docs_dir / 'images'
     images_docs_dir.mkdir(parents=True, exist_ok=True)
@@ -584,6 +589,44 @@ document.addEventListener('DOMContentLoaded',function(){
             for img_file in section_dir.iterdir():
                 if img_file.is_file():
                     shutil.copy2(img_file, dest_section_dir / img_file.name)
+
+    # --- Copy all source files for download links ---
+    # For each notebook, copy .pdf, .docx, .md, .ipynb, .tex to docs/sources/<notebook>/<notebook>.<ext>
+    sources_dir = docs_dir / 'sources'
+    sources_dir.mkdir(parents=True, exist_ok=True)
+    # List of all notebook stems (without extension), including all chapters and activities (anything in _notebooks.yaml)
+    # Use _notebooks.yaml as authoritative list
+    import yaml
+    notebooks_yaml = repo_root / '_notebooks.yaml'
+    notebook_stems = set()
+    if notebooks_yaml.exists():
+        with open(notebooks_yaml, 'r') as f:
+            data = yaml.safe_load(f)
+            if isinstance(data, dict) and 'notebooks' in data:
+                for nb in data['notebooks']:
+                    stem = Path(nb).with_suffix('').name
+                    notebook_stems.add(stem)
+    # Fallback: add any .ipynb in notebooks/ not already listed
+    for nb in notebooks_dir.glob('*.ipynb'):
+        stem = nb.with_suffix('').name
+        notebook_stems.add(stem)
+    notebook_stems = sorted(notebook_stems)
+    # Map of output extensions and their build locations
+    output_exts = {
+        'pdf': repo_root / '_build' / 'pdf',
+        'docx': repo_root / '_build' / 'docx',
+        'md': repo_root / '_build' / 'md',
+        'ipynb': notebooks_dir,
+        'tex': repo_root / '_build' / 'latex',
+    }
+    for stem in notebook_stems:
+        chapter_dir = sources_dir / stem
+        chapter_dir.mkdir(parents=True, exist_ok=True)
+        for ext, src_dir in output_exts.items():
+            src_file = src_dir / f"{stem}.{ext}"
+            dest_file = chapter_dir / f"{stem}.{ext}"
+            if src_file.exists():
+                shutil.copy2(src_file, dest_file)
 
     # --- Check: verify all referenced images exist in docs/images/ ---
     missing_in_docs = []
@@ -605,7 +648,7 @@ document.addEventListener('DOMContentLoaded',function(){
     else:
         print("[CHECK] All referenced images exist in docs output.")
 
-    print("All notebooks converted to HTML and copied to docs/ with sectioned images, CSS, and accessible menu.")
+    print("All notebooks converted to HTML and copied to docs/ with sectioned images, CSS, accessible menu, and downloadable sources.")
 
 if __name__ == '__main__':
     main()
