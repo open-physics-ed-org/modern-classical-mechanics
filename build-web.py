@@ -82,100 +82,56 @@ def main():
     all_missing_images = set()
     all_youtube_ids = set()
 
+    # --- NEW: Only collect image references, do not modify notebooks ---
     for nb_path in notebooks_dir.glob('*.ipynb'):
         nb_data = nbformat.read(str(nb_path), as_version=4)
-        changed = False
         referenced_images = set()
         for cell in nb_data.cells:
             if cell.cell_type != 'markdown':
                 continue
-            # --- Admonition conversion ---
-            # Preprocess code-fence style admonitions (```{tip} ... ```) to HTML before nbconvert
-            orig_src = cell.source
-            # Only process if code-fence style admonition is present
-            if re.search(r'```\{(admonition|tip|note|warning|caution|important|hint|danger|error|success|question|quote|seealso)\}', orig_src):
-                # Replace all code-fence style admonitions in the markdown cell
-                def codefence_admonition(match):
-                    ad_type = match.group(1).strip().lower()
-                    title = match.group(2)
-                    content = match.group(3)
-                    if not title or title.strip() == '':
-                        title = ad_type.title()
-                    content = content.strip('\n')
-                    return (
-                        f'<div class="admonition {ad_type}" role="region" aria-label="{ad_type.title()}">' 
-                        f'<div class="admonition-title">{title}</div>\n{content}\n</div>'
-                    )
-                new_src = re.sub(
-                    r'```\{(admonition|tip|note|warning|caution|important|hint|danger|error|success|question|quote|seealso)\}(?: +([^\n]+))?\n([\s\S]+?)\n```',
-                    codefence_admonition, orig_src)
-                if new_src != orig_src:
-                    cell.source = new_src
-                    changed = True
+            # Find all image links in markdown
             def update_img_link(match):
                 alt_text = match.group(1)
                 img_path = match.group(2).strip()
                 # --- YOUTUBE THUMBNAIL HANDLING ---
-                # 1. Direct YouTube thumbnail URL
                 yt_match = re.match(r'https?://img\.youtube\.com/vi/([\w-]{11})/', img_path)
                 if yt_match:
                     video_id = yt_match.group(1)
                     local_img_name = f"youtube_{video_id}.jpg"
-                    print(f"[DEBUG] Rewriting YouTube thumbnail: {img_path} -> images/{local_img_name}")
                     referenced_images.add((images_dir / local_img_name, images_dir / local_img_name))
                     all_youtube_ids.add(video_id)
-                    return f"![{alt_text}](images/{local_img_name})"
-
-                # 2. Mangled YouTube thumbnail (e.g. images/youtube___hqdefault.jpg)
+                    return
                 yt_mangled = re.match(r'images/youtube___(hqdefault|maxresdefault)\.jpg', img_path)
                 if yt_mangled:
-                    # Try to find a YouTube video ID in the cell source
                     video_id = None
-                    # Try to extract from alt_text if it looks like a video ID
                     if re.match(r'^[\w-]{11}$', alt_text):
                         video_id = alt_text
-                    # Try to extract from the cell source (look for a YouTube link)
                     if not video_id:
                         yt_links = re.findall(r'(?:youtube.com/watch\?v=|youtu.be/)([\w-]{11})', cell.source)
                         if yt_links:
                             video_id = yt_links[0]
                     if video_id:
                         local_img_name = f"youtube_{video_id}.jpg"
-                        print(f"[DEBUG] Rewriting mangled YouTube thumbnail: {img_path} -> images/{local_img_name}")
                         referenced_images.add((images_dir / local_img_name, images_dir / local_img_name))
                         all_youtube_ids.add(video_id)
-                        return f"![{alt_text}](images/{local_img_name})"
-                    else:
-                        print(f"[WARNING] Could not extract YouTube video ID for mangled thumbnail: {img_path}")
-                        # fallback: leave as is
-                        return match.group(0)
-
-                # 3. Other mangled YouTube thumbnail (e.g. images/https:__hqdefault.jpg)
+                    return
                 if (img_path.endswith('hqdefault.jpg') or img_path.endswith('maxresdefault.jpg')) and ('youtube' in img_path or 'http' in img_path or img_path.startswith('images/https')):
                     video_id = None
-                    # Try to extract from alt_text if it looks like a video ID
                     if re.match(r'^[\w-]{11}$', alt_text):
                         video_id = alt_text
-                    # Try to extract from the image path
                     if not video_id:
                         m = re.search(r'([\w-]{11})', img_path)
                         if m:
                             video_id = m.group(1)
-                    # Try to extract from the cell source (look for a YouTube link)
                     if not video_id:
                         yt_links = re.findall(r'(?:youtube.com/watch\?v=|youtu.be/)([\w-]{11})', cell.source)
                         if yt_links:
                             video_id = yt_links[0]
                     if video_id:
                         local_img_name = f"youtube_{video_id}.jpg"
-                        print(f"[DEBUG] Rewriting mangled YouTube thumbnail: {img_path} -> images/{local_img_name}")
                         referenced_images.add((images_dir / local_img_name, images_dir / local_img_name))
                         all_youtube_ids.add(video_id)
-                        return f"![{alt_text}](images/{local_img_name})"
-                    else:
-                        print(f"[WARNING] Could not extract YouTube video ID for mangled thumbnail: {img_path}")
-                        return match.group(0)
-
+                    return
                 # --- NORMAL IMAGE HANDLING ---
                 img_path_clean = img_path
                 if img_path_clean.startswith('images/'):
@@ -194,28 +150,17 @@ def main():
                 else:
                     rel_path = img_path_clean
                 new_img_name = path_to_output_name(str(rel_path))
-                print(f"[DEBUG] Notebook: {nb_path.name} | Markdown ref: {img_path} | resolved rel_path: {rel_path} | real_img_path: {real_img_path} | output: images/{new_img_name}")
                 referenced_images.add((real_img_path, images_dir / new_img_name))
-                # Track missing images
                 if not real_img_path.exists():
                     all_missing_images.add((str(real_img_path), str(nb_path), img_path))
-                return f"![{alt_text}](images/{new_img_name})"
-            new_src = re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', update_img_link, cell.source)
-            # Also look for YouTube links in plain text
+            re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', update_img_link, cell.source)
             yt_links = re.findall(r'(?:youtube.com/watch\?v=|youtu.be/)([\w-]{11})', cell.source)
             for video_id in yt_links:
                 all_youtube_ids.add(video_id)
-            if new_src != cell.source:
-                cell.source = new_src
-                changed = True
-        if changed:
-            nbformat.write(nb_data, str(nb_path))
-            print(f"[INFO] Updated image links in notebook: {nb_path}")
         # Copy all referenced images for this notebook
         for src_img, dest_img in referenced_images:
             if src_img.exists():
                 dest_img.parent.mkdir(parents=True, exist_ok=True)
-                # Avoid copying a file onto itself
                 try:
                     if os.path.abspath(src_img) != os.path.abspath(dest_img):
                         shutil.copy2(src_img, dest_img)
@@ -411,10 +356,32 @@ document.addEventListener('DOMContentLoaded',function(){
         if not chapters:
             return '<p>No chapters found in menu.</p>'
         html = '<section class="card-grid chapters-grid" aria-label="Chapters">'
+        docs_dir = Path(__file__).parent / 'docs'
         for ch in chapters:
             title = ch.get('title', '')
             path = ch.get('path', '')
-            html += f'''<div class="card" tabindex="0"><h2><a href="{path}">{title}</a></h2></div>'''
+            thumb_img = None
+            thumb_alt = ''
+            html_path = docs_dir / path
+            if html_path.exists():
+                try:
+                    with open(html_path, 'r', encoding='utf-8') as f:
+                        for line in f:
+                            m = re.search(r'<img [^>]*src=["\']([^"\']+)["\'][^>]*', line)
+                            if m:
+                                thumb_img = m.group(1)
+                                alt_m = re.search(r'alt=["\']([^"\']*)["\']', line)
+                                if alt_m:
+                                    thumb_alt = alt_m.group(1)
+                                break
+                except Exception as e:
+                    print(f"[WARN] Could not read {html_path}: {e}")
+            # Fallback: no image found
+            if thumb_img:
+                img_html = f'<a href="{path}"><img class="chapter-thumb" src="{thumb_img}" alt="{thumb_alt}" loading="lazy" style="max-width:100%;max-height:140px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-bottom:1em;"></a>'
+            else:
+                img_html = ''
+            html += f'''<div class="card" tabindex="0">{img_html}<h2><a href="{path}">{title}</a></h2></div>'''
         html += '</section>'
         return html
     if menu_data:
