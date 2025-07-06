@@ -33,6 +33,44 @@ def fetch_youtube_thumbnail(video_id, dest_path):
 
 def main():
     # --- Admonition post-processing for HTML output ---
+    # --- Shared emoji mapping for all admonition classes ---
+    ADMONITION_EMOJIS = {
+        'note': '📝',
+        'tip': '💡',
+        'warning': '⚠️',
+        'caution': '🚧',
+        'important': '❗',
+        'error': '❌',
+        'danger': '�',
+        'dangerous': '☠️',
+        'hint': '💡',
+        'check': '✅',
+        'question': '❓',
+        'quote': '❝',
+        'abstract': '📄',
+        'info': 'ℹ️',
+        'success': '🎉',
+        'failure': '�',
+        'bug': '🐞',
+        'custom': '🔔',
+        'seealso': '🔗',
+        'example': '🔍',
+        'faq': '❔',
+        'summary': '�️',
+        'definition': '📘',
+        'theorem': '📐',
+        'proof': '🧮',
+        'exercise': '�️',
+        'solution': '🧩',
+        'remark': '�',
+        'attention': '�',
+        'todo': '�️',
+        'admonition': '💬',
+    }
+    def get_admonition_emoji(cls):
+        # Use a default emoji (info) for unknown/custom classes
+        return ADMONITION_EMOJIS.get(cls.lower(), 'ℹ️')
+
     def preprocess_custom_admonitions(html):
         # Look for <pre><code class="language-{admonition}"> block:
         def admonition_code_repl(m):
@@ -49,7 +87,10 @@ def main():
             print(f'[DEBUG] Extracted title: "{title}"')
             print(f'[DEBUG] Extracted body: "{body}"')
             safe_title = re.sub(r'[^a-z0-9_-]+', '', title.lower().replace(' ', '-'))
-            result = f'<div class="admonition {safe_title}"><p class="admonition-title">{title}</p>\n{body}</div>'
+            emoji = get_admonition_emoji(safe_title)
+            # Remove any leftover :class: markup from body
+            body = re.sub(r'^:class:.*$', '', body, flags=re.MULTILINE)
+            result = f'<div class="admonition {safe_title}"><p class="admonition-title">{emoji} {title}</p>\n{body}</div>'
             print(f'[DEBUG] Replacement HTML: {result}')
             return result
         html = re.sub(
@@ -61,25 +102,41 @@ def main():
         return html
 
     def convert_admonitions(html):
+        # Use shared ADMONITION_EMOJIS and get_admonition_emoji
+
         # 1. Fix nbconvert HTML output: <div class="admonition"><p class="admonition-title">TITLE</p>...</div>
-        # If TITLE is a known type, add class; if custom, add class 'admonition-{title.lower()}'
+        # Debug counters for each pattern
+        nbconvert_div_count = 0
+        legacy_codeblock_count = 0
+        std_codeblock_count = 0
+        myst_block_count = 0
+
         def fix_admonition_divs(m):
+            nonlocal nbconvert_div_count
+            nbconvert_div_count += 1
             title = m.group(1).strip()
             content = m.group(2)
+            # Remove all :class: ... lines from content (anywhere, not just at start)
+            content = re.sub(r'^:class:.*$', '', content, flags=re.MULTILINE)
+            content = re.sub(r':class:.*', '', content)
+            print(f'[DEBUG] [nbconvert-div] Processing admonition div: title="{title}"')
+            print(f'[DEBUG] [nbconvert-div] Raw content: {repr(content[:120])}')
             # Fallback for empty or generic titles: extract first line of content as custom title
             if not title or title.lower() == 'admonition':
                 content_lines = content.lstrip().split('\n', 1)
                 if content_lines:
                     possible_title = content_lines[0].strip()
-                    # If the possible title is short, use it as the custom title
                     if 0 < len(possible_title.split()) <= 5 and not possible_title.endswith('.'):
                         custom_title = possible_title
                         rest_content = content_lines[1] if len(content_lines) > 1 else ''
                         safe_title = re.sub(r'[^a-z0-9_-]+', '', custom_title.lower().replace(' ', '-'))
                         class_attr = f"admonition {safe_title}" if safe_title else "admonition"
-                        title_html = f'<p class="admonition-title">{custom_title}</p>'
+                        emoji = get_admonition_emoji(safe_title)
+                        print(f'[DEBUG] [nbconvert-div] Using emoji "{emoji}" for custom title "{custom_title}" (class: {safe_title})')
+                        print(f'[DEBUG] [nbconvert-div] Custom title block: class_attr={class_attr}, rest_content={repr(rest_content[:120])}')
+                        title_html = f'<p class="admonition-title">{emoji} {custom_title}</p>'
+                        print(f'[DEBUG] [nbconvert-div] Final custom title_html: {title_html}')
                         return f'<div class="{class_attr}">{title_html}\n{rest_content.strip()}</div>'
-            # Heuristic: If the title is long (more than 5 words or contains a period), treat as content, not a real title
             if len(title.split()) > 5 or '.' in title:
                 content_lines = content.lstrip().split('\n', 1)
                 if content_lines:
@@ -89,30 +146,43 @@ def main():
                         rest_content = content_lines[1] if len(content_lines) > 1 else ''
                         safe_title = re.sub(r'[^a-z0-9_-]+', '', custom_title.lower().replace(' ', '-'))
                         class_attr = f"admonition {safe_title}" if safe_title else "admonition"
-                        title_html = f'<p class="admonition-title">{custom_title}</p>'
+                        emoji = get_admonition_emoji(safe_title)
+                        title_html = f'<p class="admonition-title">{emoji} {custom_title}</p>'
+                        print(f'[DEBUG] [nbconvert-div] Final custom title_html: {title_html}')
                         return f'<div class="{class_attr}">{title_html}\n{rest_content.strip()}</div>'
-            # Fallback: use the original title as class if short, else generic
             safe_title = re.sub(r'[^a-z0-9_-]+', '', title.lower().split()[0]) if title else 'admonition'
             class_attr = f"admonition {safe_title}" if safe_title else "admonition"
-            title_html = f'<p class="admonition-title">{title}</p>'
+            emoji = get_admonition_emoji(safe_title)
+            print(f'[DEBUG] [nbconvert-div] Using emoji "{emoji}" for title "{title}" (class: {safe_title})')
+            title_html = f'<p class="admonition-title">{emoji} {title}</p>'
+            print(f'[DEBUG] [nbconvert-div] Standard/fallback title_html: {title_html}')
             return f'<div class="{class_attr}">{title_html}\n{content.strip()}</div>'
+        # Updated regex: match any <div class="admonition ..."> (with any class list)
         html = re.sub(
-            r'<div class="admonition">\s*<p class="admonition-title">([^<]*)</p>([\s\S]*?)</div>',
+            r'<div class="admonition[^"]*">\s*<p class="admonition-title">([^<]*)</p>([\s\S]*?)</div>',
             fix_admonition_divs,
             html)
 
         # 2. Convert <pre><code class="language-{admonition}">...</code></pre> blocks (legacy, fallback)
         def admonition_repl(m):
+            nonlocal legacy_codeblock_count
+            legacy_codeblock_count += 1
             title = m.group(1).strip()
             content = m.group(2).lstrip('\n')
+            # Remove any leftover :class: markup from content
+            content = re.sub(r'^:class:.*$', '', content, flags=re.MULTILINE)
+            content = re.sub(r':class:.*', '', content)
             class_match = re.match(r'\s*:class:\s*([a-zA-Z0-9_-]+)\s*\n(.*)', content, re.DOTALL)
             if class_match:
                 ad_class = class_match.group(1).strip()
                 content = class_match.group(2).lstrip('\n')
             else:
                 ad_class = ''
-            class_attr = f'admonition {ad_class}' if ad_class else 'admonition'
-            title_html = f'<p class="admonition-title">{title}</p>'
+            safe_title = re.sub(r'[^a-z0-9_-]+', '', title.lower().replace(' ', '-'))
+            class_attr = f'admonition {ad_class}' if ad_class else f'admonition {safe_title}'
+            emoji = get_admonition_emoji(ad_class or safe_title)
+            print(f'[DEBUG] [legacy-codeblock] Using emoji "{emoji}" for title "{title}" (class: {ad_class or safe_title})')
+            title_html = f'<p class="admonition-title">{emoji} {title}</p>'
             return f'<div class="{class_attr}">{title_html}\n{content.strip()}</div>'
         html = re.sub(
             r'<pre><code class="language-\{admonition\}">\{admonition\}\s*([^\n]*)\n([\s\S]*?)</code></pre>',
@@ -120,18 +190,138 @@ def main():
             html)
 
         # 3. Convert <pre><code class="language-{type}">{type} ...</code></pre> blocks (note, warning, tip, etc)
+        def std_admonition_repl(m):
+            nonlocal std_codeblock_count
+            std_codeblock_count += 1
+            ad_type = m.group(1)
+            extra = m.group(2).strip()
+            content = m.group(3).strip()
+            emoji = get_admonition_emoji(ad_type)
+            print(f'[DEBUG] [std-codeblock] Using emoji "{emoji}" for standard admonition type "{ad_type}"')
+            title = f"{ad_type.capitalize()} {extra}".strip()
+            return f'<div class="admonition {ad_type}"><p class="admonition-title">{emoji} {title}</p>\n{content}</div>'
         html = re.sub(
-            r'<pre><code class="language-\{(note|warning|tip|caution|important)\}">\{\1\}([^\n]*)\n([\s\S]*?)</code></pre>',
-            lambda m: f'<div class="admonition {m.group(1)}"><p class="admonition-title">{m.group(1).capitalize()} {m.group(2).strip()}</p>\n{m.group(3).strip()}</div>',
+            r'<pre><code class="language-\{(note|warning|tip|caution|important|error|danger|hint|check|question|quote|seealso|example|abstract|info|success|failure|bug|custom)\}">\{\1\}([^\n]*)\n([\s\S]*?)</code></pre>',
+            std_admonition_repl,
+            html)
+
+        # 4. Convert multi-paragraph MyST blocks (with :class: as its own <p>), robustly
+        def myst_block_multi_repl(m):
+            nonlocal myst_block_count
+            myst_block_count += 1
+            ad_type = m.group(1)
+            extra = m.group(2).strip()
+            ad_class = m.group(3).strip()
+            content = m.group(4)
+            # Remove all <p>:class: ...</p> lines from content
+            content = re.sub(r'<p>:class:[^<]*</p>\n?', '', content)
+            # Remove any :class: ... lines inside content
+            content = re.sub(r':class:.*', '', content)
+            content = content.strip()
+            safe_type = re.sub(r'[^a-z0-9_-]+', '', ad_class.lower() if ad_class else ad_type.lower())
+            emoji = get_admonition_emoji(safe_type)
+            title = extra or ad_type.capitalize()
+            print(f'[DEBUG] [myst-block-multi] Using emoji "{emoji}" for MyST block type "{ad_type}" (class: {safe_type})')
+            print(f'[DEBUG] [myst-block-multi] Title: {title}')
+            print(f'[DEBUG] [myst-block-multi] Content snippet: {repr(content[:80])}')
+            return f'<div class="admonition {safe_type}"><p class="admonition-title">{emoji} {title}</p>\n{content}</div>'
+        # Match <p>:::{admonition} ...\n<p>:class: ...</p>\n(content...)<p>:::</p>
+        html = re.sub(
+            r'<p>:::(admonition|note|warning|tip|caution|important|error|danger|hint|check|question|quote|seealso|example|abstract|info|success|failure|bug|custom) ?([^\n<]*)</p>\n<p>:class: ([^<]*)</p>\n([\s\S]*?)<p>:::</p>',
+            myst_block_multi_repl,
+            html)
+
+        # Fallback: single-paragraph MyST blocks (no <p>:class: ...</p>)
+        def myst_block_single_repl(m):
+            nonlocal myst_block_count
+            myst_block_count += 1
+            ad_type = m.group(1)
+            extra = m.group(2).strip()
+            content = m.group(3)
+            content = re.sub(r':class:.*', '', content)
+            content = content.strip()
+            safe_type = re.sub(r'[^a-z0-9_-]+', '', ad_type.lower())
+            emoji = get_admonition_emoji(safe_type)
+            title = extra or ad_type.capitalize()
+            print(f'[DEBUG] [myst-block-single] Using emoji "{emoji}" for MyST block type "{ad_type}" (class: {safe_type})')
+            print(f'[DEBUG] [myst-block-single] Title: {title}')
+            print(f'[DEBUG] [myst-block-single] Content snippet: {repr(content[:80])}')
+            return f'<div class="admonition {safe_type}"><p class="admonition-title">{emoji} {title}</p>\n{content}</div>'
+        html = re.sub(
+            r'<p>:::(admonition|note|warning|tip|caution|important|error|danger|hint|check|question|quote|seealso|example|abstract|info|success|failure|bug|custom) ?([^\n<]*)</p>\n([\s\S]*?)<p>:::</p>',
+            myst_block_single_repl,
+            html)
+
+        # --- Post-build checks: scan for unprocessed patterns ---
+        # 1. Any remaining :class: markup
+        leftover_class = re.findall(r':class:', html)
+        if leftover_class:
+            print(f'[CHECK] WARNING: Found {len(leftover_class)} remaining ":class:" markup in HTML output!')
+        # 2. Any <p class="admonition-title"> not starting with emoji
+        no_emoji_titles = re.findall(r'<p class="admonition-title">([^\s<][^<]*)</p>', html)
+        for t in no_emoji_titles:
+            if not re.match(r'^[^\w\s]', t):
+                print(f'[CHECK] WARNING: Admonition title missing emoji: {t[:40]}')
+        # 3. Any MyST/Markdown-it blocks left
+        myst_left = re.findall(r'<p>:::', html)
+        if myst_left:
+            print(f'[CHECK] WARNING: Found {len(myst_left)} unconverted MyST blocks!')
+
+        # Print summary of matches
+        print(f'[SUMMARY] Admonition blocks processed: nbconvert-div={nbconvert_div_count}, legacy-codeblock={legacy_codeblock_count}, std-codeblock={std_codeblock_count}, myst-block={myst_block_count}')
+        return html
+
+        # 2. Convert <pre><code class="language-{admonition}">...</code></pre> blocks (legacy, fallback)
+        def admonition_repl(m):
+            title = m.group(1).strip()
+            content = m.group(2).lstrip('\n')
+            # Remove any leftover :class: markup from content
+            content = re.sub(r'^:class:.*$', '', content, flags=re.MULTILINE)
+            content = re.sub(r':class:.*', '', content)
+            class_match = re.match(r'\s*:class:\s*([a-zA-Z0-9_-]+)\s*\n(.*)', content, re.DOTALL)
+            if class_match:
+                ad_class = class_match.group(1).strip()
+                content = class_match.group(2).lstrip('\n')
+            else:
+                ad_class = ''
+            safe_title = re.sub(r'[^a-z0-9_-]+', '', title.lower().replace(' ', '-'))
+            class_attr = f'admonition {ad_class}' if ad_class else f'admonition {safe_title}'
+            emoji = get_admonition_emoji(ad_class or safe_title)
+            print(f'[DEBUG] Using emoji "{emoji}" for title "{title}" (class: {ad_class or safe_title})')
+            title_html = f'<p class="admonition-title">{emoji} {title}</p>'
+            return f'<div class="{class_attr}">{title_html}\n{content.strip()}</div>'
+        html = re.sub(
+            r'<pre><code class="language-\{admonition\}">\{admonition\}\s*([^\n]*)\n([\s\S]*?)</code></pre>',
+            admonition_repl,
+            html)
+
+        # 3. Convert <pre><code class="language-{type}">{type} ...</code></pre> blocks (note, warning, tip, etc)
+        def std_admonition_repl(m):
+            ad_type = m.group(1)
+            extra = m.group(2).strip()
+            content = m.group(3).strip()
+            emoji = get_admonition_emoji(ad_type)
+            print(f'[DEBUG] Using emoji "{emoji}" for standard admonition type "{ad_type}"')
+            title = f"{ad_type.capitalize()} {extra}".strip()
+            return f'<div class="admonition {ad_type}"><p class="admonition-title">{emoji} {title}</p>\n{content}</div>'
+        html = re.sub(
+            r'<pre><code class="language-\{(note|warning|tip|caution|important|error|danger|hint|check|question|quote|seealso|example|abstract|info|success|failure|bug|custom)\}">\{\1\}([^\n]*)\n([\s\S]*?)</code></pre>',
+            std_admonition_repl,
             html)
 
         # 4. Convert ::: blocks (MyST/Markdown-it style)
+        def myst_block_repl(m):
+            ad_type = m.group(1)
+            extra = m.group(2).strip()
+            content = m.group(3).strip()
+            safe_type = re.sub(r'[^a-z0-9_-]+', '', ad_type.lower())
+            emoji = get_admonition_emoji(safe_type)
+            print(f'[DEBUG] Using emoji "{emoji}" for MyST block type "{ad_type}" (class: {safe_type})')
+            title = extra or ad_type.capitalize()
+            return f'<div class="admonition {safe_type}"><p class="admonition-title">{emoji} {title}</p>\n{content}</div>'
         html = re.sub(
-            r'<p>:::(admonition|note|warning|tip|caution|important) ?([^\n<]*)</p>\n([\s\S]*?)<p>:::</p>',
-            lambda m: (
-                f'<div class="admonition{(" " + m.group(1)) if m.group(1)!="admonition" else ""}">' +
-                f'<p class="admonition-title">{m.group(2).strip() or m.group(1).capitalize()}</p>\n{m.group(3).strip()}</div>'
-            ),
+            r'<p>:::(admonition|note|warning|tip|caution|important|error|danger|hint|check|question|quote|seealso|example|abstract|info|success|failure|bug|custom) ?([^\n<]*)</p>\n([\s\S]*?)<p>:::</p>',
+            myst_block_repl,
             html)
         return html
     repo_root = Path(__file__).parent.resolve()
