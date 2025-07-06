@@ -288,6 +288,7 @@ body.dark .admonition {
   box-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
 .admonition :last-child { margin-bottom: 0; }
+/* Only apply shared styles, not text-align, to container/main/nav */
 .container,
 main,
 .container,
@@ -296,8 +297,12 @@ nav {
   background: var(--color-card) !important;
   color: var(--color-fg) !important;
   padding: 1rem;
+  border-bottom: 1px solid var(--color-bg);
+}
+
+nav {
   text-align: center;
-  border-bottom: 1px solid var(--color-bg); }
+}
 nav a {
   color: var(--color-link);
   text-decoration: none;
