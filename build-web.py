@@ -32,6 +32,100 @@ def fetch_youtube_thumbnail(video_id, dest_path):
     return False
 
 def main():
+    # --- Admonition post-processing for HTML output ---
+    def preprocess_custom_admonitions(html):
+        # Look for <pre><code class="language-{admonition}">{admonition}TITLE\nBODY</code></pre>
+        def admonition_code_repl(m):
+            code = m.group(1)
+            lines = code.split('\n', 1)
+            if len(lines) == 2:
+                title = lines[0].replace('{admonition}', '').strip()
+                body = lines[1].strip()
+            else:
+                title = lines[0].replace('{admonition}', '').strip()
+                body = ''
+            safe_title = re.sub(r'[^a-z0-9_-]+', '', title.lower().replace(' ', '-'))
+            return f'<div class="admonition {safe_title}"><p class="admonition-title">{title}</p>\n{body}</div>'
+        html = re.sub(
+            r'<pre><code class="language-\{admonition\}">\{admonition\}([\s\S]*?)</code></pre>',
+            admonition_code_repl,
+            html)
+        return html
+
+    def convert_admonitions(html):
+        # 1. Fix nbconvert HTML output: <div class="admonition"><p class="admonition-title">TITLE</p>...</div>
+        # If TITLE is a known type, add class; if custom, add class 'admonition-{title.lower()}'
+        def fix_admonition_divs(m):
+            title = m.group(1).strip()
+            content = m.group(2)
+            # Fallback for empty or generic titles: extract first line of content as custom title
+            if not title or title.lower() == 'admonition':
+                content_lines = content.lstrip().split('\n', 1)
+                if content_lines:
+                    possible_title = content_lines[0].strip()
+                    # If the possible title is short, use it as the custom title
+                    if 0 < len(possible_title.split()) <= 5 and not possible_title.endswith('.'):
+                        custom_title = possible_title
+                        rest_content = content_lines[1] if len(content_lines) > 1 else ''
+                        safe_title = re.sub(r'[^a-z0-9_-]+', '', custom_title.lower().replace(' ', '-'))
+                        class_attr = f"admonition {safe_title}" if safe_title else "admonition"
+                        title_html = f'<p class="admonition-title">{custom_title}</p>'
+                        return f'<div class="{class_attr}">{title_html}\n{rest_content.strip()}</div>'
+            # Heuristic: If the title is long (more than 5 words or contains a period), treat as content, not a real title
+            if len(title.split()) > 5 or '.' in title:
+                content_lines = content.lstrip().split('\n', 1)
+                if content_lines:
+                    possible_title = content_lines[0].strip()
+                    if 0 < len(possible_title.split()) <= 5 and not possible_title.endswith('.'):
+                        custom_title = possible_title
+                        rest_content = content_lines[1] if len(content_lines) > 1 else ''
+                        safe_title = re.sub(r'[^a-z0-9_-]+', '', custom_title.lower().replace(' ', '-'))
+                        class_attr = f"admonition {safe_title}" if safe_title else "admonition"
+                        title_html = f'<p class="admonition-title">{custom_title}</p>'
+                        return f'<div class="{class_attr}">{title_html}\n{rest_content.strip()}</div>'
+            # Fallback: use the original title as class if short, else generic
+            safe_title = re.sub(r'[^a-z0-9_-]+', '', title.lower().split()[0]) if title else 'admonition'
+            class_attr = f"admonition {safe_title}" if safe_title else "admonition"
+            title_html = f'<p class="admonition-title">{title}</p>'
+            return f'<div class="{class_attr}">{title_html}\n{content.strip()}</div>'
+        html = re.sub(
+            r'<div class="admonition">\s*<p class="admonition-title">([^<]*)</p>([\s\S]*?)</div>',
+            fix_admonition_divs,
+            html)
+
+        # 2. Convert <pre><code class="language-{admonition}">...</code></pre> blocks (legacy, fallback)
+        def admonition_repl(m):
+            title = m.group(1).strip()
+            content = m.group(2).lstrip('\n')
+            class_match = re.match(r'\s*:class:\s*([a-zA-Z0-9_-]+)\s*\n(.*)', content, re.DOTALL)
+            if class_match:
+                ad_class = class_match.group(1).strip()
+                content = class_match.group(2).lstrip('\n')
+            else:
+                ad_class = ''
+            class_attr = f'admonition {ad_class}' if ad_class else 'admonition'
+            title_html = f'<p class="admonition-title">{title}</p>'
+            return f'<div class="{class_attr}">{title_html}\n{content.strip()}</div>'
+        html = re.sub(
+            r'<pre><code class="language-\{admonition\}">\{admonition\}\s*([^\n]*)\n([\s\S]*?)</code></pre>',
+            admonition_repl,
+            html)
+
+        # 3. Convert <pre><code class="language-{type}">{type} ...</code></pre> blocks (note, warning, tip, etc)
+        html = re.sub(
+            r'<pre><code class="language-\{(note|warning|tip|caution|important)\}">\{\1\}([^\n]*)\n([\s\S]*?)</code></pre>',
+            lambda m: f'<div class="admonition {m.group(1)}"><p class="admonition-title">{m.group(1).capitalize()} {m.group(2).strip()}</p>\n{m.group(3).strip()}</div>',
+            html)
+
+        # 4. Convert ::: blocks (MyST/Markdown-it style)
+        html = re.sub(
+            r'<p>:::(admonition|note|warning|tip|caution|important) ?([^\n<]*)</p>\n([\s\S]*?)<p>:::</p>',
+            lambda m: (
+                f'<div class="admonition{(" " + m.group(1)) if m.group(1)!="admonition" else ""}">' +
+                f'<p class="admonition-title">{m.group(2).strip() or m.group(1).capitalize()}</p>\n{m.group(3).strip()}</div>'
+            ),
+            html)
+        return html
     repo_root = Path(__file__).parent.resolve()
     notebooks_dir = repo_root / 'notebooks'
     docs_dir = repo_root / 'docs'
@@ -522,6 +616,11 @@ document.addEventListener('DOMContentLoaded',function(){
                 return f'src="{new_rel}"'
             return match.group(0)
         body = re.sub(r'src=["\']([^"\']+)["\']', rewrite_img_src, body)
+
+        # --- Admonition pre-processing for custom titles ---
+        body = preprocess_custom_admonitions(body)
+        # --- Admonition post-processing ---
+        body = convert_admonitions(body)
 
         # --- Insert download menu at the top of each chapter ---
         chapter_stem = nb.stem
