@@ -282,19 +282,15 @@ def main():
         notebooks = []
         for f in args.files:
             nb_path = Path(f)
-            # If already absolute, use as is
             if nb_path.is_absolute():
                 pass
-            # If already relative to notebook_dir, use as is
             elif (notebook_dir / nb_path).exists():
                 nb_path = notebook_dir / nb_path
-            # If relative to cwd and exists, use as is
             elif nb_path.exists():
                 pass
             else:
                 print(f"[ERROR] Notebook not found: {nb_path}", file=sys.stderr)
                 continue
-            # Store as relative to notebook_dir if possible
             try:
                 rel = nb_path.relative_to(notebook_dir)
                 notebooks.append(str(rel))
@@ -303,11 +299,138 @@ def main():
         if not notebooks:
             print("[ERROR] No valid notebooks specified with --files.", file=sys.stderr)
             sys.exit(1)
+        # Targeted build: collect images per notebook as needed (existing logic)
+        image_collection_mode = 'per-notebook'
     else:
         if not notebooks_yaml.exists():
             print(f"[ERROR] {notebooks_yaml} not found.", file=sys.stderr)
             sys.exit(1)
         notebooks = parse_yaml_list(notebooks_yaml)
+        # Full build: collect images for all notebooks up front
+        image_collection_mode = 'global'
+
+    # --- Efficient global image collection for full build ---
+    if image_collection_mode == 'global':
+        img_dir = build_dir / 'images'
+        img_dir.mkdir(parents=True, exist_ok=True)
+        print(f"[INFO] [Full Build] Collecting all images for all notebooks into {img_dir}")
+        def process_file_for_images(file_path, nb_stem=None):
+            import re
+            import requests
+            from fetch_youtube import fetch_youtube_thumbnail
+            if not file_path.exists():
+                print(f"[WARN] File not found: {file_path}")
+                return
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            img_links = re.findall(r'!\[[^\]]*\]\(([^)]+)\)', content)
+            img_links += re.findall(r'\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}', content)
+            for img_path in set(img_links):
+                yt_match = re.match(r'https?://img\.youtube\.com/vi/([\w-]{11})/', img_path)
+                if yt_match:
+                    video_id = yt_match.group(1)
+                    flat_name = f"{nb_stem}_youtube_{video_id}.jpg" if nb_stem else f"youtube_{video_id}.jpg"
+                    dst_img = img_dir / flat_name
+                    if fetch_youtube_thumbnail(video_id, dst_img):
+                        print(f"[IMG] Downloaded YouTube thumbnail for {video_id} to {dst_img}")
+                    else:
+                        print(f"[WARN] Could not fetch YouTube thumbnail for {video_id}")
+                    continue
+                if img_path.startswith('http'):
+                    img_filename = os.path.basename(img_path.split('?')[0])
+                    flat_name = f"{nb_stem}_{img_filename}" if nb_stem else img_filename
+                    dst_img = img_dir / flat_name
+                    try:
+                        resp = requests.get(img_path, timeout=15)
+                        if resp.status_code == 200:
+                            with open(dst_img, 'wb') as outimg:
+                                outimg.write(resp.content)
+                            print(f"[IMG] Downloaded remote image {img_path} to {dst_img}")
+                        else:
+                            print(f"[WARN] Failed to download image {img_path}: HTTP {resp.status_code}")
+                    except Exception as e:
+                        print(f"[WARN] Could not download image {img_path}: {e}")
+                    continue
+                found = False
+                real_img_path = None
+                img_filename = os.path.basename(img_path)
+                if not os.path.isabs(img_path) and not img_path.startswith('~'):
+                    candidate = (file_path.parent / img_path).resolve()
+                    if candidate.exists():
+                        real_img_path = candidate
+                        found = True
+                if not found:
+                    for images_root in images_root_candidates:
+                        norm_img_path = os.path.normpath(img_path).lstrip(os.sep)
+                        candidate = images_root / norm_img_path
+                        if candidate.exists():
+                            real_img_path = candidate
+                            found = True
+                            break
+                if not found:
+                    for images_root in images_root_candidates:
+                        candidate = images_root / img_filename
+                        if candidate.exists():
+                            real_img_path = candidate
+                            found = True
+                            break
+                if not found:
+                    for fallback_root in [notebook_dir / '_images', repo_root / '_images']:
+                        candidate = fallback_root / img_filename
+                        if candidate.exists():
+                            real_img_path = candidate
+                            found = True
+                            break
+                if not found:
+                    html_img_root = repo_root / '_build/html/images'
+                    candidate = html_img_root / img_filename
+                    if candidate.exists():
+                        real_img_path = candidate
+                        found = True
+                    if not found:
+                        for subdir, _, files in os.walk(html_img_root):
+                            if img_filename in files:
+                                real_img_path = Path(subdir) / img_filename
+                                found = True
+                                break
+                if not found and os.path.dirname(img_path):
+                    norm_img_path = os.path.normpath(img_path).lstrip(os.sep)
+                    for images_root in images_root_candidates:
+                        for subdir, _, files in os.walk(images_root):
+                            candidate = Path(subdir) / Path(norm_img_path)
+                            if candidate.exists():
+                                real_img_path = candidate
+                                found = True
+                                break
+                        if found:
+                            break
+                if not found:
+                    for images_root in images_root_candidates:
+                        for subdir, _, files in os.walk(images_root):
+                            if img_filename in files:
+                                real_img_path = Path(subdir) / img_filename
+                                found = True
+                                break
+                        if found:
+                            break
+                if found and real_img_path:
+                    flat_name = f"{nb_stem}_{img_filename}" if nb_stem else img_filename
+                    dst_img = img_dir / flat_name
+                    try:
+                        shutil.copy2(real_img_path, dst_img)
+                        print(f"[IMG] Copied {img_path} from {real_img_path} to {dst_img}")
+                    except Exception as e:
+                        print(f"[WARN] Could not copy image {real_img_path} to {dst_img}: {e}")
+                else:
+                    print(f"[WARN] Could not find image: {img_path}")
+        for nb in notebooks:
+            nb_path = notebook_dir / nb
+            if nb_path.exists():
+                process_file_for_images(nb_path, nb_stem=nb_path.stem)
+            md_path = nb_path.with_suffix('.md')
+            if md_path.exists():
+                process_file_for_images(md_path, nb_stem=nb_path.stem)
+        print(f"[INFO] [Full Build] All referenced images copied to {img_dir}")
 
     # --- Build TeX ---
     jupyter_bin = str(repo_root / '.venv' / 'bin' / 'jupyter')
