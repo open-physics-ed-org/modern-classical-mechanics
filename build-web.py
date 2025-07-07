@@ -755,45 +755,63 @@ def main():
         return f"""<!DOCTYPE html>
 <html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{book_title}</title>\n  <link href=\"css/main.css\" rel=\"stylesheet\">\n  <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>\n  <script>\n    (function() {{\n      function applyTheme() {{\n        const saved = localStorage.getItem('theme');\n        if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {{\n          document.documentElement.classList.add('dark');\n        }} else {{\n          document.documentElement.classList.remove('dark');\n        }}\n      }}\n      window.applyTheme = applyTheme;\n      applyTheme();\n      window.toggleTheme = function() {{\n        const isDark = document.documentElement.classList.toggle('dark');\n        localStorage.setItem('theme', isDark ? 'dark' : 'light');\n        applyTheme();\n      }};\n      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);\n    }})();\n  </script>\n</head>\n<body>\n  <button class=\"toggle-dark\" aria-label=\"Toggle dark/light mode\" onclick=\"toggleTheme()\">🌗</button>\n  <header class=\"site-header\">\n    <h1 class=\"site-title\">{book_title}</h1>\n  </header>\n  <nav class=\"site-nav\" id=\"site-nav\">{nav_html}</nav>\n  <div class=\"container\">\n    <main id=\"main-content\">\n      {body}\n    </main>\n  </div>\n  <footer>\n    <p>{footer_html}</p>\n  </footer>\n</body>\n</html>"""
 
-    # --- Process intro.md as index.html ---
-    intro_md = repo_root / 'intro.md'
+    # --- Process index.md and cards.md as index.html ---
+    index_md = repo_root / 'index.md'
+    cards_md = repo_root / 'cards.md'
     index_html_path = build_dir / 'index.html'
-    if intro_md.exists():
+    title = 'Modern Classical Mechanics'
+    main_html = ''
+    card_grid = ''
+    if index_md.exists():
         try:
             import markdown
         except ImportError:
-            import sys
             print("[ERROR] The 'markdown' package is required. Install it with 'pip install markdown'.")
             sys.exit(1)
-        with open(intro_md, 'r', encoding='utf-8') as f:
-            intro_content = f.read()
-        main_html = markdown.markdown(intro_content, extensions=['extra', 'toc', 'admonition'])
-        # --- Load cards from _cards.yml ---
-        import yaml
-        cards_yml = repo_root / '_cards.yml'
-        cards = []
-        if cards_yml.exists():
-            with open(cards_yml, 'r', encoding='utf-8') as f:
-                try:
-                    cards_data = yaml.safe_load(f)
-                    if cards_data and 'cards' in cards_data and isinstance(cards_data['cards'], list):
-                        cards = cards_data['cards']
-                except Exception as e:
-                    print(f"[ERROR] Could not parse _cards.yml: {e}")
-        def build_card_grid(cards):
-            if not cards:
-                return ''
-            html = '<section class="card-grid" aria-label="Main sections">\n'
-            for card in cards:
-                title = card.get('title', '')
-                context = card.get('context', '')
-                link = card.get('link', '#')
-                html += f'  <div class="card" tabindex="0"><h2><a href="{link}">{title}</a></h2><p>{context}</p></div>\n'
-            html += '</section>\n'
-            return html
-        card_grid = build_card_grid(cards)
+        with open(index_md, 'r', encoding='utf-8') as f:
+            index_content = f.read()
+        # Optionally extract title from first heading
+        m = re.match(r'^# (.+)', index_content)
+        if m:
+            title = m.group(1).strip()
+        main_html = markdown.markdown(index_content, extensions=['extra', 'toc', 'admonition'])
+    if cards_md.exists():
+        try:
+            import markdown
+        except ImportError:
+            print("[ERROR] The 'markdown' package is required. Install it with 'pip install markdown'.")
+            sys.exit(1)
+        with open(cards_md, 'r', encoding='utf-8') as f:
+            cards_content = f.read()
+        # Parse cards.md into sections (split by --- or ## ...), then render each as a .card
+        # Split on headings (## ...) or horizontal rules (---)
+        card_sections = re.split(r'(?m)^---+$|^## +', cards_content)
+        card_sections = [s.strip() for s in card_sections if s.strip()]
+        card_grid = '<section class="card-grid" aria-label="Main sections">'
+        for section in card_sections:
+            # Extract first link as the card link and title
+            m = re.search(r'\[([^\]]+)\]\(([^)]+)\)', section)
+            if m:
+                link_title = m.group(1)
+                link_href = m.group(2)
+                # Remove the link line from the section
+                section_body = re.sub(r'^\[([^\]]+)\]\([^)]+\)\s*', '', section, count=1, flags=re.MULTILINE)
+                # Remove leading/trailing blank lines
+                section_body = section_body.strip()
+                # Render the rest as markdown
+                card_body_html = markdown.markdown(section_body, extensions=['extra', 'admonition'])
+                # Compose the card
+                card_grid += f'<article class="card" tabindex="0" role="region" aria-labelledby="card-{link_title.lower().replace(" ","-")}">'\
+                              f'<h2 id="card-{link_title.lower().replace(" ","-")}"><a href="{link_href}">{link_title}</a></h2>'\
+                              f'{card_body_html}</article>'
+            else:
+                # Fallback: just render as a card
+                card_body_html = markdown.markdown(section, extensions=['extra', 'admonition'])
+                card_grid += f'<article class="card" tabindex="0">{card_body_html}</article>'
+        card_grid += '</section>'
+    if main_html:
         body = f'<div class="markdown-body">{main_html}{card_grid}</div>'
-        html = get_html_template("Modern Classical Mechanics", body)
+        html = get_html_template(title, body)
         with open(index_html_path, 'w', encoding='utf-8') as f:
             f.write(html)
 

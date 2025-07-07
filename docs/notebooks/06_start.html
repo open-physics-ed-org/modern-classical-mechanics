@@ -1,0 +1,679 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 6 - Stability and Equilibria &#8212; Modern Classical Mechanics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/06_start';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Week 6 - Notes: Stability and Energy" href="06_notes.html" />
+    <link rel="prev" title="Week 5 - Notes: Conservation of Energy" href="05_notes.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Modern Classical Mechanics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to Modern Classical Mechanics!
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_start.html">Week 1 - Overture: What is Classical Physics?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_notes.html">Week 1 - Notes: Introduction to Classical Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_start.html">Week 2 - Computing as a tool for science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_notes.html">Week 2 - Notes: Mathematical Preliminaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_start.html">Week 3 - What is Mathematical Modeling?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_notes.html">Week 3 - Notes: Making Classical Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_start.html">Week 4 - Why does fluid drag complicate things?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_notes.html">Week 4 - Notes: Equations of Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_start.html">Week 5 - Conservation Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_notes.html">Week 5 - Notes: Conservation of Energy</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 6 - Stability and Equilibria</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_notes.html">Week 6 - Notes: Stability and Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_notes_2.html">Week 6 - Notes: Linear and Angular Momentum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_start.html">Week 7 - Nonlinear Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_notes.html">Week 7 - Notes: Critical Points; Phase Space; Trajectories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_start.html">Week 8 - Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_notes.html">Week 8 - Notes: Oscillators and Modeling Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_start.html">Week 9 - Driven Oscillators and Resonance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_notes.html">Week 9 - Notes: Driven Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_start.html">Week 10 - Chaotic Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_notes.html">Week 10 - Activity: Modeling Chaotic Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_start.html">Week 11 - Calculus of Variations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_notes.html">Week 11 - Notes: The Euler-Lagrange Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_start.html">Week 12 - The Principle of Least Action</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_notes.html">Week 12 - Notes: Introduction to Lagrangian Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_start.html">Week 13 - Lagrangian Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_notes.html">Week 13 - Notes: Examples of Lagrangian Mechanics</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/dannycab/modern-classical-mechanics" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/dannycab/modern-classical-mechanics/edit/main/./notebooks/06_start.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/dannycab/modern-classical-mechanics/issues/new?title=Issue%20on%20page%20%2Fnotebooks/06_start.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/06_start.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 6 - Stability and Equilibria</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-we-study-stability-and-equilibria">Why do we study stability and equilibria?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-simple-harmonic-oscillator-models-many-systems">The Simple Harmonic Oscillator Models Many Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#another-sho-example-a-pendulum">Another SHO Example - A Pendulum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-of-the-sho">Stability of the SHO</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-your-analysis">Interpreting your Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-are-we-going">Where are we going?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#veritasium-the-butterfly-effect-and-chaotic-systems-13-minute-video">Veritasium - THe Butterfly Effect and Chaotic Systems (13 minute video)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#university-of-bristol-chaos-theory-and-randomness-8-minute-video">University of Bristol - Chaos Theory and Randomness (8 minute video)</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-6-stability-and-equilibria">
+<h1>Week 6 - Stability and Equilibria<a class="headerlink" href="#week-6-stability-and-equilibria" title="Link to this heading">#</a></h1>
+<p>We have shown that we can develop trajectories of different physical systems by solving the differential equations that describe them. This is a useful approach, but it often means we are focused on a single trajectory. This might be fine if all the trajectories are the same or roughly so, say like the 1D falling ball, or the simple harmonic oscillator.</p>
+<p>Systems can produce multiple families of trajectories depending on the parameter choices, and the initial conditions associated with the problem you are solving. A more general approach that starts us down the road of characterizing the many potential behaviors that a physical system can exhibit is to consider <a class="reference external" href="https://en.wikipedia.org/wiki/Stability_theory">stability</a>. As we will build the toolkit to investigate classical systems, understanding equilibrium points and their stability is a useful step.</p>
+<section id="why-do-we-study-stability-and-equilibria">
+<h2>Why do we study stability and equilibria?<a class="headerlink" href="#why-do-we-study-stability-and-equilibria" title="Link to this heading">#</a></h2>
+<p>First, because nature is often moving towards a state of equilibrium because those states are associated, as we will see, with the lowest local energy state. It takes energy to move away from stable equilibrium, and physical systems tend to minimize their energy – because those configurations are often quite stable.</p>
+<p>Much of the physics that we do today focuses on <a class="reference external" href="https://en.wikipedia.org/wiki/Non-equilibrium_thermodynamics">non-equilibrium systems</a>. These are systems that are typically driven by external interactions to ensure the system remains out of equilibrium. The responses of these systems to this driving and how they might relax to equilibrium are often studied.</p>
+<p>Second, we can often start from the equilibrium points of a system and then perturb the system to see how it responds. We know how to solve problems around equilibrium points, and working with fully non-equilibrium systems is often much harder.</p>
+<p>We have gotten much better at working in non-equilibrium spaces, especially as we have developed computing tools that can help us simulate the behavior of systems that are far from equilibrium.</p>
+</section>
+<section id="the-simple-harmonic-oscillator-models-many-systems">
+<h2>The Simple Harmonic Oscillator Models Many Systems<a class="headerlink" href="#the-simple-harmonic-oscillator-models-many-systems" title="Link to this heading">#</a></h2>
+<p>You have used the simple harmonic oscillator frequently.</p>
+<p>There’s a reason for that.</p>
+<p>It provides the simplest example of a system that exhibits periodic motion. It also is a system with one of the simplest energy landscapes – a parabola; and it has a global stable equilibrium point at the bottom of the potential well.</p>
+<p>There are many systems that we can transform into a simple harmonic oscillator. And it is not because the world is full of springs and masses. It is because the simple harmonic oscillator is a good model for many systems near their local equilibrium points. In fact, as you will see, it is the leading (non-constant) term in every Taylor expansion of a 1D potential energy function near a local minimum.</p>
+<section id="another-sho-example-a-pendulum">
+<h3>Another SHO Example - A Pendulum<a class="headerlink" href="#another-sho-example-a-pendulum" title="Link to this heading">#</a></h3>
+<p>Consider a pendulum of mass <span class="math notranslate nohighlight">\(m\)</span> and length <span class="math notranslate nohighlight">\(L\)</span> that is displaced from the vertical by an angle <span class="math notranslate nohighlight">\(\theta\)</span>. We can show that the complete equation of motion (without drag) is:</p>
+<div class="math notranslate nohighlight">
+\[mL\ddot{\theta} = - mg\sin \theta,\]</div>
+<div class="math notranslate nohighlight">
+\[\ddot{\theta} = -\frac{g}{L}\sin \theta.\]</div>
+<p>Typically we limit to small angles, so <span class="math notranslate nohighlight">\(\sin \theta \approx \theta\)</span>, and the equation becomes:</p>
+<div class="math notranslate nohighlight">
+\[\ddot{\theta} = -\frac{g}{L}\theta.\]</div>
+<p>This is a second order differential equation that we have solved before. The general EOM for a simple harmonic oscillator is:</p>
+<div class="math notranslate nohighlight">
+\[\ddot{x} = -\omega^2 x.\]</div>
+<p>A general solution to this equation is:</p>
+<div class="math notranslate nohighlight">
+\[x(t) = A\cos(\omega t + \phi),\]</div>
+<p>where <span class="math notranslate nohighlight">\(A\)</span> is the amplitude of the oscillation, <span class="math notranslate nohighlight">\(\omega\)</span> is the angular frequency of the oscillation, and <span class="math notranslate nohighlight">\(\phi\)</span> is the phase of the oscillation.</p>
+<p>This model of an SHO works with many systems, not just pendulums. Here’s some examples along with the equivalent natural oscillation frequency, <span class="math notranslate nohighlight">\(\omega^2\)</span>, for each system:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>System</p></th>
+<th class="head"><p>Equation of motion</p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\omega^2\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Mass-spring system</p></td>
+<td><p><span class="math notranslate nohighlight">\(m\ddot{x} = -kx\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(k/m\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Pendulum</p></td>
+<td><p><span class="math notranslate nohighlight">\(\ddot{\theta} = -\frac{g}{L}\theta\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(g/L\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>LC circuit</p></td>
+<td><p><span class="math notranslate nohighlight">\(L\ddot{q} = -\frac{q}{C}\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1/LC\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Water in a U-shaped tube</p></td>
+<td><p><span class="math notranslate nohighlight">\(\ddot{h} = -\frac{2g\rho A}{M} h\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{2g\rho A}{M}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="stability-of-the-sho">
+<h3>Stability of the SHO<a class="headerlink" href="#stability-of-the-sho" title="Link to this heading">#</a></h3>
+<p>Regardless of the choice of physical model, the SHO equation is the same second order differential equation, which we write in general as:</p>
+<div class="math notranslate nohighlight">
+\[\frac{d^2 x}{dt^2} = -\omega^2 x\]</div>
+<p>For a given system, this results in a potential energy that is proportional to the square of the variable <span class="math notranslate nohighlight">\(x\)</span> (the “stretch”) and to the square of the frequency <span class="math notranslate nohighlight">\(\omega\)</span>. This potential energy is always positive, and it can have a non-zero minimum.</p>
+<div class="math notranslate nohighlight">
+\[U(x) = \frac{1}{2} \xi \omega^2 x^2 + U_0\]</div>
+<p>where <span class="math notranslate nohighlight">\(\xi\)</span> is a positive constant (with units!) of proportionality. In the case of a mass on a spring, <span class="math notranslate nohighlight">\(\xi = m\)</span>. We can find the equilibrium points by setting taking the first derivative of the potential energy and setting it to zero.</p>
+<div class="math notranslate nohighlight">
+\[\frac{dU}{dx} = \xi \omega^2 x = 0\]</div>
+<p>This gives us the equilibrium point at <span class="math notranslate nohighlight">\(x = 0\)</span>. We might have expected this, as the potential energy is a parabola, and the minimum of a parabola is at the vertex. We can also determine the stability of this equilibrium point by looking at the second derivative of the potential energy, and evaluating it at the equilibrium point.</p>
+<div class="math notranslate nohighlight">
+\[\frac{d^2U}{dx^2} = \xi \omega^2 &gt; 0\]</div>
+<p>This number is always positive, indicating that for an SHO, the equilibrium point is stable. This is a general result for the SHO, and it is true for all the systems listed above.</p>
+</section>
+</section>
+<section id="interpreting-your-analysis">
+<h2>Interpreting your Analysis<a class="headerlink" href="#interpreting-your-analysis" title="Link to this heading">#</a></h2>
+<p>Above, we completed an analysis of the simplest system that we will work with. It lead us to find a global minimum in the potential energy, so that suggests a few things for us to think about:</p>
+<ol class="arabic simple">
+<li><p><strong>The SHO is a conservative system - the total energy of the system is conserved.</strong> So any trajectory will oscillate between kinetic and potential energy, but the total energy will remain constant. This is not something that will always be true.</p></li>
+<li><p><strong>The SHO has a global minimum in potential energy - a globally stable equilibrium point.</strong> Oscillations will always occur around this point. Global stability is a very strong form of stability; it is also rare in that most systems have multiple equilibrium points: some are stable, some are not, and some are <a class="reference external" href="https://en.wikipedia.org/wiki/Metastability">metastable</a>.</p></li>
+<li><p><strong>If the SHO starts at rest at the equilibrium point, it will remain there.</strong> It will take energy put into the system to move away from the equilibrium point. Because this a global minimum, all trajectories will oscillate around this point. However, in systems with local equilibrium points, the system can be perturbed away from the equilibrium point, and end up in a different equilibrium point. This is a common feature of many systems.</p></li>
+<li><p><strong>If there are interactions that remove energy from the system, the system will eventually come to rest at the equilibrium point.</strong> This is a common feature of many systems.</p></li>
+</ol>
+</section>
+<section id="where-are-we-going">
+<h2>Where are we going?<a class="headerlink" href="#where-are-we-going" title="Link to this heading">#</a></h2>
+<p>This work we are doing to understand equations of motion, stability, and equilibrium points is foundational. Some of the most exciting physics we see today is rooted in understanding how systems move away from equilibrium, and how they respond to external driving. <a class="reference external" href="https://en.wikipedia.org/wiki/Chaos_theory">Chaos theory</a> is a field that has grown out of understanding how systems can be very sensitive to initial conditions, and how they can exhibit complex behavior.</p>
+<p>We will start to use these ideas from this week into next week as we build a set of additional tools like <a class="reference external" href="https://en.wikipedia.org/wiki/Phase_space">phase space diagrams</a> and using asymptotic behavior to investigate and explain the behavior of physical systems.</p>
+<p>To introduce some of those initial ideas here are two videos from different physics perspectives on the topic of chaos.</p>
+<section id="veritasium-the-butterfly-effect-and-chaotic-systems-13-minute-video">
+<h3>Veritasium - THe Butterfly Effect and Chaotic Systems (13 minute video)<a class="headerlink" href="#veritasium-the-butterfly-effect-and-chaotic-systems-13-minute-video" title="Link to this heading">#</a></h3>
+<p>In this video, Derek Muller uses the typical example of the Butterfly Effect to introduce the idea of chaos theory. The philosophical aspects of the butterfly effect are interesting, but not real in any physical sense. Instead, it’s a metaphor for the idea that small changes in initial conditions can lead to large changes in the system. Muller contrasts our understanding of determinism with uncertainty; he introduces the concepts of sensitivity to initial conditions and discusses the idea of an attractor.</p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=fDek6cYijxI"><img alt="YouTube thumbnail" src="https://img.youtube.com/vi/fDek6cYijxI/hqdefault.jpg" /></a></p>
+</section>
+<section id="university-of-bristol-chaos-theory-and-randomness-8-minute-video">
+<h3>University of Bristol - Chaos Theory and Randomness (8 minute video)<a class="headerlink" href="#university-of-bristol-chaos-theory-and-randomness-8-minute-video" title="Link to this heading">#</a></h3>
+<p>In this video, two researchers from the University of Bristol (<a class="reference external" href="https://people.maths.bris.ac.uk/~majm/">Jens Marklof</a> and <a class="reference external" href="https://people.maths.bris.ac.uk/~te20281/">Henna Koivusalo</a>) discuss the idea of chaos theory from a more mathematical perspective - remdining us of the differences between randomness and chaos. The overlap between physicists and mathematicians in the study of chaos is significant. One important contribution is <a class="reference external" href="https://en.wikipedia.org/wiki/Dynamical_system">Dynamical systems</a>, which is a mathematical framework that is used to study these behaviors. The researchers who do this work are mathematicians, physicists, engineers, and computer scientists. They do experiments, but they also do a lot of mathematical modeling.</p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=5fRhasVmcUE"><img alt="YouTube thumbnail" src="https://img.youtube.com/vi/5fRhasVmcUE/hqdefault.jpg" /></a></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "jbook"
+        },
+        kernelOptions: {
+            name: "jbook",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'jbook'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="05_notes.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 5 - Notes: Conservation of Energy</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="06_notes.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 6 - Notes: Stability and Energy</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-we-study-stability-and-equilibria">Why do we study stability and equilibria?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-simple-harmonic-oscillator-models-many-systems">The Simple Harmonic Oscillator Models Many Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#another-sho-example-a-pendulum">Another SHO Example - A Pendulum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stability-of-the-sho">Stability of the SHO</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-your-analysis">Interpreting your Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-are-we-going">Where are we going?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#veritasium-the-butterfly-effect-and-chaotic-systems-13-minute-video">Veritasium - THe Butterfly Effect and Chaotic Systems (13 minute video)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#university-of-bristol-chaos-theory-and-randomness-8-minute-video">University of Bristol - Chaos Theory and Randomness (8 minute video)</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Marcos D. Caballero
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

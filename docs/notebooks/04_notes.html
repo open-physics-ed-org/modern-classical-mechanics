@@ -1,0 +1,851 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 4 - Notes: Equations of Motion &#8212; Modern Classical Mechanics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/04_notes';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Week 5 - Conservation Laws" href="05_start.html" />
+    <link rel="prev" title="Week 4 - Why does fluid drag complicate things?" href="04_start.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Modern Classical Mechanics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to Modern Classical Mechanics!
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_start.html">Week 1 - Overture: What is Classical Physics?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_notes.html">Week 1 - Notes: Introduction to Classical Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_start.html">Week 2 - Computing as a tool for science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_notes.html">Week 2 - Notes: Mathematical Preliminaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_start.html">Week 3 - What is Mathematical Modeling?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_notes.html">Week 3 - Notes: Making Classical Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_start.html">Week 4 - Why does fluid drag complicate things?</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 4 - Notes: Equations of Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_start.html">Week 5 - Conservation Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_notes.html">Week 5 - Notes: Conservation of Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_start.html">Week 6 - Stability and Equilibria</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_notes.html">Week 6 - Notes: Stability and Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_notes_2.html">Week 6 - Notes: Linear and Angular Momentum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_start.html">Week 7 - Nonlinear Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_notes.html">Week 7 - Notes: Critical Points; Phase Space; Trajectories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_start.html">Week 8 - Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_notes.html">Week 8 - Notes: Oscillators and Modeling Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_start.html">Week 9 - Driven Oscillators and Resonance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_notes.html">Week 9 - Notes: Driven Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_start.html">Week 10 - Chaotic Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_notes.html">Week 10 - Activity: Modeling Chaotic Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_start.html">Week 11 - Calculus of Variations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_notes.html">Week 11 - Notes: The Euler-Lagrange Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_start.html">Week 12 - The Principle of Least Action</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_notes.html">Week 12 - Notes: Introduction to Lagrangian Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_start.html">Week 13 - Lagrangian Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_notes.html">Week 13 - Notes: Examples of Lagrangian Mechanics</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/dannycab/modern-classical-mechanics" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/dannycab/modern-classical-mechanics/edit/main/./notebooks/04_notes.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/dannycab/modern-classical-mechanics/issues/new?title=Issue%20on%20page%20%2Fnotebooks/04_notes.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/04_notes.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 4 - Notes: Equations of Motion</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-dimensional-quadratic-drag">Two-Dimensional Quadratic Drag</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-the-coordinate-system">Define the Coordinate System</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-newton-s-second-law">Apply Newton’s Second Law</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-can-t-we-solve-these-equations">Why can’t we solve these equations?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-drag-in-two-dimensions">Linear Drag in Two-Dimensions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Apply Newton’s Second Law</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-the-equations">Solve the Equations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#velocity-in-the-x-direction">Velocity in the <span class="math notranslate nohighlight">\(x\)</span> direction</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#velocity-in-the-y-direction">Velocity in the <span class="math notranslate nohighlight">\(y\)</span> direction</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trajectories">Trajectories</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-gravitational-bound-system">2D Gravitational Bound System</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Define the Coordinate System</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-then-get-the-trajectories">How do we then get the trajectories?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-simple-harmonic-oscillator-sho">The Simple Harmonic Oscillator (SHO)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-solve-this">How do we solve this?</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-4-notes-equations-of-motion">
+<h1>Week 4 - Notes: Equations of Motion<a class="headerlink" href="#week-4-notes-equations-of-motion" title="Link to this heading">#</a></h1>
+<p>As you might have noticed in the last few weeks, our principal work is using models to develop equations of motion. Those equations of motion can then be analyzed, integrated, and plotted to understand the behavior of the system. This week, we will focus on the equations of motion for a few different systems.</p>
+<p>We will set up the equations of motion for a 2D quadratic drag system and show it’s intractable analytically. Here is where our use of [Euler-Cromer integration] can get us out of trouble. We will also develop the analytical solution to the 2D drag case when the drag is linear, which will show us how to solve these problems and compare them things we know.We will then quickly introduce two additional systems that are very common “base models” for more complex systems: (1) the gravitational bound planet system (a proxy for other central force systems) and (2) the simple harmonic oscillator (a common proxy for many oscillatory systems).</p>
+<section id="two-dimensional-quadratic-drag">
+<h2>Two-Dimensional Quadratic Drag<a class="headerlink" href="#two-dimensional-quadratic-drag" title="Link to this heading">#</a></h2>
+<p>The drag force in 2D can be written in terms of the velocity vector of the object as:</p>
+<div class="math notranslate nohighlight">
+\[\vec{F}_{drag} = -D |\vec{v}| \vec{v}\]</div>
+<p>where <span class="math notranslate nohighlight">\(D\)</span> is the drag coefficient and <span class="math notranslate nohighlight">\(\vec{v}\)</span> is the velocity vector. Note that this force is written entirely using velocity, there is no dependence on position. However, the velocity vector is also function of time, <span class="math notranslate nohighlight">\(\vec{v} = \vec{v}(t)\)</span>.</p>
+<section id="define-the-coordinate-system">
+<h3>Define the Coordinate System<a class="headerlink" href="#define-the-coordinate-system" title="Link to this heading">#</a></h3>
+<p>To start this analysis, we need to define a coordinate system. Below, we draw the particle at some random time with the vecolicty vector shown. The axes are typical: <span class="math notranslate nohighlight">\(x\)</span> is horizontal and <span class="math notranslate nohighlight">\(y\)</span> is vertical. The drag force is always opposite to the velocity vector, so it will always be in the opposite direction of the velocity vector.</p>
+<p><img alt="Coordinate System" src="../_images/2d-falling-ball.png" /></p>
+<p>In this coordinate system, the properties of the particle are:</p>
+<div class="math notranslate nohighlight">
+\[\vec{r} = x \hat{x} + y \hat{y} = \langle x, y \rangle\]</div>
+<div class="math notranslate nohighlight">
+\[\vec{v} = v_x \hat{x} + v_y \hat{y} = \langle v_x, v_y \rangle\]</div>
+<div class="math notranslate nohighlight">
+\[\vec{a} = a_x \hat{x} + a_y \hat{y} = \langle a_x, a_y \rangle\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat{x}\)</span> and <span class="math notranslate nohighlight">\(\hat{y}\)</span> are the unit vectors in the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions, respectively. And the magnitude of the velocity vector is <span class="math notranslate nohighlight">\(|\vec{v}| = \sqrt{v_x^2 + v_y^2}\)</span> as you might imagine.</p>
+<p>The free body diagram at the point in time shown above is shown below. You see the gravitational force pointing directly downward and the drag force pointing in the opposite direction of the velocity vector. We continue to apply our coordinate system to the forces.</p>
+<p><img alt="Free Body Diagram" src="../_images/2d-falling-ball-fbd.png" /></p>
+</section>
+<section id="apply-newton-s-second-law">
+<h3>Apply Newton’s Second Law<a class="headerlink" href="#apply-newton-s-second-law" title="Link to this heading">#</a></h3>
+<p>We now apply Newton’s Seccond Law to the particle in the chosen coordinate system. The forces acting on the particle are the gravitational force and the drag force.</p>
+<div class="math notranslate nohighlight">
+\[\vec{F}_{net} = \vec{F}_{gravity} + \vec{F}_{drag}\]</div>
+<p>How do we apply the coordinate system to the forces? We focus on the diagram above. We start by writing the sum of the forces. For this, we take <span class="math notranslate nohighlight">\(F_{gravity,x}\)</span> to be a positive value, <span class="math notranslate nohighlight">\(mg\)</span>, where <span class="math notranslate nohighlight">\(g\)</span> is the magnitude of the acceleration due to gravity.</p>
+<div class="math notranslate nohighlight">
+\[F_{net,x} =  F_{drag,x}\]</div>
+<div class="math notranslate nohighlight">
+\[F_{net,y} =  F_{drag,y}-F_{gravity,y}\]</div>
+<p>We can now write the forces in terms of the components of the vectors, and we introduce the acceleration vector, <span class="math notranslate nohighlight">\(\vec{a} = \langle a_x, a_y \rangle\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[m a_x = -D |\vec{v}| v_x\]</div>
+<div class="math notranslate nohighlight">
+\[m a_y = -D |\vec{v}| v_y - mg\]</div>
+<p>Let’s clean this up a little in terms of the components:</p>
+<div class="math notranslate nohighlight">
+\[\ddot{x} = -\frac{D}{m}  \dot{x}\sqrt{\dot{x}^2 + \dot{y}^2}\]</div>
+<div class="math notranslate nohighlight">
+\[\ddot{y} = -\frac{D}{m} \dot{y}\sqrt{\dot{x}^2 + \dot{y}^2} - g\]</div>
+<p>We can try to focus on the velocity instead to simplify the equations. Then we integrate those equations to get the position.</p>
+<div class="math notranslate nohighlight">
+\[\dot{v}_x = -\frac{D}{m}  {v_x}\sqrt{{v_x}^2 + {v_y}^2}\]</div>
+<div class="math notranslate nohighlight">
+\[\dot{v}_y = -\frac{D}{m} {v_y}\sqrt{{v_x}^2 + {v_y}^2} - g\]</div>
+<p>Rats! There is no analytical solution to these equations.</p>
+<p>These are called <a class="reference external" href="https://math.libretexts.org/Bookshelves/Differential_Equations/Differential_Equations_(Chasnov)/07:_Systems_of_Equations/7.02:_Coupled_First-Order_Equations">coupled differential equations</a> because the equations are linked by the terms <span class="math notranslate nohighlight">\(\dot{x}\)</span> and <span class="math notranslate nohighlight">\(\dot{y}\)</span>. This means that we cannot solve them independently. We need another approach to solve these equations.</p>
+<section id="why-can-t-we-solve-these-equations">
+<h4>Why can’t we solve these equations?<a class="headerlink" href="#why-can-t-we-solve-these-equations" title="Link to this heading">#</a></h4>
+<p>We cannot form a solution because they are coupled and non-linear. Sometimes, we can decouple these equations (as we will see later) and produce partial differentials of the form:</p>
+<div class="math notranslate nohighlight">
+\[f_1(v_x)dv_x = g_1(t)dt\]</div>
+<div class="math notranslate nohighlight">
+\[f_2(v_y)dv_y = g_2(t)dt\]</div>
+<p>These lead to independent equations of motion. We can use separation of variables to try to solve them. This is not possible in all cases, so functions are still not integrable analytically. But we cannot even form these partials, so an analytical solution is not possible in this case.</p>
+</section>
+</section>
+</section>
+<section id="linear-drag-in-two-dimensions">
+<h2>Linear Drag in Two-Dimensions<a class="headerlink" href="#linear-drag-in-two-dimensions" title="Link to this heading">#</a></h2>
+<p>As we saw above, the quadratic drag case is intractable. However, the linear drag case is analytically solvable. The drag force in 2D can be written in terms of the velocity vector of the object as:</p>
+<div class="math notranslate nohighlight">
+\[\vec{F}_{lin} = -m \gamma \vec{v}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\gamma\)</span> is a proxy for the drag coefficient. The linear drag force is proportional to the velocity vector.</p>
+<p>We have the same set up as before and same FBD.</p>
+<p><img alt="Coordinate System" src="../_images/2d-falling-ball.png" /></p>
+<p>And thus the same coordinate system. The properties of the particle are the same as above.</p>
+<section id="id1">
+<h3>Apply Newton’s Second Law<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>We now apply Newton’s Seccond Law to the particle in the chosen coordinate system. The forces acting on the particle are the gravitational force and the drag force.</p>
+<div class="math notranslate nohighlight">
+\[\vec{F}_{net} = \vec{F}_{gravity} + \vec{F}_{lin}\]</div>
+<p>Again, the gravitation force magnitude is <span class="math notranslate nohighlight">\(mg\)</span>, so we write the forces in terms of the components of the vectors:</p>
+<div class="math notranslate nohighlight">
+\[F_{net,x} =  F_{lin,x}\]</div>
+<div class="math notranslate nohighlight">
+\[F_{net,y} =  F_{lin,y}-F_{gravity,y}\]</div>
+<p>In terms of the acceleration vector, <span class="math notranslate nohighlight">\(\vec{a} = \langle a_x, a_y \rangle\)</span>, we have:</p>
+<div class="math notranslate nohighlight">
+\[m a_x = -m \gamma v_x\]</div>
+<div class="math notranslate nohighlight">
+\[m a_y = -m \gamma v_y - mg\]</div>
+<p>Notice that <span class="math notranslate nohighlight">\(v_x\)</span> and <span class="math notranslate nohighlight">\(v_y\)</span> are the components of the velocity vector; they can be positive, negative, or zero. We can clean this up in terms of the velocity components, and we have two linear, uncoupled differential equations:</p>
+<div class="math notranslate nohighlight">
+\[\dot{v}_x = -\gamma v_x\]</div>
+<div class="math notranslate nohighlight">
+\[\dot{v}_y = - \gamma v_y - g\]</div>
+</section>
+<section id="solve-the-equations">
+<h3>Solve the Equations<a class="headerlink" href="#solve-the-equations" title="Link to this heading">#</a></h3>
+<p>We can try to solve these equations by integrating them. We can integrate the first equation to get the velocity in the <span class="math notranslate nohighlight">\(x\)</span> direction as a function of time.</p>
+<section id="velocity-in-the-x-direction">
+<h4>Velocity in the <span class="math notranslate nohighlight">\(x\)</span> direction<a class="headerlink" href="#velocity-in-the-x-direction" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[\dot{v}_x = -\gamma v_x\]</div>
+<p>We separate the variables and integrate:</p>
+<div class="math notranslate nohighlight">
+\[\frac{dv_x}{v_x} = -\gamma dt\]</div>
+<p>We integrate from <span class="math notranslate nohighlight">\(v_{0,x}\)</span> to <span class="math notranslate nohighlight">\(v_x\)</span> and from <span class="math notranslate nohighlight">\(0\)</span> to <span class="math notranslate nohighlight">\(t\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\int_{v_{0,x}}^{v_x} \frac{dv_x}{v_x} = -\gamma \int_{0}^{t} dt\]</div>
+<div class="math notranslate nohighlight">
+\[\ln(v_x) - \ln(v_{0,x}) = -\gamma t\]</div>
+<div class="math notranslate nohighlight">
+\[v_x(t) = v_{0,x} e^{-\gamma t}\]</div>
+<p>We see an exponential decay in the velocity in the <span class="math notranslate nohighlight">\(x\)</span> direction.</p>
+</section>
+<section id="velocity-in-the-y-direction">
+<h4>Velocity in the <span class="math notranslate nohighlight">\(y\)</span> direction<a class="headerlink" href="#velocity-in-the-y-direction" title="Link to this heading">#</a></h4>
+<p>Now we can try to do the same for <span class="math notranslate nohighlight">\(v_y\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\dot{v}_y = -\gamma v_y - g\]</div>
+<p>We separate the variables and integrate:</p>
+<div class="math notranslate nohighlight">
+\[\frac{dv_y}{v_y + \frac{g}{\gamma}} = -\gamma dt\]</div>
+<p>Note that this integral will be of the form:</p>
+<div class="math notranslate nohighlight">
+\[\int \frac{dx}{x + a} = \ln(x + a) + C\]</div>
+<p>Again, we integrate from <span class="math notranslate nohighlight">\(v_{0,y}\)</span> to <span class="math notranslate nohighlight">\(v_y\)</span> and from <span class="math notranslate nohighlight">\(0\)</span> to <span class="math notranslate nohighlight">\(t\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\int_{v_{0,y}}^{v_y} \frac{dv_y}{v_y + \frac{g}{\gamma}} = -\gamma \int_{0}^{t} dt\]</div>
+<div class="math notranslate nohighlight">
+\[\ln(v_y + \frac{g}{\gamma}) - \ln(v_{0,y} + \frac{g}{\gamma}) = -\gamma t\]</div>
+<div class="math notranslate nohighlight">
+\[ln\left(\dfrac{v_y + \frac{g}{\gamma}}{v_{0,y} + \frac{g}{\gamma}}\right) = -\gamma t\]</div>
+<p>Next we use exponentiation and do a little algebra to solve for <span class="math notranslate nohighlight">\(v_y\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\left(\dfrac{g}{\gamma} + v_y\right) = \left(\dfrac{g}{\gamma} + v_{0,y}\right) e^{-\gamma t}\]</div>
+<div class="math notranslate nohighlight">
+\[v_y(t) = \dfrac{g}{\gamma}\left(e^{-\gamma t} - 1\right) + v_{0,y} e^{-\gamma t}\]</div>
+<p>In the <span class="math notranslate nohighlight">\(y\)</span> direction, the story appears more complex.</p>
+</section>
+</section>
+<section id="trajectories">
+<h3>Trajectories<a class="headerlink" href="#trajectories" title="Link to this heading">#</a></h3>
+<p>One of the main concepts we will discuss the trajectory of a system. We borrow that language and idea from projectile motion –  the location of the particle as a function of time is the trajectory. In this class, we will consider the word trajectory to mean the evolution of any property of the system as a function of time. This connects strongly to the concept of phase space, which we will discuss in the future.</p>
+<p>In the prior example, we found the trajectory of the velocity in the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions.</p>
+<div class="math notranslate nohighlight">
+\[v_x(t) = v_{0,x} e^{-\gamma t}\]</div>
+<div class="math notranslate nohighlight">
+\[v_y(t) = \dfrac{g}{\gamma}\left(e^{-\gamma t} - 1\right) + v_{0,y} e^{-\gamma t}\]</div>
+<p>We can expound on that work to find the trajectory of the position of the particle as a function of time. We can integrate the velocity to get the position.</p>
+<p>Those integrals are doable, but they can be a little messy. We won’t do them here, but quote the results consistent with the above equations.</p>
+<div class="math notranslate nohighlight">
+\[x(t) = x_0 + \dfrac{1}{\gamma}v_{0,x}\left(1 - e^{-\gamma t}\right)\]</div>
+<div class="math notranslate nohighlight">
+\[y(t) = y_0 - \dfrac{g}{\gamma}t + \dfrac{1}{\gamma}\left(\dfrac{g}{\gamma} + v_{0,y}\right)\left(1 - e^{-\gamma t}\right)\]</div>
+</section>
+</section>
+<section id="d-gravitational-bound-system">
+<h2>2D Gravitational Bound System<a class="headerlink" href="#d-gravitational-bound-system" title="Link to this heading">#</a></h2>
+<p>Consider a massive object (a large star) and a smaller satellite (a moon or small planet). We know that <a class="reference external" href="https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation">Newton’s Universal Law of Gravitation</a> tells us the force between two objects that interact gravitationally is:</p>
+<div class="math notranslate nohighlight">
+\[F = \dfrac{G m_1 m_2}{r^2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(G\)</span> is the gravitational constant, <span class="math notranslate nohighlight">\(m_1\)</span> and <span class="math notranslate nohighlight">\(m_2\)</span> are the masses of the objects, and <span class="math notranslate nohighlight">\(r\)</span> is the distance between the objects.</p>
+<p>But we need to be more clear about the forces and the vector relationships. Consider the figure below with the massive object at the origin and the satellite at some distance <span class="math notranslate nohighlight">\(r\)</span> from the origin. What is the vector <span class="math notranslate nohighlight">\(\vec{r}\)</span> that describes the location of the satellite?</p>
+<p><img alt="Gravitational Bound System" src="../_images/grav_01.png" /></p>
+<p>If we move the sun from the origin a little, we can start to see what <span class="math notranslate nohighlight">\(\vec{r}\)</span> is. The vector <span class="math notranslate nohighlight">\(\vec{r}\)</span> is the vector from the sun to the satellite. See the figure below to see the sketch.</p>
+<p><img alt="Gravitational Bound System" src="../_images/grav_02.png" /></p>
+<p>So if the location of the sun is <span class="math notranslate nohighlight">\(\vec{r}_{sun}\)</span> and the Earth is <span class="math notranslate nohighlight">\(\vec{r}_{earth}\)</span>, then the vector <span class="math notranslate nohighlight">\(\vec{r}\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[\vec{r} = \vec{r}_{earth} - \vec{r}_{sun}\]</div>
+<p>Let’s return to the simplified model with the sun at the origin, and consider the earth at some distance <span class="math notranslate nohighlight">\(r\)</span> from the origin. The force on the earth is:</p>
+<div class="math notranslate nohighlight">
+\[\vec{F}_{grav} = -G \dfrac{M_{sun} M_{earth}}{|\vec{r}|^3} \vec{r}\]</div>
+<p>where <span class="math notranslate nohighlight">\(M_{sun} = 2\times10^{30} \mathrm{kg}\)</span> is the mass of the sun and <span class="math notranslate nohighlight">\(M_{earth} = 6 \times 10^{24} \mathrm{kg}\)</span> is the mass of the earth.</p>
+<section id="id2">
+<h3>Define the Coordinate System<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>In the figure below, we show the earth at some distance <span class="math notranslate nohighlight">\(r\)</span> from the origin at an angle <span class="math notranslate nohighlight">\(\phi\)</span> from the <span class="math notranslate nohighlight">\(x\)</span>-axis. This distance is about <span class="math notranslate nohighlight">\(1.5 \times 10^{11}\;\mathrm{m}\)</span> or <span class="math notranslate nohighlight">\(1\;\mathrm{A.U.}\)</span> (<a class="reference external" href="https://en.wikipedia.org/wiki/Astronomical_unit">astronomical unit</a>). While not entirely obvious, the scale of these numbers allow us to assume the Sun is at the origin, and doesn’t move. Although this is not a good assumption for the real solar system, the sun orbits the <a class="reference external" href="https://en.wikipedia.org/wiki/Barycenter">barycenter</a> of the solar system, which is about 1 solar radii from the center of the sun.</p>
+<p><img alt="Gravitational Bound System" src="../_images/grav_03.png" /></p>
+<p>Let’s use the standard <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> axes to write the equations of motion. We can apply Newton’s Second Law to the earth in the chosen coordinate system.</p>
+<div class="math notranslate nohighlight">
+\[\vec{F}_{net} = \vec{F}_{gravity} = m\vec{a} = m\langle a_x, a_y \rangle\]</div>
+<p>So that the forces in the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions are:</p>
+<div class="math notranslate nohighlight">
+\[F_x = -G \dfrac{M_{sun} M_{earth}x}{(x+2+y^2)^{3/2}} \qquad F_y = -G \dfrac{M_{sun} M_{earth}y}{(x+2+y^2)^{3/2}}\]</div>
+<p>and thus the acceleration of the Earth in the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions are:</p>
+<div class="math notranslate nohighlight">
+\[a_x = -G \dfrac{M_{sun} x}{(x+2+y^2)^{3/2}} \qquad a_y = -G \dfrac{M_{sun} y}{(x+2+y^2)^{3/2}}\]</div>
+<p>This gives us a set of coupled differential equations.</p>
+<div class="math notranslate nohighlight">
+\[\ddot{x} = -G \dfrac{M_{sun} x}{(x+2+y^2)^{3/2}} \qquad \ddot{y} = -G \dfrac{M_{sun} y}{(x+2+y^2)^{3/2}}\]</div>
+</section>
+<section id="how-do-we-then-get-the-trajectories">
+<h3>How do we then get the trajectories?<a class="headerlink" href="#how-do-we-then-get-the-trajectories" title="Link to this heading">#</a></h3>
+<p>We can’t solve these equations without more information. We need to know the initial conditions of the system (the initial position and velocity of the Earth). We can then integrate these equations to get the position of the Earth as a function of time.</p>
+<p>We have three potential ways to solve these EOMs:</p>
+<ol class="arabic simple">
+<li><p>Direct Integration: We can integrate the equations of motion directly. This is possible in some cases where the equations are simple enough; think about the falling ball without air resistance, or the linear 1D drag case.</p></li>
+<li><p>Decouple and Solve: We try to solve the coupled differential equations by decoupling them. This is possible in some cases, but not all. We can frequently decouple the equations by writing them in terms of the velocity, or by making a change of position variables.</p></li>
+<li><p>Numerical Integration: We use numerical methods to predict the motion in small time steps. This is the most common method for solving complex systems.</p></li>
+</ol>
+</section>
+</section>
+<section id="the-simple-harmonic-oscillator-sho">
+<h2>The Simple Harmonic Oscillator (SHO)<a class="headerlink" href="#the-simple-harmonic-oscillator-sho" title="Link to this heading">#</a></h2>
+<p>In 1D, the simple harmonic oscillator is a system where the force is proportional to the displacement from the equilibrium position. The force is given by:</p>
+<div class="math notranslate nohighlight">
+\[F = -ks\]</div>
+<p>where <span class="math notranslate nohighlight">\(k\)</span> is the spring constant and <span class="math notranslate nohighlight">\(s\)</span> is the displacement from the equilibrium position, <span class="math notranslate nohighlight">\(x-L_0\)</span>. The quantity <span class="math notranslate nohighlight">\(L_0\)</span> is the relaxed length of the spring. The figure below shows the typical horizontal spring system.</p>
+<p><img alt="SHO" src="../_images/sho_horizontal.png" /></p>
+<p>We can typically choose to measure the displacement from the equilibrium position, and write the force instead as:</p>
+<div class="math notranslate nohighlight">
+\[F = m a_x = m \dot{v}_x  = m\ddot{x} = -kx\]</div>
+<p>So the equation of motion that we will try to solve is:</p>
+<div class="math notranslate nohighlight">
+\[\ddot{x} = -\dfrac{k}{m}x\]</div>
+<section id="how-do-we-solve-this">
+<h3>How do we solve this?<a class="headerlink" href="#how-do-we-solve-this" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\dfrac{d^2x}{dt^2} = -\dfrac{k}{m}x = - \omega^2 x\]</div>
+<p>where <span class="math notranslate nohighlight">\(\omega = \sqrt{\dfrac{k}{m}}\)</span> is the natural oscillation frequency of the system.</p>
+<p>It might seem strange, but let’s try the following potential solution to the differential equation:</p>
+<div class="math notranslate nohighlight">
+\[x(t) = C e^{i\omega t}\]</div>
+<p>where <span class="math notranslate nohighlight">\(C\)</span> is a constant. We can take the second derivative of <span class="math notranslate nohighlight">\(x(t)\)</span> with respect to time to see if it satisfies the differential equation.</p>
+<div class="math notranslate nohighlight">
+\[\dot{x}(t) = i\omega C e^{i\omega t}\]</div>
+<div class="math notranslate nohighlight">
+\[\ddot{x}(t) = -\omega^2 C e^{i\omega t} = -\omega^2 x(t)\]</div>
+<p>This is a solution to the differential equation as long as <span class="math notranslate nohighlight">\(C\)</span> is a constant, but it’s a complex one (<span class="math notranslate nohighlight">\(C=a+ib\)</span>). We can also write the solution in terms of the cosine and sine functions because the exponential function can be written in terms of these functions.</p>
+<div class="math notranslate nohighlight">
+\[e^{i\omega t} = \cos(\omega t) + i\sin(\omega t)\]</div>
+<p>Thus, another general solution to this EOM that we can write is:</p>
+<div class="math notranslate nohighlight">
+\[x(t) = A \cos(\omega t) + B \sin(\omega t)\]</div>
+<p>where <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are constants that depend on the initial conditions of the system. Let’s see how that works:</p>
+<div class="math notranslate nohighlight">
+\[\dot{x}(t) = -A \omega \sin(\omega t) + B \omega \cos(\omega t)\]</div>
+<div class="math notranslate nohighlight">
+\[\ddot{x}(t) = -A \omega^2 \cos(\omega t) - B \omega^2 \sin(\omega t) = -\omega^2 x(t)\]</div>
+<p>Another form that works is:</p>
+<div class="math notranslate nohighlight">
+\[x(t) = D \cos(\omega t + \phi)\]</div>
+<p>where <span class="math notranslate nohighlight">\(D\)</span> is the amplitude of the oscillation and <span class="math notranslate nohighlight">\(\phi\)</span> is the phase of the oscillation.  Let’s check that again:</p>
+<div class="math notranslate nohighlight">
+\[\dot{x}(t) = -D \omega \sin(\omega t + \phi)\]</div>
+<div class="math notranslate nohighlight">
+\[\ddot{x}(t) = -D \omega^2 \cos(\omega t + \phi) = -\omega^2 x(t)\]</div>
+<p>So we have several forms of the general solution to the simple harmonic oscillator. We can use these solutions to understand the behavior of the system. We can also use these solutions to understand the behavior of more complex systems that can be approximated by the simple harmonic oscillator.</p>
+<p>One critical aspect of these solutions is that they have 2 free parameters, <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, or <span class="math notranslate nohighlight">\(D\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span>. These parameters are determined by the initial conditions of the system. <strong>There are N free parameters in the general solution to an Nth order differential equation.</strong></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "jbook"
+        },
+        kernelOptions: {
+            name: "jbook",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'jbook'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_start.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 4 - Why does fluid drag complicate things?</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05_start.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 5 - Conservation Laws</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-dimensional-quadratic-drag">Two-Dimensional Quadratic Drag</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-the-coordinate-system">Define the Coordinate System</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-newton-s-second-law">Apply Newton’s Second Law</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-can-t-we-solve-these-equations">Why can’t we solve these equations?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-drag-in-two-dimensions">Linear Drag in Two-Dimensions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Apply Newton’s Second Law</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-the-equations">Solve the Equations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#velocity-in-the-x-direction">Velocity in the <span class="math notranslate nohighlight">\(x\)</span> direction</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#velocity-in-the-y-direction">Velocity in the <span class="math notranslate nohighlight">\(y\)</span> direction</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#trajectories">Trajectories</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#d-gravitational-bound-system">2D Gravitational Bound System</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Define the Coordinate System</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-then-get-the-trajectories">How do we then get the trajectories?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-simple-harmonic-oscillator-sho">The Simple Harmonic Oscillator (SHO)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-solve-this">How do we solve this?</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Marcos D. Caballero
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

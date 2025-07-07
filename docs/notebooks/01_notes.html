@@ -1,0 +1,720 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 1 - Notes: Introduction to Classical Mechanics &#8212; Modern Classical Mechanics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/01_notes';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Week 2 - Computing as a tool for science" href="02_start.html" />
+    <link rel="prev" title="Week 1 - Overture: What is Classical Physics?" href="01_start.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Modern Classical Mechanics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to Modern Classical Mechanics!
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_start.html">Week 1 - Overture: What is Classical Physics?</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 1 - Notes: Introduction to Classical Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_start.html">Week 2 - Computing as a tool for science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_notes.html">Week 2 - Notes: Mathematical Preliminaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_start.html">Week 3 - What is Mathematical Modeling?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_notes.html">Week 3 - Notes: Making Classical Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_start.html">Week 4 - Why does fluid drag complicate things?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_notes.html">Week 4 - Notes: Equations of Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_start.html">Week 5 - Conservation Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_notes.html">Week 5 - Notes: Conservation of Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_start.html">Week 6 - Stability and Equilibria</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_notes.html">Week 6 - Notes: Stability and Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_notes_2.html">Week 6 - Notes: Linear and Angular Momentum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_start.html">Week 7 - Nonlinear Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_notes.html">Week 7 - Notes: Critical Points; Phase Space; Trajectories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_start.html">Week 8 - Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_notes.html">Week 8 - Notes: Oscillators and Modeling Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_start.html">Week 9 - Driven Oscillators and Resonance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_notes.html">Week 9 - Notes: Driven Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_start.html">Week 10 - Chaotic Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_notes.html">Week 10 - Activity: Modeling Chaotic Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_start.html">Week 11 - Calculus of Variations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_notes.html">Week 11 - Notes: The Euler-Lagrange Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_start.html">Week 12 - The Principle of Least Action</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_notes.html">Week 12 - Notes: Introduction to Lagrangian Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_start.html">Week 13 - Lagrangian Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_notes.html">Week 13 - Notes: Examples of Lagrangian Mechanics</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/dannycab/modern-classical-mechanics" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/dannycab/modern-classical-mechanics/edit/main/./notebooks/01_notes.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/dannycab/modern-classical-mechanics/issues/new?title=Issue%20on%20page%20%2Fnotebooks/01_notes.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/01_notes.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 1 - Notes: Introduction to Classical Mechanics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-formulate-classical-mechanics">How do we formulate Classical Mechanics?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#newton-s-second-law">Newton’s Second Law</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-a-block-on-an-inclined-ramp">Example: A Block on an Inclined Ramp</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-falling-object-in-one-dimension">Example: Falling Object in One Dimension</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#air-drag">Air Drag?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#taylor-series-expansion">Taylor Series Expansion</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#back-to-newton-s-second-law">Back to Newton’s Second Law</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-1-notes-introduction-to-classical-mechanics">
+<h1>Week 1 - Notes: Introduction to Classical Mechanics<a class="headerlink" href="#week-1-notes-introduction-to-classical-mechanics" title="Link to this heading">#</a></h1>
+<section id="how-do-we-formulate-classical-mechanics">
+<h2>How do we formulate Classical Mechanics?<a class="headerlink" href="#how-do-we-formulate-classical-mechanics" title="Link to this heading">#</a></h2>
+<p>In the past, you have learned about <a class="reference external" href="https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion">Newton’s Laws of Motion</a>. These laws are the foundation of classical mechanics. They are used to describe the motion of objects in the universe. In this course, we will use these laws to describe the motion of particles and rigid bodies. As we progress, we will learn other formulations of classical mechanics, such as the <a class="reference external" href="https://en.wikipedia.org/wiki/Lagrangian_mechanics">Lagrangian</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Hamiltonian_mechanics">Hamiltonian</a> reformulations.</p>
+<p>Newton’s Laws of Motion are a vector formulation of classical mechanics. The laws are as follows:</p>
+<ol class="arabic simple">
+<li><p><strong>First Law</strong>: An object at rest will remain at rest, and an object in motion will remain in motion at a constant velocity unless acted upon by an external force.</p></li>
+<li><p><strong>Second Law</strong>: The acceleration of an object is directly proportional to the net force acting on it and inversely proportional to its mass. The direction of the acceleration is in the direction of the net force.</p></li>
+<li><p><strong>Third Law</strong>: For every action, there is an equal and opposite reaction.</p></li>
+</ol>
+<p>These are the classic laws of motion that you have learned in other courses. How we formulate these laws mathematically is the subject of this course.</p>
+</section>
+<section id="newton-s-second-law">
+<h2>Newton’s Second Law<a class="headerlink" href="#newton-s-second-law" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion#Newton's_second_law">Newton’s Second Law</a> provides the mathematical foundation for classical mechanics. It provides a vector relationship between the net force acting on an object and its acceleration. The law is given by the equation:</p>
+<div class="math notranslate nohighlight">
+\[\vec{F}_{net} = m\vec{a}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\vec{F}_{net}\)</span> is the net force acting on the object, <span class="math notranslate nohighlight">\(m\)</span> is the mass of the object, and <span class="math notranslate nohighlight">\(\vec{a}\)</span> is the acceleration of the object. This equation is a vector equation, meaning that it must be satisfied in each direction.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+F_{net,x} &amp;= m a_x \\
+F_{net,y} &amp;= m a_y \\
+F_{net,z} &amp;= m a_z
+\end{aligned}\end{split}\]</div>
+<p>Each push in a Cartesian direction results in a proportional response – an acceleration in the same direction of the net push. Let’s go through a common example to illustrate this relationship.</p>
+<section id="example-a-block-on-an-inclined-ramp">
+<h3>Example: A Block on an Inclined Ramp<a class="headerlink" href="#example-a-block-on-an-inclined-ramp" title="Link to this heading">#</a></h3>
+<p>Consider the box (mass, <span class="math notranslate nohighlight">\(m\)</span>) above on an inclined ramp (angle, <span class="math notranslate nohighlight">\(\theta\)</span>). The box is at rest subject to static friction, <span class="math notranslate nohighlight">\(\mu_s\)</span>. <em>What angle of inclination will cause the box to start sliding down the ramp?</em></p>
+<p>We start by drawing the <a class="reference external" href="https://en.wikipedia.org/wiki/Free_body_diagram">Free Body Diagram</a> (FBD) of the box.</p>
+<p><img alt="Free Body Diagram of Box on a Inclined Ramp; the arrows label the direction of forces acting on the box" src="../_images/box_fbd1.png" /><br>
+<a class="reference download internal" download="" href="../_downloads/338758532cfc63f0913360a4b3deaa25/diagram_2_450x3002352212273710292.png"><span class="xref download myst">Source: homework.study.com</span></a></p>
+<p>The FBD is a diagram that shows all the forces acting on the object. In this case, the forces acting on the box are:</p>
+<ul class="simple">
+<li><p>The force of gravity, <span class="math notranslate nohighlight">\(mg\)</span>, acting downwards.</p></li>
+<li><p>The force due to the ramp, which is both perpendicular to the ramp surface (normal) and parallel to it (friction).</p></li>
+</ul>
+<p>We tilt our coordinate system to align with the ramp. This makes the normal force, <span class="math notranslate nohighlight">\(N\)</span>, act in the <span class="math notranslate nohighlight">\(y\)</span>-direction and the frictional force, <span class="math notranslate nohighlight">\(f\)</span>, act in the <span class="math notranslate nohighlight">\(x\)</span>-direction. The force of gravity is split into two components: <span class="math notranslate nohighlight">\(mg\sin(\theta)\)</span> and <span class="math notranslate nohighlight">\(mg\cos(\theta)\)</span>.</p>
+<p>The net force acting on the box is the sum of the forces acting on it, and is zero up to the point where the box starts sliding. At this point, the frictional force is at its maximum value, <span class="math notranslate nohighlight">\(\mu_s N\)</span>. Taking the sum of the forces acting on the box in each direction we have:</p>
+<div class="math notranslate nohighlight">
+\[\vec{F}_{net} = \vec{f} + \vec{N} + \vec{F}_{gravity} = 0\]</div>
+<div class="math notranslate nohighlight">
+\[\sum F_{x,i} = f - mg\sin(\theta) = 0\]</div>
+<div class="math notranslate nohighlight">
+\[\sum F_{y,i} = N - mg\cos(\theta) = 0\]</div>
+<p>Thus,</p>
+<div class="math notranslate nohighlight">
+\[f = mg\sin(\theta)\]</div>
+<div class="math notranslate nohighlight">
+\[N = mg\cos(\theta)\]</div>
+<p>At the point where the box starts sliding, the frictional force is at its maximum value, <span class="math notranslate nohighlight">\(\mu_s N\)</span>. Thus, the box starts sliding when:</p>
+<div class="math notranslate nohighlight">
+\[f = \mu_s N\]</div>
+<p>Substituting the expressions for <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(N\)</span> into the equation above, we have:</p>
+<div class="math notranslate nohighlight">
+\[mg\sin(\theta) = \mu_s mg\cos(\theta)\]</div>
+<p>Solving for <span class="math notranslate nohighlight">\(\theta\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\tan(\theta) = \mu_s\]</div>
+<div class="math notranslate nohighlight">
+\[\theta = \tan^{-1}(\mu_s)\]</div>
+<p>Thus, the box starts sliding when the angle of inclination is equal to the arctangent of the coefficient of static friction.</p>
+<div class="admonition-check admonition">
+<p class="admonition-title">Check</p>
+<p>We can check this with some numbers. Steel as a static friction coefficient of about 0.16, and rubber is closer to 0.8. Thus, the angle of inclinations for steel and rubber are:</p>
+<div class="math notranslate nohighlight">
+\[\theta_{steel} = \tan^{-1}(0.16) \approx 9^\circ\]</div>
+<div class="math notranslate nohighlight">
+\[\theta_{rubber} = \tan^{-1}(0.8) \approx 39^\circ\]</div>
+<p>It seems quite reasonable that rubber would have a higher angle of inclination before sliding than steel.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A few things to note about this problem:</p>
+<ol class="arabic simple">
+<li><p>This was a static problem, such that <span class="math notranslate nohighlight">\(\vec{F}_{net} = 0\)</span>.</p></li>
+<li><p>We rotated our coordinate system to align with the ramp. This is a common technique in classical mechanics to simplify the problem.</p></li>
+<li><p>We still used Cartesian coordinates to solve the problem. This is because the forces could be easily decomposed in the titled coordinate system.</p></li>
+</ol>
+</div>
+<p>Let’s work an example that is dynamic, where the net force is not zero.</p>
+</section>
+<section id="example-falling-object-in-one-dimension">
+<h3>Example: Falling Object in One Dimension<a class="headerlink" href="#example-falling-object-in-one-dimension" title="Link to this heading">#</a></h3>
+<p>Consider an object of mass <span class="math notranslate nohighlight">\(m\)</span> falling, but it is subject to air resistance. The free body diagram of the object shows that the forces acting on the object are:</p>
+<ul class="simple">
+<li><p>The force of gravity/weight, <span class="math notranslate nohighlight">\(W=mg\)</span>, acting downwards.</p></li>
+<li><p>The force due to air resistance, <span class="math notranslate nohighlight">\(F_{air}\)</span>, acting upwards.</p></li>
+</ul>
+<p><img alt="Free Body Diagram of Falling Object; the arrows label the direction of forces acting on the object" src="../_images/falling_object1.png" /><br>
+<a class="reference download internal" download="" href="../_downloads/515212e993c8624c2926902eea44315b/570899611.gif"><span class="xref download myst">Source: ibphysicsguide.weebly.com</span></a></p>
+<p>Here we have chosen positive <span class="math notranslate nohighlight">\(y\)</span> to be the downward direction. We want to predict the motion (<span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(v\)</span>, <span class="math notranslate nohighlight">\(y\)</span>) of the object as a function of time. This is a very common problem for classical mechanics.</p>
+<section id="air-drag">
+<h4>Air Drag?<a class="headerlink" href="#air-drag" title="Link to this heading">#</a></h4>
+<p>First, we notice that we do not know the force due to <a class="reference external" href="https://en.wikipedia.org/wiki/Drag_(physics)">air resistance</a>. We do know that the force is related to the velocity of the object. So let’s start by writing the air resistance force as a function of velocity:</p>
+<div class="math notranslate nohighlight">
+\[F_{air} = F(v)\]</div>
+<p>where <span class="math notranslate nohighlight">\(F(v)\)</span> is some function of velocity.</p>
+</section>
+<section id="taylor-series-expansion">
+<h4>Taylor Series Expansion<a class="headerlink" href="#taylor-series-expansion" title="Link to this heading">#</a></h4>
+<p>Because we know that the objects move slowly in classical mechanics, we can assume that the function can be expanded using a <a class="reference external" href="https://en.wikipedia.org/wiki/Taylor_series">Taylor Series</a>.  In general, the Taylor Series of a function <span class="math notranslate nohighlight">\(f(x)\)</span> about a point <span class="math notranslate nohighlight">\(a\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^n\]</div>
+<p>where <span class="math notranslate nohighlight">\(f^{(n)}(a)\)</span> is the <span class="math notranslate nohighlight">\(n\)</span>-th derivative of <span class="math notranslate nohighlight">\(f(x)\)</span> evaluated at <span class="math notranslate nohighlight">\(x=a\)</span>. We can write the first few terms out,</p>
+<div class="math notranslate nohighlight">
+\[f(x) = f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \frac{f'''(a)}{3!}(x-a)^3 + \ldots\]</div>
+<p>Because we know that the object is moving slowly, we can expand the function <span class="math notranslate nohighlight">\(F(v)\)</span> about <span class="math notranslate nohighlight">\(v=0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[F(v) = F(0) + F'(0)v + \frac{F''(0)}{2!}v^2 + \ldots\]</div>
+<p>We can assume that the first term is zero, <span class="math notranslate nohighlight">\(F(0)=0\)</span>, because there is no air resistance when the object is at rest. Thus, the force due to air resistance is approximately:</p>
+<div class="math notranslate nohighlight">
+\[F(v) \approx F'(0)v + \frac{F''(0)}{2!}v^2\]</div>
+<p>We call the first term the <strong>linear drag</strong> term and the second term the <strong>quadratic drag</strong> term. The linear drag term is proportional to the velocity of the object, and the quadratic drag term is proportional to the square of the velocity of the object. We also typically replace the evaluated derivatives with constants, <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span> – because they are constants that depend on the object and the fluid it is moving through. And thus,</p>
+<div class="math notranslate nohighlight">
+\[F_{air} \approx bv + cv^2\]</div>
+</section>
+<section id="back-to-newton-s-second-law">
+<h4>Back to Newton’s Second Law<a class="headerlink" href="#back-to-newton-s-second-law" title="Link to this heading">#</a></h4>
+<p>In the <span class="math notranslate nohighlight">\(y\)</span>-direction, the net force acting on the object is:</p>
+<div class="math notranslate nohighlight">
+\[F_y = W - F_{air} = mg - bv - cv^2\]</div>
+<p>And thus, the acceleration of the object is:</p>
+<div class="math notranslate nohighlight">
+\[a = g - \frac{b}{m}v - \frac{c}{m}v^2\]</div>
+<p>This <a class="reference internal" href="#(https://en.wikipedia.org/wiki/Differential_equation)"><span class="xref myst">differential equation</span></a> can be written in a variety of ways. One common way is to write the equation as a <a class="reference external" href="https://math.libretexts.org/Bookshelves/Differential_Equations/Introduction_to_Partial_Differential_Equations_(Herman)/12:_B_-_Ordinary_Differential_Equations_Review/12.02:_Second_Order_Linear_Differential_Equations">second-order differential equation</a>.</p>
+<div class="math notranslate nohighlight">
+\[\frac{d^2y}{dt^2} = g - \frac{b}{m}\frac{dy}{dt} - \frac{c}{m}\left(\frac{dy}{dt}\right)^2\]</div>
+<p>Note that this is a nonlinear differential equation (i.e., there’s a <span class="math notranslate nohighlight">\((d^ny/dt^n)^m\)</span> term where <span class="math notranslate nohighlight">\(m &gt; 1\)</span>), which are notoriously difficult to solve in general. We can write it using the dot notation for derivatives (i.e., <span class="math notranslate nohighlight">\(\dot{y} = dy/dt\)</span>, <span class="math notranslate nohighlight">\(\ddot{y} = d^2y/dt^2\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[\ddot{y} = g - \frac{b}{m}\dot{y} - \frac{c}{m}\dot{y}^2\]</div>
+<p>We can also use the velocity as the independent variable, <span class="math notranslate nohighlight">\(v = \dot{y}\)</span>. Both equations below are equivalent:</p>
+<div class="math notranslate nohighlight">
+\[\frac{dv}{dt} = g - \frac{b}{m}v - \frac{c}{m}v^2\]</div>
+<div class="math notranslate nohighlight">
+\[\dot{v} = g - \frac{b}{m}v - \frac{c}{m}v^2\]</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>A few things to note:</p>
+<ol class="arabic simple">
+<li><p>This is a dynamic one-dimensional problem, such that <span class="math notranslate nohighlight">\(\vec{F}_{net} \neq 0\)</span>.</p></li>
+<li><p>This is a nonlinear problem, such that the acceleration is a function of the velocity of the object.</p></li>
+<li><p>We are stuck with a differential equation that we need to solve, and don’t have a simple algebraic solution (e.g., a simple antiderivative).</p></li>
+</ol>
+</div>
+<p><strong>How do we solve this equation to find the motion of the object as a function of time?</strong>  We will come back to this, but solving differential equations is the primary tool of classical mechanics. We will learn how to solve these equations analytically and numerically in this course.</p>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "jbook"
+        },
+        kernelOptions: {
+            name: "jbook",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'jbook'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_start.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 1 - Overture: What is Classical Physics?</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_start.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 2 - Computing as a tool for science</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-we-formulate-classical-mechanics">How do we formulate Classical Mechanics?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#newton-s-second-law">Newton’s Second Law</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-a-block-on-an-inclined-ramp">Example: A Block on an Inclined Ramp</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-falling-object-in-one-dimension">Example: Falling Object in One Dimension</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#air-drag">Air Drag?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#taylor-series-expansion">Taylor Series Expansion</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#back-to-newton-s-second-law">Back to Newton’s Second Law</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Marcos D. Caballero
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

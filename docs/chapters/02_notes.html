@@ -1,0 +1,823 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 2 - Notes: Mathematical Preliminaries &#8212; Modern Classical Mechanics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/02_notes';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Modern Classical Mechanics</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to Modern Classical Mechanics!
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_start.html">Week 1 - Overture: What is Classical Physics?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/01_notes.html">Week 1 - Notes: Introduction to Classical Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/02_start.html">Week 2 - Computing as a tool for science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/02_notes.html">Week 2 - Notes: Mathematical Preliminaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_start.html">Week 3 - What is Mathematical Modeling?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/03_notes.html">Week 3 - Notes: Making Classical Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/04_start.html">Week 4 - Why does fluid drag complicate things?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/04_notes.html">Week 4 - Notes: Equations of Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/05_start.html">Week 5 - Conservation Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/05_notes.html">Week 5 - Notes: Conservation of Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/06_start.html">Week 6 - Stability and Equilibria</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/06_notes.html">Week 6 - Notes: Stability and Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/06_notes_2.html">Week 6 - Notes: Linear and Angular Momentum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/07_start.html">Week 7 - Nonlinear Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/07_notes.html">Week 7 - Notes: Critical Points; Phase Space; Trajectories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/08_start.html">Week 8 - Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/08_notes.html">Week 8 - Notes: Oscillators and Modeling Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/09_start.html">Week 9 - Driven Oscillators and Resonance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/09_notes.html">Week 9 - Notes: Driven Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/10_start.html">Week 10 - Chaotic Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/10_notes.html">Week 10 - Activity: Modeling Chaotic Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/11_start.html">Week 11 - Calculus of Variations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/11_notes.html">Week 11 - Notes: The Euler-Lagrange Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/12_start.html">Week 12 - The Principle of Least Action</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/12_notes.html">Week 12 - Notes: Introduction to Lagrangian Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/13_start.html">Week 13 - Lagrangian Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/13_notes.html">Week 13 - Notes: Examples of Lagrangian Mechanics</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/dannycab/modern-classical-mechanics" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/dannycab/modern-classical-mechanics/edit/main/./chapters/02_notes.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/dannycab/modern-classical-mechanics/issues/new?title=Issue%20on%20page%20%2Fchapters/02_notes.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chapters/02_notes.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 2 - Notes: Mathematical Preliminaries</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#euler-discretization">Euler Discretization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-the-motion">Predicting the Motion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#video-summary-13-minutes">Video Summary (13 minutes)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discretizing-newton-s-second-law">Discretizing Newton’s Second Law</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looking-ahead">Looking Ahead</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-mathematical-preliminaries">Additional Mathematical Preliminaries</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-and-coordinates">Vectors and Coordinates</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-vectors">Unit Vectors</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplication-of-vectors">Multiplication of Vectors</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-scalar-product">Dot (Scalar) Product</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-vector-product">Cross (Vector) Product</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#units">Units</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-what-are-the-units-of-the-drag-coefficients">Example: What are the units of the drag coefficients?</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-2-notes-mathematical-preliminaries">
+<h1>Week 2 - Notes: Mathematical Preliminaries<a class="headerlink" href="#week-2-notes-mathematical-preliminaries" title="Link to this heading">#</a></h1>
+<p>We need a few things to get us started with making models of classical phenomenon. A few of those topics might be familiar to you; things like vectors, and derivatives. But we’ll also need to introduce some new concepts, like the concept of <a class="reference external" href="https://en.wikipedia.org/wiki/Discretization">Discretization</a>. In particular, we will introduce a powerful method for solving all forms of Differential Equations – Euler-Cromer Integration. We start by introducing the concept of Euler Discretization, and then we’ll move on to Euler-Cromer Integration later in the course.</p>
+<section id="euler-discretization">
+<h2>Euler Discretization<a class="headerlink" href="#euler-discretization" title="Link to this heading">#</a></h2>
+<p>Another useful formulation of Classical Mechanics uses discrete points in time to make approximate predictions of the motion. This is called the <a class="reference external" href="https://en.wikipedia.org/wiki/Euler_method">Euler Method</a>. The Euler Method is a simple numerical method to solve ordinary differential equations. The method is based on the idea of approximating the derivative of a function by a finite difference.</p>
+<p>We posit discrete time, like snapshots of the motion where a given measure of time <span class="math notranslate nohighlight">\(t_i\)</span> exists in a discrete set of times between <span class="math notranslate nohighlight">\(t_0\)</span> and <span class="math notranslate nohighlight">\(t_f\)</span>. That is, <span class="math notranslate nohighlight">\(t_i \in \{t_0, t_1, t_2, \ldots, t_f\}\)</span>. We conceive of the motion as discrete like the points in the figure below.</p>
+<p>In this case, the points are equally spaced in time, such that <span class="math notranslate nohighlight">\(t_{i+1} - t_i = \Delta t\)</span>. This gives a simple table of the motion of the object at each time step:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>time</p></th>
+<th class="head"><p>position</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(t_0\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(y_0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(t_1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(y_1\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(t_2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(y_2\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(\ldots\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\ldots\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>where <span class="math notranslate nohighlight">\(y_i\)</span> is the position of the object at time <span class="math notranslate nohighlight">\(t_i\)</span>. Here, <span class="math notranslate nohighlight">\(t_i = t_0 + i\Delta t\)</span> – equal time spacing – and <span class="math notranslate nohighlight">\(y(t_i) = y_i\)</span> indicates the position of the object at time <span class="math notranslate nohighlight">\(t_i\)</span>.</p>
+<section id="predicting-the-motion">
+<h3>Predicting the Motion<a class="headerlink" href="#predicting-the-motion" title="Link to this heading">#</a></h3>
+<p>This formulation can be used to predict the motion of the object.  Let’s first define the average velocity over a time step, <span class="math notranslate nohighlight">\(\Delta t\)</span>, like this:</p>
+<div class="math notranslate nohighlight">
+\[v(t) = \dfrac{y(t+\Delta t) - y(t)}{\Delta t}\]</div>
+<p>Now, we know that at time, <span class="math notranslate nohighlight">\(t_i\)</span>, the velocity is <span class="math notranslate nohighlight">\(v_i\)</span>: <span class="math notranslate nohighlight">\(v(t_i) = v_i\)</span> If we make the time step small, <span class="math notranslate nohighlight">\(\Delta t \rightarrow 0\)</span>, then the average velocity is approximately the velocity at time <span class="math notranslate nohighlight">\(t_i\)</span>. Thus, we can write the velocity at time <span class="math notranslate nohighlight">\(t_{i}\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[v_{i} = \dfrac{y_{i+1} - y_i}{\Delta t}\]</div>
+<p><strong>Note</strong> If we take the limit that <span class="math notranslate nohighlight">\(\Delta t \rightarrow 0\)</span>, then the average velocity becomes the instantaneous velocity. This stems from the <a class="reference external" href="https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus">Fundamental Theorem of Calculus</a>.</p>
+<div class="math notranslate nohighlight">
+\[\lim_{\Delta t \rightarrow 0} \dfrac{y(t+\Delta t) - y(t)}{\Delta t} = \dfrac{dy}{dt} = \dot{y}\]</div>
+<p>What about the acceleration? We can use the same idea to approximate the acceleration. The average acceleration is given by:</p>
+<div class="math notranslate nohighlight">
+\[a(t) = \dfrac{v(t+\Delta t) - v(t)}{\Delta t}\]</div>
+<p>And thus, the acceleration at time <span class="math notranslate nohighlight">\(t_i\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[a_i = \dfrac{v_{i+1} - v_i}{\Delta t}\]</div>
+<p>Again, if we take the limit that <span class="math notranslate nohighlight">\(\Delta t \rightarrow 0\)</span>, then the average acceleration becomes the instantaneous acceleration:</p>
+<div class="math notranslate nohighlight">
+\[\lim_{\Delta t \rightarrow 0} \dfrac{v(t+\Delta t) - v(t)}{\Delta t} = \dfrac{dv}{dt} = \dot{v}\]</div>
+</section>
+<section id="video-summary-13-minutes">
+<h3>Video Summary (13 minutes)<a class="headerlink" href="#video-summary-13-minutes" title="Link to this heading">#</a></h3>
+<p>There’s many videos covering the topic of Euler’s method. Here’s a video that covers the basics of Euler’s method and how it can be used to solve differential equations. It somewhat follows the notes above, but it’s always good to hear another perspective.</p>
+<ul class="simple">
+<li><p>Direct Link: <a class="reference external" href="https://youtube.com/watch?v=_0mvWedqW7c">https://youtube.com/watch?v=_0mvWedqW7c</a></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">YouTubeVideo</span>
+
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;_0mvWedqW7c&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">720</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">405</span><span class="p">)</span>
+</pre></div>
+</div>
+<iframe
+    width="720"
+    height="405"
+    src="https://www.youtube.com/embed/_0mvWedqW7c"
+    frameborder="0"
+    allowfullscreen
+<blockquote>
+<div></iframe>
+</div></blockquote>
+</section>
+</section>
+<section id="discretizing-newton-s-second-law">
+<h2>Discretizing Newton’s Second Law<a class="headerlink" href="#discretizing-newton-s-second-law" title="Link to this heading">#</a></h2>
+<p>We can use the Euler Method to discretize Newton’s Second Law, and this allows us to predict the motion of the object using iterative methods. These methods are well-suited for computers, and we will learn how to implement them in this course.</p>
+<p>Let there be a 1D net force acting the x-direction on an object of mass <span class="math notranslate nohighlight">\(m\)</span>, <span class="math notranslate nohighlight">\(F(x)\)</span>. Here the force changes with position. We can discretize this force as a function of position, <span class="math notranslate nohighlight">\(F(x_i)\)</span>. The net force acting on the object is:</p>
+<div class="math notranslate nohighlight">
+\[F(x_i) = F_i\]</div>
+<p>Using Newton’s Second Law, we can write the acceleration of the object as:</p>
+<div class="math notranslate nohighlight">
+\[a_i = \dfrac{F_i}{m}\]</div>
+<p>But the definition of the average acceleration gives:</p>
+<div class="math notranslate nohighlight">
+\[a_i = \dfrac{v_{i+1} - v_i}{\Delta t}\]</div>
+<p>Or in terms of the predicted velocity, <span class="math notranslate nohighlight">\(v_{i+1}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[v_{i+1} = v_i + a_i\Delta t\]</div>
+<p>Or in terms of the net force:</p>
+<div class="math notranslate nohighlight">
+\[v_{i+1} = v_i + \dfrac{F_i}{m}\Delta t\]</div>
+<p><strong>This is the Euler formulation for predicting the velocity of the object in the next time step – given the velocity at the current time step.</strong></p>
+<p>We pause here and will return to this formulation later, but this discretization is the basis for many numerical methods in classical mechanics, and we can apply it to solve the falling object problem above.</p>
+<section id="looking-ahead">
+<h3>Looking Ahead<a class="headerlink" href="#looking-ahead" title="Link to this heading">#</a></h3>
+<p>The development of the forward Euler scheme is the basis for many numerical methods in physics, and especially in classical mechanics. The video below is a longer introduction to the Euler Method and how it can be used to solve differential equations. It’s a bit more advanced than the previous video, but it’s a good introduction to the topic. We will revisit this topic a number of times, and you will have a chance to implement these methods in Python. <em>This video will be posted again when we cover numerical methods in more detail.</em></p>
+<ul class="simple">
+<li><p>Direct Link: <a class="reference external" href="https://www.youtube.com/watch?v=MstPeOTCVzQ">https://www.youtube.com/watch?v=MstPeOTCVzQ</a></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">YouTubeVideo</span>
+
+<span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;MstPeOTCVzQ&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">720</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">405</span><span class="p">)</span>
+</pre></div>
+</div>
+<iframe
+    width="720"
+    height="405"
+    src="https://www.youtube.com/embed/MstPeOTCVzQ"
+    frameborder="0"
+    allowfullscreen
+<blockquote>
+<div></iframe>
+</div></blockquote>
+</section>
+</section>
+<section id="additional-mathematical-preliminaries">
+<h2>Additional Mathematical Preliminaries<a class="headerlink" href="#additional-mathematical-preliminaries" title="Link to this heading">#</a></h2>
+<p>As you have noticed, much of what we do in classical mechanics involves solving differential equations. We will explore how to solve these equations in this course. But also notice that most of the work involves vector manipulation and/or decomposition. Thus, we will need to be comfortable with vectors. Below are some mathematical concepts of vectors that we will use in this course.</p>
+<section id="vectors-and-coordinates">
+<h3>Vectors and Coordinates<a class="headerlink" href="#vectors-and-coordinates" title="Link to this heading">#</a></h3>
+<p>The figure below shows a vector in two dimensions.</p>
+<p><img alt="Vector in Two Dimensions; the vector is defined by its magnitude, , and its direction, " src="../_images/2dvector.png" /></p>
+<p>The vector is defined by its magnitude, <span class="math notranslate nohighlight">\(A\)</span>, and its direction, <span class="math notranslate nohighlight">\(\theta\)</span>. The vector can be decomposed into two components, <span class="math notranslate nohighlight">\(A_x\)</span> and <span class="math notranslate nohighlight">\(A_y\)</span>, in the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions, respectively.</p>
+<p>The magnitude of the vector is given by the Pythagorean theorem:</p>
+<div class="math notranslate nohighlight">
+\[|\vec{A}| = A = \sqrt{A_x^2 + A_y^2}\]</div>
+<p>The angle of the vector is given by the tangent of the angle:</p>
+<div class="math notranslate nohighlight">
+\[\theta = \tan^{-1}\left(\dfrac{A_y}{A_x}\right)\]</div>
+<p>We can find the <em>vector components</em> using the magnitude and angle:</p>
+<div class="math notranslate nohighlight">
+\[A_x = A\cos(\theta)\]</div>
+<div class="math notranslate nohighlight">
+\[A_y = A\sin(\theta)\]</div>
+<p>It’s important to note that the vector components are the projections of the vector onto the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> axes. The vector components are scalars, and the vector is a sum of the components. We can write the vector in several common forms:</p>
+<div class="math notranslate nohighlight">
+\[\vec{A} = A_x\hat{x} + A_y\hat{y}  = A_x\hat{i} + A_y\hat{j} = A_x\hat{e}_x + A_y\hat{e}_y.\]</div>
+<section id="unit-vectors">
+<h4>Unit Vectors<a class="headerlink" href="#unit-vectors" title="Link to this heading">#</a></h4>
+<p>The unit vectors, <span class="math notranslate nohighlight">\(\hat{x}\)</span>, <span class="math notranslate nohighlight">\(\hat{y}\)</span>, <span class="math notranslate nohighlight">\(\hat{i}\)</span>, <span class="math notranslate nohighlight">\(\hat{j}\)</span>, <span class="math notranslate nohighlight">\(\hat{e}_x\)</span>, and <span class="math notranslate nohighlight">\(\hat{e}_y\)</span>, are the basis vectors in the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions. The unit vectors are used to define the vector components.</p>
+<p>Interestingly, the angle of the vector is not needed to write the vector in Plane Polar Coordinates (<span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(\theta\)</span>). The vector can be written as:</p>
+<div class="math notranslate nohighlight">
+\[\vec{A} = A\hat{A}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\hat{A}\)</span> is the unit vector in the direction of <span class="math notranslate nohighlight">\(\vec{A}\)</span>. Let’s check that works out:</p>
+<div class="math notranslate nohighlight">
+\[\vec{A} = A_x\hat{x} + A_y\hat{y}\]</div>
+<div class="math notranslate nohighlight">
+\[|\vec{A}| = A = \sqrt{A_x^2 + A_y^2}\]</div>
+<div class="math notranslate nohighlight">
+\[\hat{A} = \dfrac{\vec{A}}{|\vec{A}|} = \dfrac{A_x\hat{x} + A_y\hat{y}}{\sqrt{A_x^2 + A_y^2}}\]</div>
+<p>Such that,</p>
+<div class="math notranslate nohighlight">
+\[\vec{A} = A\hat{A} = A_x\hat{x} + A_y\hat{y}\]</div>
+<p>Cartesian unit vectors are fixed in space and time when in an inertial reference frame. However, the unit vectors in Plane Polar Coordinates are not fixed in space and time. They rotate with the vector. This is a common source of confusion when working with vectors in different coordinate systems, which we will come back to later.</p>
+<p>The magnitude of a unit vector is always one, <span class="math notranslate nohighlight">\(|\hat{A}| = 1\)</span>. And unit vectors are orthogonal to each other, <span class="math notranslate nohighlight">\(\hat{x} \cdot \hat{y} = 0\)</span>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="multiplication-of-vectors">
+<h3>Multiplication of Vectors<a class="headerlink" href="#multiplication-of-vectors" title="Link to this heading">#</a></h3>
+<section id="dot-scalar-product">
+<h4>Dot (Scalar) Product<a class="headerlink" href="#dot-scalar-product" title="Link to this heading">#</a></h4>
+<p>A dot product of two vectors is a scalar quantity. The dot product of two 3D vectors, <span class="math notranslate nohighlight">\(\vec{a}\)</span> and <span class="math notranslate nohighlight">\(\vec{b}\)</span>, is given by:</p>
+<div class="math notranslate nohighlight">
+\[\vec{a} \cdot \vec{b} = a_xb_x + a_yb_y + a_zb_z\]</div>
+<p>This product is also equal to the product of the magnitudes of the vectors and the cosine of the angle between them:</p>
+<div class="math notranslate nohighlight">
+\[\vec{a} \cdot \vec{b} = |\vec{a}||\vec{b}|\cos(\phi).\]</div>
+<p>The figure below shows the relationship between the vectors and the angle.</p>
+<p><img alt="Dot Product of Two Vectors; the dot product is the product of the magnitudes of the vectors and the cosine of the angle between them" src="../_images/Dot-product.png" /></p>
+<br>
+Source: [Wikipedia](images/notes/week1//File:Dot-product-1.svg)
+<p>Much like scalar multiplication, a dot produce is distributive:</p>
+<div class="math notranslate nohighlight">
+\[\vec{a} \cdot (\vec{b} + \vec{c}) = \vec{a} \cdot \vec{b} + \vec{a} \cdot \vec{c}\]</div>
+<p>Here’s the proof:</p>
+<div class="math notranslate nohighlight">
+\[\vec{a} \cdot (\vec{b} + \vec{c}) = a_x(b_x + c_x) + a_y(b_y + c_y) + a_z(b_z + c_z)\]</div>
+<div class="math notranslate nohighlight">
+\[= a_xb_x + a_xc_x + a_yb_y + a_yc_y + a_zb_z + a_zc_z\]</div>
+<div class="math notranslate nohighlight">
+\[= \vec{a} \cdot \vec{b} + \vec{a} \cdot \vec{c}\]</div>
+</section>
+<section id="cross-vector-product">
+<h4>Cross (Vector) Product<a class="headerlink" href="#cross-vector-product" title="Link to this heading">#</a></h4>
+<p>The cross product of two vectors is a vector quantity. The cross product of two 3D vectors, <span class="math notranslate nohighlight">\(\vec{a}\)</span> and <span class="math notranslate nohighlight">\(\vec{b}\)</span>, is given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{a} \times \vec{b} = \begin{vmatrix} \hat{x} &amp; \hat{y} &amp; \hat{z} \\ a_x &amp; a_y &amp; a_z \\ b_x &amp; b_y &amp; b_z \end{vmatrix}\end{split}\]</div>
+<p>This results in a vector that has the following components:</p>
+<div class="math notranslate nohighlight">
+\[\vec{a} \times \vec{b} = (a_yb_z - a_zb_y)\hat{x} - (a_xb_z-a_zb_x)\hat{y} + (a_xb_y - a_yb_x)\hat{z}\]</div>
+<p>A few notes about cross products:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\vec{a} \times \vec{b}\)</span> always produces a vector and never a scalar.</p></li>
+<li><p><span class="math notranslate nohighlight">\((\vec{a} \times \vec{b})_i\)</span> denotes the <span class="math notranslate nohighlight">\(i\)</span>-th component of the cross product.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\vec{a} \times \vec{b} \neq \vec{b} \times \vec{a}\)</span>; order matters.</p></li>
+</ol>
+<p>What is the relationship between <span class="math notranslate nohighlight">\(\vec{a} \times \vec{b}\)</span> and <span class="math notranslate nohighlight">\(\vec{a} \cdot \vec{b}\)</span>? The right-hand rule gives the direction of the cross product. The magnitude of the cross product is given by:</p>
+<div class="math notranslate nohighlight">
+\[|\vec{a} \times \vec{b}| = |\vec{a}||\vec{b}|\sin(\phi)\]</div>
+<div class="math notranslate nohighlight">
+\[|\vec{b} \times \vec{a}| = |\vec{a}||\vec{b}|\sin(\phi)\]</div>
+<p>And thus both magnitudes are the same, however, the directions are opposite.</p>
+<div class="math notranslate nohighlight">
+\[\vec{a} \times \vec{b} = -\vec{b} \times \vec{a}\]</div>
+</section>
+</section>
+</section>
+<section id="units">
+<h2>Units<a class="headerlink" href="#units" title="Link to this heading">#</a></h2>
+<p>In classical mechanics, we will use the <a class="reference external" href="https://en.wikipedia.org/wiki/International_System_of_Units">International System of Units (SI)</a>. The SI units are the standard units used in science and engineering. The primary units we will use in this course are related to the motion of objects:</p>
+<ul class="simple">
+<li><p><strong>Length</strong>: The meter, <span class="math notranslate nohighlight">\(m\)</span>, is the standard unit of length, <span class="math notranslate nohighlight">\([r] = \mathrm{length}\)</span>.</p></li>
+<li><p><strong>Mass</strong>: The kilogram, <span class="math notranslate nohighlight">\(kg\)</span>, is the standard unit of mass, <span class="math notranslate nohighlight">\([m] = \mathrm{mass}\)</span>.</p></li>
+<li><p><strong>Time</strong>: The second, <span class="math notranslate nohighlight">\(s\)</span>, is the standard unit of time, <span class="math notranslate nohighlight">\([t] = \mathrm{time}\)</span>.</p></li>
+</ul>
+<p>From these basic units, we can derive the other units. We also use velocity, acceleration, force, momentum, and energy.</p>
+<ul class="simple">
+<li><p><strong>Velocity</strong>: The meter per second, <span class="math notranslate nohighlight">\(m/s\)</span>, is the standard unit of velocity, <span class="math notranslate nohighlight">\([v] = \mathrm{length/time}\)</span>.</p></li>
+<li><p><strong>Acceleration</strong>: The meter per second squared, <span class="math notranslate nohighlight">\(m/s^2\)</span>, is the standard unit of acceleration, <span class="math notranslate nohighlight">\([a] = \mathrm{length/time^2}\)</span>.</p></li>
+<li><p><strong>Force</strong>: The Newton, <span class="math notranslate nohighlight">\(N\)</span>, is the standard unit of force, <span class="math notranslate nohighlight">\([F] = \mathrm{mass*length/(time)^2}\)</span>.</p></li>
+<li><p><strong>Momentum</strong>: The kilogram meter per second, <span class="math notranslate nohighlight">\(kg\cdot m/s\)</span>, is the standard unit of momentum, <span class="math notranslate nohighlight">\([p] = \mathrm{mass*length/time}\)</span>.</p></li>
+<li><p><strong>Energy</strong>: The Joule, <span class="math notranslate nohighlight">\(J\)</span>, is the standard unit of energy, <span class="math notranslate nohighlight">\([E] = \mathrm{mass*length}^2/\mathrm{time}^2\)</span>.</p></li>
+</ul>
+<section id="example-what-are-the-units-of-the-drag-coefficients">
+<h3>Example: What are the units of the drag coefficients?<a class="headerlink" href="#example-what-are-the-units-of-the-drag-coefficients" title="Link to this heading">#</a></h3>
+<p>Recall the drag force, <span class="math notranslate nohighlight">\(F_{air} = bv + cv^2\)</span>. The units of the drag coefficients, <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span>, can be found by examining the units of the force. The units of the force are:</p>
+<div class="math notranslate nohighlight">
+\[[F_{air}] = [b][v] + [c][v^2]\]</div>
+<div class="math notranslate nohighlight">
+\[\mathrm{mass*length/(time)^2} = [b]*\mathrm{length/time}+ [c]*(\mathrm{length/(time)})^2\]</div>
+<p>The units need to match on both sides of the equation. Thus, the units of the drag coefficients are:</p>
+<p>Thus, the units of the drag coefficients are:</p>
+<div class="math notranslate nohighlight">
+\[[b] = \mathrm{mass*length/(time)^2} * \mathrm{time/length} = \mathrm{mass/time}\]</div>
+<div class="math notranslate nohighlight">
+\[[c] = \mathrm{mass*length/(time)^2} * (\mathrm{time/(length)})^2 = \mathrm{mass/length}\]</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chapters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#euler-discretization">Euler Discretization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predicting-the-motion">Predicting the Motion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#video-summary-13-minutes">Video Summary (13 minutes)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discretizing-newton-s-second-law">Discretizing Newton’s Second Law</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looking-ahead">Looking Ahead</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-mathematical-preliminaries">Additional Mathematical Preliminaries</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vectors-and-coordinates">Vectors and Coordinates</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-vectors">Unit Vectors</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiplication-of-vectors">Multiplication of Vectors</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-scalar-product">Dot (Scalar) Product</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-vector-product">Cross (Vector) Product</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#units">Units</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-what-are-the-units-of-the-drag-coefficients">Example: What are the units of the drag coefficients?</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Marcos D. Caballero
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
