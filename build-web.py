@@ -1174,6 +1174,42 @@ def main():
         print("[CHECK] All referenced images exist in docs output.")
 
     print("All notebooks converted to HTML and copied to docs/ with sectioned images, CSS, accessible menu, and downloadable sources.")
+
+    # --- AUTOMATE: Copy all images from HTML build output to LaTeX images dir if referenced in LaTeX but missing ---
+    latex_images_dir = repo_root / '_build' / 'latex' / 'images'
+    html_images_dir = repo_root / '_build' / 'html' / 'images'
+    latex_dir = repo_root / '_build' / 'latex'
+    latex_images_dir.mkdir(parents=True, exist_ok=True)
+    # Find all .tex files in _build/latex
+    import glob
+    tex_files = list(latex_dir.glob('*.tex'))
+    import re
+    for tex_file in tex_files:
+        with open(tex_file, 'r', encoding='utf-8') as f:
+            tex_content = f.read()
+        # Find all \includegraphics{...} usages
+        img_refs = re.findall(r'\\includegraphics(?:\[[^\]]*\])?\{([^\}]+)\}', tex_content)
+        for img_ref in img_refs:
+            img_name = os.path.basename(img_ref)
+            dest_img = latex_images_dir / img_name
+            if not dest_img.exists():
+                # Try to copy from HTML build images dir (flat and sectioned)
+                src_candidates = [html_images_dir / img_name]
+                # Also try all subfolders (sectioned)
+                src_candidates += [p for p in html_images_dir.glob('**/' + img_name)]
+                copied = False
+                for src in src_candidates:
+                    if src.exists():
+                        try:
+                            shutil.copy2(src, dest_img)
+                            print(f"[AUTO-COPY] Copied missing LaTeX image: {img_name} from {src} to {dest_img}")
+                            copied = True
+                            break
+                        except Exception as e:
+                            print(f"[AUTO-COPY][ERROR] Could not copy {src} to {dest_img}: {e}")
+                if not copied:
+                    print(f"[AUTO-COPY][WARN] Could not find image {img_name} for LaTeX in HTML build images.")
+
     # Always clean docs/ HTML after build
     clean_html_files_in_docs()
 

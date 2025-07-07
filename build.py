@@ -120,8 +120,11 @@ def main():
 
     # --- Build LaTeX ---
     jupyter_bin = str(repo_root / '.venv' / 'bin' / 'jupyter')
+    images_root_candidates = [repo_root / 'images', repo_root / 'content/images']
+    latex_images_dir = chapters_dir / 'images'
     if build_latex:
         chapters_dir.mkdir(parents=True, exist_ok=True)
+        latex_images_dir.mkdir(parents=True, exist_ok=True)
         print(f"[INFO] Building LaTeX files for notebooks in {notebook_dir} -> {chapters_dir}")
         for nb in notebooks:
             nb_path = notebook_dir / nb
@@ -135,7 +138,71 @@ def main():
                 jupyter_bin, 'nbconvert', '--to', 'latex', str(nb_path),
                 '--output', tex_name, '--output-dir', str(chapters_dir)
             ])
-        print(f"[INFO] All notebooks converted to LaTeX and saved in {chapters_dir}")
+            # --- Post-process .tex file: fix all image paths and copy images ---
+            import re
+            if tex_path.exists():
+                with open(tex_path, 'r', encoding='utf-8') as f:
+                    tex_content = f.read()
+                # Find all \includegraphics paths
+                img_paths = re.findall(r'\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}', tex_content)
+                for img_path in set(img_paths):
+                    # Always use just the filename for the output
+                    img_filename = os.path.basename(img_path)
+                    # Try to find the image in all possible locations
+                    search_names = [img_filename]
+                    found = False
+                    real_img_path = None
+                    # 1. Search in images_root_candidates
+                    for name in search_names:
+                        for images_root in images_root_candidates:
+                            candidate = images_root / name
+                            if candidate.exists():
+                                real_img_path = candidate
+                                found = True
+                                break
+                        if found:
+                            break
+                    # 2. Fallback: _images folders
+                    if not found:
+                        for fallback_root in [notebook_dir / '_images', repo_root / '_images']:
+                            candidate = fallback_root / img_filename
+                            if candidate.exists():
+                                real_img_path = candidate
+                                found = True
+                                break
+                    # 3. Fallback: _build/html/images and all subfolders recursively
+                    if not found:
+                        html_img_root = repo_root / '_build/html/images'
+                        # Try flat
+                        candidate = html_img_root / img_filename
+                        if candidate.exists():
+                            real_img_path = candidate
+                            found = True
+                        # Try all subfolders (e.g., chapters, activities, notes, etc.)
+                        if not found:
+                            for subdir, _, files in os.walk(html_img_root):
+                                if img_filename in files:
+                                    real_img_path = Path(subdir) / img_filename
+                                    found = True
+                                    break
+                    if found and real_img_path:
+                        dest_img_path = latex_images_dir / img_filename
+                        try:
+                            shutil.copy2(real_img_path, dest_img_path)
+                            print(f"[AUTO] Copied missing image {img_filename} from {real_img_path} to {dest_img_path}")
+                        except Exception as e:
+                            print(f"[WARN] Could not copy image {real_img_path} to {dest_img_path}: {e}")
+                        # Replace ALL \includegraphics{...} using this image (any path) with the new path
+                        tex_content = re.sub(r'(\\includegraphics(?:\[[^\]]*\])?)\{[^}]*' + re.escape(img_filename) + r'\}',
+                                            r'\1{images/' + img_filename + '}', tex_content)
+                    else:
+                        print(f"[WARN] Could not find image for LaTeX: {img_path}")
+                # Replace any remaining absolute or content/ paths with just the filename in images/
+                tex_content = re.sub(r'(\\includegraphics(?:\[[^\]]*\])?)\{(?:[^}/]*/)*(images/)?([^}/]+)\}',
+                                    r'\1{images/\3}', tex_content)
+                with open(tex_path, 'w', encoding='utf-8') as f:
+                    f.write(tex_content)
+        print(f"[INFO] All notebooks converted to LaTeX and saved in {chapters_dir}. Images copied to {latex_images_dir} and paths updated.")
 
     # --- End logging ---
     log_file.close()
@@ -187,22 +254,48 @@ def main():
                 img_path = match.group(1)
                 if img_path.startswith('http'):
                     return match.group(0)  # leave remote images unchanged
+                img_filename = os.path.basename(img_path)
                 src_img = (nb_path.parent / img_path).resolve()
-                if not src_img.exists():
-                    alt_img = md_dir / f"{nb_path.stem}_files" / os.path.basename(img_path)
+                found = src_img.exists()
+                real_img_path = src_img if found else None
+                # Try fallback: _build/md/{stem}_files/img_filename
+                if not found:
+                    alt_img = md_dir / f"{nb_path.stem}_files" / img_filename
                     if alt_img.exists():
-                        src_img = alt_img
-                    else:
-                        print(f"[WARN] Image not found: {src_img}")
-                        return match.group(0)
-                flat_name = f"{nb_path.stem}_{os.path.basename(img_path)}"
-                dst_img = images_dir / flat_name
-                try:
-                    shutil.copy2(src_img, dst_img)
-                except Exception as e:
-                    print(f"[WARN] Could not copy image {src_img} to {dst_img}: {e}")
-                # Update the link to point to images/flat_name
-                return match.group(0).replace(img_path, f"images/{flat_name}")
+                        real_img_path = alt_img
+                        found = True
+                # Try fallback: images_root_candidates
+                if not found:
+                    for images_root in images_root_candidates:
+                        candidate = images_root / img_filename
+                        if candidate.exists():
+                            real_img_path = candidate
+                            found = True
+                            break
+                # Try fallback: _build/html/images and subfolders
+                if not found:
+                    for html_img_dir in [(repo_root / '_build/html/images')]:
+                        for root, dirs, files in os.walk(html_img_dir):
+                            candidate = Path(root) / img_filename
+                            if candidate.exists():
+                                real_img_path = candidate
+                                found = True
+                                print(f"[PATCH] Copied missing image {img_filename} from {candidate} to {images_dir / (nb_path.stem + '_' + img_filename)}")
+                                break
+                        if found:
+                            break
+                if found and real_img_path:
+                    flat_name = f"{nb_path.stem}_{img_filename}"
+                    dst_img = images_dir / flat_name
+                    try:
+                        shutil.copy2(real_img_path, dst_img)
+                    except Exception as e:
+                        print(f"[WARN] Could not copy image {real_img_path} to {dst_img}: {e}")
+                    # Update the link to point to images/flat_name
+                    return match.group(0).replace(img_path, f"images/{flat_name}")
+                else:
+                    print(f"[WARN] Image not found for Markdown: {img_path}")
+                    return match.group(0)
             # Replace all image links in the markdown
             new_md_content = re.sub(r'!\[[^\]]*\]\(([^)]+)\)', replace_img_link, md_content)
             with open(md_path, 'w', encoding='utf-8') as f:
@@ -220,9 +313,71 @@ def main():
             md_path = md_dir / md_name
             docx_name = Path(nb).with_suffix('.docx').name
             docx_path = docx_dir / docx_name
+            # If markdown does not exist, try to build it once, then try again
             if not md_path.exists():
-                print(f"[WARN] Markdown not found: {md_path}")
-                continue
+                print(f"[WARN] Markdown not found: {md_path}. Attempting to build it with --md...")
+                # Try to build just this notebook as markdown
+                try:
+                    run([
+                        sys.executable, __file__, '--md', '--files', str(nb_path if 'nb_path' in locals() else (notebook_dir / nb))
+                    ])
+                except Exception as e:
+                    print(f"[ERROR] Failed to build markdown for {nb}: {e}")
+                # Try again
+                if not md_path.exists():
+                    print(f"[ERROR] Markdown still not found for {md_path} after attempting to build. Skipping DOCX for this file.")
+                    continue
+            # Ensure all images referenced in the markdown exist in images_dir (same as above logic)
+            with open(md_path, 'r', encoding='utf-8') as f:
+                md_content = f.read()
+            def ensure_img_for_docx(match):
+                img_path = match.group(1)
+                if img_path.startswith('http'):
+                    return match.group(0)
+                img_filename = os.path.basename(img_path)
+                found = False
+                real_img_path = None
+                # Try images_dir first
+                candidate = images_dir / img_filename
+                if candidate.exists():
+                    found = True
+                    real_img_path = candidate
+                # Try md_dir/{stem}_files/img_filename
+                if not found:
+                    alt_img = md_dir / f"{Path(nb).stem}_files" / img_filename
+                    if alt_img.exists():
+                        real_img_path = alt_img
+                        found = True
+                # Try images_root_candidates
+                if not found:
+                    for images_root in images_root_candidates:
+                        candidate = images_root / img_filename
+                        if candidate.exists():
+                            real_img_path = candidate
+                            found = True
+                            break
+                # Try _build/html/images and subfolders
+                if not found:
+                    for html_img_dir in [(repo_root / '_build/html/images')]:
+                        for root, dirs, files in os.walk(html_img_dir):
+                            candidate = Path(root) / img_filename
+                            if candidate.exists():
+                                real_img_path = candidate
+                                found = True
+                                print(f"[PATCH] Copied missing image {img_filename} from {candidate} to {images_dir / img_filename}")
+                                break
+                        if found:
+                            break
+                if found and real_img_path:
+                    dst_img = images_dir / img_filename
+                    try:
+                        shutil.copy2(real_img_path, dst_img)
+                    except Exception as e:
+                        print(f"[WARN] Could not copy image {real_img_path} to {dst_img}: {e}")
+                else:
+                    print(f"[WARN] Image not found for DOCX: {img_path}")
+                return match.group(0)
+            re.sub(r'!\[[^\]]*\]\(([^)]+)\)', ensure_img_for_docx, md_content)
             print(f"Converting {md_path} to {docx_path} using pandoc with resource-path {md_dir}:{images_dir}")
             run([
                 'pandoc', str(md_path), '-o', str(docx_path), '--resource-path', f"{md_dir}:{images_dir}"
