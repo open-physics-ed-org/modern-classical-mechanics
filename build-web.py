@@ -753,7 +753,7 @@ def main():
         # Center the title and remove extra white header
         # No override style injected; main.css controls all site appearance
         return f"""<!DOCTYPE html>
-<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{book_title}</title>\n  <link href=\"css/main.css\" rel=\"stylesheet\">\n  <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>\n  <script>\n    (function() {{\n      function applyTheme() {{\n        const saved = localStorage.getItem('theme');\n        if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {{\n          document.documentElement.classList.add('dark');\n        }} else {{\n          document.documentElement.classList.remove('dark');\n        }}\n      }}\n      window.applyTheme = applyTheme;\n      applyTheme();\n      window.toggleTheme = function() {{\n        const isDark = document.documentElement.classList.toggle('dark');\n        localStorage.setItem('theme', isDark ? 'dark' : 'light');\n        applyTheme();\n      }};\n      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);\n    }})();\n  </script>\n</head>\n<body>\n  <button class=\"toggle-dark\" aria-label=\"Toggle dark/light mode\" onclick=\"toggleTheme()\">🌗</button>\n  <header class=\"site-header\">\n    <h1 class=\"site-title\">{book_title}</h1>\n  </header>\n  <nav class=\"site-nav\" id=\"site-nav\">{nav_html}</nav>\n  <div class=\"container\">\n    <main id=\"main-content\">\n      {body}\n    </main>\n  </div>\n  <footer>\n    <p>{footer_html}</p>\n  </footer>\n</body>\n</html>"""
+<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{book_title}</title>\n  <link href=\"css/main.css\" rel=\"stylesheet\">\n  <link href=\"css/card-link.css\" rel=\"stylesheet\">\n  <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>\n  <script>\n    (function() {{\n      function applyTheme() {{\n        const saved = localStorage.getItem('theme');\n        if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {{\n          document.documentElement.classList.add('dark');\n        }} else {{\n          document.documentElement.classList.remove('dark');\n        }}\n      }}\n      window.applyTheme = applyTheme;\n      applyTheme();\n      window.toggleTheme = function() {{\n        const isDark = document.documentElement.classList.toggle('dark');\n        localStorage.setItem('theme', isDark ? 'dark' : 'light');\n        applyTheme();\n      }};\n      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);\n    }})();\n  </script>\n</head>\n<body>\n  <button class=\"toggle-dark\" aria-label=\"Toggle dark/light mode\" onclick=\"toggleTheme()\">🌗</button>\n  <header class=\"site-header\">\n    <h1 class=\"site-title\">{book_title}</h1>\n  </header>\n  <nav class=\"site-nav\" id=\"site-nav\">{nav_html}</nav>\n  <div class=\"container\">\n    <main id=\"main-content\">\n      {body}\n    </main>\n  </div>\n  <footer>\n    <p>{footer_html}</p>\n  </footer>\n</body>\n</html>"""
 
     # --- Process index.md and cards.md as index.html ---
     index_md = repo_root / 'index.md'
@@ -775,39 +775,47 @@ def main():
         if m:
             title = m.group(1).strip()
         main_html = markdown.markdown(index_content, extensions=['extra', 'toc', 'admonition'])
-    if cards_md.exists():
+    # --- Build homepage card grid from _menu.yml, with optional Markdown overrides ---
+    card_grid = ''
+    if menu_data:
         try:
             import markdown
         except ImportError:
             print("[ERROR] The 'markdown' package is required. Install it with 'pip install markdown'.")
             sys.exit(1)
-        with open(cards_md, 'r', encoding='utf-8') as f:
-            cards_content = f.read()
-        # Parse cards.md into sections (split by --- or ## ...), then render each as a .card
-        # Split on headings (## ...) or horizontal rules (---)
-        card_sections = re.split(r'(?m)^---+$|^## +', cards_content)
-        card_sections = [s.strip() for s in card_sections if s.strip()]
+        # Parse cards.md into sections (split by headings)
+        card_md_sections = {}
+        if cards_md.exists():
+            with open(cards_md, 'r', encoding='utf-8') as f:
+                cards_content = f.read()
+            # Split on headings (## ...)
+            for m in re.finditer(r'^## +(.+?)\n([\s\S]*?)(?=^## |\Z)', cards_content, re.MULTILINE):
+                sec_title = m.group(1).strip()
+                sec_body = m.group(2).strip()
+                card_md_sections[sec_title.lower()] = sec_body
         card_grid = '<section class="card-grid" aria-label="Main sections">'
-        for section in card_sections:
-            # Extract first link as the card link and title
-            m = re.search(r'\[([^\]]+)\]\(([^)]+)\)', section)
-            if m:
-                link_title = m.group(1)
-                link_href = m.group(2)
-                # Remove the link line from the section
-                section_body = re.sub(r'^\[([^\]]+)\]\([^)]+\)\s*', '', section, count=1, flags=re.MULTILINE)
-                # Remove leading/trailing blank lines
-                section_body = section_body.strip()
-                # Render the rest as markdown
-                card_body_html = markdown.markdown(section_body, extensions=['extra', 'admonition'])
-                # Compose the card
-                card_grid += f'<article class="card" tabindex="0" role="region" aria-labelledby="card-{link_title.lower().replace(" ","-")}">'\
-                              f'<h2 id="card-{link_title.lower().replace(" ","-")}"><a href="{link_href}">{link_title}</a></h2>'\
-                              f'{card_body_html}</article>'
+        for item in menu_data:
+            title = item.get('title', '').strip()
+            # Exclude "Home" from card grid
+            if title.lower() == 'home':
+                continue
+            path = item.get('path', None)
+            desc = item.get('description', '').strip() if 'description' in item else ''
+            # Use Markdown override if present
+            md_body = card_md_sections.get(title.lower(), '').strip()
+            card_body = md_body if md_body else desc
+            card_body_html = markdown.markdown(card_body, extensions=['extra', 'admonition']) if card_body else ''
+            # Make the entire card clickable as a button, preserving Markdown styling for the body
+            if path:
+                card_grid += (
+                    f'<a href="{path}" class="card-link-wrapper" tabindex="0" aria-labelledby="card-{title.lower().replace(" ","-")}">' # Accessible link wrapper
+                    f'<article class="card" role="region" aria-labelledby="card-{title.lower().replace(" ","-")}">' # Card as region
+                    f'<h2 id="card-{title.lower().replace(" ","-")}">{title}</h2>'
+                    f'{card_body_html}'
+                    f'</article></a>'
+                )
             else:
-                # Fallback: just render as a card
-                card_body_html = markdown.markdown(section, extensions=['extra', 'admonition'])
-                card_grid += f'<article class="card" tabindex="0">{card_body_html}</article>'
+                card_grid += f'<article class="card" tabindex="0"><h2>{title}</h2>{card_body_html}</article>'
         card_grid += '</section>'
     if main_html:
         body = f'<div class="markdown-body">{main_html}{card_grid}</div>'

@@ -1,0 +1,22 @@
+/* Make the entire card clickable as a button, accessible and styled */
+.card-link-wrapper {
+  display: block;
+  text-decoration: none !important;
+  color: inherit !important;
+  border-radius: 16px;
+  transition: box-shadow 0.2s, border 0.2s, background 0.2s;
+  outline: none;
+}
+.card-link-wrapper:focus .card,
+.card-link-wrapper:hover .card {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  border: 1.5px solid var(--color-link);
+  background: var(--color-card);
+}
+.card-link-wrapper:focus {
+  outline: 3px solid var(--color-link);
+  outline-offset: 2px;
+}
+.card-link-wrapper .card {
+  cursor: pointer;
+}
