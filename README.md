@@ -173,6 +173,20 @@ See [build.md](build.md) for detailed, step-by-step documentation of the build s
 
 ---
 
+## 🎨 Modern CSS Styling & Accessibility (2025)
+
+- The site uses a fully custom, modern CSS (`static/css/main.css`) designed for clarity, readability, and accessibility.
+- All navigation and main content links use consistent coloring and hover effects for a unified experience.
+- Button colors are carefully chosen for both light and dark modes, ensuring strong contrast and visual appeal.
+- Dark mode download buttons use teal by default and purple (matching the dark mode title) on hover, with correct text color for readability.
+- All color choices are WCAG AA compliant for contrast and accessibility.
+- The CSS is documented, maintainable, and removes legacy/duplicate rules.
+- Emphasis on keyboard navigation, screen reader support, and accessible admonition blocks.
+
+> _This summary was written by Ollama and edited by a human for clarity and accuracy._
+
+---
+
 ## 🏗️ How to Build Locally
 
 1. **Clone the repo:**
