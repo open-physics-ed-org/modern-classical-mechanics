@@ -1,12 +1,13 @@
 :root {
   --color-bg: #e3f2fd;
-  --color-fg: #0d3c47;
+  --color-fg: #fff; /* white text for high contrast on teal */
   --color-card: #e0f7fa;
   --color-border: #26a69a;
-  --color-menu: #6c3fc5;
+  --color-menu: var(--color-link); /* menu matches title/link blue */
   --color-menu-hover: #4b278a;
-  --color-link: var(--color-menu);
-  --color-link-hover: var(--color-menu-hover);
+  --color-link: #2a7fff; /* blue for links in light mode */
+  --color-link-hover: #4b278a; /* purple for hover, matches menu hover */
+  --color-border: #2a7fff; /* blue border to match menu and title */
   --color-btn: #ff9800;
   --color-btn-hover: #ffb74d;
   --color-btn-text: #fff;
@@ -19,8 +20,25 @@ html.dark, body.dark {
   --color-border: #b39ddb;
   --color-menu: #b39ddb;
   --color-menu-hover: #7c5fcf;
-  --color-link: var(--color-menu);
-  --color-link-hover: var(--color-menu-hover);
+  --color-link: #b39ddb; /* purple for links in dark mode, matches menu */
+  --color-link-hover: #7c5fcf; /* lighter purple for hover in dark mode */
+/* Ensure links in text match menu color in both modes */
+.markdown-body a,
+.card a,
+.container a {
+  color: var(--color-link);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+.markdown-body a:hover,
+.markdown-body a:focus,
+.card a:hover,
+.card a:focus,
+.container a:hover,
+.container a:focus {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+}
   --color-btn: #ff9800;
   --color-btn-hover: #ffb74d;
   --color-btn-text: #181a1b;
@@ -31,11 +49,10 @@ html.dark, body.dark {
   --color-bg: #e3f2fd; /* light blue background */
   --color-fg: #0d3c47; /* deep teal text */
   --color-card: #e0f7fa; /* light teal card */
-  --color-border: #26a69a; /* teal border */
+  /* teal border removed, now blue for consistency */
   --color-menu: #6c3fc5; /* purple menu, WCAG AA on light */
   --color-menu-hover: #4b278a; /* darker purple for hover */
-  --color-link: var(--color-menu); /* menu links use purple */
-  --color-link-hover: var(--color-menu-hover);
+  /* Remove duplicate/old link color variables to avoid override */
   --color-btn: #ff9800; /* orange button, WCAG AA on light */
   --color-btn-hover: #ffb74d; /* lighter orange for hover */
   --color-btn-text: #fff;
@@ -112,7 +129,6 @@ footer {
 
 
 
-:root,
 
 .markdown-body {
   color: var(--color-fg) !important;
@@ -186,7 +202,7 @@ body.dark .site-header {
 }
 /* Only top-level nav links get the large font size */
 .site-nav > ul > li > a {
-  color: var(--color-menu);
+  color: var(--color-link);
   text-decoration: none;
   font-weight: 500;
   font-size: 1.65em; /* Larger text */
@@ -196,7 +212,7 @@ body.dark .site-header {
   display: block;
 }
 .site-nav a {
-  color: var(--color-menu);
+  color: var(--color-link);
   text-decoration: none;
   font-weight: 500;
   padding: 0.3em 1.2em;
