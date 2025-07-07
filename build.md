@@ -1,118 +1,78 @@
+
 # Build System Documentation
 
-This document describes in detail the build system for the Modern Classical Mechanics project, focusing on the two main scripts: `build.py` and `build-web.py`.
+## Overview
 
----
+This repository uses a modern, streamlined build system to generate all course outputs (HTML web site, PDFs, DOCX, Markdown, LaTeX, and images) from Jupyter notebooks and Markdown sources. The build process is designed to be robust, non-redundant, and easy to invoke.
 
-## `build.py` — The Main Build Script
+## Key Build Scripts
 
-### Purpose
-`build.py` is the primary build automation script for generating all course outputs from Jupyter notebooks. It supports building LaTeX, PDF, Markdown, and DOCX files, and generates the `_toc.yml` for Jupyter Book. It is designed to be robust, reproducible, and non-destructive to source notebooks.
+- **build.py**: The main entry point for all builds. Handles PDF, DOCX, Markdown, LaTeX, and image collection. For HTML/web builds, it delegates to `build-web.py`.
+- **build-web.py**: Contains all logic for building the HTML web site, including notebook conversion, menu generation, asset copying, and post-processing.
 
-### Usage
-```sh
-python build.py [--pdf] [--md] [--docx] [--latex] [--html] [--files ...]
+## Typical Usage
+
+Run from the repository root:
+
 ```
-- If no flags are given, all formats except HTML are built.
-- `--files` allows building a subset of notebooks.
-
-### Key Features
-- **Reads notebook list** from `_notebooks.yaml` (or `--files` argument)
-- **Never modifies source notebooks**
-- **Copies all local images** referenced in Markdown to `_build/md/images` and updates links
-- **Builds LaTeX** using `jupyter nbconvert --to latex`
-- **Builds PDF** using `jupyter nbconvert --to pdf`
-- **Builds Markdown** using `jupyter nbconvert --to markdown`
-- **Builds DOCX** from Markdown using Pandoc
-- **Generates `_toc.yml`** for Jupyter Book
-- **Cleans up** `_build/` directory, keeping only output folders
-- **Logs** all output to `log/build.log`
-
-### Detailed Workflow
-1. **Argument Parsing**
-   - Determines which formats to build based on CLI flags.
-2. **Notebook List**
-   - Reads from `_notebooks.yaml` or `--files`.
-3. **LaTeX Build**
-   - Converts each notebook to LaTeX (`.tex`) in `_build/latex`.
-4. **PDF Build**
-   - Converts each notebook to PDF in `_build/pdf`.
-5. **Markdown Build**
-   - Converts each notebook to Markdown in `_build/md`.
-   - Copies all local images referenced in Markdown to `_build/md/images`.
-   - Updates all image links in Markdown to point to the copied images.
-6. **DOCX Build**
-   - Converts each Markdown file to DOCX using Pandoc, with resource path set to `_build/md` and `_build/md/images`.
-7. **TOC Generation**
-   - Always generates `_toc.yml` from `_notebooks.yaml`.
-8. **Cleanup**
-   - Removes all folders in `_build` except `latex`, `html`, `md`, `docx`, `pdf`.
-9. **Logging**
-   - All output and errors are logged to `log/build.log`.
-
-### Notes
-- **HTML build is currently disabled.**
-- **Remote images are not fetched or rewritten.**
-- **Notebooks are never altered.**
-
----
-
-## `build-web.py` — Web Build Script
-
-### Purpose
-`build-web.py` is a specialized script for building the web version of the course site. It is typically used to generate the HTML site for deployment.
-
-### Usage
-```sh
-python build-web.py
+python build.py --html           # Build the full HTML web site (outputs to docs/)
+python build.py --pdf            # Build PDFs for all notebooks
+python build.py --md             # Build Markdown for all notebooks
+python build.py --docx           # Build DOCX for all notebooks
+python build.py --latex          # Build LaTeX for all notebooks
+python build.py --img            # Collect all referenced images into _build/images/
 ```
 
-### Key Features
-- **Builds the HTML site** using Jupyter Book or a custom workflow
-- **Updates navigation** and menu files as needed
-- **May call `build.py`** as a subprocess to ensure all outputs are up to date
-- **Copies static assets** (CSS, JS, images) to the appropriate locations in the web build
-- **Handles web-specific configuration** (e.g., custom navigation, menus)
+You can also build specific notebooks with `--files`:
 
-### Typical Workflow
-1. **Update Navigation/Menu**
-   - Regenerates or updates navigation files (e.g., `_menu.yml`, `menu.json`).
-2. **Build HTML**
-   - Runs Jupyter Book build or custom HTML build process.
-3. **Copy Static Assets**
-   - Ensures all CSS, JS, and image files are present in the web output directory.
-4. **Post-processing**
-   - May perform additional steps such as fixing links, updating metadata, or cleaning up temporary files.
+```
+python build.py --html --files 01_notes.ipynb 02_notes.ipynb
+```
 
-### Notes
-- `build-web.py` is intended for web deployment and may be customized for the course's specific needs.
-- It is often run after `build.py` to ensure all source outputs are current.
+## How the Build Works
 
----
+- **HTML/Web Build**: `python build.py --html` simply calls `build-web.py --html`, which:
+  - Converts all notebooks and Markdown pages to HTML using nbconvert and custom templates.
+  - Builds navigation menus from `_menu.yml`.
+  - Copies and organizes all images, CSS, and assets into sectioned folders.
+  - Cleans up Jupyter/nbconvert markup for a polished web appearance.
+  - Outputs all HTML and assets to `_build/html/` and then copies them to `docs/` for publishing (e.g., GitHub Pages).
 
-## Output Directory Structure
-- `_build/latex/` — LaTeX files (`.tex`)
-- `_build/pdf/` — PDF files (`.pdf`)
-- `_build/md/` — Markdown files (`.md`)
-- `_build/md/images/` — Images referenced in Markdown
-- `_build/docx/` — DOCX files (`.docx`)
-- `_build/html/` — HTML site (if enabled)
+- **PDF, DOCX, Markdown, LaTeX**: Handled directly by `build.py` using nbconvert and pandoc. Images are collected and flattened for each output type.
 
----
+- **Image Collection**: `--img` scans all notebooks and Markdown for referenced images (including YouTube thumbnails) and copies them to `_build/images/`.
+
+## File/Folder Organization
+
+- `build.py`                — Main build script (all formats except HTML web)
+- `build-web.py`            — All HTML/web build logic
+- `notebooks/` or `content/notebooks/` — All Jupyter notebooks (source)
+- `docs/`                   — Final HTML web site output (for GitHub Pages)
+- `_build/`                 — All intermediate and final build outputs
+    - `html/`               — HTML outputs (before copying to docs/)
+    - `pdf/`                — PDF outputs
+    - `docx/`               — DOCX outputs
+    - `md/`                 — Markdown outputs
+    - `latex/`              — LaTeX outputs
+    - `images/`             — All collected images (flattened)
+- `images/`                 — Project-wide images (source)
+- `static/css/`             — CSS for the web site
+- `_menu.yml`               — Navigation/menu structure
+- `_notebooks.yaml`         — List of notebooks to build
+- `_toc.yml`                — Jupyter Book table of contents (auto-generated)
+- `README.md`               — Project overview
+- `build.md`                — (This file) Build system documentation
 
 ## Best Practices
-- Always run `build.py` before `build-web.py` to ensure all outputs are up to date.
-- Never edit files in `_build/` directly; always edit source notebooks or configuration files.
-- Check `log/build.log` for build errors or warnings.
-- Use version control to track changes to build scripts and configuration files.
+
+- **Single Source of Truth**: All web build logic is in `build-web.py`. Do not duplicate HTML/web logic in `build.py`.
+- **Always Use `build.py`**: For consistency, always invoke builds via `build.py`.
+- **Keep `_notebooks.yaml` Up to Date**: This file controls which notebooks are included in builds.
+- **Do Not Edit `docs/` Directly**: All files in `docs/` are generated. Edit sources in `notebooks/`, `content/`, or `images/`.
+
+## Publishing
+
+The `docs/` folder is ready for static hosting (e.g., GitHub Pages). After running `python build.py --html`, simply push the repository to update the live site.
 
 ---
-
-## Troubleshooting
-- **Missing images in Markdown/DOCX:** Ensure figures are present in notebook outputs before building.
-- **Build errors:** Check `log/build.log` for details.
-- **PDF/LaTeX errors:** Review `.tex` files and LaTeX logs in `_build/latex`.
-
----
-
-For further details, see comments in the scripts or contact the course maintainers.
+*Last updated: July 2025*

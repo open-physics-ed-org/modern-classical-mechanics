@@ -45,15 +45,27 @@ def main():
     import requests
     import contextlib
 
-    parser = argparse.ArgumentParser(description="Build PDFs, Markdown, DOCX, HTML, or just collect all images from Jupyter notebooks and Jupyter Book.")
+    parser = argparse.ArgumentParser(description="Build PDFs, Markdown, DOCX, HTML, custom web output, or just collect all images from Jupyter notebooks and Jupyter Book.")
     parser.add_argument('--pdf', action='store_true', help='Build PDFs only')
     parser.add_argument('--md', action='store_true', help='Build Markdown only')
     parser.add_argument('--docx', action='store_true', help='Build DOCX only')
     parser.add_argument('--latex', action='store_true', help='Build LaTeX only')
-    parser.add_argument('--html', action='store_true', help='Build HTML only')
+    parser.add_argument('--html', action='store_true', help='Build HTML (calls build-web.py)')
     parser.add_argument('--img', action='store_true', help='Collect all referenced images into _build/images/')
     parser.add_argument('--files', nargs='+', help='One or more notebook files to build (relative to notebooks/ or absolute)')
     args = parser.parse_args()
+    # --- HTML Build Option: just call build-web.py --html (and pass --files if given) ---
+    if getattr(args, 'html', False):
+        import subprocess
+        cmd = [sys.executable, str(Path(__file__).parent / 'build-web.py'), '--html']
+        if args.files:
+            cmd += ['--files'] + args.files
+        print(f"[INFO] Calling build-web.py: {' '.join(cmd)}")
+        result = subprocess.run(cmd)
+        if result.returncode != 0:
+            print(f"[ERROR] build-web.py failed with exit code {result.returncode}")
+            sys.exit(result.returncode)
+        return
 
     # Directories and image search roots (must be set before any logic or function that uses them)
     repo_root = Path(__file__).parent.resolve()
