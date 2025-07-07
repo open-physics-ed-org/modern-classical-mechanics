@@ -46,27 +46,25 @@ def main():
     parser.add_argument('--html', action='store_true', help='Build HTML output (required for --files)')
     parser.add_argument('--files', nargs='+', help='One or more notebook files to build (must be used with --html)')
     parser.add_argument('--all', action='store_true', help='Build all notebooks listed in _notebooks.yaml')
-    parser.add_argument('--clean', action='store_true', help='Remove all Jupyter/nbconvert markup from HTML in docs/')
     parser.add_argument('-h', '--help', action='help', help='Show this help message and exit')
     args, unknown = parser.parse_known_args()
 
 
     # No flags: print error and usage
-    if not (args.html or args.files or args.all or args.clean or unknown):
+    if not (args.html or args.files or args.all or unknown):
         print("\n[ERROR] No flags provided. Usage:")
         parser.print_usage()
-        print("\nExample: python build-web.py --html [--files NOTEBOOK1.ipynb ...] [--all] [--clean]\n")
+        print("\nExample: python build-web.py --html [--files NOTEBOOK1.ipynb ...] [--all]\n")
         sys.exit(2)
 
-    # --clean: remove Jupyter/nbconvert markup from all HTML in docs/
-    if args.clean:
+    # Remove Jupyter/nbconvert markup from all HTML in docs/ (always after build)
+    def clean_html_files_in_docs():
         try:
             import bs4
         except ImportError:
             print("[ERROR] The 'bs4' package is required. Install it with 'pip install beautifulsoup4'.")
             import sys
             sys.exit(1)
-        import sys
         docs_dir = Path(__file__).parent / 'docs'
         html_files = list(docs_dir.glob('*.html'))
         print(f"[CLEAN] Processing {len(html_files)} HTML files in docs/ ...")
@@ -98,7 +96,6 @@ def main():
                 f.write(str(soup))
             print(f"[CLEAN] Cleaned {html_path.name}")
         print("[CLEAN] All HTML files in docs/ cleaned of Jupyter/nbconvert markup.")
-        sys.exit(0)
 
     # --files without --html: error
     if args.files and not args.html:
@@ -1125,6 +1122,8 @@ def main():
         print("[CHECK] All referenced images exist in docs output.")
 
     print("All notebooks converted to HTML and copied to docs/ with sectioned images, CSS, accessible menu, and downloadable sources.")
+    # Always clean docs/ HTML after build
+    clean_html_files_in_docs()
 
 if __name__ == '__main__':
     main()
