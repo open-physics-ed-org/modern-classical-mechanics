@@ -788,8 +788,8 @@ def main():
         if cards_md.exists():
             with open(cards_md, 'r', encoding='utf-8') as f:
                 cards_content = f.read()
-            # Split on headings (## ...)
-            for m in re.finditer(r'^## +(.+?)\n([\s\S]*?)(?=^## |\Z)', cards_content, re.MULTILINE):
+            # Split on headings (### ...)
+            for m in re.finditer(r'^### +(.+?)\n([\s\S]*?)(?=^### |\Z)', cards_content, re.MULTILINE):
                 sec_title = m.group(1).strip()
                 sec_body = m.group(2).strip()
                 card_md_sections[sec_title.lower()] = sec_body
@@ -804,13 +804,11 @@ def main():
             # Use Markdown override if present
             md_body = card_md_sections.get(title.lower(), '').strip()
             card_body = md_body if md_body else desc
-            card_body_html = markdown.markdown(card_body, extensions=['extra', 'admonition']) if card_body else ''
-            # Render as WCAG-accessible .download-btn card (identical to chapter download buttons)
-            # Use the first non-empty line as the card title (header), rest as body
-            card_lines = [line.strip() for line in card_body.split('\n') if line.strip() and not line.strip().startswith('---')]
-            card_title = card_lines[0] if card_lines else title
-            card_body_md = '\n'.join(card_lines[1:]) if len(card_lines) > 1 else ''
-            card_body_html = markdown.markdown(card_body_md, extensions=['extra', 'admonition']) if card_body_md else ''
+            card_title = title  # Use the section heading as the card title
+            card_body_md = card_body.strip()
+            # Remove any --- lines (horizontal rules) from the card body before rendering
+            card_body_md_clean = '\n'.join(line for line in card_body_md.split('\n') if line.strip() != '---')
+            card_body_html = markdown.markdown(card_body_md_clean, extensions=['extra', 'admonition']) if card_body_md_clean else ''
             card_id = f"card-{title.lower().replace(' ', '-')}"
             if path:
                 card_grid += (

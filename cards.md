@@ -1,30 +1,30 @@
 ### Chapters
 
-Lecture notes and weekly content.
+Lecture Notes<br/>
+Readings & Links<br/>
+Video Content
 
-Covers all main topics with detailed explanations.
 
 ---
 
 ### Activities
 
-
-Interactive activities and exercises.
-
-*(To be added)*
+Homework Questions<br/>
+In-class activities<br/>
+Concept questions
 
 ---
 
 ### Resources
 
-Reference materials, links, and tools.
-
+Reference Materials<br/>
+Links & Tools<br/>
 *(To be added)*
 
 ---
 
 ### About
 
-Course info, instructor, and policies.
-
-*(To be added)*
+Open Educational Resources<br/>
+Teaching Philosophy<br/>
+Contact Information
