@@ -425,26 +425,80 @@ body.dark .download-btn:focus {
     padding: 1.2em 1em 1em 1em;
   }
   .site-nav {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 0;
-  }
-  .site-nav-toggle {
-    display: block;
-    margin: 0.5em 1em 0.5em auto;
-    z-index: 1101;
-  }
-/* .site-nav-menu styles removed (mobile menu is gone) */
-  .site-nav li ul {
-    position: static;
-    box-shadow: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.5em 0 0.3em 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
     background: var(--color-card);
-    border-radius: 0;
+    border-top: 1.5px solid var(--color-border);
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+    z-index: 1001;
+  }
+  .site-nav ul {
+    flex-direction: row;
+    gap: 1.2em;
+    width: 100vw;
+    justify-content: space-around;
+    align-items: center;
     margin: 0;
     padding: 0;
   }
-  .site-nav li ul a {
-    padding-left: 2em;
+  .site-nav > ul > li > a {
+    font-size: 1.1em;
+    padding: 0.7em 0.7em;
+    border-radius: 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
   }
-  /* .site-nav-menu dark mode already handled globally */
+  .site-nav li ul {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 3.2em;
+    min-width: 0;
+    width: 100vw;
+    background: var(--color-card);
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+    border-radius: 0 0 12px 12px;
+    padding: 0.5em 0.5em 0.7em 0.5em;
+    margin: 0;
+    z-index: 1102;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.2em;
+  }
+  .site-nav li ul a {
+    padding: 0.9em 1.2em;
+    font-size: 1.08em;
+    border-radius: 0.5em;
+    margin: 0.1em 0;
+    background: none;
+    color: var(--color-link);
+    text-align: left;
+    box-shadow: none;
+  }
+  .site-nav li ul a:hover,
+  .site-nav li ul a:focus {
+    background: var(--color-link);
+    color: #fff;
+  }
+  header.site-header {
+    margin-bottom: 3.5em;
+  }
+  body {
+    padding-bottom: 4.2em;
+  }
+  /* Hide dropdown arrows on mobile for clarity */
+  .site-nav > ul > li > a:after {
+    display: none !important;
+  }
 }
