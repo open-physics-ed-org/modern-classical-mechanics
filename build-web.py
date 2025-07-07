@@ -1,4 +1,4 @@
-    # --- Build resources.html from resources.md and about.html from about.md ---
+# --- Build resources.html from resources.md and about.html from about.md ---
     # (Code moved inside main() after all variables are defined)
 #!/usr/bin/env python3
 import os
@@ -1043,6 +1043,7 @@ def main():
     <a class="download-btn" href="sources/{chapter_stem}/{chapter_stem}.md" download><span aria-hidden="true">✍️</span> MD</a>
     <a class="download-btn" href="sources/{chapter_stem}/{chapter_stem}.ipynb" download><span aria-hidden="true">📓</span> IPYNB</a>
     <a class="download-btn" href="sources/{chapter_stem}/{chapter_stem}.tex" download><span aria-hidden="true">📐</span> TEX</a>
+    <a class="download-btn" href="notebooks/{chapter_stem}.html" target="_blank"><span aria-hidden="true">🔗</span> Jupyter</a>
   </div>
 </nav>
         '''
