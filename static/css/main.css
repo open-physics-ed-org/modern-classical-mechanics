@@ -47,9 +47,11 @@ html.dark, body.dark {
   --color-menu-hover: #7c5fcf;
   --color-link: #b39ddb;       /* Purple for links in dark mode, matches menu */
   --color-link-hover: #7c5fcf; /* Lighter purple for hover in dark mode */
-  --color-btn: #ffb300;        /* Amber button for dark mode (contrasts purple) */
-  --color-btn-hover: #ffd54f;  /* Lighter amber for hover in dark mode */
-  --color-btn-text: #23242a;   /* Dark text for contrast on light amber */
+  --color-title: #7c5fcf;      /* Purple for dark mode title */
+  --color-btn: #1de9b6;        /* Teal for button in dark mode */
+  --color-btn-hover: var(--color-link);  /* Match dark mode title color for hover */
+  --color-btn-text: #23242a;   /* Dark text for contrast on teal */
+  --color-btn-hover-text: #fff; /* White text for contrast on purple hover */
 }
 
 html, body {
@@ -462,6 +464,10 @@ nav {
   box-shadow: 0 4px 16px rgba(0,0,0,0.16);
 }
 
+body.dark .download-btn:hover, body.dark .download-btn:focus {
+  color: var(--color-btn-hover-text) !important;
+}
+
 /* Ensure images with transparency and black text remain visible in dark mode */
 /*
 body.dark .markdown-body img,
@@ -479,21 +485,6 @@ img.content-img {
   background: #fff;
   border: 1px solid #e0e0e0;
   border-radius: 4px;
-}
-body.dark .download-btn {
-  background: #ff9800; /* Orange, WCAG AA on dark */
-  color: #fff !important;
-  border-color: #ff9800;
-}
-body.dark .download-btn:hover {
-  background: #ffb74d; /* Lighter orange for hover */
-  color: #fff !important;
-  border-color: #ffb74d;
-}
-body.dark .download-btn:focus {
-  outline: 3px solid #ffb74d;
-  outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(255,183,77,0.18);
 }
 
 /* Responsive styles */
