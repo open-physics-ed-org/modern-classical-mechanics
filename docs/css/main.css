@@ -1,5 +1,8 @@
 :root {
   --color-bg: #f9f9fb;
+
+:root {
+  --color-bg: #f9f9fb;
   --color-fg: #181a1b;
   --color-card: #f3f7fa;
   --color-border: #e0e0e0;
@@ -11,13 +14,11 @@ body.dark {
   --color-fg: #f9f9fb;
   --color-card: #181a1b;
   --color-border: #333;
-  --color-link: #b39ddb; /* Purple 300 */
-  --color-link-hover: #ffb74d; /* Orange 300 */
+  --color-link: #b39ddb;
+  --color-link-hover: #ffb74d;
 }
 
-
-
-html, body, .markdown-body {
+html, body {
   background: var(--color-card) !important;
   color: var(--color-fg) !important;
   font-family: system-ui, sans-serif;
@@ -33,11 +34,43 @@ body {
 }
 
 main {
+  max-width: 900px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  padding: 1em;
+  background: var(--color-card) !important;
+  color: var(--color-fg) !important;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  border: 3px solid var(--color-link);
+  box-sizing: border-box;
   flex: 1 0 auto;
+}
+
+body.dark main {
+  background: var(--color-bg) !important;
+  color: var(--color-fg) !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.32);
+  border: 3px solid var(--color-link-hover);
 }
 
 footer {
   flex-shrink: 0;
+  text-align: center;
+  padding: 2em 0 1em 0;
+  font-size: 0.9em;
+  color: var(--color-border);
+  background: var(--color-card) !important;
+  border-top: 3px solid var(--color-link);
+}
+
+body.dark footer {
+  color: var(--color-fg);
+  background: var(--color-card) !important;
+  border-top: 3px solid var(--color-link-hover);
 }
 
 .markdown-body .highlight,
@@ -62,27 +95,6 @@ footer {
   box-shadow: none !important;
 }
 
-.markdown-body [style*="background"],
-.markdown-body [style*="background-color"] {
-  background: var(--color-card) !important;
-  background-color: var(--color-card) !important;
-}
-
-.markdown-body .container,
-.markdown-body .container-lg,
-.markdown-body [style*="padding-left"],
-.markdown-body [style*="margin-left"] {
-  margin-left: 0 !important;
-  padding-left: 0 !important;
-}
-
-body.dark .markdown-body,
-body.dark .markdown-body * {
-  color: var(--color-fg) !important;
-  background: var(--color-bg) !important;
-  border-color: var(--color-border) !important;
-}
-
 :root,
 .markdown-body {
   --jp-cell-editor-background: var(--color-card) !important;
@@ -97,67 +109,16 @@ body.dark .markdown-body * {
   --jp-notebook-select-background: var(--color-card) !important;
   --jp-output-area-background: var(--color-card) !important;
 }
-
-/* Shared container/main/nav styles */
-
-.container,
-main,
-nav {
-  background: var(--color-card);
-  color: var(--color-fg);
-  padding: 1rem;
-  border-bottom: 1px solid var(--color-bg);
-}
-
-body.dark .container,
-body.dark main {
-  background: var(--color-bg) !important;
-}
-
-
-main {
-  max-width: 900px;
-  margin: 2em auto;
-  padding: 1em;
-  background: var(--color-card) !important;
-  color: var(--color-fg) !important;
-  border-radius: 12px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
-}
-body.dark main {
-  background: var(--color-bg) !important;
-  color: var(--color-fg) !important;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.32);
-  border: 1px solid var(--color-border);
-}
-
-footer {
-  text-align: center;
-  padding: 2em 0 1em 0;
-  font-size: 0.9em;
-  color: var(--color-border);
-  background: var(--color-card) !important;
-  border-top: 1px solid var(--color-card);
-}
-body.dark footer {
-  color: var(--color-fg);
-  background: var(--color-card) !important;
-  border-top: 1px solid var(--color-card);
-}
-
-/* Dark mode for nav and menu */
-body.dark .site-nav,
-body.dark nav,
-body.dark .site-nav-menu {
-  background: var(--color-bg) !important;
-  color: var(--color-fg) !important;
 }
 
 .site-header {
   background: var(--color-card);
   margin: 0;
   padding: 0.7em 0;
-  border-bottom: 1px solid var(--color-card);
+  border-bottom: 3px solid var(--color-link);
+}
+body.dark .site-header {
+  border-bottom: 3px solid var(--color-link-hover);
 }
 .site-title {
   text-align: center;
@@ -447,10 +408,7 @@ body.dark .download-btn:focus {
 
 /* Responsive styles */
 @media (max-width: 900px) {
-  .container {
-    max-width: 100vw;
-    padding: 1em 0.5em;
-  }
+  /* .container removed: no longer used */
   main {
     max-width: 100vw;
     padding: 1em;
