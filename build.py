@@ -41,11 +41,15 @@ def parse_yaml_list(yaml_path):
         raise ValueError(f"Unexpected YAML structure in {yaml_path}")
 
 def main():
+
+    import requests
+    import contextlib
+
     parser = argparse.ArgumentParser(description="Build PDFs, Markdown, DOCX, HTML, or just collect all images from Jupyter notebooks and Jupyter Book.")
     parser.add_argument('--pdf', action='store_true', help='Build PDFs only')
     parser.add_argument('--md', action='store_true', help='Build Markdown only')
     parser.add_argument('--docx', action='store_true', help='Build DOCX only')
-    parser.add_argument('--latex', action='store_true', help='Build TeX only')
+    parser.add_argument('--latex', action='store_true', help='Build LaTeX only')
     parser.add_argument('--html', action='store_true', help='Build HTML only')
     parser.add_argument('--img', action='store_true', help='Collect all referenced images into _build/images/')
     parser.add_argument('--files', nargs='+', help='One or more notebook files to build (relative to notebooks/ or absolute)')
@@ -64,14 +68,13 @@ def main():
     images_root_candidates = [repo_root / 'images', repo_root / 'content/images']
 
     # --- Build Images Only ---
-    if hasattr(args, 'img') and args.img:
+    # Only run this block if --img is set, and return after
+    if getattr(args, 'img', False):
         img_dir = build_dir / 'images'
         img_dir.mkdir(parents=True, exist_ok=True)
         print(f"[INFO] Collecting all images referenced in notebooks and markdown into {img_dir}")
         # Helper to process a file and copy all images it references
         def process_file_for_images(file_path, nb_stem=None):
-            import re
-            import requests
             from fetch_youtube import fetch_youtube_thumbnail
             if not file_path.exists():
                 print(f"[WARN] File not found: {file_path}")
@@ -116,7 +119,6 @@ def main():
                 img_filename = os.path.basename(img_path)
                 # 1. Try resolving the full relative path from the file's location
                 if not os.path.isabs(img_path) and not img_path.startswith('~'):
-                    # If file_path is a notebook or markdown, resolve relative to its parent
                     candidate = (file_path.parent / img_path).resolve()
                     if candidate.exists():
                         real_img_path = candidate
@@ -124,7 +126,6 @@ def main():
                 # 2. Try to find the full subpath in each images_root_candidates
                 if not found:
                     for images_root in images_root_candidates:
-                        # Remove any leading ../ or ./ from img_path for subpath search
                         norm_img_path = os.path.normpath(img_path).lstrip(os.sep)
                         candidate = images_root / norm_img_path
                         if candidate.exists():
@@ -231,17 +232,6 @@ def main():
         print(f"[INFO] All referenced images copied to {img_dir}")
         return
 
-    # Directories (must be set before logging)
-    repo_root = Path(__file__).parent.resolve()
-    build_dir = repo_root / '_build'
-    build_dir.mkdir(parents=True, exist_ok=True)  # Ensure _build exists
-    chapters_dir = build_dir / 'latex'
-    html_dir = build_dir / 'html'
-    notebook_dir = repo_root / 'content/notebooks'
-    # Use _notebooks.yaml instead of notebooks.yaml
-    notebooks_yaml = repo_root / '_notebooks.yaml'
-    update_toc = repo_root / 'scripts' / 'update_toc.sh'
-
     # --- Setup logging ---
     log_dir = repo_root / 'log'
     log_dir.mkdir(parents=True, exist_ok=True)
@@ -249,27 +239,11 @@ def main():
     prior_log = log_dir / 'build.log.prior'
     if build_log.exists():
         shutil.copy2(build_log, prior_log)
-    import contextlib
     log_file = open(build_log, 'w')
     log_stream = contextlib.ExitStack()
     log_stream.enter_context(contextlib.redirect_stdout(log_file))
     log_stream.enter_context(contextlib.redirect_stderr(log_file))
     # All print() and errors after this point go to build.log
-
-    parser = argparse.ArgumentParser(description="Build PDFs, Markdown, DOCX, HTML, or just collect all images from Jupyter notebooks and Jupyter Book.")
-    parser.add_argument('--pdf', action='store_true', help='Build PDFs only')
-    parser.add_argument('--md', action='store_true', help='Build Markdown only')
-    parser.add_argument('--docx', action='store_true', help='Build DOCX only')
-    parser.add_argument('--latex', action='store_true', help='Build LaTeX only')
-    parser.add_argument('--html', action='store_true', help='Build HTML only')
-    parser.add_argument('--img', action='store_true', help='Collect all referenced images into _build/images/')
-    parser.add_argument('--files', nargs='+', help='One or more notebook files to build (relative to notebooks/ or absolute)')
-    args = parser.parse_args()
-
-    import nbformat
-    import requests
-    import re
-    import hashlib
 
     # Determine what to build
     build_latex = args.latex or (not args.pdf and not args.md and not args.docx)
@@ -299,14 +273,12 @@ def main():
         if not notebooks:
             print("[ERROR] No valid notebooks specified with --files.", file=sys.stderr)
             sys.exit(1)
-        # Targeted build: collect images per notebook as needed (existing logic)
         image_collection_mode = 'per-notebook'
     else:
         if not notebooks_yaml.exists():
             print(f"[ERROR] {notebooks_yaml} not found.", file=sys.stderr)
             sys.exit(1)
         notebooks = parse_yaml_list(notebooks_yaml)
-        # Full build: collect images for all notebooks up front
         image_collection_mode = 'global'
 
     # --- Efficient global image collection for full build ---
@@ -315,8 +287,6 @@ def main():
         img_dir.mkdir(parents=True, exist_ok=True)
         print(f"[INFO] [Full Build] Collecting all images for all notebooks into {img_dir}")
         def process_file_for_images(file_path, nb_stem=None):
-            import re
-            import requests
             from fetch_youtube import fetch_youtube_thumbnail
             if not file_path.exists():
                 print(f"[WARN] File not found: {file_path}")
@@ -434,9 +404,8 @@ def main():
 
     # --- Build TeX ---
     jupyter_bin = str(repo_root / '.venv' / 'bin' / 'jupyter')
-    images_root_candidates = [repo_root / 'images', repo_root / 'content/images']
     tex_images_dir = chapters_dir / 'images'
-    if args.latex or (not args.pdf and not args.md and not args.docx):
+    if build_latex:
         chapters_dir.mkdir(parents=True, exist_ok=True)
         tex_images_dir.mkdir(parents=True, exist_ok=True)
         print(f"[INFO] Building TeX files for notebooks in {notebook_dir} -> {chapters_dir}")
@@ -460,7 +429,7 @@ def main():
                             if img_path.startswith('http'):
                                 continue
                             img_filename = f"{nb_path.stem}_{os.path.basename(img_path)}"
-                            img_file = images_dir / img_filename
+                            img_file = tex_images_dir / img_filename
                             if not img_file.exists():
                                 missing_images.add(img_path)
             except Exception as e:
@@ -468,17 +437,17 @@ def main():
             if missing_images:
                 print(f"[INFO] Missing images for {nb_path}: {missing_images}. Running --img...")
                 try:
+                    from subprocess import run
                     run([
                         sys.executable, __file__, '--img', '--files', str(nb)
-                    ])
+                    ], check=True)
                 except Exception as e:
                     print(f"[ERROR] Failed to collect images for {nb_path}: {e}")
-            # Now convert to TeX
+            from subprocess import run
             run([
                 jupyter_bin, 'nbconvert', '--to', 'latex', str(nb_path),
                 '--output', tex_name, '--output-dir', str(chapters_dir)
-            ])
-            # Update image links in the .tex file to use ../images/{flat_name}
+            ], check=True)
             if tex_path.exists():
                 with open(tex_path, 'r', encoding='utf-8') as f:
                     tex_content = f.read()
@@ -497,7 +466,6 @@ def main():
                     f.write(tex_content)
         print(f"[INFO] All notebooks converted to TeX and saved in {chapters_dir}. All image links updated to reference _build/images.")
 
-    # --- End logging ---
     log_file.close()
     log_stream.close()
 
@@ -512,6 +480,7 @@ def main():
             tex_name = Path(nb).with_suffix('.tex').name
             tex_path = chapters_dir / tex_name
             tex_files.append(tex_path)
+        from subprocess import run
         for tex_file in tex_files:
             pdf_name = tex_file.with_suffix('.pdf').name
             pdf_path = chapters_dir / pdf_name
@@ -520,8 +489,8 @@ def main():
                 print(f"[WARN] .tex file not found: {tex_file}. Attempting to build with --tex...")
                 try:
                     run([
-                        sys.executable, __file__, '--tex', '--files', str(tex_file.stem + '.ipynb')
-                    ])
+                        sys.executable, __file__, '--latex', '--files', str(tex_file.stem + '.ipynb')
+                    ], check=True)
                 except Exception as e:
                     print(f"[ERROR] Failed to build TeX for {tex_file}: {e}")
                 if not tex_file.exists():
@@ -541,7 +510,7 @@ def main():
                 try:
                     run([
                         sys.executable, __file__, '--img', '--files', str(tex_file.stem + '.ipynb')
-                    ])
+                    ], check=True)
                 except Exception as e:
                     print(f"[ERROR] Failed to collect images for {tex_file}: {e}")
                 # Re-check if all images now exist
@@ -551,18 +520,18 @@ def main():
                     if not img_path.exists():
                         still_missing.append(img_filename)
                 if still_missing:
-                    print(f"[ERROR] Images still missing for {tex_file}: {still_missing}. Skipping PDF for this file.")
+                    print(f"[ERROR] Still missing images for {tex_file}: {still_missing}. Skipping PDF for this file.")
                     continue
             print(f"[INFO] Compiling {tex_file} to {pdf_path} using pdflatex...")
             run([
                 'pdflatex', '-interaction=nonstopmode', str(tex_file)
-            ], cwd=chapters_dir)
+            ], cwd=chapters_dir, check=True)
             if pdf_path.exists():
                 dest_pdf = pdf_dir / pdf_name
                 shutil.copy2(pdf_path, dest_pdf)
                 print(f"[INFO] Copied {pdf_path} to {dest_pdf}")
             else:
-                print(f"[ERROR] PDF not generated for {tex_file}", file=sys.stderr)
+                print(f"[ERROR] PDF not generated for {tex_file}")
         print(f"[INFO] All TeX files compiled and PDFs copied to {pdf_dir}")
 
     # --- Build Markdown ---

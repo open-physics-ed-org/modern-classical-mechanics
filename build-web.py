@@ -3,13 +3,13 @@
 #!/usr/bin/env python3
 import os
 import shutil
-import re
 import hashlib
 import requests
 import nbformat
 from pathlib import Path
 from nbconvert import HTMLExporter
 import sys
+import re
 
 import string
 def flatten_image_name(rel_path):
@@ -530,12 +530,13 @@ def main():
         section_dir = ensure_section_dir(section)
         nb_data = nbformat.read(str(nb_path), as_version=4)
         referenced_images = set()
+        import re  # Ensure re refers to the module, not a local variable
         for cell in nb_data.cells:
             if cell.cell_type != 'markdown':
                 continue
-            def update_img_link(match):
-                alt_text = match.group(1)
-                img_path = match.group(2).strip()
+            def update_img_link(m):
+                alt_text = m.group(1)
+                img_path = m.group(2).strip()
                 # --- YOUTUBE THUMBNAIL HANDLING ---
                 yt_match = re.match(r'https?://img\.youtube\.com/vi/([\w-]{11})/', img_path)
                 if yt_match:
