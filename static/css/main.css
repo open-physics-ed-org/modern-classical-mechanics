@@ -1,11 +1,44 @@
+:root {
+  --color-bg: #e3f2fd;
+  --color-fg: #0d3c47;
+  --color-card: #e0f7fa;
+  --color-border: #26a69a;
+  --color-menu: #6c3fc5;
+  --color-menu-hover: #4b278a;
+  --color-link: var(--color-menu);
+  --color-link-hover: var(--color-menu-hover);
+  --color-btn: #ff9800;
+  --color-btn-hover: #ffb74d;
+  --color-btn-text: #fff;
+}
+
+html.dark, body.dark {
+  --color-bg: #181a1b;
+  --color-fg: #f9f9fb;
+  --color-card: #23242a;
+  --color-border: #b39ddb;
+  --color-menu: #b39ddb;
+  --color-menu-hover: #7c5fcf;
+  --color-link: var(--color-menu);
+  --color-link-hover: var(--color-menu-hover);
+  --color-btn: #ff9800;
+  --color-btn-hover: #ffb74d;
+  --color-btn-text: #181a1b;
+}
+
 
 :root {
   --color-bg: #e3f2fd; /* light blue background */
   --color-fg: #0d3c47; /* deep teal text */
   --color-card: #e0f7fa; /* light teal card */
   --color-border: #26a69a; /* teal border */
-  --color-link: #00796b; /* teal link */
-  --color-link-hover: #005b4f; /* darker teal for hover */
+  --color-menu: #6c3fc5; /* purple menu, WCAG AA on light */
+  --color-menu-hover: #4b278a; /* darker purple for hover */
+  --color-link: var(--color-menu); /* menu links use purple */
+  --color-link-hover: var(--color-menu-hover);
+  --color-btn: #ff9800; /* orange button, WCAG AA on light */
+  --color-btn-hover: #ffb74d; /* lighter orange for hover */
+  --color-btn-text: #fff;
 }
 
 html, body {
@@ -15,6 +48,7 @@ html, body {
   margin: 0 !important;
   padding: 0 !important;
   height: 100%;
+  transition: background 0.3s, color 0.3s;
 }
 
 body {
@@ -38,6 +72,7 @@ body {
   border: 3px solid var(--color-link);
   box-sizing: border-box;
   flex: 1 0 auto;
+  transition: background 0.3s, color 0.3s, border 0.3s;
 }
 
 
@@ -141,7 +176,7 @@ body.dark .site-header {
 }
 /* Only top-level nav links get the large font size */
 .site-nav > ul > li > a {
-  color: var(--color-link);
+  color: var(--color-menu);
   text-decoration: none;
   font-weight: 500;
   font-size: 1.65em; /* Larger text */
@@ -151,7 +186,7 @@ body.dark .site-header {
   display: block;
 }
 .site-nav a {
-  color: var(--color-link);
+  color: var(--color-menu);
   text-decoration: none;
   font-weight: 500;
   padding: 0.3em 1.2em;
@@ -161,7 +196,7 @@ body.dark .site-header {
 }
 .site-nav a:hover,
 .site-nav a:focus {
-  background: var(--color-link);
+  background: var(--color-menu-hover);
   color: #fff;
   text-decoration: none;
   outline: none;
@@ -331,9 +366,9 @@ nav {
   padding: 0.6em 1.5em;
   font-size: 1.1em;
   font-weight: 700;
-  color: #fff;
-  background: #00796b; /* Teal, WCAG AA compliant on white */
-  border: 2px solid #00796b;
+  color: var(--color-btn-text);
+  background: var(--color-btn);
+  border: 2px solid var(--color-btn);
   border-radius: 0.6em;
   text-decoration: none;
   box-shadow: 0 2px 8px rgba(0,0,0,0.10);
@@ -344,14 +379,14 @@ nav {
   letter-spacing: 0.01em;
 }
 .download-btn:focus {
-  outline: 3px solid #222;
+  outline: 3px solid var(--color-btn-hover);
   outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(0,121,107,0.18);
+  box-shadow: 0 0 0 4px rgba(255,183,77,0.18);
 }
 .download-btn:hover {
-  background: #004d40; /* Darker teal for hover */
-  border-color: #004d40;
-  color: #fff;
+  background: var(--color-btn-hover);
+  border-color: var(--color-btn-hover);
+  color: var(--color-btn-text);
   text-decoration: none;
   box-shadow: 0 4px 16px rgba(0,0,0,0.16);
 }

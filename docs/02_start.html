@@ -1,22 +1,43 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Modern Classical Mechanics</title>
-      <link href="css/main.css" rel="stylesheet">
-      <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>
-    </head>
-    <body class="dark">
-      <header class="site-header">
-        <h1 class="site-title">Modern Classical Mechanics</h1>
-      </header>
-      <nav class="site-nav" id="site-nav"><ul class="site-nav-menu" id="site-nav-menu"><li><a href="index.html">Home</a></li><li><a href="chapters.html">Chapters</a><ul class="dropdown-menu menu-level-1"><li><a href="01_start.html">Week 1: Start</a></li><li><a href="01_notes.html">Week 1: Introduction to Classical Mechanics</a></li><li><a href="02_start.html">Week 2: Computing as a tool for science</a></li><li><a href="02_notes.html">Week 2: Mathematical Preliminaries</a></li><li><a href="03_start.html">Week 3: What is Mathematical Modeling?</a></li><li><a href="03_notes.html">Week 3: Making Classical Models</a></li><li><a href="04_start.html">Week 4: Why does fluid drag complicate things?</a></li><li><a href="04_notes.html">Week 4: Equations of Motion</a></li><li><a href="05_start.html">Week 5: Conservation Laws</a></li><li><a href="05_notes.html">Week 5: Conservation of Energy</a></li><li><a href="06_start.html">Week 6: Stability and Equilibria</a></li><li><a href="06_notes.html">Week 6: Stability and Energy</a></li><li><a href="06_notes_2.html">Week 6: Linear and Angular Momentum</a></li><li><a href="07_start.html">Week 7: Nonlinear Dynamics</a></li><li><a href="07_notes.html">Week 7: Critical Points; Phase Space; Trajectories</a></li><li><a href="08_start.html">Week 8: Oscillations</a></li><li><a href="08_notes.html">Week 8: Oscillators and Modeling Oscillations</a></li><li><a href="09_start.html">Week 9: Driven Oscillators and Resonance</a></li><li><a href="09_notes.html">Week 9: Driven Oscillations</a></li><li><a href="10_start.html">Week 10: Chaotic Dynamics</a></li><li><a href="10_notes.html">Week 10: Activity: Modeling Chaotic Systems</a></li><li><a href="11_start.html">Week 11: Calculus of Variations</a></li><li><a href="11_notes.html">Week 11: The Euler-Lagrange Equation</a></li><li><a href="12_start.html">Week 12: The Principle of Least Action</a></li><li><a href="12_notes.html">Week 12: Introduction to Lagrangian Mechanics</a></li><li><a href="13_start.html">Week 13: Lagrangian Mechanics</a></li><li><a href="13_notes.html">Week 13: Examples of Lagrangian Mechanics</a></li></ul></li><li><a href="activities.html">Activities</a></li><li><a href="resources.html">Resources</a></li><li><a href="about.html">About</a></li></ul>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Classical Mechanics</title>
+  <link href="css/main.css" rel="stylesheet">
+  <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>
+  <script>
+    (function() {
+      function applyTheme() {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }
+      window.applyTheme = applyTheme;
+      applyTheme();
+      window.toggleTheme = function() {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        applyTheme();
+      };
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);
+    })();
+  </script>
+</head>
+<body>
+  <button class="toggle-dark" aria-label="Toggle dark/light mode" onclick="toggleTheme()">🌗</button>
+  <header class="site-header">
+    <h1 class="site-title">Modern Classical Mechanics</h1>
+  </header>
+  <nav class="site-nav" id="site-nav"><ul class="site-nav-menu" id="site-nav-menu"><li><a href="index.html">Home</a></li><li><a href="chapters.html">Chapters</a><ul class="dropdown-menu menu-level-1"><li><a href="01_start.html">Week 1: Start</a></li><li><a href="01_notes.html">Week 1: Introduction to Classical Mechanics</a></li><li><a href="02_start.html">Week 2: Computing as a tool for science</a></li><li><a href="02_notes.html">Week 2: Mathematical Preliminaries</a></li><li><a href="03_start.html">Week 3: What is Mathematical Modeling?</a></li><li><a href="03_notes.html">Week 3: Making Classical Models</a></li><li><a href="04_start.html">Week 4: Why does fluid drag complicate things?</a></li><li><a href="04_notes.html">Week 4: Equations of Motion</a></li><li><a href="05_start.html">Week 5: Conservation Laws</a></li><li><a href="05_notes.html">Week 5: Conservation of Energy</a></li><li><a href="06_start.html">Week 6: Stability and Equilibria</a></li><li><a href="06_notes.html">Week 6: Stability and Energy</a></li><li><a href="06_notes_2.html">Week 6: Linear and Angular Momentum</a></li><li><a href="07_start.html">Week 7: Nonlinear Dynamics</a></li><li><a href="07_notes.html">Week 7: Critical Points; Phase Space; Trajectories</a></li><li><a href="08_start.html">Week 8: Oscillations</a></li><li><a href="08_notes.html">Week 8: Oscillators and Modeling Oscillations</a></li><li><a href="09_start.html">Week 9: Driven Oscillators and Resonance</a></li><li><a href="09_notes.html">Week 9: Driven Oscillations</a></li><li><a href="10_start.html">Week 10: Chaotic Dynamics</a></li><li><a href="10_notes.html">Week 10: Activity: Modeling Chaotic Systems</a></li><li><a href="11_start.html">Week 11: Calculus of Variations</a></li><li><a href="11_notes.html">Week 11: The Euler-Lagrange Equation</a></li><li><a href="12_start.html">Week 12: The Principle of Least Action</a></li><li><a href="12_notes.html">Week 12: Introduction to Lagrangian Mechanics</a></li><li><a href="13_start.html">Week 13: Lagrangian Mechanics</a></li><li><a href="13_notes.html">Week 13: Examples of Lagrangian Mechanics</a></li></ul></li><li><a href="activities.html">Activities</a></li><li><a href="resources.html">Resources</a></li><li><a href="about.html">About</a></li></ul>
 <!-- Hamburger menu and toggle JS commented out -->
 </nav>
-      <div class="container">
-        <main id="main-content">
-          
+  <div class="container">
+    <main id="main-content">
+      
 <nav class="chapter-downloads" aria-label="Download chapter sources">
   <div role="group" aria-label="Download formats">
     <a class="download-btn" href="sources/02_start/02_start.pdf" download><span aria-hidden="true">📄</span> PDF</a>
@@ -31,7 +52,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>tmptvrpk0x7</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>tmpqwzu6e_w</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7721,10 +7742,10 @@ a.anchor-link {
 </body>
 </html>
 </div>
-        </main>
-      </div>
-      <footer>
-        <p>&copy; Modern Classical Mechanics. All rights reserved. | Built with ❤️ by the MSU Physics team.</p>
-      </footer>
-    </body>
-    </html>
+    </main>
+  </div>
+  <footer>
+    <p>&copy; Modern Classical Mechanics. All rights reserved. | Built with ❤️ by the MSU Physics team.</p>
+  </footer>
+</body>
+</html>
