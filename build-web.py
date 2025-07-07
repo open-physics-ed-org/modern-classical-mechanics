@@ -805,17 +805,16 @@ def main():
             md_body = card_md_sections.get(title.lower(), '').strip()
             card_body = md_body if md_body else desc
             card_body_html = markdown.markdown(card_body, extensions=['extra', 'admonition']) if card_body else ''
-            # Make the entire card clickable as a button, preserving Markdown styling for the body
+            # Render as WCAG-accessible .download-btn card (identical to chapter download buttons)
             if path:
                 card_grid += (
-                    f'<a href="{path}" class="card-link-wrapper" tabindex="0" aria-labelledby="card-{title.lower().replace(" ","-")}">' # Accessible link wrapper
-                    f'<article class="card" role="region" aria-labelledby="card-{title.lower().replace(" ","-")}">' # Card as region
-                    f'<h2 id="card-{title.lower().replace(" ","-")}">{title}</h2>'
+                    f'<a class="download-btn card-home-btn" href="{path}" role="button" tabindex="0" aria-labelledby="card-{title.lower().replace(" ","-")}">' # Use .download-btn for homepage cards
+                    f'<span class="card-home-title" id="card-{title.lower().replace(" ","-")}">{title}</span>'
                     f'{card_body_html}'
-                    f'</article></a>'
+                    f'</a>'
                 )
             else:
-                card_grid += f'<article class="card" tabindex="0"><h2>{title}</h2>{card_body_html}</article>'
+                card_grid += f'<span class="download-btn card-home-btn" tabindex="0"><span class="card-home-title">{title}</span>{card_body_html}</span>'
         card_grid += '</section>'
     if main_html:
         body = f'<div class="markdown-body">{main_html}{card_grid}</div>'

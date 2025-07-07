@@ -1,22 +1,88 @@
-/* Make the entire card clickable as a button, accessible and styled */
-.card-link-wrapper {
-  display: block;
-  text-decoration: none !important;
-  color: inherit !important;
-  border-radius: 16px;
-  transition: box-shadow 0.2s, border 0.2s, background 0.2s;
-  outline: none;
+
+/*
+  HOMEPAGE CARD GRID STYLES (now for .download-btn.card-home-btn)
+  - All homepage cards use <a class="download-btn card-home-btn" ...>
+  - This block ensures homepage cards are visually and structurally identical to .download-btn (chapter download buttons),
+    but with square, grid, and responsive layout for the homepage.
+  - All previous .card-link-wrapper rules are removed as they are no longer used.
+*/
+
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+  justify-content: center;
+  align-items: stretch;
+  margin: 2em 0 2em 0;
 }
-.card-link-wrapper:focus .card,
-.card-link-wrapper:hover .card {
-  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
-  border: 1.5px solid var(--color-link);
-  background: var(--color-card);
+
+.download-btn.card-home-btn {
+  /* Inherit all .download-btn styles from main.css, then add grid/square overrides */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  min-width: 260px;
+  max-width: 260px;
+  min-height: 260px;
+  max-height: 260px;
+  margin: 0.5em;
+  padding: 0;
+  box-sizing: border-box;
+  /* Ensure square aspect ratio on all screens */
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  /* Font and border-radius are inherited from .download-btn */
 }
-.card-link-wrapper:focus {
-  outline: 3px solid var(--color-link);
+
+.download-btn.card-home-btn:focus {
+  outline: 3px solid var(--color-btn-hover);
   outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(255,183,77,0.18);
 }
-.card-link-wrapper .card {
-  cursor: pointer;
+
+.download-btn.card-home-btn .card-home-btn-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 2em 1.2em 1.5em 1.2em;
+  box-sizing: border-box;
+}
+
+.download-btn.card-home-btn h2 {
+  color: inherit !important;
+  font-size: 1.25em;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+  margin-top: 0;
+}
+
+.download-btn.card-home-btn p {
+  color: inherit !important;
+  font-size: 1em;
+  margin: 0.5em 0 0 0;
+}
+
+/* Accessibility: visually indicate focus, pointer, etc. */
+.download-btn.card-home-btn[aria-disabled="true"],
+.download-btn.card-home-btn[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* Responsive: shrink cards on small screens */
+@media (max-width: 600px) {
+  .download-btn.card-home-btn {
+    min-width: 160px;
+    max-width: 160px;
+    min-height: 160px;
+    max-height: 160px;
+    font-size: 1em;
+  }
 }
