@@ -657,7 +657,7 @@ def main():
             return html
         # Top-level: horizontal menu
         if level == 0:
-            html += '<ul class="site-nav-menu">'
+            html += '<ul class="site-nav-menu" id="site-nav-menu">'
         else:
             html += f'<ul class="dropdown-menu menu-level-{level}">'  # Dropdown for children
         for item in menu_items:
@@ -677,7 +677,8 @@ def main():
 
     def get_nav_html():
         # Accessible nav: desktop and mobile, with ARIA and toggle
-        nav_html = '<button class="site-nav-toggle" aria-label="Open menu" aria-controls="site-nav-menu" aria-expanded="false" tabindex="0">☰</button>'
+        nav_html = ''
+        # nav_html = '<button class="site-nav-toggle" aria-label="Open menu" aria-controls="site-nav-menu" aria-expanded="false" tabindex="0">☰</button>'  # Hamburger menu commented out
         # Use menu_data if available, else fallback
         if menu_data:
             nav_html += build_menu_html(menu_data)
@@ -685,46 +686,7 @@ def main():
             nav_html += '<!-- Menu data not available, fallback menu here -->'
         nav_html += """
 <button class="toggle-dark" aria-label="Toggle dark/light mode" onclick="document.body.classList.toggle('dark')">🌗</button>
-<script>
-document.addEventListener('DOMContentLoaded',function(){
-  var nav = document.getElementById('site-nav');
-  var menu = document.getElementById('site-nav-menu');
-  var toggle = document.querySelector('.site-nav-toggle');
-  if(menu && toggle){
-    toggle.addEventListener('click',function(){
-      var expanded = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded',!expanded);
-      menu.classList.toggle('open');
-    });
-    toggle.addEventListener('keydown',function(e){
-      if(e.key==='Enter'||e.key===' '){
-        e.preventDefault();
-        toggle.click();
-      }
-    });
-    // Keyboard nav for menu items
-    menu.querySelectorAll('a,span').forEach(function(el){
-      el.setAttribute('tabindex','0');
-    });
-    // Dropdown ARIA
-    menu.querySelectorAll('a[aria-haspopup="true"]').forEach(function(link){
-      link.addEventListener('click',function(e){
-        var expanded = link.getAttribute('aria-expanded') === 'true';
-        link.setAttribute('aria-expanded',!expanded);
-        var submenu = document.getElementById(link.getAttribute('aria-controls'));
-        if(submenu) submenu.style.display = expanded ? 'none' : 'block';
-        e.preventDefault();
-      });
-      link.addEventListener('keydown',function(e){
-        if(e.key==='Enter'||e.key===' '){
-          e.preventDefault();
-          link.click();
-        }
-      });
-    });
-  }
-});
-</script>
+<!-- Hamburger menu and toggle JS commented out -->
 """
         return nav_html
 
