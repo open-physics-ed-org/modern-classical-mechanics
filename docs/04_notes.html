@@ -253,14 +253,14 @@
 <p>$$\vec{F}_{drag} = -D |\vec{v}| \vec{v}$$</p>
 <p>where $D$ is the drag coefficient and $\vec{v}$ is the velocity vector. Note that this force is written entirely using velocity, there is no dependence on position. However, the velocity vector is also function of time, $\vec{v} = \vec{v}(t)$.</p>
 <h3 id="Define-the-Coordinate-System">Define the Coordinate System<a class="anchor-link" href="#Define-the-Coordinate-System">¶</a></h3><p>To start this analysis, we need to define a coordinate system. Below, we draw the particle at some random time with the vecolicty vector shown. The axes are typical: $x$ is horizontal and $y$ is vertical. The drag force is always opposite to the velocity vector, so it will always be in the opposite direction of the velocity vector.</p>
-<p><img alt="Coordinate System" src="images/chapters/2d-falling-ball.png"/></p>
+<p><img alt="Coordinate System" src="images/other/2d-falling-ball.png"/></p>
 <p>In this coordinate system, the properties of the particle are:</p>
 <p>$$\vec{r} = x \hat{x} + y \hat{y} = \langle x, y \rangle$$
 $$\vec{v} = v_x \hat{x} + v_y \hat{y} = \langle v_x, v_y \rangle$$
 $$\vec{a} = a_x \hat{x} + a_y \hat{y} = \langle a_x, a_y \rangle$$</p>
 <p>where $\hat{x}$ and $\hat{y}$ are the unit vectors in the $x$ and $y$ directions, respectively. And the magnitude of the velocity vector is $|\vec{v}| = \sqrt{v_x^2 + v_y^2}$ as you might imagine.</p>
 <p>The free body diagram at the point in time shown above is shown below. You see the gravitational force pointing directly downward and the drag force pointing in the opposite direction of the velocity vector. We continue to apply our coordinate system to the forces.</p>
-<p><img alt="Free Body Diagram" src="images/chapters/2d-falling-ball-fbd.png"/></p>
+<p><img alt="Free Body Diagram" src="images/other/2d-falling-ball-fbd.png"/></p>
 <h3 id="Apply-Newton's-Second-Law">Apply Newton's Second Law<a class="anchor-link" href="#Apply-Newton's-Second-Law">¶</a></h3><p>We now apply Newton's Seccond Law to the particle in the chosen coordinate system. The forces acting on the particle are the gravitational force and the drag force.</p>
 <p>$$\vec{F}_{net} = \vec{F}_{gravity} + \vec{F}_{drag}$$</p>
 <p>How do we apply the coordinate system to the forces? We focus on the diagram above. We start by writing the sum of the forces. For this, we take $F_{gravity,x}$ to be a positive value, $mg$, where $g$ is the magnitude of the acceleration due to gravity.</p>
@@ -295,7 +295,7 @@ $$f_2(v_y)dv_y = g_2(t)dt$$</p>
 <p>$$\vec{F}_{lin} = -m \gamma \vec{v}$$</p>
 <p>where $\gamma$ is a proxy for the drag coefficient. The linear drag force is proportional to the velocity vector.</p>
 <p>We have the same set up as before and same FBD.</p>
-<p><img alt="Coordinate System" src="images/chapters/2d-falling-ball.png"/></p>
+<p><img alt="Coordinate System" src="images/other/2d-falling-ball.png"/></p>
 <p>And thus the same coordinate system. The properties of the particle are the same as above.</p>
 <h3 id="Apply-Newton's-Second-Law">Apply Newton's Second Law<a class="anchor-link" href="#Apply-Newton's-Second-Law">¶</a></h3><p>We now apply Newton's Seccond Law to the particle in the chosen coordinate system. The forces acting on the particle are the gravitational force and the drag force.</p>
 <p>$$\vec{F}_{net} = \vec{F}_{gravity} + \vec{F}_{lin}$$</p>
@@ -353,16 +353,16 @@ $$y(t) = y_0 - \dfrac{g}{\gamma}t + \dfrac{1}{\gamma}\left(\dfrac{g}{\gamma} + v
 <p>$$F = \dfrac{G m_1 m_2}{r^2}$$</p>
 <p>where $G$ is the gravitational constant, $m_1$ and $m_2$ are the masses of the objects, and $r$ is the distance between the objects.</p>
 <p>But we need to be more clear about the forces and the vector relationships. Consider the figure below with the massive object at the origin and the satellite at some distance $r$ from the origin. What is the vector $\vec{r}$ that describes the location of the satellite?</p>
-<p><img alt="Gravitational Bound System" src="images/chapters/grav_01.png"/></p>
+<p><img alt="Gravitational Bound System" src="images/other/grav_01.png"/></p>
 <p>If we move the sun from the origin a little, we can start to see what $\vec{r}$ is. The vector $\vec{r}$ is the vector from the sun to the satellite. See the figure below to see the sketch.</p>
-<p><img alt="Gravitational Bound System" src="images/chapters/grav_02.png"/></p>
+<p><img alt="Gravitational Bound System" src="images/other/grav_02.png"/></p>
 <p>So if the location of the sun is $\vec{r}_{sun}$ and the Earth is $\vec{r}_{earth}$, then the vector $\vec{r}$ is:</p>
 <p>$$\vec{r} = \vec{r}_{earth} - \vec{r}_{sun}$$</p>
 <p>Let's return to the simplified model with the sun at the origin, and consider the earth at some distance $r$ from the origin. The force on the earth is:</p>
 <p>$$\vec{F}_{grav} = -G \dfrac{M_{sun} M_{earth}}{|\vec{r}|^3} \vec{r}$$</p>
 <p>where $M_{sun} = 2\times10^{30} \mathrm{kg}$ is the mass of the sun and $M_{earth} = 6 \times 10^{24} \mathrm{kg}$ is the mass of the earth.</p>
 <h3 id="Define-the-Coordinate-System">Define the Coordinate System<a class="anchor-link" href="#Define-the-Coordinate-System">¶</a></h3><p>In the figure below, we show the earth at some distance $r$ from the origin at an angle $\phi$ from the $x$-axis. This distance is about $1.5 \times 10^{11}\;\mathrm{m}$ or $1\;\mathrm{A.U.}$ (<a href="https://en.wikipedia.org/wiki/Astronomical_unit">astronomical unit</a>). While not entirely obvious, the scale of these numbers allow us to assume the Sun is at the origin, and doesn't move. Although this is not a good assumption for the real solar system, the sun orbits the <a href="https://en.wikipedia.org/wiki/Barycenter">barycenter</a> of the solar system, which is about 1 solar radii from the center of the sun.</p>
-<p><img alt="Gravitational Bound System" src="images/chapters/grav_03.png"/></p>
+<p><img alt="Gravitational Bound System" src="images/other/grav_03.png"/></p>
 <p>Let's use the standard $x$ and $y$ axes to write the equations of motion. We can apply Newton's Second Law to the earth in the chosen coordinate system.</p>
 <p>$$\vec{F}_{net} = \vec{F}_{gravity} = m\vec{a} = m\langle a_x, a_y \rangle$$</p>
 <p>So that the forces in the $x$ and $y$ directions are:</p>
@@ -401,7 +401,7 @@ $$y(t) = y_0 - \dfrac{g}{\gamma}t + \dfrac{1}{\gamma}\left(\dfrac{g}{\gamma} + v
 <h2 id="The-Simple-Harmonic-Oscillator-(SHO)">The Simple Harmonic Oscillator (SHO)<a class="anchor-link" href="#The-Simple-Harmonic-Oscillator-(SHO)">¶</a></h2><p>In 1D, the simple harmonic oscillator is a system where the force is proportional to the displacement from the equilibrium position. The force is given by:</p>
 <p>$$F = -ks$$</p>
 <p>where $k$ is the spring constant and $s$ is the displacement from the equilibrium position, $x-L_0$. The quantity $L_0$ is the relaxed length of the spring. The figure below shows the typical horizontal spring system.</p>
-<p><img alt="SHO" src="images/chapters/sho_horizontal.png"/></p>
+<p><img alt="SHO" src="images/other/sho_horizontal.png"/></p>
 <p>We can typically choose to measure the displacement from the equilibrium position, and write the force instead as:</p>
 <p>$$F = m a_x = m \dot{v}_x  = m\ddot{x} = -kx$$</p>
 <p>So the equation of motion that we will try to solve is:</p>
@@ -448,7 +448,7 @@ $$\ddot{x}(t) = -D \omega^2 \cos(\omega t + \phi) = -\omega^2 x(t)$$</p>
 </main>
 </div>
 <footer>
-<p>© Modern Classical Mechanics. All rights reserved. | Built with ❤️ by the MSU Physics team.</p>
+<p>Built with ❤️ in Michigan</p>
 </footer>
 </body>
 </html>

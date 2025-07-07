@@ -1,27 +1,27 @@
-# Modern Classical Mechanics
+# Welcome to Modern Classical Mechanics
 
-Welcome to the interactive course site for PHY 321: Classical Mechanics 1 at Michigan State University, taught by Danny Caballero. This site provides book-like resources, activities, and course materials designed for sophomore-level physics and astrophysics majors.
+Modern Classical Mechanics attempts to be a modern, accessible, and interactive suite of open educational resources for teaching and learning in classical mechanics with a focus on project-based learning and computational approaches. 
 
-All content is delivered as accessible, WCAG-compliant web pages generated from Jupyter notebooks. You'll find:
+This site is meant to serve three main purposes:
 
-- Interactive chapters and activities
-- Downloadable files in multiple formats (PDF, DOCX, Markdown, LaTeX, Jupyter Notebook)
-- Clear explanations, worked examples, and reproducible builds
-- Local images and robust MathJax/LaTeX rendering
-- Accessible color themes and dark/light mode support
+1. **As a book-like resource** for students and educators, providing examples and explanations of classical mechanics concepts in a clear, accessible format. Here, the modern nature refers to using computing and project-based approaches to enhance understanding, rather than traditional lecture formats.
+2. **As a collection of activities** that can be used in the classroom or for self-study with links to relevant resources, simulations, and other materials.
+3. **As an open source project** that welcomes contributions from students, educators, and developers to improve and expand the resources available. By reproducing this kind of content in an accessible, web-based format, we aim to make it easier for anyone to learn and teach physics, regardless of their background or resources.
 
-This project is open source, constantly evolving, and welcomes contributions from students and developers. Found a typo or want to help? [Open an issue or pull request!](https://github.com/dannycab/modern-classical-mechanics)
+## How to Use This Site
 
-**Note:** PDF generation is being improved—some PDFs may be missing or incomplete if there are LaTeX errors. All other formats are up to date.
+* **Students:** Use the resources, activities, and simulations to enhance your understanding of classical mechanics concepts. You can also contribute by suggesting improvements or adding new content.
+* **Educators:** Use the materials to supplement your teaching, create new activities, or adapt existing ones for your classroom. You can also contribute by sharing your own resources or providing feedback on the site.
+* **Developers:** Contribute to the project by improving the site's design, functionality, or accessibility. You can also help by adding new features or fixing bugs.
 
----
+## How to Contribute
 
-If you'd like to support this project, [buy Danny a coffee!](https://buymeacoffee.com/dannycab)
+We welcome contributions from anyone including students who want to help improve the site and its resources. The best way is to [create an issue](https://github.com/dannycab/modern-classical-mechanics/issues) or [issue a pull request](https://github.com/dannycab/modern-classical-mechanics/pulls) on the [GitHub repository](https://github.com/dannycab/modern-classical-mechanics). 
 
-## How This Site Works
+You can also contact [Danny Caballero](https://dannycab.github.io/) directly if you have questions or suggestions.
 
-This is not just a collection of Jupyter notebooks—it's a fully static, accessible website built from notebooks, with robust support for dark/light mode, accessible color theming, and MathJax/LaTeX rendering. All admonitions (notes, tips, warnings, etc.) are rendered as accessible, visually distinct boxes.
-
-**Planned:** Soon, you will be able to download each chapter/page as PDF, Markdown, DOCX, Jupyter Notebook (.ipynb), and LaTeX directly from the site.
-
-**Note:** The navigation menus are not yet fully functional, but improved navigation and download options are coming soon!
+<!-- [![GitHub Repo stars](https://img.shields.io/github/stars/dannycab/modern-classical-mechanics?style=social)](https://github.com/dannycab/modern-classical-mechanics/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/dannycab/modern-classical-mechanics?style=social)](https://github.com/dannycab/modern-classical-mechanics/network/members) -->
+[![GitHub issues](https://img.shields.io/github/issues/dannycab/modern-classical-mechanics)](https://github.com/dannycab/modern-classical-mechanics/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/dannycab/modern-classical-mechanics)](https://github.com/dannycab/modern-classical-mechanics/pulls)
+[![GitHub license](https://img.shields.io/github/license/dannycab/modern-classical-mechanics)](https://github.com/dannycab/modern-classical-mechanics/blob/main/LICENSE)
