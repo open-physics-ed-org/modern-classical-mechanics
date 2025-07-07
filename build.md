@@ -10,11 +10,13 @@ This repository uses a modern, streamlined build system to generate all course o
 - **build.py**: The main entry point for all builds. Handles PDF, DOCX, Markdown, LaTeX, and image collection. For HTML/web builds, it delegates to `build-web.py`.
 - **build-web.py**: Contains all logic for building the HTML web site, including notebook conversion, menu generation, asset copying, and post-processing.
 
+
 ## Typical Usage
 
 Run from the repository root:
 
 ```
+python build.py --all            # Build everything: LaTeX, PDF, Markdown, DOCX, and HTML web site (docs/)
 python build.py --html           # Build the full HTML web site (outputs to docs/)
 python build.py --pdf            # Build PDFs for all notebooks
 python build.py --md             # Build Markdown for all notebooks
@@ -29,7 +31,10 @@ You can also build specific notebooks with `--files`:
 python build.py --html --files 01_notes.ipynb 02_notes.ipynb
 ```
 
+
 ## How the Build Works
+
+- **All Formats (`--all`)**: `python build.py --all` builds all non-web formats first (LaTeX, PDF, Markdown, DOCX), then automatically builds the HTML/web output. This is the recommended way to build everything in one step.
 
 - **HTML/Web Build**: `python build.py --html` simply calls `build-web.py --html`, which:
   - Converts all notebooks and Markdown pages to HTML using nbconvert and custom templates.
@@ -72,7 +77,9 @@ python build.py --html --files 01_notes.ipynb 02_notes.ipynb
 
 ## Publishing
 
-The `docs/` folder is ready for static hosting (e.g., GitHub Pages). After running `python build.py --html`, simply push the repository to update the live site.
+The `docs/` folder is ready for static hosting (e.g., GitHub Pages). After running `python build.py --html`, simply push the repository to update the live site. 
+
+**Make sure `.nojekyll` is present in `docs/` to prevent Jekyll processing; this is plain HTML and CSS, not Jekyll content.**
 
 ---
 *Last updated: July 2025*

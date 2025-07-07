@@ -52,8 +52,29 @@ def main():
     parser.add_argument('--latex', action='store_true', help='Build LaTeX only')
     parser.add_argument('--html', action='store_true', help='Build HTML (calls build-web.py)')
     parser.add_argument('--img', action='store_true', help='Collect all referenced images into _build/images/')
+    parser.add_argument('--all', action='store_true', help='Build all formats: LaTeX, PDF, Markdown, DOCX, and HTML web output')
     parser.add_argument('--files', nargs='+', help='One or more notebook files to build (relative to notebooks/ or absolute)')
     args = parser.parse_args()
+
+    # --- ALL Build Option: build everything, then web ---
+    if getattr(args, 'all', False):
+        # Build all non-web formats first (LaTeX, PDF, Markdown, DOCX)
+        # Remove --all from sys.argv for recursive calls
+        import subprocess
+        base_cmd = [sys.executable, __file__]
+        # Build LaTeX, PDF, Markdown, DOCX (no --html, no --all)
+        print("[INFO] Building LaTeX, PDF, Markdown, DOCX...")
+        result = subprocess.run(base_cmd)
+        if result.returncode != 0:
+            print(f"[ERROR] Non-web build failed with exit code {result.returncode}")
+            sys.exit(result.returncode)
+        # Now build HTML/web
+        print("[INFO] Building HTML/web output...")
+        web_cmd = [sys.executable, str(Path(__file__).parent / 'build-web.py'), '--html']
+        subprocess.run(web_cmd, check=True)
+        print("[INFO] All formats built successfully.")
+        return
+
     # --- HTML Build Option: just call build-web.py --html (and pass --files if given) ---
     if getattr(args, 'html', False):
         import subprocess
