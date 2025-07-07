@@ -686,8 +686,8 @@ def main():
             nav_html += build_menu_html(menu_data)
         else:
             nav_html += '<!-- Menu data not available, fallback menu here -->'
+        # Removed dark mode toggle button
         nav_html += """
-<button class="toggle-dark" aria-label="Toggle dark/light mode" onclick="document.body.classList.toggle('dark')">🌗</button>
 <!-- Hamburger menu and toggle JS commented out -->
 """
         return nav_html

@@ -1,18 +1,4 @@
-/* Dark mode: force all main content text to white, including inline black */
-body.dark main,
-body.dark .markdown-body {
-  color: #f9f9fb !important;
-}
-body.dark main [style*="color: black"],
-body.dark main [style*="color:#000"],
-body.dark main [style*="color:#000000"],
-body.dark main [style*="color:rgb(0,0,0)"],
-body.dark .markdown-body [style*="color: black"],
-body.dark .markdown-body [style*="color:#000"],
-body.dark .markdown-body [style*="color:#000000"],
-body.dark .markdown-body [style*="color:rgb(0,0,0)"] {
-  color: #f9f9fb !important;
-}
+
 :root {
   --color-bg: #e3f2fd; /* light blue background */
   --color-fg: #0d3c47; /* deep teal text */
@@ -20,14 +6,6 @@ body.dark .markdown-body [style*="color:rgb(0,0,0)"] {
   --color-border: #26a69a; /* teal border */
   --color-link: #00796b; /* teal link */
   --color-link-hover: #005b4f; /* darker teal for hover */
-}
-body.dark {
-  --color-bg: #181a1b;
-  --color-fg: #f9f9fb;
-  --color-card: #181a1b;
-  --color-border: #333;
-  --color-link: #b39ddb;
-  --color-link-hover: #ffb74d;
 }
 
 html, body {
@@ -62,12 +40,7 @@ body {
   flex: 1 0 auto;
 }
 
-body.dark .container {
-  background: var(--color-bg) !important;
-  color: var(--color-fg) !important;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.32);
-  border: 3px solid var(--color-link-hover);
-}
+
 
 footer {
   flex-shrink: 0;
@@ -79,11 +52,7 @@ footer {
   border-top: 3px solid var(--color-link);
 }
 
-body.dark footer {
-  color: var(--color-fg);
-  background: var(--color-card) !important;
-  border-top: 3px solid var(--color-link-hover);
-}
+
 
 .markdown-body .highlight,
 .markdown-body pre,
@@ -105,41 +74,8 @@ body.dark footer {
   color: var(--color-fg) !important;
 }
 
-body.dark .markdown-body,
-body.dark .markdown-body .highlight,
-body.dark .markdown-body pre,
-body.dark .markdown-body code,
-body.dark .markdown-body .jp-Cell,
-body.dark .markdown-body .jp-Notebook,
-body.dark .markdown-body .jp-CodeCell,
-body.dark .markdown-body .jp-MarkdownCell,
-body.dark .markdown-body .jp-OutputArea,
-body.dark .markdown-body .jp-InputArea,
-body.dark .markdown-body .jp-Cell-inputWrapper,
-body.dark .markdown-body .jp-Cell-outputWrapper,
-body.dark .markdown-body .jp-OutputPrompt,
-body.dark .markdown-body .jp-InputPrompt,
-body.dark .markdown-body .jp-OutputArea-output,
-body.dark .markdown-body .jp-OutputArea-prompt,
-body.dark .markdown-body .jp-InputArea-prompt,
-body.dark pre,
-body.dark code,
-body.dark .highlight,
-body.dark .special,
-body.dark .nboutput,
-body.dark .nbinput,
-body.dark .output_area pre,
-body.dark .output_area code {
-  color: #f9f9fb !important;
-  border: none !important;
-  box-shadow: none !important;
-  background: transparent !important;
-}
 
-body.dark {
-  --jp-mirror-editor-variable-color: #f9f9fb !important;
-}
-}
+
 
 :root,
 .markdown-body {
@@ -156,21 +92,8 @@ body.dark {
   --jp-output-area-background: var(--color-card) !important;
 }
 
-body.dark {
-  color-scheme: dark;
-}
 
-/* Force white text in code blocks, outputs, and override inline black text in dark mode */
-body.dark .markdown-body pre,
-body.dark .markdown-body code,
-body.dark .markdown-body .output_area,
-body.dark .markdown-body .output_area pre,
-body.dark .markdown-body [style*="color: black"],
-body.dark .markdown-body [style*="color:#000"],
-body.dark .markdown-body [style*="color:#000000"],
-body.dark .markdown-body [style*="color:rgb(0,0,0)"] {
-  color: #f9f9fb !important;
-}
+
 
 .site-header {
   background: var(--color-card);
