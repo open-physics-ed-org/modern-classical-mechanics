@@ -106,12 +106,12 @@ def main():
 
     # --all: build all notebooks listed in _notebooks.yaml (authoritative list)
     notebooks_to_process = None
+    notebooks_dir = Path(__file__).parent / 'content/notebooks'
     if args.all:
         # Load _notebooks.yaml and build all listed notebooks
         import yaml
         repo_root = Path(__file__).parent.resolve()
         notebooks_yaml = repo_root / '_notebooks.yaml'
-        notebooks_dir = repo_root / 'notebooks'
         if not notebooks_yaml.exists():
             print("[ERROR] --all specified but _notebooks.yaml not found!")
             sys.exit(1)
@@ -140,10 +140,10 @@ def main():
             sys.exit(1)
     elif args.html and args.files:
         # Only process the specified files (relative to notebooks_dir)
-        notebooks_to_process = [Path(f) if Path(f).is_absolute() else (Path('notebooks') / f).resolve() for f in args.files]
+        notebooks_to_process = [Path(f) if Path(f).is_absolute() else (notebooks_dir / f).resolve() for f in args.files]
     elif args.html:
         # Process all notebooks in the notebooks/ directory
-        notebooks_to_process = list((Path(__file__).parent / 'notebooks').glob('*.ipynb'))
+        notebooks_to_process = list(notebooks_dir.glob('*.ipynb'))
     # else: unreachable due to above checks
 
     # --- Admonition post-processing for HTML output ---
@@ -439,7 +439,7 @@ def main():
             html)
         return html
     repo_root = Path(__file__).parent.resolve()
-    notebooks_dir = repo_root / 'notebooks'
+    notebooks_dir = repo_root / 'content/notebooks'
     docs_dir = repo_root / 'docs'
     build_dir = repo_root / '_build' / 'html'
     build_dir.mkdir(parents=True, exist_ok=True)
@@ -473,7 +473,7 @@ def main():
 
     # --- Section-aware image flattening ---
     # Support images in both notebooks/images/ and project-root images/
-    images_root_candidates = [repo_root / 'images', notebooks_dir / 'images']
+    images_root_candidates = [repo_root / 'images', repo_root / 'content/images']
     images_dir = build_dir / 'images'
     images_dir.mkdir(parents=True, exist_ok=True)
 
@@ -756,9 +756,9 @@ def main():
 <html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{book_title}</title>\n  <link href=\"css/main.css\" rel=\"stylesheet\">\n  <link href=\"css/card-link.css\" rel=\"stylesheet\">\n  <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>\n  <script>\n    (function() {{\n      function applyTheme() {{\n        const saved = localStorage.getItem('theme');\n        if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {{\n          document.documentElement.classList.add('dark');\n        }} else {{\n          document.documentElement.classList.remove('dark');\n        }}\n      }}\n      window.applyTheme = applyTheme;\n      applyTheme();\n      window.toggleTheme = function() {{\n        const isDark = document.documentElement.classList.toggle('dark');\n        localStorage.setItem('theme', isDark ? 'dark' : 'light');\n        applyTheme();\n      }};\n      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);\n    }})();\n  </script>\n</head>\n<body>\n  <button class=\"toggle-dark\" aria-label=\"Toggle dark/light mode\" onclick=\"toggleTheme()\">🌗</button>\n  <header class=\"site-header\">\n    <h1 class=\"site-title\">{book_title}</h1>\n  </header>\n  <nav class=\"site-nav\" id=\"site-nav\">{nav_html}</nav>\n  <div class=\"container\">\n    <main id=\"main-content\">\n      {body}\n    </main>\n  </div>\n  <footer>\n    <p>{footer_html}</p>\n  </footer>\n</body>\n</html>"""
 
     # --- Process index.md and cards.md as index.html ---
-    index_md = repo_root / 'index.md'
-    cards_md = repo_root / 'cards.md'
-    announcement_md = repo_root / 'announcement.md'
+    index_md = repo_root / 'content/index.md'
+    cards_md = repo_root / 'content/cards.md'
+    announcement_md = repo_root / 'content/announcement.md'
     index_html_path = build_dir / 'index.html'
     title = 'Modern Classical Mechanics'
     main_html = ''
@@ -917,7 +917,7 @@ def main():
             f.write(chapters_html)
 
     # --- Build resources.html from resources.md ---
-    resources_md = repo_root / 'resources.md'
+    resources_md = repo_root / 'content/resources.md'
     resources_html_path = build_dir / 'resources.html'
     if resources_md.exists():
         try:
@@ -934,7 +934,7 @@ def main():
             f.write(html)
 
     # --- Build about.html from about.md ---
-    about_md = repo_root / 'about.md'
+    about_md = repo_root / 'content/about.md'
     about_html_path = build_dir / 'about.html'
     if about_md.exists():
         try:
@@ -951,7 +951,7 @@ def main():
             f.write(html)
 
     # --- Build activities.html from activities.md ---
-    activities_md = repo_root / 'activities.md'
+    activities_md = repo_root / 'content/activities.md'
     activities_html_path = build_dir / 'activities.html'
     if activities_md.exists():
         try:

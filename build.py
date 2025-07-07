@@ -47,7 +47,7 @@ def main():
     build_dir.mkdir(parents=True, exist_ok=True)  # Ensure _build exists
     chapters_dir = build_dir / 'latex'
     html_dir = build_dir / 'html'
-    notebook_dir = repo_root / 'notebooks'
+    notebook_dir = repo_root / 'content/notebooks'
     # Use _notebooks.yaml instead of notebooks.yaml
     notebooks_yaml = repo_root / '_notebooks.yaml'
     update_toc = repo_root / 'scripts' / 'update_toc.sh'

@@ -5,7 +5,7 @@
 # Only notebooks listed here will be converted to LaTeX, PDF, Markdown, and DOCX.
 #
 # To include a notebook (chapter, activity, homework, etc.), add its filename
-# (relative to the notebooks/ directory) to the list below. The build system
+# (relative to the content/notebooks/ directory) to the list below. The build system
 # will generate all output formats for every notebook listed here.
 #
 # Notebooks not listed here will be ignored by the build pipeline and will not
