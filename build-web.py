@@ -907,7 +907,6 @@ def main():
         download_menu = f'''
 <nav class="chapter-downloads" aria-label="Download chapter sources">
   <div role="group" aria-label="Download formats">
-    <span class="download-label">Download this chapter as:</span>
     <a class="download-btn" href="sources/{chapter_stem}/{chapter_stem}.pdf" download><span aria-hidden="true">⬇️</span> PDF</a>
     <a class="download-btn" href="sources/{chapter_stem}/{chapter_stem}.docx" download><span aria-hidden="true">⬇️</span> DOCX</a>
     <a class="download-btn" href="sources/{chapter_stem}/{chapter_stem}.md" download><span aria-hidden="true">⬇️</span> MD</a>
