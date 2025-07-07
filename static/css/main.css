@@ -1,16 +1,40 @@
+/* --- Main Content Link Styling --- */
+.container a, .markdown-body a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color 0.2s, background 0.2s;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.container a:hover, .container a:focus,
+.markdown-body a:hover, .markdown-body a:focus {
+  color: #fff;
+  background: var(--color-menu-hover);
+  text-decoration: none;
+  outline: none;
+}
 
+
+/*
+  =============================
+  Modern Classical Mechanics CSS
+  =============================
+  Color variables, layout, navigation, cards, admonitions, responsive, and utility styles.
+  Cleaned and documented for clarity and maintainability.
+*/
+
+/* --- Color Variables --- */
 :root {
-  --color-bg: #e3f2fd;
-  --color-fg: #fff; /* white text for high contrast on teal */
-  --color-card: #e0f7fa;
-  --color-border: #26a69a;
-  --color-menu: var(--color-link); /* menu matches title/link blue */
-  --color-menu-hover: #2a7fff; /* vivid blue for menu hover in light mode */
-  --color-link: #2a7fff; /* blue for links in light mode */
-  --color-link-hover: #2a7fff; /* blue for link/menu/toggle hover in light mode */
-  --color-border: #2a7fff; /* blue border to match menu and title */
-  --color-btn: #ff9800;
-  --color-btn-hover: #ffb74d;
+  --color-bg: #e3f2fd;         /* Light blue background */
+  --color-fg: #0d3c47;         /* Deep teal text */
+  --color-card: #e0f7fa;       /* Light teal card */
+  --color-border: #2a7fff;     /* Blue border to match menu and title */
+  --color-menu: #6c3fc5;       /* Purple menu, WCAG AA on light */
+  --color-menu-hover: #4b278a; /* Darker purple for hover */
+  --color-link: #2a7fff;       /* Blue for links in light mode */
+  --color-link-hover: #1565c0; /* Deeper blue for link/menu hover in light mode */
+  --color-btn: #ff9800;        /* Orange button, WCAG AA on light */
+  --color-btn-hover: var(--color-link);  /* Use title/menu color for hover */
   --color-btn-text: #fff;
 }
 
@@ -21,25 +45,11 @@ html.dark, body.dark {
   --color-border: #b39ddb;
   --color-menu: #b39ddb;
   --color-menu-hover: #7c5fcf;
-  --color-link: #b39ddb; /* purple for links in dark mode, matches menu */
-  --color-link-hover: #7c5fcf; /* lighter purple for hover in dark mode */
-  --color-btn: #ff9800;
-  --color-btn-hover: #ffb74d;
-  --color-btn-text: #fff;
-}
-
-
-:root {
-  --color-bg: #e3f2fd; /* light blue background */
-  --color-fg: #0d3c47; /* deep teal text */
-  --color-card: #e0f7fa; /* light teal card */
-  /* teal border removed, now blue for consistency */
-  --color-menu: #6c3fc5; /* purple menu, WCAG AA on light */
-  --color-menu-hover: #4b278a; /* darker purple for hover */
-  /* Remove duplicate/old link color variables to avoid override */
-  --color-btn: #ff9800; /* orange button, WCAG AA on light */
-  --color-btn-hover: #ffb74d; /* lighter orange for hover */
-  --color-btn-text: #fff;
+  --color-link: #b39ddb;       /* Purple for links in dark mode, matches menu */
+  --color-link-hover: #7c5fcf; /* Lighter purple for hover in dark mode */
+  --color-btn: #ffb300;        /* Amber button for dark mode (contrasts purple) */
+  --color-btn-hover: #ffd54f;  /* Lighter amber for hover in dark mode */
+  --color-btn-text: #23242a;   /* Dark text for contrast on light amber */
 }
 
 html, body {
@@ -194,6 +204,14 @@ body.dark .site-header {
   border-radius: 6px;
   transition: background 0.2s, color 0.2s;
   display: block;
+}
+
+.site-nav > ul > li > a:hover,
+.site-nav > ul > li > a:focus {
+  background: var(--color-menu-hover);
+  color: #fff;
+  text-decoration: none;
+  outline: none;
 }
 .site-nav a {
   color: var(--color-link);
@@ -436,10 +454,10 @@ nav {
   box-shadow: 0 0 0 4px rgba(255,183,77,0.18);
 }
 
-.download-btn:hover {
-  background: var(--color-btn-hover);
-  border-color: var(--color-btn-hover);
-  color: #fff;
+.download-btn:hover, .download-btn:focus {
+  background: var(--color-btn-hover) !important;
+  border-color: var(--color-btn-hover) !important;
+  color: var(--color-btn-text) !important;
   text-decoration: none;
   box-shadow: 0 4px 16px rgba(0,0,0,0.16);
 }
