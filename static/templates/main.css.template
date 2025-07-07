@@ -1,8 +1,8 @@
-/*
-Theme: Light Theme (light)
-Description: Bright, accessible palette for daylight viewing.
-*/
-
+{#
+  Jinja2 template for Modern Classical Mechanics CSS
+  Variables are injected from YAML theme files (light/dark)
+  All color variables use underscores, e.g. color_bg, color_fg, etc.
+#}
 
 /* --- Main Content Link Styling --- */
 .container a, .markdown-body a {
@@ -31,34 +31,34 @@ Description: Bright, accessible palette for daylight viewing.
 
 /* --- Color Variables --- */
 :root {
-  --color-bg: #e3f2fd;         /* Light blue background */
-  --color-fg: #0d3c47;         /* Deep teal text */
-  --color-card: #e3f2fd;     /* Darker teal card */
-  --color-border: #2a7fff; /* Blue border to match menu and title */
-  --color-menu: #6c3fc5;     /* Purple menu, WCAG AA on light */
-  --color-menu-hover: #1565c0; /* Blue for hover in light mode */
-  --color-link: #2a7fff;     /* Blue for links in light mode */
-  --color-link-hover: #1565c0; /* Deeper blue for link/menu hover in light mode */
-  --color-btn: #ffb300;        /* Darker teal button, better contrast */
-  --color-btn-hover: #2a7fff;  /* Use title/menu color for hover */
-  --color-btn-text: #fff;
-  --color-title: #2a7fff;      /* Blue for title and WIP banner in light mode */
+  --color-bg: {{ color_bg }};         /* Light blue background */
+  --color-fg: {{ color_fg }};         /* Deep teal text */
+  --color-card: {{ color_card }};     /* Darker teal card */
+  --color-border: {{ color_border }}; /* Blue border to match menu and title */
+  --color-menu: {{ color_menu }};     /* Purple menu, WCAG AA on light */
+  --color-menu-hover: {{ color_menu_hover }}; /* Blue for hover in light mode */
+  --color-link: {{ color_link }};     /* Blue for links in light mode */
+  --color-link-hover: {{ color_link_hover }}; /* Deeper blue for link/menu hover in light mode */
+  --color-btn: {{ color_btn }};        /* Darker teal button, better contrast */
+  --color-btn-hover: {{ color_btn_hover }};  /* Use title/menu color for hover */
+  --color-btn-text: {{ color_btn_text }};
+  --color-title: {{ color_title }};      /* Blue for title and WIP banner in light mode */
 }
 
 html.dark, body.dark {
-  --color-bg: #282a31;
-  --color-fg: #f9f9fb;
-  --color-card: #282a31;
-  --color-border: #b39ddb;
-  --color-menu: #b39ddb;
-  --color-menu-hover: #7c5fcf;
-  --color-link: #b39ddb;
-  --color-link-hover: #7c5fcf;
-  --color-title: #7c5fcf;
-  --color-btn: #0d3c47;
-  --color-btn-hover: var(--color-link);
-  --color-btn-text: #23242a;
-  --color-btn-hover-text: #fff;
+  --color-bg: {{ dark_color_bg|default('#282a31') }};
+  --color-fg: {{ dark_color_fg|default('#f9f9fb') }};
+  --color-card: {{ dark_color_card|default('#282a31') }};
+  --color-border: {{ dark_color_border|default('#b39ddb') }};
+  --color-menu: {{ dark_color_menu|default('#b39ddb') }};
+  --color-menu-hover: {{ dark_color_menu_hover|default('#7c5fcf') }};
+  --color-link: {{ dark_color_link|default('#b39ddb') }};
+  --color-link-hover: {{ dark_color_link_hover|default('#7c5fcf') }};
+  --color-title: {{ dark_color_title|default('#7c5fcf') }};
+  --color-btn: {{ dark_color_btn|default('#0d3c47') }};
+  --color-btn-hover: {{ dark_color_btn_hover|default('var(--color-link)') }};
+  --color-btn-text: {{ dark_color_btn_text|default('#23242a') }};
+  --color-btn-hover-text: {{ dark_color_btn_hover_text|default('#fff') }};
 }
 
 html, body {

@@ -10,6 +10,7 @@ from pathlib import Path
 from nbconvert import HTMLExporter
 import sys
 import re
+import subprocess
 
 import string
 def flatten_image_name(rel_path):
@@ -35,6 +36,20 @@ def fetch_youtube_thumbnail(video_id, dest_path):
     return False
 
 def main():
+    # --- Run theme_to_css.py before any HTML build ---
+    theme_script = str(Path(__file__).parent / 'theme_to_css.py')
+    if Path(theme_script).exists():
+        print("[THEME] Generating CSS from YAML themes...")
+        result = subprocess.run([sys.executable, theme_script], capture_output=True, text=True)
+        if result.returncode != 0:
+            print("[THEME][ERROR] theme_to_css.py failed:")
+            print(result.stdout)
+            print(result.stderr)
+        else:
+            print("[THEME] CSS generation complete.")
+    else:
+        print("[THEME][WARN] theme_to_css.py not found, skipping theme CSS generation.")
+
     # --- Argument parsing for CLI behavior ---
     import argparse
 
@@ -456,7 +471,6 @@ def main():
     menu_yml = repo_root / '_menu.yml'
     menu_data = None
     if menu_yml.exists():
-        import subprocess
         try:
             result = subprocess.run([
                 'python3', str(repo_root / 'basic_yaml2json.py'), str(menu_yml)
@@ -681,7 +695,6 @@ def main():
     menu_yml = repo_root / '_menu.yml'
     menu_data = None
     if menu_yml.exists():
-        import subprocess
         try:
             result = subprocess.run([
                 'python3', str(repo_root / 'basic_yaml2json.py'), str(menu_yml)

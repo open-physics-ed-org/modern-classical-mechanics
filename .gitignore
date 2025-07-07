@@ -81,3 +81,7 @@ chapters/figures/
 docs/.buildinfo
 docs/.doctrees/
 docs/.DS_Store
+
+# Build and log directories
+_build/
+log/

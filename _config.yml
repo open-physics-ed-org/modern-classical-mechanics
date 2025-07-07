@@ -23,6 +23,13 @@ repository:
   path_to_book: ""
   branch: main
 
+
+# Theme selection
+theme:
+  light: light    # Name of the light theme YAML (without .yml)
+  dark: dark      # Name of the dark theme YAML (without .yml)
+  default: light  # Which to use by default (optional)
+
 # HTML settings
 html:
   favicon: images/logo.png

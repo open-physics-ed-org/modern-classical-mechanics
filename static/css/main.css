@@ -1,3 +1,9 @@
+/*
+Theme: Light Theme (light)
+Description: Bright, accessible palette for daylight viewing.
+*/
+
+
 /* --- Main Content Link Styling --- */
 .container a, .markdown-body a {
   color: var(--color-link);
@@ -27,14 +33,14 @@
 :root {
   --color-bg: #e3f2fd;         /* Light blue background */
   --color-fg: #0d3c47;         /* Deep teal text */
-  --color-card: #e3f2fd;       /* Darker teal card */
-  --color-border: #2a7fff;     /* Blue border to match menu and title */
-  --color-menu: #6c3fc5;       /* Purple menu, WCAG AA on light */
+  --color-card: #e3f2fd;     /* Darker teal card */
+  --color-border: #2a7fff; /* Blue border to match menu and title */
+  --color-menu: #6c3fc5;     /* Purple menu, WCAG AA on light */
   --color-menu-hover: #1565c0; /* Blue for hover in light mode */
-  --color-link: #2a7fff;       /* Blue for links in light mode */
+  --color-link: #2a7fff;     /* Blue for links in light mode */
   --color-link-hover: #1565c0; /* Deeper blue for link/menu hover in light mode */
   --color-btn: #ffb300;        /* Darker teal button, better contrast */
-  --color-btn-hover: var(--color-link);  /* Use title/menu color for hover */
+  --color-btn-hover: #2a7fff;  /* Use title/menu color for hover */
   --color-btn-text: #fff;
   --color-title: #2a7fff;      /* Blue for title and WIP banner in light mode */
 }
@@ -46,13 +52,13 @@ html.dark, body.dark {
   --color-border: #b39ddb;
   --color-menu: #b39ddb;
   --color-menu-hover: #7c5fcf;
-  --color-link: #b39ddb;       /* Purple for links in dark mode, matches menu */
-  --color-link-hover: #7c5fcf; /* Lighter purple for hover in dark mode */
-  --color-title: #7c5fcf;      /* Purple for dark mode title and WIP banner */
-  --color-btn: #0d3c47;        /* Teal for button in dark mode */
-  --color-btn-hover: var(--color-link);  /* Match dark mode title color for hover */
-  --color-btn-text: #23242a;   /* Dark text for contrast on teal */
-  --color-btn-hover-text: #fff; /* White text for contrast on purple hover */
+  --color-link: #b39ddb;
+  --color-link-hover: #7c5fcf;
+  --color-title: #7c5fcf;
+  --color-btn: #0d3c47;
+  --color-btn-hover: var(--color-link);
+  --color-btn-text: #23242a;
+  --color-btn-hover-text: #fff;
 }
 
 html, body {
@@ -127,6 +133,7 @@ footer {
 
 
 
+
 .markdown-body {
   color: var(--color-fg) !important;
   background: none !important;
@@ -142,7 +149,6 @@ footer {
   --jp-notebook-select-background: var(--color-card) !important;
   --jp-output-area-background: var(--color-card) !important;
 }
-
 
 body.dark .markdown-body,
 body.dark .markdown-body * {
@@ -346,11 +352,11 @@ body.dark .site-header {
   background-size: contain;
   background-repeat: no-repeat;
 }
-.admonition.note .admonition-title::before { background-image: url('data:image/svg+xml;utf8,<svg fill=\"%232a7fff\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"8\" cy=\"8\" r=\"7\" stroke=\"%232a7fff\" stroke-width=\"2\" fill=\"none\"/><circle cx=\"8\" cy=\"8\" r=\"2\" fill=\"%232a7fff\"/></svg>'); }
-.admonition.tip .admonition-title::before { background-image: url('data:image/svg+xml;utf8,<svg fill=\"%2300b894\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><rect x=\"3\" y=\"7\" width=\"10\" height=\"2\" rx=\"1\"/><rect x=\"7\" y=\"3\" width=\"2\" height=\"10\" rx=\"1\"/></svg>'); }
-.admonition.warning .admonition-title::before { background-image: url('data:image/svg+xml;utf8,<svg fill=\"%23f39c12\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"8,2 15,14 1,14\" stroke=\"%23f39c12\" stroke-width=\"2\" fill=\"none\"/><circle cx=\"8\" cy=\"11\" r=\"1\" fill=\"%23f39c12\"/><rect x=\"7\" y=\"5\" width=\"2\" height=\"4\" rx=\"1\" fill=\"%23f39c12\"/></svg>'); }
-.admonition.caution .admonition-title::before { background-image: url('data:image/svg+xml;utf8,<svg fill=\"%23e17055\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"8,2 15,14 1,14\" stroke=\"%23e17055\" stroke-width=\"2\" fill=\"none\"/><rect x=\"7\" y=\"6\" width=\"2\" height=\"4\" rx=\"1\" fill=\"%23e17055\"/></svg>'); }
-.admonition.important .admonition-title::before { background-image: url('data:image/svg+xml;utf8,<svg fill=\"%236c5ce7\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"8\" cy=\"8\" r=\"7\" stroke=\"%236c5ce7\" stroke-width=\"2\" fill=\"none\"/><rect x=\"7\" y=\"4\" width=\"2\" height=\"6\" rx=\"1\" fill=\"%236c5ce7\"/></svg>'); }
+.admonition.note .admonition-title::before { background-image: url('data:image/svg+xml;utf8,<svg fill="#2a7fff" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" stroke="#2a7fff" stroke-width="2" fill="none"/><circle cx="8" cy="8" r="2" fill="#2a7fff"/></svg>'); }
+.admonition.tip .admonition-title::before { background-image: url('data:image/svg+xml;utf8,<svg fill="#00b894" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="7" width="10" height="2" rx="1"/><rect x="7" y="3" width="2" height="10" rx="1"/></svg>'); }
+.admonition.warning .admonition-title::before { background-image: url('data:image/svg+xml;utf8,<svg fill="#f39c12" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><polygon points="8,2 15,14 1,14" stroke="#f39c12" stroke-width="2" fill="none"/><circle cx="8" cy="11" r="1" fill="#f39c12"/><rect x="7" y="5" width="2" height="4" rx="1" fill="#f39c12"/></svg>'); }
+.admonition.caution .admonition-title::before { background-image: url('data:image/svg+xml;utf8,<svg fill="#e17055" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><polygon points="8,2 15,14 1,14" stroke="#e17055" stroke-width="2" fill="none"/><rect x="7" y="6" width="2" height="4" rx="1" fill="#e17055"/></svg>'); }
+.admonition.important .admonition-title::before { background-image: url('data:image/svg+xml;utf8,<svg fill="#6c5ce7" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" stroke="#6c5ce7" stroke-width="2" fill="none"/><rect x="7" y="4" width="2" height="6" rx="1" fill="#6c5ce7"/></svg>'); }
 body.dark .admonition {
   background: linear-gradient(90deg, var(--color-card) 80%, var(--color-bg) 100%);
   color: var(--color-fg);

@@ -1,6 +1,6 @@
 /*
-Theme: Light Theme (light)
-Description: Bright, accessible palette for daylight viewing.
+Theme: Dark Theme (dark)
+Description: Dimmed palette for low-light and night viewing.
 */
 
 
@@ -31,18 +31,18 @@ Description: Bright, accessible palette for daylight viewing.
 
 /* --- Color Variables --- */
 :root {
-  --color-bg: #e3f2fd;         /* Light blue background */
-  --color-fg: #0d3c47;         /* Deep teal text */
-  --color-card: #e3f2fd;     /* Darker teal card */
-  --color-border: #2a7fff; /* Blue border to match menu and title */
-  --color-menu: #6c3fc5;     /* Purple menu, WCAG AA on light */
-  --color-menu-hover: #1565c0; /* Blue for hover in light mode */
-  --color-link: #2a7fff;     /* Blue for links in light mode */
-  --color-link-hover: #1565c0; /* Deeper blue for link/menu hover in light mode */
-  --color-btn: #ffb300;        /* Darker teal button, better contrast */
-  --color-btn-hover: #2a7fff;  /* Use title/menu color for hover */
-  --color-btn-text: #fff;
-  --color-title: #2a7fff;      /* Blue for title and WIP banner in light mode */
+  --color-bg: #282a31;         /* Light blue background */
+  --color-fg: #f9f9fb;         /* Deep teal text */
+  --color-card: #282a31;     /* Darker teal card */
+  --color-border: #b39ddb; /* Blue border to match menu and title */
+  --color-menu: #b39ddb;     /* Purple menu, WCAG AA on light */
+  --color-menu-hover: #7c5fcf; /* Blue for hover in light mode */
+  --color-link: #b39ddb;     /* Blue for links in light mode */
+  --color-link-hover: #7c5fcf; /* Deeper blue for link/menu hover in light mode */
+  --color-btn: #0d3c47;        /* Darker teal button, better contrast */
+  --color-btn-hover: #b39ddb;  /* Use title/menu color for hover */
+  --color-btn-text: #23242a;
+  --color-title: #7c5fcf;      /* Blue for title and WIP banner in light mode */
 }
 
 html.dark, body.dark {
