@@ -99,6 +99,7 @@ body.dark .markdown-body * {
 }
 
 /* Shared container/main/nav styles */
+
 .container,
 main,
 nav {
@@ -108,16 +109,11 @@ nav {
   border-bottom: 1px solid var(--color-bg);
 }
 
-  flex: 1 1 0%;
-  min-width: 0;
-  padding: 2em 1em 2em 1em;
-  max-width: 900px;
-  margin: 0 auto;
-}
-body.dark .container {
+body.dark .container,
+body.dark main {
   background: var(--color-bg) !important;
 }
-}
+
 
 main {
   max-width: 900px;
@@ -130,13 +126,9 @@ main {
 }
 body.dark main {
   background: var(--color-bg) !important;
+  color: var(--color-fg) !important;
   box-shadow: 0 2px 16px rgba(0,0,0,0.32);
   border: 1px solid var(--color-border);
-}
-body.dark main {
-  box-shadow: 0 2px 16px rgba(0,0,0,0.32);
-  border: 1px solid var(--color-border);
-}
 }
 
 footer {
