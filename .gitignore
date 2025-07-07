@@ -1,3 +1,10 @@
+# Allow built sources in docs/sources/ to be tracked
+!docs/sources/**/*.pdf
+!docs/sources/**/*.docx
+!docs/sources/**/*.tex
+!docs/sources/**/*.ipynb
+!docs/sources/**/*.md
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
