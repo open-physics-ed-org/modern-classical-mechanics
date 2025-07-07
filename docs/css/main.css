@@ -36,6 +36,7 @@
   --color-btn: #ffb300;        /* Darker teal button, better contrast */
   --color-btn-hover: var(--color-link);  /* Use title/menu color for hover */
   --color-btn-text: #fff;
+  --color-title: #2a7fff;      /* Blue for title and WIP banner in light mode */
 }
 
 html.dark, body.dark {
@@ -47,7 +48,7 @@ html.dark, body.dark {
   --color-menu-hover: #7c5fcf;
   --color-link: #b39ddb;       /* Purple for links in dark mode, matches menu */
   --color-link-hover: #7c5fcf; /* Lighter purple for hover in dark mode */
-  --color-title: #7c5fcf;      /* Purple for dark mode title */
+  --color-title: #7c5fcf;      /* Purple for dark mode title and WIP banner */
   --color-btn: #0d3c47;        /* Teal for button in dark mode */
   --color-btn-hover: var(--color-link);  /* Match dark mode title color for hover */
   --color-btn-text: #23242a;   /* Dark text for contrast on teal */
@@ -82,7 +83,7 @@ body {
   color: var(--color-fg) !important;
   border-radius: 12px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.04);
-  border: 3px solid var(--color-link);
+  border: 0;
   box-sizing: border-box;
   flex: 1 0 auto;
   transition: background 0.3s, color 0.3s, border 0.3s;
@@ -356,6 +357,39 @@ body.dark .admonition {
   box-shadow: 0 2px 8px rgba(0,0,0,0.18);
 }
 .admonition :last-child { margin-bottom: 0; }
+
+/* --- Work in Progress Banner --- */
+.wip-banner {
+  border: 2px dotted var(--color-title, #7c5fcf);
+  background: var(--color-bg, #fff);
+  color: var(--color-title, #7c5fcf);
+  padding: 1em 1.5em;
+  margin-bottom: 2em;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.15em;
+  box-shadow: none;
+  outline: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .wip-banner {
+    border-color: var(--color-title, #7c5fcf);
+    background: var(--color-bg, #282a31);
+    color: var(--color-title, #7c5fcf);
+  }
+}
+
+/* Ensure sufficient contrast for accessibility */
+.wip-banner a {
+  color: var(--color-link, #2a7fff);
+  text-decoration: underline;
+  font-weight: 600;
+}
+.wip-banner a:focus {
+  outline: 2px solid var(--color-link, #2a7fff);
+  outline-offset: 2px;
+}
 
 /* Nav and toggle button */
 nav {

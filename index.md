@@ -18,10 +18,8 @@ This site is meant to serve three main purposes:
 
 We welcome contributions from anyone including students who want to help improve the site and its resources. The best way is to [create an issue](https://github.com/dannycab/modern-classical-mechanics/issues) or [issue a pull request](https://github.com/dannycab/modern-classical-mechanics/pulls) on the [GitHub repository](https://github.com/dannycab/modern-classical-mechanics). 
 
-You can also contact [Danny Caballero](https://dannycab.github.io/) directly if you have questions or suggestions.
-
-<!-- [![GitHub Repo stars](https://img.shields.io/github/stars/dannycab/modern-classical-mechanics?style=social)](https://github.com/dannycab/modern-classical-mechanics/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/dannycab/modern-classical-mechanics?style=social)](https://github.com/dannycab/modern-classical-mechanics/network/members) -->
 [![GitHub issues](https://img.shields.io/github/issues/dannycab/modern-classical-mechanics)](https://github.com/dannycab/modern-classical-mechanics/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/dannycab/modern-classical-mechanics)](https://github.com/dannycab/modern-classical-mechanics/pulls)
-[![GitHub license](https://img.shields.io/github/license/dannycab/modern-classical-mechanics)](https://github.com/dannycab/modern-classical-mechanics/blob/main/LICENSE)
+
+You can also contact [Danny Caballero](https://dannycab.github.io/) directly if you have questions or suggestions.
+

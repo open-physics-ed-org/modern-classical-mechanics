@@ -1,0 +1,2 @@
+> ## 🚧 Work in Progress 🚧 
+> *This site is actively being developed. Content, structure, and features may change frequently as we improve and expand the resources. For the latest updates, known issues, or to contribute, please visit our [GitHub repository](https://github.com/dannycab/modern-classical-mechanics).*

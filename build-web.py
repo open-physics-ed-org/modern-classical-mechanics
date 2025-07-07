@@ -758,10 +758,22 @@ def main():
     # --- Process index.md and cards.md as index.html ---
     index_md = repo_root / 'index.md'
     cards_md = repo_root / 'cards.md'
+    announcement_md = repo_root / 'announcement.md'
     index_html_path = build_dir / 'index.html'
     title = 'Modern Classical Mechanics'
     main_html = ''
     card_grid = ''
+    announcement_html = ''
+    if announcement_md.exists():
+        try:
+            import markdown
+        except ImportError:
+            print("[ERROR] The 'markdown' package is required. Install it with 'pip install markdown'.")
+            sys.exit(1)
+        with open(announcement_md, 'r', encoding='utf-8') as f:
+            announcement_content = f.read()
+        # Wrap in .wip-banner div for styling and accessibility
+        announcement_html = f'<div class="wip-banner" role="status" aria-label="Announcement">' + markdown.markdown(announcement_content, extensions=['extra', 'admonition']) + '</div>'
     if index_md.exists():
         try:
             import markdown
@@ -775,6 +787,9 @@ def main():
         if m:
             title = m.group(1).strip()
         main_html = markdown.markdown(index_content, extensions=['extra', 'toc', 'admonition'])
+        # Prepend announcement if present
+        if announcement_html:
+            main_html = announcement_html + main_html
     # --- Build homepage card grid from _menu.yml, with optional Markdown overrides ---
     card_grid = ''
     if menu_data:

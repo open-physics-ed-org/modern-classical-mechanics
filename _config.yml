@@ -8,7 +8,7 @@ author: Danny Caballero
 logo: images/logo.png
 
 # Custom footer (optional)
-footer: "Built with ❤️ in Michigan"
+footer: 'Built with ❤️ in Michigan | <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" alt="License: CC BY-NC-SA 4.0"></a>'
 
 # Launch buttons (optional)
 launch_buttons:
