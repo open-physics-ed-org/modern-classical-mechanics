@@ -37,23 +37,68 @@ def fetch_youtube_thumbnail(video_id, dest_path):
 def main():
     # --- Argument parsing for CLI behavior ---
     import argparse
+
     parser = argparse.ArgumentParser(
         description="Build Modern Classical Mechanics HTML outputs and assets.",
         add_help=False,
-        usage="python build-web.py --html [--files NOTEBOOK1.ipynb [NOTEBOOK2.ipynb ...]] [--all]"
+        usage="python build-web.py --html [--files NOTEBOOK1.ipynb [NOTEBOOK2.ipynb ...]] [--all] [--clean]"
     )
     parser.add_argument('--html', action='store_true', help='Build HTML output (required for --files)')
     parser.add_argument('--files', nargs='+', help='One or more notebook files to build (must be used with --html)')
     parser.add_argument('--all', action='store_true', help='Build all notebooks listed in _notebooks.yaml')
+    parser.add_argument('--clean', action='store_true', help='Remove all Jupyter/nbconvert markup from HTML in docs/')
     parser.add_argument('-h', '--help', action='help', help='Show this help message and exit')
     args, unknown = parser.parse_known_args()
 
+
     # No flags: print error and usage
-    if not (args.html or args.files or args.all or unknown):
+    if not (args.html or args.files or args.all or args.clean or unknown):
         print("\n[ERROR] No flags provided. Usage:")
         parser.print_usage()
-        print("\nExample: python build-web.py --html [--files NOTEBOOK1.ipynb ...] [--all]\n")
+        print("\nExample: python build-web.py --html [--files NOTEBOOK1.ipynb ...] [--all] [--clean]\n")
         sys.exit(2)
+
+    # --clean: remove Jupyter/nbconvert markup from all HTML in docs/
+    if args.clean:
+        try:
+            import bs4
+        except ImportError:
+            print("[ERROR] The 'bs4' package is required. Install it with 'pip install beautifulsoup4'.")
+            import sys
+            sys.exit(1)
+        import sys
+        docs_dir = Path(__file__).parent / 'docs'
+        html_files = list(docs_dir.glob('*.html'))
+        print(f"[CLEAN] Processing {len(html_files)} HTML files in docs/ ...")
+        for html_path in html_files:
+            with open(html_path, 'r', encoding='utf-8') as f:
+                html = f.read()
+            soup = bs4.BeautifulSoup(html, 'html.parser')
+            # Remove all Jupyter/nbconvert classes and data attributes
+            for tag in soup.find_all(True):
+                # Remove classes starting with jp- or nb-
+                if tag.has_attr('class'):
+                    tag['class'] = [c for c in tag['class'] if not (c.startswith('jp-') or c.startswith('nb-'))]
+                    if not tag['class']:
+                        del tag['class']
+                # Remove data attributes from nbconvert
+                for attr in list(tag.attrs):
+                    if attr.startswith('data-jp-') or attr.startswith('data-nb-'):
+                        del tag[attr]
+            # Remove style blocks with Jupyter/nbconvert variables
+            for style in soup.find_all('style'):
+                if 'jp-' in style.text or 'nb-' in style.text:
+                    style.decompose()
+            # Remove meta tags with nbconvert info
+            for meta in soup.find_all('meta'):
+                if meta.get('name', '').startswith('nbconvert'):
+                    meta.decompose()
+            # Save cleaned HTML
+            with open(html_path, 'w', encoding='utf-8') as f:
+                f.write(str(soup))
+            print(f"[CLEAN] Cleaned {html_path.name}")
+        print("[CLEAN] All HTML files in docs/ cleaned of Jupyter/nbconvert markup.")
+        sys.exit(0)
 
     # --files without --html: error
     if args.files and not args.html:

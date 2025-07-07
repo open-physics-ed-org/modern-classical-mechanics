@@ -113,7 +113,10 @@ footer {
 
 
 :root,
+
 .markdown-body {
+  color: var(--color-fg) !important;
+  background: none !important;
   --jp-cell-editor-background: var(--color-card) !important;
   --jp-cell-editor-active-background: var(--color-card) !important;
   --jp-layout-color0: var(--color-card) !important;
@@ -125,6 +128,13 @@ footer {
   --jp-toolbar-background: var(--color-card) !important;
   --jp-notebook-select-background: var(--color-card) !important;
   --jp-output-area-background: var(--color-card) !important;
+}
+
+
+body.dark .markdown-body,
+body.dark .markdown-body * {
+  color: var(--color-fg) !important;
+  border-color: var(--color-border) !important;
 }
 
 
