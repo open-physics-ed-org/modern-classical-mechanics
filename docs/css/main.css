@@ -332,21 +332,63 @@ nav {
   text-align: center;
 }
 /* nav a styles removed to avoid conflict with .site-nav a */
+
+/* Toggle button: always circular, next to menu, never distorted */
+.site-nav {
+  position: relative;
+}
 .toggle-dark {
-  float: right;
+  position: absolute;
+  right: 1.2em;
+  top: 50%;
+  transform: translateY(-50%);
   background: var(--color-link);
   color: #fff;
   border: none;
   border-radius: 50%;
+  aspect-ratio: 1 / 1;
   width: 2.5em;
-  height: 2.5em;
+  min-width: 2.5em;
+  min-height: 2.5em;
+  max-width: 2.5em;
+  max-height: 2.5em;
   font-size: 1.3em;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  z-index: 300;
 }
 .toggle-dark:focus, .toggle-dark:hover {
   background: var(--color-link-hover);
   color: #fff;
+  outline: 2px solid var(--color-link-hover);
+  outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+  .site-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    z-index: 1001;
+  }
+  .toggle-dark {
+    position: absolute;
+    right: 0.7em;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.3em;
+    min-width: 2.3em;
+    min-height: 2.3em;
+    max-width: 2.3em;
+    max-height: 2.3em;
+    font-size: 1.1em;
+  }
 }
 
 /* Download buttons for chapter sources */
