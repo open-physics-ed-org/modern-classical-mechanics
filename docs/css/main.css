@@ -23,12 +23,16 @@ html.dark, body.dark {
   --color-link: #b39ddb; /* purple for links in dark mode, matches menu */
   --color-link-hover: #7c5fcf; /* lighter purple for hover in dark mode */
 /* Ensure links in text match menu color in both modes */
+
+/* Text links follow the title color scheme and change color on hover (light and dark mode) */
 .markdown-body a,
 .card a,
 .container a {
   color: var(--color-link);
   text-decoration: underline;
-  transition: color 0.2s;
+  transition: color 0.2s, text-decoration-color 0.2s;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
 }
 .markdown-body a:hover,
 .markdown-body a:focus,
@@ -38,6 +42,7 @@ html.dark, body.dark {
 .container a:focus {
   color: var(--color-link-hover);
   text-decoration: underline;
+  text-decoration-color: var(--color-link-hover);
 }
   --color-btn: #ff9800;
   --color-btn-hover: #ffb74d;
