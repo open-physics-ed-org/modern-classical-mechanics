@@ -2,6 +2,7 @@ menu:
   - title: Home
     path: index.html
   - title: Chapters
+    path: chapters.html
     children:
       - title: Week 1: Start
         path: 01_start.html
@@ -58,6 +59,7 @@ menu:
       - title: Week 13: Examples of Lagrangian Mechanics
         path: 13_notes.html
   - title: Activities
+    path: activities.html
     children:
       - title: Homework Assignment 1
         path: hw1.html
