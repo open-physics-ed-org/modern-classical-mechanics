@@ -1,3 +1,5 @@
+    # --- Build resources.html from resources.md and about.html from about.md ---
+    # (Code moved inside main() after all variables are defined)
 #!/usr/bin/env python3
 import os
 import shutil
@@ -820,6 +822,57 @@ def main():
         chapters_html = get_html_template("Chapters", chapters_body)
         with open(chapters_html_path, 'w', encoding='utf-8') as f:
             f.write(chapters_html)
+
+    # --- Build resources.html from resources.md ---
+    resources_md = repo_root / 'resources.md'
+    resources_html_path = build_dir / 'resources.html'
+    if resources_md.exists():
+        try:
+            import markdown
+        except ImportError:
+            print("[ERROR] The 'markdown' package is required. Install it with 'pip install markdown'.")
+            sys.exit(1)
+        with open(resources_md, 'r', encoding='utf-8') as f:
+            resources_content = f.read()
+        resources_html = markdown.markdown(resources_content, extensions=['extra', 'toc', 'admonition'])
+        body = f'<div class="markdown-body">{resources_html}</div>'
+        html = get_html_template("Resources", body)
+        with open(resources_html_path, 'w', encoding='utf-8') as f:
+            f.write(html)
+
+    # --- Build about.html from about.md ---
+    about_md = repo_root / 'about.md'
+    about_html_path = build_dir / 'about.html'
+    if about_md.exists():
+        try:
+            import markdown
+        except ImportError:
+            print("[ERROR] The 'markdown' package is required. Install it with 'pip install markdown'.")
+            sys.exit(1)
+        with open(about_md, 'r', encoding='utf-8') as f:
+            about_content = f.read()
+        about_html = markdown.markdown(about_content, extensions=['extra', 'toc', 'admonition'])
+        body = f'<div class="markdown-body">{about_html}</div>'
+        html = get_html_template("About", body)
+        with open(about_html_path, 'w', encoding='utf-8') as f:
+            f.write(html)
+
+    # --- Build activities.html from activities.md ---
+    activities_md = repo_root / 'activities.md'
+    activities_html_path = build_dir / 'activities.html'
+    if activities_md.exists():
+        try:
+            import markdown
+        except ImportError:
+            print("[ERROR] The 'markdown' package is required. Install it with 'pip install markdown'.")
+            sys.exit(1)
+        with open(activities_md, 'r', encoding='utf-8') as f:
+            activities_content = f.read()
+        activities_html = markdown.markdown(activities_content, extensions=['extra', 'toc', 'admonition'])
+        body = f'<div class="markdown-body">{activities_html}</div>'
+        html = get_html_template("Activities", body)
+        with open(activities_html_path, 'w', encoding='utf-8') as f:
+            f.write(html)
 
     # --- Process all notebooks as HTML with the same template, rewriting image links to section subfolders ---
     # Build a mapping from all copied images: filename -> (section, relpath)

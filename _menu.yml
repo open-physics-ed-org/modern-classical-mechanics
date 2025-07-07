@@ -60,20 +60,9 @@ menu:
         path: 13_notes.html
   - title: Activities
     path: activities.html
-    children:
-      - title: Homework Assignment 1
-        path: hw1.html
-      - title: Homework Assignment 2
-        path: hw2.html
-      - title: Homework Assignment 3
-        path: hw3.html
-      - title: Homework Assignment 4
-        path: hw4.html
-      - title: Homework Assignment 5
-        path: hw5.html
-      - title: Homework Assignment 6
-        path: hw6.html
-      - title: Homework Assignment 7
-        path: hw7.html
-      - title: Homework Assignment 8
-        path: hw8.html
+
+  - title: Resources
+    path: resources.html
+
+  - title: About
+    path: about.html
