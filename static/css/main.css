@@ -27,13 +27,13 @@
 :root {
   --color-bg: #e3f2fd;         /* Light blue background */
   --color-fg: #0d3c47;         /* Deep teal text */
-  --color-card: #e0f7fa;       /* Light teal card */
+  --color-card: #b2ebf2;       /* Darker teal card */
   --color-border: #2a7fff;     /* Blue border to match menu and title */
   --color-menu: #6c3fc5;       /* Purple menu, WCAG AA on light */
   --color-menu-hover: #1565c0; /* Blue for hover in light mode */
   --color-link: #2a7fff;       /* Blue for links in light mode */
   --color-link-hover: #1565c0; /* Deeper blue for link/menu hover in light mode */
-  --color-btn: #ff9800;        /* Orange button, WCAG AA on light */
+  --color-btn: #ffb300;        /* Darker teal button, better contrast */
   --color-btn-hover: var(--color-link);  /* Use title/menu color for hover */
   --color-btn-text: #fff;
 }
@@ -48,7 +48,7 @@ html.dark, body.dark {
   --color-link: #b39ddb;       /* Purple for links in dark mode, matches menu */
   --color-link-hover: #7c5fcf; /* Lighter purple for hover in dark mode */
   --color-title: #7c5fcf;      /* Purple for dark mode title */
-  --color-btn: #1de9b6;        /* Teal for button in dark mode */
+  --color-btn: #0d3c47;        /* Teal for button in dark mode */
   --color-btn-hover: var(--color-link);  /* Match dark mode title color for hover */
   --color-btn-text: #23242a;   /* Dark text for contrast on teal */
   --color-btn-hover-text: #fff; /* White text for contrast on purple hover */
