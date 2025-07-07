@@ -108,12 +108,15 @@ nav {
   border-bottom: 1px solid var(--color-bg);
 }
 
-.container {
   flex: 1 1 0%;
   min-width: 0;
   padding: 2em 1em 2em 1em;
   max-width: 900px;
   margin: 0 auto;
+}
+body.dark .container {
+  background: var(--color-bg) !important;
+}
 }
 
 main {
@@ -124,6 +127,16 @@ main {
   color: var(--color-fg) !important;
   border-radius: 12px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+}
+body.dark main {
+  background: var(--color-bg) !important;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.32);
+  border: 1px solid var(--color-border);
+}
+body.dark main {
+  box-shadow: 0 2px 16px rgba(0,0,0,0.32);
+  border: 1px solid var(--color-border);
+}
 }
 
 footer {
@@ -407,6 +420,7 @@ nav {
 }
 
 /* Ensure images with transparency and black text remain visible in dark mode */
+/*
 body.dark .markdown-body img,
 body.dark .card img,
 body.dark img.content-img {
@@ -414,6 +428,7 @@ body.dark img.content-img {
   border: 1px solid #333;
   border-radius: 4px;
 }
+*/
 /* Explicitly set image background for light mode for future flexibility */
 .markdown-body img,
 .card img,
