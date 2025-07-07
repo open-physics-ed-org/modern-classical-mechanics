@@ -60,9 +60,7 @@ menu:
         path: 13_notes.html
   - title: Activities
     path: activities.html
-
   - title: Resources
     path: resources.html
-
   - title: About
     path: about.html

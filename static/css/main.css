@@ -11,9 +11,10 @@ body.dark {
   --color-fg: #f9f9fb;
   --color-card: #181a1b;
   --color-border: #333;
-  --color-link: #7abaff;
-  --color-link-hover: #fff;
+  --color-link: #b39ddb; /* Purple 300 */
+  --color-link-hover: #ffb74d; /* Orange 300 */
 }
+
 
 
 html, body, .markdown-body {
@@ -422,19 +423,19 @@ img.content-img {
   border-radius: 4px;
 }
 body.dark .download-btn {
-  background: #26a69a; /* Lighter teal for dark mode */
-  color: #fff;
-  border-color: #26a69a;
+  background: #ff9800; /* Orange, WCAG AA on dark */
+  color: #181a1b;
+  border-color: #ff9800;
 }
 body.dark .download-btn:hover {
-  background: #004d40;
-  color: #fff;
-  border-color: #004d40;
+  background: #ffb74d; /* Lighter orange for hover */
+  color: #181a1b;
+  border-color: #ffb74d;
 }
 body.dark .download-btn:focus {
-  outline: 3px solid #fff;
+  outline: 3px solid #ffb74d;
   outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(38,166,154,0.18);
+  box-shadow: 0 0 0 4px rgba(255,183,77,0.18);
 }
 
 /* Responsive styles */
