@@ -1,4 +1,4 @@
-# RELEASE v0.9 (July 2025)
+# RELEASE v0.9 "Unified Unruh" (July 2025)
 
 **Major Build System Overhaul & Unified Output**
 
