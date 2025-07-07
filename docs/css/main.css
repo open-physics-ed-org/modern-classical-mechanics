@@ -388,6 +388,23 @@ nav {
   text-decoration: none;
   box-shadow: 0 4px 16px rgba(0,0,0,0.16);
 }
+
+/* Ensure images with transparency and black text remain visible in dark mode */
+body.dark .markdown-body img,
+body.dark .card img,
+body.dark img.content-img {
+  background: #fff !important;
+  border: 1px solid #333;
+  border-radius: 4px;
+}
+/* Explicitly set image background for light mode for future flexibility */
+.markdown-body img,
+.card img,
+img.content-img {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+}
 body.dark .download-btn {
   background: #26a69a; /* Lighter teal for dark mode */
   color: #fff;
