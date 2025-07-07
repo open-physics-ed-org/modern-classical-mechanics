@@ -80,10 +80,12 @@ modern-classical-mechanics/
 ---
 
 
+
 ## 📖 Build System & Markup Documentation
 
 - See [build.md](build.md) for detailed, step-by-step documentation of the build system, including how `build.py` and `build-web.py` work, troubleshooting, and best practices.
 - See [jupyter-markup-tips.md](jupyter-markup-tips.md) for tips and best practices on writing Markdown, LaTeX, images, links, and admonitions in Jupyter Notebooks.
+- See [releases/RELEASE-v0.9.md](releases/RELEASE-v0.9.md) for the latest release notes and summary of changes.
 
 ---
 
