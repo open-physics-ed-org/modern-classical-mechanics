@@ -5,40 +5,47 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Modern Classical Mechanics</title>
+<link href="css/book.css" rel="stylesheet"/>
 <link href="css/main.css" rel="stylesheet"/>
-<link href="css/card-link.css" rel="stylesheet"/>
-<script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- Dark theme: loaded automatically if user prefers dark mode -->
+<link href="css/theme-dark.css" id="dark-theme-css" media="(prefers-color-scheme: dark)" rel="stylesheet"/>
 <script>
     (function() {
+      // On page load, set mode from localStorage or system preference
       function applyTheme() {
         const saved = localStorage.getItem('theme');
+        const darkLink = document.getElementById('dark-theme-css');
         if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
           document.documentElement.classList.add('dark');
+          if (darkLink) darkLink.removeAttribute('media');
         } else {
           document.documentElement.classList.remove('dark');
+          if (darkLink) darkLink.setAttribute('media', '(prefers-color-scheme: dark)');
         }
       }
       window.applyTheme = applyTheme;
       applyTheme();
+      // Toggle button handler
       window.toggleTheme = function() {
         const isDark = document.documentElement.classList.toggle('dark');
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
         applyTheme();
       };
+      // Listen for system preference changes
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);
     })();
   </script>
 </head>
 <body>
-<button aria-label="Toggle dark/light mode" class="toggle-dark" onclick="toggleTheme()">🌗</button>
 <header class="site-header">
 <h1 class="site-title">Modern Classical Mechanics</h1>
 </header>
+<button aria-label="Toggle dark/light mode" class="toggle-dark" onclick="toggleTheme()">🌗</button>
 <nav class="site-nav" id="site-nav"><ul class="site-nav-menu" id="site-nav-menu"><li><a href="index.html">Home</a></li><li><a href="chapters.html">Chapters</a><ul class="dropdown-menu menu-level-1"><li><a href="01_start.html">Week 1: Start</a></li><li><a href="01_notes.html">Week 1: Introduction to Classical Mechanics</a></li><li><a href="02_start.html">Week 2: Computing as a tool for science</a></li><li><a href="02_notes.html">Week 2: Mathematical Preliminaries</a></li><li><a href="03_start.html">Week 3: What is Mathematical Modeling?</a></li><li><a href="03_notes.html">Week 3: Making Classical Models</a></li><li><a href="04_start.html">Week 4: Why does fluid drag complicate things?</a></li><li><a href="04_notes.html">Week 4: Equations of Motion</a></li><li><a href="05_start.html">Week 5: Conservation Laws</a></li><li><a href="05_notes.html">Week 5: Conservation of Energy</a></li><li><a href="06_start.html">Week 6: Stability and Equilibria</a></li><li><a href="06_notes.html">Week 6: Stability and Energy</a></li><li><a href="06_notes_2.html">Week 6: Linear and Angular Momentum</a></li><li><a href="07_start.html">Week 7: Nonlinear Dynamics</a></li><li><a href="07_notes.html">Week 7: Critical Points; Phase Space; Trajectories</a></li><li><a href="08_start.html">Week 8: Oscillations</a></li><li><a href="08_notes.html">Week 8: Oscillators and Modeling Oscillations</a></li><li><a href="09_start.html">Week 9: Driven Oscillators and Resonance</a></li><li><a href="09_notes.html">Week 9: Driven Oscillations</a></li><li><a href="10_start.html">Week 10: Chaotic Dynamics</a></li><li><a href="10_notes.html">Week 10: Activity: Modeling Chaotic Systems</a></li><li><a href="11_start.html">Week 11: Calculus of Variations</a></li><li><a href="11_notes.html">Week 11: The Euler-Lagrange Equation</a></li><li><a href="12_start.html">Week 12: The Principle of Least Action</a></li><li><a href="12_notes.html">Week 12: Introduction to Lagrangian Mechanics</a></li><li><a href="13_start.html">Week 13: Lagrangian Mechanics</a></li><li><a href="13_notes.html">Week 13: Examples of Lagrangian Mechanics</a></li></ul></li><li><a href="activities.html">Activities</a><ul class="dropdown-menu menu-level-1"><li><a href="hw1.html">Homework 1</a></li><li><a href="hw2.html">Homework 2</a></li><li><a href="hw3.html">Homework 3</a></li><li><a href="hw4.html">Homework 4</a></li><li><a href="hw5.html">Homework 5</a></li><li><a href="hw6.html">Homework 6</a></li><li><a href="hw7.html">Homework 7</a></li><li><a href="hw8.html">Homework 8</a></li></ul></li><li><a href="resources.html">Resources</a></li><li><a href="about.html">About</a></li></ul>
 <!-- Hamburger menu and toggle JS commented out -->
 </nav>
 <div class="container">
-<main id="main-content">
+<main>
 <nav aria-label="Download chapter sources" class="chapter-downloads">
 <div aria-label="Download formats" role="group">
 <a class="download-btn" download="" href="sources/hw5/hw5.pdf"><span aria-hidden="true">📄</span> PDF</a>
@@ -54,7 +61,7 @@
 <html lang="en">
 <head><meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>tmp99sjefxr</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>tmpnqf66_n1</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -983,7 +990,7 @@ Talks given by researchers through the following clubs:</p>
 </div>
 </main>
 </div>
-<footer>
+<footer class="site-footer">
 <p>Built with ❤️ in Michigan | <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="License: CC BY-NC-SA 4.0" src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png"/></a></p>
 </footer>
 </body>

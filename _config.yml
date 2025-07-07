@@ -24,11 +24,11 @@ repository:
   branch: main
 
 
-# Theme selection
+# Theme selection (without .yml)
 theme:
-  light: light    # Name of the light theme YAML (without .yml)
-  dark: dark      # Name of the dark theme YAML (without .yml)
-  default: light  # Which to use by default (optional)
+  light: everforest_light
+  dark: everforest_dark 
+  default: everforest_dark (optional)
 
 # HTML settings
 html:

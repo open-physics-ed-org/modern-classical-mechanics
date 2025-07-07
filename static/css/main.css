@@ -1,6 +1,6 @@
 /*
-Theme: Light Theme (light)
-Description: Bright, accessible palette for daylight viewing.
+Theme: Everforest Light (everforest_light)
+Description: Everforest light theme with soft greens and browns.
 */
 
 
@@ -31,18 +31,18 @@ Description: Bright, accessible palette for daylight viewing.
 
 /* --- Color Variables --- */
 :root {
-  --color-bg: #e3f2fd;         /* Light blue background */
-  --color-fg: #0d3c47;         /* Deep teal text */
-  --color-card: #e3f2fd;     /* Darker teal card */
-  --color-border: #2a7fff; /* Blue border to match menu and title */
-  --color-menu: #6c3fc5;     /* Purple menu, WCAG AA on light */
-  --color-menu-hover: #1565c0; /* Blue for hover in light mode */
-  --color-link: #2a7fff;     /* Blue for links in light mode */
-  --color-link-hover: #1565c0; /* Deeper blue for link/menu hover in light mode */
-  --color-btn: #ffb300;        /* Darker teal button, better contrast */
-  --color-btn-hover: #2a7fff;  /* Use title/menu color for hover */
+  --color-bg: #fdf6e3;         /* Light blue background */
+  --color-fg: #5c6a72;         /* Deep teal text */
+  --color-card: #fdf6e3;     /* Darker teal card */
+  --color-border: #a7c080; /* Blue border to match menu and title */
+  --color-menu: #7fbbb3;     /* Purple menu, WCAG AA on light */
+  --color-menu-hover: #e69875; /* Blue for hover in light mode */
+  --color-link: #a7c080;     /* Blue for links in light mode */
+  --color-link-hover: #e69875; /* Deeper blue for link/menu hover in light mode */
+  --color-btn: #7fbbb3;        /* Darker teal button, better contrast */
+  --color-btn-hover: #a7c080;  /* Use title/menu color for hover */
   --color-btn-text: #fff;
-  --color-title: #2a7fff;      /* Blue for title and WIP banner in light mode */
+  --color-title: #e69875;      /* Blue for title and WIP banner in light mode */
 }
 
 html.dark, body.dark {

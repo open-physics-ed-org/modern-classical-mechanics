@@ -750,7 +750,6 @@ def main():
 
     def get_html_template(title, body):
         nav_html = get_nav_html()
-        # Read the book title from _config.yml
         import yaml
         config_path = Path(__file__).parent / '_config.yml'
         book_title = title
@@ -764,10 +763,15 @@ def main():
                     footer_html = config['footer']
         if not footer_html:
             footer_html = f"&copy; {book_title}. All rights reserved."
-        # Center the title and remove extra white header
-        # No override style injected; main.css controls all site appearance
-        return f"""<!DOCTYPE html>
-<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>{book_title}</title>\n  <link href=\"css/main.css\" rel=\"stylesheet\">\n  <link href=\"css/card-link.css\" rel=\"stylesheet\">\n  <script src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js' defer></script>\n  <script>\n    (function() {{\n      function applyTheme() {{\n        const saved = localStorage.getItem('theme');\n        if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {{\n          document.documentElement.classList.add('dark');\n        }} else {{\n          document.documentElement.classList.remove('dark');\n        }}\n      }}\n      window.applyTheme = applyTheme;\n      applyTheme();\n      window.toggleTheme = function() {{\n        const isDark = document.documentElement.classList.toggle('dark');\n        localStorage.setItem('theme', isDark ? 'dark' : 'light');\n        applyTheme();\n      }};\n      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);\n    }})();\n  </script>\n</head>\n<body>\n  <button class=\"toggle-dark\" aria-label=\"Toggle dark/light mode\" onclick=\"toggleTheme()\">🌗</button>\n  <header class=\"site-header\">\n    <h1 class=\"site-title\">{book_title}</h1>\n  </header>\n  <nav class=\"site-nav\" id=\"site-nav\">{nav_html}</nav>\n  <div class=\"container\">\n    <main id=\"main-content\">\n      {body}\n    </main>\n  </div>\n  <footer>\n    <p>{footer_html}</p>\n  </footer>\n</body>\n</html>"""
+        # Read the HTML template from static/html_template.html
+        template_path = Path(__file__).parent / 'static/html_template.html'
+        if not template_path.exists():
+            raise FileNotFoundError(f"HTML template not found: {template_path}")
+        with open(template_path, 'r', encoding='utf-8') as f:
+            template = f.read()
+        # Replace placeholders
+        html = template.format(title=book_title, body=body, nav=nav_html, footer=footer_html)
+        return html
 
     # --- Process index.md and cards.md as index.html ---
     index_md = repo_root / 'content/index.md'
