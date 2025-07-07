@@ -806,15 +806,28 @@ def main():
             card_body = md_body if md_body else desc
             card_body_html = markdown.markdown(card_body, extensions=['extra', 'admonition']) if card_body else ''
             # Render as WCAG-accessible .download-btn card (identical to chapter download buttons)
+            # Use the first non-empty line as the card title (header), rest as body
+            card_lines = [line.strip() for line in card_body.split('\n') if line.strip() and not line.strip().startswith('---')]
+            card_title = card_lines[0] if card_lines else title
+            card_body_md = '\n'.join(card_lines[1:]) if len(card_lines) > 1 else ''
+            card_body_html = markdown.markdown(card_body_md, extensions=['extra', 'admonition']) if card_body_md else ''
+            card_id = f"card-{title.lower().replace(' ', '-')}"
             if path:
                 card_grid += (
-                    f'<a class="download-btn card-home-btn" href="{path}" role="button" tabindex="0" aria-labelledby="card-{title.lower().replace(" ","-")}">' # Use .download-btn for homepage cards
-                    f'<span class="card-home-title" id="card-{title.lower().replace(" ","-")}">{title}</span>'
+                    f'<a class="download-btn card-home-btn" href="{path}" role="button" tabindex="0" aria-labelledby="{card_id}">' # Use .download-btn for homepage cards
+                    f'<span class="card-home-btn-inner">'
+                    f'<h2 id="{card_id}">{card_title}</h2>'
                     f'{card_body_html}'
-                    f'</a>'
+                    f'</span></a>'
                 )
             else:
-                card_grid += f'<span class="download-btn card-home-btn" tabindex="0"><span class="card-home-title">{title}</span>{card_body_html}</span>'
+                card_grid += (
+                    f'<span class="download-btn card-home-btn" role="button" tabindex="0" aria-labelledby="{card_id}">' # Non-link fallback
+                    f'<span class="card-home-btn-inner">'
+                    f'<h2 id="{card_id}">{card_title}</h2>'
+                    f'{card_body_html}'
+                    f'</span></span>'
+                )
         card_grid += '</section>'
     if main_html:
         body = f'<div class="markdown-body">{main_html}{card_grid}</div>'

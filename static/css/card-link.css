@@ -8,20 +8,27 @@
 */
 
 .card-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 2em;
-  justify-content: center;
+  justify-items: center;
   align-items: stretch;
   margin: 2em 0 2em 0;
 }
+
+@media (max-width: 900px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 .download-btn.card-home-btn {
   /* Inherit all .download-btn styles from main.css, then add grid/square overrides */
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  justify-content: stretch;
+  align-items: center;
+  justify-content: center;
   min-width: 260px;
   max-width: 260px;
   min-height: 260px;
@@ -34,7 +41,8 @@
   overflow: hidden;
   position: relative;
   text-align: center;
-  /* Font and border-radius are inherited from .download-btn */
+  border-radius: 1.5em !important;
+  /* Make the button more rounded and visually distinct */
 }
 
 .download-btn.card-home-btn:focus {
@@ -52,14 +60,17 @@
   height: 100%;
   padding: 2em 1.2em 1.5em 1.2em;
   box-sizing: border-box;
+  text-align: center;
 }
 
 .download-btn.card-home-btn h2 {
   color: inherit !important;
-  font-size: 1.25em;
-  font-weight: 700;
+  font-size: 1.35em;
+  font-weight: 800;
   margin-bottom: 0.5em;
   margin-top: 0;
+  text-align: center;
+  letter-spacing: 0.01em;
 }
 
 .download-btn.card-home-btn p {
@@ -79,10 +90,11 @@
 /* Responsive: shrink cards on small screens */
 @media (max-width: 600px) {
   .download-btn.card-home-btn {
-    min-width: 160px;
-    max-width: 160px;
-    min-height: 160px;
-    max-height: 160px;
+    min-width: 140px;
+    max-width: 140px;
+    min-height: 140px;
+    max-height: 140px;
     font-size: 1em;
+    border-radius: 1em !important;
   }
 }

@@ -1,4 +1,4 @@
-## Chapters
+### Chapters
 
 Lecture notes and weekly content.
 
@@ -6,7 +6,7 @@ Covers all main topics with detailed explanations.
 
 ---
 
-## Activities
+### Activities
 
 
 Interactive activities and exercises.
@@ -15,7 +15,7 @@ Interactive activities and exercises.
 
 ---
 
-## Resources
+### Resources
 
 Reference materials, links, and tools.
 
@@ -23,7 +23,7 @@ Reference materials, links, and tools.
 
 ---
 
-## About
+### About
 
 Course info, instructor, and policies.
 
