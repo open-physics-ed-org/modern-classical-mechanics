@@ -362,22 +362,21 @@ body.dark .admonition {
 .wip-banner {
   border: 2px dotted var(--color-title, #7c5fcf);
   background: var(--color-bg, #fff);
-  color: var(--color-title, #7c5fcf);
+  color: #000; /* Black text in light mode */
   padding: 1em 1.5em;
   margin-bottom: 2em;
   border-radius: 8px;
-  font-weight: 600;
+  font-weight: normal;
   font-size: 1.15em;
   box-shadow: none;
   outline: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  .wip-banner {
-    border-color: var(--color-title, #7c5fcf);
-    background: var(--color-bg, #282a31);
-    color: var(--color-title, #7c5fcf);
-  }
+html.dark .wip-banner,
+body.dark .wip-banner {
+  color: #fff; /* White text in dark mode */
+  background: var(--color-bg, #282a31);
+  border-color: var(--color-title, #7c5fcf);
 }
 
 /* Ensure sufficient contrast for accessibility */
