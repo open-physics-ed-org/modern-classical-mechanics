@@ -434,6 +434,10 @@ nav {
     bottom: 0;
     width: 100vw;
     z-index: 1001;
+    max-height: 60vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
   .toggle-dark {
     position: absolute;
