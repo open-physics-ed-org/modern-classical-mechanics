@@ -2,6 +2,7 @@
     # (Code moved inside main() after all variables are defined)
 #!/usr/bin/env python3
 from pathlib import Path
+import subprocess, sys
 # --- Global paths (needed by all functions) ---
 repo_root = Path(__file__).parent.resolve()
 autogen_dir = repo_root / '.autogen'
@@ -13,6 +14,25 @@ docs_dir.mkdir(parents=True, exist_ok=True)
 nojekyll = docs_dir / '.nojekyll'
 if not nojekyll.exists():
     nojekyll.touch()
+
+# --- Ensure .autogen preprocessing has run before anything else ---
+autogen_files = [autogen_dir / '_menu.yml', autogen_dir / '_notebooks.yaml', autogen_dir / '_config.yml']
+preproc_needed = any(not f.exists() for f in autogen_files)
+if preproc_needed:
+    preproc_script = repo_root / 'scripts' / 'preprocess_content_yml.py'
+    if preproc_script.exists():
+        print('[PREPROCESS] Running YAML preprocessor to generate .autogen files...')
+        result = subprocess.run(['python3', str(preproc_script)], capture_output=True, text=True)
+        if result.returncode != 0:
+            print('[PREPROCESS][ERROR] Failed to preprocess YAML:')
+            print(result.stdout)
+            print(result.stderr)
+            sys.exit(1)
+        else:
+            print('[PREPROCESS] .autogen files generated.')
+    else:
+        print('[PREPROCESS][ERROR] Preprocessor script not found!')
+        sys.exit(1)
 import os
 import shutil
 import hashlib
@@ -494,15 +514,37 @@ def post_build_cleanup():
     def path_to_output_name(name, section):
         return f"{section.lower()}/{name}"
 
-    # --- Build menu_html_names mapping: html_name -> section ---
-    menu_html_names = {}
+    # --- Ensure .autogen preprocessing has run ---
     import json, yaml, re
+    menu_html_names = {}
     menu_yml = autogen_dir / '_menu.yml'
+    notebooks_yaml = autogen_dir / '_notebooks.yaml'
+    config_yml = autogen_dir / '_config.yml'
+    preproc_needed = False
+    for f in [menu_yml, notebooks_yaml, config_yml]:
+        if not f.exists():
+            preproc_needed = True
+    if preproc_needed:
+        preproc_script = repo_root / 'scripts' / 'preprocess_content_yml.py'
+        if preproc_script.exists():
+            print('[PREPROCESS] Running YAML preprocessor to generate .autogen files...')
+            result = subprocess.run(['python3', str(preproc_script)], capture_output=True, text=True)
+            if result.returncode != 0:
+                print('[PREPROCESS][ERROR] Failed to preprocess YAML:')
+                print(result.stdout)
+                print(result.stderr)
+                sys.exit(1)
+            else:
+                print('[PREPROCESS] .autogen files generated.')
+        else:
+            print('[PREPROCESS][ERROR] Preprocessor script not found!')
+            sys.exit(1)
+    # --- Build menu_html_names mapping: html_name -> section ---
     menu_data = None
     if menu_yml.exists():
         try:
             result = subprocess.run([
-                'python3', str(repo_root / 'basic_yaml2json.py'), str(menu_yml)
+                'python3', str(repo_root / 'scripts/basic_yaml2json.py'), str(menu_yml)
             ], capture_output=True, check=True)
             menu_json = result.stdout.decode('utf-8')
             menu_obj = json.loads(menu_json)
@@ -707,7 +749,7 @@ def post_build_cleanup():
     if menu_yml.exists():
         try:
             result = subprocess.run([
-                'python3', str(repo_root / 'basic_yaml2json.py'), str(menu_yml)
+                'python3', str(repo_root / 'scripts/basic_yaml2json.py'), str(menu_yml)
             ], capture_output=True, check=True)
             menu_json = result.stdout.decode('utf-8')
             menu_obj = json.loads(menu_json)
