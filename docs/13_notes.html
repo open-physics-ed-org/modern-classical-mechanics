@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modern Classical Mechanics</title>
+  <title>13 Notes</title>
   <!-- Both themes loaded, JS enables/disables as needed -->
   <link id="theme-light" href="css/theme-light.css" rel="stylesheet" disabled>
   <link id="theme-dark" href="css/theme-dark.css" rel="stylesheet" disabled>
@@ -52,10 +52,10 @@
 <body>
   
   <header class="site-header">
-    <h1 class="site-title">Modern Classical Mechanics</h1>
+    <h1 class="site-title">13 Notes</h1>
   </header>
   <button id="theme-toggle" class="toggle-dark" aria-label="Toggle dark/light mode">🌗</button>
-  <nav class="site-nav" id="site-nav"><ul class="site-nav-menu" id="site-nav-menu"><li><a href="index.html">Home</a></li><li><a href="chapters.html">Chapters</a><ul class="dropdown-menu menu-level-1"><li><a href="01_start.html">Week 1: Start</a></li><li><a href="01_notes.html">Week 1: Introduction to Classical Mechanics</a></li><li><a href="02_start.html">Week 2: Computing as a tool for science</a></li><li><a href="02_notes.html">Week 2: Mathematical Preliminaries</a></li><li><a href="03_start.html">Week 3: What is Mathematical Modeling?</a></li><li><a href="03_notes.html">Week 3: Making Classical Models</a></li><li><a href="04_start.html">Week 4: Why does fluid drag complicate things?</a></li><li><a href="04_notes.html">Week 4: Equations of Motion</a></li><li><a href="05_start.html">Week 5: Conservation Laws</a></li><li><a href="05_notes.html">Week 5: Conservation of Energy</a></li><li><a href="06_start.html">Week 6: Stability and Equilibria</a></li><li><a href="06_notes.html">Week 6: Stability and Energy</a></li><li><a href="06_notes_2.html">Week 6: Linear and Angular Momentum</a></li><li><a href="07_start.html">Week 7: Nonlinear Dynamics</a></li><li><a href="07_notes.html">Week 7: Critical Points; Phase Space; Trajectories</a></li><li><a href="08_start.html">Week 8: Oscillations</a></li><li><a href="08_notes.html">Week 8: Oscillators and Modeling Oscillations</a></li><li><a href="09_start.html">Week 9: Driven Oscillators and Resonance</a></li><li><a href="09_notes.html">Week 9: Driven Oscillations</a></li><li><a href="10_start.html">Week 10: Chaotic Dynamics</a></li><li><a href="10_notes.html">Week 10: Activity: Modeling Chaotic Systems</a></li><li><a href="11_start.html">Week 11: Calculus of Variations</a></li><li><a href="11_notes.html">Week 11: The Euler-Lagrange Equation</a></li><li><a href="12_start.html">Week 12: The Principle of Least Action</a></li><li><a href="12_notes.html">Week 12: Introduction to Lagrangian Mechanics</a></li><li><a href="13_start.html">Week 13: Lagrangian Mechanics</a></li><li><a href="13_notes.html">Week 13: Examples of Lagrangian Mechanics</a></li></ul></li><li><a href="activities.html">Activities</a><ul class="dropdown-menu menu-level-1"><li><a href="hw1.html">Homework 1</a></li><li><a href="hw2.html">Homework 2</a></li><li><a href="hw3.html">Homework 3</a></li><li><a href="hw4.html">Homework 4</a></li><li><a href="hw5.html">Homework 5</a></li><li><a href="hw6.html">Homework 6</a></li><li><a href="hw7.html">Homework 7</a></li><li><a href="hw8.html">Homework 8</a></li></ul></li><li><a href="resources.html">Resources</a></li><li><a href="about.html">About</a></li></ul>
+  <nav class="site-nav" id="site-nav"><!-- Menu data not available, fallback menu here -->
 <!-- Hamburger menu and toggle JS commented out -->
 </nav>
   <div class="container">
@@ -102,14 +102,14 @@
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Example:-The-Atwood-Machine">Example: The Atwood Machine<a class="anchor-link" href="#Example:-The-Atwood-Machine">¶</a></h2><p>The <a href="https://en.wikipedia.org/wiki/Atwood_machine">Atwood machine</a> consists of two masses, $M$ and $m$, connected by a massless string that passes over a massless pulley. The system is subject to gravity alone. The figure below shows the system along with a choice of coordinates $y_1$ and $y_2$ for the two masses.</p>
-<p><img alt="Atwood Machine" src="images/chapters/atwood.png"/></p>
+<p><img alt="Atwood Machine" src="images/other/atwood.png"/></p>
 <p>These coordinates are measured from the center of the pulley and positive $y_1$ and $y_2$ are taken to be upward. Let's try to use the Lagrangian formalism to find the equations of motion for this system.</p>
 <p>$$V = + Mgy_1 + mgy_2$$</p>
 <p>$$T = \dfrac{1}{2}M\dot{y}_1^2 + \dfrac{1}{2}m\dot{y}_2^2$$</p>
 <h3 id="Equation-of-Constraint">Equation of Constraint<a class="anchor-link" href="#Equation-of-Constraint">¶</a></h3><p>But notice that $y_1$ and $y_2$ are no independent coordinates. If we unravel the string that is over the pulley, we find that (assume length of string is $l$):</p>
 <p>$$y_1 + \pi R + y_2 = l$$</p>
 <p>where $R$ is the radius of the pulley. That is shown in the figure below.</p>
-<p><img alt="Unraveled String" src="images/chapters/string-unraveled.png"/></p>
+<p><img alt="Unraveled String" src="images/other/string-unraveled.png"/></p>
 <p>The equation above is called an <strong>equation of constraint</strong>. It relates the coordinates $y_1$ and $y_2$ to each other. We can use this equation to eliminate one of the coordinates. Let's eliminate $y_2$:</p>
 <p>$$l = y_1 + \pi R + y_2 \rightarrow y_1 = (l - \pi R) - y_2$$</p>
 <p>This constraint has implications for velocities,</p>
@@ -198,7 +198,7 @@ $$-(M-m)gR - (M+m+\frac{1}{2}M_p)R^2\ddot{\phi} = 0$$</p>
 <h2 id="Example:-Bead-in-a-Parabolic-Bowl">Example: Bead in a Parabolic Bowl<a class="anchor-link" href="#Example:-Bead-in-a-Parabolic-Bowl">¶</a></h2><p>A bead of mass $m$ is constrained to move along a parabolic bowl. There is a gravitational force acting on the bead. The bowl is symmetric about the $z$-axis and the bead is constrained to move along the surface without friction or rolling. The bowl is described by the equation:</p>
 <p>$$z = \dfrac{1}{2}c(x^2 + y^2)$$</p>
 <p>where $c$ is a constant that describes the curvature of the bowl. The figure below shows the system.</p>
-<p><img alt="Bead in a Parabolic Bowl" src="images/chapters/paraboloid.png"/></p>
+<p><img alt="Bead in a Parabolic Bowl" src="images/other/paraboloid.png"/></p>
 <p>In this case the system is better solved in cylindrical coordinates. The coordinates are $(r, \phi, z)$, where $r$ is the distance from the $z$-axis, $\phi$ is the angle around the $z$-axis, and $z$ is the height above the $xy$-plane as shown above.</p>
 <p>With $\langle \rho, \phi, z\rangle$ as the coordinates, equation for the constraint is:</p>
 <p>$$z = \dfrac{1}{2}c(x^2 + y^2) = \dfrac{1}{2}c\rho^2.$$</p>
@@ -264,7 +264,7 @@ $$\dot{\omega} = - \dfrac{2 v\omega}{\rho^2}$$</p>
     </main>
   </div>
   <footer class="site-footer">
-    <p>Built with ❤️ in Michigan | <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" alt="License: CC BY-NC-SA 4.0"></a></p>
+    <p>&copy; 13 Notes. All rights reserved.</p>
   </footer>
 </body>
 </html>

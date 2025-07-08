@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modern Classical Mechanics</title>
+  <title>12 Notes</title>
   <!-- Both themes loaded, JS enables/disables as needed -->
   <link id="theme-light" href="css/theme-light.css" rel="stylesheet" disabled>
   <link id="theme-dark" href="css/theme-dark.css" rel="stylesheet" disabled>
@@ -52,10 +52,10 @@
 <body>
   
   <header class="site-header">
-    <h1 class="site-title">Modern Classical Mechanics</h1>
+    <h1 class="site-title">12 Notes</h1>
   </header>
   <button id="theme-toggle" class="toggle-dark" aria-label="Toggle dark/light mode">🌗</button>
-  <nav class="site-nav" id="site-nav"><ul class="site-nav-menu" id="site-nav-menu"><li><a href="index.html">Home</a></li><li><a href="chapters.html">Chapters</a><ul class="dropdown-menu menu-level-1"><li><a href="01_start.html">Week 1: Start</a></li><li><a href="01_notes.html">Week 1: Introduction to Classical Mechanics</a></li><li><a href="02_start.html">Week 2: Computing as a tool for science</a></li><li><a href="02_notes.html">Week 2: Mathematical Preliminaries</a></li><li><a href="03_start.html">Week 3: What is Mathematical Modeling?</a></li><li><a href="03_notes.html">Week 3: Making Classical Models</a></li><li><a href="04_start.html">Week 4: Why does fluid drag complicate things?</a></li><li><a href="04_notes.html">Week 4: Equations of Motion</a></li><li><a href="05_start.html">Week 5: Conservation Laws</a></li><li><a href="05_notes.html">Week 5: Conservation of Energy</a></li><li><a href="06_start.html">Week 6: Stability and Equilibria</a></li><li><a href="06_notes.html">Week 6: Stability and Energy</a></li><li><a href="06_notes_2.html">Week 6: Linear and Angular Momentum</a></li><li><a href="07_start.html">Week 7: Nonlinear Dynamics</a></li><li><a href="07_notes.html">Week 7: Critical Points; Phase Space; Trajectories</a></li><li><a href="08_start.html">Week 8: Oscillations</a></li><li><a href="08_notes.html">Week 8: Oscillators and Modeling Oscillations</a></li><li><a href="09_start.html">Week 9: Driven Oscillators and Resonance</a></li><li><a href="09_notes.html">Week 9: Driven Oscillations</a></li><li><a href="10_start.html">Week 10: Chaotic Dynamics</a></li><li><a href="10_notes.html">Week 10: Activity: Modeling Chaotic Systems</a></li><li><a href="11_start.html">Week 11: Calculus of Variations</a></li><li><a href="11_notes.html">Week 11: The Euler-Lagrange Equation</a></li><li><a href="12_start.html">Week 12: The Principle of Least Action</a></li><li><a href="12_notes.html">Week 12: Introduction to Lagrangian Mechanics</a></li><li><a href="13_start.html">Week 13: Lagrangian Mechanics</a></li><li><a href="13_notes.html">Week 13: Examples of Lagrangian Mechanics</a></li></ul></li><li><a href="activities.html">Activities</a><ul class="dropdown-menu menu-level-1"><li><a href="hw1.html">Homework 1</a></li><li><a href="hw2.html">Homework 2</a></li><li><a href="hw3.html">Homework 3</a></li><li><a href="hw4.html">Homework 4</a></li><li><a href="hw5.html">Homework 5</a></li><li><a href="hw6.html">Homework 6</a></li><li><a href="hw7.html">Homework 7</a></li><li><a href="hw8.html">Homework 8</a></li></ul></li><li><a href="resources.html">Resources</a></li><li><a href="about.html">About</a></li></ul>
+  <nav class="site-nav" id="site-nav"><!-- Menu data not available, fallback menu here -->
 <!-- Hamburger menu and toggle JS commented out -->
 </nav>
   <div class="container">
@@ -92,7 +92,7 @@
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Deriving-Newton's-Second-Law-in-Plane-Polar-Coordinates">Deriving Newton's Second Law in Plane Polar Coordinates<a class="anchor-link" href="#Deriving-Newton's-Second-Law-in-Plane-Polar-Coordinates">¶</a></h2><p>To get started with Lagrangian mechanics, we will start by deriving Newton's second law in plane polar coordinates. This is not a necessary step for anything we will do in Lagrangian mechanics, but it is a good way to get comfortable with the coordinate system. And it will also help us see how we can think about forces in a coordinate system that is not Cartesian because Lagrangian mechanics can be used with <a href="https://en.wikipedia.org/wiki/Generalized_coordinates">generalized coordinates</a>.</p>
 <p>We start by sketching the location of a particle in plane polar coordinates, as shown below:</p>
-<p><img alt="Position vector in polar coordinates" src="images/chapters/coordinate-system.png"/></p>
+<p><img alt="Position vector in polar coordinates" src="images/other/coordinate-system.png"/></p>
 <p>The red arrow represents the position vector $\vec{r}$, which is a length $r$ from the origin at an angle $\phi$ from the $x$-axis. At the tip of the vector we have drawn the Cartesian unit vectors $\hat{x}$ and $\hat{y}$ in blue, and the polar unit vectors $\hat{r}$ and $\hat{\phi}$ in green. Notice that the polar unit vectors are rotated by an angle $\phi$ from the Cartesian unit vectors. We can simply write the position vector in terms of these unit vectors as:</p>
 <p>$$
 \vec{r} = r \hat{r} \;\text{where}\; r = |\vec{r}|.
@@ -153,9 +153,9 @@ $$</p>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Skateboard-Example">Skateboard Example<a class="anchor-link" href="#Skateboard-Example">¶</a></h3><p>Let's see the utility of using polar coordinates by applying it to a skateboarder moving on a circular track. In this case, the skateboarder is constrained to move along a circular path of radius $r$. Consider a skateboarder moving on that circular track as shown below:</p>
-<p><img alt="Skateboarder on a circular track" src="images/chapters/skateboard.png"/></p>
+<p><img alt="Skateboarder on a circular track" src="images/other/skateboard.png"/></p>
 <p>At this point in the track, we can draw the free body diagram of the skateboarder. The forces acting on the skateboarder are the Earth's gravitational force and the normal force of the ramp.</p>
-<p><img alt="Free body diagram of skateboarder" src="images/chapters/skateboard-free-body.png"/></p>
+<p><img alt="Free body diagram of skateboarder" src="images/other/skateboard-free-body.png"/></p>
 <p>We can use Newton's law in polar coordinates to analyze the forces acting on the skateboarder. This is because the normal force is always perpendicular to the surface of the ramp and will only have a radial component in polar coordinates. Thus we need only decompose the gravitational force into its radial and angular components.</p>
 <p>The sum of all forces in the radial direction are given by:</p>
 <p>$$\sum F_r = ma_r = -F_{ramp} + mg \cos(\phi) = m\left(\ddot{r} - r \dot{\phi}^2\right)$$</p>
@@ -304,7 +304,7 @@ $$</p>
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Example:-Plane-Pendulum">Example: Plane Pendulum<a class="anchor-link" href="#Example:-Plane-Pendulum">¶</a></h2><p>To get some intuition for how Lagrangian mechanics works, let's consider an example we have seen before: the plane pendulum.</p>
 <p>A pendulum bob of mass $m$ is attached to a fixed point by a rod of length $l$. The bob swings in a vertical plane under the influence of gravity as shown below. We define $U=0$ at the top of ceiling where the rod is attached.</p>
-<p><img alt="Pendulum Diagram" src="images/chapters/plane-pendulum.png"/></p>
+<p><img alt="Pendulum Diagram" src="images/other/plane-pendulum.png"/></p>
 <p>The location of the bob is $\langle x, y \rangle$. We can use the $x,y$ coordinates to "naively" setup the Lagrangian and see what happens.</p>
 <p>The kinetic energy $T$ of the pendulum bob is given by:</p>
 <p>$$T(\dot{x}, \dot{y}) = \frac{1}{2} m (\dot{x}^2 + \dot{y}^2).$$</p>
@@ -374,7 +374,7 @@ $$</p>
     </main>
   </div>
   <footer class="site-footer">
-    <p>Built with ❤️ in Michigan | <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" alt="License: CC BY-NC-SA 4.0"></a></p>
+    <p>&copy; 12 Notes. All rights reserved.</p>
   </footer>
 </body>
 </html>

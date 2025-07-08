@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modern Classical Mechanics</title>
+  <title>09 Notes</title>
   <!-- Both themes loaded, JS enables/disables as needed -->
   <link id="theme-light" href="css/theme-light.css" rel="stylesheet" disabled>
   <link id="theme-dark" href="css/theme-dark.css" rel="stylesheet" disabled>
@@ -52,10 +52,10 @@
 <body>
   
   <header class="site-header">
-    <h1 class="site-title">Modern Classical Mechanics</h1>
+    <h1 class="site-title">09 Notes</h1>
   </header>
   <button id="theme-toggle" class="toggle-dark" aria-label="Toggle dark/light mode">🌗</button>
-  <nav class="site-nav" id="site-nav"><ul class="site-nav-menu" id="site-nav-menu"><li><a href="index.html">Home</a></li><li><a href="chapters.html">Chapters</a><ul class="dropdown-menu menu-level-1"><li><a href="01_start.html">Week 1: Start</a></li><li><a href="01_notes.html">Week 1: Introduction to Classical Mechanics</a></li><li><a href="02_start.html">Week 2: Computing as a tool for science</a></li><li><a href="02_notes.html">Week 2: Mathematical Preliminaries</a></li><li><a href="03_start.html">Week 3: What is Mathematical Modeling?</a></li><li><a href="03_notes.html">Week 3: Making Classical Models</a></li><li><a href="04_start.html">Week 4: Why does fluid drag complicate things?</a></li><li><a href="04_notes.html">Week 4: Equations of Motion</a></li><li><a href="05_start.html">Week 5: Conservation Laws</a></li><li><a href="05_notes.html">Week 5: Conservation of Energy</a></li><li><a href="06_start.html">Week 6: Stability and Equilibria</a></li><li><a href="06_notes.html">Week 6: Stability and Energy</a></li><li><a href="06_notes_2.html">Week 6: Linear and Angular Momentum</a></li><li><a href="07_start.html">Week 7: Nonlinear Dynamics</a></li><li><a href="07_notes.html">Week 7: Critical Points; Phase Space; Trajectories</a></li><li><a href="08_start.html">Week 8: Oscillations</a></li><li><a href="08_notes.html">Week 8: Oscillators and Modeling Oscillations</a></li><li><a href="09_start.html">Week 9: Driven Oscillators and Resonance</a></li><li><a href="09_notes.html">Week 9: Driven Oscillations</a></li><li><a href="10_start.html">Week 10: Chaotic Dynamics</a></li><li><a href="10_notes.html">Week 10: Activity: Modeling Chaotic Systems</a></li><li><a href="11_start.html">Week 11: Calculus of Variations</a></li><li><a href="11_notes.html">Week 11: The Euler-Lagrange Equation</a></li><li><a href="12_start.html">Week 12: The Principle of Least Action</a></li><li><a href="12_notes.html">Week 12: Introduction to Lagrangian Mechanics</a></li><li><a href="13_start.html">Week 13: Lagrangian Mechanics</a></li><li><a href="13_notes.html">Week 13: Examples of Lagrangian Mechanics</a></li></ul></li><li><a href="activities.html">Activities</a><ul class="dropdown-menu menu-level-1"><li><a href="hw1.html">Homework 1</a></li><li><a href="hw2.html">Homework 2</a></li><li><a href="hw3.html">Homework 3</a></li><li><a href="hw4.html">Homework 4</a></li><li><a href="hw5.html">Homework 5</a></li><li><a href="hw6.html">Homework 6</a></li><li><a href="hw7.html">Homework 7</a></li><li><a href="hw8.html">Homework 8</a></li></ul></li><li><a href="resources.html">Resources</a></li><li><a href="about.html">About</a></li></ul>
+  <nav class="site-nav" id="site-nav"><!-- Menu data not available, fallback menu here -->
 <!-- Hamburger menu and toggle JS commented out -->
 </nav>
   <div class="container">
@@ -106,7 +106,7 @@ $$m\ddot{x} + b \dot{x} + k x = 0$$</p>
 <p>Now we will add a driving force $F(t)$ to the system, so that the equation of motion becomes
 $$m\ddot{x} +b \dot{x} + k x = F(t)$$</p>
 <p>We can represent that setup in the picture below. The blue spring with spring constant $k$ is attached to a red mass $m$. There is a dashpot (damping) in green with damping constant $b=2\beta$. The driving force $F(t)$ is shown in black and called "driver".</p>
-<p><img alt="driven oscillator" src="images/chapters/driven_oscillator.png"/></p>
+<p><img alt="driven oscillator" src="images/other/driven_oscillator.png"/></p>
 <p>We write that differential equation as:</p>
 <p>$$\ddot{x} + 2\beta \dot{x} + \omega_0^2 x = F(t)/m=f(t)$$</p>
 <p>where $\omega_0^2 = k/m$ and $2\beta = b/m$. The function $f(t)$ is the driving force per unit mass.</p>
@@ -285,7 +285,7 @@ $$y_p(t) = Im\left(z_p(t)\right) = A \sin(\omega t - \delta)$$</p>
 <p>$$A^2 = \dfrac{f_0^2}{\left(\omega_0^2 - \omega^2\right)^2 + 4\beta^2 \omega^2}.$$</p>
 <p>Let's allow $\beta$ to be small so that $4\beta^2 \omega^2$ is small. If we focus on the denominator, we can see that the amplitude will be small when $\omega$ is far from $\omega_0$. But if we choose $\omega$ to be close to $\omega_0$, then the denominator will be small, and the amplitude will be large.</p>
 <p>The second result is a <a href="https://en.wikipedia.org/wiki/Resonance">resonance</a> effect. The system will resonate at a particular frequency, $\omega_0$, and the amplitude of the oscillations will be large. Below is a sketch of the response of a driven damped harmonic oscillator to a sinusoidal driving force. The amplitude of the oscillations is plotted as a function of the driving frequency $\omega$.</p>
-<p><img alt="Resonance Sketch" src="images/chapters/resonance.png"/></p>
+<p><img alt="Resonance Sketch" src="images/other/resonance.png"/></p>
 <h3 id="Achieving-Resonance">Achieving Resonance<a class="anchor-link" href="#Achieving-Resonance">¶</a></h3><p>There's two ways that we can approach this. Let's focus on the denominator of the amplitude equation:</p>
 <p>$$\left(\omega_0^2 - \omega^2\right)^2 + 4\beta^2 \omega^2$$</p>
 <p>When that denominator is small, the amplitude will be large. There's two ways to make the denominator small.</p>
@@ -345,7 +345,7 @@ $$y_p(t) = Im\left(z_p(t)\right) = A \sin(\omega t - \delta)$$</p>
     </main>
   </div>
   <footer class="site-footer">
-    <p>Built with ❤️ in Michigan | <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png" alt="License: CC BY-NC-SA 4.0"></a></p>
+    <p>&copy; 09 Notes. All rights reserved.</p>
   </footer>
 </body>
 </html>

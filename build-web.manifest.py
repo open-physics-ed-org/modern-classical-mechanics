@@ -4,6 +4,7 @@
 from pathlib import Path
 # --- Global paths (needed by all functions) ---
 repo_root = Path(__file__).parent.resolve()
+autogen_dir = repo_root / '.autogen'
 docs_dir = repo_root / 'docs'
 build_dir = repo_root / '_build' / 'wcag-html'
 notebooks_dir = repo_root / 'content' / 'notebooks'
@@ -146,7 +147,7 @@ def main():
     # Load _notebooks.yaml and build all listed notebooks
     import yaml
     repo_root = Path(__file__).parent.resolve()
-    notebooks_yaml = repo_root / '_notebooks.yaml'
+    notebooks_yaml = autogen_dir / '_notebooks.yaml'
     if not notebooks_yaml.exists():
         print("[ERROR] _notebooks.yaml not found!")
         sys.exit(1)
@@ -496,7 +497,7 @@ def post_build_cleanup():
     # --- Build menu_html_names mapping: html_name -> section ---
     menu_html_names = {}
     import json, yaml, re
-    menu_yml = repo_root / '_menu.yml'
+    menu_yml = autogen_dir / '_menu.yml'
     menu_data = None
     if menu_yml.exists():
         try:
@@ -522,7 +523,7 @@ def post_build_cleanup():
             print(f'[ERROR] Could not build menu_html_names: {e}')
 
     # --- Aggregate missing images and YouTube thumbnails across all notebooks listed in _notebooks.yaml ---
-    notebooks_yaml = repo_root / '_notebooks.yaml'
+    notebooks_yaml = autogen_dir / '_notebooks.yaml'
     nb_list = []
     if notebooks_yaml.exists():
         try:
@@ -701,7 +702,7 @@ def post_build_cleanup():
     css_dark_rel = 'css/theme-dark.css'
 
     # --- Load menu structure from _menu.yml using basic_yaml2json.py ---
-    menu_yml = repo_root / '_menu.yml'
+    menu_yml = autogen_dir / '_menu.yml'
     menu_data = None
     if menu_yml.exists():
         try:
@@ -760,7 +761,7 @@ def post_build_cleanup():
     def get_html_template(title, body):
         nav_html = get_nav_html()
         import yaml
-        config_path = Path(__file__).parent / '_config.yml'
+        config_path = autogen_dir / '_config.yml'
         book_title = title
         footer_html = None
         if config_path.exists():
@@ -1173,7 +1174,7 @@ def post_build_cleanup():
     # List of all notebook stems (without extension), including all chapters and activities (anything in _notebooks.yaml)
     # Use _notebooks.yaml as authoritative list
     import yaml
-    notebooks_yaml = repo_root / '_notebooks.yaml'
+    notebooks_yaml = autogen_dir / '_notebooks.yaml'
     notebook_stems = set()
     if notebooks_yaml.exists():
         with open(notebooks_yaml, 'r') as f:
