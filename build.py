@@ -106,7 +106,7 @@ def main():
 
     # --- HTML Build Option: just call build-web.py --html (and pass --files if given) ---
     if getattr(args, 'html', False):
-        cmd = [sys.executable, str(Path(__file__).parent / 'build-web.py'), '--html']
+        cmd = [sys.executable, str(Path(__file__).parent / 'build-web.py')]
         if args.files:
             cmd += ['--files'] + args.files
         print(f"[INFO] Calling build-web.py: {' '.join(cmd)}")
