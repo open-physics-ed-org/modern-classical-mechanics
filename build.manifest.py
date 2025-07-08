@@ -29,8 +29,14 @@ def run_or_exit(cmd, **kwargs):
     Returns the CompletedProcess object.
     """
     print(f"[RUN] {' '.join(str(x) for x in cmd)}")
+    # Always set MCM_BUILD_SUBPROCESS=1 in the environment for subprocesses
+    env = os.environ.copy()
+    env["MCM_BUILD_SUBPROCESS"] = "1"
+    if "env" in kwargs:
+        user_env = kwargs.pop("env")
+        env.update(user_env)
     try:
-        result = subprocess.run(cmd, **kwargs)
+        result = subprocess.run(cmd, env=env, **kwargs)
     except Exception as e:
         print(f"[ERROR] Exception running command: {e}", file=sys.stderr)
         sys.exit(1)
@@ -166,34 +172,52 @@ def main():
     images_root_candidates = [repo_root / 'images', repo_root / 'content/images']
 
     # --- Ensure _toc.yml and _notebooks.yml are up to date and valid ---
-    import subprocess
-    def check_yaml_valid(yaml_path):
-        try:
-            with open(yaml_path) as f:
-                yaml.safe_load(f)
-            print(f"[DEBUG] YAML file valid: {yaml_path}")
-            return True
-        except Exception as e:
-            print(f"[ERROR] Invalid YAML in {yaml_path}: {e}", file=sys.stderr)
-            return False
+    # Only the top-level build process should run preprocessing and YAML validation
+    if not os.environ.get("MCM_BUILD_SUBPROCESS"):
+        import subprocess
+        def check_yaml_valid(yaml_path):
+            try:
+                with open(yaml_path) as f:
+                    yaml.safe_load(f)
+                print(f"[DEBUG] YAML file valid: {yaml_path}")
+                return True
+            except Exception as e:
+                print(f"[ERROR] Invalid YAML in {yaml_path}: {e}", file=sys.stderr)
+                return False
 
-    # Always run the preprocessor to ensure files are up to date
-    preproc_script = repo_root / 'scripts' / 'preprocess_content_yml.py'
-    print(f"[DEBUG] Running preprocessor: {preproc_script}")
-    result = subprocess.run([sys.executable, str(preproc_script)], capture_output=True, text=True)
-    if result.returncode != 0:
-        print(f"[ERROR] Failed to run preprocess_content_yml.py:\n{result.stderr}", file=sys.stderr)
-        sys.exit(1)
+        preproc_script = repo_root / 'scripts' / 'preprocess_content_yml.py'
+        content_yml = repo_root / '_content.yml'
+        parent_args = sys.argv[1:]
+        is_subbuild = any(arg in parent_args for arg in ['--img', '--md', '--docx', '--pdf', '--tex'])
+        need_preprocess = False
+        if not is_subbuild:
+            for yml_path in [toc_yml, notebooks_yaml]:
+                if not yml_path.exists():
+                    need_preprocess = True
+                    break
+                if content_yml.exists() and yml_path.stat().st_mtime < content_yml.stat().st_mtime:
+                    need_preprocess = True
+                    break
+            if need_preprocess:
+                print(f"[DEBUG] Running preprocessor: {preproc_script}")
+                result = subprocess.run([sys.executable, str(preproc_script)], capture_output=True, text=True)
+                if result.returncode != 0:
+                    print(f"[ERROR] Failed to run preprocess_content_yml.py:\n{result.stderr}", file=sys.stderr)
+                    sys.exit(1)
+                else:
+                    print(f"[DEBUG] Preprocessor output:\n{result.stdout}")
+            else:
+                print(f"[DEBUG] Preprocessing not needed: _toc.yml and _notebooks.yml are up to date.")
+
+        # Check YAML validity
+        if not toc_yml.exists() or not check_yaml_valid(toc_yml):
+            print(f"[ERROR] _toc.yml missing or invalid after preprocessing.", file=sys.stderr)
+            sys.exit(1)
+        if not notebooks_yaml.exists() or not check_yaml_valid(notebooks_yaml):
+            print(f"[ERROR] _notebooks.yml missing or invalid after preprocessing.", file=sys.stderr)
+            sys.exit(1)
     else:
-        print(f"[DEBUG] Preprocessor output:\n{result.stdout}")
-
-    # Check YAML validity
-    if not toc_yml.exists() or not check_yaml_valid(toc_yml):
-        print(f"[ERROR] _toc.yml missing or invalid after preprocessing.", file=sys.stderr)
-        sys.exit(1)
-    if not notebooks_yaml.exists() or not check_yaml_valid(notebooks_yaml):
-        print(f"[ERROR] _notebooks.yml missing or invalid after preprocessing.", file=sys.stderr)
-        sys.exit(1)
+        print("[DEBUG] Skipping preprocessing and YAML validation in subprocess (MCM_BUILD_SUBPROCESS=1)")
 
     # --- Build Images Only ---
     # Only run this block if --img is set, and return after
@@ -253,7 +277,7 @@ def main():
         img_dir.mkdir(parents=True, exist_ok=True)
         print(f"[INFO] [Full Build] Collecting all images for all notebooks into {img_dir}")
         def process_file_for_images(file_path, nb_stem=None):
-            from fetch_youtube import fetch_youtube_thumbnail
+            from scripts.fetch_youtube import fetch_youtube_thumbnail
             if not file_path.exists():
                 print(f"[WARN] File not found: {file_path}")
                 return
@@ -429,13 +453,11 @@ def main():
             except Exception as e:
                 print(f"[WARN] Could not parse notebook for images: {e}")
             if missing_images:
-                print(f"[INFO] Missing images for {nb_path}: {missing_images}. Running --img...")
-                try:
-                    run_or_exit([
-                        sys.executable, __file__, '--img', '--files', str(nb)
-                    ], check=True)
-                except Exception as e:
-                    print(f"[ERROR] Failed to collect images for {nb_path}: {e}")
+                print(f"[INFO] Missing images for {nb_path}: {missing_images}. Attempting to collect images directly using scripts/fetch_youtube.py or skipping.")
+                # Do not call the main build script recursively. Just warn and skip.
+                # If you want to collect images, you could call scripts/fetch_youtube.py or similar here.
+                # For now, just warn and skip.
+                continue
             run_or_exit([
                 jupyter_bin, 'nbconvert', '--to', 'latex', str(nb_path),
                 '--output', tex_name, '--output-dir', str(chapters_dir)
@@ -510,22 +532,8 @@ def main():
                 if not img_path.exists():
                     missing_images.append(img_filename)
             if missing_images:
-                print(f"[WARN] Missing images for {tex_path}: {missing_images}. Attempting to collect with --img...")
-                try:
-                    run_or_exit([
-                        sys.executable, __file__, '--img', '--files', str(nb)
-                    ], check=True)
-                except Exception as e:
-                    print(f"[ERROR] Failed to collect images for {tex_path}: {e}")
-                # Re-check if all images now exist
-                still_missing = []
-                for img_filename in missing_images:
-                    img_path = repo_root / '_build/images' / img_filename
-                    if not img_path.exists():
-                        still_missing.append(img_filename)
-                if still_missing:
-                    print(f"[ERROR] Still missing images for {tex_path}: {still_missing}. Skipping PDF for this file.")
-                    continue
+                print(f"[WARN] Missing images for {tex_path}: {missing_images}. Not attempting recursive build. Skipping PDF for this file.")
+                continue
             print(f"[INFO] Compiling {tex_path} to {pdf_path} using pdflatex...")
             run_or_exit([
                 'pdflatex', '-interaction=nonstopmode', str(tex_path)
@@ -577,13 +585,8 @@ def main():
             except Exception as e:
                 print(f"[WARN] Could not parse notebook for images: {e}")
             if missing_images:
-                print(f"[INFO] Missing images for {nb_path}: {missing_images}. Running --img...")
-                try:
-                    run_or_exit([
-                        sys.executable, __file__, '--img', '--files', str(nb)
-                    ])
-                except Exception as e:
-                    print(f"[ERROR] Failed to collect images for {nb_path}: {e}")
+                print(f"[INFO] Missing images for {nb_path}: {missing_images}. Not attempting recursive build. Skipping markdown for this file.")
+                continue
             run_or_exit([
                 jupyter_bin, 'nbconvert', '--to', 'markdown', str(nb_path),
                 '--output', md_name, '--output-dir', str(md_dir)
@@ -624,16 +627,8 @@ def main():
             docx_path = docx_dir / docx_name
             # If markdown does not exist, try to build it once, then try again
             if not md_path.exists():
-                print(f"[WARN] Markdown not found: {md_path}. Attempting to build it with --md...")
-                try:
-                    run_or_exit([
-                        sys.executable, __file__, '--md', '--files', str(nb)
-                    ])
-                except Exception as e:
-                    print(f"[ERROR] Failed to build markdown for {nb}: {e}")
-                if not md_path.exists():
-                    print(f"[ERROR] Markdown still not found for {md_path} after attempting to build. Skipping DOCX for this file.")
-                    continue
+                print(f"[WARN] Markdown not found: {md_path}. Not attempting recursive build. Skipping DOCX for this file.")
+                continue
             with open(md_path, 'r', encoding='utf-8') as f:
                 md_content = f.read()
             missing_images = set()
@@ -647,13 +642,7 @@ def main():
                 if not img_file.exists():
                     missing_images.add(img_path)
             if missing_images:
-                print(f"[INFO] Missing images for DOCX in {md_path}: {missing_images}. Running --img...")
-                try:
-                    run_or_exit([
-                        sys.executable, __file__, '--img', '--files', str(nb)
-                    ])
-                except Exception as e:
-                    print(f"[ERROR] Failed to collect images for DOCX for {nb}: {e}")
+                print(f"[WARN] Missing images for DOCX in {md_path}: {missing_images}. Proceeding to build DOCX anyway; images will be missing in output.")
             def replace_img_link_docx(match):
                 img_path = match.group(1)
                 if img_path.startswith('http'):
@@ -683,30 +672,31 @@ def main():
             print(f"[INFO] Copied {md_path} to {dest_md}")
         print(f"[INFO] All markdown files converted to DOCX using pandoc and saved in {docx_dir} and copied to docs/sources/<notebook_stem>.")
 
-    # --- Generate _toc.yml ---
-    toc_yml = repo_root / '_toc.yml'
-    print(f"[INFO] Generating _toc.yml from {notebooks_yaml} using Python...")
-    index_md = repo_root / 'content/index.md'
-    if not index_md.exists():
-        print(f"[ERROR] content/index.md not found. This file is required as the root for the Jupyter Book.", file=sys.stderr)
-        sys.exit(1)
-    toc_content = [
-        "# Auto-generated _toc.yml from _notebooks.yaml",
-        "format: jb-book",
-        "root: content/index",
-        "chapters:",
-    ]
-    for nb in notebooks:
-        nb_path = Path(nb)
-        # Remove .ipynb suffix for toc, keep path as in _notebooks.yaml
-        file_entry = str(nb_path.with_suffix(''))
-        # Do not include content/index as a chapter (should only be root)
-        if file_entry == "content/index":
-            continue
-        toc_content.append(f"  - file: {file_entry}")
-    with open(toc_yml, 'w') as f:
-        f.write('\n'.join(toc_content) + '\n')
-    print(f"[INFO] _toc.yml generated with {len([nb for nb in notebooks if Path(nb).with_suffix('') != 'content/index'])} chapters.")
+    # --- Generate _toc.yml only in top-level build process ---
+    if not os.environ.get("MCM_BUILD_SUBPROCESS"):
+        toc_yml = repo_root / '_toc.yml'
+        print(f"[INFO] Generating _toc.yml from {notebooks_yaml} using Python...")
+        index_md = repo_root / 'content/index.md'
+        if not index_md.exists():
+            print(f"[ERROR] content/index.md not found. This file is required as the root for the Jupyter Book.", file=sys.stderr)
+            sys.exit(1)
+        toc_content = [
+            "# Auto-generated _toc.yml from _notebooks.yaml",
+            "format: jb-book",
+            "root: content/index",
+            "chapters:",
+        ]
+        for nb in notebooks:
+            nb_path = Path(nb)
+            # Remove .ipynb suffix for toc, keep path as in _notebooks.yaml
+            file_entry = str(nb_path.with_suffix(''))
+            # Do not include content/index as a chapter (should only be root)
+            if file_entry == "content/index":
+                continue
+            toc_content.append(f"  - file: {file_entry}")
+        with open(toc_yml, 'w') as f:
+            f.write('\n'.join(toc_content) + '\n')
+        print(f"[INFO] _toc.yml generated with {len([nb for nb in notebooks if Path(nb).with_suffix('') != 'content/index'])} chapters.")
 
     # Clean up step removed: Do not remove any folders or files in _build during the build process.
     # If cleanup is needed, it should be a separate explicit step, not part of the main build.
