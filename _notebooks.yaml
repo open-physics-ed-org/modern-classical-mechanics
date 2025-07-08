@@ -1,58 +1,39 @@
-###############################################################
-# _notebooks.yaml
-#
-# This file lists all Jupyter notebooks to be included in the build process.
-# Only notebooks listed here will be converted to LaTeX, PDF, Markdown, and DOCX.
-#
-# To include a notebook (chapter, activity, homework, etc.), add its filename
-# (relative to the content/notebooks/ directory) to the list below. The build system
-# will generate all output formats for every notebook listed here.
-#
-# Notebooks not listed here will be ignored by the build pipeline and will not
-# appear as downloadable sources on the course site.
-#
-# Example: To add an activity or homework, simply add its filename:
-#   - hw1.ipynb
-#   - activity_01.ipynb
-#
-# You can comment out lines with # to temporarily exclude a notebook.
-#
-# Paths are absolute from the project root (e.g., content/notebooks/01_notes.ipynb).
-###############################################################
+# AUTO-GENERATED FILE. DO NOT EDIT.
+# This file was generated from _content.yml by debuggers/preprocess_content_yml.py
+# Edit _content.yml instead and re-run the preprocessor.
 notebooks:
-  - content/notebooks/01_start.ipynb
-  - content/notebooks/01_notes.ipynb
-  - content/notebooks/02_start.ipynb
-  - content/notebooks/02_notes.ipynb
-  - content/notebooks/03_start.ipynb
-  - content/notebooks/03_notes.ipynb
-  - content/notebooks/04_start.ipynb
-  - content/notebooks/04_notes.ipynb
-  - content/notebooks/05_start.ipynb
-  - content/notebooks/05_notes.ipynb
-  - content/notebooks/06_start.ipynb
-  - content/notebooks/06_notes.ipynb
-  - content/notebooks/06_notes_2.ipynb
-  - content/notebooks/07_start.ipynb
-  - content/notebooks/07_notes.ipynb
-  - content/notebooks/08_start.ipynb
-  - content/notebooks/08_notes.ipynb
-  - content/notebooks/09_start.ipynb
-  - content/notebooks/09_notes.ipynb
-  - content/notebooks/10_start.ipynb
-  - content/notebooks/10_notes.ipynb
-  - content/notebooks/11_start.ipynb
-  - content/notebooks/11_notes.ipynb
-  - content/notebooks/12_start.ipynb
-  - content/notebooks/12_notes.ipynb
-  - content/notebooks/13_start.ipynb
-  - content/notebooks/13_notes.ipynb
-  # Activities and homeworks (add more as needed):
-  - content/notebooks/hw1.ipynb
-  - content/notebooks/hw2.ipynb
-  - content/notebooks/hw3.ipynb
-  - content/notebooks/hw4.ipynb
-  - content/notebooks/hw5.ipynb
-  - content/notebooks/hw6.ipynb
-  - content/notebooks/hw7.ipynb
-  - content/notebooks/hw8.ipynb
+- content/notebooks/01_start.ipynb
+- content/notebooks/01_notes.ipynb
+- content/notebooks/02_start.ipynb
+- content/notebooks/02_notes.ipynb
+- content/notebooks/03_start.ipynb
+- content/notebooks/03_notes.ipynb
+- content/notebooks/04_start.ipynb
+- content/notebooks/04_notes.ipynb
+- content/notebooks/05_start.ipynb
+- content/notebooks/05_notes.ipynb
+- content/notebooks/06_start.ipynb
+- content/notebooks/06_notes.ipynb
+- content/notebooks/06_notes_2.ipynb
+- content/notebooks/07_start.ipynb
+- content/notebooks/07_notes.ipynb
+- content/notebooks/08_start.ipynb
+- content/notebooks/08_notes.ipynb
+- content/notebooks/09_start.ipynb
+- content/notebooks/09_notes.ipynb
+- content/notebooks/10_start.ipynb
+- content/notebooks/10_notes.ipynb
+- content/notebooks/11_start.ipynb
+- content/notebooks/11_notes.ipynb
+- content/notebooks/12_start.ipynb
+- content/notebooks/12_notes.ipynb
+- content/notebooks/13_start.ipynb
+- content/notebooks/13_notes.ipynb
+- content/notebooks/hw1.ipynb
+- content/notebooks/hw2.ipynb
+- content/notebooks/hw3.ipynb
+- content/notebooks/hw4.ipynb
+- content/notebooks/hw5.ipynb
+- content/notebooks/hw6.ipynb
+- content/notebooks/hw7.ipynb
+- content/notebooks/hw8.ipynb

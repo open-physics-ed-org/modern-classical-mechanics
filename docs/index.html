@@ -60,15 +60,17 @@
 </nav>
   <div class="container">
     <main>
-      <div class="markdown-body"><div class="wip-banner" role="status" aria-label="Announcement"><h2>🚧 Work in Progress 🚧</h2>
+      <div class="markdown-body"><div class="wip-banner" role="status" aria-label="Announcement"><h2>🚧 Work in Progress</h2>
 <p>This site is actively being developed. Content, structure, and features may change frequently as we improve and expand the resources. For the latest updates, known issues, or to contribute, please visit our <a href="https://github.com/dannycab/modern-classical-mechanics">GitHub repository</a>.</p>
 <hr />
-<h2>🚀 Release v0.9.1 "Persistent Poincaré" Highlights (July 2025)</h2>
+<h2>🚀 Release v0.9.2 "Unified Urubu" Highlights</h2>
 <ul>
-<li><strong>Mobile Menu Accessibility:</strong> Navigation is now scrollable and touch-friendly on all small/mobile screens. All menu items are accessible regardless of device size.</li>
-<li><strong>Documentation Streamlining:</strong> <code>README.md</code> and <code>build.md</code> have been further cleaned up, removing redundancy and clarifying theming, build, and usage instructions.</li>
-<li><strong>Release Management:</strong> This release file follows the new pattern. The previous v0.9 release file is now only in the <code>releases/</code> folder.</li>
-<li><strong>Other Improvements:</strong> Minor accessibility and usability tweaks throughout the site and build system. All changes are fully documented and committed.</li>
+<li><strong>Unified All-in-One Build:</strong> The <code>--all</code> flag now runs all major build steps in strict order: DOCX (and Markdown) → PDF → Jupyter Book HTML → Custom HTML web output. All output formats are copied to <code>docs/sources/&lt;notebook_stem&gt;/</code> for each notebook.</li>
+<li><strong>Jupyter Book HTML Improvements:</strong> Built into a temp directory, then copied to both <code>docs/jupyter/</code> and <code>docs/sources/jupyterbook_html/</code> for easy access and deployment.</li>
+<li><strong>Documentation Overhaul:</strong> <code>README.md</code> and <code>build.md</code> have been fully rewritten to reflect the new build workflow, directory structure, and usage patterns.</li>
+<li><strong>Output Directory Clarity:</strong> All outputs are organized in <code>_build/</code> (intermediate) and <code>docs/</code> (final, published), with clear subfolders for each format. Downloadable sources for each notebook are always available in <code>docs/sources/&lt;notebook_stem&gt;/</code>.</li>
+<li><strong>Robust Image Handling:</strong> All referenced images are collected into <code>_build/images/</code> and linked consistently in all output formats.</li>
+<li><strong>No Automatic Cleanup:</strong> The build system no longer deletes any files or folders automatically; manual cleanup is recommended if needed.</li>
 </ul>
 <p>See the <code>releases/</code> folder for full historical release notes.</p>
 <p>For more details and instructions, see the <a href="https://github.com/dannycab/modern-classical-mechanics/releases">Release Notes</a>.</p></div><h1 id="welcome-to-modern-classical-mechanics">Welcome to Modern Classical Mechanics</h1>

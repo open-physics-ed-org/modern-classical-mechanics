@@ -1,0 +1,235 @@
+# Unified content manifest for Modern Classical Mechanics
+# This file centralizes all site structure, navigation, and content metadata.
+# It is intended to be the single source of truth for generating _toc.yml, _menu.yml, _notebooks.yaml, and _config.yml.
+
+site:
+  title: "Modern Classical Mechanics"
+  author: "Your Name or Team"
+  description: "A modern, open-source course in classical mechanics."
+  logo: "static/images/logo.png"
+  favicon: "static/images/favicon.ico"
+  theme: "default"
+  language: "en"
+  github_url: "https://github.com/dannycab/modern-classical-mechanics"
+  # Add more site-wide settings as needed
+
+navigation:
+  - title: "Home"
+    file: content/index.md
+    icon: home
+  - title: "About"
+    file: content/about.md
+    icon: info
+  - title: "Activities"
+    file: content/activities.md
+    icon: bolt
+  - title: "Resources"
+    file: content/resources.md
+    icon: book
+  - title: "Announcements"
+    file: content/announcement.md
+    icon: megaphone
+  - title: "Cards"
+    file: content/cards.md
+    icon: cards
+  - title: "Notebooks"
+    file: content/notebooks/
+    icon: notebook
+  # Add more navigation items as needed
+
+chapters:
+  - id: 01
+    title: "Getting Started"
+    files:
+      - file: content/notebooks/01_start.ipynb
+        type: start
+        title: "Chapter 1: Start"
+      - file: content/notebooks/01_notes.ipynb
+        type: notes
+        title: "Chapter 1: Notes"
+  - id: 02
+    title: "Chapter 2"
+    files:
+      - file: content/notebooks/02_start.ipynb
+        type: start
+        title: "Chapter 2: Start"
+      - file: content/notebooks/02_notes.ipynb
+        type: notes
+        title: "Chapter 2: Notes"
+  - id: 03
+    title: "Chapter 3"
+    files:
+      - file: content/notebooks/03_start.ipynb
+        type: start
+        title: "Chapter 3: Start"
+      - file: content/notebooks/03_notes.ipynb
+        type: notes
+        title: "Chapter 3: Notes"
+  - id: 04
+    title: "Chapter 4"
+    files:
+      - file: content/notebooks/04_start.ipynb
+        type: start
+        title: "Chapter 4: Start"
+      - file: content/notebooks/04_notes.ipynb
+        type: notes
+        title: "Chapter 4: Notes"
+  - id: 05
+    title: "Chapter 5"
+    files:
+      - file: content/notebooks/05_start.ipynb
+        type: start
+        title: "Chapter 5: Start"
+      - file: content/notebooks/05_notes.ipynb
+        type: notes
+        title: "Chapter 5: Notes"
+  - id: 06
+    title: "Chapter 6"
+    files:
+      - file: content/notebooks/06_start.ipynb
+        type: start
+        title: "Chapter 6: Start"
+      - file: content/notebooks/06_notes.ipynb
+        type: notes
+        title: "Chapter 6: Notes"
+      - file: content/notebooks/06_notes_2.ipynb
+        type: notes
+        title: "Chapter 6: Notes 2"
+  - id: 07
+    title: "Chapter 7"
+    files:
+      - file: content/notebooks/07_start.ipynb
+        type: start
+        title: "Chapter 7: Start"
+      - file: content/notebooks/07_notes.ipynb
+        type: notes
+        title: "Chapter 7: Notes"
+  - id: 08
+    title: "Chapter 8"
+    files:
+      - file: content/notebooks/08_start.ipynb
+        type: start
+        title: "Chapter 8: Start"
+      - file: content/notebooks/08_notes.ipynb
+        type: notes
+        title: "Chapter 8: Notes"
+  - id: 09
+    title: "Chapter 9"
+    files:
+      - file: content/notebooks/09_start.ipynb
+        type: start
+        title: "Chapter 9: Start"
+      - file: content/notebooks/09_notes.ipynb
+        type: notes
+        title: "Chapter 9: Notes"
+  - id: 10
+    title: "Chapter 10"
+    files:
+      - file: content/notebooks/10_start.ipynb
+        type: start
+        title: "Chapter 10: Start"
+      - file: content/notebooks/10_notes.ipynb
+        type: notes
+        title: "Chapter 10: Notes"
+  - id: 11
+    title: "Chapter 11"
+    files:
+      - file: content/notebooks/11_start.ipynb
+        type: start
+        title: "Chapter 11: Start"
+      - file: content/notebooks/11_notes.ipynb
+        type: notes
+        title: "Chapter 11: Notes"
+  - id: 12
+    title: "Chapter 12"
+    files:
+      - file: content/notebooks/12_start.ipynb
+        type: start
+        title: "Chapter 12: Start"
+      - file: content/notebooks/12_notes.ipynb
+        type: notes
+        title: "Chapter 12: Notes"
+  - id: 13
+    title: "Chapter 13"
+    files:
+      - file: content/notebooks/13_start.ipynb
+        type: start
+        title: "Chapter 13: Start"
+      - file: content/notebooks/13_notes.ipynb
+        type: notes
+        title: "Chapter 13: Notes"
+
+homework:
+  - file: content/notebooks/hw1.ipynb
+    title: "Homework 1"
+    due: "2025-01-20"
+  - file: content/notebooks/hw2.ipynb
+    title: "Homework 2"
+    due: "2025-01-27"
+  - file: content/notebooks/hw3.ipynb
+    title: "Homework 3"
+    due: "2025-02-03"
+  - file: content/notebooks/hw4.ipynb
+    title: "Homework 4"
+    due: "2025-02-10"
+  - file: content/notebooks/hw5.ipynb
+    title: "Homework 5"
+    due: "2025-02-17"
+  - file: content/notebooks/hw6.ipynb
+    title: "Homework 6"
+    due: "2025-02-24"
+  - file: content/notebooks/hw7.ipynb
+    title: "Homework 7"
+    due: "2025-03-03"
+  - file: content/notebooks/hw8.ipynb
+    title: "Homework 8"
+    due: "2025-03-10"
+
+static:
+  images:
+    - path: static/images/
+      description: "Site-wide images and figures"
+  css:
+    - path: static/css/
+      description: "Custom CSS files"
+  js:
+    - path: static/js/
+      description: "Custom JavaScript files"
+  templates:
+    - path: static/templates/
+      description: "HTML templates"
+  themes:
+    - path: static/themes/
+      description: "Theme files"
+
+resources:
+  - file: content/resources.md
+    title: "Resources"
+  - file: content/activities.md
+    title: "Activities"
+  - file: content/cards.md
+    title: "Cards"
+  - file: content/about.md
+    title: "About"
+  - file: content/announcement.md
+    title: "Announcements"
+
+# Add more sections as needed (e.g., appendices, projects, etc.)
+
+# Metadata for automated build and export
+build:
+  outputs:
+    - html
+    - pdf
+    - docx
+    - md
+    - tex
+  output_dir: _build/
+  docs_dir: docs/
+  sources_dir: docs/sources/
+  notebooks_dir: content/notebooks/
+  static_dir: static/
+  images_dir: static/images/
+  # Add more build settings as needed
+
+# End of unified content manifest
