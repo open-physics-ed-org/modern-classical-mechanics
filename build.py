@@ -63,7 +63,7 @@ def main():
     parser.add_argument('--pdf', action='store_true', help='Build PDFs only')
     parser.add_argument('--md', action='store_true', help='Build Markdown only')
     parser.add_argument('--docx', action='store_true', help='Build DOCX only')
-    parser.add_argument('--latex', action='store_true', help='Build LaTeX only')
+    parser.add_argument('--tex', action='store_true', help='Build TeX only')
     parser.add_argument('--html', action='store_true', help='Build HTML (calls build-web.py)')
     parser.add_argument('--img', action='store_true', help='Collect all referenced images into _build/images/')
     parser.add_argument('--all', action='store_true', help='Build all formats: LaTeX, PDF, Markdown, DOCX, and HTML web output')
@@ -284,20 +284,23 @@ def main():
     # All print() and errors after this point go to build.log
 
     # Determine what to build
-    build_latex = args.latex or (not args.pdf and not args.md and not args.docx)
-    build_pdf = args.pdf or (not args.latex and not args.md and not args.docx)
-    build_md = args.md or (not args.latex and not args.pdf and not args.docx)
-    build_docx = args.docx or (not args.latex and not args.pdf and not args.md)
+    build_tex = args.tex or (not args.pdf and not args.md and not args.docx)
+    build_pdf = args.pdf or (not args.tex and not args.md and not args.docx)
+    build_md = args.md or (not args.tex and not args.pdf and not args.docx)
+    build_docx = args.docx or (not args.tex and not args.pdf and not args.md)
 
     # Parse notebook list, or use --files if given
     if args.files:
         notebooks = []
         for f in args.files:
             nb_path = Path(f)
+            # If the file is not absolute and does not exist, try content/notebooks/
             if nb_path.is_absolute():
                 pass
             elif (repo_root / f).exists():
                 nb_path = repo_root / f
+            elif (repo_root / 'content' / 'notebooks' / f).exists():
+                nb_path = repo_root / 'content' / 'notebooks' / f
             elif nb_path.exists():
                 pass
             else:
@@ -439,7 +442,7 @@ def main():
     # --- Build TeX ---
     jupyter_bin = str(repo_root / '.venv' / 'bin' / 'jupyter')
     tex_images_dir = chapters_dir / 'images'
-    if build_latex:
+    if build_tex:
         chapters_dir.mkdir(parents=True, exist_ok=True)
         tex_images_dir.mkdir(parents=True, exist_ok=True)
         print(f"[INFO] Building TeX files for notebooks in project (absolute paths) -> {chapters_dir}")
@@ -493,6 +496,12 @@ def main():
                 tex_content = re.sub(r'(\\includegraphics(?:\[[^\]]*\])?)\{([^}]+)\}', replace_graphics, tex_content)
                 with open(tex_path, 'w', encoding='utf-8') as f:
                     f.write(tex_content)
+                # Copy .tex to docs/sources/<notebook_stem>/<notebook_stem>.tex
+                stem_dir = repo_root / 'docs' / 'sources' / nb_path.stem
+                stem_dir.mkdir(parents=True, exist_ok=True)
+                dest_tex = stem_dir / f"{nb_path.stem}.tex"
+                shutil.copy2(tex_path, dest_tex)
+                print(f"[INFO] Copied {tex_path} to {dest_tex}")
         print(f"[INFO] All notebooks converted to TeX and saved in {chapters_dir}. All image links updated to reference _build/images.")
 
     log_file.close()
@@ -519,17 +528,24 @@ def main():
                 print(f"[INFO] .tex file missing or outdated for {nb_path}, attempting to build...")
                 try:
                     run_or_exit([
-                        sys.executable, __file__, '--latex', '--files', str(nb)
+                        sys.executable, __file__, '--tex', '--files', str(nb)
                     ], check=True)
                 except Exception as e:
                     print(f"[ERROR] Failed to build TeX for {nb_path}: {e}")
                 if not tex_path.exists():
                     print(f"[ERROR] .tex file still not found for {tex_path} after attempting to build. Skipping PDF for this file.")
                     continue
+            # Always copy .tex to docs/sources/<notebook_stem>/<notebook_stem>.tex if it exists
+            if tex_path.exists():
+                stem_dir = repo_root / 'docs' / 'sources' / nb_path.stem
+                stem_dir.mkdir(parents=True, exist_ok=True)
+                dest_tex = stem_dir / f"{nb_path.stem}.tex"
+                shutil.copy2(tex_path, dest_tex)
+                print(f"[INFO] Copied {tex_path} to {dest_tex}")
             # Check if all referenced images exist in _build/images, else try to build with --img
             with open(tex_path, 'r', encoding='utf-8') as f:
                 tex_content = f.read()
-            img_paths = re.findall(r'\\includegraphics(?:\\[[^\\]]*\\])?\\{\\.\\./images/([^}]+)\\}', tex_content)
+            img_paths = re.findall(r'\\includegraphics(?:\\[[^\\]]*\\])?\\{\.\./images/([^}]+)\\}', tex_content)
             missing_images = []
             for img_filename in set(img_paths):
                 img_path = repo_root / '_build/images' / img_filename
@@ -560,9 +576,16 @@ def main():
                 dest_pdf = pdf_dir / pdf_name
                 shutil.copy2(pdf_path, dest_pdf)
                 print(f"[INFO] Copied {pdf_path} to {dest_pdf}")
+                # Also copy both PDF and TeX to docs/sources/<notebook_stem>/
+                stem_dir = repo_root / 'docs' / 'sources' / nb_path.stem
+                stem_dir.mkdir(parents=True, exist_ok=True)
+                dest_pdf2 = stem_dir / f"{nb_path.stem}.pdf"
+                shutil.copy2(pdf_path, dest_pdf2)
+                print(f"[INFO] Copied {pdf_path} to {dest_pdf2}")
+                # (TeX already copied above)
             else:
                 print(f"[ERROR] PDF not generated for {tex_path}")
-        print(f"[INFO] All TeX files compiled and PDFs copied to {pdf_dir}")
+        print(f"[INFO] All TeX files compiled and PDFs copied to {pdf_dir} and docs/sources/<notebook_stem>/")
 
     # --- Build Markdown ---
     if build_md:
