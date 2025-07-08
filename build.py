@@ -438,26 +438,32 @@ def main():
 
     # --- If --all, run the build steps in the specified order ---
     if getattr(args, 'all', False):
-        # 1. Build DOCX (which will also copy Markdown)
-        print("[ALL] Step 1: Building DOCX (and Markdown)")
+        # 1. Build Markdown for all notebooks first
+        print("[ALL] Step 1: Building Markdown for all notebooks")
+        run_or_exit([
+            sys.executable, __file__, '--md'
+        ], check=True)
+
+        # 2. Build DOCX (now Markdown files are guaranteed to exist)
+        print("[ALL] Step 2: Building DOCX")
         run_or_exit([
             sys.executable, __file__, '--docx'
         ], check=True)
 
-        # 2. Build PDF
-        print("[ALL] Step 2: Building PDF")
+        # 3. Build PDF
+        print("[ALL] Step 3: Building PDF")
         run_or_exit([
             sys.executable, __file__, '--pdf'
         ], check=True)
 
-        # 3. Build unified Jupyter notebook and Jupyter Book HTML
-        print("[ALL] Step 3: Building unified Jupyter notebook and Jupyter Book HTML")
+        # 4. Build unified Jupyter notebook and Jupyter Book HTML
+        print("[ALL] Step 4: Building unified Jupyter notebook and Jupyter Book HTML")
         run_or_exit([
             sys.executable, __file__, '--jupyter'
         ], check=True)
 
-        # 4. Build custom HTML web output
-        print("[ALL] Step 4: Building custom HTML web output")
+        # 5. Build custom HTML web output
+        print("[ALL] Step 5: Building custom HTML web output")
         run_or_exit([
             sys.executable, __file__, '--html'
         ], check=True)
