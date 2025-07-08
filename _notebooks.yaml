@@ -17,42 +17,42 @@
 #
 # You can comment out lines with # to temporarily exclude a notebook.
 #
-# Paths are relative to the notebooks directory.
+# Paths are absolute from the project root (e.g., content/notebooks/01_notes.ipynb).
 ###############################################################
 notebooks:
-  - 01_start.ipynb
-  - 01_notes.ipynb
-  - 02_start.ipynb
-  - 02_notes.ipynb
-  - 03_start.ipynb
-  - 03_notes.ipynb
-  - 04_start.ipynb
-  - 04_notes.ipynb
-  - 05_start.ipynb
-  - 05_notes.ipynb
-  - 06_start.ipynb
-  - 06_notes.ipynb
-  - 06_notes_2.ipynb
-  - 07_start.ipynb
-  - 07_notes.ipynb
-  - 08_start.ipynb
-  - 08_notes.ipynb
-  - 09_start.ipynb
-  - 09_notes.ipynb
-  - 10_start.ipynb
-  - 10_notes.ipynb
-  - 11_start.ipynb
-  - 11_notes.ipynb
-  - 12_start.ipynb
-  - 12_notes.ipynb
-  - 13_start.ipynb
-  - 13_notes.ipynb
+  - content/notebooks/01_start.ipynb
+  - content/notebooks/01_notes.ipynb
+  - content/notebooks/02_start.ipynb
+  - content/notebooks/02_notes.ipynb
+  - content/notebooks/03_start.ipynb
+  - content/notebooks/03_notes.ipynb
+  - content/notebooks/04_start.ipynb
+  - content/notebooks/04_notes.ipynb
+  - content/notebooks/05_start.ipynb
+  - content/notebooks/05_notes.ipynb
+  - content/notebooks/06_start.ipynb
+  - content/notebooks/06_notes.ipynb
+  - content/notebooks/06_notes_2.ipynb
+  - content/notebooks/07_start.ipynb
+  - content/notebooks/07_notes.ipynb
+  - content/notebooks/08_start.ipynb
+  - content/notebooks/08_notes.ipynb
+  - content/notebooks/09_start.ipynb
+  - content/notebooks/09_notes.ipynb
+  - content/notebooks/10_start.ipynb
+  - content/notebooks/10_notes.ipynb
+  - content/notebooks/11_start.ipynb
+  - content/notebooks/11_notes.ipynb
+  - content/notebooks/12_start.ipynb
+  - content/notebooks/12_notes.ipynb
+  - content/notebooks/13_start.ipynb
+  - content/notebooks/13_notes.ipynb
   # Activities and homeworks (add more as needed):
-  - hw1.ipynb
-  - hw2.ipynb
-  - hw3.ipynb
-  - hw4.ipynb
-  - hw5.ipynb
-  - hw6.ipynb
-  - hw7.ipynb
-  - hw8.ipynb
+  - content/notebooks/hw1.ipynb
+  - content/notebooks/hw2.ipynb
+  - content/notebooks/hw3.ipynb
+  - content/notebooks/hw4.ipynb
+  - content/notebooks/hw5.ipynb
+  - content/notebooks/hw6.ipynb
+  - content/notebooks/hw7.ipynb
+  - content/notebooks/hw8.ipynb

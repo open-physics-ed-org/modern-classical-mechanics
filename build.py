@@ -13,6 +13,7 @@ Usage:
     python build.py [--pdf] [--html]
     (default: both)
 """
+
 import argparse
 import subprocess
 import sys
@@ -22,12 +23,23 @@ import yaml
 from pathlib import Path
 import re
 
-def run(cmd, **kwargs):
+def run_or_exit(cmd, **kwargs):
+    """
+    Run a subprocess command, print it, and exit on failure.
+    Returns the CompletedProcess object.
+    """
     print(f"[RUN] {' '.join(str(x) for x in cmd)}")
-    result = subprocess.run(cmd, **kwargs)
+    try:
+        result = subprocess.run(cmd, **kwargs)
+    except Exception as e:
+        print(f"[ERROR] Exception running command: {e}", file=sys.stderr)
+        sys.exit(1)
     if result.returncode != 0:
-        print(f"[ERROR] Command failed: {' '.join(str(x) for x in cmd)}", file=sys.stderr)
+        print(f"[ERROR] Command failed with exit code {result.returncode}: {' '.join(str(x) for x in cmd)}", file=sys.stderr)
+        if hasattr(result, 'stderr') and result.stderr:
+            print(result.stderr, file=sys.stderr)
         sys.exit(result.returncode)
+    return result
 
 def parse_yaml_list(yaml_path):
     with open(yaml_path) as f:
@@ -44,6 +56,8 @@ def main():
 
     import requests
     import contextlib
+    import shutil
+    from pathlib import Path  # Ensure Path is always imported in main()
 
     parser = argparse.ArgumentParser(description="Build PDFs, Markdown, DOCX, HTML, custom web output, or just collect all images from Jupyter notebooks and Jupyter Book.")
     parser.add_argument('--pdf', action='store_true', help='Build PDFs only')
@@ -59,9 +73,6 @@ def main():
 
     # --- Unified Jupyter Book HTML Build ---
     if getattr(args, 'jupyter', False):
-        from pathlib import Path
-        import subprocess
-        import shutil
         repo_root = Path(__file__).parent.resolve()
         build_jupyter_dir = repo_root / '_build/jupyter'
         docs_jupyter_dir = repo_root / 'docs/jupyter'
@@ -71,24 +82,19 @@ def main():
         print(f"[INFO] Building Jupyter Book HTML into {build_jupyter_dir} ...")
         jb_cmd = ["jupyter-book", "build", str(repo_root), "--path-output", str(build_jupyter_dir)]
         print(f"[DEBUG] Running command: {' '.join(jb_cmd)}")
-        result = subprocess.run(jb_cmd, capture_output=True, text=True)
-        print("[DEBUG] jupyter-book stdout:\n" + result.stdout)
-        print("[DEBUG] jupyter-book stderr:\n" + result.stderr)
-        if result.returncode != 0:
-            print(f"[ERROR] jupyter-book build failed: {result.stderr}")
-            sys.exit(result.returncode)
+        result = run_or_exit(jb_cmd, capture_output=True, text=True)
+        print("[DEBUG] jupyter-book stdout:\n" + (result.stdout or ""))
+        print("[DEBUG] jupyter-book stderr:\n" + (result.stderr or ""))
         # Copy the built HTML site to docs/jupyter (replace contents)
         html_out = build_jupyter_dir / '_build' / 'html'
         if not html_out.exists():
             print(f"[ERROR] Expected HTML output not found at {html_out}")
             sys.exit(1)
-        # Remove old docs/jupyter contents (but not the folder itself)
         for item in docs_jupyter_dir.iterdir():
             if item.is_dir():
                 shutil.rmtree(item)
             else:
                 item.unlink()
-        # Copy all contents from html_out to docs/jupyter
         for item in html_out.iterdir():
             dest = docs_jupyter_dir / item.name
             if item.is_dir():
@@ -96,21 +102,15 @@ def main():
             else:
                 shutil.copy2(item, dest)
         print(f"[INFO] Jupyter Book HTML site copied to {docs_jupyter_dir}")
-        # Do not remove any .md files in the project root; just leave them untouched
-        # If you want to ignore certain files in the Jupyter Book build, use config or .gitignore, not deletion
         return
 
     # --- HTML Build Option: just call build-web.py --html (and pass --files if given) ---
     if getattr(args, 'html', False):
-        import subprocess
         cmd = [sys.executable, str(Path(__file__).parent / 'build-web.py'), '--html']
         if args.files:
             cmd += ['--files'] + args.files
         print(f"[INFO] Calling build-web.py: {' '.join(cmd)}")
-        result = subprocess.run(cmd)
-        if result.returncode != 0:
-            print(f"[ERROR] build-web.py failed with exit code {result.returncode}")
-            sys.exit(result.returncode)
+        run_or_exit(cmd)
         return
 
     # Directories and image search roots (must be set before any logic or function that uses them)
@@ -119,7 +119,7 @@ def main():
     build_dir.mkdir(parents=True, exist_ok=True)  # Ensure _build exists
     chapters_dir = build_dir / 'tex'
     html_dir = build_dir / 'html'
-    notebook_dir = repo_root / 'content/notebooks'
+    # notebook_dir is no longer used for notebook path construction
     # Use _notebooks.yaml instead of notebooks.yaml
     notebooks_yaml = repo_root / '_notebooks.yaml'
     update_toc = repo_root / 'scripts' / 'update_toc.sh'
@@ -131,7 +131,6 @@ def main():
         img_dir = build_dir / 'images'
         img_dir.mkdir(parents=True, exist_ok=True)
         print(f"[INFO] Collecting all images referenced in notebooks and markdown into {img_dir}")
-        # Helper to process a file and copy all images it references
         def process_file_for_images(file_path, nb_stem=None):
             from fetch_youtube import fetch_youtube_thumbnail
             if not file_path.exists():
@@ -139,12 +138,9 @@ def main():
                 return
             with open(file_path, 'r', encoding='utf-8') as f:
                 content = f.read()
-            # Markdown image links: ![...](...)
             img_links = re.findall(r'!\[[^\]]*\]\(([^)]+)\)', content)
-            # LaTeX image links: \includegraphics{...}
             img_links += re.findall(r'\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}', content)
             for img_path in set(img_links):
-                # --- YouTube thumbnail handling ---
                 yt_match = re.match(r'https?://img\.youtube\.com/vi/([\w-]{11})/', img_path)
                 if yt_match:
                     video_id = yt_match.group(1)
@@ -156,7 +152,6 @@ def main():
                         print(f"[WARN] Could not fetch YouTube thumbnail for {video_id}")
                     continue
                 if img_path.startswith('http'):
-                    # Download remote image (non-YouTube)
                     img_filename = os.path.basename(img_path.split('?')[0])
                     flat_name = f"{nb_stem}_{img_filename}" if nb_stem else img_filename
                     dst_img = img_dir / flat_name
@@ -171,17 +166,14 @@ def main():
                     except Exception as e:
                         print(f"[WARN] Could not download image {img_path}: {e}")
                     continue
-                # --- Local/relative image handling ---
                 found = False
                 real_img_path = None
                 img_filename = os.path.basename(img_path)
-                # 1. Try resolving the full relative path from the file's location
                 if not os.path.isabs(img_path) and not img_path.startswith('~'):
                     candidate = (file_path.parent / img_path).resolve()
                     if candidate.exists():
                         real_img_path = candidate
                         found = True
-                # 2. Try to find the full subpath in each images_root_candidates
                 if not found:
                     for images_root in images_root_candidates:
                         norm_img_path = os.path.normpath(img_path).lstrip(os.sep)
@@ -190,7 +182,6 @@ def main():
                             real_img_path = candidate
                             found = True
                             break
-                # 3. Try by filename in images_root_candidates (legacy logic)
                 if not found:
                     for images_root in images_root_candidates:
                         candidate = images_root / img_filename
@@ -198,15 +189,13 @@ def main():
                             real_img_path = candidate
                             found = True
                             break
-                # 4. Try notebook_dir/_images, repo_root/_images
-                if not found:
-                    for fallback_root in [notebook_dir / '_images', repo_root / '_images']:
+                for fallback_root in [repo_root / 'content/notebooks/_images', repo_root / '_images']:
+                    if not found:
                         candidate = fallback_root / img_filename
                         if candidate.exists():
                             real_img_path = candidate
                             found = True
                             break
-                # 5. Try _build/html/images and all subfolders recursively
                 if not found:
                     html_img_root = repo_root / '_build/html/images'
                     candidate = html_img_root / img_filename
@@ -219,7 +208,6 @@ def main():
                                 real_img_path = Path(subdir) / img_filename
                                 found = True
                                 break
-                # 6. As a last resort, search recursively in all images_root_candidates for the full subpath (if any subdirs in img_path)
                 if not found and os.path.dirname(img_path):
                     norm_img_path = os.path.normpath(img_path).lstrip(os.sep)
                     for images_root in images_root_candidates:
@@ -231,7 +219,6 @@ def main():
                                 break
                         if found:
                             break
-                # 7. As a final fallback, search recursively for the filename only (legacy logic)
                 if not found:
                     for images_root in images_root_candidates:
                         for subdir, _, files in os.walk(images_root):
@@ -251,26 +238,20 @@ def main():
                         print(f"[WARN] Could not copy image {real_img_path} to {dst_img}: {e}")
                 else:
                     print(f"[WARN] Could not find image: {img_path}")
-        # Process all notebooks and markdown files in content/notebooks
-        # Need to parse notebook list before this block
         if args.files:
             notebooks = []
             for f in args.files:
                 nb_path = Path(f)
                 if nb_path.is_absolute():
                     pass
-                elif (notebook_dir / nb_path).exists():
-                    nb_path = notebook_dir / nb_path
+                elif (repo_root / f).exists():
+                    nb_path = repo_root / f
                 elif nb_path.exists():
                     pass
                 else:
                     print(f"[ERROR] Notebook not found: {nb_path}", file=sys.stderr)
                     continue
-                try:
-                    rel = nb_path.relative_to(notebook_dir)
-                    notebooks.append(str(rel))
-                except ValueError:
-                    notebooks.append(str(nb_path))
+                notebooks.append(str(nb_path))
             if not notebooks:
                 print("[ERROR] No valid notebooks specified with --files.", file=sys.stderr)
                 sys.exit(1)
@@ -280,13 +261,12 @@ def main():
                 sys.exit(1)
             notebooks = parse_yaml_list(notebooks_yaml)
         for nb in notebooks:
-            nb_path = notebook_dir / nb
+            nb_path = repo_root / nb
             if nb_path.exists():
-                process_file_for_images(nb_path, nb_stem=nb_path.stem)
-            # Also process corresponding markdown if it exists
+                process_file_for_images(nb_path, nb_stem=Path(nb).stem)
             md_path = nb_path.with_suffix('.md')
             if md_path.exists():
-                process_file_for_images(md_path, nb_stem=nb_path.stem)
+                process_file_for_images(md_path, nb_stem=Path(nb).stem)
         print(f"[INFO] All referenced images copied to {img_dir}")
         return
 
@@ -316,18 +296,14 @@ def main():
             nb_path = Path(f)
             if nb_path.is_absolute():
                 pass
-            elif (notebook_dir / nb_path).exists():
-                nb_path = notebook_dir / nb_path
+            elif (repo_root / f).exists():
+                nb_path = repo_root / f
             elif nb_path.exists():
                 pass
             else:
                 print(f"[ERROR] Notebook not found: {nb_path}", file=sys.stderr)
                 continue
-            try:
-                rel = nb_path.relative_to(notebook_dir)
-                notebooks.append(str(rel))
-            except ValueError:
-                notebooks.append(str(nb_path))
+            notebooks.append(str(nb_path))
         if not notebooks:
             print("[ERROR] No valid notebooks specified with --files.", file=sys.stderr)
             sys.exit(1)
@@ -402,8 +378,8 @@ def main():
                             real_img_path = candidate
                             found = True
                             break
-                if not found:
-                    for fallback_root in [notebook_dir / '_images', repo_root / '_images']:
+                for fallback_root in [repo_root / 'content/notebooks/_images', repo_root / '_images']:
+                    if not found:
                         candidate = fallback_root / img_filename
                         if candidate.exists():
                             real_img_path = candidate
@@ -452,12 +428,12 @@ def main():
                 else:
                     print(f"[WARN] Could not find image: {img_path}")
         for nb in notebooks:
-            nb_path = notebook_dir / nb
+            nb_path = repo_root / nb
             if nb_path.exists():
-                process_file_for_images(nb_path, nb_stem=nb_path.stem)
+                process_file_for_images(nb_path, nb_stem=Path(nb).stem)
             md_path = nb_path.with_suffix('.md')
             if md_path.exists():
-                process_file_for_images(md_path, nb_stem=nb_path.stem)
+                process_file_for_images(md_path, nb_stem=Path(nb).stem)
         print(f"[INFO] [Full Build] All referenced images copied to {img_dir}")
 
     # --- Build TeX ---
@@ -466,16 +442,15 @@ def main():
     if build_latex:
         chapters_dir.mkdir(parents=True, exist_ok=True)
         tex_images_dir.mkdir(parents=True, exist_ok=True)
-        print(f"[INFO] Building TeX files for notebooks in {notebook_dir} -> {chapters_dir}")
+        print(f"[INFO] Building TeX files for notebooks in project (absolute paths) -> {chapters_dir}")
         for nb in notebooks:
-            nb_path = notebook_dir / nb
+            nb_path = repo_root / nb
             if not nb_path.exists():
                 print(f"[WARN] Notebook not found: {nb_path}")
                 continue
             tex_name = nb_path.with_suffix('.tex').name
             tex_path = chapters_dir / tex_name
             print(f"Converting {nb_path} to {tex_path}")
-            # Before conversion, check for missing images referenced in the notebook and fetch them if needed
             missing_images = set()
             try:
                 import nbformat
@@ -495,14 +470,12 @@ def main():
             if missing_images:
                 print(f"[INFO] Missing images for {nb_path}: {missing_images}. Running --img...")
                 try:
-                    from subprocess import run
-                    run([
+                    run_or_exit([
                         sys.executable, __file__, '--img', '--files', str(nb)
                     ], check=True)
                 except Exception as e:
                     print(f"[ERROR] Failed to collect images for {nb_path}: {e}")
-            from subprocess import run
-            run([
+            run_or_exit([
                 jupyter_bin, 'nbconvert', '--to', 'latex', str(nb_path),
                 '--output', tex_name, '--output-dir', str(chapters_dir)
             ], check=True)
@@ -512,13 +485,11 @@ def main():
                 def replace_graphics(match):
                     img_path = match.group(2)
                     img_filename = os.path.basename(img_path)
-                    # Only prepend nb_path.stem if not already present
                     if img_filename.startswith(f"{nb_path.stem}_"):
                         flat_name = img_filename
                     else:
                         flat_name = f"{nb_path.stem}_{img_filename}"
                     return f"{match.group(1)}{{../images/{flat_name}}}"
-                # Replace all \includegraphics{...} with correct flat_name
                 tex_content = re.sub(r'(\\includegraphics(?:\[[^\]]*\])?)\{([^}]+)\}', replace_graphics, tex_content)
                 with open(tex_path, 'w', encoding='utf-8') as f:
                     f.write(tex_content)
@@ -527,7 +498,7 @@ def main():
     log_file.close()
     log_stream.close()
 
-    # --- Build PDFs from TeX (compile in place and copy PDFs) ---
+    # --- Build PDFs from TeX (compile in place and copy PDFs to {pdf_dir}) ---
     if build_pdf:
         pdf_dir = build_dir / 'pdf'
         pdf_dir.mkdir(parents=True, exist_ok=True)
@@ -538,7 +509,6 @@ def main():
             tex_name = Path(nb).with_suffix('.tex').name
             tex_path = chapters_dir / tex_name
             tex_files.append(tex_path)
-        from subprocess import run
         for tex_file in tex_files:
             pdf_name = tex_file.with_suffix('.pdf').name
             pdf_path = chapters_dir / pdf_name
@@ -546,7 +516,7 @@ def main():
             if not tex_file.exists():
                 print(f"[WARN] .tex file not found: {tex_file}. Attempting to build with --tex...")
                 try:
-                    run([
+                    run_or_exit([
                         sys.executable, __file__, '--latex', '--files', str(tex_file.stem + '.ipynb')
                     ], check=True)
                 except Exception as e:
@@ -557,7 +527,7 @@ def main():
             # Check if all referenced images exist in _build/images, else try to build with --img
             with open(tex_file, 'r', encoding='utf-8') as f:
                 tex_content = f.read()
-            img_paths = re.findall(r'\\includegraphics(?:\[[^\]]*\])?\{\.\./images/([^}]+)\}', tex_content)
+            img_paths = re.findall(r'\\includegraphics(?:\\[[^\\]]*\\])?\\{\\.\\./images/([^}]+)\\}', tex_content)
             missing_images = []
             for img_filename in set(img_paths):
                 img_path = repo_root / '_build/images' / img_filename
@@ -566,7 +536,7 @@ def main():
             if missing_images:
                 print(f"[WARN] Missing images for {tex_file}: {missing_images}. Attempting to collect with --img...")
                 try:
-                    run([
+                    run_or_exit([
                         sys.executable, __file__, '--img', '--files', str(tex_file.stem + '.ipynb')
                     ], check=True)
                 except Exception as e:
@@ -581,7 +551,7 @@ def main():
                     print(f"[ERROR] Still missing images for {tex_file}: {still_missing}. Skipping PDF for this file.")
                     continue
             print(f"[INFO] Compiling {tex_file} to {pdf_path} using pdflatex...")
-            run([
+            run_or_exit([
                 'pdflatex', '-interaction=nonstopmode', str(tex_file)
             ], cwd=chapters_dir, check=True)
             if pdf_path.exists():
@@ -598,17 +568,15 @@ def main():
         images_dir = build_dir / 'images'  # Use the global images dir
         md_dir.mkdir(parents=True, exist_ok=True)
         images_dir.mkdir(parents=True, exist_ok=True)
-        print(f"[INFO] Building Markdown files for notebooks in {notebook_dir} -> {md_dir}")
+        print(f"[INFO] Building Markdown files for notebooks in project (absolute paths) -> {md_dir}")
         for nb in notebooks:
-            nb_path = notebook_dir / nb
+            nb_path = repo_root / nb
             if not nb_path.exists():
                 print(f"[WARN] Notebook not found: {nb_path}")
                 continue
             md_name = nb_path.with_suffix('.md').name
             md_path = md_dir / md_name
             print(f"Converting {nb_path} to {md_path}")
-            # Before conversion, check for missing images referenced in the notebook and fetch them if needed
-            # 1. Parse notebook for image links
             missing_images = set()
             try:
                 import nbformat
@@ -625,21 +593,18 @@ def main():
                                 missing_images.add(img_path)
             except Exception as e:
                 print(f"[WARN] Could not parse notebook for images: {e}")
-            # 2. If any missing images, run --img for this notebook
             if missing_images:
                 print(f"[INFO] Missing images for {nb_path}: {missing_images}. Running --img...")
                 try:
-                    run([
+                    run_or_exit([
                         sys.executable, __file__, '--img', '--files', str(nb)
                     ])
                 except Exception as e:
                     print(f"[ERROR] Failed to collect images for {nb_path}: {e}")
-            # 3. Now convert to markdown
-            run([
+            run_or_exit([
                 jupyter_bin, 'nbconvert', '--to', 'markdown', str(nb_path),
                 '--output', md_name, '--output-dir', str(md_dir)
             ])
-            # 4. Update image links in the markdown to point to the global images dir (do not copy images)
             with open(md_path, 'r', encoding='utf-8') as f:
                 md_content = f.read()
             def replace_img_link(match):
@@ -647,7 +612,6 @@ def main():
                 if img_path.startswith('http'):
                     return match.group(0)  # leave remote images unchanged
                 img_filename = os.path.basename(img_path)
-                # Only prepend nb_path.stem if not already present
                 if img_filename.startswith(f"{nb_path.stem}_"):
                     flat_name = img_filename
                 else:
@@ -673,15 +637,14 @@ def main():
             if not md_path.exists():
                 print(f"[WARN] Markdown not found: {md_path}. Attempting to build it with --md...")
                 try:
-                    run([
-                        sys.executable, __file__, '--md', '--files', str(nb_path if 'nb_path' in locals() else (notebook_dir / nb))
+                    run_or_exit([
+                        sys.executable, __file__, '--md', '--files', str(nb)
                     ])
                 except Exception as e:
                     print(f"[ERROR] Failed to build markdown for {nb}: {e}")
                 if not md_path.exists():
                     print(f"[ERROR] Markdown still not found for {md_path} after attempting to build. Skipping DOCX for this file.")
                     continue
-            # Ensure all images referenced in the markdown exist in _build/images (same as Markdown logic)
             with open(md_path, 'r', encoding='utf-8') as f:
                 md_content = f.read()
             missing_images = set()
@@ -697,29 +660,26 @@ def main():
             if missing_images:
                 print(f"[INFO] Missing images for DOCX in {md_path}: {missing_images}. Running --img...")
                 try:
-                    run([
+                    run_or_exit([
                         sys.executable, __file__, '--img', '--files', str(nb)
                     ])
                 except Exception as e:
                     print(f"[ERROR] Failed to collect images for DOCX for {nb}: {e}")
-            # Update image links in the markdown to point to the global images dir (for DOCX: use images/ not ../images/)
             def replace_img_link_docx(match):
                 img_path = match.group(1)
                 if img_path.startswith('http'):
                     return match.group(0)
                 img_filename = os.path.basename(img_path)
-                # Only prepend nb stem if not already present
                 if img_filename.startswith(f"{Path(nb).stem}_"):
                     flat_name = img_filename
                 else:
                     flat_name = f"{Path(nb).stem}_{img_filename}"
-                # For DOCX, use images/flat_name (not ../images/)
                 return match.group(0).replace(img_path, f"images/{flat_name}")
             new_md_content = re.sub(r'!\[[^\]]*\]\(([^)]+)\)', replace_img_link_docx, md_content)
             with open(md_path, 'w', encoding='utf-8') as f:
                 f.write(new_md_content)
             print(f"Converting {md_path} to {docx_path} using pandoc with resource-path {build_dir}")
-            run([
+            run_or_exit([
                 'pandoc', str(md_path), '-o', str(docx_path), '--resource-path', str(build_dir)
             ], cwd=md_dir)
         print(f"[INFO] All markdown files converted to DOCX using pandoc and saved in {docx_dir}")
@@ -727,45 +687,30 @@ def main():
     # --- Generate _toc.yml ---
     toc_yml = repo_root / '_toc.yml'
     print(f"[INFO] Generating _toc.yml from {notebooks_yaml} using Python...")
+    index_md = repo_root / 'content/index.md'
+    if not index_md.exists():
+        print(f"[ERROR] content/index.md not found. This file is required as the root for the Jupyter Book.", file=sys.stderr)
+        sys.exit(1)
     toc_content = [
-        "# Auto-generated _toc.yml from notebooks.yaml",
+        "# Auto-generated _toc.yml from _notebooks.yaml",
         "format: jb-book",
-        "root: intro",
+        "root: content/index",
         "chapters:",
     ]
     for nb in notebooks:
         nb_path = Path(nb)
-        toc_content.append(f"  - file: notebooks/{nb_path.stem}")
-    intro_md = repo_root / 'intro.md'
-    if not intro_md.exists() and notebooks:
-        toc_content = [
-            "# Auto-generated _toc.yml from notebooks.yaml",
-            "format: jb-book",
-            f"root: notebooks/{Path(notebooks[0]).stem}",
-            "chapters:",
-        ]
-        for nb in notebooks[1:]:
-            nb_path = Path(nb)
-            toc_content.append(f"  - file: notebooks/{nb_path.stem}")
+        # Remove .ipynb suffix for toc, keep path as in _notebooks.yaml
+        file_entry = str(nb_path.with_suffix(''))
+        # Do not include content/index as a chapter (should only be root)
+        if file_entry == "content/index":
+            continue
+        toc_content.append(f"  - file: {file_entry}")
     with open(toc_yml, 'w') as f:
         f.write('\n'.join(toc_content) + '\n')
-    print(f"[INFO] _toc.yml generated with {len(notebooks)} chapters.")
+    print(f"[INFO] _toc.yml generated with {len([nb for nb in notebooks if Path(nb).with_suffix('') != 'content/index'])} chapters.")
 
-    # Clean up: Remove all folders in _build except latex, html, md, docx, pdf
-    # Also preserve 'images' directory for Markdown and other builds
-    for f in build_dir.iterdir():
-        if f.is_dir() and f.name not in {'latex', 'html', 'md', 'docx', 'pdf', 'images'}:
-            try:
-                shutil.rmtree(f)
-                print(f"[INFO] Removed directory {f}")
-            except Exception as e:
-                print(f"[WARN] Could not remove directory {f}: {e}")
-        elif f.is_file():
-            try:
-                f.unlink()
-                print(f"[INFO] Removed {f}")
-            except Exception as e:
-                print(f"[WARN] Could not remove {f}: {e}")
+    # Clean up step removed: Do not remove any folders or files in _build during the build process.
+    # If cleanup is needed, it should be a separate explicit step, not part of the main build.
 
 if __name__ == '__main__':
     main()

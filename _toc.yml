@@ -1,6 +1,6 @@
-# Auto-generated _toc.yml from notebooks.yaml
+# Auto-generated _toc.yml from _notebooks.yaml
 format: jb-book
-root: content/notebooks/intro.md
+root: content/index
 chapters:
   - file: content/notebooks/01_start
   - file: content/notebooks/01_notes
