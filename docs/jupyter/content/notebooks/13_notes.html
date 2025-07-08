@@ -1,0 +1,787 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 13 - Notes: Examples of Lagrangian Mechanics &#8212; My Jupyter Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/notebooks/13_notes';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Homework 1 (Due 24 Jan)" href="hw1.html" />
+    <link rel="prev" title="Week 13 - Lagrangian Mechanics" href="13_start.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">My Jupyter Book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Welcome to Modern Classical Mechanics
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_start.html">Week 1 - Overture: What is Classical Physics?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_notes.html">Week 1 - Notes: Introduction to Classical Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_start.html">Week 2 - Computing as a tool for science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_notes.html">Week 2 - Notes: Mathematical Preliminaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_start.html">Week 3 - What is Mathematical Modeling?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_notes.html">Week 3 - Notes: Making Classical Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_start.html">Week 4 - Why does fluid drag complicate things?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_notes.html">Week 4 - Notes: Equations of Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_start.html">Week 5 - Conservation Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_notes.html">Week 5 - Notes: Conservation of Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_start.html">Week 6 - Stability and Equilibria</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_notes.html">Week 6 - Notes: Stability and Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_notes_2.html">Week 6 - Notes: Linear and Angular Momentum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_start.html">Week 7 - Nonlinear Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_notes.html">Week 7 - Notes: Critical Points; Phase Space; Trajectories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_start.html">Week 8 - Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_notes.html">Week 8 - Notes: Oscillators and Modeling Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_start.html">Week 9 - Driven Oscillators and Resonance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_notes.html">Week 9 - Notes: Driven Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_start.html">Week 10 - Chaotic Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_notes.html">Week 10 - Activity: Modeling Chaotic Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_start.html">Week 11 - Calculus of Variations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_notes.html">Week 11 - Notes: The Euler-Lagrange Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_start.html">Week 12 - The Principle of Least Action</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_notes.html">Week 12 - Notes: Introduction to Lagrangian Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_start.html">Week 13 - Lagrangian Mechanics</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 13 - Notes: Examples of Lagrangian Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hw1.html">Homework 1 (Due 24 Jan)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hw2.html">Homework 2 (Due 31 Jan)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hw3.html">Homework 3 (Due 07 Feb)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hw4.html">Homework 4 (Due 17 Feb)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hw5.html">Homework 5 (Due 14 Mar)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hw6.html">Homework 6 (Due 21 Mar)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hw7.html">Homework 7 (Due 28 Mar)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hw8.html">Homework 8 (Due 18 Apr)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/notebooks/13_notes.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 13 - Notes: Examples of Lagrangian Mechanics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-the-atwood-machine">Example: The Atwood Machine</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equation-of-constraint">Equation of Constraint</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-the-lagrangian">Constructing the Lagrangian</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-force">Generalized Force</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-momentum">Generalized Momentum</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equation-of-motion">Equation of Motion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-atwood-machine-with-rotating-pulley">Example: Atwood Machine with Rotating Pulley</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#torque-and-angular-momentum">Torque and Angular Momentum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Equation of Motion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-bead-in-a-parabolic-bowl">Example: Bead in a Parabolic Bowl</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Constructing the Lagrangian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equations-of-motion">Equations of Motion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-for-numerical-solution">Preparing for Numerical Solution</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-13-notes-examples-of-lagrangian-mechanics">
+<h1>Week 13 - Notes: Examples of Lagrangian Mechanics<a class="headerlink" href="#week-13-notes-examples-of-lagrangian-mechanics" title="Link to this heading">#</a></h1>
+<p>We’ve seen the Lagrangian formulation of mechanics, and we have seen how to use it to derive the equations of motion for a system. We will cover a few common examples of Lagrangian mechanics and point out some of the subtleties that arise in each case.</p>
+<section id="example-the-atwood-machine">
+<h2>Example: The Atwood Machine<a class="headerlink" href="#example-the-atwood-machine" title="Link to this heading">#</a></h2>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Atwood_machine">Atwood machine</a> consists of two masses, <span class="math notranslate nohighlight">\(M\)</span> and <span class="math notranslate nohighlight">\(m\)</span>, connected by a massless string that passes over a massless pulley. The system is subject to gravity alone. The figure below shows the system along with a choice of coordinates <span class="math notranslate nohighlight">\(y_1\)</span> and <span class="math notranslate nohighlight">\(y_2\)</span> for the two masses.</p>
+<p><img alt="Atwood Machine" src="../../_images/atwood.png" /></p>
+<p>These coordinates are measured from the center of the pulley and positive <span class="math notranslate nohighlight">\(y_1\)</span> and <span class="math notranslate nohighlight">\(y_2\)</span> are taken to be upward. Let’s try to use the Lagrangian formalism to find the equations of motion for this system.</p>
+<div class="math notranslate nohighlight">
+\[V = + Mgy_1 + mgy_2\]</div>
+<div class="math notranslate nohighlight">
+\[T = \dfrac{1}{2}M\dot{y}_1^2 + \dfrac{1}{2}m\dot{y}_2^2\]</div>
+<section id="equation-of-constraint">
+<h3>Equation of Constraint<a class="headerlink" href="#equation-of-constraint" title="Link to this heading">#</a></h3>
+<p>But notice that <span class="math notranslate nohighlight">\(y_1\)</span> and <span class="math notranslate nohighlight">\(y_2\)</span> are no independent coordinates. If we unravel the string that is over the pulley, we find that (assume length of string is <span class="math notranslate nohighlight">\(l\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[y_1 + \pi R + y_2 = l\]</div>
+<p>where <span class="math notranslate nohighlight">\(R\)</span> is the radius of the pulley. That is shown in the figure below.</p>
+<p><img alt="Unraveled String" src="../../_images/string-unraveled.png" /></p>
+<p>The equation above is called an <strong>equation of constraint</strong>. It relates the coordinates <span class="math notranslate nohighlight">\(y_1\)</span> and <span class="math notranslate nohighlight">\(y_2\)</span> to each other. We can use this equation to eliminate one of the coordinates. Let’s eliminate <span class="math notranslate nohighlight">\(y_2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[l = y_1 + \pi R + y_2 \rightarrow y_1 = (l - \pi R) - y_2\]</div>
+<p>This constraint has implications for velocities,</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{dy_1}{dt} = \dfrac{d}{dt}\left((l-\pi R) - y_2\right) = -\dfrac{dy_2}{dt}\]</div>
+<div class="math notranslate nohighlight">
+\[\dot{y}_1 = -\dot{y}_2.\]</div>
+<p>This is likely what we could have expected, that the two masses move in opposite directions at the same speed.</p>
+</section>
+<section id="constructing-the-lagrangian">
+<h3>Constructing the Lagrangian<a class="headerlink" href="#constructing-the-lagrangian" title="Link to this heading">#</a></h3>
+<p>Let’s use this constraint to reduce the number of coordinates in the Lagrangian.</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}(y_1, y_2, \dot{y}_1, \dot{y}_2) \rightarrow \mathcal{L}(y_1, \dot{y}_1)\]</div>
+<p>We can do this by substituting <span class="math notranslate nohighlight">\(y_2\)</span> in terms of <span class="math notranslate nohighlight">\(y_1\)</span> into the energy equations:</p>
+<div class="math notranslate nohighlight">
+\[T(y_1, \dot{y}_1) = \dfrac{1}{2}M\dot{y}_1^2 + \dfrac{1}{2}m\dot{y}_2^2 = \dfrac{1}{2}(M+m)\dot{y}_1^2 = T(\dot{y}_1)\]</div>
+<div class="math notranslate nohighlight">
+\[V(y_1, y_2) = +Mgy_1 + mgy_2\]</div>
+<div class="math notranslate nohighlight">
+\[V(y_1, y_2) = Mgy_1 + mg((l-\pi R) - y_1)\]</div>
+<div class="math notranslate nohighlight">
+\[V(y_1, y_2) = (M-m)g y_1 + mg(l-\pi R)\]</div>
+<div class="math notranslate nohighlight">
+\[V(y_1, y_2) = (M-m)g y_1 + U_0\]</div>
+<p>where <span class="math notranslate nohighlight">\(U_0 = mg(l-\pi R)\)</span> is a constant and will not affect the equations of motion.</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}(y_1, \dot{y}_1) = T(\dot{y}_1) - V(y_1) = \dfrac{1}{2}(M+m)\dot{y}_1^2 - (M-m)g y_1\]</div>
+<div class="math notranslate nohighlight">
+\[\dfrac{\partial \mathcal{L}}{\partial y_1} = -(M-m)g\]</div>
+<div class="math notranslate nohighlight">
+\[\dfrac{\partial \mathcal{L}}{\partial \dot{y}_1} = (M+m)\dot{y}_1\]</div>
+<p>These derivatives give the following equation of motion:</p>
+<div class="math notranslate nohighlight">
+\[-(M-m) g - \dfrac{d}{dt}\left((M+m)\dot{y}_1\right) = 0\]</div>
+<section id="generalized-force">
+<h4>Generalized Force<a class="headerlink" href="#generalized-force" title="Link to this heading">#</a></h4>
+<p>Notice that the first term in the above equation is the force on the mass <span class="math notranslate nohighlight">\(M\)</span> in the Newtonian picture: the weight of <span class="math notranslate nohighlight">\(M\)</span> minus the weight of <span class="math notranslate nohighlight">\(m\)</span>. That makes sense because the Lagrangian formalism is supposed to reproduce Newton’s laws, and the spatial derivative of the Lagrangian produces a <a class="reference external" href="https://en.wikipedia.org/wiki/Generalized_force">generalized force</a>.</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{\partial \mathcal{L}}{\partial q_i} = -\dfrac{\partial V}{\partial q_i} = F_i\]</div>
+<p>The kinetic term has no spatial dependence, so it does not contribute to the generalized force.</p>
+</section>
+<section id="generalized-momentum">
+<h4>Generalized Momentum<a class="headerlink" href="#generalized-momentum" title="Link to this heading">#</a></h4>
+<p>The second term in the above equation is the time derivative of the momentum of the system using <span class="math notranslate nohighlight">\(y_1\)</span> as the coordinate:</p>
+<div class="math notranslate nohighlight">
+\[(M+m)\dot{y}_1 = M\dot{y}_1 - m\dot{y}_2 = p_{y_1}\]</div>
+<p>Again, that is a sensible result because the Lagrangian formalism is supposed to reproduce Newton’s laws, and the generalized force is related to the time derivative of the <a class="reference external" href="https://phys.libretexts.org/Bookshelves/Classical_Mechanics/Variational_Principles_in_Classical_Mechanics_(Cline)/07%3A_Symmetries_Invariance_and_the_Hamiltonian/7.02%3A_Generalized_Momentum">generalized momentum</a>.</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{d}{dt}\left(\dfrac{\partial \mathcal{L}}{\partial \dot{q}_i}\right) = \dfrac{d}{dt}\left(\dfrac{\partial T}{\partial \dot{q}_i}\right) = \dfrac{dp_{q_i}}{dt}\]</div>
+</section>
+</section>
+<section id="equation-of-motion">
+<h3>Equation of Motion<a class="headerlink" href="#equation-of-motion" title="Link to this heading">#</a></h3>
+<p>The equation of motion can be written as</p>
+<div class="math notranslate nohighlight">
+\[(M=m)\ddot{y}_1 = -(M-m)g\]</div>
+<div class="math notranslate nohighlight">
+\[\ddot{y}_1 = -\dfrac{(M-m)}{(M+m)}g.\]</div>
+<p>With <span class="math notranslate nohighlight">\(M &gt; m\)</span>, this acceleration is downward as the larger mass <span class="math notranslate nohighlight">\(M\)</span> accelerates down. With <span class="math notranslate nohighlight">\(\dot{y}_1 = -\dot{y}_2\)</span>, we know $<span class="math notranslate nohighlight">\(\ddot{y}_2 = -\ddot{y}_1\)</span>$, so that:</p>
+<div class="math notranslate nohighlight">
+\[\ddot{y}_2 = \dfrac{(M-m)}{(M+m)}g\]</div>
+<p>Again, with <span class="math notranslate nohighlight">\(M &gt; m\)</span>, this acceleration is upward as the smaller mass <span class="math notranslate nohighlight">\(m\)</span> accelerates up.</p>
+</section>
+</section>
+<section id="example-atwood-machine-with-rotating-pulley">
+<h2>Example: Atwood Machine with Rotating Pulley<a class="headerlink" href="#example-atwood-machine-with-rotating-pulley" title="Link to this heading">#</a></h2>
+<p>In the previous example, we didn’t take into account the energy needed to rotate the pulley. Let’s do that now. Beucase the rope cannot slip, any small rotation <span class="math notranslate nohighlight">\(Rd\phi\)</span> of the pulley give a change <span class="math notranslate nohighlight">\(dy_1\)</span> in the position of mass <span class="math notranslate nohighlight">\(M\)</span>. This is the <a class="reference external" href="https://en.wikipedia.org/wiki/No-slip_condition">no slip constraint</a>.</p>
+<p>If the pulley has a mass <span class="math notranslate nohighlight">\(M_p\)</span> and radius <span class="math notranslate nohighlight">\(R\)</span>, then we must introduce it’s kinetic energy:</p>
+<div class="math notranslate nohighlight">
+\[T_{pulley} =  \dfrac{1}{2} I \omega^2\]</div>
+<p>where <span class="math notranslate nohighlight">\(I\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_moments_of_inertia">moment of inertia</a> of the pulley and <span class="math notranslate nohighlight">\(\omega\)</span> is the angular velocity of the pulley, <span class="math notranslate nohighlight">\(\omega = \dot{\phi}\)</span>. This angular velocity is related to the linear velocities of the masses.</p>
+<div class="math notranslate nohighlight">
+\[I = \dfrac{1}{2}M_p R^2\]</div>
+<div class="math notranslate nohighlight">
+\[T_{pulley} =  \dfrac{1}{2} \left(\dfrac{1}{2}M_p R^2\right) \dot{\phi}^2\]</div>
+<div class="math notranslate nohighlight">
+\[T_{pulley} =  \dfrac{1}{4}M_p R^2 \dot{\phi}^2\]</div>
+<p>We now map this additional kinetic energy into the problem.</p>
+<div class="math notranslate nohighlight">
+\[T(\dot{y}_1, \dot{\phi}) = \dfrac{1}{2}(M+m)\dot{y}_1^2 + \dfrac{1}{4}M_p R^2 \dot{\phi}^2\]</div>
+<p>But the constraint is such that,</p>
+<div class="math notranslate nohighlight">
+\[\dot{y}_1 = Rd\phi \rightarrow y_1 = R\phi +\underbrace{R\phi_0}_{\textrm{const.}}\]</div>
+<div class="math notranslate nohighlight">
+\[\dot{y}_1 = R\dot{\phi}\]</div>
+<p>We work these back into <span class="math notranslate nohighlight">\(T\)</span>, <span class="math notranslate nohighlight">\(V\)</span>, and <span class="math notranslate nohighlight">\(\mathcal{L}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[T(\dot{\phi}) = \dfrac{1}{2}(M+m)\dot{y}_1^2 + \dfrac{1}{4}M_p R^2 \dot{\phi}^2\]</div>
+<div class="math notranslate nohighlight">
+\[T(\dot{\phi}) = \dfrac{1}{2}(M+m+\frac{1}{2}M_p)R^2 \dot{\phi}^2\]</div>
+<div class="math notranslate nohighlight">
+\[V(\phi) = (M-m)gy_1 + U_0\]</div>
+<div class="math notranslate nohighlight">
+\[V(\phi) = (M-m)g(R\phi + R\phi_0) + U_0\]</div>
+<div class="math notranslate nohighlight">
+\[V(\phi) = (M-m)gR\phi + \tilde{U}_0\]</div>
+<p>where <span class="math notranslate nohighlight">\(\tilde{U}_0 = (M-m)gR\phi_0 + U_0\)</span> is another constant that will not affect the equations of motion.</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}(\phi, \dot{\phi}) = T(\dot{\phi}) - V(\phi)\]</div>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}(\phi, \dot{\phi}) = \dfrac{1}{2}(M+m+\frac{1}{2}M_p)R^2 \dot{\phi}^2 - (M-m)gR\phi\]</div>
+<section id="torque-and-angular-momentum">
+<h3>Torque and Angular Momentum<a class="headerlink" href="#torque-and-angular-momentum" title="Link to this heading">#</a></h3>
+<p>Our generalized coordinate is <span class="math notranslate nohighlight">\(\phi\)</span> and our generalized velocity is <span class="math notranslate nohighlight">\(\dot{\phi}\)</span>. We apply the Euler-Lagrange equation. We obtain the generalized force:</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{\partial \mathcal{L}}{\partial \phi} = -(M-m)gR = F_{\phi}\]</div>
+<p>Notice that in this case, the generalized force is not the same as the force on mass <span class="math notranslate nohighlight">\(M\)</span> in the Newtonian picture. It’s a torque around the pulley.</p>
+<p>We can find the generalized momentum in a similar way:</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{\partial \mathcal{L}}{\partial \dot{\phi}} = (M+m+\frac{1}{2}M_p)R^2\dot{\phi} = p_{\phi}\]</div>
+<p>This is the angular momentum of the system about the axle. We can see that by breaking down each part and adding them up.</p>
+<div class="math notranslate nohighlight">
+\[\vec{L}_{total} = \vec{L}_{disk} + \vec{L}_{M} + \vec{L}_{m}\]</div>
+<div class="math notranslate nohighlight">
+\[\vec{L}_{disk} = I_{disk}\omega = \dfrac{1}{2}M_p R^2 \dot{\phi}\,\text{(out of the page)}\]</div>
+<div class="math notranslate nohighlight">
+\[\vec{L}_{M} = M\vec{r}_{M}\times \vec{v}_{M} = M(R\hat{r})\times (R\dot{\phi}\hat{\phi}) = MR^2 \dot{\phi}\,\text{(out of the page)}\]</div>
+<div class="math notranslate nohighlight">
+\[\vec{L}_{m} = M\vec{r}_{m}\times \vec{v}_{m} = m(R\hat{r})\times (R\dot{\phi}\hat{\phi}) = mR^2 \dot{\phi}\,\text{(out of the page)}\]</div>
+<p>Add them up:</p>
+<div class="math notranslate nohighlight">
+\[\vec{L}_{total} = \left(\dfrac{1}{2}M_p + M + m\right)R^2 \dot{\phi}\,\text{(out of the page)}\]</div>
+<p>Or the magnitude:</p>
+<div class="math notranslate nohighlight">
+\[L_{total} = \left(\dfrac{1}{2}M_p + M + m\right)R^2 \dot{\phi}\]</div>
+<div class="math notranslate nohighlight">
+\[p_{\phi} = L_{total}\]</div>
+</section>
+<section id="id1">
+<h3>Equation of Motion<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>We return to the diffeferential equation of motion:</p>
+<div class="math notranslate nohighlight">
+\[-(M-m)gR - \dfrac{d}{dt}((M+m+\frac{1}{2}M_p)R^2\dot{\phi} = 0\]</div>
+<div class="math notranslate nohighlight">
+\[-(M-m)gR - (M+m+\frac{1}{2}M_p)R^2\ddot{\phi} = 0\]</div>
+<p>which produces the following equation of motion:</p>
+<div class="math notranslate nohighlight">
+\[\ddot{\phi} = -\dfrac{g}{R}\dfrac{(M-m)}{(M+m+\frac{1}{2}M_p)}\]</div>
+<p>which is a constant acceleration.</p>
+</section>
+</section>
+<section id="example-bead-in-a-parabolic-bowl">
+<h2>Example: Bead in a Parabolic Bowl<a class="headerlink" href="#example-bead-in-a-parabolic-bowl" title="Link to this heading">#</a></h2>
+<p>A bead of mass <span class="math notranslate nohighlight">\(m\)</span> is constrained to move along a parabolic bowl. There is a gravitational force acting on the bead. The bowl is symmetric about the <span class="math notranslate nohighlight">\(z\)</span>-axis and the bead is constrained to move along the surface without friction or rolling. The bowl is described by the equation:</p>
+<div class="math notranslate nohighlight">
+\[z = \dfrac{1}{2}c(x^2 + y^2)\]</div>
+<p>where <span class="math notranslate nohighlight">\(c\)</span> is a constant that describes the curvature of the bowl. The figure below shows the system.</p>
+<p><img alt="Bead in a Parabolic Bowl" src="../../_images/paraboloid.png" /></p>
+<p>In this case the system is better solved in cylindrical coordinates. The coordinates are <span class="math notranslate nohighlight">\((r, \phi, z)\)</span>, where <span class="math notranslate nohighlight">\(r\)</span> is the distance from the <span class="math notranslate nohighlight">\(z\)</span>-axis, <span class="math notranslate nohighlight">\(\phi\)</span> is the angle around the <span class="math notranslate nohighlight">\(z\)</span>-axis, and <span class="math notranslate nohighlight">\(z\)</span> is the height above the <span class="math notranslate nohighlight">\(xy\)</span>-plane as shown above.</p>
+<p>With <span class="math notranslate nohighlight">\(\langle \rho, \phi, z\rangle\)</span> as the coordinates, equation for the constraint is:</p>
+<div class="math notranslate nohighlight">
+\[z = \dfrac{1}{2}c(x^2 + y^2) = \dfrac{1}{2}c\rho^2.\]</div>
+<p>Note that <span class="math notranslate nohighlight">\(c\)</span> has units.</p>
+<div class="math notranslate nohighlight">
+\[[z] = m \quad [\rho^2] = m^2 \quad [c] = \dfrac{1}{m}\]</div>
+<p>The speed in cylindrical coordinates can be derived from the expressions in Cartesian coordinates, but we quote the result here:</p>
+<div class="math notranslate nohighlight">
+\[v^2 = \dot{\rho}^2 + \rho^2\dot{\phi}^2 + \dot{z}^2.\]</div>
+<section id="id2">
+<h3>Constructing the Lagrangian<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>We write the kinetic and potential energy of the bead in terms of the coordinates <span class="math notranslate nohighlight">\((r, \phi, z)\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[T = \dfrac{1}{2}m\left(\dot{\rho}^2 + \rho^2\dot{\phi}^2 + \dot{z}^2\right)\]</div>
+<div class="math notranslate nohighlight">
+\[V = mgz\]</div>
+<p>In principle, the Lagrangian can depend on all three coordinates and all three velocities.</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}(\rho, \dot{\rho}, \phi, \dot{\phi}, z, \dot{z}, t) = T - V\]</div>
+<p>There is no explicit time dependence, so we can ignore <span class="math notranslate nohighlight">\(t\)</span>. When the Lagrangian has no explicit time dependence, we should expect the energy to be conserved. This form of Lagrangian analysis does not account for dissipation.</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}(\rho, \dot{\rho}, \phi, \dot{\phi}, z, \dot{z})\]</div>
+<p>Moreover, with the symmetry of the problem, we can expect no <span class="math notranslate nohighlight">\(\phi\)</span> dependence. That is the gravitational potential energy only depends on <span class="math notranslate nohighlight">\(z\)</span> and not on <span class="math notranslate nohighlight">\(\phi\)</span>. This is a consequence of the symmetry of the problem and indicates that <span class="math notranslate nohighlight">\(\phi\)</span> is a <a class="reference external" href="https://phys.libretexts.org/Bookshelves/Classical_Mechanics/Variational_Principles_in_Classical_Mechanics_(Cline)/07%3A_Symmetries_Invariance_and_the_Hamiltonian/7.05%3A_Cyclic_Coordinates">cyclic coordinate</a>. We thus expect angular momentum to be conserved about the <span class="math notranslate nohighlight">\(z\)</span>-axis.</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}(\rho, \dot{\rho}, \dot{\phi}, z, \dot{z})\]</div>
+<p>Lastly, the constraint equation gives us <span class="math notranslate nohighlight">\(z\)</span> in terms of <span class="math notranslate nohighlight">\(\rho\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[z = \dfrac{1}{2}c\rho^2\]</div>
+<p>And thus we can find the time derivative of <span class="math notranslate nohighlight">\(z\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\dot{z} = 2c\rho\dot{\rho}.\]</div>
+<p>So the Lagrangian can be simplified three variables:</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}(\rho, \dot{\rho}, \dot{\phi}) = T - V\]</div>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}(\rho, \dot{\rho}, \dot{\phi}) = \dfrac{1}{2}m\left(\dot{\rho}^2 + \rho^2\dot{\phi}^2 + 4c^2\rho^2\dot{\rho}^2\right) - mg\dfrac{1}{2}c\rho^2\]</div>
+</section>
+<section id="equations-of-motion">
+<h3>Equations of Motion<a class="headerlink" href="#equations-of-motion" title="Link to this heading">#</a></h3>
+<p>We can now apply the Euler-Lagrange equations to find the equations of motion. We will do this for each coordinate. Let’s start with <span class="math notranslate nohighlight">\(\phi\)</span> because there is only one term in the Lagrangian that depends on <span class="math notranslate nohighlight">\(\dot{\phi}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\underbrace{\dfrac{\partial \mathcal{L}}{\partial \phi}}_0 - \dfrac{d}{dt}\left(\dfrac{\partial \mathcal{L}}{\partial \dot{\phi}}\right) = 0\]</div>
+<div class="math notranslate nohighlight">
+\[\dfrac{d}{dt}\left(\dfrac{\partial \mathcal{L}}{\partial \dot{\phi}}\right) = \dfrac{d}{dt}\underbrace{\left(m\rho^2\dot{\phi}\right)}_{L_z} = 0\]</div>
+<p>This equation of motion indicates that the angular momentum about the <span class="math notranslate nohighlight">\(z\)</span>-axis is conserved, as we expected from the symmetry of the problem.</p>
+<p>For the coordinate <span class="math notranslate nohighlight">\(\rho\)</span>, we have:</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{\partial \mathcal{L}}{\partial \rho} - \dfrac{d}{dt}\left(\dfrac{\partial \mathcal{L}}{\partial \dot{\rho}}\right) = 0\]</div>
+<div class="math notranslate nohighlight">
+\[\dfrac{\partial \mathcal{L}}{\partial \rho} = m\rho\dot{\phi}^2 + 4c^2m\rho\dot{\rho}^2 - 2mgc\rho\]</div>
+<div class="math notranslate nohighlight">
+\[\dfrac{\partial \mathcal{L}}{\partial \dot{\rho}} = m\dot{\rho} + 4mc^2\rho^2\dot{\rho}\]</div>
+<div class="math notranslate nohighlight">
+\[\dfrac{d}{dt}\left(\dfrac{\partial \mathcal{L}}{\partial \dot{\rho}}\right) = m\ddot{\rho} + 8mc^2\rho\dot{\rho}^2 + 4mc^2\rho^2\ddot{\rho}\]</div>
+<p>We can now write the equation of motion:</p>
+<div class="math notranslate nohighlight">
+\[m\rho\dot{\phi}^2 + 4c^2m\rho\dot{\rho}^2 - 2mgc\rho - m\ddot{\rho} - 8mc^2\rho\dot{\rho}^2 - 4mc^2\rho^2\ddot{\rho} = 0\]</div>
+<p>We can clean this up a little bit:</p>
+<div class="math notranslate nohighlight">
+\[\ddot{\rho}(1+4c^2\rho^2) + 8c^2\rho\dot{\rho}^2 = \rho\dot{\phi}^2 + 4c^2\rho\dot{\rho}^2 - 2gc\rho\]</div>
+<div class="math notranslate nohighlight">
+\[\ddot{\rho}(1+4c^2\rho^2) + 4c^2\rho\dot{\rho}^2 - \rho\dot{\phi}^2 + 2gc\rho = 0\]</div>
+<p>We try to write both equations in terms of their accelerations. We have:</p>
+<div class="math notranslate nohighlight">
+\[\ddot{\rho} = -\dfrac{4c^2\rho\dot{\rho}^2 - \rho\dot{\phi}^2 + 2gc\rho}{1+4c^2\rho^2}\]</div>
+<div class="math notranslate nohighlight">
+\[\ddot{\phi} = - \dfrac{2\rho\dot{\rho}\dot{\phi}}{\rho^2}\]</div>
+<p>For which we can develop a solution anywhere away from the origin (<span class="math notranslate nohighlight">\(\rho \neq 0\)</span>).</p>
+</section>
+<section id="preparing-for-numerical-solution">
+<h3>Preparing for Numerical Solution<a class="headerlink" href="#preparing-for-numerical-solution" title="Link to this heading">#</a></h3>
+<p>We need to write these equations in a form that is ready for numerical solution. We can do this by writing the equations in terms of the first derivatives. Let <span class="math notranslate nohighlight">\(\omega = \dot{\phi}\)</span> and <span class="math notranslate nohighlight">\(v = \dot{\rho}\)</span>. We get 4 1st order equations:</p>
+<div class="math notranslate nohighlight">
+\[\dot{\rho} = v\]</div>
+<div class="math notranslate nohighlight">
+\[\dot{\phi} = \omega\]</div>
+<div class="math notranslate nohighlight">
+\[\dot{v} = -\dfrac{4c^2\rho v^2 - \rho\omega^2 + 2gc\rho}{1+4c^2\rho^2}\]</div>
+<div class="math notranslate nohighlight">
+\[\dot{\omega} = - \dfrac{2 v\omega}{\rho^2}\]</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "jbook"
+        },
+        kernelOptions: {
+            name: "jbook",
+            path: "./content/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'jbook'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="13_start.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 13 - Lagrangian Mechanics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="hw1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Homework 1 (Due 24 Jan)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-the-atwood-machine">Example: The Atwood Machine</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equation-of-constraint">Equation of Constraint</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-the-lagrangian">Constructing the Lagrangian</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-force">Generalized Force</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-momentum">Generalized Momentum</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equation-of-motion">Equation of Motion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-atwood-machine-with-rotating-pulley">Example: Atwood Machine with Rotating Pulley</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#torque-and-angular-momentum">Torque and Angular Momentum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Equation of Motion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-bead-in-a-parabolic-bowl">Example: Bead in a Parabolic Bowl</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Constructing the Lagrangian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equations-of-motion">Equations of Motion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-for-numerical-solution">Preparing for Numerical Solution</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

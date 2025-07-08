@@ -43,7 +43,7 @@ docs/_build/
 .venv/
 venv/
 
-# PDF, DOCX, and other build artifacts
+# PDF, DOCX, and other build artifacts (do NOT ignore in docs/ or docs/sources/)
 *.pdf
 *.docx
 *.tex
@@ -54,6 +54,12 @@ venv/
 *.fdb_latexmk
 *.fls
 *.synctex.gz
+
+!docs/**/*.pdf
+!docs/**/*.docx
+!docs/**/*.md
+!docs/**/*.tex
+!docs/**/*.ipynb
 
 # Node
 node_modules/
@@ -78,7 +84,6 @@ docs/.DS_Store
 # Build and log directories
 _build/
 log/
-docs/
 
 # ignore generated files
 _toc.yml

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Classical Mechanics</title>
+  <!-- Both themes loaded, JS enables/disables as needed -->
+  <link id="theme-light" href="css/theme-light.css" rel="stylesheet" disabled>
+  <link id="theme-dark" href="css/theme-dark.css" rel="stylesheet" disabled>
+  <script>
+    (function() {
+      function setTheme(mode) {
+        const light = document.getElementById('theme-light');
+        const dark = document.getElementById('theme-dark');
+        if (mode === 'dark') {
+          dark.disabled = false;
+          light.disabled = true;
+          document.documentElement.classList.add('dark');
+        } else {
+          dark.disabled = true;
+          light.disabled = false;
+          document.documentElement.classList.remove('dark');
+        }
+      }
+      function getPreferredTheme() {
+        const saved = localStorage.getItem('theme');
+        if (saved) return saved;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      window.applyTheme = function() {
+        setTheme(getPreferredTheme());
+      };
+      function toggleTheme() {
+        const current = getPreferredTheme();
+        const next = current === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('theme', next);
+        setTheme(next);
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        var btn = document.getElementById('theme-toggle');
+        if (btn) btn.addEventListener('click', toggleTheme);
+      });
+      // Listen for system preference changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        if (!localStorage.getItem('theme')) setTheme(e.matches ? 'dark' : 'light');
+      });
+      // Initial theme
+      window.applyTheme();
+    })();
+  </script>
+</head>
+<body>
+  
+  <header class="site-header">
+    <h1 class="site-title">Modern Classical Mechanics</h1>
+  </header>
+  <button id="theme-toggle" class="toggle-dark" aria-label="Toggle dark/light mode">🌗</button>
+  <nav class="site-nav" id="site-nav"><ul class="site-nav-menu" id="site-nav-menu"><li><a href="index.html">Home</a></li><li><a href="chapters.html">Chapters</a><ul class="dropdown-menu menu-level-1"><li><a href="01_start.html">Chapter 1: Start</a></li><li><a href="01_notes.html">Chapter 1: Notes</a></li><li><a href="02_start.html">Chapter 2: Start</a></li><li><a href="02_notes.html">Chapter 2: Notes</a></li><li><a href="03_start.html">Chapter 3: Start</a></li><li><a href="03_notes.html">Chapter 3: Notes</a></li><li><a href="04_start.html">Chapter 4: Start</a></li><li><a href="04_notes.html">Chapter 4: Notes</a></li><li><a href="05_start.html">Chapter 5: Start</a></li><li><a href="05_notes.html">Chapter 5: Notes</a></li><li><a href="06_start.html">Chapter 6: Start</a></li><li><a href="06_notes.html">Chapter 6: Notes</a></li><li><a href="06_notes_2.html">Chapter 6: Notes 2</a></li><li><a href="07_start.html">Chapter 7: Start</a></li><li><a href="07_notes.html">Chapter 7: Notes</a></li><li><a href="08_start.html">Chapter 8: Start</a></li><li><a href="08_notes.html">Chapter 8: Notes</a></li><li><a href="09_start.html">Chapter 9: Start</a></li><li><a href="09_notes.html">Chapter 9: Notes</a></li><li><a href="10_start.html">Chapter 10: Start</a></li><li><a href="10_notes.html">Chapter 10: Notes</a></li><li><a href="11_start.html">Chapter 11: Start</a></li><li><a href="11_notes.html">Chapter 11: Notes</a></li><li><a href="12_start.html">Chapter 12: Start</a></li><li><a href="12_notes.html">Chapter 12: Notes</a></li><li><a href="13_start.html">Chapter 13: Start</a></li><li><a href="13_notes.html">Chapter 13: Notes</a></li></ul></li><li><a href="activities.html">Activities</a><ul class="dropdown-menu menu-level-1"><li><a href="hw1.html">Homework 1</a></li><li><a href="hw2.html">Homework 2</a></li><li><a href="hw3.html">Homework 3</a></li><li><a href="hw4.html">Homework 4</a></li><li><a href="hw5.html">Homework 5</a></li><li><a href="hw6.html">Homework 6</a></li><li><a href="hw7.html">Homework 7</a></li><li><a href="hw8.html">Homework 8</a></li></ul></li><li><a href="resources.html">Resources</a></li><li><a href="about.html">About</a></li></ul>
+<!-- Hamburger menu and toggle JS commented out -->
+</nav>
+  <div class="container">
+    <main>
+      
+<nav class="chapter-downloads" aria-label="Download chapter sources">
+  <div role="group" aria-label="Download formats">
+    <a class="download-btn" href="sources/09_start/09_start.pdf" download><span aria-hidden="true">📄</span> PDF</a>
+    <a class="download-btn" href="sources/09_start/09_start.docx" download><span aria-hidden="true">📝</span> DOCX</a>
+    <a class="download-btn" href="sources/09_start/09_start.md" download><span aria-hidden="true">✍️</span> MD</a>
+    <a class="download-btn" href="sources/09_start/09_start.ipynb" download><span aria-hidden="true">📓</span> IPYNB</a>
+    <a class="download-btn" href="sources/09_start/09_start.tex" download><span aria-hidden="true">📐</span> TEX</a>
+    <a class="download-btn" href="jupyter/content/notebooks/09_start.html" target="_blank"><span aria-hidden="true">🔗</span> Jupyter</a>
+  </div>
+</nav>
+        <div class="markdown-body">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Week-9---Driven-Oscillators-and-Resonance">Week 9 - Driven Oscillators and Resonance<a class="anchor-link" href="#Week-9---Driven-Oscillators-and-Resonance">¶</a></h1>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Thus far, we have either worked with energy conserving systems or systems that dissipate energy to the point of stopping their motion. The primary examples have been conservative systems, potential energy oscillators, and systems with damping that extract all the kinetic energy from the system. <a href="https://en.wikipedia.org/wiki/Driven_oscillator">Driven Systems</a> are systems that are driven by external forcing. We use "forcing" because it's not always a push or a pull. Radio systems use electromagnetic waves to drive the system. Climate systems are driven by thermal forcing.</p>
+<p>Driven oscillators are a specific type of driven system, we expect them to demonstrate recurrent bahevior. Driven ooscillators are quite common. Analog radios use a driven oscillator that is tuned to a specific frequency (99.5 FM is tuned to 99.5 MHz). When you dial the radio you are "tuning" the oscillator to the frequency of the broadcast. This is an illustration of the phenomenon of <a href="https://en.wikipedia.org/wiki/Resonance">resonance</a>. Resonance is a phenomenon where a system is driven at a frequency that matches (or closely matches) its natural frequency. When this happens, the amplitude of the oscillation can grow very large. Resonance is the phenomenon that caused the <a href="https://en.wikipedia.org/wiki/Tacoma_Narrows_Bridge_(1940">collapse of the Tacoma Narrows Bridge</a>) in 1940.</p>
+<h2 id="Collapse-of-the-Tacoma-Narrows-Bridge-(9-minute-video)">Collapse of the Tacoma Narrows Bridge (9 minute video)<a class="anchor-link" href="#Collapse-of-the-Tacoma-Narrows-Bridge-(9-minute-video)">¶</a></h2><p>Resonance is the phenomenon that caused the <a href="https://en.wikipedia.org/wiki/Tacoma_Narrows_Bridge_(1940">collapse of the Tacoma Narrows Bridge</a>) in 1940. The video below describes the collapse and how the bridge was rebuilt to avoid the same problem.</p>
+<p><a href="https://www.youtube.com/watch?v=mXTSnZgrfxM"><img alt="Why the Tacoma Narrows Bridge Collapsed" src="images/chapters/mXTSnZgrfxM.jpg"/></a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Quantum-Mechanical-Resonance">Quantum Mechanical Resonance<a class="anchor-link" href="#Quantum-Mechanical-Resonance">¶</a></h2><p>You might have heard about resonance in the context of <a href="https://en.wikipedia.org/wiki/Resonance_(quantum_mechanics">quantum mechanics</a>) or most likely in <a href="https://en.wikipedia.org/wiki/Particle_physics">particle physics</a> or <a href="https://en.wikipedia.org/wiki/Nuclear_physics">nuclear physics</a>. In these cases, typically resonance is a phenomenon where a system is driven at a frequency that matches some natural spacing of energy levels. In quantum mechanics, frequency of light is related to it's energy by $E = h \nu$, where $h$ is Planck's constant and $\nu$ is the frequency of the light.</p>
+<p>The energy levels of a system are quantized, they are separated by discrete amounts. When a system is driven at a frequency that matches the energy level separation, the system can absorb energy from the driving force. This can cause the system to transition to a higher energy state. A quantum system also ejects an amount of energy as a photon (randomly) and transitions to a lower energy state.</p>
+<p>Probing these transitions can tell you about particle properties and reactions. This is a large field of study in particle and nuclear physics.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Solving-Linear-Differential-Equations">Solving Linear Differential Equations<a class="anchor-link" href="#Solving-Linear-Differential-Equations">¶</a></h2><p>Much of the work we have done so far has been solving homogeneous linear differential equations. These are equations that have a form like this:</p>
+<p>$$\frac{d^2 x}{dt^2} + 2\beta\frac{dx}{dt} + \omega_0^2 x = 0.$$</p>
+<p>All of the driven systems that we will work with will be described by a linear differential equation. The general form of a linear differential equation is:</p>
+<p>$$\frac{d^n x}{dt^n} + a_{n-1} \frac{d^{n-1} x}{dt^{n-1}} + a_{n-2} \frac{d^{n-2} x}{dt^{n-2}} + ... + a_1 \frac{dx}{dt} + a_0 x = f(t).$$</p>
+<p>The $f(t)$ is the driving force. The $a_i$ are constants. The $n$ is the order of the differential equation.</p>
+<p>We've never solved a driven differential equation before, but we have two powerful tools: superposition and uniqueness. Superposition tells us that we can solve the homogeneous part of the equation and then add a particular solution to get the full solution. Uniqueness tells us that if we have a solution that fits the driver and the initial conditions, then it is unique.</p>
+<p>As the homogenous solutions for our oscillators will typically die out, we will refer to them as transient solutions. The particular solution will be the steady state solution.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+    </main>
+  </div>
+  <footer class="site-footer">
+    <p>&copy; Modern Classical Mechanics. All rights reserved.</p>
+  </footer>
+</body>
+</html>

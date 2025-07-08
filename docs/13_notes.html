@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Classical Mechanics</title>
+  <!-- Both themes loaded, JS enables/disables as needed -->
+  <link id="theme-light" href="css/theme-light.css" rel="stylesheet" disabled>
+  <link id="theme-dark" href="css/theme-dark.css" rel="stylesheet" disabled>
+  <script>
+    (function() {
+      function setTheme(mode) {
+        const light = document.getElementById('theme-light');
+        const dark = document.getElementById('theme-dark');
+        if (mode === 'dark') {
+          dark.disabled = false;
+          light.disabled = true;
+          document.documentElement.classList.add('dark');
+        } else {
+          dark.disabled = true;
+          light.disabled = false;
+          document.documentElement.classList.remove('dark');
+        }
+      }
+      function getPreferredTheme() {
+        const saved = localStorage.getItem('theme');
+        if (saved) return saved;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      window.applyTheme = function() {
+        setTheme(getPreferredTheme());
+      };
+      function toggleTheme() {
+        const current = getPreferredTheme();
+        const next = current === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('theme', next);
+        setTheme(next);
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        var btn = document.getElementById('theme-toggle');
+        if (btn) btn.addEventListener('click', toggleTheme);
+      });
+      // Listen for system preference changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        if (!localStorage.getItem('theme')) setTheme(e.matches ? 'dark' : 'light');
+      });
+      // Initial theme
+      window.applyTheme();
+    })();
+  </script>
+</head>
+<body>
+  
+  <header class="site-header">
+    <h1 class="site-title">Modern Classical Mechanics</h1>
+  </header>
+  <button id="theme-toggle" class="toggle-dark" aria-label="Toggle dark/light mode">🌗</button>
+  <nav class="site-nav" id="site-nav"><ul class="site-nav-menu" id="site-nav-menu"><li><a href="index.html">Home</a></li><li><a href="chapters.html">Chapters</a><ul class="dropdown-menu menu-level-1"><li><a href="01_start.html">Chapter 1: Start</a></li><li><a href="01_notes.html">Chapter 1: Notes</a></li><li><a href="02_start.html">Chapter 2: Start</a></li><li><a href="02_notes.html">Chapter 2: Notes</a></li><li><a href="03_start.html">Chapter 3: Start</a></li><li><a href="03_notes.html">Chapter 3: Notes</a></li><li><a href="04_start.html">Chapter 4: Start</a></li><li><a href="04_notes.html">Chapter 4: Notes</a></li><li><a href="05_start.html">Chapter 5: Start</a></li><li><a href="05_notes.html">Chapter 5: Notes</a></li><li><a href="06_start.html">Chapter 6: Start</a></li><li><a href="06_notes.html">Chapter 6: Notes</a></li><li><a href="06_notes_2.html">Chapter 6: Notes 2</a></li><li><a href="07_start.html">Chapter 7: Start</a></li><li><a href="07_notes.html">Chapter 7: Notes</a></li><li><a href="08_start.html">Chapter 8: Start</a></li><li><a href="08_notes.html">Chapter 8: Notes</a></li><li><a href="09_start.html">Chapter 9: Start</a></li><li><a href="09_notes.html">Chapter 9: Notes</a></li><li><a href="10_start.html">Chapter 10: Start</a></li><li><a href="10_notes.html">Chapter 10: Notes</a></li><li><a href="11_start.html">Chapter 11: Start</a></li><li><a href="11_notes.html">Chapter 11: Notes</a></li><li><a href="12_start.html">Chapter 12: Start</a></li><li><a href="12_notes.html">Chapter 12: Notes</a></li><li><a href="13_start.html">Chapter 13: Start</a></li><li><a href="13_notes.html">Chapter 13: Notes</a></li></ul></li><li><a href="activities.html">Activities</a><ul class="dropdown-menu menu-level-1"><li><a href="hw1.html">Homework 1</a></li><li><a href="hw2.html">Homework 2</a></li><li><a href="hw3.html">Homework 3</a></li><li><a href="hw4.html">Homework 4</a></li><li><a href="hw5.html">Homework 5</a></li><li><a href="hw6.html">Homework 6</a></li><li><a href="hw7.html">Homework 7</a></li><li><a href="hw8.html">Homework 8</a></li></ul></li><li><a href="resources.html">Resources</a></li><li><a href="about.html">About</a></li></ul>
+<!-- Hamburger menu and toggle JS commented out -->
+</nav>
+  <div class="container">
+    <main>
+      
+<nav class="chapter-downloads" aria-label="Download chapter sources">
+  <div role="group" aria-label="Download formats">
+    <a class="download-btn" href="sources/13_notes/13_notes.pdf" download><span aria-hidden="true">📄</span> PDF</a>
+    <a class="download-btn" href="sources/13_notes/13_notes.docx" download><span aria-hidden="true">📝</span> DOCX</a>
+    <a class="download-btn" href="sources/13_notes/13_notes.md" download><span aria-hidden="true">✍️</span> MD</a>
+    <a class="download-btn" href="sources/13_notes/13_notes.ipynb" download><span aria-hidden="true">📓</span> IPYNB</a>
+    <a class="download-btn" href="sources/13_notes/13_notes.tex" download><span aria-hidden="true">📐</span> TEX</a>
+    <a class="download-btn" href="jupyter/content/notebooks/13_notes.html" target="_blank"><span aria-hidden="true">🔗</span> Jupyter</a>
+  </div>
+</nav>
+        <div class="markdown-body">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Week-13---Notes:-Examples-of-Lagrangian-Mechanics">Week 13 - Notes: Examples of Lagrangian Mechanics<a class="anchor-link" href="#Week-13---Notes:-Examples-of-Lagrangian-Mechanics">¶</a></h1>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>We've seen the Lagrangian formulation of mechanics, and we have seen how to use it to derive the equations of motion for a system. We will cover a few common examples of Lagrangian mechanics and point out some of the subtleties that arise in each case.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Example:-The-Atwood-Machine">Example: The Atwood Machine<a class="anchor-link" href="#Example:-The-Atwood-Machine">¶</a></h2><p>The <a href="https://en.wikipedia.org/wiki/Atwood_machine">Atwood machine</a> consists of two masses, $M$ and $m$, connected by a massless string that passes over a massless pulley. The system is subject to gravity alone. The figure below shows the system along with a choice of coordinates $y_1$ and $y_2$ for the two masses.</p>
+<p><img alt="Atwood Machine" src="images/chapters/atwood.png"/></p>
+<p>These coordinates are measured from the center of the pulley and positive $y_1$ and $y_2$ are taken to be upward. Let's try to use the Lagrangian formalism to find the equations of motion for this system.</p>
+<p>$$V = + Mgy_1 + mgy_2$$</p>
+<p>$$T = \dfrac{1}{2}M\dot{y}_1^2 + \dfrac{1}{2}m\dot{y}_2^2$$</p>
+<h3 id="Equation-of-Constraint">Equation of Constraint<a class="anchor-link" href="#Equation-of-Constraint">¶</a></h3><p>But notice that $y_1$ and $y_2$ are no independent coordinates. If we unravel the string that is over the pulley, we find that (assume length of string is $l$):</p>
+<p>$$y_1 + \pi R + y_2 = l$$</p>
+<p>where $R$ is the radius of the pulley. That is shown in the figure below.</p>
+<p><img alt="Unraveled String" src="images/chapters/string-unraveled.png"/></p>
+<p>The equation above is called an <strong>equation of constraint</strong>. It relates the coordinates $y_1$ and $y_2$ to each other. We can use this equation to eliminate one of the coordinates. Let's eliminate $y_2$:</p>
+<p>$$l = y_1 + \pi R + y_2 \rightarrow y_1 = (l - \pi R) - y_2$$</p>
+<p>This constraint has implications for velocities,</p>
+<p>$$\dfrac{dy_1}{dt} = \dfrac{d}{dt}\left((l-\pi R) - y_2\right) = -\dfrac{dy_2}{dt}$$</p>
+<p>$$\dot{y}_1 = -\dot{y}_2.$$</p>
+<p>This is likely what we could have expected, that the two masses move in opposite directions at the same speed.</p>
+<h3 id="Constructing-the-Lagrangian">Constructing the Lagrangian<a class="anchor-link" href="#Constructing-the-Lagrangian">¶</a></h3><p>Let's use this constraint to reduce the number of coordinates in the Lagrangian.</p>
+<p>$$\mathcal{L}(y_1, y_2, \dot{y}_1, \dot{y}_2) \rightarrow \mathcal{L}(y_1, \dot{y}_1)$$</p>
+<p>We can do this by substituting $y_2$ in terms of $y_1$ into the energy equations:</p>
+<p>$$T(y_1, \dot{y}_1) = \dfrac{1}{2}M\dot{y}_1^2 + \dfrac{1}{2}m\dot{y}_2^2 = \dfrac{1}{2}(M+m)\dot{y}_1^2 = T(\dot{y}_1)$$</p>
+<p>$$V(y_1, y_2) = +Mgy_1 + mgy_2$$
+$$V(y_1, y_2) = Mgy_1 + mg((l-\pi R) - y_1)$$
+$$V(y_1, y_2) = (M-m)g y_1 + mg(l-\pi R)$$
+$$V(y_1, y_2) = (M-m)g y_1 + U_0$$</p>
+<p>where $U_0 = mg(l-\pi R)$ is a constant and will not affect the equations of motion.</p>
+<p>$$\mathcal{L}(y_1, \dot{y}_1) = T(\dot{y}_1) - V(y_1) = \dfrac{1}{2}(M+m)\dot{y}_1^2 - (M-m)g y_1$$</p>
+<p>$$\dfrac{\partial \mathcal{L}}{\partial y_1} = -(M-m)g$$</p>
+<p>$$\dfrac{\partial \mathcal{L}}{\partial \dot{y}_1} = (M+m)\dot{y}_1$$</p>
+<p>These derivatives give the following equation of motion:</p>
+<p>$$-(M-m) g - \dfrac{d}{dt}\left((M+m)\dot{y}_1\right) = 0$$</p>
+<h4 id="Generalized-Force">Generalized Force<a class="anchor-link" href="#Generalized-Force">¶</a></h4><p>Notice that the first term in the above equation is the force on the mass $M$ in the Newtonian picture: the weight of $M$ minus the weight of $m$. That makes sense because the Lagrangian formalism is supposed to reproduce Newton's laws, and the spatial derivative of the Lagrangian produces a <a href="https://en.wikipedia.org/wiki/Generalized_force">generalized force</a>.</p>
+<p>$$\dfrac{\partial \mathcal{L}}{\partial q_i} = -\dfrac{\partial V}{\partial q_i} = F_i$$</p>
+<p>The kinetic term has no spatial dependence, so it does not contribute to the generalized force.</p>
+<h4 id="Generalized-Momentum">Generalized Momentum<a class="anchor-link" href="#Generalized-Momentum">¶</a></h4><p>The second term in the above equation is the time derivative of the momentum of the system using $y_1$ as the coordinate:</p>
+<p>$$(M+m)\dot{y}_1 = M\dot{y}_1 - m\dot{y}_2 = p_{y_1}$$</p>
+<p>Again, that is a sensible result because the Lagrangian formalism is supposed to reproduce Newton's laws, and the generalized force is related to the time derivative of the <a href="https://phys.libretexts.org/Bookshelves/Classical_Mechanics/Variational_Principles_in_Classical_Mechanics_(Cline">generalized momentum</a>/07%3A_Symmetries_Invariance_and_the_Hamiltonian/7.02%3A_Generalized_Momentum).</p>
+<p>$$\dfrac{d}{dt}\left(\dfrac{\partial \mathcal{L}}{\partial \dot{q}_i}\right) = \dfrac{d}{dt}\left(\dfrac{\partial T}{\partial \dot{q}_i}\right) = \dfrac{dp_{q_i}}{dt}$$</p>
+<h3 id="Equation-of-Motion">Equation of Motion<a class="anchor-link" href="#Equation-of-Motion">¶</a></h3><p>The equation of motion can be written as</p>
+<p>$$(M=m)\ddot{y}_1 = -(M-m)g$$
+$$\ddot{y}_1 = -\dfrac{(M-m)}{(M+m)}g.$$</p>
+<p>With $M &gt; m$, this acceleration is downward as the larger mass $M$ accelerates down. With $\dot{y}_1 = -\dot{y}_2$, we know $$\ddot{y}_2 = -\ddot{y}_1$$, so that:</p>
+<p>$$\ddot{y}_2 = \dfrac{(M-m)}{(M+m)}g$$</p>
+<p>Again, with $M &gt; m$, this acceleration is upward as the smaller mass $m$ accelerates up.</p>
+<h2 id="Example:-Atwood-Machine-with-Rotating-Pulley">Example: Atwood Machine with Rotating Pulley<a class="anchor-link" href="#Example:-Atwood-Machine-with-Rotating-Pulley">¶</a></h2><p>In the previous example, we didn't take into account the energy needed to rotate the pulley. Let's do that now. Beucase the rope cannot slip, any small rotation $Rd\phi$ of the pulley give a change $dy_1$ in the position of mass $M$. This is the <a href="https://en.wikipedia.org/wiki/No-slip_condition">no slip constraint</a>.</p>
+<p>If the pulley has a mass $M_p$ and radius $R$, then we must introduce it's kinetic energy:</p>
+<p>$$T_{pulley} =  \dfrac{1}{2} I \omega^2$$</p>
+<p>where $I$ is the <a href="https://en.wikipedia.org/wiki/List_of_moments_of_inertia">moment of inertia</a> of the pulley and $\omega$ is the angular velocity of the pulley, $\omega = \dot{\phi}$. This angular velocity is related to the linear velocities of the masses.</p>
+<p>$$I = \dfrac{1}{2}M_p R^2$$</p>
+<p>$$T_{pulley} =  \dfrac{1}{2} \left(\dfrac{1}{2}M_p R^2\right) \dot{\phi}^2$$
+$$T_{pulley} =  \dfrac{1}{4}M_p R^2 \dot{\phi}^2$$</p>
+<p>We now map this additional kinetic energy into the problem.</p>
+<p>$$T(\dot{y}_1, \dot{\phi}) = \dfrac{1}{2}(M+m)\dot{y}_1^2 + \dfrac{1}{4}M_p R^2 \dot{\phi}^2$$</p>
+<p>But the constraint is such that,</p>
+<p>$$\dot{y}_1 = Rd\phi \rightarrow y_1 = R\phi +\underbrace{R\phi_0}_{\textrm{const.}}$$</p>
+<p>$$\dot{y}_1 = R\dot{\phi}$$</p>
+<p>We work these back into $T$, $V$, and $\mathcal{L}$.</p>
+<p>$$T(\dot{\phi}) = \dfrac{1}{2}(M+m)\dot{y}_1^2 + \dfrac{1}{4}M_p R^2 \dot{\phi}^2$$
+$$T(\dot{\phi}) = \dfrac{1}{2}(M+m+\frac{1}{2}M_p)R^2 \dot{\phi}^2$$</p>
+<p>$$V(\phi) = (M-m)gy_1 + U_0$$
+$$V(\phi) = (M-m)g(R\phi + R\phi_0) + U_0$$
+$$V(\phi) = (M-m)gR\phi + \tilde{U}_0$$</p>
+<p>where $\tilde{U}_0 = (M-m)gR\phi_0 + U_0$ is another constant that will not affect the equations of motion.</p>
+<p>$$\mathcal{L}(\phi, \dot{\phi}) = T(\dot{\phi}) - V(\phi)$$
+$$\mathcal{L}(\phi, \dot{\phi}) = \dfrac{1}{2}(M+m+\frac{1}{2}M_p)R^2 \dot{\phi}^2 - (M-m)gR\phi$$</p>
+<h3 id="Torque-and-Angular-Momentum">Torque and Angular Momentum<a class="anchor-link" href="#Torque-and-Angular-Momentum">¶</a></h3><p>Our generalized coordinate is $\phi$ and our generalized velocity is $\dot{\phi}$. We apply the Euler-Lagrange equation. We obtain the generalized force:</p>
+<p>$$\dfrac{\partial \mathcal{L}}{\partial \phi} = -(M-m)gR = F_{\phi}$$</p>
+<p>Notice that in this case, the generalized force is not the same as the force on mass $M$ in the Newtonian picture. It's a torque around the pulley.</p>
+<p>We can find the generalized momentum in a similar way:</p>
+<p>$$\dfrac{\partial \mathcal{L}}{\partial \dot{\phi}} = (M+m+\frac{1}{2}M_p)R^2\dot{\phi} = p_{\phi}$$</p>
+<p>This is the angular momentum of the system about the axle. We can see that by breaking down each part and adding them up.</p>
+<p>$$\vec{L}_{total} = \vec{L}_{disk} + \vec{L}_{M} + \vec{L}_{m}$$</p>
+<p>$$\vec{L}_{disk} = I_{disk}\omega = \dfrac{1}{2}M_p R^2 \dot{\phi}\,\text{(out of the page)}$$</p>
+<p>$$\vec{L}_{M} = M\vec{r}_{M}\times \vec{v}_{M} = M(R\hat{r})\times (R\dot{\phi}\hat{\phi}) = MR^2 \dot{\phi}\,\text{(out of the page)}$$</p>
+<p>$$\vec{L}_{m} = M\vec{r}_{m}\times \vec{v}_{m} = m(R\hat{r})\times (R\dot{\phi}\hat{\phi}) = mR^2 \dot{\phi}\,\text{(out of the page)}$$</p>
+<p>Add them up:</p>
+<p>$$\vec{L}_{total} = \left(\dfrac{1}{2}M_p + M + m\right)R^2 \dot{\phi}\,\text{(out of the page)}$$</p>
+<p>Or the magnitude:</p>
+<p>$$L_{total} = \left(\dfrac{1}{2}M_p + M + m\right)R^2 \dot{\phi}$$
+$$p_{\phi} = L_{total}$$</p>
+<h3 id="Equation-of-Motion">Equation of Motion<a class="anchor-link" href="#Equation-of-Motion">¶</a></h3><p>We return to the diffeferential equation of motion:</p>
+<p>$$-(M-m)gR - \dfrac{d}{dt}((M+m+\frac{1}{2}M_p)R^2\dot{\phi} = 0$$
+$$-(M-m)gR - (M+m+\frac{1}{2}M_p)R^2\ddot{\phi} = 0$$</p>
+<p>which produces the following equation of motion:</p>
+<p>$$\ddot{\phi} = -\dfrac{g}{R}\dfrac{(M-m)}{(M+m+\frac{1}{2}M_p)}$$</p>
+<p>which is a constant acceleration.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Example:-Bead-in-a-Parabolic-Bowl">Example: Bead in a Parabolic Bowl<a class="anchor-link" href="#Example:-Bead-in-a-Parabolic-Bowl">¶</a></h2><p>A bead of mass $m$ is constrained to move along a parabolic bowl. There is a gravitational force acting on the bead. The bowl is symmetric about the $z$-axis and the bead is constrained to move along the surface without friction or rolling. The bowl is described by the equation:</p>
+<p>$$z = \dfrac{1}{2}c(x^2 + y^2)$$</p>
+<p>where $c$ is a constant that describes the curvature of the bowl. The figure below shows the system.</p>
+<p><img alt="Bead in a Parabolic Bowl" src="images/chapters/paraboloid.png"/></p>
+<p>In this case the system is better solved in cylindrical coordinates. The coordinates are $(r, \phi, z)$, where $r$ is the distance from the $z$-axis, $\phi$ is the angle around the $z$-axis, and $z$ is the height above the $xy$-plane as shown above.</p>
+<p>With $\langle \rho, \phi, z\rangle$ as the coordinates, equation for the constraint is:</p>
+<p>$$z = \dfrac{1}{2}c(x^2 + y^2) = \dfrac{1}{2}c\rho^2.$$</p>
+<p>Note that $c$ has units.</p>
+<p>$$[z] = m \quad [\rho^2] = m^2 \quad [c] = \dfrac{1}{m}$$</p>
+<p>The speed in cylindrical coordinates can be derived from the expressions in Cartesian coordinates, but we quote the result here:</p>
+<p>$$v^2 = \dot{\rho}^2 + \rho^2\dot{\phi}^2 + \dot{z}^2.$$</p>
+<h3 id="Constructing-the-Lagrangian">Constructing the Lagrangian<a class="anchor-link" href="#Constructing-the-Lagrangian">¶</a></h3><p>We write the kinetic and potential energy of the bead in terms of the coordinates $(r, \phi, z)$.</p>
+<p>$$T = \dfrac{1}{2}m\left(\dot{\rho}^2 + \rho^2\dot{\phi}^2 + \dot{z}^2\right)$$</p>
+<p>$$V = mgz$$</p>
+<p>In principle, the Lagrangian can depend on all three coordinates and all three velocities.</p>
+<p>$$\mathcal{L}(\rho, \dot{\rho}, \phi, \dot{\phi}, z, \dot{z}, t) = T - V$$</p>
+<p>There is no explicit time dependence, so we can ignore $t$. When the Lagrangian has no explicit time dependence, we should expect the energy to be conserved. This form of Lagrangian analysis does not account for dissipation.</p>
+<p>$$\mathcal{L}(\rho, \dot{\rho}, \phi, \dot{\phi}, z, \dot{z})$$</p>
+<p>Moreover, with the symmetry of the problem, we can expect no $\phi$ dependence. That is the gravitational potential energy only depends on $z$ and not on $\phi$. This is a consequence of the symmetry of the problem and indicates that $\phi$ is a <a href="https://phys.libretexts.org/Bookshelves/Classical_Mechanics/Variational_Principles_in_Classical_Mechanics_(Cline">cyclic coordinate</a>/07%3A_Symmetries_Invariance_and_the_Hamiltonian/7.05%3A_Cyclic_Coordinates). We thus expect angular momentum to be conserved about the $z$-axis.</p>
+<p>$$\mathcal{L}(\rho, \dot{\rho}, \dot{\phi}, z, \dot{z})$$</p>
+<p>Lastly, the constraint equation gives us $z$ in terms of $\rho$:</p>
+<p>$$z = \dfrac{1}{2}c\rho^2$$</p>
+<p>And thus we can find the time derivative of $z$:</p>
+<p>$$\dot{z} = 2c\rho\dot{\rho}.$$</p>
+<p>So the Lagrangian can be simplified three variables:</p>
+<p>$$\mathcal{L}(\rho, \dot{\rho}, \dot{\phi}) = T - V$$</p>
+<p>$$\mathcal{L}(\rho, \dot{\rho}, \dot{\phi}) = \dfrac{1}{2}m\left(\dot{\rho}^2 + \rho^2\dot{\phi}^2 + 4c^2\rho^2\dot{\rho}^2\right) - mg\dfrac{1}{2}c\rho^2$$</p>
+<h3 id="Equations-of-Motion">Equations of Motion<a class="anchor-link" href="#Equations-of-Motion">¶</a></h3><p>We can now apply the Euler-Lagrange equations to find the equations of motion. We will do this for each coordinate. Let's start with $\phi$ because there is only one term in the Lagrangian that depends on $\dot{\phi}$.</p>
+<p>$$\underbrace{\dfrac{\partial \mathcal{L}}{\partial \phi}}_0 - \dfrac{d}{dt}\left(\dfrac{\partial \mathcal{L}}{\partial \dot{\phi}}\right) = 0$$</p>
+<p>$$\dfrac{d}{dt}\left(\dfrac{\partial \mathcal{L}}{\partial \dot{\phi}}\right) = \dfrac{d}{dt}\underbrace{\left(m\rho^2\dot{\phi}\right)}_{L_z} = 0$$</p>
+<p>This equation of motion indicates that the angular momentum about the $z$-axis is conserved, as we expected from the symmetry of the problem.</p>
+<p>For the coordinate $\rho$, we have:</p>
+<p>$$\dfrac{\partial \mathcal{L}}{\partial \rho} - \dfrac{d}{dt}\left(\dfrac{\partial \mathcal{L}}{\partial \dot{\rho}}\right) = 0$$</p>
+<p>$$\dfrac{\partial \mathcal{L}}{\partial \rho} = m\rho\dot{\phi}^2 + 4c^2m\rho\dot{\rho}^2 - 2mgc\rho$$</p>
+<p>$$\dfrac{\partial \mathcal{L}}{\partial \dot{\rho}} = m\dot{\rho} + 4mc^2\rho^2\dot{\rho}$$</p>
+<p>$$\dfrac{d}{dt}\left(\dfrac{\partial \mathcal{L}}{\partial \dot{\rho}}\right) = m\ddot{\rho} + 8mc^2\rho\dot{\rho}^2 + 4mc^2\rho^2\ddot{\rho}$$</p>
+<p>We can now write the equation of motion:</p>
+<p>$$m\rho\dot{\phi}^2 + 4c^2m\rho\dot{\rho}^2 - 2mgc\rho - m\ddot{\rho} - 8mc^2\rho\dot{\rho}^2 - 4mc^2\rho^2\ddot{\rho} = 0$$</p>
+<p>We can clean this up a little bit:</p>
+<p>$$\ddot{\rho}(1+4c^2\rho^2) + 8c^2\rho\dot{\rho}^2 = \rho\dot{\phi}^2 + 4c^2\rho\dot{\rho}^2 - 2gc\rho$$</p>
+<p>$$\ddot{\rho}(1+4c^2\rho^2) + 4c^2\rho\dot{\rho}^2 - \rho\dot{\phi}^2 + 2gc\rho = 0$$</p>
+<p>We try to write both equations in terms of their accelerations. We have:</p>
+<p>$$\ddot{\rho} = -\dfrac{4c^2\rho\dot{\rho}^2 - \rho\dot{\phi}^2 + 2gc\rho}{1+4c^2\rho^2}$$</p>
+<p>$$\ddot{\phi} = - \dfrac{2\rho\dot{\rho}\dot{\phi}}{\rho^2}$$</p>
+<p>For which we can develop a solution anywhere away from the origin ($\rho \neq 0$).</p>
+<h3 id="Preparing-for-Numerical-Solution">Preparing for Numerical Solution<a class="anchor-link" href="#Preparing-for-Numerical-Solution">¶</a></h3><p>We need to write these equations in a form that is ready for numerical solution. We can do this by writing the equations in terms of the first derivatives. Let $\omega = \dot{\phi}$ and $v = \dot{\rho}$. We get 4 1st order equations:</p>
+<p>$$\dot{\rho} = v$$
+$$\dot{\phi} = \omega$$
+$$\dot{v} = -\dfrac{4c^2\rho v^2 - \rho\omega^2 + 2gc\rho}{1+4c^2\rho^2}$$
+$$\dot{\omega} = - \dfrac{2 v\omega}{\rho^2}$$</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+    </main>
+  </div>
+  <footer class="site-footer">
+    <p>&copy; Modern Classical Mechanics. All rights reserved.</p>
+  </footer>
+</body>
+</html>

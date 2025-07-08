@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Classical Mechanics</title>
+  <!-- Both themes loaded, JS enables/disables as needed -->
+  <link id="theme-light" href="css/theme-light.css" rel="stylesheet" disabled>
+  <link id="theme-dark" href="css/theme-dark.css" rel="stylesheet" disabled>
+  <script>
+    (function() {
+      function setTheme(mode) {
+        const light = document.getElementById('theme-light');
+        const dark = document.getElementById('theme-dark');
+        if (mode === 'dark') {
+          dark.disabled = false;
+          light.disabled = true;
+          document.documentElement.classList.add('dark');
+        } else {
+          dark.disabled = true;
+          light.disabled = false;
+          document.documentElement.classList.remove('dark');
+        }
+      }
+      function getPreferredTheme() {
+        const saved = localStorage.getItem('theme');
+        if (saved) return saved;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      window.applyTheme = function() {
+        setTheme(getPreferredTheme());
+      };
+      function toggleTheme() {
+        const current = getPreferredTheme();
+        const next = current === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('theme', next);
+        setTheme(next);
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        var btn = document.getElementById('theme-toggle');
+        if (btn) btn.addEventListener('click', toggleTheme);
+      });
+      // Listen for system preference changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        if (!localStorage.getItem('theme')) setTheme(e.matches ? 'dark' : 'light');
+      });
+      // Initial theme
+      window.applyTheme();
+    })();
+  </script>
+</head>
+<body>
+  
+  <header class="site-header">
+    <h1 class="site-title">Modern Classical Mechanics</h1>
+  </header>
+  <button id="theme-toggle" class="toggle-dark" aria-label="Toggle dark/light mode">🌗</button>
+  <nav class="site-nav" id="site-nav"><ul class="site-nav-menu" id="site-nav-menu"><li><a href="index.html">Home</a></li><li><a href="chapters.html">Chapters</a><ul class="dropdown-menu menu-level-1"><li><a href="01_start.html">Chapter 1: Start</a></li><li><a href="01_notes.html">Chapter 1: Notes</a></li><li><a href="02_start.html">Chapter 2: Start</a></li><li><a href="02_notes.html">Chapter 2: Notes</a></li><li><a href="03_start.html">Chapter 3: Start</a></li><li><a href="03_notes.html">Chapter 3: Notes</a></li><li><a href="04_start.html">Chapter 4: Start</a></li><li><a href="04_notes.html">Chapter 4: Notes</a></li><li><a href="05_start.html">Chapter 5: Start</a></li><li><a href="05_notes.html">Chapter 5: Notes</a></li><li><a href="06_start.html">Chapter 6: Start</a></li><li><a href="06_notes.html">Chapter 6: Notes</a></li><li><a href="06_notes_2.html">Chapter 6: Notes 2</a></li><li><a href="07_start.html">Chapter 7: Start</a></li><li><a href="07_notes.html">Chapter 7: Notes</a></li><li><a href="08_start.html">Chapter 8: Start</a></li><li><a href="08_notes.html">Chapter 8: Notes</a></li><li><a href="09_start.html">Chapter 9: Start</a></li><li><a href="09_notes.html">Chapter 9: Notes</a></li><li><a href="10_start.html">Chapter 10: Start</a></li><li><a href="10_notes.html">Chapter 10: Notes</a></li><li><a href="11_start.html">Chapter 11: Start</a></li><li><a href="11_notes.html">Chapter 11: Notes</a></li><li><a href="12_start.html">Chapter 12: Start</a></li><li><a href="12_notes.html">Chapter 12: Notes</a></li><li><a href="13_start.html">Chapter 13: Start</a></li><li><a href="13_notes.html">Chapter 13: Notes</a></li></ul></li><li><a href="activities.html">Activities</a><ul class="dropdown-menu menu-level-1"><li><a href="hw1.html">Homework 1</a></li><li><a href="hw2.html">Homework 2</a></li><li><a href="hw3.html">Homework 3</a></li><li><a href="hw4.html">Homework 4</a></li><li><a href="hw5.html">Homework 5</a></li><li><a href="hw6.html">Homework 6</a></li><li><a href="hw7.html">Homework 7</a></li><li><a href="hw8.html">Homework 8</a></li></ul></li><li><a href="resources.html">Resources</a></li><li><a href="about.html">About</a></li></ul>
+<!-- Hamburger menu and toggle JS commented out -->
+</nav>
+  <div class="container">
+    <main>
+      
+<nav class="chapter-downloads" aria-label="Download chapter sources">
+  <div role="group" aria-label="Download formats">
+    <a class="download-btn" href="sources/01_notes/01_notes.pdf" download><span aria-hidden="true">📄</span> PDF</a>
+    <a class="download-btn" href="sources/01_notes/01_notes.docx" download><span aria-hidden="true">📝</span> DOCX</a>
+    <a class="download-btn" href="sources/01_notes/01_notes.md" download><span aria-hidden="true">✍️</span> MD</a>
+    <a class="download-btn" href="sources/01_notes/01_notes.ipynb" download><span aria-hidden="true">📓</span> IPYNB</a>
+    <a class="download-btn" href="sources/01_notes/01_notes.tex" download><span aria-hidden="true">📐</span> TEX</a>
+    <a class="download-btn" href="jupyter/content/notebooks/01_notes.html" target="_blank"><span aria-hidden="true">🔗</span> Jupyter</a>
+  </div>
+</nav>
+        <div class="markdown-body">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Week-1---Notes:-Introduction-to-Classical-Mechanics">Week 1 - Notes: Introduction to Classical Mechanics<a class="anchor-link" href="#Week-1---Notes:-Introduction-to-Classical-Mechanics">¶</a></h1><h2 id="How-do-we-formulate-Classical-Mechanics?">How do we formulate Classical Mechanics?<a class="anchor-link" href="#How-do-we-formulate-Classical-Mechanics?">¶</a></h2><p>In the past, you have learned about <a href="https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion">Newton's Laws of Motion</a>. These laws are the foundation of classical mechanics. They are used to describe the motion of objects in the universe. In this course, we will use these laws to describe the motion of particles and rigid bodies. As we progress, we will learn other formulations of classical mechanics, such as the <a href="https://en.wikipedia.org/wiki/Lagrangian_mechanics">Lagrangian</a> and <a href="https://en.wikipedia.org/wiki/Hamiltonian_mechanics">Hamiltonian</a> reformulations.</p>
+<p>Newton's Laws of Motion are a vector formulation of classical mechanics. The laws are as follows:</p>
+<ol>
+<li><strong>First Law</strong>: An object at rest will remain at rest, and an object in motion will remain in motion at a constant velocity unless acted upon by an external force.</li>
+<li><strong>Second Law</strong>: The acceleration of an object is directly proportional to the net force acting on it and inversely proportional to its mass. The direction of the acceleration is in the direction of the net force.</li>
+<li><strong>Third Law</strong>: For every action, there is an equal and opposite reaction.</li>
+</ol>
+<p>These are the classic laws of motion that you have learned in other courses. How we formulate these laws mathematically is the subject of this course.</p>
+<h2 id="Newton's-Second-Law">Newton's Second Law<a class="anchor-link" href="#Newton's-Second-Law">¶</a></h2><p><a href="https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion#Newton%27s_second_law">Newton's Second Law</a> provides the mathematical foundation for classical mechanics. It provides a vector relationship between the net force acting on an object and its acceleration. The law is given by the equation:</p>
+<p>$$\vec{F}_{net} = m\vec{a}$$</p>
+<p>where $\vec{F}_{net}$ is the net force acting on the object, $m$ is the mass of the object, and $\vec{a}$ is the acceleration of the object. This equation is a vector equation, meaning that it must be satisfied in each direction.</p>
+<p>$$\begin{aligned}
+F_{net,x} &amp;= m a_x \\
+F_{net,y} &amp;= m a_y \\
+F_{net,z} &amp;= m a_z
+\end{aligned}$$</p>
+<p>Each push in a Cartesian direction results in a proportional response -- an acceleration in the same direction of the net push. Let's go through a common example to illustrate this relationship.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Example:-A-Block-on-an-Inclined-Ramp">Example: A Block on an Inclined Ramp<a class="anchor-link" href="#Example:-A-Block-on-an-Inclined-Ramp">¶</a></h3><p>Consider the box (mass, $m$) above on an inclined ramp (angle, $\theta$). The box is at rest subject to static friction, $\mu_s$. <em>What angle of inclination will cause the box to start sliding down the ramp?</em></p>
+<p>We start by drawing the <a href="https://en.wikipedia.org/wiki/Free_body_diagram">Free Body Diagram</a> (FBD) of the box.</p>
+<p><img alt="Free Body Diagram of Box on a Inclined Ramp; the arrows label the direction of forces acting on the box" src="images/chapters/box_fbd.png"/><br/>
+<a href="https://homework.study.com/cimages/multimages/16/diagram_2_450x3002352212273710292.png">Source: homework.study.com</a></p>
+<p>The FBD is a diagram that shows all the forces acting on the object. In this case, the forces acting on the box are:</p>
+<ul>
+<li>The force of gravity, $mg$, acting downwards.</li>
+<li>The force due to the ramp, which is both perpendicular to the ramp surface (normal) and parallel to it (friction).</li>
+</ul>
+<p>We tilt our coordinate system to align with the ramp. This makes the normal force, $N$, act in the $y$-direction and the frictional force, $f$, act in the $x$-direction. The force of gravity is split into two components: $mg\sin(\theta)$ and $mg\cos(\theta)$.</p>
+<p>The net force acting on the box is the sum of the forces acting on it, and is zero up to the point where the box starts sliding. At this point, the frictional force is at its maximum value, $\mu_s N$. Taking the sum of the forces acting on the box in each direction we have:</p>
+<p>$$\vec{F}_{net} = \vec{f} + \vec{N} + \vec{F}_{gravity} = 0$$</p>
+<p>$$\sum F_{x,i} = f - mg\sin(\theta) = 0$$
+$$\sum F_{y,i} = N - mg\cos(\theta) = 0$$</p>
+<p>Thus,</p>
+<p>$$f = mg\sin(\theta)$$
+$$N = mg\cos(\theta)$$</p>
+<p>At the point where the box starts sliding, the frictional force is at its maximum value, $\mu_s N$. Thus, the box starts sliding when:</p>
+<p>$$f = \mu_s N$$</p>
+<p>Substituting the expressions for $f$ and $N$ into the equation above, we have:</p>
+<p>$$mg\sin(\theta) = \mu_s mg\cos(\theta)$$</p>
+<p>Solving for $\theta$:</p>
+<p>$$\tan(\theta) = \mu_s$$
+$$\theta = \tan^{-1}(\mu_s)$$</p>
+<p>Thus, the box starts sliding when the angle of inclination is equal to the arctangent of the coefficient of static friction.</p>
+<div class="admonition check"><p class="admonition-title">Check</p>
+We can check this with some numbers. Steel as a static friction coefficient of about 0.16, and rubber is closer to 0.8. Thus, the angle of inclinations for steel and rubber are:
+
+<p>$$\theta_{steel} = \tan^{-1}(0.16) \approx 9^\circ$$
+$$\theta_{rubber} = \tan^{-1}(0.8) \approx 39^\circ$$</p>
+<p>It seems quite reasonable that rubber would have a higher angle of inclination before sliding than steel.</p></div>
+<pre><code class="language-{tip}">{tip}
+A few things to note about this problem:
+1. This was a static problem, such that $\vec{F}_{net} = 0$.
+2. We rotated our coordinate system to align with the ramp. This is a common technique in classical mechanics to simplify the problem.
+3. We still used Cartesian coordinates to solve the problem. This is because the forces could be easily decomposed in the titled coordinate system.
+</code></pre>
+<p>Let's work an example that is dynamic, where the net force is not zero.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Example:-Falling-Object-in-One-Dimension">Example: Falling Object in One Dimension<a class="anchor-link" href="#Example:-Falling-Object-in-One-Dimension">¶</a></h3><p>Consider an object of mass $m$ falling, but it is subject to air resistance. The free body diagram of the object shows that the forces acting on the object are:</p>
+<ul>
+<li>The force of gravity/weight, $W=mg$, acting downwards.</li>
+<li>The force due to air resistance, $F_{air}$, acting upwards.</li>
+</ul>
+<p><img alt="Free Body Diagram of Falling Object; the arrows label the direction of forces acting on the object" src="images/chapters/falling_object.png"/><br/>
+<a href="https://ibphysicsguide.weebly.com/uploads/3/0/6/1/30617491/570899611.gif">Source: ibphysicsguide.weebly.com</a></p>
+<p>Here we have chosen positive $y$ to be the downward direction. We want to predict the motion ($a$, $v$, $y$) of the object as a function of time. This is a very common problem for classical mechanics.</p>
+<h4 id="Air-Drag?">Air Drag?<a class="anchor-link" href="#Air-Drag?">¶</a></h4><p>First, we notice that we do not know the force due to <a href="https://en.wikipedia.org/wiki/Drag_(physics">air resistance</a>). We do know that the force is related to the velocity of the object. So let's start by writing the air resistance force as a function of velocity:</p>
+<p>$$F_{air} = F(v)$$</p>
+<p>where $F(v)$ is some function of velocity.</p>
+<h4 id="Taylor-Series-Expansion">Taylor Series Expansion<a class="anchor-link" href="#Taylor-Series-Expansion">¶</a></h4><p>Because we know that the objects move slowly in classical mechanics, we can assume that the function can be expanded using a <a href="https://en.wikipedia.org/wiki/Taylor_series">Taylor Series</a>.  In general, the Taylor Series of a function $f(x)$ about a point $a$ is given by:</p>
+<p>$$f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^n$$</p>
+<p>where $f^{(n)}(a)$ is the $n$-th derivative of $f(x)$ evaluated at $x=a$. We can write the first few terms out,</p>
+<p>$$f(x) = f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \frac{f'''(a)}{3!}(x-a)^3 + \ldots$$</p>
+<p>Because we know that the object is moving slowly, we can expand the function $F(v)$ about $v=0$:</p>
+<p>$$F(v) = F(0) + F'(0)v + \frac{F''(0)}{2!}v^2 + \ldots$$</p>
+<p>We can assume that the first term is zero, $F(0)=0$, because there is no air resistance when the object is at rest. Thus, the force due to air resistance is approximately:</p>
+<p>$$F(v) \approx F'(0)v + \frac{F''(0)}{2!}v^2$$</p>
+<p>We call the first term the <strong>linear drag</strong> term and the second term the <strong>quadratic drag</strong> term. The linear drag term is proportional to the velocity of the object, and the quadratic drag term is proportional to the square of the velocity of the object. We also typically replace the evaluated derivatives with constants, $b$ and $c$ -- because they are constants that depend on the object and the fluid it is moving through. And thus,</p>
+<p>$$F_{air} \approx bv + cv^2$$</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h4 id="Back-to-Newton's-Second-Law">Back to Newton's Second Law<a class="anchor-link" href="#Back-to-Newton's-Second-Law">¶</a></h4><p>In the $y$-direction, the net force acting on the object is:</p>
+<p>$$F_y = W - F_{air} = mg - bv - cv^2$$</p>
+<p>And thus, the acceleration of the object is:</p>
+<p>$$a = g - \frac{b}{m}v - \frac{c}{m}v^2$$</p>
+<p>This <a href="(https://en.wikipedia.org/wiki/Differential_equation">differential equation</a>) can be written in a variety of ways. One common way is to write the equation as a <a href="https://math.libretexts.org/Bookshelves/Differential_Equations/Introduction_to_Partial_Differential_Equations_(Herman">second-order differential equation</a>/12:<em>B</em>-_Ordinary_Differential_Equations_Review/12.02:_Second_Order_Linear_Differential_Equations).</p>
+<p>$$\frac{d^2y}{dt^2} = g - \frac{b}{m}\frac{dy}{dt} - \frac{c}{m}\left(\frac{dy}{dt}\right)^2$$</p>
+<p>Note that this is a nonlinear differential equation (i.e., there's a $(d^ny/dt^n)^m$ term where $m &gt; 1$), which are notoriously difficult to solve in general. We can write it using the dot notation for derivatives (i.e., $\dot{y} = dy/dt$, $\ddot{y} = d^2y/dt^2$):</p>
+<p>$$\ddot{y} = g - \frac{b}{m}\dot{y} - \frac{c}{m}\dot{y}^2$$</p>
+<p>We can also use the velocity as the independent variable, $v = \dot{y}$. Both equations below are equivalent:</p>
+<p>$$\frac{dv}{dt} = g - \frac{b}{m}v - \frac{c}{m}v^2$$
+$$\dot{v} = g - \frac{b}{m}v - \frac{c}{m}v^2$$</p>
+<pre><code class="language-{tip}">{tip}
+A few things to note:
+1. This is a dynamic one-dimensional problem, such that $\vec{F}_{net} \neq 0$.
+2. This is a nonlinear problem, such that the acceleration is a function of the velocity of the object.
+3. We are stuck with a differential equation that we need to solve, and don't have a simple algebraic solution (e.g., a simple antiderivative).
+</code></pre>
+<p><strong>How do we solve this equation to find the motion of the object as a function of time?</strong>  We will come back to this, but solving differential equations is the primary tool of classical mechanics. We will learn how to solve these equations analytically and numerically in this course.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+    </main>
+  </div>
+  <footer class="site-footer">
+    <p>&copy; Modern Classical Mechanics. All rights reserved.</p>
+  </footer>
+</body>
+</html>

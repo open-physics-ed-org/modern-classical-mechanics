@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Classical Mechanics</title>
+  <!-- Both themes loaded, JS enables/disables as needed -->
+  <link id="theme-light" href="css/theme-light.css" rel="stylesheet" disabled>
+  <link id="theme-dark" href="css/theme-dark.css" rel="stylesheet" disabled>
+  <script>
+    (function() {
+      function setTheme(mode) {
+        const light = document.getElementById('theme-light');
+        const dark = document.getElementById('theme-dark');
+        if (mode === 'dark') {
+          dark.disabled = false;
+          light.disabled = true;
+          document.documentElement.classList.add('dark');
+        } else {
+          dark.disabled = true;
+          light.disabled = false;
+          document.documentElement.classList.remove('dark');
+        }
+      }
+      function getPreferredTheme() {
+        const saved = localStorage.getItem('theme');
+        if (saved) return saved;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      window.applyTheme = function() {
+        setTheme(getPreferredTheme());
+      };
+      function toggleTheme() {
+        const current = getPreferredTheme();
+        const next = current === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('theme', next);
+        setTheme(next);
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        var btn = document.getElementById('theme-toggle');
+        if (btn) btn.addEventListener('click', toggleTheme);
+      });
+      // Listen for system preference changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        if (!localStorage.getItem('theme')) setTheme(e.matches ? 'dark' : 'light');
+      });
+      // Initial theme
+      window.applyTheme();
+    })();
+  </script>
+</head>
+<body>
+  
+  <header class="site-header">
+    <h1 class="site-title">Modern Classical Mechanics</h1>
+  </header>
+  <button id="theme-toggle" class="toggle-dark" aria-label="Toggle dark/light mode">🌗</button>
+  <nav class="site-nav" id="site-nav"><ul class="site-nav-menu" id="site-nav-menu"><li><a href="index.html">Home</a></li><li><a href="chapters.html">Chapters</a><ul class="dropdown-menu menu-level-1"><li><a href="01_start.html">Chapter 1: Start</a></li><li><a href="01_notes.html">Chapter 1: Notes</a></li><li><a href="02_start.html">Chapter 2: Start</a></li><li><a href="02_notes.html">Chapter 2: Notes</a></li><li><a href="03_start.html">Chapter 3: Start</a></li><li><a href="03_notes.html">Chapter 3: Notes</a></li><li><a href="04_start.html">Chapter 4: Start</a></li><li><a href="04_notes.html">Chapter 4: Notes</a></li><li><a href="05_start.html">Chapter 5: Start</a></li><li><a href="05_notes.html">Chapter 5: Notes</a></li><li><a href="06_start.html">Chapter 6: Start</a></li><li><a href="06_notes.html">Chapter 6: Notes</a></li><li><a href="06_notes_2.html">Chapter 6: Notes 2</a></li><li><a href="07_start.html">Chapter 7: Start</a></li><li><a href="07_notes.html">Chapter 7: Notes</a></li><li><a href="08_start.html">Chapter 8: Start</a></li><li><a href="08_notes.html">Chapter 8: Notes</a></li><li><a href="09_start.html">Chapter 9: Start</a></li><li><a href="09_notes.html">Chapter 9: Notes</a></li><li><a href="10_start.html">Chapter 10: Start</a></li><li><a href="10_notes.html">Chapter 10: Notes</a></li><li><a href="11_start.html">Chapter 11: Start</a></li><li><a href="11_notes.html">Chapter 11: Notes</a></li><li><a href="12_start.html">Chapter 12: Start</a></li><li><a href="12_notes.html">Chapter 12: Notes</a></li><li><a href="13_start.html">Chapter 13: Start</a></li><li><a href="13_notes.html">Chapter 13: Notes</a></li></ul></li><li><a href="activities.html">Activities</a><ul class="dropdown-menu menu-level-1"><li><a href="hw1.html">Homework 1</a></li><li><a href="hw2.html">Homework 2</a></li><li><a href="hw3.html">Homework 3</a></li><li><a href="hw4.html">Homework 4</a></li><li><a href="hw5.html">Homework 5</a></li><li><a href="hw6.html">Homework 6</a></li><li><a href="hw7.html">Homework 7</a></li><li><a href="hw8.html">Homework 8</a></li></ul></li><li><a href="resources.html">Resources</a></li><li><a href="about.html">About</a></li></ul>
+<!-- Hamburger menu and toggle JS commented out -->
+</nav>
+  <div class="container">
+    <main>
+      
+<nav class="chapter-downloads" aria-label="Download chapter sources">
+  <div role="group" aria-label="Download formats">
+    <a class="download-btn" href="sources/02_start/02_start.pdf" download><span aria-hidden="true">📄</span> PDF</a>
+    <a class="download-btn" href="sources/02_start/02_start.docx" download><span aria-hidden="true">📝</span> DOCX</a>
+    <a class="download-btn" href="sources/02_start/02_start.md" download><span aria-hidden="true">✍️</span> MD</a>
+    <a class="download-btn" href="sources/02_start/02_start.ipynb" download><span aria-hidden="true">📓</span> IPYNB</a>
+    <a class="download-btn" href="sources/02_start/02_start.tex" download><span aria-hidden="true">📐</span> TEX</a>
+    <a class="download-btn" href="jupyter/content/notebooks/02_start.html" target="_blank"><span aria-hidden="true">🔗</span> Jupyter</a>
+  </div>
+</nav>
+        <div class="markdown-body">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Week-2---Computing-as-a-tool-for-science">Week 2 - Computing as a tool for science<a class="anchor-link" href="#Week-2---Computing-as-a-tool-for-science">¶</a></h1>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>One of the first ideas that we developed was a model of a falling ball in one-dimension. We obtained the following differential equation that described the motion of the ball:</p>
+<p>$$\ddot{y} = g - \dfrac{b}{m}\dot{y} - \dfrac{c}{m}\dot{y}^2.$$</p>
+<p>This <em>nonlinear</em> second-order differential equation is the <strong>equation of motion</strong> for the ball. It is nonlinear because the term $\dot{y}^2$ appears in the equation.</p>
+<p><strong>Can you think of an anti-derivative for this equation?</strong> <em>Probably not.</em></p>
+<p>We can change the equation to a system of first-order differential equations by defining a new variable $v = \dot{y}$, so that the equation becomes:</p>
+<p>$$\begin{aligned}
+\dot{y} &amp;= v, \\
+\dot{v} &amp;= g - \dfrac{b}{m}v - \dfrac{c}{m}v^2.
+\end{aligned}$$</p>
+<p>But the equation for $v$ is still nonlinear. Clearly we need a different approach to solving this problem. In fact, we need a more generic approach to investigate equations of motion for systems like this. Most models of physical systems cannot be solved in closed analytical form. But, this approach to writing $N$th order differential equations as a system of $N$ first-order differential equations is a powerful tool in computational physics.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<div class="admonition limitations-of-only-working-with-analytically-solvable-problems"><p class="admonition-title">Limitations of only working with analytically solvable problems</p>
+:class: note
+
+<p>The problems that we often present in physics classes lend themselves to analytical solutions because we (collectively as a physics community) decided on the kinds of illustrative problems for students to work and solve. We did this at a time when computing was inaccessible and less pervasive in society, but also when we knew little about how people learn.</p>
+<p>The choices we made in the past convey a false impression that most physics problems can be solved analytically. But more importantly, our choices convey that finding the solution is the goal of physics. This is not the case. The goal of physics is to understand the world around us. When we continue to focus exclusively on systems that can be solved analytically, we continue to perpetuate those impressions.</p>
+<p>There's a movement of physics instructors across the world building these forward-looking pedagogies and curricula. They work loosely through a collective called the <a href="https://www.compadre.org/PICUP/">Partnership for Integration of Computation into Undergraduate Physics (PICUP)</a>.</p>
+<p>In our class, we aim to build a set of investigative tools and approaches that we can use in Classical Mechanics.</p></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Scientific-Computing">Scientific Computing<a class="anchor-link" href="#Scientific-Computing">¶</a></h2><p>In this course, we will explore a broad class of problems using plotting and numerical integration as principal tools. These techniques and algorithms, along with the software we use, fall within the broader field of <a href="https://en.wikipedia.org/wiki/Scientific_computing">scientific computing</a>. Scientific computing focuses on developing mathematical models and numerical methods to solve problems in the natural sciences and engineering.</p>
+<p>For historical context, the <a href="https://en.wikipedia.org/wiki/Timeline_of_scientific_computing">Timeline of the Development of Scientific Computing</a> provides an excellent overview. The roots of this field trace back to significant advancements long before modern electronic devices. Much of the foundational mathematics, such as <a href="https://en.wikipedia.org/wiki/Euler_method">Euler’s Method</a> for solving differential equations, was developed in the 18th century by <a href="https://en.wikipedia.org/wiki/Leonhard_Euler">Leonhard Euler</a>. Implementing these algorithms on computers was a natural progression in scientific problem-solving.</p>
+<h3 id="History-of-Computing">History of Computing<a class="anchor-link" href="#History-of-Computing">¶</a></h3><p>The history of scientific computing is deeply intertwined with the evolution of computing itself, a fascinating and complex narrative encompassing technical, social, political, and economic perspectives. Contributions to computing originated worldwide, starting with tools like the <a href="https://en.wikipedia.org/wiki/Abacus">abacus</a> in ancient China. Mechanical innovations such as <a href="https://en.wikipedia.org/wiki/Pascal%27s_calculator">Pascal’s adding machine</a> and <a href="https://en.wikipedia.org/wiki/Analytical_Engine">Babbage’s Analytical Engine</a> marked significant milestones leading toward the modern computer.</p>
+<p>To get an introductory overview, the video below from Futurology is a helpful resource, but it is by no means comprehensive or critical.</p>
+<p><a href="https://youtube.com/watch?v=-M6lANfzFsM"><img alt="" src="images/chapters/-M6lANfzFsM.jpg"/></a></p>
+<p>Source: <a href="https://www.youtube.com/watch?v=-M6lANfzFsM">https://www.youtube.com/watch?v=-M6lANfzFsM</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="A-Critical-Perspective-on-Computing">A Critical Perspective on Computing<a class="anchor-link" href="#A-Critical-Perspective-on-Computing">¶</a></h2><p>While the history of computing is often celebrated as a story of innovation, it is deeply entangled with systems of power, exploitation, and violence. Computing technologies have not only been tools of scientific progress but also instruments for surveillance, war, and perpetuation of systemic biases.</p>
+<div class="admonition humans-as-computers"><p class="admonition-title">Humans as Computers</p>
+:class: note
+
+<p>Of course, the development of electronic computers was a huge development for science. Prior to that, humans were employed to do the calculations that we now do with computational algorithms. This work occurred in a wide variety of labs where data were entered into tables, calculations were done by hand, and the results were tabulated manually.</p>
+<p>Frequently the work was done by those with less power in the laboratory and broader society (e.g., women, immigrants, and folks of color). A notable and well-known example is the work of the <a href="https://en.wikipedia.org/wiki/Harvard_Computers">Harvard Computers</a> in the late 19th and early 20th centuries where women were employed to do the calculations that led to significant discoveries in astronomy.</p>
+<p><img alt="Harvard Computers" src="images/chapters/harvard-computers.png"/></p>
+<p>One of the most important examples is the work done by African-American women at NASA in the 1960s, as depicted in the book and movie <a href="https://en.wikipedia.org/wiki/Hidden_Figures">Hidden Figures</a>.</p>
+<p><img alt="Hidden Figures" src="images/chapters/nasa-computers-hidden-figures.png"/></p>
+<p>Women highlighted in this work include: <a href="https://en.wikipedia.org/wiki/Williamina_Fleming">Williamina Fleming</a>, <a href="https://en.wikipedia.org/wiki/Florence_Cushman">Florence Cushman</a>, <a href="https://en.wikipedia.org/wiki/Katherine_Johnson">Katherine Johnson</a>, <a href="https://en.wikipedia.org/wiki/Dorothy_Vaughan">Dorothy Vaughan</a>, and <a href="https://en.wikipedia.org/wiki/Mary_Jackson">Mary Jackson</a>.</p></div>
+<p>The algorithms driving modern computing are not neutral—they reflect the biases of the societies that create them. In <a href="https://www.penguinrandomhouse.com/books/241363/weapons-of-math-destruction-by-cathy-oneil/">Cathy O’Neil’s <em>Weapons of Math Destruction</em></a>, the author explores how algorithms used in areas like policing, hiring, and education often reinforce systemic inequality, disproportionately harming marginalized communities. Similarly, <a href="https://www.ruhabenjamin.com/race-after-technology">Ruha Benjamin’s <em>Race After Technology</em></a> examines how race and technology intersect, showing how seemingly “objective” systems encode and perpetuate racial biases.</p>
+<p>The use of AI in policing is another area of concern. <a href="https://www.dukeupress.edu/dark-matters">Simone Browne’s <em>Dark Matters</em></a> highlights how surveillance technologies, from facial recognition to predictive policing, are rooted in practices of racialized social control, extending systems of oppression into the digital realm.</p>
+<p>The militarization of AI is one of the most alarming developments in computing. AI-driven drones and autonomous weapons, often described as the future of warfare, raise profound ethical and humanitarian concerns. <a href="https://shoshanazuboff.com/book/about/">Shoshana Zuboff’s <em>The Age of Surveillance Capitalism</em></a> discusses how the same technologies used for corporate profit are repurposed for state surveillance and military applications, blurring the lines between civilian and combatant spaces.</p>
+<p>Additionally, <a href="https://peterasaro.org/writing/Asaro%20Oxford%20AI%20Ethics%20AWS.pdf">Peter Asaro’s work on lethal autonomous weapons</a> questions the morality and legality of machines making life-and-death decisions. Meanwhile, <a href="https://katecrawford.net/atlas">Kate Crawford’s <em>Atlas of AI</em></a> explores how AI systems, from mining rare earth materials to deployment in warfare, are deeply intertwined with colonial exploitation and ecological destruction.</p>
+<p>The tech industry's focus on profit has devastating environmental and social impacts. Computing relies on the extraction of rare materials, energy-intensive processes, and exploitative labor practices. <a href="https://thischangeseverything.org/">Naomi Klein’s <em>This Changes Everything</em></a> examines how capitalism exacerbates climate change, with insights into the environmental toll of computing technologies. <a href="https://cup.columbia.edu/book/artificial-whiteness/9780231194914">Yarden Katz’s <em>Artificial Whiteness</em></a> connects the development of AI to broader systems of capitalist and racial oppression.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Additional-Resources-for-Exploration">Additional Resources for Exploration<a class="anchor-link" href="#Additional-Resources-for-Exploration">¶</a></h2><p>For deeper dives into these ideas, consider the following materials:</p>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.penguinrandomhouse.com/books/44425/turings-cathedral-by-george-dyson/">George Dyson’s <em>Turing’s Cathedral</em></a> <img alt="Turing's Cathedral" src="images/chapters/dyson.png"/></td>
+<td>Chronicles the origins of the modern computer, focusing on <a href="https://en.wikipedia.org/wiki/John_von_Neumann">John von Neumann</a> and his team at Princeton in the 1940s. This book delves into the intersection of mathematics, physics, and computation, highlighting the development of the first stored-program computers and their role in shaping the digital age.</td>
+</tr>
+<tr>
+<td><a href="https://www.penguinrandomhouse.com/books/60765/the-information-by-james-gleick/">James Gleick’s <em>The Information</em></a> <img alt="The Information" src="images/chapters/gleick.png"/></td>
+<td>Explores the transformative impact of information theory on science, technology, and culture. From the invention of writing to the digital age, Gleick highlights key figures like Michigander <a href="https://en.wikipedia.org/wiki/Claude_Shannon">Claude Shannon</a>, who revolutionized communication with his groundbreaking mathematical theory of information.</td>
+</tr>
+<tr>
+<td><a href="https://www.stevenlevy.com/hackers-heroes-of-the-computer-revolution">Steven Levy’s <em>Hackers</em></a> <img alt="Hackers" src="images/chapters/levy.png"/></td>
+<td>Chronicles the rise of hacker culture, from early computer pioneers to the creators of the personal computer revolution. Levy examines the "hacker ethic," emphasizing creativity, open access, and the joy of problem-solving, which shaped the tools and technologies we use today.</td>
+</tr>
+<tr>
+<td><a href="https://www.penguinrandomhouse.com/books/241363/weapons-of-math-destruction-by-cathy-oneil/">Cathy O’Neil’s <em>Weapons of Math Destruction</em></a> <img alt="Weapons of Math Destruction" src="images/chapters/oneill.png"/></td>
+<td>Explores how algorithms, often marketed as objective, exacerbate inequality in policing, hiring, and credit scoring. O’Neil critically examines the dangers of data-driven systems that disproportionately harm marginalized communities while remaining opaque and unregulated.</td>
+</tr>
+<tr>
+<td><a href="https://www.ruhabenjamin.com/race-after-technology">Ruha Benjamin’s <em>Race After Technology</em></a> <img alt="Race After Technology" src="images/chapters/benjamin.png"/></td>
+<td>Analyzes how algorithms and technologies reinforce systemic racism under the guise of neutrality. Benjamin introduces the concept of the “New Jim Code,” highlighting the ways in which technological tools amplify inequities while appearing fair and impartial.</td>
+</tr>
+<tr>
+<td><a href="https://www.dukeupress.edu/dark-matters">Simone Browne’s <em>Dark Matters</em></a> <img alt="Dark Matters" src="images/chapters/browne.png"/></td>
+<td>Examines how surveillance technologies are deeply rooted in practices of racialized social control. Browne connects historical practices like slave surveillance to modern tools like facial recognition and predictive policing, revealing the persistence of systemic inequities in new forms.</td>
+</tr>
+<tr>
+<td><a href="https://katecrawford.net/atlas">Kate Crawford’s <em>Atlas of AI</em></a> <img alt="Atlas of AI" src="images/chapters/crawford.png"/></td>
+<td>Explores the hidden costs of artificial intelligence, from resource extraction to labor exploitation and military applications. Crawford critiques AI as an extractive industry that reshapes power dynamics and perpetuates global inequalities while causing significant environmental damage.</td>
+</tr>
+<tr>
+<td><a href="https://shoshanazuboff.com/book/about/">Shoshana Zuboff’s <em>The Age of Surveillance Capitalism</em></a> <img alt="Age of Surveillance Capitalism" src="images/chapters/zuboff.png"/></td>
+<td>Investigates how corporations and governments exploit personal data for profit and control. Zuboff coins the term "surveillance capitalism" to describe how the tech industry commodifies human behavior, eroding privacy and autonomy while reshaping society’s power structures.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+    </main>
+  </div>
+  <footer class="site-footer">
+    <p>&copy; Modern Classical Mechanics. All rights reserved.</p>
+  </footer>
+</body>
+</html>
