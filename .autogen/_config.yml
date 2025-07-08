@@ -2,7 +2,7 @@
 # This file was generated from _content.yml by scripts/preprocess_content_yml.py
 # Edit _content.yml instead and re-run the preprocessor.
 title: Modern Classical Mechanics
-author: Your Name or Team
+author: Danny Caballero
 description: A modern, open-source course in classical mechanics.
 logo: static/images/logo.png
 favicon: static/images/favicon.ico
