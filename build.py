@@ -465,6 +465,21 @@ def main():
             sys.executable, str(repo_root / 'build-web.py'), '--html'
         ], check=True)
 
+        # --- FORCE COPY ALL .tex FILES TO docs/sources/<notebook>/<notebook>.tex ---
+        print("[ALL] Step 5.5: Forcing copy of all .tex files to docs/sources/<notebook>/<notebook>.tex")
+        tex_dir = repo_root / '_build' / 'tex'
+        docs_sources_dir = repo_root / 'docs' / 'sources'
+        tex_files = list(tex_dir.glob('*.tex'))
+        if not tex_files:
+            print(f"[ALL] No .tex files found in {tex_dir}")
+        for tex_file in tex_files:
+            stem = tex_file.stem
+            dest_dir = docs_sources_dir / stem
+            dest_dir.mkdir(parents=True, exist_ok=True)
+            dest_tex = dest_dir / f"{stem}.tex"
+            shutil.copy2(tex_file, dest_tex)
+            print(f"[ALL] Forced copy: {tex_file} -> {dest_tex}")
+
         # 6. Build unified Jupyter notebook and Jupyter Book HTML
         print("[ALL] Step 6: Building unified Jupyter notebook and Jupyter Book HTML")
         run_or_exit([
