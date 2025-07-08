@@ -71,6 +71,7 @@ def main():
             print("[ERROR] The 'bs4' package is required. Install it with 'pip install beautifulsoup4'.")
             import sys
             sys.exit(1)
+        import re
         docs_dir = Path(__file__).parent / 'docs'
         html_files = list(docs_dir.glob('*.html'))
         print(f"[CLEAN] Processing {len(html_files)} HTML files in docs/ ...")
@@ -80,22 +81,58 @@ def main():
             soup = bs4.BeautifulSoup(html, 'html.parser')
             # Remove all Jupyter/nbconvert classes and data attributes
             for tag in soup.find_all(True):
-                # Remove classes starting with jp- or nb-
+                # Remove classes starting with jp-, nb-, or nbconvert-
                 if tag.has_attr('class'):
-                    tag['class'] = [c for c in tag['class'] if not (c.startswith('jp-') or c.startswith('nb-'))]
+                    tag['class'] = [c for c in tag['class'] if not (c.startswith('jp-') or c.startswith('nb-') or c.startswith('nbconvert'))]
                     if not tag['class']:
                         del tag['class']
-                # Remove data attributes from nbconvert
+                # Remove data attributes from nbconvert/jupyter
                 for attr in list(tag.attrs):
-                    if attr.startswith('data-jp-') or attr.startswith('data-nb-'):
+                    if attr.startswith('data-jp-') or attr.startswith('data-nb-') or attr.startswith('data-nbconvert'):
                         del tag[attr]
-            # Remove style blocks with Jupyter/nbconvert variables
+            # Remove style blocks with Jupyter/nbconvert variables or --jp- CSS vars (robust: check .string and .text)
             for style in soup.find_all('style'):
-                if 'jp-' in style.text or 'nb-' in style.text:
+                style_content = style.string if style.string is not None else style.text
+                if style_content and re.search(r'--jp-|nbconvert|nb-', style_content):
                     style.decompose()
-            # Remove meta tags with nbconvert info
+            # Remove inline style attributes containing Jupyter/nbconvert CSS variables
+            for tag in soup.find_all(True):
+                if tag.has_attr('style'):
+                    # Remove any --jp-*, nb-*, or nbconvert-* CSS variable definitions from style attribute
+                    orig_style = tag['style']
+                    # Remove any CSS variable definitions (e.g., --jp-something: ...;)
+                    cleaned_style = re.sub(r'(--jp-[\w-]+|nbconvert-[\w-]+|nb-[\w-]+)\s*:[^;]+;?', '', orig_style)
+                    # Remove empty style attribute
+                    if cleaned_style.strip():
+                        tag['style'] = cleaned_style
+                    else:
+                        del tag['style']
+
+            # Remove literal CSS blocks in the HTML text that reference Jupyter/nbconvert variables, even if not in <style> tags
+            # (e.g., .highlight .hll { background-color: var(--jp-cell-editor-active-background); })
+            html_str = str(soup)
+            # Regex to match CSS blocks containing --jp-, nbconvert, or nb- in their content
+            css_block_pattern = re.compile(r'<style[^>]*?>[\s\S]*?</style>', re.IGNORECASE)
+            def css_block_cleaner(match):
+                css = match.group(0)
+                if re.search(r'--jp-|nbconvert|nb-', css):
+                    return ''
+                return css
+            html_str = css_block_pattern.sub(css_block_cleaner, html_str)
+            # Remove any inline style attributes containing --jp-, nbconvert, or nb-
+            html_str = re.sub(r'style="[^"]*(--jp-|nbconvert|nb-)[^"]*"', '', html_str)
+            # Remove any remaining CSS variable definitions in style attributes
+            html_str = re.sub(r"(--jp-[a-zA-Z0-9_-]+\s*:[^;\"']+;?)", '', html_str)
+            # Remove any remaining class attributes with jp-, nb-, or nbconvert-
+            html_str = re.sub(r'class="[^"]*(jp-[^\s"]+|nb-[^\s"]+|nbconvert-[^\s"]+)[^"]*"', '', html_str)
+
+            # Save cleaned HTML (from html_str, not soup)
+            with open(html_path, 'w', encoding='utf-8') as f:
+                f.write(html_str)
+            print(f"[CLEAN] Cleaned {html_path.name}")
+            # Remove meta tags with nbconvert info (name or content)
             for meta in soup.find_all('meta'):
-                if meta.get('name', '').startswith('nbconvert'):
+                if meta.get('name', '').startswith('nbconvert') or meta.get('content', '').startswith('nbconvert'):
                     meta.decompose()
             # Save cleaned HTML
             with open(html_path, 'w', encoding='utf-8') as f:
@@ -1034,6 +1071,14 @@ def post_build_cleanup():
             except Exception as e:
                 print(f"[PREPROCESS] Could not delete temp notebook: {temp_nb_path} ({e})")
 
+        # Extract only the <body>...</body> content if present
+        import re
+        m = re.search(r'<body[^>]*>([\s\S]*?)</body>', body, re.IGNORECASE)
+        if m:
+            body_content = m.group(1)
+        else:
+            body_content = body
+
         def rewrite_img_src(match):
             src = match.group(1)
             filename = os.path.basename(src)
@@ -1041,17 +1086,15 @@ def post_build_cleanup():
                 new_section, new_rel = copied_images[filename]
                 return f'src="{new_rel}"'
             return match.group(0)
-        body = re.sub(r'src=["\']([^"\']+)["\']', rewrite_img_src, body)
+        body_content = re.sub(r'src=["\']([^"\']+)["\']', rewrite_img_src, body_content)
 
         # Ensure these helpers are available (move to top-level if needed)
-        # Ensure these helpers are available at top-level
-        # Patch: define stubs if not present (should not happen, but avoids crash)
         if 'preprocess_custom_admonitions' not in globals():
             def preprocess_custom_admonitions(x): return x
         if 'convert_admonitions' not in globals():
             def convert_admonitions(x): return x
-        body = preprocess_custom_admonitions(body)
-        body = convert_admonitions(body)
+        body_content = preprocess_custom_admonitions(body_content)
+        body_content = convert_admonitions(body_content)
 
         chapter_stem = nb_path.stem
         # --- Robustly determine Jupyter HTML path from _toc.yml ---
@@ -1066,8 +1109,6 @@ def post_build_cleanup():
             for entry in chapters:
                 file_field = entry.get('file', '')
                 if file_field.endswith(chapter_stem):
-                    # Jupyter Book outputs HTML as <basename>.html in the same relative path as the .ipynb (minus .ipynb)
-                    # So content/notebooks/01_notes -> content/notebooks/01_notes.html
                     jupyter_html_rel = file_field + '.html'
                     break
         # Fallback if not found
@@ -1087,9 +1128,9 @@ def post_build_cleanup():
   </div>
 </nav>
         '''
-        body = f'{download_menu}<div class="markdown-body">{body}</div>'
+        body_final = f'{download_menu}<div class="markdown-body">{body_content}</div>'
         title = nb_path.stem.replace('_', ' ').title()
-        html = get_html_template(title, body)
+        html = get_html_template(title, body_final)
         with open(html_path, 'w', encoding='utf-8') as f:
             f.write(html)
 
