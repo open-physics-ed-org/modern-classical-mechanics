@@ -455,17 +455,20 @@ def main():
         run_or_exit([
             sys.executable, __file__, '--pdf'
         ], check=True)
+        # 4. Build TeX (guaranteed after PDF, but ensure copy logic runs)
+        # The copy logic for .tex and .pdf files is handled in the per-notebook build and PDF steps.
+        print("[ALL] Step 4: TeX and PDF outputs are copied to docs/sources/ by per-notebook logic.")
 
-        # 4. Build unified Jupyter notebook and Jupyter Book HTML
-        print("[ALL] Step 4: Building unified Jupyter notebook and Jupyter Book HTML")
+        # 5. Build custom HTML web output (build-web.py)
+        print("[ALL] Step 5: Building custom HTML web output (build-web.py)")
         run_or_exit([
-            sys.executable, __file__, '--jupyter'
+            sys.executable, str(repo_root / 'build-web.py'), '--html'
         ], check=True)
 
-        # 5. Build custom HTML web output
-        print("[ALL] Step 5: Building custom HTML web output")
+        # 6. Build unified Jupyter notebook and Jupyter Book HTML
+        print("[ALL] Step 6: Building unified Jupyter notebook and Jupyter Book HTML")
         run_or_exit([
-            sys.executable, __file__, '--html'
+            sys.executable, __file__, '--jupyter'
         ], check=True)
 
         print("[ALL] All build steps completed.")

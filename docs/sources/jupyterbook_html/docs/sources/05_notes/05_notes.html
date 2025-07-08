@@ -1,0 +1,767 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 5 - Notes: Conservation of Energy &#8212; My Jupyter Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/sources/05_notes/05_notes';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../content/index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">My Jupyter Book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../content/index.html">
+                    Welcome to Modern Classical Mechanics
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/01_start.html">Week 1 - Overture: What is Classical Physics?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/01_notes.html">Week 1 - Notes: Introduction to Classical Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/02_start.html">Week 2 - Computing as a tool for science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/02_notes.html">Week 2 - Notes: Mathematical Preliminaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/03_start.html">Week 3 - What is Mathematical Modeling?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/03_notes.html">Week 3 - Notes: Making Classical Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/04_start.html">Week 4 - Why does fluid drag complicate things?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/04_notes.html">Week 4 - Notes: Equations of Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/05_start.html">Week 5 - Conservation Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/05_notes.html">Week 5 - Notes: Conservation of Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/06_start.html">Week 6 - Stability and Equilibria</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/06_notes.html">Week 6 - Notes: Stability and Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/06_notes_2.html">Week 6 - Notes: Linear and Angular Momentum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/07_start.html">Week 7 - Nonlinear Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/07_notes.html">Week 7 - Notes: Critical Points; Phase Space; Trajectories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/08_start.html">Week 8 - Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/08_notes.html">Week 8 - Notes: Oscillators and Modeling Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/09_start.html">Week 9 - Driven Oscillators and Resonance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/09_notes.html">Week 9 - Notes: Driven Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/10_start.html">Week 10 - Chaotic Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/10_notes.html">Week 10 - Activity: Modeling Chaotic Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/11_start.html">Week 11 - Calculus of Variations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/11_notes.html">Week 11 - Notes: The Euler-Lagrange Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/12_start.html">Week 12 - The Principle of Least Action</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/12_notes.html">Week 12 - Notes: Introduction to Lagrangian Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/13_start.html">Week 13 - Lagrangian Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/13_notes.html">Week 13 - Notes: Examples of Lagrangian Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/hw1.html">Homework 1 (Due 24 Jan)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/hw2.html">Homework 2 (Due 31 Jan)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/hw3.html">Homework 3 (Due 07 Feb)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/hw4.html">Homework 4 (Due 17 Feb)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/hw5.html">Homework 5 (Due 14 Mar)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/hw6.html">Homework 6 (Due 21 Mar)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/hw7.html">Homework 7 (Due 28 Mar)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../content/notebooks/hw8.html">Homework 8 (Due 18 Apr)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../../_sources/docs/sources/05_notes/05_notes.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 5 - Notes: Conservation of Energy</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-work-energy-theorem">The Work-Energy Theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kinetic-energy">Kinetic Energy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#developing-the-work-energy-theorem">Developing the Work-Energy Theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-effect-of-the-forces">Overall Effect of the Forces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#work-done-in-more-than-one-dimension">Work done in more than one dimension</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-the-simple-harmonic-oscillator">Example: The Simple Harmonic Oscillator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-a-lattice-chain">Example: A Lattice Chain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conservative-forces">Conservative Forces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-these-imply-each-other">Why do these imply each other?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-results">Summary of Results</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-5-notes-conservation-of-energy">
+<h1>Week 5 - Notes: Conservation of Energy<a class="headerlink" href="#week-5-notes-conservation-of-energy" title="Link to this heading">#</a></h1>
+<p>One expression of a conservation law is the <a class="reference external" href="https://en.wikipedia.org/wiki/Conservation_of_energy">conservation of energy</a>. For an isolated and closed system, the total energy is conserved. That is, before and after any process, we can account for all the energy in the system and it is the same. More generally, conservation of energy accounts for the energy “lost” to the surroundings. All of the changes to the system must be accounted for in changes the surroundings.</p>
+<p>For a given choice of system that interacts with its surroundings, the change in energy of the system is equal to the work done on the system and any heat exchanged with the surroundings. This is a statement of the <a class="reference external" href="https://en.wikipedia.org/wiki/First_law_of_thermodynamics">first law of thermodynamics</a>. We can write that statement mathematically as:</p>
+<div class="math notranslate nohighlight">
+\[\Delta E_{\text{system}} = W + Q\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Delta E_{\text{system}}\)</span> is the change in energy of the system, <span class="math notranslate nohighlight">\(W\)</span> is the work done on the system, and <span class="math notranslate nohighlight">\(Q\)</span> is the heat exchanged with the surroundings.</p>
+<div class="warning admonition">
+<p class="admonition-title">Sign conventions</p>
+<p>Note that the signs of the work done and heat exchanged are important. But we can remember them by asking if the system is going to increase its energy.</p>
+<p>If we add energy into the system by heating it, then <span class="math notranslate nohighlight">\(Q\)</span> is positive because <span class="math notranslate nohighlight">\(\Delta E_{\text{system}}\)</span> is positive. If the remove energy from the system through an exchange of heat, then <span class="math notranslate nohighlight">\(Q\)</span> is negative.</p>
+<p>If the system does work on the surroundings, for example, by exerting a force on an external object over some displacement, then <span class="math notranslate nohighlight">\(W\)</span> is negative because <span class="math notranslate nohighlight">\(\Delta E_{\text{system}}\)</span> is negative. If instead the surroundings do work on the system, then <span class="math notranslate nohighlight">\(W\)</span> is positive.</p>
+</div>
+<p>We can rewrite this energy equation as an update equation for the energy of the system:</p>
+<div class="math notranslate nohighlight">
+\[E_{\text{system,f}} = E_{\text{system,i}} + W + Q\]</div>
+<p>From this equation, we can see that the final state of the system’s energy is determined by the sum of its initial energy, the work done on the system, and the heat exchanged with the surroundings.</p>
+<section id="the-work-energy-theorem">
+<h2>The Work-Energy Theorem<a class="headerlink" href="#the-work-energy-theorem" title="Link to this heading">#</a></h2>
+<p>We often model a system as a single object that interacts with its surroundings. In this case, it’s often beneficial to select the object alone to be the system of interest. Then all of our work is to explain and predict the dynamics of the object.</p>
+<p>This simplification allows us to employ a more specialized case of the general energy equation. We can write the work-energy theorem as:</p>
+<div class="math notranslate nohighlight">
+\[\Delta E_{\text{object}} = W_{\text{net}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Delta E_{\text{object}}\)</span> is the change in energy of the object and <span class="math notranslate nohighlight">\(W_{\text{net}}\)</span> is the net work done on the object.</p>
+<p>More specifically, we often focus only on the changes to the object’s motion. This is because we use often use the model of a <a class="reference external" href="https://en.wikipedia.org/wiki/Point_particle">point particle</a> to describe the object. In this case, the object has no internal structure and thus no internal energy. The only energy we need to consider is the object’s kinetic energy, <span class="math notranslate nohighlight">\(K\)</span>.</p>
+<div class="admonition-limitation-of-this-model admonition">
+<p class="admonition-title">Limitation of this model</p>
+<p>The point particle model where we focus on the kinetic energy of an object is an obvious simplification. But it might not be so obvious how quickly it is to break down.</p>
+<p>Consider pushing a block across the floor. The block is a point particle and we model it as such. It comes to a stop and we argue the block’s kinetic energy was converted to heat in the floor.</p>
+<p>But what about the block itself? Would it’s surface temperature increase? It does, but we don’t account for it.</p>
+<p>A great account of these kinds of situations is from my colleague <a class="reference external" href="https:/brucesherwood.net/">Bruce Sherwood</a>.  Bruce’s paper, <a class="reference external" href="https://pubs.aip.org/aapt/ajp/article-abstract/51/7/597/1052185/Pseudowork-and-real-work?redirectedFrom=fulltext"><em>Pseudowork and real work</em>, American Journal of Physics (1982)</a>, is an important read about the limitation of the point particle model. You can find a PDF copy <a class="reference external" href="https://brucesherwood.net/wp-content/uploads/2017/06/Pseudowork1983.pdf">here</a>.</p>
+</div>
+<section id="kinetic-energy">
+<h3>Kinetic Energy<a class="headerlink" href="#kinetic-energy" title="Link to this heading">#</a></h3>
+<p>Our model of <a class="reference external" href="https://en.wikipedia.org/wiki/Kinetic_energy">kinetic energy</a> stems from a <a class="reference external" href="https://en.wikipedia.org/wiki/Willem_%27s_Gravesande">series of experiments dropping stones into clay</a>. The depth of the hole made was proportional to the square of the impact speed.</p>
+<p>Through many additional experiments we have quantified the kinetic energy of a point particle as:</p>
+<div class="math notranslate nohighlight">
+\[K = \frac{1}{2}m\vec{v}\cdot\vec{v}.\]</div>
+<p>We also use <span class="math notranslate nohighlight">\(T\)</span> to represent kinetic energy, so you might see it written as:</p>
+<div class="math notranslate nohighlight">
+\[T = \frac{1}{2}mv^2.\]</div>
+<p>Note that this description of the kinetic energy is fully classical. It is the energy of motion in the limit that object moves much slower than the speed of light. We learned from <a class="reference external" href="https://en.wikipedia.org/wiki/Special_theory_of_relativity">Einstein’s special theory of relativity</a> that the total energy of an point particle is:</p>
+<div class="math notranslate nohighlight">
+\[E_{tot} = \gamma mc^2,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\gamma\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Lorentz_factor">Lorentz factor</a> and <span class="math notranslate nohighlight">\(c\)</span> is the speed of light. The Lorentz factor is defined as:</p>
+<div class="math notranslate nohighlight">
+\[\gamma = \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}}.\]</div>
+<p>Notice that if <span class="math notranslate nohighlight">\(v/c =0\)</span> then,</p>
+<div class="math notranslate nohighlight">
+\[\gamma = 1 \longrightarrow E_{tot} = mc^2.\]</div>
+<p>We call this the “rest energy” of the object. It is the energy of the object when it is not moving, and it demonstrates the <a class="reference external" href="https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence">mass-energy equivalence</a>.</p>
+<div class="math notranslate nohighlight">
+\[E_{rest} = mc^2.\]</div>
+<p>The remaining energy of the object is the kinetic energy, <span class="math notranslate nohighlight">\(T\)</span>. We can write that as:</p>
+<div class="math notranslate nohighlight">
+\[T = E_{tot} - E_{rest} = (\gamma - 1)mc^2.\]</div>
+<p>We can take the limit that <span class="math notranslate nohighlight">\(v/c \ll 1\)</span> and expand the Lorentz factor in a Taylor series to find that:</p>
+<div class="math notranslate nohighlight">
+\[\gamma = 1 + \frac{1}{2}\frac{v^2}{c^2} + \ldots.\]</div>
+<p>Then we find that the kinetic energy is:</p>
+<div class="math notranslate nohighlight">
+\[T = \left(1 + \frac{1}{2}\frac{v^2}{c^2} + \ldots - 1\right)mc^2 = \frac{1}{2}mv^2 + \ldots.\]</div>
+<p>We have recovered the classical expression for kinetic energy. The higher order terms in the expansion are negligible when <span class="math notranslate nohighlight">\(v/c \ll 1\)</span>.</p>
+</section>
+</section>
+<section id="developing-the-work-energy-theorem">
+<h2>Developing the Work-Energy Theorem<a class="headerlink" href="#developing-the-work-energy-theorem" title="Link to this heading">#</a></h2>
+<p>Let’s start with our definition of the classical kinetic energy of a point particle:</p>
+<div class="math notranslate nohighlight">
+\[T = \frac{1}{2}m\vec{v}\cdot\vec{v}.\]</div>
+<p>We ask how does <span class="math notranslate nohighlight">\(T\)</span> change with time? We take the time derivative of <span class="math notranslate nohighlight">\(T\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{dT}{dt} = \frac{1}{2}m\frac{d}{dt}\left(\vec{v}\cdot\vec{v}\right) = \frac{1}{2}m\left(\frac{d\vec{v}}{dt}\cdot\vec{v} + \vec{v}\cdot\frac{d\vec{v}}{dt}\right).\]</div>
+<p>The last term can be combined because the dot product is commutative. We can factor out the <span class="math notranslate nohighlight">\(m/2\)</span> and write:</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{dT}{dt} = \dfrac{m}{2}\left(2 \dfrac{d\vec{v}}{dt}\cdot\vec{v}\right) = m\left(\dfrac{d\vec{v}}{dt}\cdot\vec{v}\right).\]</div>
+<p>Ok, in that expression is the net force on the object,</p>
+<div class="math notranslate nohighlight">
+\[\vec{F}_{net} = m\dfrac{d\vec{v}}{dt}.\]</div>
+<p>So that,</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{dT}{dt} = \vec{F}_{net}\cdot\vec{v}.\]</div>
+<p>Now let’s discretize the time derivative to make sense of this.</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{\Delta T}{\Delta t} = \vec{F}_{net}\cdot\vec{v}.\]</div>
+<div class="math notranslate nohighlight">
+\[\Delta T = \vec{F}_{net}\cdot\vec{v}\Delta t.\]</div>
+<p>That last term is the displacement of the object, <span class="math notranslate nohighlight">\(\Delta \vec{x} = \vec{v}\Delta t\)</span>. So we can write:</p>
+<div class="math notranslate nohighlight">
+\[\Delta T = \vec{F}_{net}\cdot\Delta \vec{x}.\]</div>
+<p>This is the work done on the object by the net force. We can write that as:</p>
+<div class="math notranslate nohighlight">
+\[\Delta T = W_{\text{net}}.\]</div>
+<section id="overall-effect-of-the-forces">
+<h3>Overall Effect of the Forces<a class="headerlink" href="#overall-effect-of-the-forces" title="Link to this heading">#</a></h3>
+<p>Consider that we are looking at the changes in the object’s motion over a longer period of space and time. This discrete model above helps us understand the relationship between the work done on the object and the change in its kinetic energy in a small interval, but what about the overall effect of the forces on the object?</p>
+<p>Consider a discrete set of <span class="math notranslate nohighlight">\(n\)</span> spatial intervals, <span class="math notranslate nohighlight">\(\Delta x_i\)</span>, where <span class="math notranslate nohighlight">\(i\)</span> is the index of the interval.</p>
+<div class="math notranslate nohighlight">
+\[x = {x_0, x_1, x_2, \ldots, x_n}\]</div>
+<p>At each of these spatial intervals, we experience a different net force, like in the figure below.</p>
+<p><img alt="Work done by a net force" src="docs/sources/images/notes/week5/discrete-force-intervals.png" /></p>
+<div class="math notranslate nohighlight">
+\[F_{net} = {F_{net,0}, F_{net,1}, F_{net,2}, \ldots, F_{net,n}}\]</div>
+<p>The work done by this force is the change in kinetic energy of the object:</p>
+<div class="math notranslate nohighlight">
+\[W_{\text{net}} = \sum_{i=0}^{n} F_{net,i}\Delta x_i = \Delta T.\]</div>
+<div class="math notranslate nohighlight">
+\[W_{\text{net}} = K_f - K_i.\]</div>
+<div class="math notranslate nohighlight">
+\[W_{\text{net}} = \dfrac{1}{2}m\vec{v}_f\cdot\vec{v}_f - \dfrac{1}{2}m\vec{v}_i\cdot\vec{v}_i.\]</div>
+<p>Notice that in the limit that <span class="math notranslate nohighlight">\(n \rightarrow \infty\)</span> and <span class="math notranslate nohighlight">\(\Delta x_i \rightarrow 0\)</span>, we have a continuous function of the net force. We can write that as:</p>
+<div class="math notranslate nohighlight">
+\[\lim_{n \rightarrow \infty} \sum_{i=0}^{n} F_{net,i}\Delta x_i = \int_{x_i}^{x_f} F_{net}(x)dx.\]</div>
+<p>Thus, in our continuous limit, we can write the work done by the net force as:</p>
+<div class="math notranslate nohighlight">
+\[\Delta T = W_{\text{net}} = \int_{x_i}^{x_f} F_{net}(x)dx.\]</div>
+<p>What about in more than one dimension?</p>
+</section>
+<section id="work-done-in-more-than-one-dimension">
+<h3>Work done in more than one dimension<a class="headerlink" href="#work-done-in-more-than-one-dimension" title="Link to this heading">#</a></h3>
+<p>Consider a path <span class="math notranslate nohighlight">\(C\)</span> that we have discretized into <span class="math notranslate nohighlight">\(n\)</span> intervals. The object starts at <span class="math notranslate nohighlight">\(\vec{r}_0\)</span> and ends at <span class="math notranslate nohighlight">\(\vec{r}_n\)</span>. Each interval is <span class="math notranslate nohighlight">\(\Delta \vec{r}_i\)</span> and the net force is <span class="math notranslate nohighlight">\(\vec{F}_{net,i}\)</span>. The figure below shows the work done by the net force in each interval.</p>
+<p><img alt="Work done by a net force" src="docs/sources/images/notes/week5/path-integral-work.png" /></p>
+<p>The work done by the net force is:</p>
+<div class="math notranslate nohighlight">
+\[W_{\text{net}} = \sum_{i=0}^{n} \vec{F}_{net,i}\cdot\Delta \vec{r}_i.\]</div>
+<p>as <span class="math notranslate nohighlight">\(\Delta \vec{r}_i \rightarrow 0\)</span> and <span class="math notranslate nohighlight">\(n \rightarrow \infty\)</span>, we have a continuous function of the net force. We can write that as:</p>
+<div class="math notranslate nohighlight">
+\[W_{\text{net}} = \int_{C} \vec{F}_{net}\cdot d\vec{r}.\]</div>
+<p>The work can be positive, if the force and displacement are in the same direction, or negative, if they are in opposite directions. It can also be zero, if the force is perpendicular to the displacement.</p>
+<p>If the force is <strong>always</strong> perpendicular to the displacement, then the work done by the force is zero. This is because the dot product of two perpendicular vectors is zero. But what kind of motion is possible?</p>
+</section>
+</section>
+<section id="example-the-simple-harmonic-oscillator">
+<h2>Example: The Simple Harmonic Oscillator<a class="headerlink" href="#example-the-simple-harmonic-oscillator" title="Link to this heading">#</a></h2>
+<p>Consider, again, the humble <a class="reference external" href="https://en.wikipedia.org/wiki/Harmonic_oscillator">SHO</a>. If we have a horizontal spring mass system, we know we can write the force on the mass as:</p>
+<div class="math notranslate nohighlight">
+\[F_s = -kx.\]</div>
+<p>Let’s allow the spring to move from <span class="math notranslate nohighlight">\(x_i\)</span> to <span class="math notranslate nohighlight">\(x_f\)</span>, while the speed changes from <span class="math notranslate nohighlight">\(v_i\)</span> to <span class="math notranslate nohighlight">\(v_f\)</span>.</p>
+<p>The change in kinetic energy is:</p>
+<div class="math notranslate nohighlight">
+\[\Delta T = \dfrac{1}{2}mv_f^2 - \dfrac{1}{2}mv_i^2.\]</div>
+<p>The work done by the spring is:</p>
+<div class="math notranslate nohighlight">
+\[W_s = \int_{x_i}^{x_f} F_s dx = -\int_{x_i}^{x_f} kx dx = -\left[\dfrac{1}{2}kx^2\right]_{x_i}^{x_f} = -\left(\dfrac{1}{2}kx_f^2 - \dfrac{1}{2}kx_i^2\right).\]</div>
+<p>Or more simply,</p>
+<div class="math notranslate nohighlight">
+\[W_s = \dfrac{1}{2}k(x_i^2 - x_f^2).\]</div>
+<p>The Work-Energy Theorem tells us that:</p>
+<div class="math notranslate nohighlight">
+\[\Delta T = W_s.\]</div>
+<div class="math notranslate nohighlight">
+\[\dfrac{1}{2}mv_f^2 - \dfrac{1}{2}mv_i^2 = \dfrac{1}{2}k(x_i^2 - x_f^2).\]</div>
+<p>We can rearrange this to find the relationship between the states before and after the motion:</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{1}{2}mv_f^2 + \dfrac{1}{2}k x_f^2 = \dfrac{1}{2}mv_i^2 + \dfrac{1}{2}k x_i^2.\]</div>
+<p>The first term on the left and right side are the energy due to motion. The second terms are some other energy, but taken together before and after the motion, they are the same. They are a constant. <strong>This is a <a class="reference external" href="https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence#Conservation_of_mass_and_energy">conserved quantity</a>.</strong></p>
+<p>We call the second quantity the <strong>potential energy</strong> of the spring-mass system. It is the energy of the system due to its position, or it’s “configuration”. We define the potential energy of the spring as:</p>
+<div class="math notranslate nohighlight">
+\[U_s = \dfrac{1}{2}kx^2.\]</div>
+<p>We often use <span class="math notranslate nohighlight">\(V\)</span> to represent potential energy, so you might see it written as:</p>
+<div class="math notranslate nohighlight">
+\[V_s = \dfrac{1}{2}kx^2.\]</div>
+<p>What we have discovered is that the total energy of the spring-mass system is:</p>
+<div class="math notranslate nohighlight">
+\[E_{tot} = T + U_s = \dfrac{1}{2}mv^2 + \dfrac{1}{2}kx^2 = \text{constant}.\]</div>
+<p>You have likely seen this previously in your study of the SHO. It is a very important result. But it is also the case that we don’t always have a potential energy function.</p>
+<p>We need to have a <a class="reference external" href="https://en.wikipedia.org/wiki/Conservative_force">conservative force</a> to have a potential energy function. A conservative force is one where the work done by the force is independent of the path taken. Above, we assumed that in our calculations because the force was only dependent on the position of the object. That is a key feature of a conservative force.</p>
+</section>
+<section id="example-a-lattice-chain">
+<h2>Example: A Lattice Chain<a class="headerlink" href="#example-a-lattice-chain" title="Link to this heading">#</a></h2>
+<p>A less obivous example that produces a potential energy function is a <a class="reference external" href="https://en.wikipedia.org/wiki/Lattice_chain">lattice chain</a>. Here we model an electron moving in 1D near but not too near a long chain of atoms. The picture below shows the model.</p>
+<p><img alt="Lattice chain model" src="docs/sources/images/notes/week5/lattice-chain.png" /></p>
+<p>Here the location of the particle and it’s initial velocty are zero. The force model for a chain of atoms in this arrangement is:</p>
+<div class="math notranslate nohighlight">
+\[F(x) = -F_0 \sin \left(\dfrac{2\pi x}{b}\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(b\)</span> is the spacing between the atoms and <span class="math notranslate nohighlight">\(F_0\)</span> is a constant.</p>
+<p>We can again find the kinetic energy change and work done by the force:</p>
+<div class="math notranslate nohighlight">
+\[\Delta T = \dfrac{1}{2}mv_f^2 - \dfrac{1}{2}mv_i^2 = \dfrac{1}{2}mv_f^2.\]</div>
+<div class="math notranslate nohighlight">
+\[W = \int_{0}^{x_f} F(x) dx = -F_0 \int_{0}^{x_f} \sin \left(\dfrac{2\pi x}{b}\right) dx = -\left[-\dfrac{b}{2\pi}F_0 \cos \left(\dfrac{2\pi x}{b}\right)\right]_{0}^{x_f}\]</div>
+<div class="math notranslate nohighlight">
+\[ = \dfrac{b}{2\pi}F_0 \left(\cos \left(\dfrac{2\pi x_f}{b}\right) - \cos \left(0\right)\right).\]</div>
+<p>Using the Work-Energy Theorem, we can write:</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{1}{2}mv_f^2 = \dfrac{b}{2\pi}F_0 \left(\cos \left(\dfrac{2\pi x_f}{b}\right) - 1\right).\]</div>
+<p>Thus, we can find the speed of the object at a given position:</p>
+<div class="math notranslate nohighlight">
+\[v_f(x) = \sqrt{\dfrac{b}{\pi m}F_0 \left(\cos \left(\dfrac{2\pi x_f}{b}\right) - 1\right)}.\]</div>
+<p>But more importantly, we can derive a potential energy function for the lattice chain. We can write:</p>
+<div class="math notranslate nohighlight">
+\[U(x) = -\int F(x) dx = \dfrac{b}{2\pi}F_0 \cos \left(\dfrac{2\pi x}{b}\right) + C.\]</div>
+<p>where <span class="math notranslate nohighlight">\(C\)</span> is a constant. We can choose <span class="math notranslate nohighlight">\(C\)</span> so that <span class="math notranslate nohighlight">\(U(0) = 0\)</span>; only the difference in potential energy matter. Then we have:</p>
+<div class="math notranslate nohighlight">
+\[U(x) = \dfrac{b}{2\pi}F_0 \cos \left(\dfrac{2\pi x}{b}\right).\]</div>
+<p>This is just <strong>another</strong> conservative force.</p>
+</section>
+<section id="conservative-forces">
+<h2>Conservative Forces<a class="headerlink" href="#conservative-forces" title="Link to this heading">#</a></h2>
+<p>These forces occur frequently enough in physics and their properties are so important that they deserve their own attention. There are a few key properties of conservative forces that we should note:</p>
+<ol class="arabic simple">
+<li><p>if the work is independent of the path taken, then the force is conservative.</p></li>
+<li><p>if the work done by the force is zero for a closed path, then the force is conservative.</p></li>
+<li><p>if the curl of the force is zero, then the force is conservative.</p></li>
+</ol>
+<p>It turns out that all of these statements are equivalent. And if any one of them is true, the rest hold, and we can develop a potential energy function for the force.</p>
+<section id="why-do-these-imply-each-other">
+<h3>Why do these imply each other?<a class="headerlink" href="#why-do-these-imply-each-other" title="Link to this heading">#</a></h3>
+<p>Let’s start with the curl of the force. The <a class="reference external" href="https://en.wikipedia.org/wiki/Curl">curl</a> of a vector field is a measure of the rotation of the field. It is a <a class="reference external" href="https://en.wikipedia.org/wiki/Vector_calculus_operator">vector differential operator</a>. Operationally, taking the curl amounts to a cross product of the del operator with the vector field. The curl of a vector field <span class="math notranslate nohighlight">\(\vec{F}\)</span> is defined as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\nabla \times \vec{F} = \begin{vmatrix}\hat{i} &amp; \hat{j} &amp; \hat{k} \\ \partial_x &amp; \partial_y &amp; \partial_z \\ F_x &amp; F_y &amp; F_z \end{vmatrix} = \left(\dfrac{\partial F_z}{\partial y} - \dfrac{\partial F_y}{\partial z}\right)\hat{i} + \left(\dfrac{\partial F_x}{\partial z} - \dfrac{\partial F_z}{\partial x}\right)\hat{j} + \left(\dfrac{\partial F_y}{\partial x} - \dfrac{\partial F_x}{\partial y}\right)\hat{k}.\end{split}\]</div>
+<p>In the event that the curl vanishes, we know that each term in the curl is zero. In this case, we can investigate what this implies about other aspects of the force. We write <a class="reference external" href="https://en.wikipedia.org/wiki/Stokes%27_theorem">Stokes’ theorem</a> for the force as:</p>
+<div class="math notranslate nohighlight">
+\[\iint_S (\nabla \times \vec{F})\cdot d\vec{S} = \oint_C \vec{F}\cdot d\vec{r}.\]</div>
+<p>The left hand side is the integral of the curl of the force over some surface <span class="math notranslate nohighlight">\(S\)</span> with boundary <span class="math notranslate nohighlight">\(C\)</span>. The right hand side is the line integral of the force around the boundary of the surface.  This theorem holds for any vector field with continuous first derivatives, so most of what we do.</p>
+<p>Stokes’s theorem tells us that for any choice of surface <span class="math notranslate nohighlight">\(S\)</span> with boundary <span class="math notranslate nohighlight">\(C\)</span>, the line integral of the force around the boundary is equal to the integral of the curl of the force over the surface. If the curl vanishes, then the integral of the curl is zero. Thus, the line integral of the force around the boundary is zero.</p>
+<div class="math notranslate nohighlight">
+\[\oint_C \vec{F}\cdot d\vec{r} = 0.\]</div>
+<p>This is true for any closed path <span class="math notranslate nohighlight">\(C\)</span>. This is the second statement above.</p>
+<p>We can equivalent write the integral of the force around a closed path as the work around a different path. The figure below shows these paths <span class="math notranslate nohighlight">\(C_1\)</span> and <span class="math notranslate nohighlight">\(C_2\)</span> that make up the first loop, and the paths <span class="math notranslate nohighlight">\(C_3\)</span> and <span class="math notranslate nohighlight">\(C_4\)</span> that make up the second loop. The work done by the force along each path is shown in the figure.</p>
+<p><img alt="Work done by a net force" src="docs/sources/images/notes/week5/closed-path-work.png" /></p>
+<p>We can take the integral of both paths and write:</p>
+<div class="math notranslate nohighlight">
+\[\oint_C \vec{F}\cdot d\vec{r} = \int_{C_1} \vec{F}\cdot d\vec{r} + \int_{C_2} \vec{F}\cdot d\vec{r} = \int_{C_3} \vec{F}\cdot d\vec{r} + \int_{C_4} \vec{F}\cdot d\vec{r} = 0.\]</div>
+<p>Because both paths are closed and start and return to the same point, we can know that each contribution on each part of the path is equal and opposite. Thus, we can write:</p>
+<div class="math notranslate nohighlight">
+\[\int_{C_n} \vec{F}\cdot d\vec{r} = -\int_{C_m} \vec{F}\cdot d\vec{r}.\]</div>
+<p>This holds for any <span class="math notranslate nohighlight">\(n\)</span> and <span class="math notranslate nohighlight">\(m\)</span> where they make a closed path <span class="math notranslate nohighlight">\(C\)</span>. This is the first statement above.</p>
+</section>
+</section>
+<section id="summary-of-results">
+<h2>Summary of Results<a class="headerlink" href="#summary-of-results" title="Link to this heading">#</a></h2>
+<p>We covered a lot fo ground. Let’s remind ourselves of the key results.</p>
+<p>The total energy of a system is the sum of the kinetic and potential energies:</p>
+<div class="math notranslate nohighlight">
+\[E = T + V = K +U.\]</div>
+<p>We use both <span class="math notranslate nohighlight">\(T\)</span> and <span class="math notranslate nohighlight">\(K\)</span> to represent kinetic energy, and both <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> to represent potential energy.</p>
+<p>The conservation of energy is:</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{dE}{dt} = 0.\]</div>
+<p>When all the forces are conservative, energy is conserved. Of course, we are limiting here to mechanical energy.</p>
+<p>Conservative forces are those where the work done by the force is independent of the path taken. They have several key properties:</p>
+<ol class="arabic simple">
+<li><p>The forces are functions of position only <span class="math notranslate nohighlight">\(\vec{F}(\vec{r})\)</span>.</p></li>
+<li><p>Their curl is zero: <span class="math notranslate nohighlight">\(\nabla \times \vec{F} = 0\)</span>.</p></li>
+</ol>
+<p>We calculate the curl as:
+$<span class="math notranslate nohighlight">\(\nabla \times \vec{F} = \begin{vmatrix}\hat{i} &amp; \hat{j} &amp; \hat{k} \\ \partial_x &amp; \partial_y &amp; \partial_z \\ F_x &amp; F_y &amp; F_z \end{vmatrix} = \left(\dfrac{\partial F_z}{\partial y} - \dfrac{\partial F_y}{\partial z}\right)\hat{i} + \left(\dfrac{\partial F_x}{\partial z} - \dfrac{\partial F_z}{\partial x}\right)\hat{j} + \left(\dfrac{\partial F_y}{\partial x} - \dfrac{\partial F_x}{\partial y}\right)\hat{k}.\)</span>$</p>
+<ol class="arabic simple" start="3">
+<li><p>The force is given by the negative gradient of the potential energy: <span class="math notranslate nohighlight">\(\vec{F} = -\nabla U\)</span>. This stems from the definition of the potential energy as the work done by the force.</p></li>
+</ol>
+<p>We can calculate the gradient as:</p>
+<div class="math notranslate nohighlight">
+\[\vec{F} = \langle F_x, F_y, F_z \rangle = -\nabla U = -\left(\dfrac{\partial U}{\partial x}\hat{i} + \dfrac{\partial U}{\partial y}\hat{j} + \dfrac{\partial U}{\partial z}\hat{k}\right).\]</div>
+<ol class="arabic simple" start="4">
+<li><p>The work done by a conservative force is path independent. We can write the work done by a conservative force as:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[W = \int_{C} \vec{F}\cdot d\vec{r} = -\int_{C} \nabla U\cdot d\vec{r} = -\Delta U.\]</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "jbook"
+        },
+        kernelOptions: {
+            name: "jbook",
+            path: "./docs/sources/05_notes"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'jbook'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-work-energy-theorem">The Work-Energy Theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kinetic-energy">Kinetic Energy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#developing-the-work-energy-theorem">Developing the Work-Energy Theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-effect-of-the-forces">Overall Effect of the Forces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#work-done-in-more-than-one-dimension">Work done in more than one dimension</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-the-simple-harmonic-oscillator">Example: The Simple Harmonic Oscillator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-a-lattice-chain">Example: A Lattice Chain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conservative-forces">Conservative Forces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-these-imply-each-other">Why do these imply each other?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-results">Summary of Results</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
