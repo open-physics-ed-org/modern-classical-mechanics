@@ -77,7 +77,7 @@ def main():
     parser.add_argument('--jupyter', action='store_true', help='Build a unified Jupyter Notebook in _build/jupyter and copy to docs/jupyter')
     args = parser.parse_args()
 
-    # --- Unified Jupyter Book HTML Build ---
+    # --- Unified Jupyter Book HTML Build and Unified Notebook JSON Export ---
     if getattr(args, 'jupyter', False):
         repo_root = Path(__file__).parent.resolve()
 
@@ -96,7 +96,6 @@ def main():
         result = run_or_exit(jb_cmd, capture_output=True, text=True)
         print("[DEBUG] jupyter-book stdout:\n" + (result.stdout or ""))
         print("[DEBUG] jupyter-book stderr:\n" + (result.stderr or ""))
-
 
         # The HTML output may be in tmp_jb_dir/_build/html or tmp_jb_dir/html. Detect and copy from the correct location.
         html_nested = tmp_jb_dir / '_build' / 'html'
@@ -148,6 +147,53 @@ def main():
             shutil.rmtree(sources_jb_html)
         shutil.copytree(build_html_dir, sources_jb_html)
         print(f"[INFO] Jupyter Book HTML site copied to {docs_jupyter_dir} and to {sources_jb_html}")
+
+        # --- Unified Notebook JSON Export ---
+        # Collect all notebooks in the order of _notebooks.yml
+        import nbformat
+        import json
+        notebooks_yaml = repo_root / '.autogen/_notebooks.yml'
+        if not notebooks_yaml.exists():
+            print(f"[WARN] _notebooks.yml not found, skipping unified notebook export.")
+            return
+        def parse_yaml_list(yaml_path):
+            import yaml
+            with open(yaml_path) as f:
+                data = yaml.safe_load(f)
+            if isinstance(data, list):
+                return data
+            if isinstance(data, dict) and 'notebooks' in data:
+                return data['notebooks']
+            return []
+        notebooks = parse_yaml_list(notebooks_yaml)
+        unified_cells = []
+        for nb in notebooks:
+            nb_path = repo_root / nb
+            if not nb_path.exists():
+                print(f"[WARN] Notebook not found for unified export: {nb_path}")
+                continue
+            try:
+                nb_data = nbformat.read(str(nb_path), as_version=4)
+                for cell in nb_data.get('cells', []):
+                    cell_json = {
+                        "cell_type": cell.get("cell_type"),
+                        "metadata": {
+                            "language": cell.get("metadata", {}).get("language", "python" if cell.get("cell_type") == "code" else "markdown")
+                        },
+                        "source": cell.get("source", [])
+                    }
+                    # Preserve cell id if present (for existing cells)
+                    if "id" in cell.get("metadata", {}):
+                        cell_json["metadata"]["id"] = cell["metadata"]["id"]
+                    unified_cells.append(cell_json)
+            except Exception as e:
+                print(f"[WARN] Could not parse notebook for unified export: {nb_path}: {e}")
+        unified_notebook = {"cells": unified_cells}
+        unified_path = repo_root / '_build/jupyter/unified_notebook.json'
+        unified_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(unified_path, 'w', encoding='utf-8') as f:
+            json.dump(unified_notebook, f, indent=2, ensure_ascii=False)
+        print(f"[INFO] Unified notebook JSON exported to {unified_path}")
         return
 
     # --- HTML Build Option: just call build-web.py --html (and pass --files if given) ---

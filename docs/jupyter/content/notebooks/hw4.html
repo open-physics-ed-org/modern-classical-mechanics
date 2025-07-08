@@ -1,0 +1,691 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Homework 4 (Due 17 Feb) &#8212; My Jupyter Book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'content/notebooks/hw4';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Homework 5 (Due 14 Mar)" href="hw5.html" />
+    <link rel="prev" title="Homework 3 (Due 07 Feb)" href="hw3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">My Jupyter Book</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Welcome to Modern Classical Mechanics
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_start.html">Week 1 - Overture: What is Classical Physics?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_notes.html">Week 1 - Notes: Introduction to Classical Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_start.html">Week 2 - Computing as a tool for science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_notes.html">Week 2 - Notes: Mathematical Preliminaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_start.html">Week 3 - What is Mathematical Modeling?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_notes.html">Week 3 - Notes: Making Classical Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_start.html">Week 4 - Why does fluid drag complicate things?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_notes.html">Week 4 - Notes: Equations of Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_start.html">Week 5 - Conservation Laws</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_notes.html">Week 5 - Notes: Conservation of Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_start.html">Week 6 - Stability and Equilibria</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_notes.html">Week 6 - Notes: Stability and Energy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_notes_2.html">Week 6 - Notes: Linear and Angular Momentum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_start.html">Week 7 - Nonlinear Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_notes.html">Week 7 - Notes: Critical Points; Phase Space; Trajectories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_start.html">Week 8 - Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_notes.html">Week 8 - Notes: Oscillators and Modeling Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_start.html">Week 9 - Driven Oscillators and Resonance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_notes.html">Week 9 - Notes: Driven Oscillations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_start.html">Week 10 - Chaotic Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_notes.html">Week 10 - Activity: Modeling Chaotic Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_start.html">Week 11 - Calculus of Variations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_notes.html">Week 11 - Notes: The Euler-Lagrange Equation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_start.html">Week 12 - The Principle of Least Action</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_notes.html">Week 12 - Notes: Introduction to Lagrangian Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_start.html">Week 13 - Lagrangian Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13_notes.html">Week 13 - Notes: Examples of Lagrangian Mechanics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hw1.html">Homework 1 (Due 24 Jan)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hw2.html">Homework 2 (Due 31 Jan)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hw3.html">Homework 3 (Due 07 Feb)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Homework 4 (Due 17 Feb)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hw5.html">Homework 5 (Due 14 Mar)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hw6.html">Homework 6 (Due 21 Mar)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hw7.html">Homework 7 (Due 28 Mar)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hw8.html">Homework 8 (Due 18 Apr)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/content/notebooks/hw4.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Homework 4 (Due 17 Feb)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-homework-4">Introduction to Homework 4</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practicalities-about-homeworks-and-projects">Practicalities about  homeworks and projects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-15-pts-is-this-a-conservative-force">Exercise 1 (15 pts), Is this a conservative force?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-10-pt-sliding-puck">Exercise 2 (10 pt), Sliding puck</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-10pt-example-of-potential">Exercise 3 (10pt), Example of potential</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-15pt-forces-and-potentials">Exercise 4 (15pt), forces  and potentials</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-10pt-midterms-and-final-project-preparation">Exercise 5 (10pt), Midterms and Final Project Preparation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6-40pt-bouncing-object">Exercise 6 (40pt), Bouncing object</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrating-classwork-with-research">Integrating Classwork With Research</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <!-- HTML file automatically generated from DocOnce source (https://github.com/doconce/doconce/)
+doconce format html hw4.do.txt --no_mako -->
+<!-- dom:TITLE: PHY321: Classical Mechanics 1 --><section class="tex2jax_ignore mathjax_ignore" id="homework-4-due-17-feb">
+<h1>Homework 4 (Due 17 Feb)<a class="headerlink" href="#homework-4-due-17-feb" title="Link to this heading">#</a></h1>
+<p><strong>Due Feb 17 (midnight)</strong></p>
+<p>Total points: <strong>100</strong>.</p>
+<section id="introduction-to-homework-4">
+<h2>Introduction to Homework 4<a class="headerlink" href="#introduction-to-homework-4" title="Link to this heading">#</a></h2>
+<p>This week’s sets of classical pen and paper and computational
+exercises deal with some motion problems and conservation of energy. We also have a preparation exercise for the upcoming midterms and final project.</p>
+<p>The relevant reading background is</p>
+<ol class="arabic simple">
+<li><p>chapters 3, 4.1, 4.2 and 4.3 of Taylor (there are many good examples there) and</p></li>
+<li><p>chapters 10-13 of Malthe-Sørenssen.</p></li>
+<li><p>for the numerical exercise see Malthe-Sørenssen section 7.5</p></li>
+</ol>
+<p>In both textbooks there are many nice worked out examples. Malthe-Sørenssen’s text contains also several coding examples you may find useful.</p>
+<p>The numerical homework focuses on another motion problem where you can
+use the code you developed in homework 3, almost entirely. Please take
+a look at the posted solution (jupyter-notebook) for homework 3 (<strong>POSTED AFTER HW3 DUE</strong>). You
+need only to change the forces at play. The numerical problem this time is based
+on your code from homework 3 and we will try to make the motion of a falling object in two dimensions more realistic by allowing to bounce up again due to a normal force from the floor.</p>
+<section id="practicalities-about-homeworks-and-projects">
+<h3>Practicalities about  homeworks and projects<a class="headerlink" href="#practicalities-about-homeworks-and-projects" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>You can work in groups (optimal groups are often 2-3 people) or by yourself. If you work as a group you can hand in one answer only if you wish. <strong>Remember to write your name(s)</strong>!</p></li>
+<li><p>Homeworks are available ten days  before the deadline.</p></li>
+<li><p>How do I(we)  hand in?  You can hand in the paper and pencil exercises as a <strong>single scanned PDF document</strong>. For this homework this applies to exercises 1-5. Your jupyter notebook file should be converted to a <strong>PDF</strong> file, attached to the same PDF file as for the pencil and paper exercises. All files should be uploaded to Gradescope.</p></li>
+</ol>
+<p><strong><a class="reference internal" href="#../resources/gradescope-submissions.md"><span class="xref myst">Instructions for submitting to Gradescope</span></a>.</strong></p>
+</section>
+<section id="exercise-1-15-pts-is-this-a-conservative-force">
+<h3>Exercise 1 (15 pts), Is this a conservative force?<a class="headerlink" href="#exercise-1-15-pts-is-this-a-conservative-force" title="Link to this heading">#</a></h3>
+<p>Consider a particle of mass <span class="math notranslate nohighlight">\(m\)</span> moving in two dimensions. The particle moves from <span class="math notranslate nohighlight">\((0,0)\)</span> to <span class="math notranslate nohighlight">\((1,1)\)</span> along three different paths, <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span> as shown in the figure below.</p>
+<p><img alt="Paths" src="../../_images/paths.png" /></p>
+<p>In this space, the particle experiences a force:</p>
+<div class="math notranslate nohighlight">
+\[\vec{F} = \langle x^2, 2xy \rangle = x^2\hat{i} + 2xy \hat{j}\]</div>
+<ul class="simple">
+<li><p>1a (3pt) Calculate the work done by the along path <span class="math notranslate nohighlight">\(a\)</span>, which is a straight line from <span class="math notranslate nohighlight">\((0,0)\)</span> to <span class="math notranslate nohighlight">\((1,0)\)</span>, and then to <span class="math notranslate nohighlight">\((1,1)\)</span>. <em>Break the path into two segments and calculate the work done along each segment separately.</em></p></li>
+<li><p>1b (3pt) Calculate the work done by the force along path <span class="math notranslate nohighlight">\(b\)</span>, which follows the function <span class="math notranslate nohighlight">\(y = x^2\)</span> from <span class="math notranslate nohighlight">\((0,0)\)</span> to <span class="math notranslate nohighlight">\((1,1)\)</span>.</p></li>
+<li><p>1c (4pt) Calculate the work done by the force along path <span class="math notranslate nohighlight">\(c\)</span>, which is given parametrically by <span class="math notranslate nohighlight">\(x = t^3\)</span> and <span class="math notranslate nohighlight">\(y = t^2\)</span> from <span class="math notranslate nohighlight">\((0,0)\)</span> to <span class="math notranslate nohighlight">\((1,1)\)</span>.</p></li>
+<li><p>1d (5pt) Is this force conservative? Explain your answer in at least two ways.</p></li>
+</ul>
+</section>
+<section id="exercise-2-10-pt-sliding-puck">
+<h3>Exercise 2 (10 pt), Sliding puck<a class="headerlink" href="#exercise-2-10-pt-sliding-puck" title="Link to this heading">#</a></h3>
+<p>A small puck rests on a fixed sphere of radius <span class="math notranslate nohighlight">\(R\)</span>. The puck is given a tiny nudge and it slides down the sphere. Using conservation of energy, we can determine the point at which the puck leaves the sphere.</p>
+<ul class="simple">
+<li><p>2a (3pt) Setup the problem with a sketch. Explain the setup and include any assumptions that you need to make in order to solve the problem analytically. Identify the height as a function of the polar angle, <span class="math notranslate nohighlight">\(h(\theta)\)</span>. What is the maximum possible angle <span class="math notranslate nohighlight">\(\theta\)</span> that the puck could reach before falling off? Why?</p></li>
+<li><p>2b (2pt) Use conservation of energy to find the speed of the puck as a function of it’s height. Your answer should be in terms of the polar angle, <span class="math notranslate nohighlight">\(\theta\)</span>.</p></li>
+<li><p>2c (3pt) Use Newton’s Second Law to find the normal force acting on the puck as a function of it’s height. Your answer should be in terms of the polar angle, <span class="math notranslate nohighlight">\(\theta\)</span>. What is the condition for the puck to leave the sphere?</p></li>
+<li><p>2d (2pt) At what angle and height does the puck leave the sphere?</p></li>
+</ul>
+</section>
+<section id="exercise-3-10pt-example-of-potential">
+<h3>Exercise 3 (10pt), Example of potential<a class="headerlink" href="#exercise-3-10pt-example-of-potential" title="Link to this heading">#</a></h3>
+<p>Consider a particle of mass <span class="math notranslate nohighlight">\(m\)</span> moving according to the potential:</p>
+<div class="math notranslate nohighlight">
+\[
+V(x,y,z)=A\exp\left\{-\frac{x^2+z^2}{2a^2}\right\}.
+\]</div>
+<p>We can think of this potential as the energy landscape of a particle in three dimensions. That is, you can imagine a particle moving around this potential like a ball rolling around a landscape. That analogy is not perfect, but it is a good way to help us think about stability and equilibrium.</p>
+<ul class="simple">
+<li><p>3a (2pt) Plot this potential or sketch a plot of it. You can use perspective plots, contour plots or any other plot you find useful.</p></li>
+<li><p>3b (2pt) What are some feature you notice with this potential? What happens when you change <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(a\)</span>?</p></li>
+<li><p>3c (2pt) Imagine a particle moving in this potential, what are some expected trajectories?</p></li>
+<li><p>3d (2pt) Do there appear to be any equilibrium points? If so, are they stable or unstable?</p></li>
+<li><p>3a (2pt) Is the resulting force conservative? Why?</p></li>
+</ul>
+</section>
+<section id="exercise-4-15pt-forces-and-potentials">
+<h3>Exercise 4 (15pt), forces  and potentials<a class="headerlink" href="#exercise-4-15pt-forces-and-potentials" title="Link to this heading">#</a></h3>
+<p>A particle of mass <span class="math notranslate nohighlight">\(m\)</span> has velocity <span class="math notranslate nohighlight">\(v=\alpha/x\)</span>, where <span class="math notranslate nohighlight">\(x\)</span> is its displacement.</p>
+<ul class="simple">
+<li><p>5a (5pt) Find the force <span class="math notranslate nohighlight">\(F(x)\)</span> responsible for the motion.</p></li>
+</ul>
+<p>A particle is thereafter under the influence of a force <span class="math notranslate nohighlight">\(F=-kx+kx^3/\alpha^2\)</span>, where <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(\alpha\)</span> are constants and <span class="math notranslate nohighlight">\(k\)</span> is positive.</p>
+<ul class="simple">
+<li><p>5b (5pt) Determine the potential <span class="math notranslate nohighlight">\(U(x)\)</span>  and discuss the motion. It can be convenient here to make a sketch/plot of the potential as function of <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+<li><p>5c (5pt)  What happens when the energy of the particle is <span class="math notranslate nohighlight">\(E=(1/4)k\alpha^2\)</span>? Hint: what is the maximum value of the potential energy?</p></li>
+</ul>
+</section>
+<section id="exercise-5-10pt-midterms-and-final-project-preparation">
+<h3>Exercise 5 (10pt), Midterms and Final Project Preparation<a class="headerlink" href="#exercise-5-10pt-midterms-and-final-project-preparation" title="Link to this heading">#</a></h3>
+<p>Your final project will be a <a class="reference external" href="https://arxiv.org/abs/1909.12697">computational essay</a> of your own design. My colleague, <a class="reference external" href="https://www.mn.uio.no/fysikk/english/people/aca/toroo/">Tor Ole Odden</a>, and I have borrowed this idea from a proposal by <a class="reference external" href="https://www.stephenwolfram.com/">Stephen Wolfram</a>. In his <a class="reference external" href="https://writings.stephenwolfram.com/2017/11/what-is-a-computational-essay">original post</a>, Wolfram talks about the importance of the computational medium as a way of communicating science.</p>
+<p>Tor, myself, and others have started building this idea into a <a class="reference external" href="https://journals.aps.org/prper/abstract/10.1103/PhysRevPhysEducRes.15.020152">theory of computational learning in physics</a>, using computational essays to <a class="reference external" href="https://www-nature-com.proxy2.cl.msu.edu/articles/s41567-023-02371-2">argue for the importance of computing in physics</a>, building <a class="reference external" href="https://pubs-aip-org.proxy2.cl.msu.edu/books/monograph/148/chapter/64396056/Physics-Computational-Literacy-What-Why-and-How">the theory out</a>, and trying to identify the ways making course work and materials to promote <a class="reference external" href="https://onlinelibrary-wiley-com.proxy2.cl.msu.edu/doi/full/10.1002/tea.21821">agency, creativity, and ownership</a>.</p>
+<p>In this homework question, we are going to start building your plan for your computational essay. I ask that you complete this particular homework problem by yourself because it is important for each of you to do this planning.</p>
+<p>To get started, you should read the following articles; they are not very long:</p>
+<ol class="arabic simple">
+<li><p>Wolfram’s <a class="reference external" href="https://writings.stephenwolfram.com/2017/11/what-is-a-computational-essay">What is a Computational Essay?</a></p></li>
+<li><p>Tor and my short paper: <a class="reference external" href="https://arxiv.org/abs/1909.12697">Computational Essays: An Avenue for Scientific Creativity in Physics</a></p></li>
+<li><p>Wolfram’s <a class="reference external" href="https://www.wolframcloud.com/obj/Expositions/Published/ComputationalEssayGuidelines">Steps to Writing a Computational Essay</a></p></li>
+</ol>
+<p>You are, of course, welcome to read more, but these are the three that I would like you to read.</p>
+<ul class="simple">
+<li><p>5a (3pt) Write a summary of your readings. What did you learn? What was important? What did you find interesting? What questions do you still have? Full credit will be given for a summary that is at least 250 words long.</p></li>
+</ul>
+<p>Computational essays are a new way to communicate your science. It might be a good idea to look at some examples. Review the <a class="reference external" href="https://uio-ccse.github.io/computational-essay-showroom">University of Oslo’s Computational Essay Showroom</a>.</p>
+<ul class="simple">
+<li><p>5b (3pt) Find at least one computational essay in the <a class="reference external" href="https://uio-ccse.github.io/computational-essay-showroom">showroom</a> that you find interesting. Write a summary of the computational essay. What did you like? What did you not like? What was interesting about it? What questions do you still have? Full credit will be given for a summary that is at least 250 words long.</p></li>
+</ul>
+<p>These essays were made by students who were taking a course at the University of Oslo. The essays are not meant to be perfect, they are meant to be representative of the work that students can do.</p>
+<ul class="simple">
+<li><p>5c (3pt) Evaluate the computational essay based on your readings in 5a. How well does the computational essay follow the concept of physics computational literacy, or the guidelines for a good essay? What are the strengths and weaknesses of the computational essay? Full credit will be given for a summary that is at least 250 words long.</p></li>
+</ul>
+<p>Now, let’s move to your future plans.</p>
+<ul class="simple">
+<li><p>5d (1pt) Write a short paragraph about the things you are interested in studying for your computational essay. This can be a very short paragraph, but it should include at least one image or plot that you find interesting. This can be starting from the homework, the samples in the showroom, or something else entirely.</p></li>
+</ul>
+</section>
+<section id="exercise-6-40pt-bouncing-object">
+<h3>Exercise 6 (40pt), Bouncing object<a class="headerlink" href="#exercise-6-40pt-bouncing-object" title="Link to this heading">#</a></h3>
+<p>This exercise builds on the code you wrote for solving homework 3.
+We recommend strongly that you study the text of Malthe-Sørenssen, section 7.5.</p>
+<p>In homework 3 we introduced gravity and air resistance and studied their
+effects via a constant acceleration due to gravity and the force
+arising from air resistance. But what happens when the ball hits the
+floor? What if we would like to simulate the normal force from the
+floor acting on the ball?  This exercise shows how we can include more
+complicated forces with no pain! And the force we include here is an
+example of a case where analytical solutions may either be difficult
+to find or we cannot find an analytical solution at all.</p>
+<p>We need then to include a force model for the normal force from the
+floor on the ball. The simplest approach to such a system is to
+introduce a contact force model represented by a spring model.  We
+model the interaction between the floor and the ball as a single
+spring. But the normal force is zero when there is no contact. Here we
+define a simple model that allows us to include such effects in our
+models.</p>
+<p>The normal force from the floor on the ball is represented by a spring force. This
+is a strong simplification of the actual deformation process occurring at the contact
+between the ball and the floor due to the deformation of both the ball and the floor.</p>
+<p>The deformed region corresponds roughly to the region of <strong>overlap</strong> between the
+ball and the floor. The depth of this region is <span class="math notranslate nohighlight">\(\Delta y = R-y(t)\)</span>, where <span class="math notranslate nohighlight">\(R\)</span>
+is the radius of the ball. This is supposed to represent the compression of the spring.
+Our model for the normal force acting on the ball is then</p>
+<div class="math notranslate nohighlight">
+\[
+\vec{N} = -k (R-y(t)) \vec{e}_y.
+\]</div>
+<p>The normal force must act upward when <span class="math notranslate nohighlight">\(y &lt; R\)</span>,
+hence the sign must be negative.
+However, we must also ensure that the normal force only acts when the ball is in
+contact with the floor, otherwise the normal force is zero. The full formation of the
+normal force is therefore</p>
+<div class="math notranslate nohighlight">
+\[
+\vec{N} = -k (R-y(t)) \vec{e}_y,
+\]</div>
+<p>when <span class="math notranslate nohighlight">\(y(t) &lt; R\)</span> and zero when <span class="math notranslate nohighlight">\(y(t) \ge R\)</span>.
+In the numerical calculations you can choose <span class="math notranslate nohighlight">\(R=0.1\)</span> m and the spring constant <span class="math notranslate nohighlight">\(k=1000\)</span> N/m.</p>
+<ul class="simple">
+<li><p>6a (10pt) Identify the forces acting on the ball and set up a diagram with the forces acting on the ball. Find the acceleration of the falling ball now with the normal force as well.</p></li>
+<li><p>6b (30pt) Choose a large enough final time so you can study the ball bouncing up and down several times. Add the normal force and compute the height of the ball as function of time with and without air resistance. Comment your results.</p></li>
+</ul>
+</section>
+<section id="integrating-classwork-with-research">
+<h3>Integrating Classwork With Research<a class="headerlink" href="#integrating-classwork-with-research" title="Link to this heading">#</a></h3>
+<p>This opportunity will allow you to earn up to 5 extra credit points on a Homework per week. These points can push you above 100% or help make up for missed exercises.
+In order to earn all points you must:</p>
+<ol class="arabic simple">
+<li><p>Attend an MSU research talk (recommended research oriented Clubs is  provided below)</p></li>
+<li><p>Summarize the talk using at least 150 words</p></li>
+<li><p>Turn in the summary along with your Homework.</p></li>
+</ol>
+<p>Approved talks:
+Talks given by researchers through the following clubs:</p>
+<ul class="simple">
+<li><p>Society for Physics Students (SPS)​: Meets Monday Nights (alternates with Astronomy Club)</p></li>
+<li><p>Astronomy Club​: Meets Monday Nights (alternates with SPS)</p></li>
+<li><p>Any <a class="reference external" href="https://pa.msu.edu/news-events-seminars/index.aspx">physics and astronomy seminar</a> of interest to you</p></li>
+</ul>
+<p>If you have any questions please consult Danny.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "jbook"
+        },
+        kernelOptions: {
+            name: "jbook",
+            path: "./content/notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'jbook'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="hw3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Homework 3 (Due 07 Feb)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="hw5.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Homework 5 (Due 14 Mar)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-homework-4">Introduction to Homework 4</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practicalities-about-homeworks-and-projects">Practicalities about  homeworks and projects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-1-15-pts-is-this-a-conservative-force">Exercise 1 (15 pts), Is this a conservative force?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-2-10-pt-sliding-puck">Exercise 2 (10 pt), Sliding puck</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-3-10pt-example-of-potential">Exercise 3 (10pt), Example of potential</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-4-15pt-forces-and-potentials">Exercise 4 (15pt), forces  and potentials</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-5-10pt-midterms-and-final-project-preparation">Exercise 5 (10pt), Midterms and Final Project Preparation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-6-40pt-bouncing-object">Exercise 6 (40pt), Bouncing object</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrating-classwork-with-research">Integrating Classwork With Research</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
