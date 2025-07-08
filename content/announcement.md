@@ -4,13 +4,15 @@ This site is actively being developed. Content, structure, and features may chan
 
 ---
 
-## 🚀 Release v0.8 "Noble Noether" Highlights
 
-- Improved navigation for both desktop and mobile, with accessible menus and clear links.
-- All navigation and download buttons have high contrast, visible focus styles, and are keyboard accessible.
-- Download links are now easy-to-find buttons with clear icons and accessible styles.
-- Historical release notes are available as markdown files in the `releases/` folder.
-- The build process and menu structure have been updated for consistency and accessibility.
-- All interactive elements are usable with a keyboard and have visible focus indicators (order is not guaranteed yet).
+
+## 🚀 Release v0.9.1 "Persistent Poincaré" Highlights (July 2025)
+
+- **Mobile Menu Accessibility:** Navigation is now scrollable and touch-friendly on all small/mobile screens. All menu items are accessible regardless of device size.
+- **Documentation Streamlining:** `README.md` and `build.md` have been further cleaned up, removing redundancy and clarifying theming, build, and usage instructions.
+- **Release Management:** This release file follows the new pattern. The previous v0.9 release file is now only in the `releases/` folder.
+- **Other Improvements:** Minor accessibility and usability tweaks throughout the site and build system. All changes are fully documented and committed.
+
+See the `releases/` folder for full historical release notes.
 
 For more details and instructions, see the [Release Notes](https://github.com/dannycab/modern-classical-mechanics/releases).
