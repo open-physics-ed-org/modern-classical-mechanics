@@ -1,119 +1,146 @@
-
-# Build System Documentation
+# Modern Classical Mechanics Build System
 
 ## Overview
+This document describes the updated build system for the Modern Classical Mechanics project, including the new behavior of `build.py` and `build-web.py`. The build system is designed to generate all course materials (PDF, DOCX, Markdown, TeX, HTML, and Jupyter Book site) in a consistent, reproducible, and organized way.
 
-This repository uses a modern, streamlined build system to generate all course outputs (HTML web site, PDFs, DOCX, Markdown, LaTeX, and images) from Jupyter notebooks and Markdown sources. The build process is designed to be robust, non-redundant, and easy to invoke.
+---
 
+## Project Structure (Key Directories)
 
-## Key Build Scripts
+- **_build/**: All intermediate and final build outputs (not for direct publishing)
+    - `docx/`   — DOCX files (one per notebook)
+    - `html/`   — Jupyter Book HTML site (temporary, unified build)
+    - `images/` — All images referenced in notebooks/markdown
+    - `latex/`  — (if used) LaTeX build artifacts
+    - `md/`     — Markdown files (one per notebook)
+    - `pdf/`    — PDF files (one per notebook)
+    - `tex/`    — TeX files (one per notebook)
+    - `wcag-html/` — (if used) Accessibility HTML
+- **docs/**: All published outputs for the website
+    - HTML files for each chapter, homework, etc.
+    - `css/`, `images/`, `sources/` (see below)
+    - `sources/` — Contains a subfolder for each notebook stem, with all output formats for that notebook:
+        - `<notebook_stem>/<notebook_stem>.md`
+        - `<notebook_stem>/<notebook_stem>.docx`
+        - `<notebook_stem>/<notebook_stem>.pdf`
+        - `<notebook_stem>/<notebook_stem>.tex`
+        - ...
+    - `sources/jupyterbook_html/` — The full Jupyter Book HTML site
+- **content/**: Source markdown, notebooks, and images
+- **static/**: HTML templates, CSS, JS, and themes
+- **build.py**: Main build script
+- **build-web.py**: Custom web build script
 
-- **build.py**: The main entry point for all builds. Handles PDF, DOCX, Markdown, LaTeX, and image collection. For HTML/web builds, it delegates to `build-web.py`.
-- **build-web.py**: Contains all logic for building the HTML web site, including notebook conversion, menu generation, asset copying, and post-processing.
-- **theme_to_css.py**: Generates the two theme CSS files (`theme-light.css`, `theme-dark.css`) from YAML theme definitions in `static/themes/` and a Jinja2 CSS template. Called automatically by the build.
+---
 
+## Build Workflow
 
+### 1. Building Everything: `python build.py --all`
+This is the recommended way to build all outputs. It will:
 
-## Typical Usage
+1. **Build DOCX** (and Markdown):
+    - Converts each notebook to Markdown and DOCX.
+    - Copies both `.md` and `.docx` to `docs/sources/<notebook_stem>/`.
+2. **Build PDF**:
+    - Converts each notebook to TeX and PDF.
+    - Copies both `.tex` and `.pdf` to `docs/sources/<notebook_stem>/`.
+3. **Build Jupyter Book HTML**:
+    - Builds the full Jupyter Book HTML site into `_build/html`.
+    - Copies the site to `docs/jupyter/` and to `docs/sources/jupyterbook_html/`.
+4. **Build Custom HTML Web Output**:
+    - Runs `build-web.py` to generate the custom website in `docs/`.
 
-Run from the repository root:
+All steps are run in the correct order to ensure dependencies are satisfied (e.g., Markdown is always built before DOCX).
 
+### 2. Building Individual Formats
+- `python build.py --docx` — Only build DOCX (and Markdown) for all notebooks.
+- `python build.py --pdf` — Only build PDF (and TeX) for all notebooks.
+- `python build.py --jupyter` — Only build the unified Jupyter Book HTML site.
+- `python build.py --html` — Only build the custom HTML web output (calls `build-web.py`).
+- `python build.py --md` — Only build Markdown for all notebooks.
+- `python build.py --tex` — Only build TeX for all notebooks.
+- `python build.py --img` — Collect all referenced images into `_build/images/`.
+
+### 3. Selective Builds
+- Use `--files <notebook1> <notebook2> ...` to build only specific notebooks.
+
+---
+
+## Output Directory Details
+
+### _build/
 ```
-python build.py --all            # Build everything: LaTeX, PDF, Markdown, DOCX, and HTML web site (docs/)
-python build.py --html           # Build the full HTML web site (outputs to docs/)
-python build.py --pdf            # Build PDFs for all notebooks
-python build.py --md             # Build Markdown for all notebooks
-python build.py --docx           # Build DOCX for all notebooks
-python build.py --latex          # Build LaTeX for all notebooks
-python build.py --img            # Collect all referenced images into _build/images/
+docx/        # All .docx files (one per notebook)
+html/        # Jupyter Book HTML site (temporary, unified build)
+images/      # All images referenced in notebooks/markdown
+latex/       # (if used) LaTeX build artifacts
+md/          # All .md files (one per notebook)
+pdf/         # All .pdf files (one per notebook)
+tex/         # All .tex files (one per notebook)
+wcag-html/   # (if used) Accessibility HTML
 ```
 
-You can also build specific notebooks with `--files`:
-
+### docs/
 ```
-python build.py --html --files 01_notes.ipynb 02_notes.ipynb
+01_notes.html   01_start.html   ...   index.html   ...
+css/           images/         sources/
+  sources/
+    <notebook_stem>/
+      <notebook_stem>.md
+      <notebook_stem>.docx
+      <notebook_stem>.pdf
+      <notebook_stem>.tex
+    jupyterbook_html/
+      (full Jupyter Book HTML site)
 ```
 
-### Theming: YAML-Driven, Accessible, and Extensible
+### Project Root
+```
+_config.yml   _menu.yml   _notebooks.yaml   _toc.yml
+basic_yaml2json.py   build-web.py   build.py   ...
+content/   docs/   static/   _build/   ...
+```
 
-- **Theme selection** is set in `_config.yml`:
-  ```yaml
-  theme:
-    light: light   # or any available theme name (see static/themes/)
-    dark: dark
-    default: dark # (optional)
+---
+
+## Notable Features & Updates
+
+- **--all** now runs: DOCX (and Markdown) → PDF → Jupyter Book HTML → Custom HTML web output, in that order.
+- All output formats are copied to `docs/sources/<notebook_stem>/` for each notebook.
+- Markdown is always built before DOCX (DOCX is generated from Markdown).
+- Jupyter Book HTML is built into a temp directory, then copied to both `docs/jupyter/` and `docs/sources/jupyterbook_html/`.
+- `build-web.py` is always called last in the `--all` workflow.
+- All referenced images are collected into `_build/images/`.
+- No automatic cleanup of `_build/` or `docs/` directories—manual cleanup is recommended if needed.
+
+---
+
+## Example Usage
+
+- Build everything:
+  ```sh
+  python build.py --all
   ```
-- **Available themes:**
-  - light, dark (classic, WCAG AAA, high contrast)
-  - clarity_light, clarity_dark (WCAG AAA, high contrast)
-  - serif_light, serif_dark (WCAG AAA, soft contrast)
-  - everforest_light, everforest_dark
-  - github_light, github_dark
-  - monokai_light, monokai_dark
-  - solarized_light, solarized_dark
-  - tokyo_light, tokyo_dark
-- **How it works:**
-  - Only two CSS files are used: `theme-light.css` and `theme-dark.css` (in `static/css/`), generated from the selected YAML themes.
-  - The HTML template loads both CSS files and uses JavaScript to toggle between them, ensuring all elements are themed.
-  - All color choices are AAA-compliant for contrast and accessibility.
-- **To add your own theme:** Copy an existing YAML in `static/themes/`, edit the colors, and select it in `_config.yml`.
-
-
-## How the Build Works
-
-- **All Formats (`--all`)**: `python build.py --all` builds all non-web formats first (LaTeX, PDF, Markdown, DOCX), then automatically builds the HTML/web output. This is the recommended way to build everything in one step.
-
-- **HTML/Web Build**: `python build.py --html` simply calls `build-web.py --html`, which:
-  - Converts all notebooks and Markdown pages to HTML using nbconvert and custom templates.
-  - Builds navigation menus from `_menu.yml`.
-  - Copies and organizes all images, CSS, and assets into sectioned folders.
-  - Cleans up Jupyter/nbconvert markup for a polished web appearance.
-  - Outputs all HTML and assets to `_build/html/` and then copies them to `docs/` for publishing (e.g., GitHub Pages).
-
-- **PDF, DOCX, Markdown, LaTeX**: Handled directly by `build.py` using nbconvert and pandoc. Images are collected and flattened for each output type.
-
-- **Image Collection**: `--img` scans all notebooks and Markdown for referenced images (including YouTube thumbnails) and copies them to `_build/images/`.
-
-## File/Folder Organization
-
-- `build.py`                — Main build script (all formats except HTML web)
-- `build-web.py`            — All HTML/web build logic
-- `notebooks/` or `content/notebooks/` — All Jupyter notebooks (source)
-- `docs/`                   — Final HTML web site output (for GitHub Pages)
-- `_build/`                 — All intermediate and final build outputs
-    - `html/`               — HTML outputs (before copying to docs/)
-    - `pdf/`                — PDF outputs
-    - `docx/`               — DOCX outputs
-    - `md/`                 — Markdown outputs
-    - `latex/`              — LaTeX outputs
-    - `images/`             — All collected images (flattened)
-- `images/`                 — Project-wide images (source)
-- `static/css/`             — CSS for the web site (auto-generated: `theme-light.css`, `theme-dark.css`)
-- `static/themes/`          — YAML theme definitions (edit or add your own)
-- `_menu.yml`               — Navigation/menu structure
-- `_notebooks.yaml`         — List of notebooks to build
-- `_toc.yml`                — Jupyter Book table of contents (auto-generated)
-- `README.md`               — Project overview
-- `build.md`                — (This file) Build system documentation
-
-## Best Practices
-
-- **Single Source of Truth**: All web build logic is in `build-web.py`. Do not duplicate HTML/web logic in `build.py`.
-- **Always Use `build.py`**: For consistency, always invoke builds via `build.py`.
-- **Keep `_notebooks.yaml` Up to Date**: This file controls which notebooks are included in builds.
-- **Do Not Edit `docs/` Directly**: All files in `docs/` are generated. Edit sources in `notebooks/`, `content/`, or `images/`.
-
-
-## Publishing
-
-The `docs/` folder is ready for static hosting (e.g., GitHub Pages). After running `python build.py --html`, simply push the repository to update the live site.
-
-**Make sure `.nojekyll` is present in `docs/` to prevent Jekyll processing; this is plain HTML and CSS, not Jekyll content.**
+- Build only PDFs:
+  ```sh
+  python build.py --pdf
+  ```
+- Build only DOCX for a specific notebook:
+  ```sh
+  python build.py --docx --files content/notebooks/01_notes.ipynb
+  ```
 
 ---
-### Accessibility & WCAG Compliance
 
-All official themes are designed to meet or exceed WCAG AAA contrast requirements for readability and accessibility. You can verify or extend this by editing the YAML files in `static/themes/`.
+## Troubleshooting
+- If you see missing images in outputs, try running with `--img` or ensure all image paths are correct.
+- If you add new notebooks, update `_notebooks.yaml` and re-run the build.
+- For custom web output, edit `build-web.py` and re-run with `--html` or `--all`.
 
 ---
-*Last updated: July 2025*
+
+## See Also
+- `README.md` for project overview
+- `requirements.txt` for dependencies
+- `build-web.py` for custom web build logic
+- Jupyter Book documentation: https://jupyterbook.org/
