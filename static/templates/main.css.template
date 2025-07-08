@@ -30,39 +30,25 @@
 */
 
 /* --- Color Variables --- */
-:root {
-  --color-bg: {{ color_bg }};         /* Light blue background */
-  --color-fg: {{ color_fg }};         /* Deep teal text */
-  --color-card: {{ color_card }};     /* Darker teal card */
-  --color-border: {{ color_border }}; /* Blue border to match menu and title */
-  --color-menu: {{ color_menu }};     /* Purple menu, WCAG AA on light */
-  --color-menu-hover: {{ color_menu_hover }}; /* Blue for hover in light mode */
-  --color-link: {{ color_link }};     /* Blue for links in light mode */
-  --color-link-hover: {{ color_link_hover }}; /* Deeper blue for link/menu hover in light mode */
-  --color-btn: {{ color_btn }};        /* Darker teal button, better contrast */
-  --color-btn-hover: {{ color_btn_hover }};  /* Use title/menu color for hover */
-  --color-btn-text: {{ color_btn_text }};
-  --color-title: {{ color_title }};      /* Blue for title and WIP banner in light mode */
-}
 
-html.dark, body.dark {
-  --color-bg: {{ dark_color_bg|default('#282a31') }};
-  --color-fg: {{ dark_color_fg|default('#f9f9fb') }};
-  --color-card: {{ dark_color_card|default('#282a31') }};
-  --color-border: {{ dark_color_border|default('#b39ddb') }};
-  --color-menu: {{ dark_color_menu|default('#b39ddb') }};
-  --color-menu-hover: {{ dark_color_menu_hover|default('#7c5fcf') }};
-  --color-link: {{ dark_color_link|default('#b39ddb') }};
-  --color-link-hover: {{ dark_color_link_hover|default('#7c5fcf') }};
-  --color-title: {{ dark_color_title|default('#7c5fcf') }};
-  --color-btn: {{ dark_color_btn|default('#0d3c47') }};
-  --color-btn-hover: {{ dark_color_btn_hover|default('var(--color-link)') }};
-  --color-btn-text: {{ dark_color_btn_text|default('#23242a') }};
-  --color-btn-hover-text: {{ dark_color_btn_hover_text|default('#fff') }};
+
+:root {
+  --color-bg: {{ color_bg }};
+  --color-fg: {{ color_fg }};
+  --color-card: {{ color_card }};
+  --color-border: {{ color_border }};
+  --color-menu: {{ color_menu }};
+  --color-menu-hover: {{ color_menu_hover }};
+  --color-link: {{ color_link }};
+  --color-link-hover: {{ color_link_hover }};
+  --color-title: {{ color_title }};
+  --color-btn: {{ color_btn }};
+  --color-btn-hover: {{ color_btn_hover }};
+  --color-btn-text: {{ color_btn_text }};
 }
 
 html, body {
-  background: var(--color-card) !important;
+  background: var(--color-bg) !important;
   color: var(--color-fg) !important;
   font-family: system-ui, sans-serif;
   margin: 0 !important;
@@ -134,9 +120,12 @@ footer {
 
 
 
-.markdown-body {
+/* Ensure main content always uses theme background and fills viewport */
+.container, .markdown-body {
+  background: var(--color-bg) !important;
+  min-height: 100vh;
   color: var(--color-fg) !important;
-  background: none !important;
+}
   --jp-cell-editor-background: var(--color-card) !important;
   --jp-cell-editor-active-background: var(--color-card) !important;
   --jp-layout-color0: var(--color-card) !important;

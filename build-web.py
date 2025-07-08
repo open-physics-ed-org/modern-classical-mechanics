@@ -688,8 +688,10 @@ def main():
 
     # 4. Convert notebooks to HTML with custom CSS and template
     import json
-    css_path = repo_root / 'static' / 'css' / 'main.css'
-    css_rel = 'css/main.css'
+    css_light_path = repo_root / 'static' / 'css' / 'theme-light.css'
+    css_dark_path = repo_root / 'static' / 'css' / 'theme-dark.css'
+    css_light_rel = 'css/theme-light.css'
+    css_dark_rel = 'css/theme-dark.css'
 
     # --- Load menu structure from _menu.yml using basic_yaml2json.py ---
     menu_yml = repo_root / '_menu.yml'
@@ -1107,19 +1109,21 @@ def main():
         else:
             shutil.copy2(item, dest)
 
-    # Copy only main.css to docs/css and _build/html/css
+    # Copy theme-light.css and theme-dark.css to docs/css and _build/html/css
     docs_css_dir.mkdir(parents=True, exist_ok=True)
     try:
-        shutil.copy2(css_path, docs_css_dir / 'main.css')
+        shutil.copy2(css_light_path, docs_css_dir / 'theme-light.css')
+        shutil.copy2(css_dark_path, docs_css_dir / 'theme-dark.css')
     except Exception as e:
-        print(f"[ERROR] Failed to copy main.css to {docs_css_dir}: {e}")
+        print(f"[ERROR] Failed to copy theme CSS to {docs_css_dir}: {e}")
         raise
     build_css_dir = build_dir / 'css'
     build_css_dir.mkdir(parents=True, exist_ok=True)
     try:
-        shutil.copy2(css_path, build_css_dir / 'main.css')
+        shutil.copy2(css_light_path, build_css_dir / 'theme-light.css')
+        shutil.copy2(css_dark_path, build_css_dir / 'theme-dark.css')
     except Exception as e:
-        print(f"[ERROR] Failed to copy main.css to {build_css_dir}: {e}")
+        print(f"[ERROR] Failed to copy theme CSS to {build_css_dir}: {e}")
         raise
 
     # Copy all images to docs/images/<section>/
