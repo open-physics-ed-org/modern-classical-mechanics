@@ -453,11 +453,7 @@ def main():
             except Exception as e:
                 print(f"[WARN] Could not parse notebook for images: {e}")
             if missing_images:
-                print(f"[INFO] Missing images for {nb_path}: {missing_images}. Attempting to collect images directly using scripts/fetch_youtube.py or skipping.")
-                # Do not call the main build script recursively. Just warn and skip.
-                # If you want to collect images, you could call scripts/fetch_youtube.py or similar here.
-                # For now, just warn and skip.
-                continue
+                print(f"[WARN] Missing images for TeX in {nb_path}: {missing_images}. Proceeding to build TeX anyway; images will be missing in output.")
             run_or_exit([
                 jupyter_bin, 'nbconvert', '--to', 'latex', str(nb_path),
                 '--output', tex_name, '--output-dir', str(chapters_dir)
