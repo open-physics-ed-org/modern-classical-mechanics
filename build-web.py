@@ -1,6 +1,17 @@
 # --- Build resources.html from resources.md and about.html from about.md ---
     # (Code moved inside main() after all variables are defined)
 #!/usr/bin/env python3
+from pathlib import Path
+# --- Global paths (needed by all functions) ---
+repo_root = Path(__file__).parent.resolve()
+docs_dir = repo_root / 'docs'
+build_dir = repo_root / '_build' / 'wcag-html'
+notebooks_dir = repo_root / 'content' / 'notebooks'
+build_dir.mkdir(parents=True, exist_ok=True)
+docs_dir.mkdir(parents=True, exist_ok=True)
+nojekyll = docs_dir / '.nojekyll'
+if not nojekyll.exists():
+    nojekyll.touch()
 import os
 import shutil
 import hashlib
@@ -8,11 +19,12 @@ import requests
 import nbformat
 from pathlib import Path
 from nbconvert import HTMLExporter
+import bs4
 import sys
 import re
 import subprocess
-
 import string
+import yaml
 def flatten_image_name(rel_path):
     # Lowercase, replace / and \ with _, remove spaces, keep only a-z0-9-_.
     name = rel_path.replace('/', '_').replace('\\', '_').lower().replace(' ', '_')
@@ -50,28 +62,7 @@ def main():
     else:
         print("[THEME][WARN] theme_to_css.py not found, skipping theme CSS generation.")
 
-    # --- Argument parsing for CLI behavior ---
-    import argparse
-
-    parser = argparse.ArgumentParser(
-        description="Build Modern Classical Mechanics HTML outputs and assets.",
-        add_help=False,
-        usage="python build-web.py --html [--files NOTEBOOK1.ipynb [NOTEBOOK2.ipynb ...]] [--all] [--clean]"
-    )
-    parser.add_argument('--html', action='store_true', help='Build HTML output (required for --files)')
-    parser.add_argument('--files', nargs='+', help='One or more notebook files to build (must be used with --html)')
-    parser.add_argument('--all', action='store_true', help='Build all notebooks listed in _notebooks.yaml')
-    parser.add_argument('-h', '--help', action='help', help='Show this help message and exit')
-    args, unknown = parser.parse_known_args()
-
-
-    # No flags: print error and usage
-    if not (args.html or args.files or args.all or unknown):
-        print("\n[ERROR] No flags provided. Usage:")
-        parser.print_usage()
-        print("\nExample: python build-web.py --html [--files NOTEBOOK1.ipynb ...] [--all]\n")
-        sys.exit(2)
-
+    # No argument parsing: always build everything (HTML, all notebooks, all pages)
     # Remove Jupyter/nbconvert markup from all HTML in docs/ (always after build)
     def clean_html_files_in_docs():
         try:
@@ -112,54 +103,44 @@ def main():
             print(f"[CLEAN] Cleaned {html_path.name}")
         print("[CLEAN] All HTML files in docs/ cleaned of Jupyter/nbconvert markup.")
 
-    # --files without --html: error
-    if args.files and not args.html:
-        print("\n[ERROR] --files requires --html. Usage:")
-        parser.print_usage()
-        print("\nExample: python build-web.py --html --files NOTEBOOK1.ipynb\n")
-        sys.exit(2)
-
-    # --all: build all notebooks listed in _notebooks.yaml (authoritative list)
+    # Always build all notebooks listed in _notebooks.yaml (authoritative list)
     notebooks_to_process = None
     notebooks_dir = Path(__file__).parent / 'content/notebooks'
-    if args.all:
-        # Load _notebooks.yaml and build all listed notebooks
-        import yaml
-        repo_root = Path(__file__).parent.resolve()
-        notebooks_yaml = repo_root / '_notebooks.yaml'
-        if not notebooks_yaml.exists():
-            print("[ERROR] --all specified but _notebooks.yaml not found!")
+    # Load _notebooks.yaml and build all listed notebooks
+    import yaml
+    repo_root = Path(__file__).parent.resolve()
+    notebooks_yaml = repo_root / '_notebooks.yaml'
+    if not notebooks_yaml.exists():
+        print("[ERROR] _notebooks.yaml not found!")
+        sys.exit(1)
+    with open(notebooks_yaml, 'r') as f:
+        data = yaml.safe_load(f)
+        if isinstance(data, dict) and 'notebooks' in data:
+            nb_list = data['notebooks']
+        elif isinstance(data, list):
+            nb_list = data
+        else:
+            print("[ERROR] _notebooks.yaml format not recognized.")
             sys.exit(1)
-        with open(notebooks_yaml, 'r') as f:
-            data = yaml.safe_load(f)
-            if isinstance(data, dict) and 'notebooks' in data:
-                nb_list = data['notebooks']
-            elif isinstance(data, list):
-                nb_list = data
-            else:
-                print("[ERROR] _notebooks.yaml format not recognized.")
-                sys.exit(1)
-        # Build absolute paths to notebooks
-        notebooks_to_process = []
-        for nb in nb_list:
-            nb_path = Path(nb)
-            if not nb_path.is_absolute():
-                nb_path = notebooks_dir / nb_path
-            nb_path = nb_path.resolve()
-            if not nb_path.exists():
-                print(f"[WARNING] Notebook listed in _notebooks.yaml not found: {nb_path}")
-            else:
-                notebooks_to_process.append(nb_path)
-        if not notebooks_to_process:
-            print("[ERROR] No valid notebooks found in _notebooks.yaml.")
-            sys.exit(1)
-    elif args.html and args.files:
-        # Only process the specified files (relative to notebooks_dir)
-        notebooks_to_process = [Path(f) if Path(f).is_absolute() else (notebooks_dir / f).resolve() for f in args.files]
-    elif args.html:
-        # Process all notebooks in the notebooks/ directory
-        notebooks_to_process = list(notebooks_dir.glob('*.ipynb'))
-    # else: unreachable due to above checks
+    # Build absolute paths to notebooks (interpret as relative to project root, not notebooks_dir)
+    notebooks_to_process = []
+    for nb in nb_list:
+        nb_path = Path(nb)
+        if not nb_path.is_absolute():
+            nb_path = repo_root / nb_path
+        nb_path = nb_path.resolve()
+        if not nb_path.exists():
+            print(f"[WARNING] Notebook listed in _notebooks.yaml not found: {nb_path}")
+        else:
+            notebooks_to_process.append(nb_path)
+    if not notebooks_to_process:
+        print("[ERROR] No valid notebooks found in _notebooks.yaml.")
+        sys.exit(1)
+
+
+    # --- MAIN BUILD LOGIC: call post_build_cleanup() to process notebooks, images, HTML, etc. ---
+    print(f"[BUILD] Processing {len(notebooks_to_process)} notebooks and building site...")
+    post_build_cleanup()
 
     # --- Admonition post-processing for HTML output ---
     # --- Shared emoji mapping for all admonition classes ---
@@ -453,21 +434,31 @@ def main():
             myst_block_repl,
             html)
         return html
-    repo_root = Path(__file__).parent.resolve()
-    notebooks_dir = repo_root / 'content/notebooks'
-    docs_dir = repo_root / 'docs'
-    build_dir = repo_root / '_build' / 'html'
-    build_dir.mkdir(parents=True, exist_ok=True)
-
-    # Ensure docs/ exists and .nojekyll for GitHub Pages
-    docs_dir.mkdir(parents=True, exist_ok=True)
-    nojekyll = docs_dir / '.nojekyll'
-    if not nojekyll.exists():
-        nojekyll.touch()
 
 
-    # --- Load menu structure from _menu.yml using basic_yaml2json.py ---
-    import json
+
+    # --- Define and initialize missing globals for post-main() code ---
+
+# Only create folders and run main() if run as script
+# (Removed duplicate/empty post_build_cleanup and misplaced imports)
+
+def post_build_cleanup():
+    images_dir = build_dir / 'images'
+    images_dir.mkdir(parents=True, exist_ok=True)
+    images_root_candidates = [repo_root / 'content' / 'images', notebooks_dir / 'images']
+    all_section_image_map = {}
+    all_missing_images = set()
+    all_youtube_ids = set()
+    def ensure_section_dir(section):
+        d = images_dir / section.lower()
+        d.mkdir(parents=True, exist_ok=True)
+        return d
+    def path_to_output_name(name, section):
+        return f"{section.lower()}/{name}"
+
+    # --- Build menu_html_names mapping: html_name -> section ---
+    menu_html_names = {}
+    import json, yaml, re
     menu_yml = repo_root / '_menu.yml'
     menu_data = None
     if menu_yml.exists():
@@ -481,70 +472,49 @@ def main():
                 menu_data = menu_obj['menu']
             else:
                 menu_data = menu_obj
+            def walk_menu(items, section=None):
+                for item in items:
+                    title = item.get('title', '')
+                    path = item.get('path', None)
+                    if path and path.endswith('.html'):
+                        menu_html_names[path] = section or title or 'other'
+                    if 'children' in item:
+                        walk_menu(item['children'], title)
+            walk_menu(menu_data)
         except Exception as e:
-            print(f'[ERROR] Could not convert _menu.yml to JSON using basic_yaml2json.py: {e}')
-            menu_data = None
+            print(f'[ERROR] Could not build menu_html_names: {e}')
 
-    # --- Section-aware image flattening ---
-    # Support images in both notebooks/images/ and project-root images/
-    images_root_candidates = [repo_root / 'images', repo_root / 'content/images']
-    images_dir = build_dir / 'images'
-    images_dir.mkdir(parents=True, exist_ok=True)
+    # --- Aggregate missing images and YouTube thumbnails across all notebooks listed in _notebooks.yaml ---
+    notebooks_yaml = repo_root / '_notebooks.yaml'
+    nb_list = []
+    if notebooks_yaml.exists():
+        try:
+            with open(notebooks_yaml, 'r') as f:
+                data = yaml.safe_load(f)
+            if isinstance(data, dict) and 'notebooks' in data:
+                nb_list = data['notebooks']
+            elif isinstance(data, list):
+                nb_list = data
+            else:
+                print("[ERROR] _notebooks.yaml format not recognized.")
+        except Exception as e:
+            print(f"[ERROR] Failed to read _notebooks.yaml: {e}")
+    # nb_list is now always a list, even if empty or error
 
-    # Helper: Map notebook HTML name to menu section (e.g., 'chapters', 'activities')
-    def get_section_for_notebook(html_name, menu_data):
-        def search_menu(items, section=None):
-            for item in items:
-                if 'children' in item:
-                    found = search_menu(item['children'], item['title'].lower())
-                    if found:
-                        return found
-                if 'path' in item and item['path'] == html_name:
-                    return section or item['title'].lower()
-            return None
-        return search_menu(menu_data) if menu_data else None
-
-    # Section-aware output image path: images/<section>/<filename>
-    def path_to_output_name(rel_path, section):
-        # Remove any leading 'images/'
-        if rel_path.startswith('images/'):
-            rel_path = rel_path[7:]
-        filename = os.path.basename(rel_path)
-        # Section folder (lowercase, fallback to 'other')
-        section_folder = section.lower() if section else 'other'
-        return f"{section_folder}/{filename}"
-
-    # Ensure subfolders for each section
-    def ensure_section_dir(section):
-        section_folder = section.lower() if section else 'other'
-        section_dir = images_dir / section_folder
-        section_dir.mkdir(parents=True, exist_ok=True)
-        return section_dir
-
-
-    # --- Aggregate missing images and YouTube thumbnails across all notebooks ---
-    all_missing_images = set()
-    all_youtube_ids = set()
-    all_section_image_map = {}  # {html_name: section}
-    # Precompute menu mapping for all notebooks
-    menu_html_names = {}
-    if menu_data:
-        def collect_paths(items, section=None):
-            for item in items:
-                if 'children' in item:
-                    collect_paths(item['children'], item['title'].lower())
-                if 'path' in item:
-                    menu_html_names[item['path']] = section or item['title'].lower()
-        collect_paths(menu_data)
-
-    for nb_path in notebooks_dir.glob('*.ipynb'):
+    for nb in nb_list:
+        nb_path = Path(nb)
+        if not nb_path.is_absolute():
+            nb_path = repo_root / nb_path
+        nb_path = nb_path.resolve()
         html_name = nb_path.with_suffix('.html').name
         section = menu_html_names.get(html_name, 'other')
         all_section_image_map[html_name] = section
         section_dir = ensure_section_dir(section)
+        if not nb_path.exists():
+            print(f"[WARNING] Notebook not found: {nb_path}")
+            continue
         nb_data = nbformat.read(str(nb_path), as_version=4)
         referenced_images = set()
-        import re  # Ensure re refers to the module, not a local variable
         for cell in nb_data.cells:
             if cell.cell_type != 'markdown':
                 continue
@@ -552,7 +522,7 @@ def main():
                 alt_text = m.group(1)
                 img_path = m.group(2).strip()
                 # --- YOUTUBE THUMBNAIL HANDLING ---
-                yt_match = re.match(r'https?://img\.youtube\.com/vi/([\w-]{11})/', img_path)
+                yt_match = re.match(r'https?://img.youtube.com/vi/([\w-]{11})/', img_path)
                 if yt_match:
                     video_id = yt_match.group(1)
                     local_img_name = f"youtube_{video_id}.jpg"
@@ -615,15 +585,17 @@ def main():
                 # Fallback: search all section subfolders for a matching filename
                 if not found:
                     for images_root in images_root_candidates:
-                        for section_dir in images_root.iterdir():
-                            if section_dir.is_dir():
-                                candidate = section_dir / os.path.basename(clean_name)
-                                if candidate.exists():
-                                    real_img_path = candidate
-                                    found = True
-                                    break
-                        if found:
-                            break
+                        if images_root.exists() and images_root.is_dir():
+                            for section_dir in images_root.iterdir():
+                                if section_dir.is_dir():
+                                    candidate = section_dir / os.path.basename(clean_name)
+                                    if candidate.exists():
+                                        real_img_path = candidate
+                                        found = True
+                                        break
+                            if found:
+                                break
+                    # else: skip this images_root if it doesn't exist
                 # fallback: try _images folders
                 if not found:
                     for name in search_names:
@@ -683,8 +655,6 @@ def main():
     else:
         print("[INFO] No YouTube thumbnails to fetch.")
 
-
-    # (Removed redundant second pass for flattening image names)
 
     # 4. Convert notebooks to HTML with custom CSS and template
     import json
@@ -997,14 +967,21 @@ def main():
                 if img_file.is_file():
                     copied_images[img_file.name] = (section, f'images/{section}/{img_file.name}')
 
-    for nb in notebooks_to_process:
-        html_name = nb.with_suffix('.html').name
+    for nb in nb_list:
+        nb_path = Path(nb)
+        if not nb_path.is_absolute():
+            nb_path = repo_root / nb_path
+        nb_path = nb_path.resolve()
+        html_name = nb_path.with_suffix('.html').name
         section = menu_html_names.get(html_name, 'other')
         html_path = build_dir / html_name
         # --- Preprocess notebook for custom admonitions ---
         import tempfile
         changed = False
-        nb_data = nbformat.read(str(nb), as_version=4)
+        if not nb_path.exists():
+            print(f"[WARNING] Notebook not found: {nb_path}")
+            continue
+        nb_data = nbformat.read(str(nb_path), as_version=4)
         for i, cell in enumerate(nb_data.cells):
             if cell.cell_type == 'markdown':
                 orig_source = cell.source
@@ -1066,10 +1043,38 @@ def main():
             return match.group(0)
         body = re.sub(r'src=["\']([^"\']+)["\']', rewrite_img_src, body)
 
+        # Ensure these helpers are available (move to top-level if needed)
+        # Ensure these helpers are available at top-level
+        # Patch: define stubs if not present (should not happen, but avoids crash)
+        if 'preprocess_custom_admonitions' not in globals():
+            def preprocess_custom_admonitions(x): return x
+        if 'convert_admonitions' not in globals():
+            def convert_admonitions(x): return x
         body = preprocess_custom_admonitions(body)
         body = convert_admonitions(body)
 
-        chapter_stem = nb.stem
+        chapter_stem = nb_path.stem
+        # --- Robustly determine Jupyter HTML path from _toc.yml ---
+        toc_path = Path(__file__).parent / '_toc.yml'
+        jupyter_html_rel = None
+        if toc_path.exists():
+            import yaml
+            with open(toc_path, 'r') as f:
+                toc = yaml.safe_load(f)
+            # Find the entry matching this notebook stem
+            chapters = toc.get('chapters', [])
+            for entry in chapters:
+                file_field = entry.get('file', '')
+                if file_field.endswith(chapter_stem):
+                    # Jupyter Book outputs HTML as <basename>.html in the same relative path as the .ipynb (minus .ipynb)
+                    # So content/notebooks/01_notes -> content/notebooks/01_notes.html
+                    jupyter_html_rel = file_field + '.html'
+                    break
+        # Fallback if not found
+        if not jupyter_html_rel:
+            jupyter_html_rel = f'content/notebooks/{chapter_stem}.html'
+        # The Jupyter HTML is typically copied to docs/jupyter/<relpath>.html
+        jupyter_link = f'jupyter/{jupyter_html_rel}'
         download_menu = f'''
 <nav class="chapter-downloads" aria-label="Download chapter sources">
   <div role="group" aria-label="Download formats">
@@ -1078,12 +1083,12 @@ def main():
     <a class="download-btn" href="sources/{chapter_stem}/{chapter_stem}.md" download><span aria-hidden="true">✍️</span> MD</a>
     <a class="download-btn" href="sources/{chapter_stem}/{chapter_stem}.ipynb" download><span aria-hidden="true">📓</span> IPYNB</a>
     <a class="download-btn" href="sources/{chapter_stem}/{chapter_stem}.tex" download><span aria-hidden="true">📐</span> TEX</a>
-    <a class="download-btn" href="notebooks/{chapter_stem}.html" target="_blank"><span aria-hidden="true">🔗</span> Jupyter</a>
+    <a class="download-btn" href="{jupyter_link}" target="_blank"><span aria-hidden="true">🔗</span> Jupyter</a>
   </div>
 </nav>
         '''
         body = f'{download_menu}<div class="markdown-body">{body}</div>'
-        title = nb.stem.replace('_', ' ').title()
+        title = nb_path.stem.replace('_', ' ').title()
         html = get_html_template(title, body)
         with open(html_path, 'w', encoding='utf-8') as f:
             f.write(html)
@@ -1233,6 +1238,10 @@ def main():
                     print(f"[AUTO-COPY][WARN] Could not find image {img_name} for LaTeX in HTML build images.")
 
     # Always clean docs/ HTML after build
+    # Ensure this helper is available at top-level
+    if 'clean_html_files_in_docs' not in globals():
+        def clean_html_files_in_docs():
+            pass
     clean_html_files_in_docs()
 
 if __name__ == '__main__':
