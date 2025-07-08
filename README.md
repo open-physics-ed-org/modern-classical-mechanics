@@ -1,4 +1,3 @@
-
 # 📚 Modern Classical Mechanics
 
 **An open, free, and ever-evolving set of notes and resources for learning and teaching classical mechanics.**
@@ -19,92 +18,51 @@
 
 This project is not just a collection of Jupyter notebooks—it builds a fully static, accessible set of web pages from notebooks, with robust support for dark/light mode, accessible admonitions, and MathJax/LaTeX rendering. The site is designed for clarity, accessibility, and future extensibility.
 
+
 **Built with custom Python scripts (not Jupyter Book)** to convert Jupyter notebooks into a static, accessible website and multiple downloadable formats. *If you have suggestions for improvements or want to contribute, please [open an issue or pull request](https://github.com/dannycab/modern-classical-mechanics/issues).*
 
 ---
 
-## 🗂️ Project Structure (2025)
 
+## 🎨 Theming & Accessibility
+
+YAML-driven, accessible theming for both light and dark modes. All official themes are WCAG AAA-compliant. See `static/themes/` for available themes and [build.md](build.md) for details on how to select or create your own.
+
+**Quick usage:**
+Edit `_config.yml`:
+```yaml
+theme:
+  light: clarity_light   # or any available theme name
+  dark: clarity_dark
+  default: clarity_dark
 ```
-modern-classical-mechanics/
-├── build.py              # Main build script (PDF, DOCX, LaTeX, Markdown, HTML)
-├── build-web.py          # All web/HTML build logic
-├── content/
-│   ├── notebooks/        # All Jupyter notebooks (source)
-│   ├── about.md
-│   ├── activities.md
-│   ├── announcement.md
-│   ├── cards.md
-│   ├── index.md
-│   ├── resources.md
-│   └── images/
-├── static/
-│   ├── css/
-│   │   ├── main.css      # Main CSS for the site
-│   │   └── card-link.css
-│   ├── html_template.html
-│   └── js/
-├── _build/
-│   ├── html/             # HTML output (intermediate, not for deployment)
-│   ├── pdf/              # PDF output
-│   ├── docx/             # DOCX output
-│   ├── latex/            # LaTeX output
-│   ├── md/               # Markdown output
-│   └── images/           # All collected images (flattened)
-├── docs/                 # Final HTML website for GitHub Pages
-│   ├── *.html
-│   ├── css/
-│   │   └── main.css
-│   ├── images/
-│   │   ├── chapters/
-│   │   └── activities/
-│   └── sources/
-│       ├── 01_notes/
-│       │   ├── 01_notes.ipynb
-│       │   ├── 01_notes.md
-│       │   ├── 01_notes.tex
-│       │   ├── 01_notes.docx
-│       │   └── 01_notes.pdf
-│       └── ... (all chapters and homeworks)
-├── .nojekyll             # Ensures GitHub Pages does not use Jekyll
-├── _menu.yml             # Navigation/menu structure
-├── _notebooks.yaml       # List of notebooks to build
-├── _toc.yml              # Jupyter Book table of contents (auto-generated)
-├── requirements.txt      # Python dependencies
-├── LICENSE
-├── README.md
-├── build.md              # Build system documentation
-└── releases/             # Release notes
-```
+Only two CSS files are used: `theme-light.css` and `theme-dark.css` (auto-generated).
+
+For a full list of themes and advanced options, see [build.md](build.md).
+
+---
+
+---
+
+## � More Documentation
+
+- See [build.md](build.md) for build system details, troubleshooting, and advanced usage.
+- See [jupyter-markup-tips.md](jupyter-markup-tips.md) for writing and formatting tips in Jupyter Notebooks.
+- See [releases/RELEASE-v0.9.md](releases/RELEASE-v0.9.md) for the latest release notes and summary of changes.
 
 ---
 
 
+## 🚀 Features
 
-## 📖 Build System & Markup Documentation
-
-- See [build.md](build.md) for detailed, step-by-step documentation of the build system, including how `build.py` and `build-web.py` work, troubleshooting, and best practices.
-- See [jupyter-markup-tips.md](jupyter-markup-tips.md) for tips and best practices on writing Markdown, LaTeX, images, links, and admonitions in Jupyter Notebooks.
-- See [releases/RELEASE-v0.9.md](releases/RELEASE-v0.9.md) for the latest release notes and summary of changes. (**Unified Unruh**)
-
----
-
-## 🚀 Features (Current & Planned)
-
-- **Unified build system:** One command (`python build.py --all`) builds all outputs (LaTeX, PDF, Markdown, DOCX, HTML web site).
-- **Static, accessible HTML site** built from Jupyter notebooks, with robust dark/light mode and accessible color theming.
-- **Admonition support:** Converts all common admonition syntaxes (MyST, Markdown, code-fence, curly-brace, etc.) to accessible, visually distinct HTML blocks with LaTeX/MathJax support.
-- **Image and YouTube handling:** Copies and renames all images, auto-fetches YouTube thumbnails, and ensures all references are correct in the static site.
-- **Multiple output formats:**
-  - HTML (website, in `docs/`)
-  - PDF (`_build/pdf/`)
-  - DOCX (`_build/docx/`)
-  - LaTeX (`_build/latex/`)
-  - Markdown (`_build/md/`)
-  - Jupyter Notebook (.ipynb) (for download)
-- **Automatic copying** of all outputs and assets to the `docs/` directory for GitHub Pages hosting.
-- **Accessible design:** All HTML output is designed for screen readers and keyboard navigation.
-- **Dark mode toggle** in the HTML output.
+- Unified build system: one command builds all outputs (LaTeX, PDF, Markdown, DOCX, HTML web site)
+- Static, accessible HTML site with robust YAML-driven dark/light mode and accessible, WCAG AAA-compliant color theming
+- Admonition support for notes, tips, warnings, etc.
+- Image and YouTube handling
+- Multiple output formats: HTML, PDF, DOCX, LaTeX, Markdown, Jupyter Notebook
+- Automatic copying of all outputs and assets to the `docs/` directory for GitHub Pages hosting
+- Accessible design: all HTML output is designed for screen readers and keyboard navigation
+- Dark/light mode toggle in the HTML output, with instant switching and full content coverage
 
 ---
 
@@ -138,6 +96,7 @@ modern-classical-mechanics/
    - DOCX: `_build/docx/`
    - LaTeX: `_build/latex/`
    - Markdown: `_build/md/`
+   - Theme CSS: `static/css/theme-light.css`, `static/css/theme-dark.css` (auto-generated)
 
 ---
 
