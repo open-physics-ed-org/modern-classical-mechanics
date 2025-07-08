@@ -26,9 +26,9 @@ repository:
 
 # Theme selection (without .yml)
 theme:
-  light: everforest_light
-  dark: everforest_dark 
-  default: everforest_dark (optional)
+  light: light
+  dark: dark
+  default: dark (optional)
 
 # HTML settings
 html:

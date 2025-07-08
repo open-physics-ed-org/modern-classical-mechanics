@@ -1,6 +1,6 @@
 /*
-Theme: Everforest Dark (everforest_dark)
-Description: Everforest dark theme with earthy greens and browns.
+Theme: Dark Theme (dark)
+Description: Dimmed palette for low-light and night viewing.
 */
 
 
@@ -33,18 +33,18 @@ Description: Everforest dark theme with earthy greens and browns.
 
 
 :root {
-  --color-bg: #2b3339;
-  --color-fg: #d3c6aa;
-  --color-card: #2b3339;
-  --color-border: #a7c080;
-  --color-menu: #7fbbb3;
-  --color-menu-hover: #e69875;
-  --color-link: #a7c080;
-  --color-link-hover: #e69875;
-  --color-title: #e69875;
-  --color-btn: #7fbbb3;
-  --color-btn-hover: #a7c080;
-  --color-btn-text: #2b3339;
+  --color-bg: #282a31;
+  --color-fg: #f9f9fb;
+  --color-card: #282a31;
+  --color-border: #b39ddb;
+  --color-menu: #b39ddb;
+  --color-menu-hover: #7c5fcf;
+  --color-link: #b39ddb;
+  --color-link-hover: #7c5fcf;
+  --color-title: #7c5fcf;
+  --color-btn: #0d3c47;
+  --color-btn-hover: #b39ddb;
+  --color-btn-text: #23242a;
 }
 
 html, body {

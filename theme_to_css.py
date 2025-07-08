@@ -63,9 +63,22 @@ if __name__ == "__main__":
         shutil.copy2(main_css, bak_css)
 
     theme_names = get_theme_names_from_config(config_path)
+    # Debug info
+    print(f"[DEBUG] Using config: {config_path}")
+    print(f"[DEBUG] Themes dir: {themes_dir}")
+    print(f"[DEBUG] Template: {template_path}")
+    print(f"[DEBUG] Output dir: {output_dir}")
     # Render light theme as theme-light.css
     yaml_path = Path(themes_dir) / f"{theme_names['light']}.yml"
+    if not yaml_path.exists():
+        print(f"[ERROR] Light theme YAML not found: {yaml_path}", file=sys.stderr)
+        sys.exit(2)
     render_theme(yaml_path, template_path, light_css)
+    print(f"[INFO] Rendered light theme: {yaml_path} -> {light_css}")
     # Render dark theme as theme-dark.css
     yaml_path_dark = Path(themes_dir) / f"{theme_names['dark']}.yml"
+    if not yaml_path_dark.exists():
+        print(f"[ERROR] Dark theme YAML not found: {yaml_path_dark}", file=sys.stderr)
+        sys.exit(2)
     render_theme(yaml_path_dark, template_path, dark_css)
+    print(f"[INFO] Rendered dark theme: {yaml_path_dark} -> {dark_css}")
