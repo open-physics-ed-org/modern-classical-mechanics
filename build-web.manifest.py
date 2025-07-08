@@ -70,7 +70,7 @@ def fetch_youtube_thumbnail(video_id, dest_path):
 
 def main():
     # --- Run theme_to_css.py before any HTML build ---
-    theme_script = str(Path(__file__).parent / 'theme_to_css.py')
+    theme_script = str(Path(__file__).parent / 'scripts' / 'theme_to_css.py')
     if Path(theme_script).exists():
         print("[THEME] Generating CSS from YAML themes...")
         result = subprocess.run([sys.executable, theme_script], capture_output=True, text=True)
@@ -81,7 +81,7 @@ def main():
         else:
             print("[THEME] CSS generation complete.")
     else:
-        print("[THEME][WARN] theme_to_css.py not found, skipping theme CSS generation.")
+        print("[THEME][WARN] theme_to_css.py not found in scripts/, skipping theme CSS generation.")
 
     # No argument parsing: always build everything (HTML, all notebooks, all pages)
     # Remove Jupyter/nbconvert markup from all HTML in docs/ (always after build)
