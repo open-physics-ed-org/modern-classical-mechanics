@@ -1,35 +1,43 @@
-# Modern Classical Mechanics Build System
+# Build System
 
 ## Overview
-This document describes the updated build system for the Modern Classical Mechanics project, including the new behavior of `build.py` and `build-web.py`. The build system is designed to generate all course materials (PDF, DOCX, Markdown, TeX, HTML, and Jupyter Book site) in a consistent, reproducible, and organized way.
+This document describes the updated build system for the Modern Classical Mechanics project, including the new behavior of `build.py` and `build-web.py`. The build system is designed to generate all course materials (PDF, DOCX, Markdown, TeX, WCAG-compliant HTML, and Jupyter Book site) in a consistent, reproducible, and organized way.
+
+The build system is meant to be more general-purpose, allowing for easy addition of new notebooks and formats. It supports both a unified build process and selective builds for individual formats or notebooks.
+
 
 ---
 
 ## Project Structure (Key Directories)
 
-- **_build/**: All intermediate and final build outputs (not for direct publishing)
-    - `docx/`   — DOCX files (one per notebook)
-    - `html/`   — Jupyter Book HTML site (temporary, unified build)
-    - `images/` — All images referenced in notebooks/markdown
-    - `latex/`  — (if used) LaTeX build artifacts
-    - `md/`     — Markdown files (one per notebook)
-    - `pdf/`    — PDF files (one per notebook)
-    - `tex/`    — TeX files (one per notebook)
-    - `wcag-html/` — (if used) Accessibility HTML
+- **_build/**: All build outputs (not organized for direct publishing)
+    - `docx/`   — DOCX files (one per notebook, if `build.py` used with `build --docx`)
+    - `html/`   — Jupyter Book HTML site (a full unified build from the generated .autogen/_toc.yml, if `build.py` used with `build --jupyter`)
+    - `images/` — All images referenced in notebooks/markdown (stored flat and with consistent paths, automatic,  `build.py --img`)
+    - `md/`     — Markdown files (one per notebook, `build.py --md`)
+    - `pdf/`    — PDF files (one per notebook, `build.py --pdf`)
+    - `tex/`    — TeX files (one per notebook, `build.py --tex`)
+    - `wcag-html/` — (`build.py --html`) WCAG-compliant HTML output
+- **content/**: Source markdown, notebooks (**put materials here**)
 - **docs/**: All published outputs for the website
-    - HTML files for each chapter, homework, etc.
-    - `css/`, `images/`, `sources/` (see below)
+    - WCAG-compliant HTML files for each page (dark and light mode).
+    - `css/` - Styles for HTML
+    - `images/` - Local flat image library for HTML
     - `sources/` — Contains a subfolder for each notebook stem, with all output formats for that notebook:
         - `<notebook_stem>/<notebook_stem>.md`
         - `<notebook_stem>/<notebook_stem>.docx`
         - `<notebook_stem>/<notebook_stem>.pdf`
         - `<notebook_stem>/<notebook_stem>.tex`
         - ...
-    - `sources/jupyterbook_html/` — The full Jupyter Book HTML site
-- **content/**: Source markdown, notebooks, and images
+    - `sources/jupyter/` — The full Jupyter Book HTML site
+- **images/**: Source images for markdown and notebooks; used in automated builds (**put images here**)
+- **log/**: Logs for build, can be reviewed
+- **releases/:** Release information
+- **scripts/:** Helper scripts for `build.py` and `build-web.py`
+  - `debuggers` - Debugging scripts; not needed for production
 - **static/**: HTML templates, CSS, JS, and themes
-- **build.py**: Main build script
-- **build-web.py**: Custom web build script
+- **build.py**: Main build script for website and document converstion
+- **build-web.py**: Web build script (subroutine for build.py, but can be called alone)
 
 ---
 
@@ -38,16 +46,20 @@ This document describes the updated build system for the Modern Classical Mechan
 ### 1. Building Everything: `python build.py --all`
 This is the recommended way to build all outputs. It will:
 
-1. **Build DOCX** (and Markdown):
+1. **Build DOCX** (and Markdown): `python build.py --docx`
     - Converts each notebook to Markdown and DOCX.
     - Copies both `.md` and `.docx` to `docs/sources/<notebook_stem>/`.
-2. **Build PDF**:
+    - **Build MD**: Converts each notebook to Markdown. Run by default. `build.py --md`
+    - Copies `.md` to `docs/sources/<notebook_stem>/`.
+2. **Build PDF**: `python build.py --pdf`
     - Converts each notebook to TeX and PDF.
     - Copies both `.tex` and `.pdf` to `docs/sources/<notebook_stem>/`.
-3. **Build Jupyter Book HTML**:
+    - **Build TeX**: Converts each notebook to TeX. Run by default. `build.py --tex`
+    - Copies `.tex` to `docs/sources/<notebook_stem>/`.
+3. **Build Jupyter Book HTML**: `python build.py --jupyter`
     - Builds the full Jupyter Book HTML site into `_build/html`.
     - Copies the site to `docs/jupyter/` and to `docs/sources/jupyterbook_html/`.
-4. **Build Custom HTML Web Output**:
+4. **Build WCAG-compliant HTML Web Output**: `python build.py --html`
     - Runs `build-web.py` to generate the custom website in `docs/`.
 
 All steps are run in the correct order to ensure dependencies are satisfied (e.g., Markdown is always built before DOCX).
@@ -72,12 +84,11 @@ All steps are run in the correct order to ensure dependencies are satisfied (e.g
 ```
 docx/        # All .docx files (one per notebook)
 html/        # Jupyter Book HTML site (temporary, unified build)
-images/      # All images referenced in notebooks/markdown
-latex/       # (if used) LaTeX build artifacts
+images/      # All images referenced in `content/`
 md/          # All .md files (one per notebook)
 pdf/         # All .pdf files (one per notebook)
 tex/         # All .tex files (one per notebook)
-wcag-html/   # (if used) Accessibility HTML
+wcag-html/   # WCAG-compliant HTML (published web output)
 ```
 
 ### docs/
@@ -108,7 +119,7 @@ content/   docs/   static/   _build/   ...
 - **--all** now runs: DOCX (and Markdown) → PDF → Jupyter Book HTML → Custom HTML web output, in that order.
 - All output formats are copied to `docs/sources/<notebook_stem>/` for each notebook.
 - Markdown is always built before DOCX (DOCX is generated from Markdown).
-- Jupyter Book HTML is built into a temp directory, then copied to both `docs/jupyter/` and `docs/sources/jupyterbook_html/`.
+- Jupyter Book HTML is built into a temp directory, then copied to `docs/jupyter/`.
 - `build-web.py` is always called last in the `--all` workflow.
 - All referenced images are collected into `_build/images/`.
 - No automatic cleanup of `_build/` or `docs/` directories—manual cleanup is recommended if needed.
