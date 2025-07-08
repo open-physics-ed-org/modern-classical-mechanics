@@ -757,7 +757,13 @@ def main():
             new_md_content = re.sub(r'!\[[^\]]*\]\(([^)]+)\)', replace_img_link, md_content)
             with open(md_path, 'w', encoding='utf-8') as f:
                 f.write(new_md_content)
-        print(f"[INFO] All notebooks converted to Markdown. All image links updated to reference _build/images.")
+            # Copy .md to docs/sources/<notebook_stem>/<notebook_stem>.md
+            stem_dir = repo_root / 'docs' / 'sources' / nb_path.stem
+            stem_dir.mkdir(parents=True, exist_ok=True)
+            dest_md = stem_dir / f"{nb_path.stem}.md"
+            shutil.copy2(md_path, dest_md)
+            print(f"[INFO] Copied {md_path} to {dest_md}")
+        print(f"[INFO] All notebooks converted to Markdown. All image links updated to reference _build/images and copied to docs/sources/<notebook_stem>.")
 
     # --- Build DOCX from Markdown ---
     if build_docx:
@@ -819,7 +825,17 @@ def main():
             run_or_exit([
                 'pandoc', str(md_path), '-o', str(docx_path), '--resource-path', str(build_dir)
             ], cwd=md_dir)
-        print(f"[INFO] All markdown files converted to DOCX using pandoc and saved in {docx_dir}")
+            # Copy .docx to docs/sources/<notebook_stem>/<notebook_stem>.docx
+            stem_dir = repo_root / 'docs' / 'sources' / Path(nb).stem
+            stem_dir.mkdir(parents=True, exist_ok=True)
+            dest_docx = stem_dir / f"{Path(nb).stem}.docx"
+            shutil.copy2(docx_path, dest_docx)
+            print(f"[INFO] Copied {docx_path} to {dest_docx}")
+            # Also copy .md to docs/sources/<notebook_stem>/<notebook_stem>.md
+            dest_md = stem_dir / f"{Path(nb).stem}.md"
+            shutil.copy2(md_path, dest_md)
+            print(f"[INFO] Copied {md_path} to {dest_md}")
+        print(f"[INFO] All markdown files converted to DOCX using pandoc and saved in {docx_dir} and copied to docs/sources/<notebook_stem>.")
 
     # --- Generate _toc.yml ---
     toc_yml = repo_root / '_toc.yml'
