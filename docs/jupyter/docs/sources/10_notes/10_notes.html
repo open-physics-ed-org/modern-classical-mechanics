@@ -265,7 +265,7 @@
       
       
       
-      <li><a href="../../../_sources/docs/sources/10_notes/10_notes.md" target="_blank"
+      <li><a href="../../../_sources/docs/sources/10_notes/10_notes.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -275,7 +275,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -420,7 +420,9 @@ document.write(`
 <p>where <span class="math notranslate nohighlight">\(\omega\)</span> is the angular velocity of the pendulum NOT the driver.</p>
 <p>Let’s implement this system using <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> and simulate its behavior over time.</p>
 <p><strong>Read over this code and run it.</strong> Make sure you make sense of what each part does. You will need to modify it for the next part of the activity.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">gridspec</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
@@ -449,12 +451,28 @@ document.write(`
 <span class="n">solution</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">damped_driven_pendulum</span><span class="p">,</span> <span class="n">t_span</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">omegaD</span><span class="p">),</span> <span class="n">t_eval</span><span class="o">=</span><span class="n">t_eval</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">gridspec</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;numpy&#39;
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="plotting-the-resulting-solution">
 <h3>Plotting the resulting solution<a class="headerlink" href="#plotting-the-resulting-solution" title="Link to this heading">#</a></h3>
 <p>The solution from <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> gives us the values of <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\omega\)</span> over time. We can use this data to create plots that help us visualize the behavior of the damped driven pendulum. These results are evaluated at discrete time points, so we can use them to create time series plots or phase space plots.</p>
 <p>The solution object returned by <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> contains several attributes, including <code class="docutils literal notranslate"><span class="pre">t</span></code> (the time points) and <code class="docutils literal notranslate"><span class="pre">y</span></code> (the values of the variables at each time point). We can use these to create our plots. Note that the first column of <code class="docutils literal notranslate"><span class="pre">y</span></code> corresponds to <span class="math notranslate nohighlight">\(\theta\)</span> and the second column corresponds to <span class="math notranslate nohighlight">\(\omega\)</span> because we defined them in that order in the <code class="docutils literal notranslate"><span class="pre">damped_driven_pendulum</span></code> function above.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">gs</span> <span class="o">=</span> <span class="n">gridspec</span><span class="o">.</span><span class="n">GridSpec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">height_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">width_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
 
 
@@ -488,7 +506,11 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="png" src="docs/sources/10_notes/images/10_notes_4_0.png" /></p>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/e867bad4676aa55590bcb6aade236e7ff9327db2f32784631dded04e30f02993.png" src="../../../_images/e867bad4676aa55590bcb6aade236e7ff9327db2f32784631dded04e30f02993.png" />
+</div>
+</div>
 <p>What do you notice about the behavior of this system? Both short and long term? How can you see that in your plots?</p>
 <p><strong>Your Answer Here</strong></p>
 </section>
@@ -498,7 +520,9 @@ document.write(`
 <p>To check the periodicity, we investigate if the time series returns to the same value after a certain period. We can do this by plotting the time series after the transients have decayed. If the system is periodic, we should see a repeating pattern in the plot. Using the physics of the driver, we can plot a point at every period of the driver to see if the system returns to the same value, <span class="math notranslate nohighlight">\(T = \frac{2\pi}{\omega}\)</span>.</p>
 <p>We do that below to demonstrate that after the transient solution decays, the system settles into a single periodic solution.</p>
 <p>One route to chaos is <a class="reference external" href="https://en.wikipedia.org/wiki/Period-doubling_bifurcation">period-doubling bifurcation</a>, where the system goes from a single period to two periods. You can see that we are not at that point yet, but the <a class="reference external" href="https://en.wikipedia.org/wiki/Duffing_equation">Duffing oscillator</a> is a classic example of a system that exhibits period-doubling bifurcation.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note this block runs the integration again but only returns the last 60 seconds of the simulation</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note this block runs the integration again but only returns the last 60 seconds of the simulation</span>
 <span class="n">startTime</span> <span class="o">=</span> <span class="mi">60</span>
 <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">solution</span><span class="o">.</span><span class="n">t</span> <span class="o">&gt;</span> <span class="n">startTime</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 
@@ -548,7 +572,11 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="png" src="docs/sources/10_notes/images/10_notes_7_0.png" /></p>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/1835f941249665e4fa559e1682d492953713cf8dab63f045ab323700f643cc73.png" src="../../../_images/1835f941249665e4fa559e1682d492953713cf8dab63f045ab323700f643cc73.png" />
+</div>
+</div>
 <p>How does this view of the long term solution help us see the periodicity of the motion? How could we check if the motion follows the driving frequency?</p>
 <p><strong>Your Answer Here</strong></p>
 </section>
@@ -623,14 +651,20 @@ document.write(`
 <p>Below we’ve provided some of the code, but not the definition of the <code class="docutils literal notranslate"><span class="pre">duffing</span></code> function. You will need to write that function and fill in the missing code to complete the simulation.</p>
 <p><strong>Write the rest of the code necessary to simulate the Duffing oscillator.</strong></p>
 <p><strong>Plot the results of your simulation in the next cell.</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">gridspec</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-colorblind&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## def duffing(t, y, delta, alpha, beta, gamma, omega):</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## def duffing(t, y, delta, alpha, beta, gamma, omega):</span>
     <span class="c1">## Your Code Here</span>
 
 <span class="c1"># Parameters</span>
@@ -651,23 +685,33 @@ document.write(`
 <span class="c1">## Your Code Here</span>
 </pre></div>
 </div>
+</div>
+</div>
 </section>
 <section id="plotting-the-results">
 <h3>Plotting the results<a class="headerlink" href="#plotting-the-results" title="Link to this heading">#</a></h3>
 <p>Once you have simulated the Duffing oscillator, you can plot the results to visualize its behavior over time. Your plot should be similar to the one above where you plot at least the position <span class="math notranslate nohighlight">\(x\)</span> over time, and then a phase space plot of <span class="math notranslate nohighlight">\(x\)</span> vs. <span class="math notranslate nohighlight">\(v\)</span>. Make sure that you label your axes and include a title for your plot; add starting and ending points to your plot so you are sure about the direction of the motion.</p>
 <p>This first set of plots should look similar to the one below.</p>
-<p><img alt="Duffing" src="docs/sources/10_notes/images/10_notes_first_duffing.png" /></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## Plot the time series and phase space</span>
+<p><img alt="Duffing" src="docs/sources/images/notes/week10/first_duffing.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Plot the time series and phase space</span>
 <span class="c1">## Your Code Here</span>
 </pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="id1">
 <h3>Investigating Periodicity<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>Now that you have this solution, look at only the last few cycles of the simulation. You can do this by plotting only the last 10 cycles of the simulation. Include a mark at every cycle of the driver, <span class="math notranslate nohighlight">\(T = \frac{2\pi}{\omega}\)</span>. This will help you see if the system is periodic or not.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## Plot the time series and phase space</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Plot the time series and phase space</span>
 <span class="c1">## Your Code Here</span>
 </pre></div>
+</div>
+</div>
 </div>
 <p>What did you find the periodicity of this particular set up to be? How did you determine it?</p>
 <p><strong>Your Answer Here</strong></p>
@@ -677,8 +721,12 @@ document.write(`
 <p>Let’s use the same code, or write this code in a new cell, or write a new function, to investigate the effect of increasing the driving strength <span class="math notranslate nohighlight">\(\gamma\)</span> on the behavior of the system.</p>
 <p>You will <strong>run the code multiple times</strong>, changing the value of <span class="math notranslate nohighlight">\(\gamma\)</span> each time. You can do this by changing the value in the code, or by writing a loop to run through a range of values. In either case, you will need to plot the long term behavior of the system for each value of <span class="math notranslate nohighlight">\(\gamma\)</span>, including the phase space plot. Your plot should also include a mark at every cycle of the driver, <span class="math notranslate nohighlight">\(T = \frac{2\pi}{\omega}\)</span>.</p>
 <p>For choices of <span class="math notranslate nohighlight">\(\gamma\)</span>, please use the following values: 0.2, 0.28, 0.29, 0.37, 0.50, 0.68, 0.74, 0.75,</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your Code Here</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your Code Here</span>
 </pre></div>
+</div>
+</div>
 </div>
 </section>
 </section>
@@ -701,16 +749,22 @@ document.write(`
 <h3>Numerically Integrate the Lorenz Attractor<a class="headerlink" href="#numerically-integrate-the-lorenz-attractor" title="Link to this heading">#</a></h3>
 <p>In the cells below, we scaffold some of the code to simulate the Lorenz attractor. You will need to fill in the missing pieces. Once you plot the solution, you should be able to produce time series, and phase space plots of the Lorenz attractor. <strong>Note that the phase space for the Lorenz attractor is 3D (x,y,z), so you will need to use a 3D plotting function or plot projections.</strong></p>
 <p>For the parameters, we will use the canonical values of <span class="math notranslate nohighlight">\(\sigma = 10\)</span>, <span class="math notranslate nohighlight">\(\rho = 28\)</span>, and <span class="math notranslate nohighlight">\(\beta = \frac{8}{3}\)</span>. Choose initial conditions of <span class="math notranslate nohighlight">\(x=1\)</span>, <span class="math notranslate nohighlight">\(y=1\)</span>, and <span class="math notranslate nohighlight">\(z=1\)</span> and simulate for 50 time units. If you do, your solution will look like the one below.</p>
-<p><img alt="Lorenz Time Series" src="docs/sources/10_notes/images/10_notes_lorenz-1.png" /></p>
-<p><img alt="Lorenz Phase Space" src="docs/sources/10_notes/images/10_notes_lorenz-2.png" /></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<p><img alt="Lorenz Time Series" src="docs/sources/images/notes/week10/lorenz-1.png" /></p>
+<p><img alt="Lorenz Phase Space" src="docs/sources/images/notes/week10/lorenz-2.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">gridspec</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-colorblind&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## def lorenz(t, y, sigma, beta, rho):</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## def lorenz(t, y, sigma, beta, rho):</span>
     <span class="c1">## Your Code Here</span>
 
 <span class="c1"># Parameters for the Lorenz system</span>
@@ -730,14 +784,20 @@ document.write(`
 <span class="c1">## Your Code Here</span>
 </pre></div>
 </div>
+</div>
+</div>
 </section>
 <section id="exploring-sensitivity-to-initial-conditions">
 <h3>Exploring Sensitivity to Initial Conditions<a class="headerlink" href="#exploring-sensitivity-to-initial-conditions" title="Link to this heading">#</a></h3>
 <p>Noe that you have a solution to the Lorenz attractor, you can observe how trajectories that start from slightly different initial conditions diverge over time. This is a hallmark of chaotic systems, where small differences in initial conditions can lead to vastly different outcomes. We can visualize this as a bundle of trajectories that start from nearby points in phase space and then diverge over time. For the Lorenz attractor, this is often visualized as a butterfly-shaped structure in phase space.</p>
 <p>For this activity, we will simulate the Lorenz attractor for two sets of initial conditions that are close together. We will then plot the trajectories in phase space to observe how they diverge over time.</p>
 <p><strong>Modify the code you wrote above to simulate the Lorenz attractor for two sets of initial conditions that are close together. Plot the trajectories in phase space to observe how they diverge over time. Do this as both a time series and in phase space.</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your Code Here</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your Code Here</span>
 </pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="the-strange-attractor">
@@ -746,8 +806,12 @@ document.write(`
 <p>This bounded region is called a strange attractor. A strange attractor is a set of points in phase space that the system approaches asymptotically over time. For the Lorenz attractor, the strange attractor is a fractal structure that the system approaches as time goes to infinity.</p>
 <p>Let’s plot a ton of trajectories starting from different initial conditions to see the strange attractor. We can do this by looping over a range of initial conditions and plotting each trajectory in phase space.</p>
 <p>That will get very messy, so instead, let’s integrate 100-1000 trajectories that are near the original trajectory. We will plot only the original and final location of each trajectory. This will give us a sense of the strange attractor without plotting every single trajectory.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your Code Here</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Your Code Here</span>
 </pre></div>
+</div>
+</div>
 </div>
 </section>
 </section>
@@ -762,16 +826,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "jbook"
         },
         kernelOptions: {
-            name: "python3",
+            name: "jbook",
             path: "./docs/sources/10_notes"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'jbook'</script>
 
                 </article>
               

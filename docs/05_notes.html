@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Classical Mechanics</title>
+  <!-- Both themes loaded, JS enables/disables as needed -->
+  <link id="theme-light" href="css/theme-light.css" rel="stylesheet" disabled>
+  <link id="theme-dark" href="css/theme-dark.css" rel="stylesheet" disabled>
+  <script>
+    (function() {
+      function setTheme(mode) {
+        const light = document.getElementById('theme-light');
+        const dark = document.getElementById('theme-dark');
+        if (mode === 'dark') {
+          dark.disabled = false;
+          light.disabled = true;
+          document.documentElement.classList.add('dark');
+        } else {
+          dark.disabled = true;
+          light.disabled = false;
+          document.documentElement.classList.remove('dark');
+        }
+      }
+      function getPreferredTheme() {
+        const saved = localStorage.getItem('theme');
+        if (saved) return saved;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      window.applyTheme = function() {
+        setTheme(getPreferredTheme());
+      };
+      function toggleTheme() {
+        const current = getPreferredTheme();
+        const next = current === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('theme', next);
+        setTheme(next);
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        var btn = document.getElementById('theme-toggle');
+        if (btn) btn.addEventListener('click', toggleTheme);
+      });
+      // Listen for system preference changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        if (!localStorage.getItem('theme')) setTheme(e.matches ? 'dark' : 'light');
+      });
+      // Initial theme
+      window.applyTheme();
+    })();
+  </script>
+</head>
+<body>
+  
+  <header class="site-header">
+    <h1 class="site-title">Modern Classical Mechanics</h1>
+  </header>
+  <button id="theme-toggle" class="toggle-dark" aria-label="Toggle dark/light mode">🌗</button>
+  <nav class="site-nav" id="site-nav"><ul class="site-nav-menu" id="site-nav-menu"><li><a href="index.html">Home</a></li><li><a href="chapters.html">Chapters</a><ul class="dropdown-menu menu-level-1"><li><a href="01_start.html">Chapter 1: Start</a></li><li><a href="01_notes.html">Chapter 1: Notes</a></li><li><a href="02_start.html">Chapter 2: Start</a></li><li><a href="02_notes.html">Chapter 2: Notes</a></li><li><a href="03_start.html">Chapter 3: Start</a></li><li><a href="03_notes.html">Chapter 3: Notes</a></li><li><a href="04_start.html">Chapter 4: Start</a></li><li><a href="04_notes.html">Chapter 4: Notes</a></li><li><a href="05_start.html">Chapter 5: Start</a></li><li><a href="05_notes.html">Chapter 5: Notes</a></li><li><a href="06_start.html">Chapter 6: Start</a></li><li><a href="06_notes.html">Chapter 6: Notes</a></li><li><a href="06_notes_2.html">Chapter 6: Notes 2</a></li><li><a href="07_start.html">Chapter 7: Start</a></li><li><a href="07_notes.html">Chapter 7: Notes</a></li><li><a href="08_start.html">Chapter 8: Start</a></li><li><a href="08_notes.html">Chapter 8: Notes</a></li><li><a href="09_start.html">Chapter 9: Start</a></li><li><a href="09_notes.html">Chapter 9: Notes</a></li><li><a href="10_start.html">Chapter 10: Start</a></li><li><a href="10_notes.html">Chapter 10: Notes</a></li><li><a href="11_start.html">Chapter 11: Start</a></li><li><a href="11_notes.html">Chapter 11: Notes</a></li><li><a href="12_start.html">Chapter 12: Start</a></li><li><a href="12_notes.html">Chapter 12: Notes</a></li><li><a href="13_start.html">Chapter 13: Start</a></li><li><a href="13_notes.html">Chapter 13: Notes</a></li></ul></li><li><a href="activities.html">Activities</a><ul class="dropdown-menu menu-level-1"><li><a href="hw1.html">Homework 1</a></li><li><a href="hw2.html">Homework 2</a></li><li><a href="hw3.html">Homework 3</a></li><li><a href="hw4.html">Homework 4</a></li><li><a href="hw5.html">Homework 5</a></li><li><a href="hw6.html">Homework 6</a></li><li><a href="hw7.html">Homework 7</a></li><li><a href="hw8.html">Homework 8</a></li></ul></li><li><a href="resources.html">Resources</a></li><li><a href="about.html">About</a></li></ul>
+<!-- Hamburger menu and toggle JS commented out -->
+</nav>
+  <div class="container">
+    <main>
+      
+<nav class="chapter-downloads" aria-label="Download chapter sources">
+  <div role="group" aria-label="Download formats">
+    <a class="download-btn" href="sources/05_notes/05_notes.pdf" download><span aria-hidden="true">📄</span> PDF</a>
+    <a class="download-btn" href="sources/05_notes/05_notes.docx" download><span aria-hidden="true">📝</span> DOCX</a>
+    <a class="download-btn" href="sources/05_notes/05_notes.md" download><span aria-hidden="true">✍️</span> MD</a>
+    <a class="download-btn" href="sources/05_notes/05_notes.ipynb" download><span aria-hidden="true">📓</span> IPYNB</a>
+    <a class="download-btn" href="sources/05_notes/05_notes.tex" download><span aria-hidden="true">📐</span> TEX</a>
+    <a class="download-btn" href="jupyter/content/notebooks/05_notes.html" target="_blank"><span aria-hidden="true">🔗</span> Jupyter</a>
+  </div>
+</nav>
+        <div class="markdown-body">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Week-5---Notes:-Conservation-of-Energy">Week 5 - Notes: Conservation of Energy<a class="anchor-link" href="#Week-5---Notes:-Conservation-of-Energy">¶</a></h1><p>One expression of a conservation law is the <a href="https://en.wikipedia.org/wiki/Conservation_of_energy">conservation of energy</a>. For an isolated and closed system, the total energy is conserved. That is, before and after any process, we can account for all the energy in the system and it is the same. More generally, conservation of energy accounts for the energy "lost" to the surroundings. All of the changes to the system must be accounted for in changes the surroundings.</p>
+<p>For a given choice of system that interacts with its surroundings, the change in energy of the system is equal to the work done on the system and any heat exchanged with the surroundings. This is a statement of the <a href="https://en.wikipedia.org/wiki/First_law_of_thermodynamics">first law of thermodynamics</a>. We can write that statement mathematically as:</p>
+<p>$$\Delta E_{\text{system}} = W + Q$$</p>
+<p>where $\Delta E_{\text{system}}$ is the change in energy of the system, $W$ is the work done on the system, and $Q$ is the heat exchanged with the surroundings.</p>
+<p>:::{admonition} Sign conventions
+:class: warning</p>
+<p>Note that the signs of the work done and heat exchanged are important. But we can remember them by asking if the system is going to increase its energy.</p>
+<p>If we add energy into the system by heating it, then $Q$ is positive because $\Delta E_{\text{system}}$ is positive. If the remove energy from the system through an exchange of heat, then $Q$ is negative.</p>
+<p>If the system does work on the surroundings, for example, by exerting a force on an external object over some displacement, then $W$ is negative because $\Delta E_{\text{system}}$ is negative. If instead the surroundings do work on the system, then $W$ is positive.</p>
+<p>:::</p>
+<p>We can rewrite this energy equation as an update equation for the energy of the system:</p>
+<p>$$E_{\text{system,f}} = E_{\text{system,i}} + W + Q$$</p>
+<p>From this equation, we can see that the final state of the system's energy is determined by the sum of its initial energy, the work done on the system, and the heat exchanged with the surroundings.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="The-Work-Energy-Theorem">The Work-Energy Theorem<a class="anchor-link" href="#The-Work-Energy-Theorem">¶</a></h2><p>We often model a system as a single object that interacts with its surroundings. In this case, it's often beneficial to select the object alone to be the system of interest. Then all of our work is to explain and predict the dynamics of the object.</p>
+<p>This simplification allows us to employ a more specialized case of the general energy equation. We can write the work-energy theorem as:</p>
+<p>$$\Delta E_{\text{object}} = W_{\text{net}}$$
+where $\Delta E_{\text{object}}$ is the change in energy of the object and $W_{\text{net}}$ is the net work done on the object.</p>
+<p>More specifically, we often focus only on the changes to the object's motion. This is because we use often use the model of a <a href="https://en.wikipedia.org/wiki/Point_particle">point particle</a> to describe the object. In this case, the object has no internal structure and thus no internal energy. The only energy we need to consider is the object's kinetic energy, $K$.</p>
+<p>:::{admonition} Limitation of this model</p>
+<p>The point particle model where we focus on the kinetic energy of an object is an obvious simplification. But it might not be so obvious how quickly it is to break down.</p>
+<p>Consider pushing a block across the floor. The block is a point particle and we model it as such. It comes to a stop and we argue the block's kinetic energy was converted to heat in the floor.</p>
+<p>But what about the block itself? Would it's surface temperature increase? It does, but we don't account for it.</p>
+<p>A great account of these kinds of situations is from my colleague <a href="https:/brucesherwood.net/">Bruce Sherwood</a>.  Bruce's paper, <a href="https://pubs.aip.org/aapt/ajp/article-abstract/51/7/597/1052185/Pseudowork-and-real-work?redirectedFrom=fulltext"><em>Pseudowork and real work</em>, American Journal of Physics (1982)</a>, is an important read about the limitation of the point particle model. You can find a PDF copy <a href="https://brucesherwood.net/wp-content/uploads/2017/06/Pseudowork1983.pdf">here</a>.
+:::</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Kinetic-Energy">Kinetic Energy<a class="anchor-link" href="#Kinetic-Energy">¶</a></h3><p>Our model of <a href="https://en.wikipedia.org/wiki/Kinetic_energy">kinetic energy</a> stems from a <a href="https://en.wikipedia.org/wiki/Willem_%27s_Gravesande">series of experiments dropping stones into clay</a>. The depth of the hole made was proportional to the square of the impact speed.</p>
+<p>Through many additional experiments we have quantified the kinetic energy of a point particle as:</p>
+<p>$$K = \frac{1}{2}m\vec{v}\cdot\vec{v}.$$</p>
+<p>We also use $T$ to represent kinetic energy, so you might see it written as:</p>
+<p>$$T = \frac{1}{2}mv^2.$$</p>
+<p>Note that this description of the kinetic energy is fully classical. It is the energy of motion in the limit that object moves much slower than the speed of light. We learned from <a href="https://en.wikipedia.org/wiki/Special_theory_of_relativity">Einstein's special theory of relativity</a> that the total energy of an point particle is:</p>
+<p>$$E_{tot} = \gamma mc^2,$$</p>
+<p>where $\gamma$ is the <a href="https://en.wikipedia.org/wiki/Lorentz_factor">Lorentz factor</a> and $c$ is the speed of light. The Lorentz factor is defined as:</p>
+<p>$$\gamma = \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}}.$$</p>
+<p>Notice that if $v/c =0$ then,</p>
+<p>$$\gamma = 1 \longrightarrow E_{tot} = mc^2.$$</p>
+<p>We call this the "rest energy" of the object. It is the energy of the object when it is not moving, and it demonstrates the <a href="https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence">mass-energy equivalence</a>.</p>
+<p>$$E_{rest} = mc^2.$$</p>
+<p>The remaining energy of the object is the kinetic energy, $T$. We can write that as:</p>
+<p>$$T = E_{tot} - E_{rest} = (\gamma - 1)mc^2.$$</p>
+<p>We can take the limit that $v/c \ll 1$ and expand the Lorentz factor in a Taylor series to find that:</p>
+<p>$$\gamma = 1 + \frac{1}{2}\frac{v^2}{c^2} + \ldots.$$</p>
+<p>Then we find that the kinetic energy is:</p>
+<p>$$T = \left(1 + \frac{1}{2}\frac{v^2}{c^2} + \ldots - 1\right)mc^2 = \frac{1}{2}mv^2 + \ldots.$$</p>
+<p>We have recovered the classical expression for kinetic energy. The higher order terms in the expansion are negligible when $v/c \ll 1$.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Developing-the-Work-Energy-Theorem">Developing the Work-Energy Theorem<a class="anchor-link" href="#Developing-the-Work-Energy-Theorem">¶</a></h2><p>Let's start with our definition of the classical kinetic energy of a point particle:</p>
+<p>$$T = \frac{1}{2}m\vec{v}\cdot\vec{v}.$$</p>
+<p>We ask how does $T$ change with time? We take the time derivative of $T$:</p>
+<p>$$\dfrac{dT}{dt} = \frac{1}{2}m\frac{d}{dt}\left(\vec{v}\cdot\vec{v}\right) = \frac{1}{2}m\left(\frac{d\vec{v}}{dt}\cdot\vec{v} + \vec{v}\cdot\frac{d\vec{v}}{dt}\right).$$</p>
+<p>The last term can be combined because the dot product is commutative. We can factor out the $m/2$ and write:</p>
+<p>$$\dfrac{dT}{dt} = \dfrac{m}{2}\left(2 \dfrac{d\vec{v}}{dt}\cdot\vec{v}\right) = m\left(\dfrac{d\vec{v}}{dt}\cdot\vec{v}\right).$$</p>
+<p>Ok, in that expression is the net force on the object,</p>
+<p>$$\vec{F}_{net} = m\dfrac{d\vec{v}}{dt}.$$</p>
+<p>So that,</p>
+<p>$$\dfrac{dT}{dt} = \vec{F}_{net}\cdot\vec{v}.$$</p>
+<p>Now let's discretize the time derivative to make sense of this.</p>
+<p>$$\dfrac{\Delta T}{\Delta t} = \vec{F}_{net}\cdot\vec{v}.$$</p>
+<p>$$\Delta T = \vec{F}_{net}\cdot\vec{v}\Delta t.$$</p>
+<p>That last term is the displacement of the object, $\Delta \vec{x} = \vec{v}\Delta t$. So we can write:</p>
+<p>$$\Delta T = \vec{F}_{net}\cdot\Delta \vec{x}.$$</p>
+<p>This is the work done on the object by the net force. We can write that as:</p>
+<p>$$\Delta T = W_{\text{net}}.$$</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Overall-Effect-of-the-Forces">Overall Effect of the Forces<a class="anchor-link" href="#Overall-Effect-of-the-Forces">¶</a></h3><p>Consider that we are looking at the changes in the object's motion over a longer period of space and time. This discrete model above helps us understand the relationship between the work done on the object and the change in its kinetic energy in a small interval, but what about the overall effect of the forces on the object?</p>
+<p>Consider a discrete set of $n$ spatial intervals, $\Delta x_i$, where $i$ is the index of the interval.</p>
+<p>$$x = {x_0, x_1, x_2, \ldots, x_n}$$</p>
+<p>At each of these spatial intervals, we experience a different net force, like in the figure below.</p>
+<p><img alt="Work done by a net force" src="images/chapters/discrete-force-intervals.png"/></p>
+<p>$$F_{net} = {F_{net,0}, F_{net,1}, F_{net,2}, \ldots, F_{net,n}}$$</p>
+<p>The work done by this force is the change in kinetic energy of the object:</p>
+<p>$$W_{\text{net}} = \sum_{i=0}^{n} F_{net,i}\Delta x_i = \Delta T.$$</p>
+<p>$$W_{\text{net}} = K_f - K_i.$$</p>
+<p>$$W_{\text{net}} = \dfrac{1}{2}m\vec{v}_f\cdot\vec{v}_f - \dfrac{1}{2}m\vec{v}_i\cdot\vec{v}_i.$$</p>
+<p>Notice that in the limit that $n \rightarrow \infty$ and $\Delta x_i \rightarrow 0$, we have a continuous function of the net force. We can write that as:</p>
+<p>$$\lim_{n \rightarrow \infty} \sum_{i=0}^{n} F_{net,i}\Delta x_i = \int_{x_i}^{x_f} F_{net}(x)dx.$$</p>
+<p>Thus, in our continuous limit, we can write the work done by the net force as:</p>
+<p>$$\Delta T = W_{\text{net}} = \int_{x_i}^{x_f} F_{net}(x)dx.$$</p>
+<p>What about in more than one dimension?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Work-done-in-more-than-one-dimension">Work done in more than one dimension<a class="anchor-link" href="#Work-done-in-more-than-one-dimension">¶</a></h3><p>Consider a path $C$ that we have discretized into $n$ intervals. The object starts at $\vec{r}_0$ and ends at $\vec{r}_n$. Each interval is $\Delta \vec{r}_i$ and the net force is $\vec{F}_{net,i}$. The figure below shows the work done by the net force in each interval.</p>
+<p><img alt="Work done by a net force" src="images/chapters/path-integral-work.png"/></p>
+<p>The work done by the net force is:</p>
+<p>$$W_{\text{net}} = \sum_{i=0}^{n} \vec{F}_{net,i}\cdot\Delta \vec{r}_i.$$</p>
+<p>as $\Delta \vec{r}_i \rightarrow 0$ and $n \rightarrow \infty$, we have a continuous function of the net force. We can write that as:</p>
+<p>$$W_{\text{net}} = \int_{C} \vec{F}_{net}\cdot d\vec{r}.$$</p>
+<p>The work can be positive, if the force and displacement are in the same direction, or negative, if they are in opposite directions. It can also be zero, if the force is perpendicular to the displacement.</p>
+<p>If the force is <strong>always</strong> perpendicular to the displacement, then the work done by the force is zero. This is because the dot product of two perpendicular vectors is zero. But what kind of motion is possible?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Example:-The-Simple-Harmonic-Oscillator">Example: The Simple Harmonic Oscillator<a class="anchor-link" href="#Example:-The-Simple-Harmonic-Oscillator">¶</a></h2><p>Consider, again, the humble <a href="https://en.wikipedia.org/wiki/Harmonic_oscillator">SHO</a>. If we have a horizontal spring mass system, we know we can write the force on the mass as:</p>
+<p>$$F_s = -kx.$$</p>
+<p>Let's allow the spring to move from $x_i$ to $x_f$, while the speed changes from $v_i$ to $v_f$.</p>
+<p>The change in kinetic energy is:</p>
+<p>$$\Delta T = \dfrac{1}{2}mv_f^2 - \dfrac{1}{2}mv_i^2.$$</p>
+<p>The work done by the spring is:</p>
+<p>$$W_s = \int_{x_i}^{x_f} F_s dx = -\int_{x_i}^{x_f} kx dx = -\left[\dfrac{1}{2}kx^2\right]_{x_i}^{x_f} = -\left(\dfrac{1}{2}kx_f^2 - \dfrac{1}{2}kx_i^2\right).$$</p>
+<p>Or more simply,</p>
+<p>$$W_s = \dfrac{1}{2}k(x_i^2 - x_f^2).$$</p>
+<p>The Work-Energy Theorem tells us that:</p>
+<p>$$\Delta T = W_s.$$</p>
+<p>$$\dfrac{1}{2}mv_f^2 - \dfrac{1}{2}mv_i^2 = \dfrac{1}{2}k(x_i^2 - x_f^2).$$</p>
+<p>We can rearrange this to find the relationship between the states before and after the motion:</p>
+<p>$$\dfrac{1}{2}mv_f^2 + \dfrac{1}{2}k x_f^2 = \dfrac{1}{2}mv_i^2 + \dfrac{1}{2}k x_i^2.$$</p>
+<p>The first term on the left and right side are the energy due to motion. The second terms are some other energy, but taken together before and after the motion, they are the same. They are a constant. <strong>This is a <a href="https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence#Conservation_of_mass_and_energy">conserved quantity</a>.</strong></p>
+<p>We call the second quantity the <strong>potential energy</strong> of the spring-mass system. It is the energy of the system due to its position, or it's "configuration". We define the potential energy of the spring as:</p>
+<p>$$U_s = \dfrac{1}{2}kx^2.$$</p>
+<p>We often use $V$ to represent potential energy, so you might see it written as:</p>
+<p>$$V_s = \dfrac{1}{2}kx^2.$$</p>
+<p>What we have discovered is that the total energy of the spring-mass system is:</p>
+<p>$$E_{tot} = T + U_s = \dfrac{1}{2}mv^2 + \dfrac{1}{2}kx^2 = \text{constant}.$$</p>
+<p>You have likely seen this previously in your study of the SHO. It is a very important result. But it is also the case that we don't always have a potential energy function.</p>
+<p>We need to have a <a href="https://en.wikipedia.org/wiki/Conservative_force">conservative force</a> to have a potential energy function. A conservative force is one where the work done by the force is independent of the path taken. Above, we assumed that in our calculations because the force was only dependent on the position of the object. That is a key feature of a conservative force.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Example:-A-Lattice-Chain">Example: A Lattice Chain<a class="anchor-link" href="#Example:-A-Lattice-Chain">¶</a></h2><p>A less obivous example that produces a potential energy function is a <a href="https://en.wikipedia.org/wiki/Lattice_chain">lattice chain</a>. Here we model an electron moving in 1D near but not too near a long chain of atoms. The picture below shows the model.</p>
+<p><img alt="Lattice chain model" src="images/chapters/lattice-chain.png"/></p>
+<p>Here the location of the particle and it's initial velocty are zero. The force model for a chain of atoms in this arrangement is:</p>
+<p>$$F(x) = -F_0 \sin \left(\dfrac{2\pi x}{b}\right)$$</p>
+<p>where $b$ is the spacing between the atoms and $F_0$ is a constant.</p>
+<p>We can again find the kinetic energy change and work done by the force:</p>
+<p>$$\Delta T = \dfrac{1}{2}mv_f^2 - \dfrac{1}{2}mv_i^2 = \dfrac{1}{2}mv_f^2.$$</p>
+<p>$$W = \int_{0}^{x_f} F(x) dx = -F_0 \int_{0}^{x_f} \sin \left(\dfrac{2\pi x}{b}\right) dx = -\left[-\dfrac{b}{2\pi}F_0 \cos \left(\dfrac{2\pi x}{b}\right)\right]_{0}^{x_f}$$</p>
+<p>$$ = \dfrac{b}{2\pi}F_0 \left(\cos \left(\dfrac{2\pi x_f}{b}\right) - \cos \left(0\right)\right).$$</p>
+<p>Using the Work-Energy Theorem, we can write:</p>
+<p>$$\dfrac{1}{2}mv_f^2 = \dfrac{b}{2\pi}F_0 \left(\cos \left(\dfrac{2\pi x_f}{b}\right) - 1\right).$$</p>
+<p>Thus, we can find the speed of the object at a given position:</p>
+<p>$$v_f(x) = \sqrt{\dfrac{b}{\pi m}F_0 \left(\cos \left(\dfrac{2\pi x_f}{b}\right) - 1\right)}.$$</p>
+<p>But more importantly, we can derive a potential energy function for the lattice chain. We can write:</p>
+<p>$$U(x) = -\int F(x) dx = \dfrac{b}{2\pi}F_0 \cos \left(\dfrac{2\pi x}{b}\right) + C.$$
+where $C$ is a constant. We can choose $C$ so that $U(0) = 0$; only the difference in potential energy matter. Then we have:</p>
+<p>$$U(x) = \dfrac{b}{2\pi}F_0 \cos \left(\dfrac{2\pi x}{b}\right).$$</p>
+<p>This is just <strong>another</strong> conservative force.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Conservative-Forces">Conservative Forces<a class="anchor-link" href="#Conservative-Forces">¶</a></h2><p>These forces occur frequently enough in physics and their properties are so important that they deserve their own attention. There are a few key properties of conservative forces that we should note:</p>
+<ol>
+<li>if the work is independent of the path taken, then the force is conservative.</li>
+<li>if the work done by the force is zero for a closed path, then the force is conservative.</li>
+<li>if the curl of the force is zero, then the force is conservative.</li>
+</ol>
+<p>It turns out that all of these statements are equivalent. And if any one of them is true, the rest hold, and we can develop a potential energy function for the force.</p>
+<h3 id="Why-do-these-imply-each-other?">Why do these imply each other?<a class="anchor-link" href="#Why-do-these-imply-each-other?">¶</a></h3><p>Let's start with the curl of the force. The <a href="https://en.wikipedia.org/wiki/Curl">curl</a> of a vector field is a measure of the rotation of the field. It is a <a href="https://en.wikipedia.org/wiki/Vector_calculus_operator">vector differential operator</a>. Operationally, taking the curl amounts to a cross product of the del operator with the vector field. The curl of a vector field $\vec{F}$ is defined as:</p>
+<p>$$\nabla \times \vec{F} = \begin{vmatrix}\hat{i} &amp; \hat{j} &amp; \hat{k} \\ \partial_x &amp; \partial_y &amp; \partial_z \\ F_x &amp; F_y &amp; F_z \end{vmatrix} = \left(\dfrac{\partial F_z}{\partial y} - \dfrac{\partial F_y}{\partial z}\right)\hat{i} + \left(\dfrac{\partial F_x}{\partial z} - \dfrac{\partial F_z}{\partial x}\right)\hat{j} + \left(\dfrac{\partial F_y}{\partial x} - \dfrac{\partial F_x}{\partial y}\right)\hat{k}.$$</p>
+<p>In the event that the curl vanishes, we know that each term in the curl is zero. In this case, we can investigate what this implies about other aspects of the force. We write <a href="https://en.wikipedia.org/wiki/Stokes%27_theorem">Stokes' theorem</a> for the force as:</p>
+<p>$$\iint_S (\nabla \times \vec{F})\cdot d\vec{S} = \oint_C \vec{F}\cdot d\vec{r}.$$</p>
+<p>The left hand side is the integral of the curl of the force over some surface $S$ with boundary $C$. The right hand side is the line integral of the force around the boundary of the surface.  This theorem holds for any vector field with continuous first derivatives, so most of what we do.</p>
+<p>Stokes's theorem tells us that for any choice of surface $S$ with boundary $C$, the line integral of the force around the boundary is equal to the integral of the curl of the force over the surface. If the curl vanishes, then the integral of the curl is zero. Thus, the line integral of the force around the boundary is zero.</p>
+<p>$$\oint_C \vec{F}\cdot d\vec{r} = 0.$$</p>
+<p>This is true for any closed path $C$. This is the second statement above.</p>
+<p>We can equivalent write the integral of the force around a closed path as the work around a different path. The figure below shows these paths $C_1$ and $C_2$ that make up the first loop, and the paths $C_3$ and $C_4$ that make up the second loop. The work done by the force along each path is shown in the figure.</p>
+<p><img alt="Work done by a net force" src="images/chapters/closed-path-work.png"/></p>
+<p>We can take the integral of both paths and write:</p>
+<p>$$\oint_C \vec{F}\cdot d\vec{r} = \int_{C_1} \vec{F}\cdot d\vec{r} + \int_{C_2} \vec{F}\cdot d\vec{r} = \int_{C_3} \vec{F}\cdot d\vec{r} + \int_{C_4} \vec{F}\cdot d\vec{r} = 0.$$</p>
+<p>Because both paths are closed and start and return to the same point, we can know that each contribution on each part of the path is equal and opposite. Thus, we can write:</p>
+<p>$$\int_{C_n} \vec{F}\cdot d\vec{r} = -\int_{C_m} \vec{F}\cdot d\vec{r}.$$</p>
+<p>This holds for any $n$ and $m$ where they make a closed path $C$. This is the first statement above.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Summary-of-Results">Summary of Results<a class="anchor-link" href="#Summary-of-Results">¶</a></h2><p>We covered a lot fo ground. Let's remind ourselves of the key results.</p>
+<p>The total energy of a system is the sum of the kinetic and potential energies:</p>
+<p>$$E = T + V = K +U.$$</p>
+<p>We use both $T$ and $K$ to represent kinetic energy, and both $U$ and $V$ to represent potential energy.</p>
+<p>The conservation of energy is:</p>
+<p>$$\dfrac{dE}{dt} = 0.$$</p>
+<p>When all the forces are conservative, energy is conserved. Of course, we are limiting here to mechanical energy.</p>
+<p>Conservative forces are those where the work done by the force is independent of the path taken. They have several key properties:</p>
+<ol>
+<li>The forces are functions of position only $\vec{F}(\vec{r})$.</li>
+<li>Their curl is zero: $\nabla \times \vec{F} = 0$.</li>
+</ol>
+<p>We calculate the curl as:
+$$\nabla \times \vec{F} = \begin{vmatrix}\hat{i} &amp; \hat{j} &amp; \hat{k} \\ \partial_x &amp; \partial_y &amp; \partial_z \\ F_x &amp; F_y &amp; F_z \end{vmatrix} = \left(\dfrac{\partial F_z}{\partial y} - \dfrac{\partial F_y}{\partial z}\right)\hat{i} + \left(\dfrac{\partial F_x}{\partial z} - \dfrac{\partial F_z}{\partial x}\right)\hat{j} + \left(\dfrac{\partial F_y}{\partial x} - \dfrac{\partial F_x}{\partial y}\right)\hat{k}.$$</p>
+<ol start="3">
+<li>The force is given by the negative gradient of the potential energy: $\vec{F} = -\nabla U$. This stems from the definition of the potential energy as the work done by the force.</li>
+</ol>
+<p>We can calculate the gradient as:</p>
+<p>$$\vec{F} = \langle F_x, F_y, F_z \rangle = -\nabla U = -\left(\dfrac{\partial U}{\partial x}\hat{i} + \dfrac{\partial U}{\partial y}\hat{j} + \dfrac{\partial U}{\partial z}\hat{k}\right).$$</p>
+<ol start="4">
+<li>The work done by a conservative force is path independent. We can write the work done by a conservative force as:</li>
+</ol>
+<p>$$W = \int_{C} \vec{F}\cdot d\vec{r} = -\int_{C} \nabla U\cdot d\vec{r} = -\Delta U.$$</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+    </main>
+  </div>
+  <footer class="site-footer">
+    <p>&copy; Modern Classical Mechanics. All rights reserved.</p>
+  </footer>
+</body>
+</html>

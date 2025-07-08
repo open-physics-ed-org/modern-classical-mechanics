@@ -265,7 +265,7 @@
       
       
       
-      <li><a href="../../../_sources/docs/sources/09_notes/09_notes.md" target="_blank"
+      <li><a href="../../../_sources/docs/sources/09_notes/09_notes.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -275,7 +275,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -410,7 +410,7 @@ $<span class="math notranslate nohighlight">\(m\ddot{x} + b \dot{x} + k x = 0\)<
 <p>Now we will add a driving force <span class="math notranslate nohighlight">\(F(t)\)</span> to the system, so that the equation of motion becomes
 $<span class="math notranslate nohighlight">\(m\ddot{x} +b \dot{x} + k x = F(t)\)</span>$</p>
 <p>We can represent that setup in the picture below. The blue spring with spring constant <span class="math notranslate nohighlight">\(k\)</span> is attached to a red mass <span class="math notranslate nohighlight">\(m\)</span>. There is a dashpot (damping) in green with damping constant <span class="math notranslate nohighlight">\(b=2\beta\)</span>. The driving force <span class="math notranslate nohighlight">\(F(t)\)</span> is shown in black and called “driver”.</p>
-<p><img alt="driven oscillator" src="docs/sources/09_notes/images/09_notes_driven_oscillator.png" /></p>
+<p><img alt="driven oscillator" src="docs/sources/images/notes/week9/driven_oscillator.png" /></p>
 <p>We write that differential equation as:</p>
 <div class="math notranslate nohighlight">
 \[\ddot{x} + 2\beta \dot{x} + \omega_0^2 x = F(t)/m=f(t)\]</div>
@@ -606,7 +606,7 @@ $<span class="math notranslate nohighlight">\(m\ddot{x} +b \dot{x} + k x = F(t)\
 \[A^2 = \dfrac{f_0^2}{\left(\omega_0^2 - \omega^2\right)^2 + 4\beta^2 \omega^2}.\]</div>
 <p>Let’s allow <span class="math notranslate nohighlight">\(\beta\)</span> to be small so that <span class="math notranslate nohighlight">\(4\beta^2 \omega^2\)</span> is small. If we focus on the denominator, we can see that the amplitude will be small when <span class="math notranslate nohighlight">\(\omega\)</span> is far from <span class="math notranslate nohighlight">\(\omega_0\)</span>. But if we choose <span class="math notranslate nohighlight">\(\omega\)</span> to be close to <span class="math notranslate nohighlight">\(\omega_0\)</span>, then the denominator will be small, and the amplitude will be large.</p>
 <p>The second result is a <a class="reference external" href="https://en.wikipedia.org/wiki/Resonance">resonance</a> effect. The system will resonate at a particular frequency, <span class="math notranslate nohighlight">\(\omega_0\)</span>, and the amplitude of the oscillations will be large. Below is a sketch of the response of a driven damped harmonic oscillator to a sinusoidal driving force. The amplitude of the oscillations is plotted as a function of the driving frequency <span class="math notranslate nohighlight">\(\omega\)</span>.</p>
-<p><img alt="Resonance Sketch" src="docs/sources/09_notes/images/09_notes_resonance.png" /></p>
+<p><img alt="Resonance Sketch" src="docs/sources/images/notes/week9/resonance.png" /></p>
 <section id="achieving-resonance">
 <h3>Achieving Resonance<a class="headerlink" href="#achieving-resonance" title="Link to this heading">#</a></h3>
 <p>There’s two ways that we can approach this. Let’s focus on the denominator of the amplitude equation:</p>
@@ -633,9 +633,6 @@ $<span class="math notranslate nohighlight">\(m\ddot{x} +b \dot{x} + k x = F(t)\
 <div class="math notranslate nohighlight">
 \[\omega_2 = \sqrt{\omega_0^2 - 2\beta^2}\]</div>
 <p>We can a strong response when <span class="math notranslate nohighlight">\(\omega_0^2 \gg 2\beta^2\)</span> or when <span class="math notranslate nohighlight">\(\omega_2 \approx \omega_0\)</span>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </section>
 </section>
 </section>
@@ -649,16 +646,16 @@ $<span class="math notranslate nohighlight">\(m\ddot{x} +b \dot{x} + k x = F(t)\
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "jbook"
         },
         kernelOptions: {
-            name: "python3",
+            name: "jbook",
             path: "./docs/sources/09_notes"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'jbook'</script>
 
                 </article>
               

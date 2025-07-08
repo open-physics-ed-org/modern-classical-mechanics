@@ -265,7 +265,7 @@
       
       
       
-      <li><a href="../../../_sources/docs/sources/hw5/hw5.md" target="_blank"
+      <li><a href="../../../_sources/docs/sources/hw5/hw5.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -275,7 +275,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -379,18 +379,33 @@ document.write(`
                   
   <!-- HTML file automatically generated from DocOnce source (https://github.com/doconce/doconce/)
 doconce format html hw5.do.txt --no_mako -->
-<!-- dom:TITLE: PHY321: Classical Mechanics 1 -->
-<section class="tex2jax_ignore mathjax_ignore" id="homework-5-due-14-mar">
+<!-- dom:TITLE: PHY321: Classical Mechanics 1 --><section class="tex2jax_ignore mathjax_ignore" id="homework-5-due-14-mar">
 <h1>Homework 5 (Due 14 Mar)<a class="headerlink" href="#homework-5-due-14-mar" title="Link to this heading">#</a></h1>
 <p><strong>Due 14 Mar (midnight)</strong></p>
 <p>Total points: 100</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-colorblind&#39;</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;numpy&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <section id="exercise-1-10-pt-sho-and-conservation-of-energy">
 <h2>Exercise 1 (10 pt), SHO and Conservation of Energy<a class="headerlink" href="#exercise-1-10-pt-sho-and-conservation-of-energy" title="Link to this heading">#</a></h2>
@@ -398,28 +413,38 @@ doconce format html hw5.do.txt --no_mako -->
 <p>We give the oscillator a little kick at <span class="math notranslate nohighlight">\(t=0\)</span> and let it go. It reaches a maximum distance of <span class="math notranslate nohighlight">\(A\)</span> from the equilibrium position.</p>
 <ul class="simple">
 <li><p>1a (2pt) Write down the conservation of energy equation and find the velocity as a function of position (i.e., find <span class="math notranslate nohighlight">\(\dot{x}(x)\)</span>).</p></li>
+</ul>
+<ul class="simple">
 <li><p>1b (4pt) Construct the integral for the time it takes for the oscillator from <span class="math notranslate nohighlight">\(x=0\)</span> to any position <span class="math notranslate nohighlight">\(x\)</span>.</p></li>
+</ul>
+<ul class="simple">
 <li><p>1c (4pt) Use the integral to find <span class="math notranslate nohighlight">\(x(t)\)</span> and show that the period of the oscillator is <span class="math notranslate nohighlight">\(T=2\pi\sqrt{m/k}\)</span>.</p></li>
 </ul>
 </section>
 <section id="exercise-2-10pt-kid-s-toy-and-stable-equilibrium">
 <h2>Exercise 2 (10pt), Kid’s toy and stable equilibrium<a class="headerlink" href="#exercise-2-10pt-kid-s-toy-and-stable-equilibrium" title="Link to this heading">#</a></h2>
 <p>A toy is made from a cylinder mounted on a hemisphere as shown in the figure below. The hemisphere has a radius of <span class="math notranslate nohighlight">\(R\)</span> and the center of mass of the whole toy is <span class="math notranslate nohighlight">\(h\)</span> above the ground.</p>
-<p><img alt="toy" src="docs/sources/hw5/images/hw5_5.2-kid_toy.png" /></p>
+<p><img alt="toy" src="docs/sources/images/activities/5.2-kid_toy.png" /></p>
 <ul class="simple">
 <li><p>2a (2pt) Find the height of the center of mass of the toy as a function of the angle <span class="math notranslate nohighlight">\(\theta\)</span>, measured from the vertical.</p></li>
+</ul>
+<ul class="simple">
 <li><p>2b (3pt) Use this to find the gravitational potential energy <span class="math notranslate nohighlight">\(U(\theta)\)</span>. Show in a figure how the potential energy varies with <span class="math notranslate nohighlight">\(\theta\)</span>. Note that <span class="math notranslate nohighlight">\(h/R\)</span> becomes an important parameter. For different choices of <span class="math notranslate nohighlight">\(h/R\)</span> do the equilibrium points change? How?</p></li>
+</ul>
+<ul class="simple">
 <li><p>2c (5pt) For which values of <span class="math notranslate nohighlight">\(R\)</span> and <span class="math notranslate nohighlight">\(h\)</span> is the toy in stable equilibrium so that it does not fall over? Does it fit with your graphical analysis? Why does this make sense to you? Or how would you explain it to a friend?</p></li>
 </ul>
 </section>
 <section id="exercise-3-15pt-generic-1d-motion">
 <h2>Exercise 3 (15pt), “Generic” 1D motion<a class="headerlink" href="#exercise-3-15pt-generic-1d-motion" title="Link to this heading">#</a></h2>
 <p>We will eventually learn how to solve for equations of motion for generalized coordinates. That work requires us to think about the forces and constraints on a system. Here we will consider a particle moving along a curved path to begin to think about how to describe the motion of a particle in a more general way.</p>
-<p><img alt="curved-path" src="docs/sources/hw5/images/hw5_5.3-curved_path.png" /></p>
+<p><img alt="curved-path" src="docs/sources/images/activities/5.3-curved_path.png" /></p>
 <p>A bead follows the curved path above, you can imagine it is a wire or a track, and the bead is constrained to move along the path. The bead’s position is described by its distance along the path, <span class="math notranslate nohighlight">\(s\)</span> as measured from the origin <span class="math notranslate nohighlight">\(O\)</span>. The <span class="math notranslate nohighlight">\(\hat{s}\)</span> direction is always along the path - that is, it’s always tangent to the wire.</p>
 <ul class="simple">
 <li><p>3a (3pt) Let’s start by writing the velocity <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> in terms of its Cartesian components (e.g., <span class="math notranslate nohighlight">\(dx/dt\)</span>) and find it’s magnitude (<span class="math notranslate nohighlight">\(v\)</span>). How does this approach seem given the shape of the wire? Do you think we have chosen a good set of coordinates?</p></li>
 <li><p>3b (4pt) Instead, consider the coordinate system <span class="math notranslate nohighlight">\(\langle \hat{s}, \hat{s}_{\perp}\rangle\)</span>. That is the the direction along the path and the direction perpendicular to it (assume we are solving this in a plane for the moment). Use this coordinate system to show that bead’s speed is given by <span class="math notranslate nohighlight">\(v=\dot{s}\)</span>, that is there is no dependence of the speed on the <span class="math notranslate nohighlight">\(\hat{s}_{\perp}\)</span> component of <span class="math notranslate nohighlight">\(\vec{v}\)</span>. How might this be a better choice?</p></li>
+</ul>
+<ul class="simple">
 <li><p>3c (4pt) Still using this coordinate system, prove that the tangential component of the net force (<span class="math notranslate nohighlight">\(F_{||}\)</span>, “parallel” to the motion) on the bead is <span class="math notranslate nohighlight">\(m\ddot{s}\)</span>.</p></li>
 </ul>
 <p>There is a force due to the wire (<span class="math notranslate nohighlight">\(\mathbf{F}_w\)</span>) that ensures the bead stays on the path. It is not in the direction of the path (i.e., friction), only perpendicular to the wire. Assume all other forces are conservative (i.e., can be derived from a generic potential <span class="math notranslate nohighlight">\(-\nabla U\)</span>).</p>
@@ -438,13 +463,21 @@ doconce format html hw5.do.txt --no_mako -->
 <section id="exercise-4-15pt-another-1-d-conservative-system-baby-bifurcations">
 <h2>Exercise 4 (15pt), Another 1-D conservative system; baby bifurcations<a class="headerlink" href="#exercise-4-15pt-another-1-d-conservative-system-baby-bifurcations" title="Link to this heading">#</a></h2>
 <p>The apparatus below is a massless wheel of radius <span class="math notranslate nohighlight">\(R\)</span> that is mounted to a frictionless axle. A small, dense piece of clay with mass <span class="math notranslate nohighlight">\(M\)</span> is glued to edge of the wheel as shown. Another mass <span class="math notranslate nohighlight">\(m\)</span> hangs from a massless string that is wrapped around the wheel. We can assume the string is inextensible and does not slip, and the system is in a uniform gravitational field.</p>
-<p><img alt="apparatus" src="docs/sources/hw5/images/hw5_5.4-apparatus.png" /></p>
+<p><img alt="apparatus" src="docs/sources/images/activities/5.4-apparatus.png" /></p>
 <p>We can show that this complicated system is still one-dimensional (at least in space) and then we can see the effects of parameters like <span class="math notranslate nohighlight">\(m/M\)</span>.</p>
 <ul class="simple">
 <li><p>4a (3pt) In terms of the rotation angle <span class="math notranslate nohighlight">\(\phi\)</span> of the wheel, write down the total potential energy <span class="math notranslate nohighlight">\(U(\phi)\)</span> of the system of both masses. Take note of any constraints that you use to write this as a 1D problem. When working this kind of problem, every object-Earth pair has gravitational potential energy and we must have the same zero of potential energy for every pair.</p></li>
+</ul>
+<ul class="simple">
 <li><p>4b (2pt) Use this potential energy to find  values of <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(M\)</span> for which there are “fixed points”, “critical points”, or what we sometimes call “equilibrium points”. The language we use comes from different fields, but the concept is the same. What is the condition for the existence of any critical points?</p></li>
+</ul>
+<ul class="simple">
 <li><p>4c (3pt) Describe the fixed points, determine their stability, and explain why they make sense in terms of the expected motion.</p></li>
+</ul>
+<ul class="simple">
 <li><p>4d (5pt) Plot the potential energy for two different values of <span class="math notranslate nohighlight">\(m/M\)</span> and explain the differences in the potential energy graphs. Consider cases when you observe very different motion. Think about an initial condition where the mass <span class="math notranslate nohighlight">\(m\)</span> is at rest and the wheel is at rest. What happens when you release the mass <span class="math notranslate nohighlight">\(m\)</span> for your two cases?</p></li>
+</ul>
+<ul class="simple">
 <li><p>4e (2pt) Determine the value of <span class="math notranslate nohighlight">\(m/M\)</span> for which the system begins to exhibit oscillations (if released from <span class="math notranslate nohighlight">\(\phi=0\)</span>).</p></li>
 </ul>
 <p>The value of <span class="math notranslate nohighlight">\(m/M\)</span> is a dimensionless quantity that characterizes the system. In a dynamical system, we think of it as a parameter that can change the qualitative behavior of the system. Such parameters can lead us to <a class="reference external" href="https://en.wikipedia.org/wiki/Bifurcation_theory">bifurcations</a>, <a class="reference external" href="https://en.wikipedia.org/wiki/Phase_transition">phase transitions</a>, and other interesting (often non-equilibrium) phenomena.</p>
@@ -454,15 +487,21 @@ doconce format html hw5.do.txt --no_mako -->
 <p>One of the most useful tools we can learn from classical mechanics is the phase diagram. For us, it is the plot of the position and velocity of a particle in a 1D system, but the concept can be extended to higher dimensions and to other systems. The phase diagram can tell us about the stability of fixed points, the period of oscillations, and the qualitative behavior of the system.</p>
 <p>In this exercise, we will consider a particle in a potential <span class="math notranslate nohighlight">\(U(x)\)</span> and we will plot the phase diagrams using both <code class="docutils literal notranslate"><span class="pre">quiver</span></code> and <code class="docutils literal notranslate"><span class="pre">streamplot</span></code> in <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>. The purpose of this exercise is to learn how to plot phase diagrams and to interpret the results.</p>
 <p>We start with a little code for plotting the phase diagram of the simple harmonic oscillator. The code is written in a way that you can easily modify it to plot the phase diagram of other systems. The key point is to make sure that the <code class="docutils literal notranslate"><span class="pre">quiver</span></code> or <code class="docutils literal notranslate"><span class="pre">streamplot</span></code> function is called with the correct arguments.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-colorblind&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">SHO</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">V</span><span class="p">):</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">SHO</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">V</span><span class="p">):</span>
     
     <span class="c1"># For a simple harmonic oscillator, x&#39; = v, and v&#39; = -x.</span>
     <span class="n">dX</span> <span class="o">=</span> <span class="n">V</span>
@@ -488,7 +527,11 @@ doconce format html hw5.do.txt --no_mako -->
 <span class="n">X</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">dX</span><span class="p">,</span> <span class="n">dV</span> <span class="o">=</span> <span class="n">generate_phase_space</span><span class="p">(</span><span class="n">x_lim</span><span class="p">,</span> <span class="n">v_lim</span><span class="p">,</span> <span class="n">grid_size</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>  <span class="c1"># Two rows, one column</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>  <span class="c1"># Two rows, one column</span>
     
 <span class="c1"># Quiver plot on the first subplot</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">dX</span><span class="p">,</span> <span class="n">dV</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C0&#39;</span><span class="p">)</span>
@@ -503,7 +546,11 @@ doconce format html hw5.do.txt --no_mako -->
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\dot</span><span class="si">{x}</span><span class="s1">$&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p><img alt="png" src="docs/sources/hw5/images/hw5_20_0.png" /></p>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/57a227d4f9d6c80b19ca048e4775ad51fa10c8f9ce5fd065de048ed646e2a397.png" src="../../../_images/57a227d4f9d6c80b19ca048e4775ad51fa10c8f9ce5fd065de048ed646e2a397.png" />
+</div>
+</div>
 <ul class="simple">
 <li><p>5a (2pt) Explain how the code works to produce the phase diagram. The key part is explaining what the function <code class="docutils literal notranslate"><span class="pre">SHO</span></code> does and how that relates to the <code class="docutils literal notranslate"><span class="pre">quiver</span></code> and <code class="docutils literal notranslate"><span class="pre">streamplot</span></code> calls. What does <code class="docutils literal notranslate"><span class="pre">np.meshgrid</span></code> do and why is it used?</p></li>
 </ul>
@@ -523,6 +570,8 @@ $<span class="math notranslate nohighlight">\(\ddot{x}=-\frac{k}{m}x-\frac{b}{m}
 $<span class="math notranslate nohighlight">\(\ddot{\theta}=-\frac{g}{l}\sin\theta-\frac{b}{ml}\dot{\theta}\)</span>$</p>
 <ul class="simple">
 <li><p>5d (5pt) Modify the code again to produce the phase diagram for the damped physical pendulum. You can choose <span class="math notranslate nohighlight">\(b/ml\)</span>, but might want to explore the values. How does this motion compare to the motion of the damped harmonic oscillator?</p></li>
+</ul>
+<ul class="simple">
 <li><p>5e (4pt) Return to the simple harmonic oscillator. Show using conservation of energy the phase diagram is a series of ellipses in <span class="math notranslate nohighlight">\((x,v)\)</span> space. Plot these ellipses on top of a phase diagram for the simple harmonic oscillator to illustrate how the phase diagram explains the total energy of the system.</p></li>
 </ul>
 </section>
@@ -533,17 +582,22 @@ $<span class="math notranslate nohighlight">\(\ddot{\theta}=-\frac{g}{l}\sin\the
 <div class="math notranslate nohighlight">
 \[\ddot{x}=-\omega^2 x\]</div>
 <p>where the initial position is 1 and the initial velocity is 0. The time step is set by the number of integration steps, <span class="math notranslate nohighlight">\(N\)</span>. We wrote a function called <code class="docutils literal notranslate"><span class="pre">euler</span></code> that will then solve the ODE using the Euler method. There’s a second function called <code class="docutils literal notranslate"><span class="pre">euler_cromer</span></code> that uses the Euler-Cromer method.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">omega</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Angular frequency</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">omega</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Angular frequency</span>
 <span class="n">x0</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># Initial position</span>
 <span class="n">v0</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Initial velocity</span>
 <span class="n">t0</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Start time</span>
 <span class="n">tf</span> <span class="o">=</span> <span class="mi">100</span>  <span class="c1"># End time</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>  <span class="c1"># Number of time steps</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="p">(</span><span class="n">tf</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="n">N</span>  <span class="c1"># Time step</span>
-
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">euler</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">euler</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
     <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
     <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -566,12 +620,15 @@ $<span class="math notranslate nohighlight">\(\ddot{\theta}=-\frac{g}{l}\sin\the
         <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 
     <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">v</span>
-
 </pre></div>
+</div>
+</div>
 </div>
 <p>We now call the <code class="docutils literal notranslate"><span class="pre">euler</span></code> and <code class="docutils literal notranslate"><span class="pre">euler_cromer</span></code> functions and plot the position and velocity as a function of time. We do this by storing the position and velocity as <code class="docutils literal notranslate"><span class="pre">pandas</span></code> dataframes. This kind of data structure is useful for storing time series data and is easy to plot. It’s a good idea to get in the habit of working with data structures like this.</p>
 <p>In the resulting plots you can see how the Euler-Cromer method is more accurate than the Euler method. The Euler method has a systematic error that causes the amplitude of the oscillation to grow. The Euler-Cromer method does not have this problem.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">euler</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">euler</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
 <span class="n">eulerdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="n">t</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">:</span> <span class="n">v</span><span class="p">})</span>
 
 <span class="n">t</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">euler_cromer</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">v0</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">tf</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
@@ -580,20 +637,21 @@ $<span class="math notranslate nohighlight">\(\ddot{\theta}=-\frac{g}{l}\sin\the
 <span class="n">eulerdf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
-<div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
-    vertical-align: top;
-}
 
-.dataframe thead th {
-    text-align: right;
-}
-</pre></div>
-</div>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
 </style>
 <table border="1" class="dataframe">
   <thead>
@@ -637,8 +695,11 @@ $<span class="math notranslate nohighlight">\(\ddot{\theta}=-\frac{g}{l}\sin\the
     </tr>
   </tbody>
 </table>
+</div></div></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot all positions vs time on the same graph</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot all positions vs time on the same graph</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eulerdf</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">],</span> <span class="n">eulerdf</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Euler&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">euler_cromerdf</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">],</span> <span class="n">euler_cromerdf</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Euler-Cromer&#39;</span><span class="p">)</span>
@@ -648,13 +709,27 @@ $<span class="math notranslate nohighlight">\(\ddot{\theta}=-\frac{g}{l}\sin\the
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
-<p><img alt="png" src="docs/sources/hw5/images/hw5_31_0.png" /></p>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/8e538d516f6468eeff6f5cda603f490d8c4673369ae61db5113ed573f80239bc.png" src="../../../_images/8e538d516f6468eeff6f5cda603f490d8c4673369ae61db5113ed573f80239bc.png" />
+</div>
+</div>
 <ul class="simple">
 <li><p>6a (2pt) Graph the energy of the system as a function of time for both the Simple Euler and Euler-Cromer methods. You should use the same initial conditions and time step for both methods. What do you observe?</p></li>
+</ul>
+<ul class="simple">
 <li><p>6b (4pt) Write the exact solution for these initial conditions and compare the numerical solutions to the exact solution using a point-by-point measure. What do you observe? Come up with a measure of the overall error (or find one) in the numerical solution and discuss the results.</p></li>
+</ul>
+<ul class="simple">
 <li><p>6c (4pt) Write the code to solve the simple harmonic oscillator with second-order Runge Kutta (this needs to be from scratch, not using a library). You can use the lecture notes as a starting point.</p></li>
+</ul>
+<ul class="simple">
 <li><p>6d (2pt) Compare the results of this RK2 method to the previous methods. Use whatever comparison method you can develop or explain. Careful here because the time steps might not be the same for the different methods.</p></li>
+</ul>
+<ul class="simple">
 <li><p>6e (3pt) Look up <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code> in the <code class="docutils literal notranslate"><span class="pre">scipy</span></code> library and use it to solve the simple harmonic oscillator. Compare the results to the previous methods. What integrator are you using with <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>?</p></li>
+</ul>
+<ul class="simple">
 <li><p>6f (15pt) Using your the integrator of your choosing, find numerical solutions for a given choice of initial conditions for each of the examples in exercise 5. Plot the phase diagram and the numerically computed trajectory on the phase diagram. See the example below for the simple harmonic oscillator.</p></li>
 </ul>
 </section>
@@ -686,16 +761,16 @@ Talks given by researchers through the following clubs:</p>
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "jbook"
         },
         kernelOptions: {
-            name: "python3",
+            name: "jbook",
             path: "./docs/sources/hw5"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'jbook'</script>
 
                 </article>
               

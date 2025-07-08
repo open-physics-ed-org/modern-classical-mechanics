@@ -265,7 +265,7 @@
       
       
       
-      <li><a href="../../../_sources/docs/sources/hw8/hw8.md" target="_blank"
+      <li><a href="../../../_sources/docs/sources/hw8/hw8.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -275,7 +275,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -379,18 +379,33 @@ document.write(`
                   
   <!-- HTML file automatically generated from DocOnce source (https://github.com/doconce/doconce/)
 doconce format html hw5.do.txt --no_mako -->
-<!-- dom:TITLE: PHY321: Classical Mechanics 1 -->
-<section class="tex2jax_ignore mathjax_ignore" id="homework-8-due-18-apr">
+<!-- dom:TITLE: PHY321: Classical Mechanics 1 --><section class="tex2jax_ignore mathjax_ignore" id="homework-8-due-18-apr">
 <h1>Homework 8 (Due 18 Apr)<a class="headerlink" href="#homework-8-due-18-apr" title="Link to this heading">#</a></h1>
 <p><strong>Due 18 Apr (midnight)</strong></p>
 <p>Total points: 120</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-colorblind&#39;</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;numpy&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <section id="exercise-1-10pt-paths-along-a-curved-surface">
 <h2>Exercise 1 (10pt) Paths along a curved surface<a class="headerlink" href="#exercise-1-10pt-paths-along-a-curved-surface" title="Link to this heading">#</a></h2>
@@ -417,7 +432,11 @@ doconce format html hw5.do.txt --no_mako -->
 <p>Let a light ray travel in a medium with refractive index <span class="math notranslate nohighlight">\(n_1\)</span> into another medium with refractive index <span class="math notranslate nohighlight">\(n_2\)</span>.</p>
 <ol class="arabic simple">
 <li><p>(5 pt) Sketch the problem and indicate the relevant angles and distances in your figure. Recall that the angle of incidence is <span class="math notranslate nohighlight">\(\theta_1\)</span> and the angle of refraction is <span class="math notranslate nohighlight">\(\theta_2\)</span>. It is ok to use a 2D sketch.</p></li>
+</ol>
+<ol class="arabic simple" start="2">
 <li><p>(5 pt) Set up the “integral” for the time it takes for light to travel between two points in different media. Use the fact that the speed of light in a media is given by <span class="math notranslate nohighlight">\(v = c/n\)</span>. Your answer needs to include the angles <span class="math notranslate nohighlight">\(\theta_1\)</span> and <span class="math notranslate nohighlight">\(\theta_2\)</span> and the refractive indices <span class="math notranslate nohighlight">\(n_1\)</span> and <span class="math notranslate nohighlight">\(n_2\)</span>.</p></li>
+</ol>
+<ol class="arabic simple" start="3">
 <li><p>(5 pt) Minimize the time it takes for light to travel between two points in different media to derive Snell’s Law.</p></li>
 </ol>
 <div class="math notranslate nohighlight">
@@ -454,7 +473,11 @@ doconce format html hw5.do.txt --no_mako -->
 <p>Let’s figure out the motion of a particle stuck inside a paraboloid. The potential energy of the bead is given by <span class="math notranslate nohighlight">\(U = mgz\)</span>, where <span class="math notranslate nohighlight">\(m\)</span> is the mass of the bead, <span class="math notranslate nohighlight">\(g\)</span> is the acceleration due to gravity. The coordinates are <span class="math notranslate nohighlight">\((x, y, z)\)</span> in the Cartesian coordinate system.</p>
 <ol class="arabic simple">
 <li><p>(5 pt) Write down the Lagrangian for the system in terms of <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, and <span class="math notranslate nohighlight">\(z\)</span> and their associated velocities <span class="math notranslate nohighlight">\(\mathcal{L}(x, y, z, \dot{x}, \dot{y}, \dot{z})\)</span>. Find the 3 equations of motion.</p></li>
+</ol>
+<ol class="arabic simple" start="2">
 <li><p>(15 pt) The bead is constrained by the paraboloid <span class="math notranslate nohighlight">\(z = \frac{1}{2}k(x^2 + y^2)\)</span>. Find the constraint equation and use it to eliminate one of the coordinates from the Lagrangian. Find the 2 equations of motion. Here it can be useful to change to cylindrical coordinates <span class="math notranslate nohighlight">\((\rho, \phi, z)\)</span>. Hint it should be that the Lagrangian is a function of <span class="math notranslate nohighlight">\(\rho\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span> and their associated velocities, <span class="math notranslate nohighlight">\(\mathcal{L}(\rho, \dot{\rho}, \phi, \dot{\phi})\)</span>.</p></li>
+</ol>
+<ol class="arabic simple" start="3">
 <li><p>(15 pt) For an initial condition where the bead is moving relative to the parabolic at some height above the bottom of the paraboloid, numerically solve the equations of motion (i.e., for <span class="math notranslate nohighlight">\(\rho(t)\)</span> and <span class="math notranslate nohighlight">\(\phi(t)\)</span>) and plot the the motion of the bead. Does it stick to the paraboloid?</p></li>
 </ol>
 </section>
@@ -496,16 +519,16 @@ Talks given by researchers through the following clubs:</p>
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "jbook"
         },
         kernelOptions: {
-            name: "python3",
+            name: "jbook",
             path: "./docs/sources/hw8"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'jbook'</script>
 
                 </article>
               

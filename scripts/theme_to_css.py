@@ -27,8 +27,8 @@ def get_theme_names_from_config(config_path):
 
 if __name__ == "__main__":
     import shutil
-    # Defaults
-    default_config = "_config.yml"
+    # Defaults (use .autogen/_config.yml as canonical config)
+    default_config = ".autogen/_config.yml"
     default_themes_dir = "static/themes"
     default_output_dir = "static/css"
     default_template = "static/templates/main.css.template"

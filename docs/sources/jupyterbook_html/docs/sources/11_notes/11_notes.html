@@ -265,7 +265,7 @@
       
       
       
-      <li><a href="../../../_sources/docs/sources/11_notes/11_notes.md" target="_blank"
+      <li><a href="../../../_sources/docs/sources/11_notes/11_notes.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -275,7 +275,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -392,7 +392,14 @@ document.write(`
 <section id="canonical-conceptualization-finding-the-shortest-path-in-a-plane">
 <h2>Canonical Conceptualization - Finding the Shortest Path in a Plane<a class="headerlink" href="#canonical-conceptualization-finding-the-shortest-path-in-a-plane" title="Link to this heading">#</a></h2>
 <p>Using the Calculus of Variations, we can show that the shortest path between two points in a plane is a straight line. This is a classic example, but it illustrates the concept well. Consider a general path in two-dimensional space that connects two points, say <span class="math notranslate nohighlight">\(s_1 = \langle x_1, y_1 \rangle\)</span> and <span class="math notranslate nohighlight">\(s_2 = \langle x_2, y_2 \rangle\)</span>. We can represent this path as a function <span class="math notranslate nohighlight">\(y(x)\)</span>. The figure below illustrates the setup.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-colorblind&#39;</span><span class="p">)</span>
 
@@ -424,7 +431,12 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># Display the plot</span>
 </pre></div>
 </div>
-<p><img alt="png" src="docs/sources/11_notes/images/11_notes_2_0.png" /></p>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../../../_images/c47b8fdcacd55bad69c500f971be17d258e29c68bc2e29db7523305132a1ac13.png" src="../../../_images/c47b8fdcacd55bad69c500f971be17d258e29c68bc2e29db7523305132a1ac13.png" />
+</div>
+</div>
 <p>The blue solid line is the ‘generic path’ that connects the two points <span class="math notranslate nohighlight">\(s_1\)</span> and <span class="math notranslate nohighlight">\(s_2\)</span>. The green dotted line is the solution that we expect to get when we ask, “what is the shortest path between these two points?”</p>
 <section id="setup-of-the-problem">
 <h3>Setup of the Problem<a class="headerlink" href="#setup-of-the-problem" title="Link to this heading">#</a></h3>
@@ -581,7 +593,7 @@ document.write(`
 <h2>Example: Snell’s Law<a class="headerlink" href="#example-snell-s-law" title="Link to this heading">#</a></h2>
 <p>Let’s assume you are walking on the beach and need to get to a location in the water quickly. Where do you enter the water to minimize the time it takes to reach the location in the water? This is a classic problem in physics and can be solved using the Calculus of Variations.</p>
 <p>Consider the picture below where you can move at a speed <span class="math notranslate nohighlight">\(v_1\)</span> on the shore and a speed <span class="math notranslate nohighlight">\(v_2\)</span> in the water. We know that <span class="math notranslate nohighlight">\(v_1 &gt; v_2\)</span>, so you can move faster on the shore than in the water. We aim to minimize the time it takes to reach the point <span class="math notranslate nohighlight">\(\langle x_2, y_2 \rangle\)</span> in the water from point <span class="math notranslate nohighlight">\(\langle x_1, y_1 \rangle\)</span> on the shore. We take the shoreline to be a line at <span class="math notranslate nohighlight">\(x = 0\)</span>. and the location we cross the shoreline is <span class="math notranslate nohighlight">\(\langle 0, y \rangle\)</span>.</p>
-<p><img alt="Snell's Law Diagram" src="docs/sources/11_notes/images/11_notes_snells_shore.png" /></p>
+<p><img alt="Snell's Law Diagram" src="docs/sources/images/notes/week11/snells_shore.png" /></p>
 <p>Notice the angle that we approach the shoreline at, <span class="math notranslate nohighlight">\(\theta_1\)</span>, and the angle that we approach the target in the water, <span class="math notranslate nohighlight">\(\theta_2\)</span>.</p>
 <p>The total time to travel from <span class="math notranslate nohighlight">\(\langle x_1, y_1 \rangle\)</span> to <span class="math notranslate nohighlight">\(\langle 0, y \rangle\)</span> and then to <span class="math notranslate nohighlight">\(\langle x_2, y_2 \rangle\)</span> is:</p>
 <div class="math notranslate nohighlight">
@@ -621,10 +633,10 @@ document.write(`
 <section id="example-brachistochrone-problem">
 <h2>Example: Brachistochrone Problem<a class="headerlink" href="#example-brachistochrone-problem" title="Link to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Brachistochrone_problem">Brachistochrone problem</a> is a classic problem in the Calculus of Variations. It asks the question: “What is the shape of the curve that a bead will follow under the influence of gravity to reach the bottom in the shortest time?”  Here’s a great video from <a class="reference external" href="https://en.wikipedia.org/wiki/Steven_Strogatz">Steven Strogatz</a> that explains the problem and its solution.</p>
-<p><a class="reference external" href="https://www.youtube.com/watch?v=Cld0p3a43fU"><img alt="Youtube Video on the Brachistochrone Problem" src="docs/sources/11_notes/images/11_notes_Cld0p3a43fU.jpg" /></a></p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=Cld0p3a43fU"><img alt="Youtube Video on the Brachistochrone Problem" src="docs/sources/images/notes/week11/Cld0p3a43fU.jpg" /></a></p>
 <p>Source: <a class="reference external" href="https://www.youtube.com/watch?v=Cld0p3a43fU">https://www.youtube.com/watch?v=Cld0p3a43fU</a></p>
 <p>The setup is below, there’s two points separated by a distance vertically and horizontally. What shape should we make a track so that a bead will roll down it in the shortest time?</p>
-<p><img alt="The Brachistochrone Problem" src="docs/sources/11_notes/images/11_notes_brachistochrone.png" /></p>
+<p><img alt="The Brachistochrone Problem" src="docs/sources/images/notes/week11/brachistochrone.png" /></p>
 <p>The time it takes for the bead to roll down the curve is given by:</p>
 <div class="math notranslate nohighlight">
 \[T = \int_{1}^{2} \dfrac{ds}{v}\]</div>
@@ -706,7 +718,14 @@ document.write(`
 \[y(\theta) = a(1 - \cos(\theta)).\]</div>
 <p>This is the “cycloid” curve that the bead will follow to minimize the time it takes to roll down the track. We can plot this curve to visualize it.</p>
 <p>What is so interesting about this curve is that it is <a class="reference external" href="https://en.wikipedia.org/wiki/Isochronous">isochronous</a>, meaning that all beads released from rest at any point on the curve will reach the bottom at the same time, regardless of where they start.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## Plot a cycloid path for comparison</span>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Plot a cycloid path for comparison</span>
 <span class="c1">## $$x(\theta) = a\left(\theta - \sin(\theta)\right)$$</span>
 <span class="c1">## $$y(\theta) = a(1 - \cos(\theta)).$$</span>
 
@@ -740,7 +759,12 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>  <span class="c1"># Display the plot</span>
 </pre></div>
 </div>
-<p><img alt="png" src="docs/sources/11_notes/images/11_notes_10_0.png" /></p>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="../../../_images/a144ee9599841abc161019cf9f035658d6be1667762d75520ef977626ce47e89.png" src="../../../_images/a144ee9599841abc161019cf9f035658d6be1667762d75520ef977626ce47e89.png" />
+</div>
+</div>
 </section>
 </section>
 </section>
@@ -754,16 +778,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "jbook"
         },
         kernelOptions: {
-            name: "python3",
+            name: "jbook",
             path: "./docs/sources/11_notes"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'jbook'</script>
 
                 </article>
               

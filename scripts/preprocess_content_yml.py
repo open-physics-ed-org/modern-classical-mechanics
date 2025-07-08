@@ -120,7 +120,15 @@ def main():
     # --- Write _config.yml ---
     config = {}
     if 'site' in content:
-        config.update(content['site'])
+        site = content['site']
+        # Robustly handle theme: always output as dict with default/light/dark
+        theme = site.get('theme', 'light')
+        if isinstance(theme, str):
+            theme_dict = {'default': theme, 'light': 'light', 'dark': 'dark'}
+        else:
+            theme_dict = theme
+        config.update(site)
+        config['theme'] = theme_dict
     if 'build' in content:
         config['build'] = content['build']
     config_comment = (

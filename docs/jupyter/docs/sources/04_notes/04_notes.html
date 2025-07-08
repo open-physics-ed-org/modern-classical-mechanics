@@ -265,7 +265,7 @@
       
       
       
-      <li><a href="../../../_sources/docs/sources/04_notes/04_notes.md" target="_blank"
+      <li><a href="../../../_sources/docs/sources/04_notes/04_notes.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -275,7 +275,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -410,7 +410,7 @@ document.write(`
 <section id="define-the-coordinate-system">
 <h3>Define the Coordinate System<a class="headerlink" href="#define-the-coordinate-system" title="Link to this heading">#</a></h3>
 <p>To start this analysis, we need to define a coordinate system. Below, we draw the particle at some random time with the vecolicty vector shown. The axes are typical: <span class="math notranslate nohighlight">\(x\)</span> is horizontal and <span class="math notranslate nohighlight">\(y\)</span> is vertical. The drag force is always opposite to the velocity vector, so it will always be in the opposite direction of the velocity vector.</p>
-<p><img alt="Coordinate System" src="docs/sources/04_notes/images/04_notes_2d-falling-ball.png" /></p>
+<p><img alt="Coordinate System" src="docs/sources/images/notes/week4/2d-falling-ball.png" /></p>
 <p>In this coordinate system, the properties of the particle are:</p>
 <div class="math notranslate nohighlight">
 \[\vec{r} = x \hat{x} + y \hat{y} = \langle x, y \rangle\]</div>
@@ -420,7 +420,7 @@ document.write(`
 \[\vec{a} = a_x \hat{x} + a_y \hat{y} = \langle a_x, a_y \rangle\]</div>
 <p>where <span class="math notranslate nohighlight">\(\hat{x}\)</span> and <span class="math notranslate nohighlight">\(\hat{y}\)</span> are the unit vectors in the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions, respectively. And the magnitude of the velocity vector is <span class="math notranslate nohighlight">\(|\vec{v}| = \sqrt{v_x^2 + v_y^2}\)</span> as you might imagine.</p>
 <p>The free body diagram at the point in time shown above is shown below. You see the gravitational force pointing directly downward and the drag force pointing in the opposite direction of the velocity vector. We continue to apply our coordinate system to the forces.</p>
-<p><img alt="Free Body Diagram" src="docs/sources/04_notes/images/04_notes_2d-falling-ball-fbd.png" /></p>
+<p><img alt="Free Body Diagram" src="docs/sources/images/notes/week4/2d-falling-ball-fbd.png" /></p>
 </section>
 <section id="apply-newton-s-second-law">
 <h3>Apply Newton’s Second Law<a class="headerlink" href="#apply-newton-s-second-law" title="Link to this heading">#</a></h3>
@@ -467,7 +467,7 @@ document.write(`
 \[\vec{F}_{lin} = -m \gamma \vec{v}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\gamma\)</span> is a proxy for the drag coefficient. The linear drag force is proportional to the velocity vector.</p>
 <p>We have the same set up as before and same FBD.</p>
-<p><img alt="Coordinate System" src="docs/sources/04_notes/images/04_notes_2d-falling-ball.png" /></p>
+<p><img alt="Coordinate System" src="docs/sources/images/notes/week4/2d-falling-ball.png" /></p>
 <p>And thus the same coordinate system. The properties of the particle are the same as above.</p>
 <section id="id1">
 <h3>Apply Newton’s Second Law<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
@@ -558,9 +558,9 @@ document.write(`
 \[F = \dfrac{G m_1 m_2}{r^2}\]</div>
 <p>where <span class="math notranslate nohighlight">\(G\)</span> is the gravitational constant, <span class="math notranslate nohighlight">\(m_1\)</span> and <span class="math notranslate nohighlight">\(m_2\)</span> are the masses of the objects, and <span class="math notranslate nohighlight">\(r\)</span> is the distance between the objects.</p>
 <p>But we need to be more clear about the forces and the vector relationships. Consider the figure below with the massive object at the origin and the satellite at some distance <span class="math notranslate nohighlight">\(r\)</span> from the origin. What is the vector <span class="math notranslate nohighlight">\(\vec{r}\)</span> that describes the location of the satellite?</p>
-<p><img alt="Gravitational Bound System" src="docs/sources/04_notes/images/04_notes_grav_01.png" /></p>
+<p><img alt="Gravitational Bound System" src="docs/sources/images/notes/week4/grav_01.png" /></p>
 <p>If we move the sun from the origin a little, we can start to see what <span class="math notranslate nohighlight">\(\vec{r}\)</span> is. The vector <span class="math notranslate nohighlight">\(\vec{r}\)</span> is the vector from the sun to the satellite. See the figure below to see the sketch.</p>
-<p><img alt="Gravitational Bound System" src="docs/sources/04_notes/images/04_notes_grav_02.png" /></p>
+<p><img alt="Gravitational Bound System" src="docs/sources/images/notes/week4/grav_02.png" /></p>
 <p>So if the location of the sun is <span class="math notranslate nohighlight">\(\vec{r}_{sun}\)</span> and the Earth is <span class="math notranslate nohighlight">\(\vec{r}_{earth}\)</span>, then the vector <span class="math notranslate nohighlight">\(\vec{r}\)</span> is:</p>
 <div class="math notranslate nohighlight">
 \[\vec{r} = \vec{r}_{earth} - \vec{r}_{sun}\]</div>
@@ -571,7 +571,7 @@ document.write(`
 <section id="id2">
 <h3>Define the Coordinate System<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <p>In the figure below, we show the earth at some distance <span class="math notranslate nohighlight">\(r\)</span> from the origin at an angle <span class="math notranslate nohighlight">\(\phi\)</span> from the <span class="math notranslate nohighlight">\(x\)</span>-axis. This distance is about <span class="math notranslate nohighlight">\(1.5 \times 10^{11}\;\mathrm{m}\)</span> or <span class="math notranslate nohighlight">\(1\;\mathrm{A.U.}\)</span> (<a class="reference external" href="https://en.wikipedia.org/wiki/Astronomical_unit">astronomical unit</a>). While not entirely obvious, the scale of these numbers allow us to assume the Sun is at the origin, and doesn’t move. Although this is not a good assumption for the real solar system, the sun orbits the <a class="reference external" href="https://en.wikipedia.org/wiki/Barycenter">barycenter</a> of the solar system, which is about 1 solar radii from the center of the sun.</p>
-<p><img alt="Gravitational Bound System" src="docs/sources/04_notes/images/04_notes_grav_03.png" /></p>
+<p><img alt="Gravitational Bound System" src="docs/sources/images/notes/week4/grav_03.png" /></p>
 <p>Let’s use the standard <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> axes to write the equations of motion. We can apply Newton’s Second Law to the earth in the chosen coordinate system.</p>
 <div class="math notranslate nohighlight">
 \[\vec{F}_{net} = \vec{F}_{gravity} = m\vec{a} = m\langle a_x, a_y \rangle\]</div>
@@ -602,7 +602,7 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[F = -ks\]</div>
 <p>where <span class="math notranslate nohighlight">\(k\)</span> is the spring constant and <span class="math notranslate nohighlight">\(s\)</span> is the displacement from the equilibrium position, <span class="math notranslate nohighlight">\(x-L_0\)</span>. The quantity <span class="math notranslate nohighlight">\(L_0\)</span> is the relaxed length of the spring. The figure below shows the typical horizontal spring system.</p>
-<p><img alt="SHO" src="docs/sources/04_notes/images/04_notes_sho_horizontal.png" /></p>
+<p><img alt="SHO" src="docs/sources/images/notes/week3/sho_horizontal.png" /></p>
 <p>We can typically choose to measure the displacement from the equilibrium position, and write the force instead as:</p>
 <div class="math notranslate nohighlight">
 \[F = m a_x = m \dot{v}_x  = m\ddot{x} = -kx\]</div>
@@ -656,16 +656,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "jbook"
         },
         kernelOptions: {
-            name: "python3",
+            name: "jbook",
             path: "./docs/sources/04_notes"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'jbook'</script>
 
                 </article>
               

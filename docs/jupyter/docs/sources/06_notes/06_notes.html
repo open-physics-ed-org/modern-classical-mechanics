@@ -265,7 +265,7 @@
       
       
       
-      <li><a href="../../../_sources/docs/sources/06_notes/06_notes.md" target="_blank"
+      <li><a href="../../../_sources/docs/sources/06_notes/06_notes.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -275,7 +275,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -415,9 +415,11 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[U(\theta) = -m g L \cos(\theta).\]</div>
 <p>Let’s graph this potential energy and see what it looks like.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
 
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-colorblind&#39;</span><span class="p">)</span>
 
@@ -443,7 +445,11 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="png" src="docs/sources/06_notes/images/06_notes_4_0.png" /></p>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/f6501b8b18b3db54b05de5e539658c9ecc55aed23ad42e310340fa12821253bb.png" src="../../../_images/f6501b8b18b3db54b05de5e539658c9ecc55aed23ad42e310340fa12821253bb.png" />
+</div>
+</div>
 <p>We can see where the equilibrium points are by noticing they are the minima and maxima of the potential energy. In fact, these fixed points are the extrema of the potential energy. The bottom of the swing is a minimum, while the top of the swing is a maximum. This is a general property of fixed/equilibrium points that are derived from a potential energy function.</p>
 <p>We also can see then how we might find these points by looking at the potential energy. Given a potential energy function, we can find the equilibrium points by finding the extrema of the potential energy.</p>
 <p>Let’s return to the pendulum example.</p>
@@ -474,9 +480,11 @@ document.write(`
 <h2>How can we determine the stability of an equilibrium point?<a class="headerlink" href="#how-can-we-determine-the-stability-of-an-equilibrium-point" title="Link to this heading">#</a></h2>
 <p>Clearly from our intuition, the bottom of the swing is a stable equilibrium point, while the top of the swing is an unstable equilibrium point. But how can we determine this mathematically? We have found that the equilibrium points are at <span class="math notranslate nohighlight">\(\theta = 0\)</span> and <span class="math notranslate nohighlight">\(\theta = \pi\)</span>.</p>
 <p>Let’s plot the potential energy again and include the equilibrium points. We know which are stable and which are unstable, but let’s see if we can determine this from the potential energy.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
 
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-colorblind&#39;</span><span class="p">)</span>
 
@@ -507,7 +515,11 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="png" src="docs/sources/06_notes/images/06_notes_7_0.png" /></p>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/db608902a7e0b73a8782e64d19d1703692509530ad82fc5865b0a1234780352a.png" src="../../../_images/db608902a7e0b73a8782e64d19d1703692509530ad82fc5865b0a1234780352a.png" />
+</div>
+</div>
 <p>So it’s clear that the equilibrium points are the extrema of the potential energy. We can determine their stability in the same way we identified them. We look at the local curvature of the potential energy at the equilibrium points. If we find that the second derivative of the potential energy is positive, then the equilibrium point is stable. If the second derivative is negative, then the equilibrium point is unstable.</p>
 <p>Let’s calculate the second derivative of the potential energy for the pendulum:</p>
 <div class="math notranslate nohighlight">
@@ -545,16 +557,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "jbook"
         },
         kernelOptions: {
-            name: "python3",
+            name: "jbook",
             path: "./docs/sources/06_notes"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'jbook'</script>
 
                 </article>
               

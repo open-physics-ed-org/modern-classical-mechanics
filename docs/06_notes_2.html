@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Classical Mechanics</title>
+  <!-- Both themes loaded, JS enables/disables as needed -->
+  <link id="theme-light" href="css/theme-light.css" rel="stylesheet" disabled>
+  <link id="theme-dark" href="css/theme-dark.css" rel="stylesheet" disabled>
+  <script>
+    (function() {
+      function setTheme(mode) {
+        const light = document.getElementById('theme-light');
+        const dark = document.getElementById('theme-dark');
+        if (mode === 'dark') {
+          dark.disabled = false;
+          light.disabled = true;
+          document.documentElement.classList.add('dark');
+        } else {
+          dark.disabled = true;
+          light.disabled = false;
+          document.documentElement.classList.remove('dark');
+        }
+      }
+      function getPreferredTheme() {
+        const saved = localStorage.getItem('theme');
+        if (saved) return saved;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      window.applyTheme = function() {
+        setTheme(getPreferredTheme());
+      };
+      function toggleTheme() {
+        const current = getPreferredTheme();
+        const next = current === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('theme', next);
+        setTheme(next);
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        var btn = document.getElementById('theme-toggle');
+        if (btn) btn.addEventListener('click', toggleTheme);
+      });
+      // Listen for system preference changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        if (!localStorage.getItem('theme')) setTheme(e.matches ? 'dark' : 'light');
+      });
+      // Initial theme
+      window.applyTheme();
+    })();
+  </script>
+</head>
+<body>
+  
+  <header class="site-header">
+    <h1 class="site-title">Modern Classical Mechanics</h1>
+  </header>
+  <button id="theme-toggle" class="toggle-dark" aria-label="Toggle dark/light mode">🌗</button>
+  <nav class="site-nav" id="site-nav"><ul class="site-nav-menu" id="site-nav-menu"><li><a href="index.html">Home</a></li><li><a href="chapters.html">Chapters</a><ul class="dropdown-menu menu-level-1"><li><a href="01_start.html">Chapter 1: Start</a></li><li><a href="01_notes.html">Chapter 1: Notes</a></li><li><a href="02_start.html">Chapter 2: Start</a></li><li><a href="02_notes.html">Chapter 2: Notes</a></li><li><a href="03_start.html">Chapter 3: Start</a></li><li><a href="03_notes.html">Chapter 3: Notes</a></li><li><a href="04_start.html">Chapter 4: Start</a></li><li><a href="04_notes.html">Chapter 4: Notes</a></li><li><a href="05_start.html">Chapter 5: Start</a></li><li><a href="05_notes.html">Chapter 5: Notes</a></li><li><a href="06_start.html">Chapter 6: Start</a></li><li><a href="06_notes.html">Chapter 6: Notes</a></li><li><a href="06_notes_2.html">Chapter 6: Notes 2</a></li><li><a href="07_start.html">Chapter 7: Start</a></li><li><a href="07_notes.html">Chapter 7: Notes</a></li><li><a href="08_start.html">Chapter 8: Start</a></li><li><a href="08_notes.html">Chapter 8: Notes</a></li><li><a href="09_start.html">Chapter 9: Start</a></li><li><a href="09_notes.html">Chapter 9: Notes</a></li><li><a href="10_start.html">Chapter 10: Start</a></li><li><a href="10_notes.html">Chapter 10: Notes</a></li><li><a href="11_start.html">Chapter 11: Start</a></li><li><a href="11_notes.html">Chapter 11: Notes</a></li><li><a href="12_start.html">Chapter 12: Start</a></li><li><a href="12_notes.html">Chapter 12: Notes</a></li><li><a href="13_start.html">Chapter 13: Start</a></li><li><a href="13_notes.html">Chapter 13: Notes</a></li></ul></li><li><a href="activities.html">Activities</a><ul class="dropdown-menu menu-level-1"><li><a href="hw1.html">Homework 1</a></li><li><a href="hw2.html">Homework 2</a></li><li><a href="hw3.html">Homework 3</a></li><li><a href="hw4.html">Homework 4</a></li><li><a href="hw5.html">Homework 5</a></li><li><a href="hw6.html">Homework 6</a></li><li><a href="hw7.html">Homework 7</a></li><li><a href="hw8.html">Homework 8</a></li></ul></li><li><a href="resources.html">Resources</a></li><li><a href="about.html">About</a></li></ul>
+<!-- Hamburger menu and toggle JS commented out -->
+</nav>
+  <div class="container">
+    <main>
+      
+<nav class="chapter-downloads" aria-label="Download chapter sources">
+  <div role="group" aria-label="Download formats">
+    <a class="download-btn" href="sources/06_notes_2/06_notes_2.pdf" download><span aria-hidden="true">📄</span> PDF</a>
+    <a class="download-btn" href="sources/06_notes_2/06_notes_2.docx" download><span aria-hidden="true">📝</span> DOCX</a>
+    <a class="download-btn" href="sources/06_notes_2/06_notes_2.md" download><span aria-hidden="true">✍️</span> MD</a>
+    <a class="download-btn" href="sources/06_notes_2/06_notes_2.ipynb" download><span aria-hidden="true">📓</span> IPYNB</a>
+    <a class="download-btn" href="sources/06_notes_2/06_notes_2.tex" download><span aria-hidden="true">📐</span> TEX</a>
+    <a class="download-btn" href="jupyter/content/notebooks/06_notes_2.html" target="_blank"><span aria-hidden="true">🔗</span> Jupyter</a>
+  </div>
+</nav>
+        <div class="markdown-body">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Week-6---Notes:-Linear-and-Angular-Momentum">Week 6 - Notes: Linear and Angular Momentum<a class="anchor-link" href="#Week-6---Notes:-Linear-and-Angular-Momentum">¶</a></h1>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>We've talked about the central conservation laws of classical mechanics:</p>
+<ul>
+<li>Conservation of energy - in a process, if energy is conserved, the total energy of the system is the same before and after the process. More strongly, in a closed system, the total energy is constant for any process ($dE_{sys}/dt=0$).</li>
+<li>Conservation of linear momentum - in a process, if momentum is conserved, the total momentum of the system is the same before and after the process. More strongly, in a closed system, the total <em>vector</em> momentum is constant for any process ($d\vec{p}_{sys}/dt=0$).</li>
+<li>Conservation of angular momentum - in a process, if angular momentum is conserved, the total angular momentum of the system is the same before and after the process. More strongly, in a closed system, the total <em>vector</em> angular momentum is constant for any process ($d\vec{L}_{sys}/dt=0$).</li>
+</ul>
+<p>We've worked with the conservation of energy a lot because it's a fundamental concept in physics and it lends itself to a scalar equation analysis. This can be quite a bit simpler in many cases, but an energy only view of the world can be limiting.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Linear-Momentum">Linear Momentum<a class="anchor-link" href="#Linear-Momentum">¶</a></h2><p>As we move into the formal study of linear momentum, we will start with a reminder of the definition of momentum, and the mathematical form of the conservation of momentum.</p>
+<p>Linear momentum is a vector quantity defined as the product of an object's mass and its velocity. It is denoted by the symbol $\vec{p}$ and is defined as:</p>
+<p>$$\vec{p} = m\vec{v}$$</p>
+<p>where $m$ is the mass of the object and $\vec{v}$ is the velocity of the object. The SI unit of momentum is kg m/s. As we later came to understand with <a href="https://en.wikipedia.org/wiki/Special_relativity">Einstein's special theory of relativity</a>, this definition of momentum is the classical limit of the relativistic momentum:</p>
+<p>$$\vec{p} = \gamma m\vec{v}$$</p>
+<p>where $\gamma$ is the Lorentz factor,</p>
+<p>$$\gamma = \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}}.$$</p>
+<p>As you can calculate, the relativistic momentum reduces to the classical momentum when the velocity is much less than the speed of light. As $v/c \rightarrow 0$, $\gamma \rightarrow 1$, and the relativistic momentum reduces to the classical momentum.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Linear-Momentum-and-Newton's-Second-Law">Linear Momentum and Newton's Second Law<a class="anchor-link" href="#Linear-Momentum-and-Newton's-Second-Law">¶</a></h3><p>You have seen in our discussion of Newton's Second Law that the net force on a system is equal to the mass of the system times the acceleration of the system. This can be written as:</p>
+<p>$$\vec{F}_{net}=m\vec{a}.$$</p>
+<p>However, this definition and our thinking here with it is a bit limited. What about systems of objects that are interacting with each other? What about deformable systems? What happens if something is shedding mass, like a rocket or jet?</p>
+<p>Newton's definition from <a href="https://en.wikipedia.org/wiki/Philosophi%C3%A6_Naturalis_Principia_Mathematica">the Principia</a> is a bit more general. He defines the force in terms of the rate of change of the body's momentum:</p>
+<p>$$\vec{F}_{net}=\frac{d\vec{p}}{dt}.$$</p>
+<p>We can extend that definition to a system of objects, where the net force on the system is equal to the rate of change of the total momentum of the system:</p>
+<p>$$\vec{F}_{net}=\frac{d\vec{p}_{sys}}{dt}.$$</p>
+<p>The second step might not be obvious, but by working through a few examples we can see how this is a more useful and general definition of force.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Forces-internal-to-a-system-zero-out">Forces internal to a system zero out<a class="anchor-link" href="#Forces-internal-to-a-system-zero-out">¶</a></h3><p>Consider an abstract system of $N$ particles. You might think of them as point particles but they could be extended objects. They experience outside forces and internal forces; i.e., we go a tag all the particles in our system and we can tell which ones are interacting with each other. We can also tell which ones are interacting with the outside world. This is a bit silly, but it can help us visualize what we are arguing below.</p>
+<p>The total force on the system is given by the sum of all the masses times the acceleration of each particle:</p>
+<p>$$\vec{F}_{total} = \sum_{i=1}^{N} m_i\vec{a}_i = \sum_{i=1}^{N} \vec{F}_i$$</p>
+<p>where the last term is the net force on the $ith$ particle. For a given object, $i$, the net force is the sum of all the forces acting on it, both internal and external,</p>
+<p>$$\vec{F}_{i} = \vec{F}_{i}^{int} + \vec{F}_{i}^{ext}.$$</p>
+<p>Here these internal forces are pairwise interactions between the particle $i$ and every other particle in the system,</p>
+<p>$$\vec{F}_{i}^{int} = \sum_{j\neq i}^{N} \vec{F}_{ij},$$</p>
+<p>where the sum is over all particles that are not $i$ because there's no force between a particle and itself.</p>
+<p>Cool, what happens to the internal force equation when we sum over all particles in the system?</p>
+<h4 id="Concrete-Examples">Concrete Examples<a class="anchor-link" href="#Concrete-Examples">¶</a></h4><p>We have a generic setup, let's see what happens when we apply this to a few examples: 2 particles, 3 particles, and then N particles.</p>
+<h5 id="Two-Particles">Two Particles<a class="anchor-link" href="#Two-Particles">¶</a></h5><p>With two particles the sum is easy to write out fully.</p>
+<p>$$\vec{F}_{int} = \sum_{i=1}^{2} \vec{F}_{i}^{int}$$</p>
+<p>$$\vec{F}_{int} = \sum_{i=1}^2 \sum_{j\neq i}^{2} \vec{F}_{ij}$$</p>
+<p>$$\vec{F}_{int} = \vec{F}_{12} + \vec{F}_{21} = 0$$</p>
+<p>By Newton's Third Law, the force of particle 1 on particle 2 is equal and opposite to the force of particle 2 on particle 1. The internal forces cancel out and the net force on the system is the sum of the external forces.</p>
+<p>$$\vec{F}_{12} = -\vec{F}_{21}$$</p>
+<p>So here the internal forces sum to zero.</p>
+<p>$$\vec{F}_{int} = 0$$</p>
+<h5 id="Three-Particles">Three Particles<a class="anchor-link" href="#Three-Particles">¶</a></h5><p>We can write this out in a similar way.</p>
+<p>$$\vec{F}_{int} = \sum_{i=1}^{3} \vec{F}_{i}^{int}$$</p>
+<p>$$\vec{F}_{int} = \sum_{i=1}^3 \sum_{j\neq i}^{3} \vec{F}_{ij}$$</p>
+<p>$$\vec{F}_{int} = \vec{F}_{12} + \vec{F}_{13} + \vec{F}_{23} + \vec{F}_{21} + \vec{F}_{31} + \vec{F}_{32}$$</p>
+<p>We can group these terms by Newton's Third Law pairs.</p>
+<p>$$\vec{F}_{int} = (\vec{F}_{12} + \vec{F}_{21}) + (\vec{F}_{13} + \vec{F}_{31}) + (\vec{F}_{23} + \vec{F}_{32}) = 0$$</p>
+<p>Every interaction on body $i$ has a corresponding equal and opposite interaction on body $j$, and the internal forces are again zero.</p>
+<p>$$\vec{F}_{int} = 0$$</p>
+<h5 id="N-Particles">N Particles<a class="anchor-link" href="#N-Particles">¶</a></h5><p>Clearly, there seems to be a pattern here. Namely that the internal forces are always zero. We can write out the sum for $N$ particles in a way that suggests this is always true.</p>
+<p>$$\vec{F}_{int} = \sum_{i=1}^{N} \vec{F}_{i}^{int}$$</p>
+<p>$$\vec{F}_{int} = \sum_{i=1}^N \sum_{j\neq i}^{N} \vec{F}_{ij}$$</p>
+<p>And where we make a switch  in the sum terms, so we can counting the force from each interaction in each term in the sum to make it clear why the internal forces sum to zero.</p>
+<p>$$\vec{F}_{int} = \sum_{i=1}^N \sum_{j&gt;i}^{N} \left(\underbrace{\vec{F}_{ij} + \vec{F}_{ji}}_{\mathrm{always}\,0}\right) = 0$$</p>
+<p>Internal forces will always appear as third law pairs, so the internal interactions will always sum to zero. This is a very powerful result.</p>
+<p>$$\vec{F}_{int} = 0\,\mathrm{,\,always}$$</p>
+<p><strong>For a given system, only external forces can change the momentum.</strong></p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Mathematical-Form-of-Conservation-of-Linear-Momentum">Mathematical Form of Conservation of Linear Momentum<a class="anchor-link" href="#Mathematical-Form-of-Conservation-of-Linear-Momentum">¶</a></h3><p>Let's look back at the system momentum,</p>
+<p>$$\vec{p}_{sys} = \sum_{i=1}^{N} m_i\vec{v}_i = \sum_{i=1}^{N} \vec{p}_i.$$</p>
+<p>If we take the time derivative of the system momentum, and assume we have point particles, so the masses are not changing,</p>
+<p>$$\dfrac{d\vec{p}_{sys}}{dt} = \sum_{i=1}^{N} m_i\dfrac{d\vec{v}_i}{dt} = \sum_{i=1}^{N} m_i\vec{a}_i = \sum_{i=1}^{N} \vec{F}_i$$</p>
+<p>The net force on the system is given by,</p>
+<p>$$\vec{F}_{net} = \vec{F}_{int} + \vec{F}_{ext}.$$</p>
+<p>Should there be no external forces, then,</p>
+<p>$$\vec{F}_{net} = \vec{F}_{int} = 0.$$</p>
+<p>And thus there is no change momentum of the system,</p>
+<p>$$\dfrac{d\vec{p}_{sys}}{dt} = 0.$$</p>
+<p>So if the system has no external forces, the total momentum of the system is conserved. We can propose a discrete extension to this form above where</p>
+<p>$$\dfrac{d\vec{p}_{sys}}{dt} \approx \dfrac{\Delta\vec{p}_{sys}}{\Delta t} = 0.$$</p>
+<p>And thus, it's easy to see:</p>
+<p>$$\Delta \vec{p}_{sys} = \vec{p}_{sys,f} - \vec{p}_{sys,i} = 0.$$</p>
+<p>If there are external forces, then we also have a prediction equation for how the energy will change in a small time step $\Delta t$:</p>
+<p>$$\Delta \vec{p}_{sys} = \vec{p}_{sys,f} - \vec{p}_{sys,i} = \sum_{i=1}^{N} \vec{F}_{ext,i}\Delta t,$$</p>
+<p>so that,</p>
+<p>$$\vec{p}_{sys,f} = \vec{p}_{sys,i} + \vec{F}_{ext}\Delta t.$$</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Angular-Momentum">Angular Momentum<a class="anchor-link" href="#Angular-Momentum">¶</a></h2><p><a href="https://en.wikipedia.org/wiki/Angular_momentum">Angular momentum</a> is a complex and rich quantity that has deep connections to the shape and structure of a system. The "configuration" or how it is distributed in space can have a big impact on the dynamics of a system. Our study of classical angular momentum will be a stepping stone to our study of <a href="https://en.wikipedia.org/wiki/Angular_momentum_operator">quantum angular momentum</a> and the <a href="%5Bhttps://en.wikipedia.org/wiki/Spin_(physics">spin</a>]) of particles.</p>
+<p>:::{admonition} Quantum Mechanical Spin
+:class: information
+<a href="https://en.wikipedia.org/wiki/Spin_(physics">Spin</a>) is a quantum mechanical property that is not related to the rotation of a particle, but it is a form of angular momentum, and it's essential to the structure of the universe - it tells us if we have <a href="https://en.wikipedia.org/wiki/Fermion">fermionic</a> or <a href="https://en.wikipedia.org/wiki/Boson">bosonic</a> particles, it is what gives us the <a href="https://en.wikipedia.org/wiki/Pauli_exclusion_principle">Pauli Exclusion Principle</a>, and it is what gives us the <a href="https://en.wikipedia.org/wiki/Zeeman_effect">Zeeman Effect</a> and the <a href="https://en.wikipedia.org/wiki/Stark_effect">Stark Effect</a>.
+:::</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>For the moment, we will limit ourselves to classical angular momentum and we will focus on the abstract case of a single particle. As we work through the semester, we will revisit angular momentum and introduce how to work with distributions of mass and extended objects.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Definition-of-Angular-Momentum">Definition of Angular Momentum<a class="anchor-link" href="#Definition-of-Angular-Momentum">¶</a></h3><p>For a particle with a momentum $\vec{p}$, the angular momentum is defined as the cross product of the position vector $\vec{r}$ and the momentum vector $\vec{p}$,</p>
+<p>$$\vec{L} = \vec{r} \times \vec{p} = m \left(\vec{r} \times \vec{v}\right).$$</p>
+<p>This is a quantity that depends on the location of the particle relative origin of coordinates. This means you have some latitude in choosing the origin of coordinates, and you can choose the origin to simplify the problem.</p>
+<p>This also means the angular momentum is a vector quantity, and it points in the direction perpendicular to the plane defined by the position and momentum vectors.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="When-is-Angular-Momentum-Conserved?">When is Angular Momentum Conserved?<a class="anchor-link" href="#When-is-Angular-Momentum-Conserved?">¶</a></h3><p>We can ask this by computing the time derivative of the angular momentum,</p>
+<p>$$\dfrac{d\vec{L}}{dt} = \dfrac{d}{dt}\left(\vec{r} \times \vec{p}\right) = 0?$$</p>
+<p>We did a calculation like this on a homework where we computed</p>
+<p>$$\dfrac{d}{dt}\left(\vec{a}\times\vec{b}\right) = \vec{a}\times\dfrac{d\vec{b}}{dt} + \dfrac{d\vec{a}}{dt}\times\vec{b}.$$</p>
+<p>Let's apply it here:</p>
+<p>$$\dfrac{d\vec{L}}{dt} = \dfrac{d}{dt}\left(\vec{r} \times \vec{p}\right) = \dfrac{d\vec{r}}{dt} \times \vec{p} + \vec{r} \times \dfrac{d\vec{p}}{dt}.$$</p>
+<p>If we assume that $\dot{m}=0$, then we can write the time derivative of the momentum as,</p>
+<p>$$\dfrac{d\vec{p}}{dt} = \dfrac{d}{dt}\left(m\vec{v}\right) = m\dfrac{d\vec{v}}{dt}$$</p>
+<p>We group the terms in the time derivative of the angular momentum,</p>
+<p>$$\dfrac{d\vec{L}}{dt} = m \underbrace{\dfrac{d\vec{r}}{dt} \times \vec{v}}_{=0} + m\vec{r} \times \dfrac{d\vec{v}}{dt}.$$</p>
+<p>The first term the cross product of the velocity with itself $\vec{v}\times\vec{v}$, and is zero, and the second term is the cross product of the position vector with the acceleration,</p>
+<p>$$\dfrac{d\vec{L}}{dt} = m\vec{r} \times \dfrac{d\vec{v}}{dt} = \vec{r}\times m\vec{a}.$$</p>
+<p>So the time derivative of the angular momentum is the net torque on the system!</p>
+<p>$$\vec{\tau}_{net} = \vec{r} \times \vec{F}_{net}.$$</p>
+<p>$$\dfrac{d\vec{L}}{dt} = \vec{r}\times m\vec{a} = \vec{r} \times \vec{F}_{net}$$</p>
+<p>$$\dfrac{d\vec{L}}{dt} = \vec{\tau}_{net}.$$</p>
+<p>If the net torque on the system is zero, then the angular momentum is conserved, and it is a constant of the motion.</p>
+<p>$$\dfrac{d\vec{L}_{sys}}{dt} = 0.$$</p>
+<p>$$\Delta \vec{L}_{sys} = \vec{L}_{sys,f} - \vec{L}_{sys,i} = 0.$$</p>
+<p>If there's a net torque, we have a discrete update equation for the angular momentum,</p>
+<p>$$\vec{L}_{sys,f} = \vec{L}_{sys,i} + \vec{\tau}_{net}\Delta t.$$</p>
+<h3 id="Are-we-sure-there-are-no-internal-torques-that-matter?">Are we sure there are no internal torques that matter?<a class="anchor-link" href="#Are-we-sure-there-are-no-internal-torques-that-matter?">¶</a></h3><p>We can ask the same question we asked about internal forces. Are there internal torques that matter?  As before, let us define the total force on particle $i$ as the sum of internal and external forces,</p>
+<p>$$\vec{F}_{i} = \vec{F}_{i}^{int} + \vec{F}_{i}^{ext}.$$</p>
+<p>We assume there are no external forces, and so the net force on the system is the sum of the internal forces,</p>
+<p>$$\vec{F}_{net} = \vec{F}_{int}.$$</p>
+<p>For given object, we observe an angular momentum $\vec{l}_i$ that is the cross product of the position vector and the momentum vector. So the time derivative of the $i$th particle's angular momentum is,</p>
+<p>$$\dfrac{d\vec{l}_i}{dt} = \vec{r}_i \times \vec{F}_i.$$</p>
+<p>If the total angular momentum of the system is the sum of the angular momenta of the particles,</p>
+<p>$$\vec{L} = \sum_{i=1}^{N} \vec{l}_i,$$</p>
+<p>then the time derivative of the total angular momentum is,</p>
+<p>$$\dfrac{d\vec{L}}{dt} = \sum_{i=1}^{N} \dfrac{d\vec{l}_i}{dt} = \sum_{i=1}^{N} \vec{r}_i \times \vec{F}_i.$$</p>
+<p>Recall that $\vec{F}_i = \sum_{j\neq i}^{N} \vec{F}_{ij}$. So we can rewrite the time derivative of the total angular momentum as,</p>
+<p>$$\dfrac{d\vec{L}}{dt} = \sum_{i=1}^{N} \sum_{j\neq i}^{N} \vec{r}_i  \times \vec{F}_{ij} = \sum_{i=1}^N \sum_{j &gt;i}^{N} \left(\vec{r}_i \times \vec{F}_{ij} + \vec{r}_j \times \vec{F}_{ji}\right)$$</p>
+<p>But note that $\vec{r}_i \times \vec{F}_{ij} = -\vec{r}_j \times \vec{F}_{ji}$, so the resulting expression gives us,</p>
+<p>$$\dfrac{d\vec{L}}{dt} =\sum_{i=1}^N \sum_{j&gt;i}^{N} \left(\vec{r}_i - \vec{r}_j\right)\times \vec{F}_{ij}.$$</p>
+<p>So if the internal forces are parallel to the separation between the particles, then the internal torques sum to zero, and the total angular momentum of the system is conserved. So things like the gravitational force, the electric force, and spring forces are all internal forces that do not contribute to the net torque on the system.</p>
+<p>And thus,</p>
+<p>$$\dfrac{d\vec{L}_{sys}}{dt} = 0.$$</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-python"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-python"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+    </main>
+  </div>
+  <footer class="site-footer">
+    <p>&copy; Modern Classical Mechanics. All rights reserved.</p>
+  </footer>
+</body>
+</html>

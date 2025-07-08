@@ -8,7 +8,10 @@ site:
   description: "A modern, open-source course in classical mechanics."
   logo: "static/images/logo.png"
   favicon: "static/images/favicon.ico"
-  theme: "default"
+  theme:
+    default: dark
+    light: light
+    dark: dark
   language: "en"
   github_url: "https://github.com/dannycab/modern-classical-mechanics"
   # Add more site-wide settings as needed

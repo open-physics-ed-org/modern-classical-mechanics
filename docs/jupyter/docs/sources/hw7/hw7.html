@@ -265,7 +265,7 @@
       
       
       
-      <li><a href="../../../_sources/docs/sources/hw7/hw7.md" target="_blank"
+      <li><a href="../../../_sources/docs/sources/hw7/hw7.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -275,7 +275,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -382,18 +382,33 @@ document.write(`
                   
   <!-- HTML file automatically generated from DocOnce source (https://github.com/doconce/doconce/)
 doconce format html hw5.do.txt --no_mako -->
-<!-- dom:TITLE: PHY321: Classical Mechanics 1 -->
-<section class="tex2jax_ignore mathjax_ignore" id="homework-7-due-28-mar">
+<!-- dom:TITLE: PHY321: Classical Mechanics 1 --><section class="tex2jax_ignore mathjax_ignore" id="homework-7-due-28-mar">
 <h1>Homework 7 (Due 28 Mar)<a class="headerlink" href="#homework-7-due-28-mar" title="Link to this heading">#</a></h1>
 <p><strong>Due 28 Mar (midnight)</strong></p>
 <p>Total points: 100</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-colorblind&#39;</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;numpy&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <section id="exercise-1-10pt-where-does-the-energy-go">
 <h2>Exercise 1 (10pt) Where does the energy go?<a class="headerlink" href="#exercise-1-10pt-where-does-the-energy-go" title="Link to this heading">#</a></h2>
@@ -476,7 +491,9 @@ doconce format html hw5.do.txt --no_mako -->
 <li><p>4c (20 pt). Sweep the driving frequency <span class="math notranslate nohighlight">\(\omega\)</span> at a fixed amplitude and store the amplitude of the steady-state solution. Plot the amplitude of the steady-state solution as a function of the driving frequency <span class="math notranslate nohighlight">\(\omega\)</span>. Describe the behavior of the amplitude as a function of the driving frequency.</p></li>
 </ul>
 <p>We have written a numerical solver for the damped undriven oscillator; it’s similar to the prior codes we’ve used. Your task is to modify the code to include a driving force. We have used the second order Runge-Kutta method to solve the equation of motion. You can use the code as a starting point for the damped driven oscillator. Notice we also call the code in the next cell.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ddho</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">omega_0</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">ddho</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">omega_0</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function to compute derivatives based on the damped driven oscillator model.</span>
 <span class="sd">    Notice the driving force is included but zero.</span>
@@ -511,7 +528,11 @@ doconce format html hw5.do.txt --no_mako -->
     <span class="k">return</span> <span class="n">y_next</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulation parameters</span>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulation parameters</span>
 <span class="n">T</span> <span class="o">=</span> <span class="mf">100.0</span>  <span class="c1"># total time</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1"># time step</span>
 <span class="n">omega_0</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># natural frequency</span>
@@ -540,10 +561,14 @@ doconce format html hw5.do.txt --no_mako -->
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x11bfac2d0&gt;
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x11bfac2d0&gt;
 </pre></div>
 </div>
-<p><img alt="png" src="docs/sources/hw7/images/hw7_8_1.png" /></p>
+<img alt="../../../_images/eadf00f49127fb829258978376e112ffcc6ff55f73e4da10f0075a3d73379cd3.png" src="../../../_images/eadf00f49127fb829258978376e112ffcc6ff55f73e4da10f0075a3d73379cd3.png" />
+</div>
+</div>
 </section>
 <section id="exercise-5-20pt-project-check-in-1">
 <h2>Exercise 5 (20pt), Project Check-in 1<a class="headerlink" href="#exercise-5-20pt-project-check-in-1" title="Link to this heading">#</a></h2>
@@ -585,16 +610,16 @@ Talks given by researchers through the following clubs:</p>
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "jbook"
         },
         kernelOptions: {
-            name: "python3",
+            name: "jbook",
             path: "./docs/sources/hw7"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'jbook'</script>
 
                 </article>
               

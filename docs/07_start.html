@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Classical Mechanics</title>
+  <!-- Both themes loaded, JS enables/disables as needed -->
+  <link id="theme-light" href="css/theme-light.css" rel="stylesheet" disabled>
+  <link id="theme-dark" href="css/theme-dark.css" rel="stylesheet" disabled>
+  <script>
+    (function() {
+      function setTheme(mode) {
+        const light = document.getElementById('theme-light');
+        const dark = document.getElementById('theme-dark');
+        if (mode === 'dark') {
+          dark.disabled = false;
+          light.disabled = true;
+          document.documentElement.classList.add('dark');
+        } else {
+          dark.disabled = true;
+          light.disabled = false;
+          document.documentElement.classList.remove('dark');
+        }
+      }
+      function getPreferredTheme() {
+        const saved = localStorage.getItem('theme');
+        if (saved) return saved;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      window.applyTheme = function() {
+        setTheme(getPreferredTheme());
+      };
+      function toggleTheme() {
+        const current = getPreferredTheme();
+        const next = current === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('theme', next);
+        setTheme(next);
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        var btn = document.getElementById('theme-toggle');
+        if (btn) btn.addEventListener('click', toggleTheme);
+      });
+      // Listen for system preference changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        if (!localStorage.getItem('theme')) setTheme(e.matches ? 'dark' : 'light');
+      });
+      // Initial theme
+      window.applyTheme();
+    })();
+  </script>
+</head>
+<body>
+  
+  <header class="site-header">
+    <h1 class="site-title">Modern Classical Mechanics</h1>
+  </header>
+  <button id="theme-toggle" class="toggle-dark" aria-label="Toggle dark/light mode">🌗</button>
+  <nav class="site-nav" id="site-nav"><ul class="site-nav-menu" id="site-nav-menu"><li><a href="index.html">Home</a></li><li><a href="chapters.html">Chapters</a><ul class="dropdown-menu menu-level-1"><li><a href="01_start.html">Chapter 1: Start</a></li><li><a href="01_notes.html">Chapter 1: Notes</a></li><li><a href="02_start.html">Chapter 2: Start</a></li><li><a href="02_notes.html">Chapter 2: Notes</a></li><li><a href="03_start.html">Chapter 3: Start</a></li><li><a href="03_notes.html">Chapter 3: Notes</a></li><li><a href="04_start.html">Chapter 4: Start</a></li><li><a href="04_notes.html">Chapter 4: Notes</a></li><li><a href="05_start.html">Chapter 5: Start</a></li><li><a href="05_notes.html">Chapter 5: Notes</a></li><li><a href="06_start.html">Chapter 6: Start</a></li><li><a href="06_notes.html">Chapter 6: Notes</a></li><li><a href="06_notes_2.html">Chapter 6: Notes 2</a></li><li><a href="07_start.html">Chapter 7: Start</a></li><li><a href="07_notes.html">Chapter 7: Notes</a></li><li><a href="08_start.html">Chapter 8: Start</a></li><li><a href="08_notes.html">Chapter 8: Notes</a></li><li><a href="09_start.html">Chapter 9: Start</a></li><li><a href="09_notes.html">Chapter 9: Notes</a></li><li><a href="10_start.html">Chapter 10: Start</a></li><li><a href="10_notes.html">Chapter 10: Notes</a></li><li><a href="11_start.html">Chapter 11: Start</a></li><li><a href="11_notes.html">Chapter 11: Notes</a></li><li><a href="12_start.html">Chapter 12: Start</a></li><li><a href="12_notes.html">Chapter 12: Notes</a></li><li><a href="13_start.html">Chapter 13: Start</a></li><li><a href="13_notes.html">Chapter 13: Notes</a></li></ul></li><li><a href="activities.html">Activities</a><ul class="dropdown-menu menu-level-1"><li><a href="hw1.html">Homework 1</a></li><li><a href="hw2.html">Homework 2</a></li><li><a href="hw3.html">Homework 3</a></li><li><a href="hw4.html">Homework 4</a></li><li><a href="hw5.html">Homework 5</a></li><li><a href="hw6.html">Homework 6</a></li><li><a href="hw7.html">Homework 7</a></li><li><a href="hw8.html">Homework 8</a></li></ul></li><li><a href="resources.html">Resources</a></li><li><a href="about.html">About</a></li></ul>
+<!-- Hamburger menu and toggle JS commented out -->
+</nav>
+  <div class="container">
+    <main>
+      
+<nav class="chapter-downloads" aria-label="Download chapter sources">
+  <div role="group" aria-label="Download formats">
+    <a class="download-btn" href="sources/07_start/07_start.pdf" download><span aria-hidden="true">📄</span> PDF</a>
+    <a class="download-btn" href="sources/07_start/07_start.docx" download><span aria-hidden="true">📝</span> DOCX</a>
+    <a class="download-btn" href="sources/07_start/07_start.md" download><span aria-hidden="true">✍️</span> MD</a>
+    <a class="download-btn" href="sources/07_start/07_start.ipynb" download><span aria-hidden="true">📓</span> IPYNB</a>
+    <a class="download-btn" href="sources/07_start/07_start.tex" download><span aria-hidden="true">📐</span> TEX</a>
+    <a class="download-btn" href="jupyter/content/notebooks/07_start.html" target="_blank"><span aria-hidden="true">🔗</span> Jupyter</a>
+  </div>
+</nav>
+        <div class="markdown-body">
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Week-7---Nonlinear-Dynamics">Week 7 - Nonlinear Dynamics<a class="anchor-link" href="#Week-7---Nonlinear-Dynamics">¶</a></h1><p>We have now built enough tools to tackle some challenging physical systems that have nonlinear equations of motion. The broader field of study that deals with these systems is called <a href="https://en.wikipedia.org/wiki/Nonlinear_system">Nonlinear Dynamics</a>. Nonlinear dynamics or nonlinear science is the study of systems that are described by nonlinear equations. These systems are often chaotic, meaning they are highly sensitive to initial conditions. In many cases, these systems are treated using <a href="https://en.wikipedia.org/wiki/Dynamical_system">dynamical systems theory</a>.</p>
+<p>Nonlinear dynamics is the science that has helped us understand the dynamics of <a href="https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations">fluids</a>, <a href="https://en.wikipedia.org/wiki/Kadomtsev%E2%80%93Petviashvili_equation">water waves</a>, <a href="https://en.wikipedia.org/wiki/Nonlinear_optics">crystals and other optical systems</a>, <a href="https://en.wikipedia.org/wiki/Li%C3%A9nard_equation">radio waves</a>, <a href="https://en.wikipedia.org/wiki/Numerical_weather_prediction">the weather</a>, and countless other systems. It has been used in <a href="https://en.wikipedia.org/wiki/Turbulence">fluid dynamics</a>, <a href="https://en.wikipedia.org/wiki/Plasma_modeling">plasma physics</a>, <a href="https://en.wikipedia.org/wiki/Double_pendulum">mechanical systems</a>, and many other fields. <a href="https://en.wikipedia.org/wiki/Chaos_theory">Chaos theory</a> is associated with nonlinear dynamics and is a subset of the field. Recently, this work has extended to quantum systems, where the Hamiltonian is nonlinear. <a href="https://en.wikipedia.org/wiki/Quantum_chaos">Quantum chaos</a> is a field that studies the quantum analog of classical chaotic systems.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Nonlinear-Differential-Equations">Nonlinear Differential Equations<a class="anchor-link" href="#Nonlinear-Differential-Equations">¶</a></h2><p>Differential equations are the language of classical mechanics. They describe how the systems we investigate evolve over time. They track the <a href="https://en.wikipedia.org/wiki/State_variable">state variables</a> of the system, which are what define the system. For us, this is often the position components and the velocity components of the system. The video below gives a good overview of what differential equations are and why they are important for our study. It also provides an introduction to the concept of a <a href="https://en.wikipedia.org/wiki/Phase_space">phase space</a>, which is the space defined by all the state variables of the system.</p>
+<h3 id="Differential-equations,-a-tourist's-guide-(27-min)">Differential equations, a tourist's guide (27 min)<a class="anchor-link" href="#Differential-equations,-a-tourist's-guide-(27-min)">¶</a></h3><p><a href="https://www.youtube.com/watch?v=p_di4Zn4wz4"><img alt="Differential Equations" src="images/chapters/p_di4Zn4wz4.jpg"/></a></p>
+<p>Source: <a href="https://www.youtube.com/watch?v=p_di4Zn4wz4">https://www.youtube.com/watch?v=p_di4Zn4wz4</a></p>
+<h2 id="Phase-Portraits">Phase Portraits<a class="anchor-link" href="#Phase-Portraits">¶</a></h2><p>Solving non-linear equations can be quite difficult, and in most cases, we can't find an analytical solution. We can numerically integrate the equations to find specific trajectories. But this is a fairly inefficient approach, especially when nonlinear systems exhibit such complex behavior and are so sensitive to initial conditions.</p>
+<p>We can also use a technique called <a href="https://en.wikipedia.org/wiki/Phase_portrait">phase portraits</a> to understand the behavior of these systems. A phase portrait is a graphical representation of the trajectories of a dynamical system in the phase space. That space is defined by the combination of all the state variables of the system. For example, a simple pendulum has two state variables: the angle and the angular velocity. The phase portrait of the pendulum is a plot of the angular velocity against the angle. Or for the harmonic oscillator, the phase portrait is a plot of the velocity against the position.</p>
+<p><em>Phase portraits are quite useful for second order differential equations (or any two-dimensional system) because we frequently use and interpret 2D graphs.</em> Notice that we focused on "2nd order differential equations" not "linear 2nd order." That is because, as we will see, <strong>phase portraits are particularly useful for nonlinear 2nd order differential equations.</strong></p>
+<p>We will go into the details of how to construct and develop phase portraits in class. This video from <a href="https://www.me.washington.edu/facultyfinder/steve-brunton">Steve Brunton</a> is a good overview of the process. It's quite detailed and takes a mathematical perspective, so don't worry if you don't understand everything in the video. We have plenty of time to investigate how this works in practice.</p>
+<h3 id="Drawing-Phase-Portraits-for-Nonlinear-Systems-(26-min)">Drawing Phase Portraits for Nonlinear Systems (26 min)<a class="anchor-link" href="#Drawing-Phase-Portraits-for-Nonlinear-Systems-(26-min)">¶</a></h3><p><a href="https://www.youtube.com/watch?v=vBwyD4JJlSs"><img alt="Drawing Phase Portraits for Nonlinear Systems" src="images/chapters/vBwyD4JJlSs.jpg"/></a></p>
+<p>Source: <a href="https://www.youtube.com/watch?v=vBwyD4JJlSs">https://www.youtube.com/watch?v=vBwyD4JJlSs</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+    </main>
+  </div>
+  <footer class="site-footer">
+    <p>&copy; Modern Classical Mechanics. All rights reserved.</p>
+  </footer>
+</body>
+</html>

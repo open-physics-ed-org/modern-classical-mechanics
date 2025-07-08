@@ -265,7 +265,7 @@
       
       
       
-      <li><a href="../../../_sources/docs/sources/02_notes/02_notes.md" target="_blank"
+      <li><a href="../../../_sources/docs/sources/02_notes/02_notes.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -275,7 +275,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -453,20 +453,26 @@ document.write(`
 <ul class="simple">
 <li><p>Direct Link: <a class="reference external" href="https://youtube.com/watch?v=_0mvWedqW7c">https://youtube.com/watch?v=_0mvWedqW7c</a></p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">YouTubeVideo</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">YouTubeVideo</span>
 
 <span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;_0mvWedqW7c&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">720</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">405</span><span class="p">)</span>
 </pre></div>
 </div>
-<iframe
-    width="720"
-    height="405"
-    src="https://www.youtube.com/embed/_0mvWedqW7c"
-    frameborder="0"
-    allowfullscreen
-<blockquote>
-<div></iframe>
-</div></blockquote>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="720"
+            height="405"
+            src="https://www.youtube.com/embed/_0mvWedqW7c"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
 </section>
 </section>
 <section id="discretizing-newton-s-second-law">
@@ -495,20 +501,26 @@ document.write(`
 <ul class="simple">
 <li><p>Direct Link: <a class="reference external" href="https://www.youtube.com/watch?v=MstPeOTCVzQ">https://www.youtube.com/watch?v=MstPeOTCVzQ</a></p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">YouTubeVideo</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">YouTubeVideo</span>
 
 <span class="n">YouTubeVideo</span><span class="p">(</span><span class="s1">&#39;MstPeOTCVzQ&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">720</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">405</span><span class="p">)</span>
 </pre></div>
 </div>
-<iframe
-    width="720"
-    height="405"
-    src="https://www.youtube.com/embed/MstPeOTCVzQ"
-    frameborder="0"
-    allowfullscreen
-<blockquote>
-<div></iframe>
-</div></blockquote>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+        <iframe
+            width="720"
+            height="405"
+            src="https://www.youtube.com/embed/MstPeOTCVzQ"
+            frameborder="0"
+            allowfullscreen
+            
+        ></iframe>
+        </div></div>
+</div>
 </section>
 </section>
 <section id="additional-mathematical-preliminaries">
@@ -517,7 +529,7 @@ document.write(`
 <section id="vectors-and-coordinates">
 <h3>Vectors and Coordinates<a class="headerlink" href="#vectors-and-coordinates" title="Link to this heading">#</a></h3>
 <p>The figure below shows a vector in two dimensions.</p>
-<p><img alt="Vector in Two Dimensions; the vector is defined by its magnitude, , and its direction, " src="docs/sources/02_notes/images/02_notes_2dvector.png" /></p>
+<p><img alt="Vector in Two Dimensions; the vector is defined by its magnitude, , and its direction, " src="docs/sources/images/notes/week2/2dvector.png" /></p>
 <p>The vector is defined by its magnitude, <span class="math notranslate nohighlight">\(A\)</span>, and its direction, <span class="math notranslate nohighlight">\(\theta\)</span>. The vector can be decomposed into two components, <span class="math notranslate nohighlight">\(A_x\)</span> and <span class="math notranslate nohighlight">\(A_y\)</span>, in the <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions, respectively.</p>
 <p>The magnitude of the vector is given by the Pythagorean theorem:</p>
 <div class="math notranslate nohighlight">
@@ -564,7 +576,7 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[\vec{a} \cdot \vec{b} = |\vec{a}||\vec{b}|\cos(\phi).\]</div>
 <p>The figure below shows the relationship between the vectors and the angle.</p>
-<p><img alt="Dot Product of Two Vectors; the dot product is the product of the magnitudes of the vectors and the cosine of the angle between them" src="docs/sources/02_notes/images/02_notes_Dot-product.png" /></p>
+<p><img alt="Dot Product of Two Vectors; the dot product is the product of the magnitudes of the vectors and the cosine of the angle between them" src="docs/sources/images/notes/week2/Dot-product.png" /></p>
 <br>
 Source: [Wikipedia](https://commons.wikimedia.org/wiki/File:Dot-product-1.svg)
 <p>Much like scalar multiplication, a dot produce is distributive:</p>

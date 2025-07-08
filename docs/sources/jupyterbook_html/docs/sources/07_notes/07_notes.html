@@ -265,7 +265,7 @@
       
       
       
-      <li><a href="../../../_sources/docs/sources/07_notes/07_notes.md" target="_blank"
+      <li><a href="../../../_sources/docs/sources/07_notes/07_notes.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -275,7 +275,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -437,7 +437,9 @@ document.write(`
 <h3>A Geometric Analysis<a class="headerlink" href="#a-geometric-analysis" title="Link to this heading">#</a></h3>
 <p>Let us instead plot the equation <span class="math notranslate nohighlight">\(\dot{x} = \sin x\)</span> in the <a class="reference external" href="https://en.wikipedia.org/wiki/Phase_space">phase space</a> of the system. Here, we are plotting the velocity of the system as a function of the position of the system. This is a common approach to understanding the behavior of a system.</p>
 <p>In 1D, this plot is called a ‘Flow on a Line’. That is because we can characterize the behavior of the system by the direction of the flow of the system in the phase space. In this case, the flow is given by the function <span class="math notranslate nohighlight">\(\sin x\)</span>. A positive <span class="math notranslate nohighlight">\(\sin x\)</span> means that the system is moving to the right, and a negative <span class="math notranslate nohighlight">\(\sin x\)</span> means that the system is moving to the left. We plot it below with some additional information.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-colorblind&#39;</span><span class="p">)</span>
 
@@ -487,7 +489,11 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="png" src="docs/sources/07_notes/images/07_notes_2_0.png" /></p>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/7054c17edff5cb93a73858788cf5b033f1c17cd2b501e959cb3d9105077c510b.png" src="../../../_images/7054c17edff5cb93a73858788cf5b033f1c17cd2b501e959cb3d9105077c510b.png" />
+</div>
+</div>
 <p>The plot we have made is called a ‘Phase Portrait’. It is a plot of the velocity of the system as a function of the position of the system. The arrows indicate the direction of the flow of the system. The critical points of the system are the points where the flow is zero. These are the points where the system is at rest (i.e., <span class="math notranslate nohighlight">\(\dot{x} = 0\)</span>).</p>
 <p>In this case, the critical points are at <span class="math notranslate nohighlight">\(x = n\pi\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is an integer. At these points, the system is at rest. The system will move to the right if <span class="math notranslate nohighlight">\(\dot{x} &gt; 0\)</span> and to the left if <span class="math notranslate nohighlight">\(\dot{x} &lt; 0\)</span>. We have indicated that flow direction with arrows on the line.</p>
 <p>From those flow directions, we can also find the ‘critical points’ of the motion. These are the points where the flow changes direction, and they are found by setting <span class="math notranslate nohighlight">\(\dot{x} = 0\)</span>. In this case, the critical points are at <span class="math notranslate nohighlight">\(x = n\pi\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is an integer. In some cases, that point is stable (green solid circle) and in other cases, it is unstable (red open circle). You can see why from the flow directions; for stable points, the flow on both sides of the critical point is towards the critical point, and for unstable points, the flow on both sides of the critical point is away from the critical point.</p>
@@ -510,7 +516,9 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[x(x-1)(x+1) = 0.\]</div>
 <p>So that there are three critical points: <span class="math notranslate nohighlight">\(x = 0\)</span>, <span class="math notranslate nohighlight">\(x = 1\)</span>, and <span class="math notranslate nohighlight">\(x = -1\)</span>. We can plot the phase portrait of this system below along with a little more information.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-colorblind&#39;</span><span class="p">)</span>
 
@@ -556,7 +564,11 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="png" src="docs/sources/07_notes/images/07_notes_5_0.png" /></p>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/92d5e53c96dd7678e69441414aa1d85234b19baf856507b28e3cdc91353bab27.png" src="../../../_images/92d5e53c96dd7678e69441414aa1d85234b19baf856507b28e3cdc91353bab27.png" />
+</div>
+</div>
 <section id="id1">
 <h3>What does the motion look like?<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>From the phase potrait, we can see that for <span class="math notranslate nohighlight">\(|x_0| &gt; 1\)</span>, the solutions run off to <span class="math notranslate nohighlight">\(|x| \rightarrow |\pm \infty|\)</span>. Otherwise all solutions will approach the stable critical point at <span class="math notranslate nohighlight">\(x = 0\)</span>.</p>
@@ -602,7 +614,9 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[\langle \dot{x}, \dot{v} \rangle = \langle v,0 \rangle.\]</div>
 <p>So in the phase space, the arrows will be completely horizontal and will get larger as you move away from the origin.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-colorblind&#39;</span><span class="p">)</span>
 
@@ -624,10 +638,13 @@ document.write(`
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\dot</span><span class="si">{x}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-
 </pre></div>
 </div>
-<p><img alt="png" src="docs/sources/07_notes/images/07_notes_8_0.png" /></p>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/e2a820e0a8f78287ec046514f6029db2c7a1d9e4d7c2c1c8f3ec2769a85e52bd.png" src="../../../_images/e2a820e0a8f78287ec046514f6029db2c7a1d9e4d7c2c1c8f3ec2769a85e52bd.png" />
+</div>
+</div>
 </section>
 <section id="the-v-0-line">
 <h3>The <span class="math notranslate nohighlight">\(v=0\)</span> line<a class="headerlink" href="#the-v-0-line" title="Link to this heading">#</a></h3>
@@ -635,7 +652,9 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[\langle \dot{x}, \dot{v} \rangle = \langle 0,-x \rangle.\]</div>
 <p>So these will be completely vertical and will get larger as you move away from the origin. The negative sign indicates that the arrows will point up on the left side and down on the right side. Let’s plot that.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-colorblind&#39;</span><span class="p">)</span>
 
@@ -657,16 +676,21 @@ document.write(`
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\dot</span><span class="si">{x}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-
 </pre></div>
 </div>
-<p><img alt="png" src="docs/sources/07_notes/images/07_notes_10_0.png" /></p>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/c5a87a7be956972b1d3a1c603b010eff7848c2e22adbdf1d3e99b1026d1d670d.png" src="../../../_images/c5a87a7be956972b1d3a1c603b010eff7848c2e22adbdf1d3e99b1026d1d670d.png" />
+</div>
+</div>
 </section>
 <section id="putting-it-all-together">
 <h3>Putting it all together<a class="headerlink" href="#putting-it-all-together" title="Link to this heading">#</a></h3>
 <p>We could keep plotting like this and we will begin to connect the dots into a phase potrait. We have already built the code to do this in general above, but we need to make use of the ‘meshgrid’ function in numpy to make this work. <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.meshgrid.html">Meshgrid</a> is a function that generates a grid of points in 2D space. We can use it to take our 2 arrays for the space we are interested in and generate a grid of points that we can use to compute the arrows at each point. Let’s plot the full phase portrait of the system below.</p>
 <p>We also introduce the <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.streamplot.html">streamplot</a> function in matplotlib. This function connects the lines a little more smoothly and gives a better representation of the flow of the system.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-colorblind&#39;</span><span class="p">)</span>
 
@@ -705,10 +729,13 @@ document.write(`
 <span class="n">ax2</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-
 </pre></div>
 </div>
-<p><img alt="png" src="docs/sources/07_notes/images/07_notes_12_0.png" /></p>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/2504b71a35ffcf3e393ec04d0c8f8d1db7e9db85afa0171c3bfb48e70020b004.png" src="../../../_images/2504b71a35ffcf3e393ec04d0c8f8d1db7e9db85afa0171c3bfb48e70020b004.png" />
+</div>
+</div>
 </section>
 <section id="id2">
 <h3>What does the motion look like?<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
@@ -735,7 +762,9 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[\dot{v} = -\sin x.\]</div>
 <p>We can now use the infrastructure we have built to plot the phase portrait of the pendulum. We will plot the phase portrait of the pendulum below.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-colorblind&#39;</span><span class="p">)</span>
 
@@ -779,12 +808,18 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="png" src="docs/sources/07_notes/images/07_notes_15_0.png" /></p>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/51e7cfb3e219abb7c8bd8fc03952d4ce8946460f02d16d0931f5114e0b0c5cb1.png" src="../../../_images/51e7cfb3e219abb7c8bd8fc03952d4ce8946460f02d16d0931f5114e0b0c5cb1.png" />
+</div>
+</div>
 </section>
 <section id="id3">
 <h3>What does the motion look like?<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <p>Now, we see a more complex picture of the pendulum. The motion is still oscillatory and periodic, but it is definitely not sinusoidal. For very small choices of initial conditions, the motion is sinusoidal; we can zoom in an see we get near ellipses.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-colorblind&#39;</span><span class="p">)</span>
 
@@ -828,7 +863,11 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="png" src="docs/sources/07_notes/images/07_notes_17_0.png" /></p>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/a9dd780cc703a1b160f7f586eab521159a03dfcba0cb66ca2ed59a43d912a5d6.png" src="../../../_images/a9dd780cc703a1b160f7f586eab521159a03dfcba0cb66ca2ed59a43d912a5d6.png" />
+</div>
+</div>
 <p>So we see that for small initial conditions, we recover the SHO. But for most initial conditions, we have oscillations that are not sinusoidal. Moreover, we have a series of high energy trajectories that are not bounded. These are the ones that continue to allow the pendulum to rotate over the top of itself. This is a new type of motion that we did not see in the SHO.</p>
 </section>
 </section>
@@ -864,16 +903,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "jbook"
         },
         kernelOptions: {
-            name: "python3",
+            name: "jbook",
             path: "./docs/sources/07_notes"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'jbook'</script>
 
                 </article>
               

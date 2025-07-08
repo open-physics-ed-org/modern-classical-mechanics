@@ -265,7 +265,7 @@
       
       
       
-      <li><a href="../../../_sources/docs/sources/08_notes/08_notes.md" target="_blank"
+      <li><a href="../../../_sources/docs/sources/08_notes/08_notes.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -275,7 +275,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -397,7 +397,9 @@ document.write(`
 <p>We continue our study of physics phenomena that exhibits recurrent or periodic behavior. Some systems repeat their motion in a regular pattern, and we call them oscillators.</p>
 <p>We have met this behavior many times. This is because we often look at the behavior of stems just a little bit away from equilibrium. Systems with local stable equilibria will have oscillatory behavior in a region around that equilibrium point. Note below the made up example of a potential energy function that has local minima and maxima.</p>
 <p>Near the local minima, the system will oscillate back and forth. The potential energy function will look like a parabola.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## Make a plot of a potential energy function with 3 local minima</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Make a plot of a potential energy function with 3 local minima</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
@@ -413,11 +415,13 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-
 </pre></div>
 </div>
-<p><img alt="png" src="docs/sources/08_notes/images/08_notes_1_0.png" /></p>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/4cdc482047f882e1a1feec24aefaff2fde11d78222545b58e6257df748ff8d1d.png" src="../../../_images/4cdc482047f882e1a1feec24aefaff2fde11d78222545b58e6257df748ff8d1d.png" />
+</div>
+</div>
 <section id="why-do-we-often-see-oscillations-in-physics">
 <h2>Why do we often see oscillations in physics?<a class="headerlink" href="#why-do-we-often-see-oscillations-in-physics" title="Link to this heading">#</a></h2>
 <p>Oscillatory behavior is common in physics because many systems have a stable equilibrium point. When we disturb the system from equilibrium, it will oscillate back and forth around that equilibrium point. Let’s assume there’s a given stable equilibrium point at <span class="math notranslate nohighlight">\(x=a\)</span>, we can write the potential energy function as a Taylor series expansion around that point:</p>
@@ -505,7 +509,7 @@ document.write(`
 <h2>Complex Conjugates<a class="headerlink" href="#complex-conjugates" title="Link to this heading">#</a></h2>
 <p>These values of <span class="math notranslate nohighlight">\(C_1\)</span> and <span class="math notranslate nohighlight">\(C_2\)</span> are the complex conjugates of each other. The complex conjugate of a complex number <span class="math notranslate nohighlight">\(z=a+ib\)</span> is <span class="math notranslate nohighlight">\(z^*=a-ib\)</span>. The complex conjugate of a complex number is the same as the original number, but with the sign of the imaginary part reversed.</p>
 <p>We can draw these in the complex plane where the <span class="math notranslate nohighlight">\(x\)</span>-axis is the real part and the <span class="math notranslate nohighlight">\(y\)</span>-axis is the imaginary part.</p>
-<p><img alt="Complex Conjugates" src="docs/sources/08_notes/images/08_notes_conjugates_graph.png" /></p>
+<p><img alt="Complex Conjugates" src="docs/sources/images/notes/week8/conjugates_graph.png" /></p>
 <p>In the graph we can see that the complex conjugates are a reflection of each other. This is because the imaginary part of the complex conjugate is the negative of the original imaginary part.</p>
 <p>The mathematics is quite useful for us. Consider the produce of two complex conjugates:</p>
 <div class="math notranslate nohighlight">
@@ -559,7 +563,9 @@ document.write(`
 \[C = Ae^{-i\delta}.\]</div>
 <p>This is a bit abstract, but let’s try to graph this and make it a bit concrete. Below, we’ve plotted the solution to an oscillator that starts with a <span class="math notranslate nohighlight">\(\delta = \pi/4\)</span> phase shift. The solution is plotted in the complex plane with rainbow colors to demonstrate time (from violet to red). The starting point is marked with a black square, and because the <span class="math notranslate nohighlight">\(omega\)</span> is positive, the solution moves counter-clockwise in the plane.</p>
 <p>Below that we trace the real part of the solution in the <span class="math notranslate nohighlight">\(t\)</span>-<span class="math notranslate nohighlight">\(x\)</span> plane. This is not the same as a readout on something like an oscilloscope, or a time trace of the solution. But we can rotate the graph to be in the <span class="math notranslate nohighlight">\(x\)</span>-<span class="math notranslate nohighlight">\(t\)</span> plane - and thus a real temporal solution. In all cases, the black square marks the starting point of the solution, and the rainbow of points marks the solution as it moves in time.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">cm</span>
 
@@ -605,9 +611,13 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="png" src="docs/sources/08_notes/images/08_notes_6_0.png" /></p>
-<p><img alt="png" src="docs/sources/08_notes/images/08_notes_6_1.png" /></p>
-<p><img alt="png" src="docs/sources/08_notes/images/08_notes_6_2.png" /></p>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/3df50552ece647330f8e00b95660bf7ffc08b9477590af16ddaa26400877d99d.png" src="../../../_images/3df50552ece647330f8e00b95660bf7ffc08b9477590af16ddaa26400877d99d.png" />
+<img alt="../../../_images/07438dfdc7ee815a9eed11df3ac53371d3392e47b7e80001e25de478cfe90d26.png" src="../../../_images/07438dfdc7ee815a9eed11df3ac53371d3392e47b7e80001e25de478cfe90d26.png" />
+<img alt="../../../_images/607b66a0538a8f34f2be754765588c732e8980fce13c21e02b10fb9cc806e1e3.png" src="../../../_images/607b66a0538a8f34f2be754765588c732e8980fce13c21e02b10fb9cc806e1e3.png" />
+</div>
+</div>
 </section>
 </section>
 <section id="damped-oscillations">
@@ -709,7 +719,9 @@ $<span class="math notranslate nohighlight">\(F_{damping} = -b\dot{x}\)</span>$<
 \[x(t) = Ae^{-\beta t}\cos(\omega_1 t + \delta)\]</div>
 <p>This is an oscillator with a decay envelope that is decaying according to the factor <span class="math notranslate nohighlight">\(e^{-\beta t}\)</span>. We can graph it.</p>
 <p>This is what we call an underdamped oscillator. The system oscillates with a frequency <span class="math notranslate nohighlight">\(\omega_1\)</span> and the amplitude decays exponentially with time.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-colorblind&#39;</span><span class="p">)</span>
 
@@ -733,10 +745,13 @@ $<span class="math notranslate nohighlight">\(F_{damping} = -b\dot{x}\)</span>$<
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
 </pre></div>
 </div>
-<p><img alt="png" src="docs/sources/08_notes/images/08_notes_9_0.png" /></p>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/c558b5708b8a481f9457ad6fff28fe4748893ee0bbdc2faa1ebd2fd3a1f2193c.png" src="../../../_images/c558b5708b8a481f9457ad6fff28fe4748893ee0bbdc2faa1ebd2fd3a1f2193c.png" />
+</div>
+</div>
 </section>
 <section id="strong-damping-beta-2-omega-0-2">
 <h3>Strong Damping <span class="math notranslate nohighlight">\(\beta^2 &gt; \omega_0^2\)</span><a class="headerlink" href="#strong-damping-beta-2-omega-0-2" title="Link to this heading">#</a></h3>
@@ -747,7 +762,9 @@ $<span class="math notranslate nohighlight">\(F_{damping} = -b\dot{x}\)</span>$<
 <div class="math notranslate nohighlight">
 \[x(t) = C_1 e^{(-\beta - \sqrt{\beta^2 - \omega_0^2})t} + C_2 e^{(-\beta + \sqrt{\beta^2 - \omega_0^2})t}\]</div>
 <p>Let’s consider <span class="math notranslate nohighlight">\(t \rightarrow \infty\)</span>. Both terms will decay to zero. This is overdamped motion. And typically there’s a transient motion that quickly decays to zero. The system does not oscillate, but rather returns to equilibrium without oscillating. Let’s graph it.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-colorblind&#39;</span><span class="p">)</span>
 
@@ -771,7 +788,11 @@ $<span class="math notranslate nohighlight">\(F_{damping} = -b\dot{x}\)</span>$<
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="png" src="docs/sources/08_notes/images/08_notes_11_0.png" /></p>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/c6d9fbe6173bb942859a8df6b0036fb4a72652a41f57e7af2bd09f51ddce2d74.png" src="../../../_images/c6d9fbe6173bb942859a8df6b0036fb4a72652a41f57e7af2bd09f51ddce2d74.png" />
+</div>
+</div>
 </section>
 <section id="critical-damping-beta-2-omega-0-2">
 <h3>Critical Damping <span class="math notranslate nohighlight">\(\beta^2 = \omega_0^2\)</span><a class="headerlink" href="#critical-damping-beta-2-omega-0-2" title="Link to this heading">#</a></h3>
@@ -788,7 +809,9 @@ $<span class="math notranslate nohighlight">\(x(t) = t e^{-\beta t}\)</span>$</p
 <div class="math notranslate nohighlight">
 \[x(t) = e^{-\beta t}\left(C_1 + C_2 t\right)\]</div>
 <p>And we plot that below.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-v0_8-colorblind&#39;</span><span class="p">)</span>
 
@@ -810,7 +833,11 @@ $<span class="math notranslate nohighlight">\(x(t) = t e^{-\beta t}\)</span>$</p
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="png" src="docs/sources/08_notes/images/08_notes_13_0.png" /></p>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../../_images/dabd0e8f828bdd61ee2a1f71d941a3bf05e399faec9419c7cebcf4b34bc2c6d6.png" src="../../../_images/dabd0e8f828bdd61ee2a1f71d941a3bf05e399faec9419c7cebcf4b34bc2c6d6.png" />
+</div>
+</div>
 </section>
 </section>
 </section>
@@ -824,16 +851,16 @@ $<span class="math notranslate nohighlight">\(x(t) = t e^{-\beta t}\)</span>$</p
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "jbook"
         },
         kernelOptions: {
-            name: "python3",
+            name: "jbook",
             path: "./docs/sources/08_notes"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'jbook'</script>
 
                 </article>
               

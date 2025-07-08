@@ -142,11 +142,11 @@ def main():
                 item.unlink()
         for item in build_html_dir.iterdir():
             dest = docs_jupyter_dir / item.name
-            if not dest.exists():
-                if item.is_dir():
-                    shutil.copytree(item, dest)
-                else:
-                    shutil.copy2(item, dest)
+            # Always copy everything from build_html_dir to docs_jupyter_dir
+            if item.is_dir():
+                shutil.copytree(item, dest)
+            else:
+                shutil.copy2(item, dest)
         # Also copy the HTML folder to docs/sources/jupyterbook_html
         sources_jb_html = docs_sources_dir / 'jupyterbook_html'
         if sources_jb_html.exists():

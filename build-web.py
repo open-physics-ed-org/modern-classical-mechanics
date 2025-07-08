@@ -1,5 +1,6 @@
+
 # --- Build resources.html from resources.md and about.html from about.md ---
-    # (Code moved inside main() after all variables are defined)
+# (Code moved inside main() after all variables are defined)
 #!/usr/bin/env python3
 from pathlib import Path
 import subprocess, sys
@@ -16,7 +17,7 @@ if not nojekyll.exists():
     nojekyll.touch()
 
 # --- Ensure .autogen preprocessing has run before anything else ---
-autogen_files = [autogen_dir / '_menu.yml', autogen_dir / '_notebooks.yaml', autogen_dir / '_config.yml']
+autogen_files = [autogen_dir / '_menu.yml', autogen_dir / '_notebooks.yml', autogen_dir / '_config.yml']
 preproc_needed = any(not f.exists() for f in autogen_files)
 if preproc_needed:
     preproc_script = repo_root / 'scripts' / 'preprocess_content_yml.py'
@@ -167,9 +168,9 @@ def main():
     # Load _notebooks.yaml and build all listed notebooks
     import yaml
     repo_root = Path(__file__).parent.resolve()
-    notebooks_yaml = autogen_dir / '_notebooks.yaml'
+    notebooks_yaml = autogen_dir / '_notebooks.yml'
     if not notebooks_yaml.exists():
-        print("[ERROR] _notebooks.yaml not found!")
+        print("[ERROR] _notebooks.yml not found!")
         sys.exit(1)
     with open(notebooks_yaml, 'r') as f:
         data = yaml.safe_load(f)
@@ -178,7 +179,7 @@ def main():
         elif isinstance(data, list):
             nb_list = data
         else:
-            print("[ERROR] _notebooks.yaml format not recognized.")
+            print("[ERROR] _notebooks.yml format not recognized.")
             sys.exit(1)
     # Build absolute paths to notebooks (interpret as relative to project root, not notebooks_dir)
     notebooks_to_process = []
@@ -188,11 +189,11 @@ def main():
             nb_path = repo_root / nb_path
         nb_path = nb_path.resolve()
         if not nb_path.exists():
-            print(f"[WARNING] Notebook listed in _notebooks.yaml not found: {nb_path}")
+            print(f"[WARNING] Notebook listed in _notebooks.yml not found: {nb_path}")
         else:
             notebooks_to_process.append(nb_path)
     if not notebooks_to_process:
-        print("[ERROR] No valid notebooks found in _notebooks.yaml.")
+        print("[ERROR] No valid notebooks found in _notebooks.yml.")
         sys.exit(1)
 
 
@@ -518,7 +519,7 @@ def post_build_cleanup():
     import json, yaml, re
     menu_html_names = {}
     menu_yml = autogen_dir / '_menu.yml'
-    notebooks_yaml = autogen_dir / '_notebooks.yaml'
+    notebooks_yaml = autogen_dir / '_notebooks.yml'
     config_yml = autogen_dir / '_config.yml'
     preproc_needed = False
     for f in [menu_yml, notebooks_yaml, config_yml]:
@@ -565,7 +566,7 @@ def post_build_cleanup():
             print(f'[ERROR] Could not build menu_html_names: {e}')
 
     # --- Aggregate missing images and YouTube thumbnails across all notebooks listed in _notebooks.yaml ---
-    notebooks_yaml = autogen_dir / '_notebooks.yaml'
+    notebooks_yaml = autogen_dir / '_notebooks.yml'
     nb_list = []
     if notebooks_yaml.exists():
         try:
@@ -576,9 +577,9 @@ def post_build_cleanup():
             elif isinstance(data, list):
                 nb_list = data
             else:
-                print("[ERROR] _notebooks.yaml format not recognized.")
+                print("[ERROR] _notebooks.yml format not recognized.")
         except Exception as e:
-            print(f"[ERROR] Failed to read _notebooks.yaml: {e}")
+            print(f"[ERROR] Failed to read _notebooks.yml: {e}")
     # nb_list is now always a list, even if empty or error
 
     for nb in nb_list:
@@ -1216,7 +1217,7 @@ def post_build_cleanup():
     # List of all notebook stems (without extension), including all chapters and activities (anything in _notebooks.yaml)
     # Use _notebooks.yaml as authoritative list
     import yaml
-    notebooks_yaml = autogen_dir / '_notebooks.yaml'
+    notebooks_yaml = autogen_dir / '_notebooks.yml'
     notebook_stems = set()
     if notebooks_yaml.exists():
         with open(notebooks_yaml, 'r') as f:
