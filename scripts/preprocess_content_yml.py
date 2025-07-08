@@ -16,7 +16,7 @@ content_yml = repo_root / '_content.yml'
 autogen_dir = repo_root / '.autogen'
 autogen_dir.mkdir(parents=True, exist_ok=True)
 out_files = {
-    'notebooks': autogen_dir / '_notebooks.yaml',
+    'notebooks': autogen_dir / '_notebooks.yml',  # Use .yml extension for notebooks
     'menu': autogen_dir / '_menu.yml',
     'config': autogen_dir / '_config.yml',
 }
@@ -27,7 +27,7 @@ def main():
         sys.exit(1)
     with open(content_yml, 'r') as f:
         content = yaml.safe_load(f)
-    # --- Generate _notebooks.yaml ---
+    # --- Generate _notebooks.yml ---
     notebooks = []
     # Collect all chapter notebook files
     if 'chapters' in content:

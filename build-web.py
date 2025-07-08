@@ -2,8 +2,10 @@
     # (Code moved inside main() after all variables are defined)
 #!/usr/bin/env python3
 from pathlib import Path
+import subprocess, sys
 # --- Global paths (needed by all functions) ---
 repo_root = Path(__file__).parent.resolve()
+autogen_dir = repo_root / '.autogen'
 docs_dir = repo_root / 'docs'
 build_dir = repo_root / '_build' / 'wcag-html'
 notebooks_dir = repo_root / 'content' / 'notebooks'
@@ -12,6 +14,25 @@ docs_dir.mkdir(parents=True, exist_ok=True)
 nojekyll = docs_dir / '.nojekyll'
 if not nojekyll.exists():
     nojekyll.touch()
+
+# --- Ensure .autogen preprocessing has run before anything else ---
+autogen_files = [autogen_dir / '_menu.yml', autogen_dir / '_notebooks.yaml', autogen_dir / '_config.yml']
+preproc_needed = any(not f.exists() for f in autogen_files)
+if preproc_needed:
+    preproc_script = repo_root / 'scripts' / 'preprocess_content_yml.py'
+    if preproc_script.exists():
+        print('[PREPROCESS] Running YAML preprocessor to generate .autogen files...')
+        result = subprocess.run(['python3', str(preproc_script)], capture_output=True, text=True)
+        if result.returncode != 0:
+            print('[PREPROCESS][ERROR] Failed to preprocess YAML:')
+            print(result.stdout)
+            print(result.stderr)
+            sys.exit(1)
+        else:
+            print('[PREPROCESS] .autogen files generated.')
+    else:
+        print('[PREPROCESS][ERROR] Preprocessor script not found!')
+        sys.exit(1)
 import os
 import shutil
 import hashlib
@@ -49,7 +70,7 @@ def fetch_youtube_thumbnail(video_id, dest_path):
 
 def main():
     # --- Run theme_to_css.py before any HTML build ---
-    theme_script = str(Path(__file__).parent / 'theme_to_css.py')
+    theme_script = str(Path(__file__).parent / 'scripts' / 'theme_to_css.py')
     if Path(theme_script).exists():
         print("[THEME] Generating CSS from YAML themes...")
         result = subprocess.run([sys.executable, theme_script], capture_output=True, text=True)
@@ -60,7 +81,7 @@ def main():
         else:
             print("[THEME] CSS generation complete.")
     else:
-        print("[THEME][WARN] theme_to_css.py not found, skipping theme CSS generation.")
+        print("[THEME][WARN] theme_to_css.py not found in scripts/, skipping theme CSS generation.")
 
     # No argument parsing: always build everything (HTML, all notebooks, all pages)
     # Remove Jupyter/nbconvert markup from all HTML in docs/ (always after build)
@@ -146,7 +167,7 @@ def main():
     # Load _notebooks.yaml and build all listed notebooks
     import yaml
     repo_root = Path(__file__).parent.resolve()
-    notebooks_yaml = repo_root / '_notebooks.yaml'
+    notebooks_yaml = autogen_dir / '_notebooks.yaml'
     if not notebooks_yaml.exists():
         print("[ERROR] _notebooks.yaml not found!")
         sys.exit(1)
@@ -493,15 +514,37 @@ def post_build_cleanup():
     def path_to_output_name(name, section):
         return f"{section.lower()}/{name}"
 
-    # --- Build menu_html_names mapping: html_name -> section ---
-    menu_html_names = {}
+    # --- Ensure .autogen preprocessing has run ---
     import json, yaml, re
-    menu_yml = repo_root / '_menu.yml'
+    menu_html_names = {}
+    menu_yml = autogen_dir / '_menu.yml'
+    notebooks_yaml = autogen_dir / '_notebooks.yaml'
+    config_yml = autogen_dir / '_config.yml'
+    preproc_needed = False
+    for f in [menu_yml, notebooks_yaml, config_yml]:
+        if not f.exists():
+            preproc_needed = True
+    if preproc_needed:
+        preproc_script = repo_root / 'scripts' / 'preprocess_content_yml.py'
+        if preproc_script.exists():
+            print('[PREPROCESS] Running YAML preprocessor to generate .autogen files...')
+            result = subprocess.run(['python3', str(preproc_script)], capture_output=True, text=True)
+            if result.returncode != 0:
+                print('[PREPROCESS][ERROR] Failed to preprocess YAML:')
+                print(result.stdout)
+                print(result.stderr)
+                sys.exit(1)
+            else:
+                print('[PREPROCESS] .autogen files generated.')
+        else:
+            print('[PREPROCESS][ERROR] Preprocessor script not found!')
+            sys.exit(1)
+    # --- Build menu_html_names mapping: html_name -> section ---
     menu_data = None
     if menu_yml.exists():
         try:
             result = subprocess.run([
-                'python3', str(repo_root / 'basic_yaml2json.py'), str(menu_yml)
+                'python3', str(repo_root / 'scripts/basic_yaml2json.py'), str(menu_yml)
             ], capture_output=True, check=True)
             menu_json = result.stdout.decode('utf-8')
             menu_obj = json.loads(menu_json)
@@ -522,7 +565,7 @@ def post_build_cleanup():
             print(f'[ERROR] Could not build menu_html_names: {e}')
 
     # --- Aggregate missing images and YouTube thumbnails across all notebooks listed in _notebooks.yaml ---
-    notebooks_yaml = repo_root / '_notebooks.yaml'
+    notebooks_yaml = autogen_dir / '_notebooks.yaml'
     nb_list = []
     if notebooks_yaml.exists():
         try:
@@ -701,12 +744,12 @@ def post_build_cleanup():
     css_dark_rel = 'css/theme-dark.css'
 
     # --- Load menu structure from _menu.yml using basic_yaml2json.py ---
-    menu_yml = repo_root / '_menu.yml'
+    menu_yml = autogen_dir / '_menu.yml'
     menu_data = None
     if menu_yml.exists():
         try:
             result = subprocess.run([
-                'python3', str(repo_root / 'basic_yaml2json.py'), str(menu_yml)
+                'python3', str(repo_root / 'scripts/basic_yaml2json.py'), str(menu_yml)
             ], capture_output=True, check=True)
             menu_json = result.stdout.decode('utf-8')
             menu_obj = json.loads(menu_json)
@@ -760,7 +803,7 @@ def post_build_cleanup():
     def get_html_template(title, body):
         nav_html = get_nav_html()
         import yaml
-        config_path = Path(__file__).parent / '_config.yml'
+        config_path = autogen_dir / '_config.yml'
         book_title = title
         footer_html = None
         if config_path.exists():
@@ -1173,7 +1216,7 @@ def post_build_cleanup():
     # List of all notebook stems (without extension), including all chapters and activities (anything in _notebooks.yaml)
     # Use _notebooks.yaml as authoritative list
     import yaml
-    notebooks_yaml = repo_root / '_notebooks.yaml'
+    notebooks_yaml = autogen_dir / '_notebooks.yaml'
     notebook_stems = set()
     if notebooks_yaml.exists():
         with open(notebooks_yaml, 'r') as f:
