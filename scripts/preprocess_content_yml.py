@@ -103,7 +103,12 @@ def main():
     print(f"[OK] Wrote {out_files['menu']}")
 
     # --- Generate _config.yml ---
-    config = content.get('config', {})
+    # Use the 'site' section for site metadata, and optionally add 'build' section for build settings
+    config = {}
+    if 'site' in content:
+        config.update(content['site'])
+    if 'build' in content:
+        config['build'] = content['build']
     config_comment = (
         """# AUTO-GENERATED FILE. DO NOT EDIT.\n# This file was generated from _content.yml by scripts/preprocess_content_yml.py\n# Edit _content.yml instead and re-run the preprocessor.\n"""
     )
