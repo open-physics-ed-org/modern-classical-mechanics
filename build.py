@@ -54,10 +54,69 @@ def main():
     parser.add_argument('--img', action='store_true', help='Collect all referenced images into _build/images/')
     parser.add_argument('--all', action='store_true', help='Build all formats: LaTeX, PDF, Markdown, DOCX, and HTML web output')
     parser.add_argument('--files', nargs='+', help='One or more notebook files to build (relative to notebooks/ or absolute)')
+    parser.add_argument('--jupyter', action='store_true', help='Build a unified Jupyter Notebook in _build/jupyter and copy to docs/sources/jupyter')
     args = parser.parse_args()
 
-    # --- ALL Build Option: build everything, then web ---
-    if getattr(args, 'all', False):
+    # --- Unified Jupyter Notebook Build using nbconvert ---
+    if getattr(args, 'jupyter', False):
+        from pathlib import Path
+        import subprocess
+        repo_root = Path(__file__).parent.resolve()
+        notebook_dir = repo_root / 'content/notebooks'
+        notebooks_yaml = repo_root / '_notebooks.yaml'
+        build_jupyter_dir = repo_root / '_build/jupyter'
+        docs_jupyter_dir = repo_root / 'docs/sources/jupyter'
+        build_jupyter_dir.mkdir(parents=True, exist_ok=True)
+        docs_jupyter_dir.mkdir(parents=True, exist_ok=True)
+        if not notebooks_yaml.exists():
+            print(f"[ERROR] {notebooks_yaml} not found.", file=sys.stderr)
+            sys.exit(1)
+        notebooks = parse_yaml_list(notebooks_yaml)
+        # Use nbconvert to convert each notebook to a unified notebook (concatenate as markdown cells with links)
+        unified_cells = []
+        for nb_idx, nb in enumerate(notebooks):
+            nb_path = notebook_dir / nb
+            if not nb_path.exists():
+                print(f"[WARN] Notebook not found: {nb_path}")
+                continue
+            # Add a markdown cell as a section header for each notebook
+            unified_cells.append({
+                "cell_type": "markdown",
+                "metadata": {"language": "markdown"},
+                "source": [f"# Notebook: {nb_path.stem}\n", f"[Open original notebook]({nb_path})\n"]
+            })
+            # Use nbconvert to export notebook as markdown and add as a markdown cell
+            md_export_path = build_jupyter_dir / f"{nb_path.stem}.md"
+            cmd = ["jupyter", "nbconvert", "--to", "markdown", str(nb_path), "--output", md_export_path.stem, "--output-dir", str(build_jupyter_dir)]
+            result = subprocess.run(cmd, capture_output=True)
+            if result.returncode != 0:
+                print(f"[ERROR] nbconvert failed for {nb_path}: {result.stderr.decode()}")
+                continue
+            with open(md_export_path, "r", encoding="utf-8") as f:
+                md_content = f.read()
+            unified_cells.append({
+                "cell_type": "markdown",
+                "metadata": {"language": "markdown"},
+                "source": [md_content]
+            })
+        # Compose the unified notebook JSON
+        unified_nb = {
+            "cells": unified_cells,
+            "metadata": {},
+            "nbformat": 4,
+            "nbformat_minor": 5
+        }
+        # Write to _build/jupyter/index.ipynb
+        out_path = build_jupyter_dir / 'index.ipynb'
+        import json
+        with open(out_path, 'w', encoding='utf-8') as f:
+            json.dump(unified_nb, f, indent=2)
+        # Also copy to docs/sources/jupyter/index.ipynb
+        docs_out_path = docs_jupyter_dir / 'index.ipynb'
+        import shutil
+        shutil.copy2(out_path, docs_out_path)
+        print(f"[INFO] Unified notebook written to {out_path} and copied to {docs_out_path}")
+        return
         # Build all non-web formats first (LaTeX, PDF, Markdown, DOCX)
         # Remove --all from sys.argv for recursive calls
         import subprocess
