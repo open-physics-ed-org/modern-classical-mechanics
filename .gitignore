@@ -79,3 +79,6 @@ docs/.DS_Store
 _build/
 log/
 docs/
+
+# ignore generated files
+_toc.yml
