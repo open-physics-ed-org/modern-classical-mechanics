@@ -479,76 +479,33 @@ def main():
                 process_file_for_images(md_path, nb_stem=Path(nb).stem)
         print(f"[INFO] [Full Build] All referenced images copied to {img_dir}")
 
-    # --- If --all, build the Jupyter Book HTML and run build-web.py at the end ---
-
-    # ...existing code for TeX, PDF, Markdown, DOCX, TOC generation...
-
+    # --- If --all, run the build steps in the specified order ---
     if getattr(args, 'all', False):
-        # Build Jupyter Book HTML (same as --jupyter logic)
-        build_html_dir = repo_root / '_build/html'
-        build_jupyter_execute_dir = repo_root / '_build/jupyter_execute'
-        docs_jupyter_dir = repo_root / 'docs/jupyter'
-        docs_sources_dir = repo_root / 'docs/sources'
-        tmp_jb_dir = repo_root / '_build/jb_tmp'
-        docs_jupyter_dir.mkdir(parents=True, exist_ok=True)
-        docs_sources_dir.mkdir(parents=True, exist_ok=True)
+        # 1. Build DOCX (which will also copy Markdown)
+        print("[ALL] Step 1: Building DOCX (and Markdown)")
+        run_or_exit([
+            sys.executable, __file__, '--docx'
+        ])
 
-        print(f"[INFO] Building Jupyter Book HTML into {tmp_jb_dir} ...")
-        jb_cmd = ["jupyter-book", "build", str(repo_root), "--path-output", str(tmp_jb_dir)]
-        print(f"[DEBUG] Running command: {' '.join(jb_cmd)}")
-        result = run_or_exit(jb_cmd, capture_output=True, text=True)
-        print("[DEBUG] jupyter-book stdout:\n" + (result.stdout or ""))
-        print("[DEBUG] jupyter-book stderr:\n" + (result.stderr or ""))
+        # 2. Build PDF
+        print("[ALL] Step 2: Building PDF")
+        run_or_exit([
+            sys.executable, __file__, '--pdf'
+        ])
 
-        html_nested = tmp_jb_dir / '_build' / 'html'
-        html_tmp = tmp_jb_dir / 'html'
-        if html_nested.exists():
-            html_output = html_nested
-        elif html_tmp.exists():
-            html_output = html_tmp
-        else:
-            print(f"[ERROR] Expected HTML output not found at {html_nested} or {html_tmp}")
-            sys.exit(1)
+        # 3. Build Jupyter Book HTML (unified site)
+        print("[ALL] Step 3: Building Jupyter Book HTML (unified site)")
+        run_or_exit([
+            sys.executable, __file__, '--jupyter'
+        ])
 
-        if build_html_dir.exists():
-            shutil.rmtree(build_html_dir)
-        shutil.copytree(html_output, build_html_dir)
-        shutil.rmtree(tmp_jb_dir)
+        # 4. Build custom HTML web output
+        print("[ALL] Step 4: Building custom HTML web output")
+        run_or_exit([
+            sys.executable, __file__, '--html'
+        ])
 
-        executed_dir = build_html_dir / 'jupyter_execute'
-        if executed_dir.exists():
-            build_jupyter_execute_dir.mkdir(parents=True, exist_ok=True)
-            for item in executed_dir.iterdir():
-                dest = build_jupyter_execute_dir / item.name
-                if not dest.exists():
-                    if item.is_dir():
-                        shutil.copytree(item, dest)
-                    else:
-                        shutil.copy2(item, dest)
-
-        for item in docs_jupyter_dir.iterdir():
-            if item.is_dir():
-                shutil.rmtree(item)
-            else:
-                item.unlink()
-        for item in build_html_dir.iterdir():
-            dest = docs_jupyter_dir / item.name
-            if not dest.exists():
-                if item.is_dir():
-                    shutil.copytree(item, dest)
-                else:
-                    shutil.copy2(item, dest)
-        sources_jb_html = docs_sources_dir / 'jupyterbook_html'
-        if sources_jb_html.exists():
-            shutil.rmtree(sources_jb_html)
-        shutil.copytree(build_html_dir, sources_jb_html)
-        print(f"[INFO] Jupyter Book HTML site copied to {docs_jupyter_dir} and to {sources_jb_html}")
-
-        # Also run build-web.py (no --html needed)
-        cmd = [sys.executable, str(Path(__file__).parent / 'build-web.py')]
-        print(f"[INFO] Calling build-web.py: {' '.join(cmd)}")
-        run_or_exit(cmd)
-        print(f"[INFO] build-web.py completed.")
+        print("[ALL] All build steps completed.")
         return
 
     # --- Build TeX ---
