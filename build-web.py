@@ -1097,25 +1097,8 @@ def post_build_cleanup():
         body_content = convert_admonitions(body_content)
 
         chapter_stem = nb_path.stem
-        # --- Robustly determine Jupyter HTML path from _toc.yml ---
-        toc_path = Path(__file__).parent / '_toc.yml'
-        jupyter_html_rel = None
-        if toc_path.exists():
-            import yaml
-            with open(toc_path, 'r') as f:
-                toc = yaml.safe_load(f)
-            # Find the entry matching this notebook stem
-            chapters = toc.get('chapters', [])
-            for entry in chapters:
-                file_field = entry.get('file', '')
-                if file_field.endswith(chapter_stem):
-                    jupyter_html_rel = file_field + '.html'
-                    break
-        # Fallback if not found
-        if not jupyter_html_rel:
-            jupyter_html_rel = f'content/notebooks/{chapter_stem}.html'
-        # The Jupyter HTML is typically copied to docs/jupyter/<relpath>.html
-        jupyter_link = f'jupyter/{jupyter_html_rel}'
+        # --- Set Jupyter HTML link to match actual output location ---
+        jupyter_link = f'jupyter/content/notebooks/{chapter_stem}.html'
         download_menu = f'''
 <nav class="chapter-downloads" aria-label="Download chapter sources">
   <div role="group" aria-label="Download formats">

@@ -74,34 +74,74 @@ def main():
     # --- Unified Jupyter Book HTML Build ---
     if getattr(args, 'jupyter', False):
         repo_root = Path(__file__).parent.resolve()
-        build_jupyter_dir = repo_root / '_build/jupyter'
+
+        build_html_dir = repo_root / '_build/html'
+        build_jupyter_execute_dir = repo_root / '_build/jupyter_execute'
         docs_jupyter_dir = repo_root / 'docs/jupyter'
-        build_jupyter_dir.mkdir(parents=True, exist_ok=True)
+        docs_sources_dir = repo_root / 'docs/sources'
+        tmp_jb_dir = repo_root / '_build/jb_tmp'
         docs_jupyter_dir.mkdir(parents=True, exist_ok=True)
-        # Build the Jupyter Book HTML site into _build/jupyter
-        print(f"[INFO] Building Jupyter Book HTML into {build_jupyter_dir} ...")
-        jb_cmd = ["jupyter-book", "build", str(repo_root), "--path-output", str(build_jupyter_dir)]
+        docs_sources_dir.mkdir(parents=True, exist_ok=True)
+
+        # Build the Jupyter Book HTML site into a temp dir to avoid nested _build/html/_build/html
+        print(f"[INFO] Building Jupyter Book HTML into {tmp_jb_dir} ...")
+        jb_cmd = ["jupyter-book", "build", str(repo_root), "--path-output", str(tmp_jb_dir)]
         print(f"[DEBUG] Running command: {' '.join(jb_cmd)}")
         result = run_or_exit(jb_cmd, capture_output=True, text=True)
         print("[DEBUG] jupyter-book stdout:\n" + (result.stdout or ""))
         print("[DEBUG] jupyter-book stderr:\n" + (result.stderr or ""))
-        # Copy the built HTML site to docs/jupyter (replace contents)
-        html_out = build_jupyter_dir / '_build' / 'html'
-        if not html_out.exists():
-            print(f"[ERROR] Expected HTML output not found at {html_out}")
+
+
+        # The HTML output may be in tmp_jb_dir/_build/html or tmp_jb_dir/html. Detect and copy from the correct location.
+        html_nested = tmp_jb_dir / '_build' / 'html'
+        html_tmp = tmp_jb_dir / 'html'
+        if html_nested.exists():
+            html_output = html_nested
+        elif html_tmp.exists():
+            html_output = html_tmp
+        else:
+            print(f"[ERROR] Expected HTML output not found at {html_nested} or {html_tmp}")
             sys.exit(1)
+
+        # Clean _build/html if it exists
+        if build_html_dir.exists():
+            shutil.rmtree(build_html_dir)
+        shutil.copytree(html_output, build_html_dir)
+
+        # Clean up temp build dir
+        shutil.rmtree(tmp_jb_dir)
+
+        # Only create/copy executed notebooks if they exist
+        executed_dir = build_html_dir / 'jupyter_execute'
+        if executed_dir.exists():
+            build_jupyter_execute_dir.mkdir(parents=True, exist_ok=True)
+            for item in executed_dir.iterdir():
+                dest = build_jupyter_execute_dir / item.name
+                if not dest.exists():
+                    if item.is_dir():
+                        shutil.copytree(item, dest)
+                    else:
+                        shutil.copy2(item, dest)
+
+        # Copy the built HTML site to docs/jupyter (replace contents only if needed)
         for item in docs_jupyter_dir.iterdir():
             if item.is_dir():
                 shutil.rmtree(item)
             else:
                 item.unlink()
-        for item in html_out.iterdir():
+        for item in build_html_dir.iterdir():
             dest = docs_jupyter_dir / item.name
-            if item.is_dir():
-                shutil.copytree(item, dest)
-            else:
-                shutil.copy2(item, dest)
-        print(f"[INFO] Jupyter Book HTML site copied to {docs_jupyter_dir}")
+            if not dest.exists():
+                if item.is_dir():
+                    shutil.copytree(item, dest)
+                else:
+                    shutil.copy2(item, dest)
+        # Also copy the HTML folder to docs/sources/jupyterbook_html
+        sources_jb_html = docs_sources_dir / 'jupyterbook_html'
+        if sources_jb_html.exists():
+            shutil.rmtree(sources_jb_html)
+        shutil.copytree(build_html_dir, sources_jb_html)
+        print(f"[INFO] Jupyter Book HTML site copied to {docs_jupyter_dir} and to {sources_jb_html}")
         return
 
     # --- HTML Build Option: just call build-web.py --html (and pass --files if given) ---
