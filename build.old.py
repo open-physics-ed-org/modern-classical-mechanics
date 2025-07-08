@@ -466,39 +466,19 @@ def main():
         ], check=True)
 
         # --- FORCE COPY ALL .tex FILES TO docs/sources/<notebook>/<notebook>.tex ---
-        def copy_all_tex_files(src_dir, dest_root):
-            """
-            Copy all .tex files from src_dir to dest_root/<stem>/<stem>.tex.
-            Returns a list of (src, dest) tuples for reporting.
-            """
-            copied = []
-            if not src_dir.exists():
-                print(f"[ALL] Source TeX directory does not exist: {src_dir}")
-                return copied
-            tex_files = list(src_dir.glob('*.tex'))
-            if not tex_files:
-                print(f"[ALL] No .tex files found in {src_dir}")
-                return copied
-            created_dirs = set()
-            for tex_file in tex_files:
-                stem = tex_file.stem
-                dest_dir = dest_root / stem
-                if stem not in created_dirs:
-                    dest_dir.mkdir(parents=True, exist_ok=True)
-                    created_dirs.add(stem)
-                dest_tex = dest_dir / f"{stem}.tex"
-                try:
-                    shutil.copy2(tex_file, dest_tex)
-                    print(f"[ALL] Forced copy: {tex_file} -> {dest_tex}")
-                    copied.append((str(tex_file), str(dest_tex)))
-                except Exception as e:
-                    print(f"[ALL] ERROR copying {tex_file} to {dest_tex}: {e}")
-            return copied
-
         print("[ALL] Step 5.5: Forcing copy of all .tex files to docs/sources/<notebook>/<notebook>.tex")
         tex_dir = repo_root / '_build' / 'tex'
         docs_sources_dir = repo_root / 'docs' / 'sources'
-        copy_all_tex_files(tex_dir, docs_sources_dir)
+        tex_files = list(tex_dir.glob('*.tex'))
+        if not tex_files:
+            print(f"[ALL] No .tex files found in {tex_dir}")
+        for tex_file in tex_files:
+            stem = tex_file.stem
+            dest_dir = docs_sources_dir / stem
+            dest_dir.mkdir(parents=True, exist_ok=True)
+            dest_tex = dest_dir / f"{stem}.tex"
+            shutil.copy2(tex_file, dest_tex)
+            print(f"[ALL] Forced copy: {tex_file} -> {dest_tex}")
 
         # 6. Build unified Jupyter notebook and Jupyter Book HTML
         print("[ALL] Step 6: Building unified Jupyter notebook and Jupyter Book HTML")
