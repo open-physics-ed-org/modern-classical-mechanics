@@ -503,29 +503,31 @@ def main():
         pdf_dir = build_dir / 'pdf'
         pdf_dir.mkdir(parents=True, exist_ok=True)
         print(f"[INFO] Compiling TeX files in {chapters_dir} and copying PDFs to {pdf_dir}")
-        # Only process tex files corresponding to the notebooks list
-        tex_files = []
         for nb in notebooks:
             tex_name = Path(nb).with_suffix('.tex').name
             tex_path = chapters_dir / tex_name
-            tex_files.append(tex_path)
-        for tex_file in tex_files:
-            pdf_name = tex_file.with_suffix('.pdf').name
+            pdf_name = tex_path.with_suffix('.pdf').name
             pdf_path = chapters_dir / pdf_name
-            # Check if .tex file exists, else try to build it with --tex and --files
-            if not tex_file.exists():
-                print(f"[WARN] .tex file not found: {tex_file}. Attempting to build with --tex...")
+            nb_path = repo_root / nb
+            # Check if .tex exists and is up to date (newer than .ipynb)
+            tex_needs_update = False
+            if not tex_path.exists():
+                tex_needs_update = True
+            elif nb_path.exists() and tex_path.stat().st_mtime < nb_path.stat().st_mtime:
+                tex_needs_update = True
+            if tex_needs_update:
+                print(f"[INFO] .tex file missing or outdated for {nb_path}, attempting to build...")
                 try:
                     run_or_exit([
-                        sys.executable, __file__, '--latex', '--files', str(tex_file.stem + '.ipynb')
+                        sys.executable, __file__, '--latex', '--files', str(nb)
                     ], check=True)
                 except Exception as e:
-                    print(f"[ERROR] Failed to build TeX for {tex_file}: {e}")
-                if not tex_file.exists():
-                    print(f"[ERROR] .tex file still not found for {tex_file} after attempting to build. Skipping PDF for this file.")
+                    print(f"[ERROR] Failed to build TeX for {nb_path}: {e}")
+                if not tex_path.exists():
+                    print(f"[ERROR] .tex file still not found for {tex_path} after attempting to build. Skipping PDF for this file.")
                     continue
             # Check if all referenced images exist in _build/images, else try to build with --img
-            with open(tex_file, 'r', encoding='utf-8') as f:
+            with open(tex_path, 'r', encoding='utf-8') as f:
                 tex_content = f.read()
             img_paths = re.findall(r'\\includegraphics(?:\\[[^\\]]*\\])?\\{\\.\\./images/([^}]+)\\}', tex_content)
             missing_images = []
@@ -534,13 +536,13 @@ def main():
                 if not img_path.exists():
                     missing_images.append(img_filename)
             if missing_images:
-                print(f"[WARN] Missing images for {tex_file}: {missing_images}. Attempting to collect with --img...")
+                print(f"[WARN] Missing images for {tex_path}: {missing_images}. Attempting to collect with --img...")
                 try:
                     run_or_exit([
-                        sys.executable, __file__, '--img', '--files', str(tex_file.stem + '.ipynb')
+                        sys.executable, __file__, '--img', '--files', str(nb)
                     ], check=True)
                 except Exception as e:
-                    print(f"[ERROR] Failed to collect images for {tex_file}: {e}")
+                    print(f"[ERROR] Failed to collect images for {tex_path}: {e}")
                 # Re-check if all images now exist
                 still_missing = []
                 for img_filename in missing_images:
@@ -548,18 +550,18 @@ def main():
                     if not img_path.exists():
                         still_missing.append(img_filename)
                 if still_missing:
-                    print(f"[ERROR] Still missing images for {tex_file}: {still_missing}. Skipping PDF for this file.")
+                    print(f"[ERROR] Still missing images for {tex_path}: {still_missing}. Skipping PDF for this file.")
                     continue
-            print(f"[INFO] Compiling {tex_file} to {pdf_path} using pdflatex...")
+            print(f"[INFO] Compiling {tex_path} to {pdf_path} using pdflatex...")
             run_or_exit([
-                'pdflatex', '-interaction=nonstopmode', str(tex_file)
+                'pdflatex', '-interaction=nonstopmode', str(tex_path)
             ], cwd=chapters_dir, check=True)
             if pdf_path.exists():
                 dest_pdf = pdf_dir / pdf_name
                 shutil.copy2(pdf_path, dest_pdf)
                 print(f"[INFO] Copied {pdf_path} to {dest_pdf}")
             else:
-                print(f"[ERROR] PDF not generated for {tex_file}")
+                print(f"[ERROR] PDF not generated for {tex_path}")
         print(f"[INFO] All TeX files compiled and PDFs copied to {pdf_dir}")
 
     # --- Build Markdown ---
