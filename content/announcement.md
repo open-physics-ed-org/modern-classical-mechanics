@@ -1,9 +1,3 @@
-## 🚧 Work in Progress
-
-This site is actively being developed. Content, structure, and features may change frequently as we improve and expand the resources. For the latest updates, known issues, or to contribute, please visit our [GitHub repository](https://github.com/dannycab/modern-classical-mechanics).
-
----
-
 ## 🚀 Release v0.9.2 "Unified Urubu" Highlights
 
 - **Unified All-in-One Build:** The `--all` flag now runs all major build steps in strict order: DOCX (and Markdown) → PDF → Jupyter Book HTML → Custom HTML web output. All output formats are copied to `docs/sources/<notebook_stem>/` for each notebook.
