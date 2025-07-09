@@ -1,4 +1,3 @@
-
 # --- Build resources.html from resources.md and about.html from about.md ---
 # (Code moved inside main() after all variables are defined)
 #!/usr/bin/env python3
@@ -801,12 +800,15 @@ def post_build_cleanup():
 """
         return nav_html
 
-    def get_html_template(title, body):
+    def get_html_template(title, body, html_output_path=None):
         nav_html = get_nav_html()
         import yaml
         config_path = autogen_dir / '_config.yml'
         book_title = title
         footer_html = None
+        # Always use absolute path from site root for logo and favicon
+        logo_path = "/images/logo.png"
+        favicon_path = "/images/favicon.ico"
         if config_path.exists():
             with open(config_path, 'r') as f:
                 config = yaml.safe_load(f)
@@ -814,6 +816,7 @@ def post_build_cleanup():
                     book_title = config['title']
                 if 'footer' in config:
                     footer_html = config['footer']
+        # No need to compute relative paths; always use absolute from site root
         if not footer_html:
             footer_html = f"&copy; {book_title}. All rights reserved."
         # Read the HTML template from static/html_template.html
@@ -822,8 +825,8 @@ def post_build_cleanup():
             raise FileNotFoundError(f"HTML template not found: {template_path}")
         with open(template_path, 'r', encoding='utf-8') as f:
             template = f.read()
-        # Replace placeholders
-        html = template.format(title=book_title, body=body, nav=nav_html, footer=footer_html)
+        # Replace placeholders, including logo and favicon
+        html = template.format(title=book_title, body=body, nav=nav_html, footer=footer_html, logo=logo_path, favicon=favicon_path)
         return html
 
     # --- Process index.md and cards.md as index.html ---
@@ -915,7 +918,7 @@ def post_build_cleanup():
         card_grid += '</section>'
     if main_html:
         body = f'<div class="markdown-body">{main_html}{card_grid}</div>'
-        html = get_html_template(title, body)
+        html = get_html_template(title, body, html_output_path=index_html_path)
         with open(index_html_path, 'w', encoding='utf-8') as f:
             f.write(html)
 
@@ -983,7 +986,7 @@ def post_build_cleanup():
         return html
     if menu_data:
         chapters_body = build_chapters_page(menu_data)
-        chapters_html = get_html_template("Chapters", chapters_body)
+        chapters_html = get_html_template("Chapters", chapters_body, html_output_path=chapters_html_path)
         with open(chapters_html_path, 'w', encoding='utf-8') as f:
             f.write(chapters_html)
 
@@ -1000,7 +1003,7 @@ def post_build_cleanup():
             resources_content = f.read()
         resources_html = markdown.markdown(resources_content, extensions=['extra', 'toc', 'admonition'])
         body = f'<div class="markdown-body">{resources_html}</div>'
-        html = get_html_template("Resources", body)
+        html = get_html_template("Resources", body, html_output_path=resources_html_path)
         with open(resources_html_path, 'w', encoding='utf-8') as f:
             f.write(html)
 
@@ -1017,7 +1020,7 @@ def post_build_cleanup():
             about_content = f.read()
         about_html = markdown.markdown(about_content, extensions=['extra', 'toc', 'admonition'])
         body = f'<div class="markdown-body">{about_html}</div>'
-        html = get_html_template("About", body)
+        html = get_html_template("About", body, html_output_path=about_html_path)
         with open(about_html_path, 'w', encoding='utf-8') as f:
             f.write(html)
 
@@ -1157,7 +1160,7 @@ def post_build_cleanup():
         '''
         body_final = f'{download_menu}<div class="markdown-body">{body_content}</div>'
         title = nb_path.stem.replace('_', ' ').title()
-        html = get_html_template(title, body_final)
+        html = get_html_template(title, body_final, html_output_path=html_path)
         with open(html_path, 'w', encoding='utf-8') as f:
             f.write(html)
 
@@ -1209,6 +1212,18 @@ def post_build_cleanup():
             for img_file in section_dir.iterdir():
                 if img_file.is_file():
                     shutil.copy2(img_file, dest_section_dir / img_file.name)
+
+
+    # Copy logo.png and favicon.ico to docs/images/ and _build/wcag-html/images/
+    for asset in ['logo.png', 'favicon.ico']:
+        asset_src = repo_root / 'static/images' / asset
+        asset_dst_docs = docs_dir / 'images' / asset
+        asset_dst_build = build_dir / 'images' / asset
+        if asset_src.exists():
+            asset_dst_docs.parent.mkdir(parents=True, exist_ok=True)
+            asset_dst_build.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(asset_src, asset_dst_docs)
+            shutil.copy2(asset_src, asset_dst_build)
 
     # --- Copy all source files for download links ---
     # For each notebook, copy .pdf, .docx, .md, .ipynb, .tex to docs/sources/<notebook>/<notebook>.<ext>
@@ -1269,6 +1284,25 @@ def post_build_cleanup():
         print("[CHECK] All referenced images exist in docs output.")
 
     print("All notebooks converted to HTML and copied to docs/ with sectioned images, CSS, accessible menu, and downloadable sources.")
+
+    # --- Fix logo and favicon references in all HTML files in docs/ and _build/wcag-html/ ---
+    def fix_logo_favicon_links(html_dir):
+        html_dir = Path(html_dir)
+        html_files = list(html_dir.glob('*.html'))
+        for html_path in html_files:
+            with open(html_path, 'r', encoding='utf-8') as f:
+                html = f.read()
+            # Replace any /images/logo.png or images/logo.png with ./images/logo.png
+            html = html.replace('/images/logo.png', './images/logo.png')
+            html = html.replace('images/logo.png', './images/logo.png')
+            # Replace any /images/favicon.ico or images/favicon.ico with ./images/favicon.ico
+            html = html.replace('/images/favicon.ico', './images/favicon.ico')
+            html = html.replace('images/favicon.ico', './images/favicon.ico')
+            with open(html_path, 'w', encoding='utf-8') as f:
+                f.write(html)
+            print(f"[FIX] Updated logo and favicon links in {html_path}")
+    fix_logo_favicon_links(docs_dir)
+    fix_logo_favicon_links(build_dir)
 
     # --- AUTOMATE: Copy all images from HTML build output to LaTeX images dir if referenced in LaTeX but missing ---
     latex_images_dir = repo_root / '_build' / 'latex' / 'images'
