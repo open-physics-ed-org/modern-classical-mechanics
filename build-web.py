@@ -806,9 +806,9 @@ def post_build_cleanup():
         config_path = autogen_dir / '_config.yml'
         book_title = title
         footer_html = None
-        # Always use absolute path from site root for logo and favicon
-        logo_path = "/images/logo.png"
-        favicon_path = "/images/favicon.ico"
+        # Use relative path for logo and favicon for portability
+        logo_path = "./images/logo.png"
+        favicon_path = "./images/favicon.ico"
         if config_path.exists():
             with open(config_path, 'r') as f:
                 config = yaml.safe_load(f)
@@ -1292,15 +1292,12 @@ def post_build_cleanup():
         for html_path in html_files:
             with open(html_path, 'r', encoding='utf-8') as f:
                 html = f.read()
-            # Replace any /images/logo.png or images/logo.png with ./images/logo.png
-            html = html.replace('/images/logo.png', './images/logo.png')
-            html = html.replace('images/logo.png', './images/logo.png')
-            # Replace any /images/favicon.ico or images/favicon.ico with ./images/favicon.ico
-            html = html.replace('/images/favicon.ico', './images/favicon.ico')
-            html = html.replace('images/favicon.ico', './images/favicon.ico')
+            # Force logo and favicon to use exactly ./images/logo.png and ./images/favicon.ico
+            html = re.sub(r'src=["\"][^"\"]*logo\.png["\"]', 'src="./images/logo.png"', html)
+            html = re.sub(r'href=["\"][^"\"]*favicon\.ico["\"]', 'href="./images/favicon.ico"', html)
             with open(html_path, 'w', encoding='utf-8') as f:
                 f.write(html)
-            print(f"[FIX] Updated logo and favicon links in {html_path}")
+            print(f"[FIX] Forced logo and favicon links in {html_path}")
     fix_logo_favicon_links(docs_dir)
     fix_logo_favicon_links(build_dir)
 
