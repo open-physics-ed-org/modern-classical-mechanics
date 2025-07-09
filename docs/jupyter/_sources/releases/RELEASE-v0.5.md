@@ -1,0 +1,3 @@
+# v0.5 'Cheerful Capybara' (v0.5)
+
+Release v0.5 'Cheerful Capybara'\n\nHighlights:\n- Major navigation overhaul: single horizontal menu, dropdowns, mobile hamburger, accessible and keyboard-friendly, built at build time from _menu.yml.\n- Robust light/dark mode: all backgrounds and borders forced to white (light) or black (dark), no white lines in dark mode.\n- Minimal, reproducible spacing between nav and content.\n- Legacy side-nav/side-menu code removed.\n- README updated to reflect work-in-progress status, new features, and roadmap.\n- Issues opened for per-page download menus and unified build script.\n\nThis release marks a major step toward a modern, accessible, and user-friendly static site for classical mechanics. See README and issues #11, #12 for details.
