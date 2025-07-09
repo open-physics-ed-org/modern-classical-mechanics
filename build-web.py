@@ -935,31 +935,75 @@ def post_build_cleanup():
             return '<p>No chapters found in menu.</p>'
         html = '<section class="card-grid chapters-grid" aria-label="Chapters">'
         docs_dir = Path(__file__).parent / 'docs'
+        import nbformat
         for ch in chapters:
             title = ch.get('title', '')
             path = ch.get('path', '')
             thumb_img = None
-            thumb_alt = ''
-            html_path = docs_dir / path
-            section = 'chapters'
-            # Improved: Scan the chapter HTML for the first <img> tag and use that as the thumbnail if found
-            thumb_img = None
             thumb_alt = title
-            if html_path.exists():
+            # Try to find the corresponding notebook file for this chapter
+            nb_path = None
+            # Try to match by html path stem to notebook stem
+            if path:
+                html_stem = Path(path).stem
+                # Search for a notebook with the same stem
+                for nb in notebooks_dir.glob('*.ipynb'):
+                    if nb.stem == html_stem or html_stem in nb.stem:
+                        nb_path = nb
+                        break
+            # If not found, fallback to first notebook in chapter
+            if not nb_path and 'files' in ch:
+                for f in ch['files']:
+                    nb_candidate = Path(f['file'])
+                    if nb_candidate.suffix == '.ipynb':
+                        nb_path = repo_root / nb_candidate
+                        break
+            # Extract first image from notebook and copy to docs/images/chapters/
+            if nb_path and nb_path.exists():
                 try:
-                    with open(html_path, 'r', encoding='utf-8') as f:
-                        for line in f:
-                            m = re.search(r'<img [^>]*src=["\']([^"\']+)["\'][^>]*', line)
+                    nb_data = nbformat.read(str(nb_path), as_version=4)
+                    found = False
+                    for cell in nb_data.cells:
+                        if cell.cell_type == 'markdown':
+                            m = re.search(r'!\[[^\]]*\]\(([^)]+)\)', cell.source)
                             if m:
-                                thumb_img = m.group(1)
-                                alt_m = re.search(r'alt=["\']([^"\']*)["\']', line)
-                                if alt_m:
-                                    thumb_alt = alt_m.group(1)
-                                break
+                                img_src = m.group(1)
+                                # Determine the source path of the image
+                                img_src_path = None
+                                if img_src.startswith('images/'):
+                                    # Relative to repo_root/content/notebooks or repo_root
+                                    img_src_path = repo_root / 'content' / img_src
+                                    if not img_src_path.exists():
+                                        img_src_path = repo_root / img_src  # fallback
+                                else:
+                                    # Relative to the notebook file
+                                    img_src_path = nb_path.parent / img_src
+                                if img_src_path and img_src_path.exists():
+                                    # Copy to docs/images/chapters/
+                                    section_img_dir = docs_dir / 'images' / 'chapters'
+                                    section_img_dir.mkdir(parents=True, exist_ok=True)
+                                    dest_path = section_img_dir / img_src_path.name
+                                    if not dest_path.exists():
+                                        try:
+                                            import shutil
+                                            shutil.copyfile(img_src_path, dest_path)
+                                        except Exception as copy_e:
+                                            print(f"[WARN] Could not copy image {img_src_path} to {dest_path}: {copy_e}")
+                                    thumb_img = f'images/chapters/{img_src_path.name}'
+                                    found = True
+                                    break
+                        elif cell.cell_type == 'code' and 'outputs' in cell:
+                            for output in cell['outputs']:
+                                if output.get('data') and 'image/png' in output['data']:
+                                    # Save as a file and reference it (not implemented here)
+                                    pass
+                        if found:
+                            break
                 except Exception as e:
-                    print(f"[WARN] Could not read {html_path}: {e}")
-            # Fallback: Try to find an image matching the chapter file name in images/chapters
+                    print(f"[WARN] Could not read notebook {nb_path}: {e}")
+            # Fallback: Use the previous logic if no image found in notebook
             if not thumb_img:
+                section = 'chapters'
                 section_img_dir = docs_dir / 'images' / section
                 base_name = Path(path).stem
                 if section_img_dir.exists():
@@ -968,15 +1012,14 @@ def post_build_cleanup():
                         if candidate.exists():
                             thumb_img = f'images/{section}/{candidate.name}'
                             break
-            # Fallback: Use the first image in the section folder
             if not thumb_img:
+                section = 'chapters'
                 section_img_dir = docs_dir / 'images' / section
                 if section_img_dir.exists():
                     for f in sorted(section_img_dir.iterdir()):
                         if f.is_file() and f.suffix.lower() in ['.png', '.jpg', '.jpeg', '.gif', '.svg'] and not f.name.startswith('.._.._'):
                             thumb_img = f'images/{section}/{f.name}'
                             break
-            # Fallback: no image found
             if thumb_img:
                 img_html = f'<a href="{path}"><img class="chapter-thumb" src="{thumb_img}" alt="{thumb_alt}" loading="lazy" style="max-width:100%;max-height:140px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.08);margin-bottom:1em;"></a>'
             else:
