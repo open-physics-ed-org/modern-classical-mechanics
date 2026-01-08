@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   sodipodi:docname="falling_ball_no_air_resistance_fbd.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.89887065"
+     inkscape:cx="396.60879"
+     inkscape:cy="605.20387"
+     inkscape:window-width="1820"
+     inkscape:window-height="1447"
+     inkscape:window-x="2128"
+     inkscape:window-y="933"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <rect
+       x="588.51627"
+       y="179.11365"
+       width="86.775555"
+       height="91.225584"
+       id="rect4" />
+    <rect
+       x="185.78869"
+       y="580.72872"
+       width="278.12678"
+       height="93.450598"
+       id="rect2" />
+    <marker
+       style="overflow:visible"
+       id="Triangle"
+       refX="0"
+       refY="0"
+       orient="-29.00"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid"
+       markerUnits="strokeWidth">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle-7"
+       refX="0"
+       refY="0"
+       orient="-29"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid"
+       markerUnits="strokeWidth">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135-2" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text2"
+       style="writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2);display:inline;fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:5.65039;stroke-dasharray:none;stroke-opacity:1" />
+    <g
+       id="g6"
+       transform="matrix(1.7933039,0,0,1.7933039,-43.631782,-22.742816)">
+      <g
+         id="g4">
+        <circle
+           style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:1.495;stroke-dasharray:none;stroke-opacity:1"
+           id="path1"
+           cx="56.969097"
+           cy="61.499504"
+           r="25" />
+        <path
+           style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:1.40033;stroke-dasharray:none;stroke-opacity:1;marker-mid:url(#Triangle)"
+           d="m 56.92516,89.982696 v 44.935264 0"
+           id="path2" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.4056px;line-height:1.1;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';writing-mode:lr-tb;direction:ltr;fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-dasharray:none;stroke-opacity:1"
+           x="25.063755"
+           y="152.42648"
+           id="text3"><tspan
+             sodipodi:role="line"
+             id="tspan3"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.4056px;line-height:1.1;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue';stroke:none;stroke-width:0;stroke-dasharray:none"
+             x="25.063755"
+             y="152.42648">W (Weight)</tspan></text>
+      </g>
+      <g
+         id="g5"
+         transform="translate(0,-2.9563051)">
+        <path
+           style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:3;stroke-dasharray:none;stroke-opacity:1;marker-mid:url(#Triangle-7)"
+           d="m 119.77556,53.108114 v 80.022016 0"
+           id="path2-5" />
+        <text
+           xml:space="preserve"
+           transform="matrix(0.26458333,0,0,0.26458333,-30.906838,9.419227)"
+           id="text4"
+           style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:53.3333px;line-height:1.1;font-family:'Helvetica Neue';-inkscape-font-specification:'Helvetica Neue Medium';writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect4);display:inline;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:11.3386;stroke-dasharray:none;stroke-opacity:1"><tspan
+             x="588.51562"
+             y="225.40408"
+             id="tspan2"><tspan
+               style="fill:#000000"
+               id="tspan1">+y</tspan></tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

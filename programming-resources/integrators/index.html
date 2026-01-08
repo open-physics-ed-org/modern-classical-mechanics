@@ -1,0 +1,459 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Numerical Integrators | Classical Mechanics</title><meta name=description content="Classical Mechanics"><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js onload='renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}]})'></script><link rel=stylesheet href=/css/accessibility.css><style>body{font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,sans-serif;line-height:1.6;max-width:900px;margin:0 auto;padding:20px;color:#333}nav{background:#f4f4f4;padding:15px;margin-bottom:30px;border-radius:5px}nav ul{list-style:none;padding:0;margin:0}nav ul li{display:inline;margin-right:20px}nav a{color:#06c;text-decoration:none}nav a:hover{text-decoration:underline}h1,h2,h3,h4,h5,h6{color:#222;margin-top:1.5em}h1{border-bottom:2px solid #eee;padding-bottom:10px}code{background:#f4f4f4;padding:2px 6px;border-radius:3px;font-family:sf mono,Monaco,Consolas,monospace}pre{background:#f4f4f4;padding:15px;border-radius:5px;overflow-x:auto}pre code{background:0 0;padding:0}img{max-width:100%;height:auto}a{color:#06c}.menu-home{font-weight:700;margin-right:30px}</style></head><body><nav role=navigation aria-label="Main navigation"><ul><li class=menu-home><a href=/>Classical Mechanics</a></li><li><a href=/course-information/>Course Information</a></li><li><a href=/course-materials/>Course Materials</a></li><li><a href=/logistics-resources/>Logistics & Resources</a></li><li><a href=/programming-resources/>Programming Resources</a></li></ul></nav><main role=main><article><header><h1>Numerical Integrators</h1></header><p>In this notebook, we provide a resource &ndash; various methods of integrating ordinary differential equations (ODEs) numerically. We will cover the following methods:</p><ul><li>Euler</li><li>Euler-Cromer</li><li>Velocity Verlet</li><li>Runge-Kutta 2nd order</li><li>Built-in Python integrators</li></ul><p>We have written these codes as simply as possible to make them easy to read and to see where the algorithms differ. We have also included an example of a simple harmonic oscillator to demonstrate the methods (recurrent oscillatory behavior is a good test of methods).</p><p>The simple harmonic oscillator is described by the following second order ODE:</p><p>$$\frac{d^2x}{dt^2} = -\omega^2 x$$</p><p>where $\omega$ is the angular frequency of the oscillator. We can rewrite this as two first order ODEs:</p><p>$$\frac{dx}{dt} = v$$
+$$\frac{dv}{dt} = -\omega^2 x$$</p><h2 id=eulers-method>Euler&rsquo;s Method</h2><p>Euler&rsquo;s method is the simplest numerical integrator. For the SHO, we can write the update equations as:</p><p>$$x_{n+1} = x_n + v_n \Delta t$$
+$$v_{n+1} = v_n - \omega^2 x_n \Delta t$$</p><p>where $x_n$ and $v_n$ are the position and velocity at time $t_n$, and $\Delta t$ is the time step.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Euler&#39;s method</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> matplotlib.pyplot <span style=color:#66d9ef>as</span> plt
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> matplotlib <span style=color:#f92672>import</span> style
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>style<span style=color:#f92672>.</span>use(<span style=color:#e6db74>&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>x0 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>v0 <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>omega <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>t0 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>tf <span style=color:#f92672>=</span> <span style=color:#ae81ff>50</span>
+</span></span><span style=display:flex><span>dt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.01</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>N <span style=color:#f92672>=</span> int((tf <span style=color:#f92672>-</span> t0) <span style=color:#f92672>/</span> dt)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>t <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>linspace(t0, tf, N)
+</span></span><span style=display:flex><span>x <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>zeros(N)
+</span></span><span style=display:flex><span>v <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>zeros(N)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>x[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> x0
+</span></span><span style=display:flex><span>v[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> v0
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, N):
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    x[i] <span style=color:#f92672>=</span> x[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> v[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>*</span> dt
+</span></span><span style=display:flex><span>    v[i] <span style=color:#f92672>=</span> v[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>-</span> omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> x[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>*</span> dt
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span><span style=color:#75715e># Plot the position and velocity as a function of time</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>fig, ax <span style=color:#f92672>=</span> plt<span style=color:#f92672>.</span>subplots(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>1</span>, figsize<span style=color:#f92672>=</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>10</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>set_title(<span style=color:#e6db74>&#39;Euler Method&#39;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>plot(t, x, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Position&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>set_ylabel(<span style=color:#e6db74>&#39;Position&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>set_xlabel(<span style=color:#e6db74>&#39;Time&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>legend()
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>grid(<span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>plot(t, v, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Velocity&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>set_ylabel(<span style=color:#e6db74>&#39;Velocity&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>set_xlabel(<span style=color:#e6db74>&#39;Time&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>legend()
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>grid(<span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>tight_layout()
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## Plot the kinetic, potential, and total energy as a function of time</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>KE <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> v<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>PE <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> x<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>ETOT <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> v<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> x<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>fig, ax <span style=color:#f92672>=</span> plt<span style=color:#f92672>.</span>subplots(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, figsize<span style=color:#f92672>=</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>5</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_title(<span style=color:#e6db74>&#39;Euler Method&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>plot(t, KE, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Kinetic Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>plot(t, PE, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Potential Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>plot(t, ETOT, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Total Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_ylabel(<span style=color:#e6db74>&#39;Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_xlabel(<span style=color:#e6db74>&#39;Time&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>legend()
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>grid(<span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>tight_layout()
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
+</span></span></code></pre></div><p><img src=output_2_0.png alt=png></p><p><img src=output_2_1.png alt=png></p><h2 id=euler-cromer-method>Euler-Cromer Method</h2><p>The Euler-Cromer method is a slight modification of Euler&rsquo;s method. The update equations are:</p><p>$$v_{n+1} = v_n - \omega^2 x_n \Delta t$$
+$$x_{n+1} = x_n + v_{n+1} \Delta t$$</p><p>Note that the position is updated using the new velocity. The Cromer correction is a small improvement over Euler&rsquo;s method, and helps with energy conservation.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Euler-Cromer Method</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> matplotlib.pyplot <span style=color:#66d9ef>as</span> plt
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> matplotlib <span style=color:#f92672>import</span> style
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>style<span style=color:#f92672>.</span>use(<span style=color:#e6db74>&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>x0 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>v0 <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>omega <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>t0 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>tf <span style=color:#f92672>=</span> <span style=color:#ae81ff>50</span>
+</span></span><span style=display:flex><span>dt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.01</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>N <span style=color:#f92672>=</span> int((tf <span style=color:#f92672>-</span> t0) <span style=color:#f92672>/</span> dt)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>t <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>linspace(t0, tf, N)
+</span></span><span style=display:flex><span>x <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>zeros(N)
+</span></span><span style=display:flex><span>v <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>zeros(N)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>x[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> x0
+</span></span><span style=display:flex><span>v[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> v0
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, N):
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    x[i] <span style=color:#f92672>=</span> x[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> v[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>*</span> dt
+</span></span><span style=display:flex><span>    v[i] <span style=color:#f92672>=</span> v[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>-</span> omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> x[i] <span style=color:#f92672>*</span> dt
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span><span style=color:#75715e># Plot the position and velocity as a function of time</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>fig, ax <span style=color:#f92672>=</span> plt<span style=color:#f92672>.</span>subplots(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>1</span>, figsize<span style=color:#f92672>=</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>10</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>set_title(<span style=color:#e6db74>&#39;Euler-Cromer Method&#39;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>plot(t, x, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Position&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>set_ylabel(<span style=color:#e6db74>&#39;Position&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>set_xlabel(<span style=color:#e6db74>&#39;Time&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>legend()
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>grid(<span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>plot(t, v, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Velocity&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>set_ylabel(<span style=color:#e6db74>&#39;Velocity&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>set_xlabel(<span style=color:#e6db74>&#39;Time&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>legend()
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>grid(<span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>tight_layout()
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## Plot the kinetic, potential, and total energy as a function of time</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>KE <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> v<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>PE <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> x<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>ETOT <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> v<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> x<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>fig, ax <span style=color:#f92672>=</span> plt<span style=color:#f92672>.</span>subplots(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, figsize<span style=color:#f92672>=</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>5</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_title(<span style=color:#e6db74>&#39;Euler-Cromer Method&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>plot(t, KE, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Kinetic Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>plot(t, PE, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Potential Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>plot(t, ETOT, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Total Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_ylabel(<span style=color:#e6db74>&#39;Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_xlabel(<span style=color:#e6db74>&#39;Time&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>legend()
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>grid(<span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>tight_layout()
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
+</span></span></code></pre></div><p><img src=output_4_0.png alt=png></p><p><img src=output_4_1.png alt=png></p><h2 id=velocity-verlet-method>Velocity Verlet Method</h2><p>The Velocity Verlet method is a symplectic integrator. The update equations are:</p><p>$$x_{n+1} = x_n + v_n \Delta t + \frac{1}{2} a_n \Delta t^2$$
+$$v_{n+1} = v_n + \frac{1}{2} (a_n + a_{n+1}) \Delta t$$</p><p>where $a_n$ is the acceleration at time $t_n$. The acceleration is calculated from the position at time $t_n$. The principal difference between the Velocity Verlet method and the Euler and Euler-Cromer methods is that the position is updated using the average acceleration over the time step. The main advantage of the Velocity Verlet method is that it conserves energy.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Velocity Verlet Method</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> matplotlib.pyplot <span style=color:#66d9ef>as</span> plt
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> matplotlib <span style=color:#f92672>import</span> style
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>style<span style=color:#f92672>.</span>use(<span style=color:#e6db74>&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>x0 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>v0 <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>omega <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>t0 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>tf <span style=color:#f92672>=</span> <span style=color:#ae81ff>50</span>
+</span></span><span style=display:flex><span>dt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.01</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>N <span style=color:#f92672>=</span> int((tf <span style=color:#f92672>-</span> t0) <span style=color:#f92672>/</span> dt)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>t <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>linspace(t0, tf, N)
+</span></span><span style=display:flex><span>x <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>zeros(N)
+</span></span><span style=display:flex><span>v <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>zeros(N)
+</span></span><span style=display:flex><span>a <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>zeros(N)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>x[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> x0
+</span></span><span style=display:flex><span>v[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> v0
+</span></span><span style=display:flex><span>a[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> <span style=color:#f92672>-</span>omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> x0
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, N):
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    x[i] <span style=color:#f92672>=</span> x[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> v[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>*</span> dt <span style=color:#f92672>+</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> a[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>*</span> dt<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>    a[i] <span style=color:#f92672>=</span> <span style=color:#f92672>-</span>omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> x[i]
+</span></span><span style=display:flex><span>    v[i] <span style=color:#f92672>=</span> v[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> (a[i] <span style=color:#f92672>+</span> a[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]) <span style=color:#f92672>*</span> dt
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span><span style=color:#75715e># Plot the position and velocity as a function of time</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>fig, ax <span style=color:#f92672>=</span> plt<span style=color:#f92672>.</span>subplots(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>1</span>, figsize<span style=color:#f92672>=</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>10</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>set_title(<span style=color:#e6db74>&#39;Velocity Verlet Method&#39;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>plot(t, x, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Position&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>set_ylabel(<span style=color:#e6db74>&#39;Position&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>set_xlabel(<span style=color:#e6db74>&#39;Time&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>legend()
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>grid(<span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>plot(t, v, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Velocity&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>set_ylabel(<span style=color:#e6db74>&#39;Velocity&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>set_xlabel(<span style=color:#e6db74>&#39;Time&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>legend()
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>grid(<span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>tight_layout()
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## Plot the kinetic, potential, and total energy as a function of time</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>KE <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> v<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>PE <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> x<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>ETOT <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> v<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> x<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>fig, ax <span style=color:#f92672>=</span> plt<span style=color:#f92672>.</span>subplots(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, figsize<span style=color:#f92672>=</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>5</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_title(<span style=color:#e6db74>&#39;Velocity Verlet Method&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>plot(t, KE, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Kinetic Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>plot(t, PE, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Potential Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>plot(t, ETOT, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Total Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_ylabel(<span style=color:#e6db74>&#39;Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_xlabel(<span style=color:#e6db74>&#39;Time&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>legend()
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>grid(<span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>tight_layout()
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
+</span></span></code></pre></div><p><img src=output_6_0.png alt=png></p><p><img src=output_6_1.png alt=png></p><h2 id=runge-kutta-2nd-order-method>Runge Kutta 2nd Order Method</h2><p>The Runge Kutta 2nd Order method is a more accurate numerical integrator. The update equations are:</p><p>$$k_{1x} = v_n \Delta t$$
+$$k_{1v} = -\omega^2 x_n \Delta t$$
+$$k_{2x} = (v_n + k_{1v}/2) \Delta t$$
+$$k_{2v} = -\omega^2 (x_n + k_{1x}/2) \Delta t$$</p><p>$$x_{n+1} = x_n + k_{2x}$$
+$$v_{n+1} = v_n + k_{2v}$$</p><p>The main idea of the Runge Kutta method is to calculate the average of the slopes at the beginning and the end of the time step. This takes additional computational effort, but results in a more accurate solution. It also conserves energy.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Runge-Kutta Method 2nd Order</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> matplotlib.pyplot <span style=color:#66d9ef>as</span> plt
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> matplotlib <span style=color:#f92672>import</span> style
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>style<span style=color:#f92672>.</span>use(<span style=color:#e6db74>&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>x0 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>v0 <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>omega <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>t0 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>tf <span style=color:#f92672>=</span> <span style=color:#ae81ff>50</span>
+</span></span><span style=display:flex><span>dt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.01</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>N <span style=color:#f92672>=</span> int((tf <span style=color:#f92672>-</span> t0) <span style=color:#f92672>/</span> dt)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>t <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>linspace(t0, tf, N)
+</span></span><span style=display:flex><span>x <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>zeros(N)
+</span></span><span style=display:flex><span>v <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>zeros(N)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>x[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> x0
+</span></span><span style=display:flex><span>v[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> v0
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, N):
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    k1x <span style=color:#f92672>=</span> v[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>*</span> dt
+</span></span><span style=display:flex><span>    k1v <span style=color:#f92672>=</span> <span style=color:#f92672>-</span>omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> x[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>*</span> dt
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    k2x <span style=color:#f92672>=</span> (v[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> k1v) <span style=color:#f92672>*</span> dt
+</span></span><span style=display:flex><span>    k2v <span style=color:#f92672>=</span> <span style=color:#f92672>-</span>omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> (x[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> k1x) <span style=color:#f92672>*</span> dt
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    x[i] <span style=color:#f92672>=</span> x[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> (k1x <span style=color:#f92672>+</span> k2x)
+</span></span><span style=display:flex><span>    v[i] <span style=color:#f92672>=</span> v[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> (k1v <span style=color:#f92672>+</span> k2v)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span><span style=color:#75715e># Plot the position and velocity as a function of time</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>fig, ax <span style=color:#f92672>=</span> plt<span style=color:#f92672>.</span>subplots(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>1</span>, figsize<span style=color:#f92672>=</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>10</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>set_title(<span style=color:#e6db74>&#39;Runge-Kutta 2nd Order Method&#39;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>plot(t, x, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Position&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>set_ylabel(<span style=color:#e6db74>&#39;Position&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>set_xlabel(<span style=color:#e6db74>&#39;Time&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>legend()
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>grid(<span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>plot(t, v, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Velocity&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>set_ylabel(<span style=color:#e6db74>&#39;Velocity&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>set_xlabel(<span style=color:#e6db74>&#39;Time&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>legend()
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>grid(<span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>tight_layout()
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## Plot the kinetic, potential, and total energy as a function of time</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>KE <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> v<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>PE <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> x<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>ETOT <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> v<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> x<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>fig, ax <span style=color:#f92672>=</span> plt<span style=color:#f92672>.</span>subplots(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, figsize<span style=color:#f92672>=</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>5</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_title(<span style=color:#e6db74>&#39;Runge-Kutta 2nd Order Method&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>plot(t, KE, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Kinetic Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>plot(t, PE, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Potential Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>plot(t, ETOT, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Total Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_ylabel(<span style=color:#e6db74>&#39;Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_xlabel(<span style=color:#e6db74>&#39;Time&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>legend()
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>grid(<span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>tight_layout()
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
+</span></span></code></pre></div><p><img src=output_8_0.png alt=png></p><p><img src=output_8_1.png alt=png></p><h2 id=runge-kutta-4th-order-method>Runge-Kutta 4th Order Method</h2><p>The Runge Kutta 4th Order method is a more accurate numerical integrator. The update equations are:</p><p>$$k_{1x} = v_n \Delta t$$
+$$k_{1v} = -\omega^2 x_n \Delta t$$</p><p>$$k_{2x} = (v_n + k_{1v}/2) \Delta t$$
+$$k_{2v} = -\omega^2 (x_n + k_{1x}/2) \Delta t$$</p><p>$$k_{3x} = (v_n + k_{2v}/2) \Delta t$$
+$$k_{3v} = -\omega^2 (x_n + k_{2x}/2) \Delta t$$</p><p>$$k_{4x} = (v_n + k_{3v}) \Delta t$$
+$$k_{4v} = -\omega^2 (x_n + k_{3x}) \Delta t$$</p><p>$$x_{n+1} = x_n + \frac{1}{6}(k_{1x} + 2k_{2x} + 2k_{3x} + k_{4x})$$
+$$v_{n+1} = v_n + \frac{1}{6}(k_{1v} + 2k_{2v} + 2k_{3v} + k_{4v})$$</p><p>The RK4 method evaluates the derivative at four different points within the time step and takes a weighted average. This provides excellent accuracy and energy conservation, making it one of the most widely used numerical integration methods for ODEs.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Runge-Kutta Method 4th Order</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> matplotlib.pyplot <span style=color:#66d9ef>as</span> plt
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> matplotlib <span style=color:#f92672>import</span> style
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>style<span style=color:#f92672>.</span>use(<span style=color:#e6db74>&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>x0 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>v0 <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>omega <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>t0 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>tf <span style=color:#f92672>=</span> <span style=color:#ae81ff>50</span>
+</span></span><span style=display:flex><span>dt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.01</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>N <span style=color:#f92672>=</span> int((tf <span style=color:#f92672>-</span> t0) <span style=color:#f92672>/</span> dt)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>t <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>linspace(t0, tf, N)
+</span></span><span style=display:flex><span>x <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>zeros(N)
+</span></span><span style=display:flex><span>v <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>zeros(N)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>x[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> x0
+</span></span><span style=display:flex><span>v[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> v0
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, N):
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    k1x <span style=color:#f92672>=</span> v[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>*</span> dt
+</span></span><span style=display:flex><span>    k1v <span style=color:#f92672>=</span> <span style=color:#f92672>-</span>omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> x[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>*</span> dt
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    k2x <span style=color:#f92672>=</span> (v[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> k1v<span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>) <span style=color:#f92672>*</span> dt
+</span></span><span style=display:flex><span>    k2v <span style=color:#f92672>=</span> <span style=color:#f92672>-</span>omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> (x[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> k1x<span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>) <span style=color:#f92672>*</span> dt
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    k3x <span style=color:#f92672>=</span> (v[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> k2v<span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>) <span style=color:#f92672>*</span> dt
+</span></span><span style=display:flex><span>    k3v <span style=color:#f92672>=</span> <span style=color:#f92672>-</span>omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> (x[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> k2x<span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>) <span style=color:#f92672>*</span> dt
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    k4x <span style=color:#f92672>=</span> (v[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> k3v) <span style=color:#f92672>*</span> dt
+</span></span><span style=display:flex><span>    k4v <span style=color:#f92672>=</span> <span style=color:#f92672>-</span>omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> (x[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> k3x) <span style=color:#f92672>*</span> dt
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    x[i] <span style=color:#f92672>=</span> x[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> (k1x <span style=color:#f92672>+</span> <span style=color:#ae81ff>2</span><span style=color:#f92672>*</span>k2x <span style=color:#f92672>+</span> <span style=color:#ae81ff>2</span><span style=color:#f92672>*</span>k3x <span style=color:#f92672>+</span> k4x) <span style=color:#f92672>/</span> <span style=color:#ae81ff>6</span>
+</span></span><span style=display:flex><span>    v[i] <span style=color:#f92672>=</span> v[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> (k1v <span style=color:#f92672>+</span> <span style=color:#ae81ff>2</span><span style=color:#f92672>*</span>k2v <span style=color:#f92672>+</span> <span style=color:#ae81ff>2</span><span style=color:#f92672>*</span>k3v <span style=color:#f92672>+</span> k4v) <span style=color:#f92672>/</span> <span style=color:#ae81ff>6</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span><span style=color:#75715e># Plot the position and velocity as a function of time</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>fig, ax <span style=color:#f92672>=</span> plt<span style=color:#f92672>.</span>subplots(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>1</span>, figsize<span style=color:#f92672>=</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>10</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>set_title(<span style=color:#e6db74>&#39;Runge-Kutta 4th Order Method&#39;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>plot(t, x, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Position&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>set_ylabel(<span style=color:#e6db74>&#39;Position&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>set_xlabel(<span style=color:#e6db74>&#39;Time&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>legend()
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>grid(<span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>plot(t, v, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Velocity&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>set_ylabel(<span style=color:#e6db74>&#39;Velocity&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>set_xlabel(<span style=color:#e6db74>&#39;Time&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>legend()
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>grid(<span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>tight_layout()
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## Plot the kinetic, potential, and total energy as a function of time</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>KE <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> v<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>PE <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> x<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>ETOT <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> v<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> x<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>fig, ax <span style=color:#f92672>=</span> plt<span style=color:#f92672>.</span>subplots(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, figsize<span style=color:#f92672>=</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>5</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_title(<span style=color:#e6db74>&#39;Runge-Kutta 4th Order Method&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>plot(t, KE, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Kinetic Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>plot(t, PE, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Potential Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>plot(t, ETOT, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Total Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_ylabel(<span style=color:#e6db74>&#39;Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_xlabel(<span style=color:#e6db74>&#39;Time&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>legend()
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>grid(<span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>tight_layout()
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
+</span></span></code></pre></div><p><img src=output_10_0.png alt=png></p><p><img src=output_10_1.png alt=png></p><h2 id=built-in-python-integrators>Built-in Python Integrators</h2><p>All of the approaches above use a fixed time step. Python has built-in integrators that can adapt the time step to the problem. We will use the <code>odeint</code> function from the <code>scipy.integrate</code> module. This function uses the LSODA (Livermore Solver for Ordinary Differential Equations) algorithm, which is a variable time step integrator. The <code>odeint</code> function requires the user to define a function that returns the derivatives of the dependent variables.</p><p>The process for this method is different than the above approaches because the <code>odeint</code> function requires the user to define a function that returns the derivatives of the dependent variables. The function we use:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>derivs</span>(y, t, omega):
+</span></span><span style=display:flex><span>    x, v <span style=color:#f92672>=</span> y
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> [v, <span style=color:#f92672>-</span>omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> x]
+</span></span></code></pre></div><p>where <code>y</code> is a list of the dependent variables, <code>t</code> is the independent variable, and <code>omega</code> is a parameter. The function returns a list of the derivatives of the dependent variables.</p><p>We then setup our arrays to store the time and initial conditions, and call the <code>odeint</code> function:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>
+</span></span><span style=display:flex><span>y0 <span style=color:#f92672>=</span> [x0, v0]
+</span></span><span style=display:flex><span>t <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>linspace(t0, tf, N)
+</span></span><span style=display:flex><span>sol <span style=color:#f92672>=</span> odeint(derivs, y0, t, args<span style=color:#f92672>=</span>(omega,))
+</span></span></code></pre></div><p>where <code>y0</code> is a list of the initial conditions, <code>t</code> is an array of the time steps, and <code>sol</code> is an array of the solution at each time step.</p><p>The solution is returned as a 2D array, where the first column is the position and the second column is the velocity. We extract the position and velocity arrays using:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>x <span style=color:#f92672>=</span> sol[:, <span style=color:#ae81ff>0</span>]
+</span></span><span style=display:flex><span>v <span style=color:#f92672>=</span> sol[:, <span style=color:#ae81ff>1</span>]
+</span></span></code></pre></div><p>Then we can plot as normal.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> matplotlib.pyplot <span style=color:#66d9ef>as</span> plt
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> scipy.integrate <span style=color:#f92672>import</span> odeint
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> matplotlib <span style=color:#f92672>import</span> style
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>style<span style=color:#f92672>.</span>use(<span style=color:#e6db74>&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Define the system of differential equations</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>derivs</span>(y, t, omega):
+</span></span><span style=display:flex><span>    x, v <span style=color:#f92672>=</span> y
+</span></span><span style=display:flex><span>    dydt <span style=color:#f92672>=</span> [v, <span style=color:#f92672>-</span>omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> x]
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> dydt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>x0 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>v0 <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>omega <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>t0 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>tf <span style=color:#f92672>=</span> <span style=color:#ae81ff>50</span>
+</span></span><span style=display:flex><span>dt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.01</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>N <span style=color:#f92672>=</span> int((tf <span style=color:#f92672>-</span> t0) <span style=color:#f92672>/</span> dt)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>y0 <span style=color:#f92672>=</span> [x0, v0]
+</span></span><span style=display:flex><span>t <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>linspace(t0, tf, N)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Solve the ODE</span>
+</span></span><span style=display:flex><span>sol <span style=color:#f92672>=</span> odeint(derivs, y0, t, args<span style=color:#f92672>=</span>(omega,))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Extract the position and velocity</span>
+</span></span><span style=display:flex><span>x <span style=color:#f92672>=</span> sol[:, <span style=color:#ae81ff>0</span>]
+</span></span><span style=display:flex><span>v <span style=color:#f92672>=</span> sol[:, <span style=color:#ae81ff>1</span>]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Plot the position and velocity as a function of time</span>
+</span></span><span style=display:flex><span>fig, ax <span style=color:#f92672>=</span> plt<span style=color:#f92672>.</span>subplots(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>1</span>, figsize<span style=color:#f92672>=</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>10</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>set_title(<span style=color:#e6db74>&#39;ODEint Method&#39;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>plot(t, x, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Position&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>set_ylabel(<span style=color:#e6db74>&#39;Position&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>set_xlabel(<span style=color:#e6db74>&#39;Time&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>legend()
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>grid(<span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>plot(t, v, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Velocity&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>set_ylabel(<span style=color:#e6db74>&#39;Velocity&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>set_xlabel(<span style=color:#e6db74>&#39;Time&#39;</span>)
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>legend()
+</span></span><span style=display:flex><span>ax[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>grid(<span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>tight_layout()
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Plot the kinetic, potential, and total energy as a function of time</span>
+</span></span><span style=display:flex><span>KE <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> v<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>PE <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.5</span> <span style=color:#f92672>*</span> omega<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> x<span style=color:#f92672>**</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>ETOT <span style=color:#f92672>=</span> KE <span style=color:#f92672>+</span> PE
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>fig, ax <span style=color:#f92672>=</span> plt<span style=color:#f92672>.</span>subplots(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, figsize<span style=color:#f92672>=</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>5</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_title(<span style=color:#e6db74>&#39;ODEint Method&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>plot(t, KE, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Kinetic Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>plot(t, PE, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Potential Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>plot(t, ETOT, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Total Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_ylabel(<span style=color:#e6db74>&#39;Energy&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_xlabel(<span style=color:#e6db74>&#39;Time&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>legend()
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>grid(<span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>tight_layout()
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
+</span></span></code></pre></div><p><img src=output_12_0.png alt=png></p><p><img src=output_12_1.png alt=png></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python></code></pre></div><nav style="margin-top:50px;padding-top:20px;border-top:1px solid #eee"><div style=display:flex;justify-content:space-between><div></div><div style=text-align:right><a href=/programming-resources/euler_integration/>Euler Integration →</a></div></div></nav></article></main><footer role=contentinfo style="margin-top:50px;padding-top:20px;border-top:1px solid #eee;color:#666;font-size:.9em"><p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p><p>Built with <a href=https://gohugo.io/>Hugo</a> | Converted with jupyter2hugo</p></footer></body></html>
