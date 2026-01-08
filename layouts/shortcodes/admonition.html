@@ -1,0 +1,15 @@
+{{/* Admonition shortcode for notes, warnings, tips, etc. */}}
+{{- $type := .Get "type" | default "note" -}}
+{{- $title := .Get "title" -}}
+{{- $class := .Get "class" | default "" -}}
+
+<div class="admonition admonition-{{ $type }} {{ $class }}" role="note" aria-label="{{ $type | title }}">
+  {{- if $title -}}
+  <p class="admonition-title">{{ $title }}</p>
+  {{- else -}}
+  <p class="admonition-title">{{ $type | title }}</p>
+  {{- end -}}
+  <div class="admonition-content">
+    {{ .Inner | markdownify }}
+  </div>
+</div>

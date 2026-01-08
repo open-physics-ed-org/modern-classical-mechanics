@@ -1,0 +1,114 @@
+/* Accessibility styles for jupyter2hugo */
+
+/* Admonition styles */
+.admonition {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-left: 4px solid;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+}
+
+.admonition-title {
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.admonition-content {
+  margin: 0;
+}
+
+/* Type-specific colors (WCAG AA compliant) */
+.admonition-note {
+  border-color: #0066cc;
+  background-color: #e6f2ff;
+}
+
+.admonition-tip, .admonition-hint {
+  border-color: #00a854;
+  background-color: #e6f7f0;
+}
+
+.admonition-warning, .admonition-caution {
+  border-color: #fa8c16;
+  background-color: #fff7e6;
+}
+
+.admonition-danger, .admonition-error {
+  border-color: #cf1322;
+  background-color: #fff1f0;
+}
+
+.admonition-important, .admonition-attention {
+  border-color: #722ed1;
+  background-color: #f9f0ff;
+}
+
+/* YouTube embed responsive */
+.youtube-embed {
+  margin: 1.5rem 0;
+}
+
+/* Figure styles */
+.figure {
+  margin: 1.5rem auto;
+  text-align: center;
+}
+
+.figure img {
+  max-width: 100%;
+  height: auto;
+}
+
+.figure-caption {
+  margin-top: 0.5rem;
+  font-size: 0.9em;
+  color: #666;
+  font-style: italic;
+}
+
+/* Code block improvements */
+pre {
+  overflow-x: auto;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+/* Math equation spacing */
+.math {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .admonition {
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+  }
+
+  .admonition-note {
+    background-color: #002b4d;
+  }
+
+  .admonition-tip, .admonition-hint {
+    background-color: #003d26;
+  }
+
+  .admonition-warning, .admonition-caution {
+    background-color: #4d2800;
+  }
+
+  .admonition-danger, .admonition-error {
+    background-color: #4d0a0f;
+  }
+
+  .admonition-important, .admonition-attention {
+    background-color: #2b1652;
+  }
+
+  .figure-caption {
+    color: #b0b0b0;
+  }
+}

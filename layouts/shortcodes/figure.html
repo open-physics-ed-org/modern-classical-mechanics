@@ -1,0 +1,13 @@
+{{/* Figure shortcode with caption and alt text */}}
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $caption := .Get "caption" | default "" -}}
+{{- $width := .Get "width" | default "" -}}
+{{- $class := .Get "class" | default "" -}}
+
+<figure class="figure {{ $class }}" role="figure"{{- if $caption }} aria-label="{{ $caption }}"{{- end }}>
+  <img src="{{ $src }}" alt="{{ if $alt }}{{ $alt }}{{ else }}{{ $caption }}{{ end }}"{{- if $width }} width="{{ $width }}"{{- end }} loading="lazy">
+  {{- if $caption -}}
+  <figcaption class="figure-caption">{{ $caption | markdownify }}</figcaption>
+  {{- end -}}
+</figure>

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=54896&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07 - Introducing Nonlinear Dynamics | Classical Mechanics</title>
+    <meta name="description" content="Classical Mechanics">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+    
+    <link rel="stylesheet" href="/css/accessibility.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        nav {
+            background: #f4f4f4;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #222;
+            margin-top: 1.5em;
+        }
+        h1 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "SF Mono", Monaco, Consolas, monospace;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: #0066cc;
+        }
+        .menu-home {
+            font-weight: bold;
+            margin-right: 30px;
+        }
+    </style>
+</head>
+<body>
+    <nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li class="menu-home"><a href="/">Classical Mechanics</a></li>
+            
+            
+            <li><a href="/course-information/">Course Information</a></li>
+            
+            
+            
+            <li><a href="/course-materials/">Course Materials</a></li>
+            
+            
+            
+            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
+            
+            
+            
+            <li><a href="/programming-resources/">Programming Resources</a></li>
+            
+            
+        </ul>
+    </nav>
+
+    <main role="main">
+        
+<article>
+    <header>
+        <h1>07 - Introducing Nonlinear Dynamics</h1>
+        
+    </header>
+
+    <p><a href="https://github.com/dannycab/phy321msu/issues"><img src="https://img.shields.io/badge/report%20issues-GitHub-blue" alt="Report Issues"></a>
+<a href="https://github.com/dannycab/phy321msu/issues"><img src="https://img.shields.io/github/issues/dannycab/phy321msu" alt="GitHub Issues"></a></p>
+<h2 id="learning-goals">Learning Goals</h2>
+<div class="admonition admonition-admonition note" role="note" aria-label="Admonition"><p class="admonition-title">After studying Lesson 07, you should be able to:</p><div class="admonition-content">
+    <ul>
+<li>Use the concept of phase space to analyze the motion of dynamical systems.</li>
+<li>Interpret phase portraits and identify the flow direction, critical points, and their stability.</li>
+<li>Determine critical points of first-order ordinary differential equations (ODEs) and classify them as stable or unstable.</li>
+<li>Compare the behavior of linear and nonlinear systems in phase space.</li>
+<li>Derive and analyze the phase portrait of the simple harmonic oscillator (SHO) and explain how they are related to energy of the SHO.</li>
+<li>Extend the analysis to damped systems and understand the concept of attractors in phase space.</li>
+<li>Predict the long-term behavior of damped systems based on their phase portraits.</li>
+<li>Use Python and libraries like Matplotlib to create phase portraits and streamplots.</li>
+</ul>
+
+  </div>
+</div>
+
+<p>We have now built enough tools to tackle some challenging physical systems that have nonlinear equations of motion. The broader field of study that deals with these systems is called <a href="https://en.wikipedia.org/wiki/Nonlinear_system">Nonlinear Dynamics</a>. Nonlinear dynamics or nonlinear science is the study of systems that are described by nonlinear equations. These systems are often chaotic, meaning they are highly sensitive to initial conditions. In many cases, these systems are treated using <a href="https://en.wikipedia.org/wiki/Dynamical_system">dynamical systems theory</a>.</p>
+<p>Nonlinear dynamics is the science that has helped us understand the dynamics of <a href="https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations">fluids</a>, <a href="https://en.wikipedia.org/wiki/Kadomtsev%E2%80%93Petviashvili_equation">water waves</a>, <a href="https://en.wikipedia.org/wiki/Nonlinear_optics">crystals and other optical systems</a>, <a href="https://en.wikipedia.org/wiki/Li%C3%A9nard_equation">radio waves</a>, <a href="https://en.wikipedia.org/wiki/Numerical_weather_prediction">the weather</a>, and countless other systems. It has been used in <a href="https://en.wikipedia.org/wiki/Turbulence">fluid dynamics</a>, <a href="https://en.wikipedia.org/wiki/Plasma_modeling">plasma physics</a>, <a href="https://en.wikipedia.org/wiki/Double_pendulum">mechanical systems</a>, and many other fields. <a href="https://en.wikipedia.org/wiki/Chaos_theory">Chaos theory</a> is associated with nonlinear dynamics and is a subset of the field. Recently, this work has extended to quantum systems, where the Hamiltonian is nonlinear. <a href="https://en.wikipedia.org/wiki/Quantum_chaos">Quantum chaos</a> is a field that studies the quantum analog of classical chaotic systems.</p>
+<h2 id="nonlinear-differential-equations">Nonlinear Differential Equations</h2>
+<p>Differential equations are the language of classical mechanics. They describe how the systems we investigate evolve over time. They track the <a href="https://en.wikipedia.org/wiki/State_variable">state variables</a> of the system, which are what define the system. For us, this is often the position components and the velocity components of the system. The video below gives a good overview of what differential equations are and why they are important for our study. It also provides an introduction to the concept of a <a href="https://en.wikipedia.org/wiki/Phase_space">phase space</a>, which is the space defined by all the state variables of the system.</p>
+<h3 id="differential-equations-a-tourists-guide-27-min">Differential equations, a tourist&rsquo;s guide (27 min)</h3>
+<div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/p_di4Zn4wz4"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    title="YouTube video player"
+    loading="lazy">
+  </iframe>
+</div>
+
+<p>Source: <a href="https://www.youtube.com/watch?v=p_di4Zn4wz4">https://www.youtube.com/watch?v=p_di4Zn4wz4</a></p>
+<h2 id="phase-portraits">Phase Portraits</h2>
+<p>Solving non-linear equations can be quite difficult, and in most cases, we can&rsquo;t find an analytical solution. We can numerically integrate the equations to find specific trajectories. But this is a fairly inefficient approach, especially when nonlinear systems exhibit such complex behavior and are so sensitive to initial conditions.</p>
+<p>We can also use a technique called <a href="https://en.wikipedia.org/wiki/Phase_portrait">phase portraits</a> to understand the behavior of these systems. A phase portrait is a graphical representation of the trajectories of a dynamical system in the phase space. That space is defined by the combination of all the state variables of the system. For example, a simple pendulum has two state variables: the angle and the angular velocity. The phase portrait of the pendulum is a plot of the angular velocity against the angle. Or for the harmonic oscillator, the phase portrait is a plot of the velocity against the position.</p>
+<p><em>Phase portraits are quite useful for second order differential equations (or any two-dimensional system) because we frequently use and interpret 2D graphs.</em> Notice that we focused on &ldquo;2nd order differential equations&rdquo; not &ldquo;linear 2nd order.&rdquo; That is because, as we will see, <strong>phase portraits are particularly useful for nonlinear 2nd order differential equations.</strong></p>
+<p>We will go into the details of how to construct and develop phase portraits in class. This video from <a href="https://www.me.washington.edu/facultyfinder/steve-brunton">Steve Brunton</a> is a good overview of the process. It&rsquo;s quite detailed and takes a mathematical perspective, so don&rsquo;t worry if you don&rsquo;t understand everything in the video. We have plenty of time to investigate how this works in practice.</p>
+<h3 id="drawing-phase-portraits-for-nonlinear-systems-26-min">Drawing Phase Portraits for Nonlinear Systems (26 min)</h3>
+<div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/vBwyD4JJlSs"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    title="YouTube video player"
+    loading="lazy">
+  </iframe>
+</div>
+
+<p>Source: <a href="https://www.youtube.com/watch?v=vBwyD4JJlSs">https://www.youtube.com/watch?v=vBwyD4JJlSs</a></p>
+<h2 id="critical-points-phase-space-trajectories">Critical Points; Phase Space; Trajectories</h2>
+<p>Thus far, we have developed an approach to solving differential equations for particular trajectories of the different classical systems that we have studied. Typically, we work to develop the equations of motion for a system using Newton&rsquo;s Second Law. Those equations typically have the form</p>
+<p>$$\ddot{\vec{x}} = f(\vec{x}, \dot{\vec{x}}, t),$$</p>
+<p>where $\vec{x}$ is the position vector of the system, $\dot{\vec{x}}$ is the velocity vector of the system, and $f$ is some function that depends on the position, velocity, and time. In 1D, we have studied a number of systems where the equations of motion takes the form:</p>
+<p>$$\ddot{x} = f(x, \dot{x}, t).$$</p>
+<p>Our approach has been to find ways of solving these equations for a given set of initial conditions ($x_0$, $v_0$, at $t=t_0$) to get individual trajectories of the system.</p>
+<p>$$x(t); \text{and}; v(t); \text{for}; t \geq t_0.$$</p>
+<h3 id="developing-a-general-understanding-of-motion">Developing a General Understanding of Motion</h3>
+<p>However, some of the equations of motion we have developed (in fact, most) cannot be solved in a &ldquo;closed form&rdquo;, which is what gives rise to analytical trajectories. In these cases, we have used numerical methods to solve the equations of motion.</p>
+<p>It also seems pretty inefficient to have to solve the equations of motion for every possible set of initial conditions. It would be nice if we could develop a general understanding of the behavior of the system without having to solve the equations of motion for every possible set of initial conditions.</p>
+<p>Finally, we often care less about particular trajectories and more about the general behavior of the system. For example, we might want to know if the system is stable, or if it will oscillate, or if it will spiral in or out. We seek to understand qualitatively different solutions to the equations of motion.</p>
+<p>In this week, we will take a step back and consider the general structure of the solutions to these equations. We will introduce the concept of a critical point, and we will discuss how the phase space of a system can be used to understand the behavior of the system.  This approach will help us broaden our understanding of the solutions to differential equations and the behavior of classical systems. It also gives us a new set of tools and ways of thinking about the systems that we have been studying.</p>
+<h3 id="example-a-nonlinear-1st-order-ode">Example: A Nonlinear 1st Order ODE</h3>
+<p>Consider the following first-order ordinary differential equation:</p>
+<p>$$\dot{x} = \sin x.$$</p>
+<p>Let&rsquo;s assume we want to find $x(t)$ for a given set of initial conditions $x_0$ at $t=t_0$. This equation is nonlinear, but we can make some progress by separating variables:</p>
+<p>$$\frac{dx}{\sin x} = dt.$$</p>
+<p>We can integrate both sides to get:</p>
+<p>$$\int \frac{dx}{\sin x} = \int dt.$$</p>
+<p>The integral on the left-hand side is one that we can look up:</p>
+<p>$$\int \frac{dx}{\sin x} = \ln\left|\csc\left(x\right) + \cot\left(x\right)\right| + C.$$</p>
+<p>Cool. So we have:</p>
+<p>$$t-t_0 = \ln\left|\csc\left(x\right) + \cot\left(x\right)\right| - \ln\left|\csc\left(x_0\right) + \cot\left(x_0\right)\right|,$$</p>
+<p>$$t-t_0 = \ln\left|\frac{\csc\left(x\right) + \cot\left(x\right)}{\csc\left(x_0\right) + \cot\left(x_0\right)}\right|.$$</p>
+<p>Well how do solve for $x(t)$? That&rsquo;s not so easy. And a harder question is: what does the motion look like?</p>
+<p>We need a new approach.</p>
+<h4 id="a-geometric-analysis">A Geometric Analysis</h4>
+<p>Let us instead plot the equation $\dot{x} = \sin x$ in the <a href="https://en.wikipedia.org/wiki/Phase_space">phase space</a> of the system. Here, we are plotting the velocity of the system as a function of the position of the system. This is a common approach to understanding the behavior of a system.</p>
+<p>In 1D, this plot is called a &lsquo;Flow on a Line&rsquo;. That is because we can characterize the behavior of the system by the direction of the flow of the system in the phase space. In this case, the flow is given by the function $\sin x$. A positive $\sin x$ means that the system is moving to the right, and a negative $\sin x$ means that the system is moving to the left. We plot it below with some additional information.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#f92672">-</span><span style="color:#ae81ff">7</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, <span style="color:#ae81ff">7</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, <span style="color:#ae81ff">1000</span>)
+</span></span><span style="display:flex;"><span>xdot <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>sin(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fig, ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">5</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>plot(x, xdot, <span style="color:#e6db74">&#39;k&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\dot</span><span style="color:#e6db74">{x}</span><span style="color:#e6db74"> = \sin(x)$&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>axhline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>axvline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot([<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, <span style="color:#f92672">-</span>np<span style="color:#f92672">.</span>pi, np<span style="color:#f92672">.</span>pi, <span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi], [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>], 
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#39;C1o&#39;</span>, 
+</span></span><span style="display:flex;"><span>         markersize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>         label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Stable fixed points&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot([<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi], [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">0</span>], 
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#39;C2o&#39;</span>, 
+</span></span><span style="display:flex;"><span>         markersize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>, 
+</span></span><span style="display:flex;"><span>         markerfacecolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;none&#39;</span>,
+</span></span><span style="display:flex;"><span>         markeredgewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>         markeredgecolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;C2&#39;</span>,
+</span></span><span style="display:flex;"><span>         label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Unstable fixed points&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot([<span style="color:#f92672">-</span><span style="color:#ae81ff">5</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, <span style="color:#f92672">-</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">7</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi], [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>], 
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#39;k&lt;&#39;</span>, 
+</span></span><span style="display:flex;"><span>         markersize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>         label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Flow to the left&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot([<span style="color:#f92672">-</span><span style="color:#ae81ff">7</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi], [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>], 
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#39;k&gt;&#39;</span>, 
+</span></span><span style="display:flex;"><span>         markersize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>         label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Flow to the right&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>legend(loc<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;upper right&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;x&#39;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\dot</span><span style="color:#e6db74">{x}</span><span style="color:#e6db74">$&#39;</span>, rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>grid()
+</span></span><span style="display:flex;"><span>xticks <span style="color:#f92672">=</span> [<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, <span style="color:#f92672">-</span><span style="color:#ae81ff">7</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, <span style="color:#f92672">-</span><span style="color:#ae81ff">5</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>np<span style="color:#f92672">.</span>pi, <span style="color:#f92672">-</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, np<span style="color:#f92672">.</span>pi, <span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, <span style="color:#ae81ff">5</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, <span style="color:#ae81ff">7</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi]
+</span></span><span style="display:flex;"><span>xticks_labels <span style="color:#f92672">=</span> [<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-4\pi$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\frac{7\pi}</span><span style="color:#e6db74">{2}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-3\pi$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\frac{5\pi}</span><span style="color:#e6db74">{2}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-2\pi$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\frac{3\pi}</span><span style="color:#e6db74">{2}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\pi$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\frac{\pi}</span><span style="color:#e6db74">{2}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$0$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\frac{\pi}</span><span style="color:#e6db74">{2}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\pi$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\frac{3\pi}</span><span style="color:#e6db74">{2}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$2\pi$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\frac{5\pi}</span><span style="color:#e6db74">{2}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$3\pi$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\frac{7\pi}</span><span style="color:#e6db74">{2}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$4\pi$&#39;</span>]
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_xticks(xticks)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_xticklabels(xticks_labels)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>xlim(<span style="color:#f92672">-</span><span style="color:#ae81ff">7</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, <span style="color:#ae81ff">7</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>ylim(<span style="color:#f92672">-</span><span style="color:#ae81ff">2.5</span>, <span style="color:#ae81ff">2.5</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
+</span></span></code></pre></div><p><img src="output_4_0.png" alt="png"></p>
+<p>The plot we have made is called a &lsquo;Phase Portrait&rsquo;. It is a plot of the velocity of the system as a function of the position of the system. The arrows indicate the direction of the flow of the system. The critical points of the system are the points where the flow is zero. These are the points where the system is at rest (i.e., $\dot{x} = 0$).</p>
+<p>In this case, the critical points are at $x = n\pi$, where $n$ is an integer. At these points, the system is at rest. The system will move to the right if $\dot{x} &gt; 0$ and to the left if $\dot{x} &lt; 0$. We have indicated that flow direction with arrows on the line.</p>
+<p>From those flow directions, we can also find the &lsquo;critical points&rsquo; of the motion. These are the points where the flow changes direction, and they are found by setting $\dot{x} = 0$. In this case, the critical points are at $x = n\pi$, where $n$ is an integer. In some cases, that point is stable (green solid circle) and in other cases, it is unstable (red open circle). You can see why from the flow directions; for stable points, the flow on both sides of the critical point is towards the critical point, and for unstable points, the flow on both sides of the critical point is away from the critical point.</p>
+<h4 id="what-does-the-motion-look-like">What does the motion look like?</h4>
+<p>We can see from the phase portrait, that motion that doesn&rsquo;t start on a critical point will eventually move towards the stable critical point. This is because the flow direction is always towards the stable critical point. We also can note that depending on the location of the particle to start, it will move to the left or right to reach the stable critical point. And we also notice that the motion is often accelerated up a to a maximum velocity and then decelerated down to zero velocity as it approaches the critical point &ndash; this is the sinusoidal nature of the velocity function.</p>
+<h3 id="another-example-a-polynomial-1st-order-ode">Another Example: A Polynomial 1st Order ODE</h3>
+<p>Consider instead the following first-order ordinary differential equation:</p>
+<p>$$\dot{x} = x^3 - x.$$</p>
+<p>We can find the critical points of this system by setting $\dot{x} = 0$:</p>
+<p>$$x^3 - x = 0,$$</p>
+<p>$$x(x^2 - 1) = 0,$$</p>
+<p>$$x(x-1)(x+1) = 0.$$</p>
+<p>So that there are three critical points: $x = 0$, $x = 1$, and $x = -1$. We can plot the phase portrait of this system below along with a little more information.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#f92672">-</span><span style="color:#ae81ff">7</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, <span style="color:#ae81ff">7</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, <span style="color:#ae81ff">1000</span>)
+</span></span><span style="display:flex;"><span>xdot <span style="color:#f92672">=</span> x<span style="color:#f92672">**</span><span style="color:#ae81ff">3</span><span style="color:#f92672">-</span>x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fig, ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">5</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>plot(x, xdot, <span style="color:#e6db74">&#39;k&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\dot</span><span style="color:#e6db74">{x}</span><span style="color:#e6db74"> = x^3 - x$&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>axhline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>axvline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot([<span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">0</span>], 
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#39;C1o&#39;</span>, 
+</span></span><span style="display:flex;"><span>         markersize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>         label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Stable fixed points&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot([<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>], [<span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">0</span>], 
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#39;C2o&#39;</span>, 
+</span></span><span style="display:flex;"><span>         markersize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>, 
+</span></span><span style="display:flex;"><span>         markerfacecolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;none&#39;</span>,
+</span></span><span style="display:flex;"><span>         markeredgewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>         markeredgecolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;C2&#39;</span>,
+</span></span><span style="display:flex;"><span>         label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Unstable fixed points&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot([<span style="color:#f92672">-</span><span style="color:#ae81ff">1.5</span>, <span style="color:#ae81ff">0.5</span>], [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>], 
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#39;k&lt;&#39;</span>, 
+</span></span><span style="display:flex;"><span>         markersize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>         label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Flow to the left&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot([<span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">1.5</span>], [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>], 
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#39;k&gt;&#39;</span>, 
+</span></span><span style="display:flex;"><span>         markersize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>         label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Flow to the right&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>legend(loc<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;upper left&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>xlim(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>ylim(<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;x&#39;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\dot</span><span style="color:#e6db74">{x}</span><span style="color:#e6db74">$&#39;</span>, rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>grid()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
+</span></span></code></pre></div><p><img src="output_7_0.png" alt="png"></p>
+<h4 id="what-does-the-motion-look-like-1">What does the motion look like?</h4>
+<p>From the phase potrait, we can see that for $|x_0| &gt; 1$, the solutions run off to $|x| \rightarrow |\pm \infty|$. Otherwise all solutions will approach the stable critical point at $x = 0$.</p>
+<p>Notice we did all this analysis without trying to solve the differential equation. We can understand the general behavior of the system by looking at the phase portrait. If we did try to solve it, we would find that the solutions are not easy to find in a closed form.</p>
+<p>$$\dot{x} = x^3 - x,$$</p>
+<p>$$\int \frac{dx}{x^3 - x} = \int dt,$$</p>
+<p>$$\int_{x_0}^{x(f)} \frac{dx}{x^3 - x} = t - 0.$$</p>
+<p>$$t = \dfrac{1}{2}\ln(1-x^2)|<em>{x_0}^{x(f)} -\ln(x)|</em>{x_0}^{x(f)},$$</p>
+<p>$$t= \dfrac{1}{2}\ln\left(\dfrac{1-x(f)^2}{1-x_0^2}\right) - \ln\left(\dfrac{x(f)}{x_0}\right).$$</p>
+<p>Again. OOF. That&rsquo;s a lot of work for a simple system.</p>
+<h3 id="summary">Summary</h3>
+<p>We still need some tools to deal with finding trajectories for systems that are not easy to solve. But let&rsquo;s pause for a minute and appreciate what we have done. Without solving the differential equation, we have could characterize all possible solutions.</p>
+<p>Now, the next step is to do this with 2nd order differential equations. The analogy changes from a &lsquo;Flow on a line&rsquo; to a &lsquo;Flow on a plane&rsquo;. Let&rsquo;s introduce that with a simple example.</p>
+<h2 id="the-harmonic-oscillator-gets-a-bad-rap">The Harmonic Oscillator Gets a Bad Rap</h2>
+<p>We&rsquo;ve shown that the harmonic oscillator is a simple system to solve. But let&rsquo;s consider the following 2nd order differential equation where the force is not linear. This is the classical pendulum equation of motion where we have removed the small angle approximation and dispensed with the parameters that control the motion ($\omega^2=1$).</p>
+<p>$$\ddot{x} = -\sin x.$$</p>
+<p>We will model this system in phase space, but let us first take the linear approximation of the system. We can do this by expanding the $\sin x$ term in a Taylor series:</p>
+<p>$$\sin x \approx x - \dfrac{x^3}{3!} + \dfrac{x^5}{5!} - \dfrac{x^7}{7!} + \ldots.$$</p>
+<p>If we keep only the first term, we get the linear harmonic oscillator:</p>
+<p>$$\ddot{x} = -x.$$</p>
+<p>Now, we transform the 2nd order differential equation into two 1st order differential equations:</p>
+<p>$$\dot{x} = v,$$
+$$\dot{v} = -x.$$</p>
+<p>This gives us a description of the motion in phase space. We can plot the phase portrait of this system by considering that every point in phase space $\langle x, v\rangle$ has an arrow that is represented by the change that occurs at that location $\langle \dot{x}, \dot{v} \rangle = \langle v, -x\rangle$. This is a <em>strange</em> concept, but the logic is that how $x$ and $v$ change at a given point in phase space is given by the velocity vector at that point and it depends on the location that you are at in phase space. Let&rsquo;s plot this in parts below.</p>
+<h4 id="the-x0-line">The $x=0$ line</h4>
+<p>Let&rsquo;s first consider the vertical axis $x=0$. Note that we can directly compute this:</p>
+<p>$$\langle \dot{x}, \dot{v} \rangle = \langle v,0 \rangle.$$</p>
+<p>So in the phase space, the arrows will be completely horizontal and will get larger as you move away from the origin.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">returnPhase</span>(x, xdot):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (xdot, <span style="color:#f92672">-</span>x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Points along the vertical axis</span>
+</span></span><span style="display:flex;"><span>v <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros_like(v)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Xompute the phase portrait</span>
+</span></span><span style="display:flex;"><span>xdot, ydot <span style="color:#f92672">=</span> returnPhase(x, v)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Plot the phase portrait as arrows</span>
+</span></span><span style="display:flex;"><span>fig, ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>))
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>quiver(x, v, xdot, ydot)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>axhline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>axvline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$x$&#39;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\dot</span><span style="color:#e6db74">{x}</span><span style="color:#e6db74">$&#39;</span>, rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>grid()
+</span></span></code></pre></div><p><img src="output_10_0.png" alt="png"></p>
+<h4 id="the-v0-line">The $v=0$ line</h4>
+<p>Similarly, we can compute the arrows on the horizontal axis $v=0$:</p>
+<p>$$\langle \dot{x}, \dot{v} \rangle = \langle 0,-x \rangle.$$</p>
+<p>So these will be completely vertical and will get larger as you move away from the origin. The negative sign indicates that the arrows will point up on the left side and down on the right side. Let&rsquo;s plot that.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">returnPhase</span>(x, xdot):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (xdot, <span style="color:#f92672">-</span>x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Points along the horizontal axis</span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>v <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros_like(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Xompute the phase portrait</span>
+</span></span><span style="display:flex;"><span>xdot, ydot <span style="color:#f92672">=</span> returnPhase(x, v)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Plot the phase portrait as arrows</span>
+</span></span><span style="display:flex;"><span>fig, ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>))
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>quiver(x, v, xdot, ydot)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>axhline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>axvline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$x$&#39;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\dot</span><span style="color:#e6db74">{x}</span><span style="color:#e6db74">$&#39;</span>, rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>grid()
+</span></span></code></pre></div><p><img src="output_12_0.png" alt="png"></p>
+<h4 id="putting-it-all-together">Putting it all together</h4>
+<p>We could keep plotting like this and we will begin to connect the dots into a phase potrait. We have already built the code to do this in general above, but we need to make use of the &lsquo;meshgrid&rsquo; function in numpy to make this work. <a href="https://numpy.org/doc/stable/reference/generated/numpy.meshgrid.html">Meshgrid</a> is a function that generates a grid of points in 2D space. We can use it to take our 2 arrays for the space we are interested in and generate a grid of points that we can use to compute the arrows at each point. Let&rsquo;s plot the full phase portrait of the system below.</p>
+<p>We also introduce the <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.streamplot.html">streamplot</a> function in matplotlib. This function connects the lines a little more smoothly and gives a better representation of the flow of the system.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">returnPhase</span>(x, xdot):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (xdot, <span style="color:#f92672">-</span>x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Points along the horizontal axis</span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>v <span style="color:#f92672">=</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use meshgrid to create a grid</span>
+</span></span><span style="display:flex;"><span>X, V <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>meshgrid(x, v)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Compute the phase portrait</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># NOTE WE ARE NOW USING X, V</span>
+</span></span><span style="display:flex;"><span>xdot, ydot <span style="color:#f92672">=</span> returnPhase(X, V)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Plot the phase portrait as arrows and using a streamplot</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fig, (ax1, ax2) <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">5</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>streamplot(X, V, xdot, ydot, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;k&#39;</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>title<span style="color:#f92672">.</span>set_text(<span style="color:#e6db74">&#39;SHO Streamplot&#39;</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>axhline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>axvline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$x$&#39;</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\dot</span><span style="color:#e6db74">{x}</span><span style="color:#e6db74">$&#39;</span>, rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>grid()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax2<span style="color:#f92672">.</span>quiver(X, V, xdot, ydot)
+</span></span><span style="display:flex;"><span>ax2<span style="color:#f92672">.</span>title<span style="color:#f92672">.</span>set_text(<span style="color:#e6db74">&#39;SHO Quiver&#39;</span>)
+</span></span><span style="display:flex;"><span>ax2<span style="color:#f92672">.</span>axhline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>ax2<span style="color:#f92672">.</span>axvline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>ax2<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$x$&#39;</span>)
+</span></span><span style="display:flex;"><span>ax2<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\dot</span><span style="color:#e6db74">{x}</span><span style="color:#e6db74">$&#39;</span>, rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>ax2<span style="color:#f92672">.</span>grid()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
+</span></span></code></pre></div><p><img src="output_14_0.png" alt="png"></p>
+<h4 id="what-does-the-motion-look-like-2">What does the motion look like?</h4>
+<p>Well, it&rsquo;s the simple harmonic oscillator. The motion is periodic and sinusoidal. It&rsquo;s bounded in ellipses of increasing energy as you go outwards. The critical points are at the origin, where the system is at rest, but no trajectory will ever reach the origin except for the one that starts there. The system will oscillate back and forth forever. Total energy for any trajectory is conserved (that&rsquo;s why the ellipses are concentric). Each loop characterizes a full period of the motion for a given set of initial conditions. All initial conditions will lead to periodic motion, and all can be characterized by the phase portrait.</p>
+<h5 id="how-do-we-know-the-phase-trajectories-are-ellipses">How do we know the phase trajectories are ellipses?</h5>
+<p>The energy of the system is given by:</p>
+<p>$$E = \dfrac{1}{2}mv^2 + \dfrac{1}{2}kx^2.$$</p>
+<p>For any one trajectory, the energy is conserved. So we can write:</p>
+<p>$$E = \dfrac{1}{2}mv^2 + \dfrac{1}{2}kx^2 = \text{constant}.$$</p>
+<p>This is the equation of an ellipse. We can rewrite it as:</p>
+<p>$$1 = \dfrac{v^2}{2E/m} + \dfrac{x^2}{2E/k}.$$</p>
+<p>This ellipse is centered at the origin and has a semi-major axis of $\sqrt{2E/k}$ and a semi-minor axis of $\sqrt{2E/m}$. The energy of the system determines the size of the ellipse. The larger the energy, the larger the ellipse.</p>
+<h4 id="returning-to-the-pendulum">Returning to the Pendulum</h4>
+<p>In the pendulum problem, we have a second order non linear differential equation, which we can write as two first order equations:</p>
+<p>$$\dot{x} = v,$$
+$$\dot{v} = -\sin x.$$</p>
+<p>We can now use the infrastructure we have built to plot the phase portrait of the pendulum. We will plot the phase portrait of the pendulum below.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">returnPhase</span>(x, xdot):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (xdot, <span style="color:#f92672">-</span>np<span style="color:#f92672">.</span>sin(x))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Points along the horizontal axis</span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">20</span>)
+</span></span><span style="display:flex;"><span>v <span style="color:#f92672">=</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use meshgrid to create a grid</span>
+</span></span><span style="display:flex;"><span>X, V <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>meshgrid(x, v)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Compute the phase portrait</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># NOTE WE ARE NOW USING X, V</span>
+</span></span><span style="display:flex;"><span>xdot, ydot <span style="color:#f92672">=</span> returnPhase(X, V)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Plot the phase portrait as arrows and using a streamplot</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fig, ax1 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">6</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>streamplot(X, V, xdot, ydot, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;k&#39;</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>plot([<span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">0</span>], <span style="color:#e6db74">&#39;C1o&#39;</span>, 
+</span></span><span style="display:flex;"><span>         markersize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>, 
+</span></span><span style="display:flex;"><span>         label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Stable fixed point&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>plot([<span style="color:#f92672">-</span>np<span style="color:#f92672">.</span>pi, np<span style="color:#f92672">.</span>pi], [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>], <span style="color:#e6db74">&#39;C2o&#39;</span>, 
+</span></span><span style="display:flex;"><span>         markersize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>, 
+</span></span><span style="display:flex;"><span>         markerfacecolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;none&#39;</span>,
+</span></span><span style="display:flex;"><span>         markeredgewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>         label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Unstable fixed points&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>title<span style="color:#f92672">.</span>set_text(<span style="color:#e6db74">&#39;Physical Pendulum Streamplot&#39;</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>axhline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>axvline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$x$&#39;</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\dot</span><span style="color:#e6db74">{x}</span><span style="color:#e6db74">$&#39;</span>, rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>grid()
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>legend()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
+</span></span></code></pre></div><p><img src="output_17_0.png" alt="png"></p>
+<h4 id="what-does-the-motion-look-like-3">What does the motion look like?</h4>
+<p>Now, we see a more complex picture of the pendulum. The motion is still oscillatory and periodic, but it is definitely not sinusoidal. For very small choices of initial conditions, the motion is sinusoidal; we can zoom in an see we get near ellipses.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">returnPhase</span>(x, xdot):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> (xdot, <span style="color:#f92672">-</span>np<span style="color:#f92672">.</span>sin(x))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Points along the horizontal axis</span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">20</span>)
+</span></span><span style="display:flex;"><span>v <span style="color:#f92672">=</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use meshgrid to create a grid</span>
+</span></span><span style="display:flex;"><span>X, V <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>meshgrid(x, v)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Compute the phase portrait</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># NOTE WE ARE NOW USING X, V</span>
+</span></span><span style="display:flex;"><span>xdot, ydot <span style="color:#f92672">=</span> returnPhase(X, V)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Plot the phase portrait as arrows and using a streamplot</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fig, ax1 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">6</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>streamplot(X, V, xdot, ydot, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;k&#39;</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>plot([<span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">0</span>], <span style="color:#e6db74">&#39;C1o&#39;</span>, 
+</span></span><span style="display:flex;"><span>         markersize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>, 
+</span></span><span style="display:flex;"><span>         label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Stable fixed point&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ax1.plot([-np.pi, np.pi], [0, 0], &#39;C2o&#39;, </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#          markersize=12, </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#          markerfacecolor=&#39;none&#39;,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#          markeredgewidth=4,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#          label=&#39;Unstable fixed points&#39;)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>title<span style="color:#f92672">.</span>set_text(<span style="color:#e6db74">&#39;Physical Pendulum Streamplot with zoom&#39;</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>axhline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>axvline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$x$&#39;</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\dot</span><span style="color:#e6db74">{x}</span><span style="color:#e6db74">$&#39;</span>, rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>grid()
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>legend()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
+</span></span></code></pre></div><p><img src="output_19_0.png" alt="png"></p>
+<p>So we see that for small initial conditions, we recover the SHO. But for most initial conditions, we have oscillations that are not sinusoidal. Moreover, we have a series of high energy trajectories that are not bounded. These are the ones that continue to allow the pendulum to rotate over the top of itself. This is a new type of motion that we did not see in the SHO.</p>
+<h3 id="what-about-damped-motion">What about damped motion?</h3>
+<p>We can also consider the case where we add a damping term to the pendulum equation of motion:</p>
+<p>$$\ddot{x} = -\sin x - \gamma \dot{x}.$$</p>
+<p>Or in the approximate form:</p>
+<p>$$\ddot{x} = - x - \gamma \dot{x}.$$</p>
+<p>In either case, we can write this as two first order equations:</p>
+<p><strong>Exact Form</strong></p>
+<p>$$\dot{x} = v,$$
+$$\dot{v} = -\sin x - \gamma v.$$</p>
+<p><strong>Approximate Form</strong></p>
+<p>$$\dot{x} = v,$$
+$$\dot{v} = -x - \gamma v.$$</p>
+<p>When we plot this phase portrait we will find a new type of motion and a new type of critical point &ndash; an attractor. This is a point in phase space that all trajectories will eventually approach. We leave that plot as an exercise.</p>
+
+
+    
+    <nav style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                
+                <a href="/course-materials/08_notes/">← 08 - Oscillations, Cycles, and Nature&#39;s Recurrences</a>
+                
+            </div>
+            <div style="text-align: right;">
+                
+                <a href="/course-materials/06_notes/">06 - Nature Often Seeks Stability →</a>
+                
+            </div>
+        </div>
+    </nav>
+    
+</article>
+
+    </main>
+
+    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
+        
+        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
+        
+        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
+    </footer>
+</body>
+</html>

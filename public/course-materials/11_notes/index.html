@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=54896&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11 - Reformulating Classical Mechanics using the Calculus of Variations | Classical Mechanics</title>
+    <meta name="description" content="Classical Mechanics">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+    
+    <link rel="stylesheet" href="/css/accessibility.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        nav {
+            background: #f4f4f4;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #222;
+            margin-top: 1.5em;
+        }
+        h1 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "SF Mono", Monaco, Consolas, monospace;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: #0066cc;
+        }
+        .menu-home {
+            font-weight: bold;
+            margin-right: 30px;
+        }
+    </style>
+</head>
+<body>
+    <nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li class="menu-home"><a href="/">Classical Mechanics</a></li>
+            
+            
+            <li><a href="/course-information/">Course Information</a></li>
+            
+            
+            
+            <li><a href="/course-materials/">Course Materials</a></li>
+            
+            
+            
+            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
+            
+            
+            
+            <li><a href="/programming-resources/">Programming Resources</a></li>
+            
+            
+        </ul>
+    </nav>
+
+    <main role="main">
+        
+<article>
+    <header>
+        <h1>11 - Reformulating Classical Mechanics using the Calculus of Variations</h1>
+        
+    </header>
+
+    <p><a href="https://github.com/dannycab/phy321msu/issues">![Report Issues](https://img.s* hields.io/badge/report%20issues-GitHub-blue)</a>
+<a href="https://github.com/dannycab/phy321msu/issues"><img src="https://img.shields.io/github/issues/dannycab/phy321msu" alt="GitHub Issues"></a></p>
+<h2 id="learning-goals">Learning Goals</h2>
+<p>:::{admonition} After studying Lesson 11, you should be able to:
+:class: note</p>
+<ul>
+<li>Explain the conceptual idea of the calculus of variations and its application to classical mechanics, including the conceptual outline of the derivation of the Euler-Lagrange equation.</li>
+<li>Analyze the shortest path problem in a plane and derive the equation of a straight line using the Euler-Lagrange equation.</li>
+<li>Apply the calculus of variations to derive Snell&rsquo;s Law, demonstrating the relationship between angles and velocities in different media.</li>
+<li>Solve the Brachistochrone problem to determine the cycloid curve as the path of least time for a bead sliding under gravity.</li>
+<li>Use Python to visualize solutions to variational problems, including plotting paths and interpreting their physical significance.</li>
+<li>:::</li>
+</ul>
+<p>We are eventually going to develop some deep principles of classical mechanics that will connect for us the motion of particles and the forces they experience to the energy that moves between aspects of the system. This formulation of mechanics is called <a href="https://en.wikipedia.org/wiki/Lagrangian_mechanics">Lagrangian Mechanics</a>. It is a powerful and elegant way to describe the motion of particles and systems. It is based on the <a href="https://en.wikipedia.org/wiki/Calculus_of_variations">Calculus of Variations</a>, a field of mathematics that is concerned with finding the path that minimizes or maximizes (called &ldquo;extremization&rdquo;) a certain quantity.</p>
+<p>The conceptual idea of Lagrangian mechanics is to describe the motion of a system by defining a function called the <strong>Lagrangian</strong>. Under this framework, the stationary points (or paths) of the <a href="https://en.wikipedia.org/wiki/Action_(physics)">action integral</a>, which is the integral of the Lagrangian over time, correspond to the actual motion of the system. This means that if you can find the path that minimizes or maximizes this action, you can determine the equations of motion for the system. We will come back to this next week when we derive the Lagrangian equations of motion. But understand that we are seeking to extremize a particular integral to find the path that a system will take through configuration space.</p>
+<p>Our examples will start with simple systems, like the motion on a plane - where we will prove a line is the shortest path between two points (also known as a geodesic). We will also recover a form of <a href="https://en.wikipedia.org/wiki/Snell%27s_law">Snell&rsquo;s Law</a> of refraction, which describes how light bends when it passes through different media. We will use running from the shoreline to a point in the water as an example of how to apply these principles. Lastly, we will look at the <a href="https://en.wikipedia.org/wiki/Brachistochrone_problem">Brachistochrone problem</a>, which is the problem of finding the curve down which a bead will slide (without friction) from one point to another in the shortest time. This is a classic problem in the calculus of variations and leads us to the cycloid curve.</p>
+<p>This section is mathematically intensive and will require you to have a solid understanding of calculus, including differentiation and integration. This mathematics is also very powerful and underlies how we can develop equations of motion in particular systems. But is also describes the shape of surfaces like bubbles and droplets. The video below is a nice introduction to the concept of Calculus of Variations and its relation to <a href="https://en.wikipedia.org/wiki/Minimal_surface">minimal surfaces</a>.</p>
+<h3 id="the-math-of-bubbles-17-minute-video">The Math of Bubbles (17 minute video)</h3>
+<p>In the video below, we learn about the <a href="https://en.wikipedia.org/wiki/Soap_bubble">Soap Bubble Problem</a>, which is another classic problem in the calculus of variations. The goal is to find the shape of a soap bubble that minimizes surface area for a given volume.</p>
+<div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/8SABptOYUVk"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    title="YouTube video player"
+    loading="lazy">
+  </iframe>
+</div>
+
+<p>Source: <a href="https://youtube.com/watch?v=8SABptOYUVk">https://youtube.com/watch?v=8SABptOYUVk</a></p>
+<h2 id="the-euler-lagrange-equation">The Euler-Lagrange Equation</h2>
+<p>As we will use it, the <a href="https://en.wikipedia.org/wiki/Calculus_of_variations">Calculus of Variations</a> foucses on finding the conditions of extrema for quantities that can be expressed as an integral. This might be a very abstract concept, so we will start with a simple example.</p>
+<p>This approach might seem a bit alien at first, but it turns out to be an interesting way to develop an equivalent formulation of mechanics. Moreover, the Calculus of Variations is a powerful tool in many fields, and forms the basis for <a href="https://en.wikipedia.org/wiki/Lagrangian_mechanics">Lagrangian mechanics</a>.</p>
+<p>To do this, we will derive (in 1D) the <a href="https://en.wikipedia.org/wiki/Euler%E2%80%93Lagrange_equation">Euler-Lagrange equation</a>. This equation gives us a way to find the function that makes the integral of a given functional stationary (i.e., a local maximum or minimum).</p>
+<h3 id="canonical-conceptualization---finding-the-shortest-path-in-a-plane">Canonical Conceptualization - Finding the Shortest Path in a Plane</h3>
+<p>Using the Calculus of Variations, we can show that the shortest path between two points in a plane is a straight line. This is a classic example, but it illustrates the concept well. Consider a general path in two-dimensional space that connects two points, say $s_1 = \langle x_1, y_1 \rangle$ and $s_2 = \langle x_2, y_2 \rangle$. We can represent this path as a function $y(x)$. The figure below illustrates the setup.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x1, x2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">5</span> 
+</span></span><span style="display:flex;"><span>xvals <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(x1, x2, <span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ygeneric <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>sin((xvals <span style="color:#f92672">-</span> x1) <span style="color:#f92672">/</span> (x2 <span style="color:#f92672">-</span> x1) <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>) <span style="color:#f92672">*</span> (<span style="color:#ae81ff">3</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">+</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">3</span>) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>xvals<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>y1, y2 <span style="color:#f92672">=</span> ygeneric[<span style="color:#ae81ff">0</span>], ygeneric[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fig, ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>plot(xvals, ygeneric, label<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;Generic Path, $y(x)$&#39;</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;C0&#39;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>plot([x1, x2], [y1, y2], label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Shortest Path&#39;</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;C1&#39;</span>, linestyle<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--&#39;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>plot(x1, y1, <span style="color:#e6db74">&#39;C2o&#39;</span>)  <span style="color:#75715e"># Point 1</span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>plot(x2, y2, <span style="color:#e6db74">&#39;C2o&#39;</span>)  <span style="color:#75715e"># Point 2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># blank ticks</span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_xticks([])  <span style="color:#75715e"># Remove x ticks</span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_yticks([])  <span style="color:#75715e"># Remove y ticks</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set labels and title</span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;x&#39;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;y&#39;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;Shortest Path Between Two Points in a Plane&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add a legend to the plot</span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>legend()
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Show the plot</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>grid(<span style="color:#66d9ef">True</span>)  <span style="color:#75715e"># Add grid for better readability</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()  <span style="color:#75715e"># Display the plot</span>
+</span></span></code></pre></div><p><img src="output_4_0.png" alt="png"></p>
+<p>The blue solid line is the &lsquo;generic path&rsquo; that connects the two points $s_1$ and $s_2$. The green dotted line is the solution that we expect to get when we ask, &ldquo;what is the shortest path between these two points?&rdquo;</p>
+<h3 id="setup-of-the-problem">Setup of the Problem</h3>
+<p>Let&rsquo;s take a generic segment of the path $ds$ and express it in terms of its differential elements:</p>
+<p>$$ds = \sqrt{dx^2 + dy^2}.$$</p>
+<p>The length of the path from $s_1$ to $s_2$ can be expressed as an integral:</p>
+<p>$$l = \int_{s_1}^{s_2} ds$$</p>
+<p>We want to minimize this length, $l$, which is the total length of the path. To do this, we are attempting to minimize the integral of $ds$ over the path. This is where the Calculus of Variations comes in.</p>
+<p>Let&rsquo;s write the expression for $ds$ in a more convenient form. We can factor out the $dx$ term:</p>
+<p>$$ds = \sqrt{dx^2 + dy^2} = dx \sqrt{1 + \left(\frac{dy}{dx}\right)^2} = dx = \sqrt{1 + y&rsquo;(x)^2}$$</p>
+<p>where $y&rsquo;(x) = \frac{dy}{dx}$ is the derivative of $y$ with respect to $x$. So the integral for the length of the path becomes:</p>
+<p>$$l = \int_{x_1}^{x_2} dx \sqrt{1 + y&rsquo;(x)^2}.$$</p>
+<p>The function $y(x)$ defines the path that minimizes the length $l$. To find this path, we assume an incorrect function $Y(x)$ that is close to the true path $y(x)$, and we can express the difference between them as $\alpha\eta(x)$:</p>
+<p>$$Y(x) = \underbrace{y(x)}<em>{\textrm{correct}}+ \underbrace{\alpha\eta(x)}</em>{\textrm{minimize}}$$</p>
+<p>Note that $Y(x_1) = y(x_1)$ and $Y(x_2) = y(x_2)$, so the endpoints of the path are fixed. The function $\eta(x)$ represents a small perturbation to the path, and $\alpha$ is a small parameter that we will use to control the size of the perturbation.</p>
+<h3 id="deriving-the-euler-lagrange-equation">Deriving the Euler-Lagrange Equation</h3>
+<p>The mathematical derivation involves extremizing the integral using a perturbation approach. The generic integral we are trying to minimize is for a function of the form:</p>
+<p>$$f(y(x),y&rsquo;(x),x)),$$</p>
+<p>where $f$ is a function of $y$, its derivative $y&rsquo;$, and the independent variable $x$. So that the integral we are minimizing can be expressed as:</p>
+<p>$$S=\int_{x_1}^{x_2} f(y(x),y&rsquo;(x),x) dx.$$</p>
+<p>We assume $y(x)$ minimizes the integral $S$. So that any function $Y(x) = y(x) + \alpha\eta(x)$ produces a larger value for $S$,</p>
+<p>$$\int_{s_1}^{s_2} f(Y(x),Y&rsquo;(x),x) dx &gt; \int_{s_1}^{s_2} f(y(x),y&rsquo;(x),x) dx.$$</p>
+<p>Because we are looking for a minimum, we notice that when $\alpha = 0$, we have $Y(x) = y(x)$, and the integral is at its minimum. To find the extremum, we can take the derivative of the integral with respect to $\alpha$ and set it to zero:</p>
+<p>$$\dfrac{dS}{d\alpha}|_{\alpha=0} = 0.$$</p>
+<p>We start that analysis by differentiating the integral with respect to $\alpha$:</p>
+<p>$$\begin{align}
+S &amp;= \int_{x_1}^{x_2} f(Y(x),Y&rsquo;(x),x) dx \
+&amp;= \int_{x_1}^{x_2} f(y(x) + \alpha\eta(x), y&rsquo;(x) + \alpha\eta&rsquo;(x), x) dx.\
+\end{align}$$</p>
+<p>We can now differentiate.</p>
+<p>$$\begin{align}
+\dfrac{dS}{d\alpha} &amp;= \int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial Y}\dfrac{dY}{d\alpha} + \dfrac{\partial f}{\partial Y&rsquo;}\dfrac{dY&rsquo;}{d\alpha}+ \dfrac{\partial f}{\partial x}\dfrac{dx}{d\alpha} \right] dx.\
+\end{align}$$</p>
+<p>Let&rsquo;s take each term in turn. The first term is:</p>
+<p>$$\dfrac{df}{dY}\dfrac{dY}{d\alpha}.$$</p>
+<p>Let&rsquo;s focus on the second part of that term:</p>
+<p>$$\dfrac{dY}{d\alpha} = \dfrac{d}{d\alpha}\left[y(x) + \alpha\eta(x)\right] = \eta(x).$$</p>
+<p>Let&rsquo;s look at the second term:</p>
+<p>$$\dfrac{dY&rsquo;}{d\alpha}.$$</p>
+<p>Again, let&rsquo;s focus on the second part of that term:</p>
+<p>$$\dfrac{dY&rsquo;}{d\alpha} = \dfrac{d}{d\alpha}\left[y&rsquo;(x) + \alpha\eta&rsquo;(x)\right] = \eta&rsquo;(x).$$</p>
+<p>Lastly, the third term:</p>
+<p>$$\dfrac{\partial f}{\partial x}\dfrac{dx}{d\alpha}=0.$$</p>
+<p>This term is a bit different. The $dx$ term is independent of $\alpha$, so we can treat it as a constant with respect to $\alpha$. Therefore, this term will not contribute to the derivative with respect to $\alpha$, and we can ignore it in our analysis.</p>
+<p>Putting it all together, we have:</p>
+<p>$$\begin{align}
+\dfrac{dS}{d\alpha} &amp;= \int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial Y}\eta(x) + \dfrac{\partial f}{\partial Y&rsquo;}\eta&rsquo;(x) \right] dx.\
+\end{align}$$</p>
+<p>Our expression is still in terms of $Y(x)$, the incorrect function. We want to express it in terms of $y(x)$, the correct function. Let&rsquo;s look at the derivatives $\dfrac{\partial f}{\partial Y}$ and $\dfrac{\partial f}{\partial Y&rsquo;}$. We can use the chain rule to express these derivatives in terms of $y(x)$:</p>
+<p>$$\begin{align}
+\dfrac{\partial f}{\partial Y} &amp;= \dfrac{\partial f}{\partial y}\dfrac{\partial y}{\partial Y} = \dfrac{\partial f}{\partial y},\
+\dfrac{\partial f}{\partial Y&rsquo;} &amp;= \dfrac{\partial f}{\partial y&rsquo;}\dfrac{\partial y&rsquo;}{\partial Y&rsquo;} = \dfrac{\partial f}{\partial y&rsquo;}.\
+\end{align}$$</p>
+<p><strong>Why?</strong> Because $\dfrac{\partial y}{\partial Y} = 1$ and $\dfrac{\partial y&rsquo;}{\partial Y&rsquo;} = 1$ when we are differentiating with respect to the correct function $y(x)$. This means that we can express the derivatives in terms of the correct function $y(x)$.</p>
+<p>$$\begin{align}
+\dfrac{dS}{d\alpha} &amp;= \int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial y}\eta(x) + \dfrac{\partial f}{\partial y&rsquo;}\eta&rsquo;(x) \right] dx.\
+\end{align}$$</p>
+<p>We are seeking $\dfrac{dS}{d\alpha}$ at $\alpha = 0$, so we set the integral to zero:</p>
+<p>$$\begin{align}
+\int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial y}\eta(x) + \dfrac{\partial f}{\partial y&rsquo;}\eta&rsquo;(x) \right] dx = 0.\
+\end{align}$$</p>
+<h4 id="integration-by-parts">Integration by Parts</h4>
+<p>Now to deal with the integral here, we can use integration by parts:</p>
+<p>$$\int u&rsquo;v dx = [uv] - \int u v&rsquo; dx$$</p>
+<p>The first term $[uv]$ is called the &ldquo;surface term&rdquo; because it is the result of the integral and is evaluated at the boundaries of the integral, $x_1$ and $x_2$. We will apply integration by parts only to the second term in the integral.</p>
+<p>Here, we note $u = \eta(x)$ and $v = \dfrac{\partial f}{\partial y&rsquo;}$. Then, we can express the second term in the integral as follows:</p>
+<p>$$\begin{align}
+\int_{x_1}^{x_2} \eta&rsquo;(x) \dfrac{\partial f}{\partial y&rsquo;} dx &amp;= \underbrace{\left[ \eta(x) \dfrac{\partial f}{\partial y&rsquo;} \right]<em>{x_1}^{x_2}}</em>{\eta(x_1)=\eta(x_2)=0} - \int_{x_1}^{x_2} \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y&rsquo;} \right) dx\
+&amp;= - \int_{x_1}^{x_2} \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y&rsquo;} \right) dx
+\end{align}$$</p>
+<p>Notice that the surface term evaluates to zero because we have fixed the endpoints of the path, so $\eta(x_1) = \eta(x_2) = 0$.  We put this all together to get:</p>
+<p>$$\begin{align}
+\dfrac{dS}{d\alpha} &amp;= \int_{x_1}^{x_2}\left[ \eta(x)\dfrac{\partial f}{\partial y} - \eta(x) \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y&rsquo;} \right) \right] dx = 0.\
+&amp; = \int_{x_1}^{x_2} \eta(x) \left[ \dfrac{\partial f}{\partial y} - \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y&rsquo;} \right) \right] dx = 0.\
+\end{align}$$</p>
+<div class="admonition admonition-important " role="note" aria-label="Important"><p class="admonition-title">The last statement is true for any arbitrary function $\eta(x)$, so we can conclude that the term in square brackets must be zero:</p><div class="admonition-content">
+    <p>$$\dfrac{\partial f}{\partial y} - \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y&rsquo;} \right) = 0.$$</p>
+<p>This is the <strong><a href="https://en.wikipedia.org/wiki/Euler%E2%80%93Lagrange_equation">Euler-Lagrange equation</a></strong> for a 1D problem.</p>
+
+  </div>
+</div>
+
+<h3 id="back-to-the-shortest-path-example">Back to the Shortest Path Example</h3>
+<p>Now let&rsquo;s apply the Euler-Lagrange equation to our original problem of finding the shortest path between two points in a plane. We have:</p>
+<p>$$l = \int_{x_1}^{x_2} \sqrt{1 + y&rsquo;(x)^2} dx.$$</p>
+<p>Here, we can identify our function $f$ as:</p>
+<p>$$f(y(x), y&rsquo;(x), x) = \sqrt{1 + y&rsquo;(x)^2}.$$</p>
+<p>Let&rsquo;s apply the Euler-Lagrange equation to this function.</p>
+<p>$$\dfrac{\partial f}{\partial y} - \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y&rsquo;} \right) = 0.$$</p>
+<p>We take the derivatives:</p>
+<p>$$\dfrac{\partial f}{\partial y} = 0$$</p>
+<p>since $f$ does not depend on $y$, only on $y&rsquo;$. Now let&rsquo;s compute the second term:</p>
+<p>$$\begin{align}
+\dfrac{\partial f}{\partial y&rsquo;} &amp;= \dfrac{\partial}{\partial y&rsquo;}\left( \sqrt{1 + y&rsquo;(x)^2} \right)\
+&amp;= \dfrac{1}{2} \left(1 + y&rsquo;(x)^2\right)^{-1/2} 2y&rsquo;(x)\
+&amp;= \frac{y&rsquo;(x)}{\sqrt{1 + y&rsquo;(x)^2}}.\
+\end{align}$$</p>
+<p>Let&rsquo;s put all this together:</p>
+<p>$$\begin{align}
+0 &amp;= \dfrac{\partial f}{\partial y} - \dfrac{d}{dx}\left( \dfrac{\partial f}{\partial y&rsquo;} \right)\
+0 &amp;= 0 - \dfrac{d}{dx}\left(\frac{y&rsquo;(x)}{\sqrt{1 + y&rsquo;(x)^2}}\right).\
+\end{align}$$</p>
+<p>This means that,</p>
+<p>$$\dfrac{d}{dx}\left(\frac{y&rsquo;(x)}{\sqrt{1 + y&rsquo;(x)^2}}\right) = 0$$</p>
+<p>This implies that:</p>
+<p>$$\frac{y&rsquo;(x)}{\sqrt{1 + y&rsquo;(x)^2}} = C = \textrm{a constant}.$$</p>
+<p>Or rearranging gives us:</p>
+<p>$$\begin{align}
+y&rsquo;(x) &amp;= C\sqrt{1 + y&rsquo;(x)^2}\
+y&rsquo;(x)^2 &amp;= C^2(1 + y&rsquo;(x)^2)\
+(1 - C^2)y&rsquo;(x)^2 &amp;= C^2\
+y&rsquo;(x)^2 &amp;= \frac{C^2}{1 - C^2}\
+y&rsquo;(x) &amp;= \pm \sqrt{\frac{C^2}{1 - C^2}}\
+\end{align}$$</p>
+<p>So that, $y&rsquo;(x)$ is a constant, call it $m$, which produces a linear solution.</p>
+<p>$$\dfrac{dy}{dx} = \sqrt{\frac{C^2}{1 - C^2}} = m$$</p>
+<p>Integrating gives us:</p>
+<p>$$y(x) = mx + b$$</p>
+<p>where $b$ is a constant of integration. This is the equation of a straight line!</p>
+<h3 id="example-snells-law">Example: Snell&rsquo;s Law</h3>
+<p>Let&rsquo;s assume you are walking on the beach and need to get to a location in the water quickly. Where do you enter the water to minimize the time it takes to reach the location in the water? This is a classic problem in physics and can be solved using the Calculus of Variations.</p>
+<p>Consider the picture below where you can move at a speed $v_1$ on the shore and a speed $v_2$ in the water. We know that $v_1 &gt; v_2$, so you can move faster on the shore than in the water. We aim to minimize the time it takes to reach the point $\langle x_2, y_2 \rangle$ in the water from point $\langle x_1, y_1 \rangle$ on the shore. We take the shoreline to be a line at $x = 0$. and the location we cross the shoreline is $\langle 0, y \rangle$.</p>
+<p><img src="/images/notes/week11/snells_shore.png" alt="Snell&rsquo;s Law Diagram"></p>
+<p>Notice the angle that we approach the shoreline at, $\theta_1$, and the angle that we approach the target in the water, $\theta_2$.</p>
+<p>The total time to travel from $\langle x_1, y_1 \rangle$ to $\langle 0, y \rangle$ and then to $\langle x_2, y_2 \rangle$ is:</p>
+<p>$$T = t_1 + t_2 = \dfrac{d_1}{v_1} + \dfrac{d_2}{v_2}$$</p>
+<p>where $d_1$ is the distance from $\langle x_1, y_1 \rangle$ to $\langle 0, y \rangle$, and $d_2$ is the distance from $\langle 0, y \rangle$ to $\langle x_2, y_2 \rangle$. We can write those distances in terms of the coordinates:</p>
+<p>$$d_1 = \sqrt{x_1^2 + (y - y_1)^2}$$
+$$d_2 = \sqrt{x_2^2 + (y_2 - y)^2}$$</p>
+<p>This gives us:</p>
+<p>$$T = \dfrac{\sqrt{x_1^2 + (y - y_1)^2}}{v_1} + \dfrac{\sqrt{x_2^2 + (y_2 - y)^2}}{v_2}.$$</p>
+<p>We want to minimize this time, $T$, by choosing the optimal point $y$ where we cross the shoreline. We compute the derivative of $T$ with respect to $y$ and set it to zero:</p>
+<p>$$\dfrac{dT}{dy} = 0$$</p>
+<p>$$\begin{align}
+\dfrac{dT}{dy} &amp;= \dfrac{1}{2}\dfrac{1}{v_1}\left(x_1^2 + (y-y_1)^2\right)^{-1/2}(2)(y-y_1) + \dfrac{1}{2}\dfrac{1}{v_2}\left(x_2^2 + (y_2-y)^2\right)^{-1/2}(-2)(y_2-y) = 0\
+&amp;= \dfrac{1}{v_1}\left(\dfrac{y-y_1}{\sqrt{x_1^2 + (y-y_1)^2}}\right) - \dfrac{1}{v_2}\left(\dfrac{y_2-y}{\sqrt{x_2^2 + (y_2-y)^2}}\right) = 0\
+&amp;= \dfrac{1}{v_1}\left(\dfrac{y-y_1}{d_1}\right) - \dfrac{1}{v_2}\left(\dfrac{y_2-y}{d_2}\right) = 0\
+\end{align}$$</p>
+<p>where the last step is just substituting in the expressions for $d_1$ and $d_2$. Notice that those expressions are related to the angles we defined earlier. We can rewrite the expression in terms of the angles $\theta_1$ and $\theta_2$:</p>
+<p>$$\sin(\theta_1) = \frac{y - y_1}{d_1}$$
+$$\sin(\theta_2) = \frac{y_2 - y}{d_2}$$</p>
+<p>This gives us:</p>
+<p>$$\dfrac{\sin(\theta_1)}{v_1} - \dfrac{\sin(\theta_2)}{v_2} = 0$$</p>
+<div class="admonition admonition-important " role="note" aria-label="Important"><p class="admonition-title">This is [**Snell&#39;s Law**](https://en.wikipedia.org/wiki/Snell%27s_law)! It tells us that the ratio of the sine of the angles to the velocities is constant. This is a classic result in optics, but it also applies to this problem of finding the shortest path in a plane.</p><div class="admonition-content">
+    $$\dfrac{\sin(\theta_1)}{v_1} = \dfrac{\sin(\theta_2)}{v_2}$$
+  </div>
+</div>
+
+<h3 id="example-brachistochrone-problem-16-minute-video">Example: Brachistochrone Problem (16 minute video)</h3>
+<p>The <a href="https://en.wikipedia.org/wiki/Brachistochrone_problem">Brachistochrone problem</a> is a classic problem in the Calculus of Variations. It asks the question: &ldquo;What is the shape of the curve that a bead will follow under the influence of gravity to reach the bottom in the shortest time?&rdquo;  The video below discusses the problem and it history in detail;  <a href="https://en.wikipedia.org/wiki/Steven_Strogatz">Steven Strogatz</a> explains the problem and its solution. It&rsquo;s what helped spur the development of the calculus of variations and the work of Lagrange and others. The problem is deceptively simple: given two points in a vertical plane, find the curve down which a bead will slide (without friction) from one point to the other in the shortest time. The solution to this problem is not a straight line, but rather a cycloid curve.</p>
+<div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/Cld0p3a43fU"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    title="YouTube video player"
+    loading="lazy">
+  </iframe>
+</div>
+
+<p>Source: <a href="https://www.youtube.com/watch?v=Cld0p3a43fU">https://www.youtube.com/watch?v=Cld0p3a43fU</a></p>
+<p>The setup is below, there&rsquo;s two points separated by a distance vertically and horizontally. What shape should we make a track so that a bead will roll down it in the shortest time?</p>
+<p><img src="/images/notes/week11/brachistochrone.png" alt="The Brachistochrone Problem"></p>
+<p>The time it takes for the bead to roll down the curve is given by:</p>
+<p>$$T = \int_{1}^{2} \dfrac{ds}{v}$$</p>
+<p>where $ds$ is the differential arc length along the curve, and $v$ is the velocity of the bead at that point. The generic step is the same as before:</p>
+<p>$$ds = \sqrt{dx^2 + dy^2}.$$</p>
+<h4 id="velocity-of-the-bead">Velocity of the Bead</h4>
+<p>What about $v$? Because the bead is moving under the influence of gravity, we can use conservation of energy to find the velocity. Note that we don&rsquo;t model the rolling of the bead, just the motion down the track. We also neglect all frictional forces. This is a major simplification, but it will give us an analytical solution.</p>
+<p>$$\Delta K + \Delta U = 0$$</p>
+<p>If the bead starts from rest, then $v_i = 0$, and we can write:</p>
+<p>$$\dfrac{1}{2}mv^2 - \dfrac{1}{2}m(0)^2 + mg(\Delta y) = 0,$$</p>
+<p>$$v = \sqrt{2g\Delta y}$$</p>
+<p>where $\Delta y = y_1 - y_2 &gt; 0$. This is the change in height of the bead as it rolls down the track. We can express this in terms of the coordinates of the two points, $y_1$ and $y_2$.</p>
+<p>Let&rsquo;s move the origin to the top of the track and measure $+y$ downwards. Thus, for any point on the track, we have:</p>
+<p>$$v = \sqrt{2gy}.$$</p>
+<p>We can now write the integral again,</p>
+<p>$$T = \int_{1}^{2} \dfrac{ds}{v} = \int_{1}^{2} \dfrac{\sqrt{dx^2 + dy^2}}{\sqrt{2gy}}.$$</p>
+<p>We notice that we can factor out a $dy$ term from the square root in the numerator:</p>
+<p>$$\sqrt{dx^2 + dy^2} = dy\sqrt{\left(\frac{dx}{dy}\right)^2 + 1} = dy \sqrt{x&rsquo;^2 + 1}$$</p>
+<p>where $x&rsquo; = \frac{dx}{dy}$. This gives us:</p>
+<p>$$T = \dfrac{1}{\sqrt{2g}}\int_{0}^{y_2} dy \dfrac{\sqrt{x&rsquo;^2 + 1}}{\sqrt{y}}.$$</p>
+<p>We can identify our function $f$ as:</p>
+<p>$$f(x,x&rsquo;,y) = f(x&rsquo;,y) = \dfrac{\sqrt{x&rsquo;^2 + 1}}{\sqrt{y}}.$$</p>
+<p>Because $f$ does not depend on $x$, $\partial f/\partial x = 0$. So that the Euler-Lagrange equation simplifies to:</p>
+<p>$$\dfrac{d}{dy}\left(\dfrac{\partial f}{\partial x&rsquo;}\right) = 0.$$</p>
+<p>Or that this partial derivative must be a constant:</p>
+<p>$$\dfrac{\partial f}{\partial x&rsquo;} = \textrm{a constant},$$</p>
+<p>$$\dfrac{\partial f}{\partial x&rsquo;} = \dfrac{x&rsquo;}{\sqrt{x&rsquo;^2 + 1}\sqrt{y}} = \sqrt{C},$$</p>
+<p>where $C$ is a constant. We square both sides to get:</p>
+<p>$$\dfrac{x&rsquo;^2}{(x&rsquo;^2 + 1)y} = C.$$</p>
+<p>Knowing the solution ahead of time, we choose the constant $C = \frac{1}{2a}$. This gives us:</p>
+<p>$$\dfrac{x&rsquo;^2}{(x&rsquo;^2 + 1)y} = \frac{1}{2a}.$$</p>
+<p>Some more algebra gives us:</p>
+<p>$$2ax&rsquo;^2 = y(x&rsquo;^2 + 1),$$
+$$(2a - y)x&rsquo;^2 = y,$$
+$$x&rsquo;^2 = \frac{y}{2a - y},$$</p>
+<p>where $x&rsquo; = \frac{dx}{dy}$. We can now integrate this to find the shape of the curve:</p>
+<p>$$x = \int \sqrt{\frac{y}{2a - y}} dy.$$</p>
+<p>This integral will give us the shape of the curve $x(y)$, but to solve it we need to use a substitution.</p>
+<p>Let $y = a(1 - \cos(\theta))$. Thus, $dy = a\sin(\theta)d\theta$. This gives us:</p>
+<p>$$\begin{align}
+x(y(\theta)) &amp;= \int \sqrt{\frac{y(\theta)}{2a - y(\theta)}} dy\
+&amp;= \int \sqrt{\frac{a(1 - \cos(\theta))}{2a - a(1 - \cos(\theta))}} a\sin(\theta)d\theta\
+&amp;= a \int \sqrt{\frac{(1-\cos\theta)}{(1+\cos\theta)}} \sin(\theta)d\theta.\
+\end{align}$$</p>
+<p>Note that $\sin \theta = \sqrt{1 - \cos^2 \theta} = \sqrt{(1 - \cos\theta)(1 + \cos\theta)}$. This allows us to simplify the integral:</p>
+<p>$$\begin{align}
+x(y(\theta)) &amp;= a \int \sqrt{\frac{(1-\cos\theta)^2(1+\cos\theta)}{(1+\cos\theta)}} d\theta\
+&amp;= a \int \sqrt{(1 - \cos\theta)^2} d\theta\
+&amp;= a \int (1 - \cos\theta) d\theta\
+&amp;= a \left(\theta - \sin(\theta)\right) + C\
+\end{align}$$</p>
+<p>where $C$ is a constant of integration.</p>
+<p>With initial conditions $x(0) = 0$ when $y(0) = 0$ at $t=0$ and $\theta = 0$, we find that $C = 0$. So the solution is:</p>
+<p>$$x(\theta) = a\left(\theta - \sin(\theta)\right)$$
+$$y(\theta) = a(1 - \cos(\theta)).$$</p>
+<p>This is the &ldquo;cycloid&rdquo; curve that the bead will follow to minimize the time it takes to roll down the track. We can plot this curve to visualize it.</p>
+<p>What is so interesting about this curve is that it is <a href="https://en.wikipedia.org/wiki/Isochronous">isochronous</a>, meaning that all beads released from rest at any point on the curve will reach the bottom at the same time, regardless of where they start.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">## Plot a cycloid path for comparison</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## $$x(\theta) = a\left(\theta - \sin(\theta)\right)$$</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## $$y(\theta) = a(1 - \cos(\theta)).$$</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cycloid parameters</span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>  <span style="color:#75715e"># Radius of the rolling circle</span>
+</span></span><span style="display:flex;"><span>theta <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span><span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>pi, <span style="color:#ae81ff">1000</span>)  <span style="color:#75715e"># Parameter for the cycloid</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cycloid equations</span>
+</span></span><span style="display:flex;"><span>x_cycloid <span style="color:#f92672">=</span> a <span style="color:#f92672">*</span> (theta <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>sin(theta))
+</span></span><span style="display:flex;"><span>y_cycloid <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>a <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>cos(theta))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create the plot</span>
+</span></span><span style="display:flex;"><span>fig, ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">4</span>))  <span style="color:#75715e"># Create a new figure and axis</span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>plot(x_cycloid, y_cycloid, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;C0&#39;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>plot(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;C1o&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Start&#39;</span>)  <span style="color:#75715e"># Starting point of the cycloid</span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>plot(x_cycloid[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], y_cycloid[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>], <span style="color:#e6db74">&#39;C2o&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;End&#39;</span>)  <span style="color:#75715e"># Ending point of the cycloid</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set labels and title</span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">&#39;x&#39;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">&#39;y&#39;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;Cycloid Path&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>legend()  <span style="color:#75715e"># Add a legend to the plot</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Show the plot</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>grid(<span style="color:#66d9ef">True</span>)  <span style="color:#75715e"># Add grid for better readability</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()  <span style="color:#75715e"># Display the plot</span>
+</span></span></code></pre></div><p><img src="output_12_0.png" alt="png"></p>
+
+
+    
+    <nav style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                
+                <a href="/course-materials/12_notes/">← 12 - The Core Principle of Classical Mechanics? The Principle of Least Action</a>
+                
+            </div>
+            <div style="text-align: right;">
+                
+                <a href="/course-materials/10_notes/">10 - Investigating Systems that Exhibit Chaotic Dynamics →</a>
+                
+            </div>
+        </div>
+    </nav>
+    
+</article>
+
+    </main>
+
+    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
+        
+        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
+        
+        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
+    </footer>
+</body>
+</html>

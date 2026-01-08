@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=54896&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Euler Integration | Classical Mechanics</title>
+    <meta name="description" content="Classical Mechanics">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+    
+    <link rel="stylesheet" href="/css/accessibility.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        nav {
+            background: #f4f4f4;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #222;
+            margin-top: 1.5em;
+        }
+        h1 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "SF Mono", Monaco, Consolas, monospace;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: #0066cc;
+        }
+        .menu-home {
+            font-weight: bold;
+            margin-right: 30px;
+        }
+    </style>
+</head>
+<body>
+    <nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li class="menu-home"><a href="/">Classical Mechanics</a></li>
+            
+            
+            <li><a href="/course-information/">Course Information</a></li>
+            
+            
+            
+            <li><a href="/course-materials/">Course Materials</a></li>
+            
+            
+            
+            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
+            
+            
+            
+            <li><a href="/programming-resources/">Programming Resources</a></li>
+            
+            
+        </ul>
+    </nav>
+
+    <main role="main">
+        
+<article>
+    <header>
+        <h1>Euler Integration</h1>
+        
+    </header>
+
+    <p>This integration method is one of, if not the, simplest approach. Other methods modify Euler often improving it&rsquo;s accuracy by using better approximated changes, or by increasing efficiency of calculations using linear algebra. In any event, conceptually, Euler numerical integration of ODEs provides a simpler process to understand how it approximates solutions.</p>
+<p>For this example, we will use 1D motion with drag. We start with the no drag model.</p>
+<h2 id="modeling-1d-falling-ball-without-drag">Modeling 1D Falling Ball without Drag</h2>
+<p>Here, we know the net force is given by the weight of the ball (where $+y$ is upward),</p>
+<p>$$F_{net,y} = - mg = m\ddot{y}.$$</p>
+<p>So the second order ODE we are solving is,</p>
+<p>$$\ddot{y} = -g.$$</p>
+<p>It is overkill to solve this problem numerically, but it illustrates a nice conceptual point. Let&rsquo;s introduce,</p>
+<p>$$\dot{y}=v_y,$$</p>
+<p>the differential equation the defines the $y$ velocity. Then the other first order ODE that we need to ensure we have the same model is,</p>
+<p>$$\dot{v}_y = -g.$$</p>
+<p>These first order differential equations then can be transformed into the following two lines of code that will iteratively compute the velocity and position.</p>
+<p>$$\dot{v}_y = -g \longrightarrow v_y[i+1] = v_y[i] - g \Delta t$$
+$$\dot{y}=v_y \longrightarrow y[i+1] = y[i] + v_y[i] \Delta t$$</p>
+<p>We implement that below with one small change, we compute the net force and then use that for the iteration.</p>
+<p>$$F_{net,y} = -m*g$$
+$$v_y[i+1] = v_y[i] + (F_{net,y}/m) \Delta t$$
+$$y[i+1] = y[i] + v_y[i] \Delta t$$</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Modeling constant acceleration due to gravity</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> style
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Constants</span>
+</span></span><span style="display:flex;"><span>mass <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>  <span style="color:#75715e"># kg</span>
+</span></span><span style="display:flex;"><span>g <span style="color:#f92672">=</span> <span style="color:#ae81ff">9.81</span>  <span style="color:#75715e"># m/s^2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Time parameters</span>
+</span></span><span style="display:flex;"><span>t_start <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>  <span style="color:#75715e"># seconds</span>
+</span></span><span style="display:flex;"><span>t_end <span style="color:#f92672">=</span> <span style="color:#ae81ff">10.0</span>   <span style="color:#75715e"># seconds</span>
+</span></span><span style="display:flex;"><span>dt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>       <span style="color:#75715e"># time step in seconds</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Initial conditions</span>
+</span></span><span style="display:flex;"><span>y0 <span style="color:#f92672">=</span> <span style="color:#ae81ff">200.0</span>     <span style="color:#75715e"># initial height in meters</span>
+</span></span><span style="display:flex;"><span>v0 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>       <span style="color:#75715e"># initial velocity in m/s</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Time array</span>
+</span></span><span style="display:flex;"><span>t <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>arange(t_start, t_end <span style="color:#f92672">+</span> dt, dt)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Initialize arrays for height and velocity</span>
+</span></span><span style="display:flex;"><span>y <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros_like(t)
+</span></span><span style="display:flex;"><span>v <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros_like(t)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set initial conditions</span>
+</span></span><span style="display:flex;"><span>y[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> y0
+</span></span><span style="display:flex;"><span>v[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> v0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Time-stepping loop using Euler&#39;s method</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, len(t)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>    f_net <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> (mass <span style="color:#f92672">*</span> g)  <span style="color:#75715e"># net force (downward)</span>
+</span></span><span style="display:flex;"><span>    v[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> v[i] <span style="color:#f92672">+</span> f_net <span style="color:#f92672">/</span> mass <span style="color:#f92672">*</span> dt  <span style="color:#75715e"># update velocity</span>
+</span></span><span style="display:flex;"><span>    y[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> y[i] <span style="color:#f92672">+</span> v[i] <span style="color:#f92672">*</span> dt  <span style="color:#75715e"># update height</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> y[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>:  <span style="color:#75715e"># stop if the object hits the ground</span>
+</span></span><span style="display:flex;"><span>        y[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        v[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Plotting the results</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">8</span>))
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(t, y, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;C0&#39;</span>, marker<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;x&#39;</span>, linestyle<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Height (m)&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Object Falling Under Gravity&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#39;Time (s)&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Height (m)&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>grid()
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>legend()
+</span></span></code></pre></div><pre><code>&lt;matplotlib.legend.Legend at 0x10ebf6850&gt;
+</code></pre>
+<p><img src="output_1_1.png" alt="png"></p>
+<h2 id="modeling-1d-falling-ball-with-drag">Modeling 1D Falling Ball with Drag</h2>
+<p>Here, we know the net force is given by the weight of the ball (where $+y$ is upward) added to the drag force (modeled here $F_{drag} = C_Dv^2$),</p>
+<p>$$F_{net,y} = - mg - C_D |v_y|v_y = m\ddot{y}.$$</p>
+<p>Notice the difference here in the definition of the magnitude and how the equation featues in the differential equation. This is because the drag force is always opposite your velocity component $v_y$. We can derive the correct sign given our choice of coordinate system and direction of motion, but then we have a code that only works for that set up. This way, we can model motion correctly in any direction.</p>
+<p>So the second order ODE we are solving is,</p>
+<p>$$\ddot{y} = -g - \frac{C_D}{m} |v_y|v_y.$$</p>
+<p>AGain, let&rsquo;s introduce,</p>
+<p>$$\dot{y}=v_y,$$</p>
+<p>the differential equation the defines the $y$ velocity. Then the other first order ODE that we need to ensure we have the same model is,</p>
+<p>$$\dot{v}_y = -g - \frac{C_D}{m} |v_y|v_y.$$</p>
+<p>These first order differential equations then can be transformed into the following two lines of code that will iteratively compute the velocity and position.</p>
+<p>$$\dot{v}_y = -g - \frac{C_D}{m} |v_y|v_y \longrightarrow v_y[i+1] = v_y[i] - \left(g+ \frac{C_D}{m} |v_y[i]|,v_y[i]\right)\Delta t$$
+$$\dot{y}=v_y \longrightarrow y[i+1] = y[i] + v_y[i] \Delta t$$</p>
+<p>We implement that below with one small change, we compute the net force and then use that for the iteration.</p>
+<p>$$F_{net,y} = -m*g-C_D|v_y[i]|,v_y[i]$$
+$$v_y[i+1] = v_y[i] + (F_{net,y}/m) \Delta t$$
+$$y[i+1] = y[i] + v_y[i] \Delta t$$</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Modeling constant acceleration due to gravity with quadratic drag</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> style
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> mpl_toolkits.axes_grid1.inset_locator <span style="color:#f92672">import</span> inset_axes
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Constants </span>
+</span></span><span style="display:flex;"><span>drag_coefficient <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.01</span>  <span style="color:#75715e"># drag coefficient</span>
+</span></span><span style="display:flex;"><span>mass <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>  <span style="color:#75715e"># kg</span>
+</span></span><span style="display:flex;"><span>g <span style="color:#f92672">=</span> <span style="color:#ae81ff">9.81</span>  <span style="color:#75715e"># m/s^2</span>
+</span></span><span style="display:flex;"><span>vterm <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>sqrt(mass <span style="color:#f92672">*</span> g <span style="color:#f92672">/</span> drag_coefficient)  <span style="color:#75715e"># terminal velocity</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Time parameters</span>
+</span></span><span style="display:flex;"><span>t_start <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>  <span style="color:#75715e"># seconds</span>
+</span></span><span style="display:flex;"><span>t_end <span style="color:#f92672">=</span> <span style="color:#ae81ff">10.0</span>   <span style="color:#75715e"># seconds</span>
+</span></span><span style="display:flex;"><span>dt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>       <span style="color:#75715e"># time step in seconds</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Reset arrays using existing variables</span>
+</span></span><span style="display:flex;"><span>y_drag <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros_like(t)
+</span></span><span style="display:flex;"><span>v_drag <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros_like(t)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set initial conditions</span>
+</span></span><span style="display:flex;"><span>y_drag[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> y0
+</span></span><span style="display:flex;"><span>v_drag[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> v0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Time-stepping loop using Euler&#39;s method with quadratic drag</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, len(t)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Calculate drag force (opposing motion, proportional to v^2)</span>
+</span></span><span style="display:flex;"><span>    f_drag <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>drag_coefficient <span style="color:#f92672">*</span> v_drag[i] <span style="color:#f92672">*</span> abs(v_drag[i])  <span style="color:#75715e"># quadratic drag</span>
+</span></span><span style="display:flex;"><span>    f_gravity <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>mass <span style="color:#f92672">*</span> g  <span style="color:#75715e"># gravitational force</span>
+</span></span><span style="display:flex;"><span>    f_net <span style="color:#f92672">=</span> f_gravity <span style="color:#f92672">+</span> f_drag  <span style="color:#75715e"># total net force</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    v_drag[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> v_drag[i] <span style="color:#f92672">+</span> f_net <span style="color:#f92672">/</span> mass <span style="color:#f92672">*</span> dt  <span style="color:#75715e"># update velocity</span>
+</span></span><span style="display:flex;"><span>    y_drag[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> y_drag[i] <span style="color:#f92672">+</span> v_drag[i] <span style="color:#f92672">*</span> dt  <span style="color:#75715e"># update height</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> y_drag[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>:  <span style="color:#75715e"># stop if the object hits the ground</span>
+</span></span><span style="display:flex;"><span>        y_drag[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        v_drag[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Plotting comparison between no drag and with drag</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>figure(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">8</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(t, y, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;C0&#39;</span>, marker<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;x&#39;</span>, linestyle<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Height - No Drag (m)&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(t, y_drag, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;C1&#39;</span>, marker<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;x&#39;</span>, linestyle<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Height - With Quadratic Drag (m)&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#39;Object Falling Under Gravity: No Drag vs Quadratic Drag&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#39;Time (s)&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Height (m)&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>grid()
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>legend()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>subplot(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(t, v, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;C0&#39;</span>, marker<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;x&#39;</span>, linestyle<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Velocity - No Drag (m/s)&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot(t, v_drag, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;C1&#39;</span>, marker<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;x&#39;</span>, linestyle<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Velocity - With Quadratic Drag (m/s)&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>axhline(<span style="color:#f92672">-</span>vterm, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;r&#39;</span>, linestyle<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;:&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Terminal Velocity (m/s)&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#39;Time (s)&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;Velocity (m/s)&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>grid()
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>legend(loc<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;upper right&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Inset plot to show closer view around 8.5 seconds when velocity approaches terminal</span>
+</span></span><span style="display:flex;"><span>axins <span style="color:#f92672">=</span> inset_axes(plt<span style="color:#f92672">.</span>gca(), width<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;30%&#34;</span>, height<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;25%&#34;</span>, loc<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;lower left&#39;</span>)
+</span></span><span style="display:flex;"><span>axins<span style="color:#f92672">.</span>plot(t, v_drag, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;C1&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, marker<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;x&#39;</span>, linestyle<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;--&#39;</span>)
+</span></span><span style="display:flex;"><span>axins<span style="color:#f92672">.</span>axhline(<span style="color:#f92672">-</span>vterm, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;C2&#39;</span>, linestyle<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;:&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>axins<span style="color:#f92672">.</span>set_xlim(<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">9</span>)
+</span></span><span style="display:flex;"><span>axins<span style="color:#f92672">.</span>set_ylim(<span style="color:#f92672">-</span><span style="color:#ae81ff">32</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">30</span>)
+</span></span><span style="display:flex;"><span>axins<span style="color:#f92672">.</span>grid(<span style="color:#66d9ef">True</span>, alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>)
+</span></span><span style="display:flex;"><span>axins<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">&#39;Near Terminal Velocity&#39;</span>, fontsize<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><pre><code>/var/folders/rh/mck_zfls1nz00lkh8jq3cpv80000gn/T/ipykernel_7596/2754186503.py:73: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  plt.tight_layout()
+</code></pre>
+<p><img src="output_3_1.png" alt="png"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"></code></pre></div>
+
+    
+    <nav style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                
+                <a href="/programming-resources/integrators/">← Numerical Integrators</a>
+                
+            </div>
+            <div style="text-align: right;">
+                
+            </div>
+        </div>
+    </nav>
+    
+</article>
+
+    </main>
+
+    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
+        
+        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
+        
+        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Course Information on Classical Mechanics</title>
+    <link>//localhost:54896/course-information/</link>
+    <description>Recent content in Course Information on Classical Mechanics</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 08 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:54896/course-information/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Course Commitments</title>
+      <link>//localhost:54896/course-information/course-commitments/</link>
+      <pubDate>Thu, 08 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>//localhost:54896/course-information/course-commitments/</guid>
+      <description>&lt;h2 id=&#34;commitment-to-an-inclusive-classroom&#34;&gt;Commitment to an Inclusive Classroom&lt;/h2&gt;&#xA;&lt;p&gt;I am deeply committed to creating an inclusive classroom - one where you and your classmates feel comfortable, intellectually challenged, and able to speak up about your ideas and experiences. This means that our classroom, our virtual environments, and our interactions need to be as inclusive as possible. Mutual respect, civility, and the ability to listen and observe others are central to creating a classroom that is inclusive. I will strive to do this and I ask that you do the same. If I can do anything to make the classroom a better learning environment for you, please let me know.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Getting Started</title>
+      <link>//localhost:54896/course-information/getting-started/</link>
+      <pubDate>Thu, 08 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>//localhost:54896/course-information/getting-started/</guid>
+      <description>&lt;p&gt;PHY 321 is a course that has been organized to encourage your deep learning of classical mechanics, to provide you with opportunities for growth and agency, to initiate a process of lifelong self-education, and to enculturate you into the practices of physics. Because of this, it might seem there&amp;rsquo;s a lot for you to do. So this document will help you get started with the course.&lt;/p&gt;&#xA;&lt;div class=&#34;admonition admonition-admonition tip&#34; role=&#34;note&#34; aria-label=&#34;Admonition&#34;&gt;&lt;p class=&#34;admonition-title&#34;&gt;Getting Started Checklist&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Teachers</title>
+      <link>//localhost:54896/course-information/teachers/</link>
+      <pubDate>Thu, 08 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>//localhost:54896/course-information/teachers/</guid>
+      <description>&lt;h2 id=&#34;-class-meetings&#34;&gt;📅 Class Meetings&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;Location:&lt;/strong&gt; STEM 3202&lt;/p&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Monday&lt;/th&gt;&#xA;          &lt;th&gt;Wednesday&lt;/th&gt;&#xA;          &lt;th&gt;Friday&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;12:40-13:30&lt;/td&gt;&#xA;          &lt;td&gt;12:40-13:30&lt;/td&gt;&#xA;          &lt;td&gt;12:40-13:30&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;div class=&#34;admonition admonition-admonition tip&#34; role=&#34;note&#34; aria-label=&#34;Admonition&#34;&gt;&lt;p class=&#34;admonition-title&#34;&gt;Class Structure&lt;/p&gt;&lt;div class=&#34;admonition-content&#34;&gt;&#xA;    &lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Monday &amp;amp; Wednesday:&lt;/strong&gt; Lecture-based instruction&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Friday:&lt;/strong&gt; Activity-based workshops where we work through challenging exercises together&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&#xA;  &lt;/div&gt;&#xA;&lt;/div&gt;&#xA;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-instructor-danny-caballero-hethey&#34;&gt;👨‍🏫 Instructor: Danny Caballero (he/they)&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;//localhost:54896/images/staff/dc.png&#34; alt=&#34;Danny Caballero&#34;&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Email:&lt;/strong&gt; &lt;a href=&#34;mailto:caball14@msu.edu&#34;&gt;caball14@msu.edu&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Office:&lt;/strong&gt; MWF &lt;a href=&#34;http://tinyurl.com/dc-bps-office&#34;&gt;BPS 1310A&lt;/a&gt; | TTh &lt;a href=&#34;http://tinyurl.com/dc-egr-office&#34;&gt;EGR 1515&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Office Hours:&lt;/strong&gt; TBD or &lt;a href=&#34;https://cal.com/dannycaballero/phy-321&#34;&gt;schedule a meeting&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Danny leads the course, designs homework and exams, and assigns final grades. He&amp;rsquo;s responsible for course content and welcomes suggestions for improvement. Danny grades your midterms and final projects.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Textbooks and Course Materials</title>
+      <link>//localhost:54896/course-information/textbooks/</link>
+      <pubDate>Thu, 08 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>//localhost:54896/course-information/textbooks/</guid>
+      <description>&lt;h2 id=&#34;course-materials&#34;&gt;Course Materials:&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;//localhost:54896/course-materials/weekly-materials/&#34;&gt;Posted materials&lt;/a&gt; were adapted from &lt;a href=&#34;https://mhjensen.github.io/Physics321/doc/web/course.html&#34;&gt;https://mhjensen.github.io/Physics321/doc/web/course.html&lt;/a&gt;. They are not meant to be a replacement for textbook readings and deeper research.&lt;/li&gt;&#xA;&lt;li&gt;Examples and exercises in these materials are often inspired by the recommended textbooks below.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;admonition admonition-tip &#34; role=&#34;note&#34; aria-label=&#34;Tip&#34;&gt;&lt;p class=&#34;admonition-title&#34;&gt;Reading from the course materials is **strongly recommended** before each lecture. This will help you follow along and engage with the content. The examples and approaches we use in class follow these materials closely.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Grading and Important Dates</title>
+      <link>//localhost:54896/course-information/grading/</link>
+      <pubDate>Thu, 08 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>//localhost:54896/course-information/grading/</guid>
+      <description>&lt;h2 id=&#34;grading-scale&#34;&gt;Grading scale&lt;/h2&gt;&#xA;&lt;p&gt;There are no curves in this course. The grading scale is as follows.&lt;/p&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;&lt;strong&gt;4.0&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th&gt;&lt;strong&gt;3.5&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th&gt;&lt;strong&gt;3.0&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th&gt;&lt;strong&gt;2.5&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th&gt;&lt;strong&gt;2.0&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th&gt;&lt;strong&gt;1.5&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th&gt;&lt;strong&gt;1.0&lt;/strong&gt;&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;90%&lt;/td&gt;&#xA;          &lt;td&gt;80%&lt;/td&gt;&#xA;          &lt;td&gt;70%&lt;/td&gt;&#xA;          &lt;td&gt;65%&lt;/td&gt;&#xA;          &lt;td&gt;60%&lt;/td&gt;&#xA;          &lt;td&gt;55%&lt;/td&gt;&#xA;          &lt;td&gt;50%&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;This class isn&amp;rsquo;t trying to trick you or order you in terms of capabilities or knowledge. Far from it, we recoagnize that each of you start with different skills and knowledge and learning will be different for each person. But if you keep up with the work and make real efforts on your midterms and final project, you will earn a good grade. If you are concerned at all, at anytime, talk with Danny.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Programming Resources on Classical Mechanics</title>
+    <link>//localhost:54896/programming-resources/</link>
+    <description>Recent content in Programming Resources on Classical Mechanics</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 08 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:54896/programming-resources/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Euler Integration</title>
+      <link>//localhost:54896/programming-resources/euler_integration/</link>
+      <pubDate>Thu, 08 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>//localhost:54896/programming-resources/euler_integration/</guid>
+      <description>&lt;p&gt;This integration method is one of, if not the, simplest approach. Other methods modify Euler often improving it&amp;rsquo;s accuracy by using better approximated changes, or by increasing efficiency of calculations using linear algebra. In any event, conceptually, Euler numerical integration of ODEs provides a simpler process to understand how it approximates solutions.&lt;/p&gt;&#xA;&lt;p&gt;For this example, we will use 1D motion with drag. We start with the no drag model.&lt;/p&gt;&#xA;&lt;h2 id=&#34;modeling-1d-falling-ball-without-drag&#34;&gt;Modeling 1D Falling Ball without Drag&lt;/h2&gt;&#xA;&lt;p&gt;Here, we know the net force is given by the weight of the ball (where $+y$ is upward),&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Numerical Integrators</title>
+      <link>//localhost:54896/programming-resources/integrators/</link>
+      <pubDate>Thu, 08 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>//localhost:54896/programming-resources/integrators/</guid>
+      <description>&lt;p&gt;In this notebook, we provide a resource &amp;ndash; various methods of integrating ordinary differential equations (ODEs) numerically. We will cover the following methods:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Euler&lt;/li&gt;&#xA;&lt;li&gt;Euler-Cromer&lt;/li&gt;&#xA;&lt;li&gt;Velocity Verlet&lt;/li&gt;&#xA;&lt;li&gt;Runge-Kutta 2nd order&lt;/li&gt;&#xA;&lt;li&gt;Built-in Python integrators&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;We have written these codes as simply as possible to make them easy to read and to see where the algorithms differ. We have also included an example of a simple harmonic oscillator to demonstrate the methods (recurrent oscillatory behavior is a good test of methods).&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

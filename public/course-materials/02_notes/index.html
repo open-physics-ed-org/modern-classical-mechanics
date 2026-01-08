@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=54896&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02 - Computing is a Necessary Tool for Science | Classical Mechanics</title>
+    <meta name="description" content="Classical Mechanics">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+    
+    <link rel="stylesheet" href="/css/accessibility.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        nav {
+            background: #f4f4f4;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #222;
+            margin-top: 1.5em;
+        }
+        h1 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "SF Mono", Monaco, Consolas, monospace;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: #0066cc;
+        }
+        .menu-home {
+            font-weight: bold;
+            margin-right: 30px;
+        }
+    </style>
+</head>
+<body>
+    <nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li class="menu-home"><a href="/">Classical Mechanics</a></li>
+            
+            
+            <li><a href="/course-information/">Course Information</a></li>
+            
+            
+            
+            <li><a href="/course-materials/">Course Materials</a></li>
+            
+            
+            
+            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
+            
+            
+            
+            <li><a href="/programming-resources/">Programming Resources</a></li>
+            
+            
+        </ul>
+    </nav>
+
+    <main role="main">
+        
+<article>
+    <header>
+        <h1>02 - Computing is a Necessary Tool for Science</h1>
+        
+    </header>
+
+    <p><a href="https://github.com/dannycab/phy321msu/issues"><img src="https://img.shields.io/badge/report%20issues-GitHub-blue" alt="Report Issues"></a>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="License: CC BY-NC-SA 4.0"></a></p>
+<h2 id="learning-goals">Learning Goals</h2>
+<div class="admonition admonition-admonition note" role="note" aria-label="Admonition"><p class="admonition-title">After studying Lesson 02, you should be able to:</p><div class="admonition-content">
+    <ul>
+<li>share an example of computing in physics history that is new to you,</li>
+<li>derive the Euler formulation for a 1 dimensional force ($F(x)$) and explain how the Euler algorithm predicts location,</li>
+<li>perform standard vector manipulation tasks including decomposition along orthogonal directions, and</li>
+<li>determine the units of variables and coefficients using base SI units as needed.</li>
+</ul>
+
+  </div>
+</div>
+
+<h2 id="most-classical-mechanics-systems-are-nonlinear">Most Classical Mechanics Systems are Nonlinear</h2>
+<p>One of the first ideas that we developed was a model of a falling ball in one-dimension. We obtained the following differential equation that described the motion of the ball:</p>
+<p>$$\ddot{y} = g - \dfrac{b}{m}\dot{y} - \dfrac{c}{m}\dot{y}^2.$$</p>
+<p>This <em>nonlinear</em> second-order differential equation is the <strong>equation of motion</strong> for the ball. It is nonlinear because the term $\dot{y}^2$ appears in the equation.</p>
+<p><strong>Can you think of an anti-derivative for this equation?</strong> <em>Probably not.</em></p>
+<p>We can change the equation to a system of first-order differential equations by defining a new variable $v = \dot{y}$, so that the equation becomes:</p>
+<p>$$\begin{aligned}
+\dot{y} &amp;= v, \
+\dot{v} &amp;= g - \dfrac{b}{m}v - \dfrac{c}{m}v^2.
+\end{aligned}$$</p>
+<p>But the equation for $v$ is still nonlinear. Clearly we need a different approach to solving this problem. In fact, we need a more generic approach to investigate equations of motion for systems like this. Most models of physical systems cannot be solved in closed analytical form. But, this approach to writing $N$th order differential equations as a system of $N$ first-order differential equations is a powerful tool in computational physics.</p>
+<div class="admonition admonition-admonition " role="note" aria-label="Admonition"><p class="admonition-title">Limitations of only working with analytically solvable problems</p><div class="admonition-content">
+    <p>:class: warning</p>
+<p>The problems that we often present in physics classes lend themselves to analytical solutions because we (collectively as a physics community) decided on the kinds of illustrative problems for students to work and solve. We did this at a time when computing was inaccessible and less pervasive in society, but also when we knew little about how people learn.</p>
+<p>The choices we made in the past convey a false impression that most physics problems can be solved analytically. But more importantly, our choices convey that finding the solution is the goal of physics. This is not the case. The goal of physics is to understand the world around us. When we continue to focus exclusively on systems that can be solved analytically, we continue to perpetuate those impressions.</p>
+<p>There&rsquo;s a movement of physics instructors across the world building these forward-looking pedagogies and curricula. They work loosely through a collective called the <a href="https://www.compadre.org/PICUP/">Partnership for Integration of Computation into Undergraduate Physics (PICUP)</a>.</p>
+<p>Through our work and studies, we aim to build a set of investigative tools and approaches that we can use to interrogate different classical systems. And we aim for those tools and approaches to be useful beyond your study of Classical Mechanics.</p>
+
+  </div>
+</div>
+
+<h2 id="scientific-computing">Scientific Computing</h2>
+<p>We will explore a broad class of problems using plotting and numerical integration as principal tools. These techniques and algorithms, along with the software we use, fall within the broader field of <a href="https://en.wikipedia.org/wiki/Scientific_computing">scientific computing</a>. Scientific computing focuses on developing mathematical models and numerical methods to solve problems in the natural sciences and engineering.</p>
+<p>For historical context, the <a href="https://en.wikipedia.org/wiki/Timeline_of_scientific_computing">Timeline of the Development of Scientific Computing</a> provides an excellent overview. The roots of this field trace back to significant advancements long before modern electronic devices. Much of the foundational mathematics, such as <a href="https://en.wikipedia.org/wiki/Euler_method">Euler’s Method</a> for solving differential equations, was developed in the 18th century by <a href="https://en.wikipedia.org/wiki/Leonhard_Euler">Leonhard Euler</a>. Implementing these algorithms on computers was a natural progression in scientific problem-solving, and was catalyzed by tremendous investments in the military industrial complex after World War II including the notorious <a href="https://en.wikipedia.org/wiki/RAND_Corporation">RAND corporation</a>. Much of this work in scientific computing was driven by the need to solve complex problems in physics and engineering that were otherwise intractable, but there was the added &ldquo;benefit&rdquo; of advancing military technology during the Cold War. Silicon Valley and the modern computing industry owe much of their existence to these investments and the <a href="https://en.wikipedia.org/wiki/Red_Scare">hysteria of the Cold War era</a>.</p>
+<h3 id="history-of-computing">History of Computing</h3>
+<p>The history of scientific computing is deeply intertwined with the evolution of computing itself, a fascinating and complex narrative encompassing technical, social, political, military, and economic perspectives. Contributions to computing originated worldwide, starting with tools like the <a href="https://en.wikipedia.org/wiki/Abacus">abacus</a> in ancient China. Mechanical innovations such as <a href="https://en.wikipedia.org/wiki/Pascal%27s_calculator">Pascal’s adding machine</a> and <a href="https://en.wikipedia.org/wiki/Analytical_Engine">Babbage’s Analytical Engine</a> marked significant milestones leading toward the modern computer.</p>
+<p>To get an introductory overview, the video below from Futurology is a helpful resource, but it is by no means comprehensive or critical.</p>
+<div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/-M6lANfzFsM"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    title="YouTube video player"
+    loading="lazy">
+  </iframe>
+</div>
+
+<ul>
+<li><em>Source: <a href="https://www.youtube.com/watch?v=-M6lANfzFsM">https://www.youtube.com/watch?v=-M6lANfzFsM</a></em></li>
+</ul>
+<h3 id="a-critical-perspective-on-computing">A Critical Perspective on Computing</h3>
+<p>While the history of computing is often celebrated as a story of innovation, it is deeply entangled with systems of power, exploitation, and violence. Computing technologies have not only been tools of scientific progress but also instruments for surveillance, war, and perpetuation of systemic biases.</p>
+<p>In fact, the principal catalysts for physics research and the development of computing technologies have been the military-industrial complex (e.g., nuclear energy, the internet, autonomous robotics). Defense contractors, often through national laboratories and using classified contracts, have worked to extract tax dollars in exchange for the development of technologies for war and destruction (e.g., nuclear weapons, surveillance technologies, and armed drones). For a critical trace of the history of science in the United States since World War II, consider Clifford&rsquo;s <a href="https://www.haymarketbooks.org/books/1467-the-tragedy-of-american-science"><em>The Tragedy of American Science: From Truman to Trump</em></a>.</p>
+<div class="admonition admonition-admonition " role="note" aria-label="Admonition"><p class="admonition-title">Humans as Computers</p><div class="admonition-content">
+    <p>:class: note</p>
+<p>Of course, the electronic computer was a huge development for science. Prior to that, humans were employed to do the calculations that we now do with computational algorithms. This work occurred in a wide variety of labs where data were entered into tables, calculations were done by hand, and the results were tabulated manually.</p>
+<p>Frequently the work was done by those with less power in the laboratory and broader society (e.g., women, immigrants, and folks of color). A notable and well-known example is the work of the <a href="https://en.wikipedia.org/wiki/Harvard_Computers">Harvard Computers</a> in the late 19th and early 20th centuries where women were employed to do the calculations that led to significant discoveries in astronomy.</p>
+<p><img src="/images/notes/week2/harvard-computers.png" alt="Harvard Computers"></p>
+<p>One of the most important examples is the work done by African-American women at NASA in the 1960s, as depicted in the book and movie <a href="https://en.wikipedia.org/wiki/Hidden_Figures">Hidden Figures</a>.</p>
+<p><img src="/images/notes/week2/nasa-computers-hidden-figures.png" alt="Hidden Figures"></p>
+<p>Women highlighted in this work include: <a href="https://en.wikipedia.org/wiki/Williamina_Fleming">Williamina Fleming</a>, <a href="https://en.wikipedia.org/wiki/Florence_Cushman">Florence Cushman</a>, <a href="https://en.wikipedia.org/wiki/Katherine_Johnson">Katherine Johnson</a>, <a href="https://en.wikipedia.org/wiki/Dorothy_Vaughan">Dorothy Vaughan</a>, and <a href="https://en.wikipedia.org/wiki/Mary_Jackson">Mary Jackson</a>.</p>
+
+  </div>
+</div>
+
+<p>The algorithms driving modern computing are not neutral—they reflect the biases of the societies that create them. In <a href="https://www.penguinrandomhouse.com/books/241363/weapons-of-math-destruction-by-cathy-oneil/">Cathy O’Neil’s <em>Weapons of Math Destruction</em></a>, the author explores how algorithms used in areas like policing, hiring, and education often reinforce systemic inequality, disproportionately harming marginalized communities. Similarly, <a href="https://www.ruhabenjamin.com/race-after-technology">Ruha Benjamin’s <em>Race After Technology</em></a> examines how race and technology intersect, showing how seemingly “objective” systems encode and perpetuate racial biases.</p>
+<p>The use of AI in policing is another area of concern. <a href="https://www.dukeupress.edu/dark-matters">Simone Browne’s <em>Dark Matters</em></a> highlights how surveillance technologies, from facial recognition to predictive policing, are rooted in practices of racialized social control, extending systems of oppression into the digital realm.</p>
+<p>The militarization of AI is one of the most alarming developments in computing. AI-driven drones and autonomous weapons, often described as the future of warfare, raise profound ethical and humanitarian concerns. <a href="https://shoshanazuboff.com/book/about/">Shoshana Zuboff’s <em>The Age of Surveillance Capitalism</em></a> discusses how the same technologies used for corporate profit are repurposed for state surveillance and military applications, blurring the lines between civilian and combatant spaces.</p>
+<p>Additionally, <a href="https://peterasaro.org/writing/Asaro%20Oxford%20AI%20Ethics%20AWS.pdf">Peter Asaro’s work on lethal autonomous weapons</a> questions the morality and legality of machines making life-and-death decisions. Meanwhile, <a href="https://katecrawford.net/atlas">Kate Crawford’s <em>Atlas of AI</em></a> explores how AI systems, from mining rare earth materials to deployment in warfare, are deeply intertwined with colonial exploitation and ecological destruction.</p>
+<p>The tech industry&rsquo;s focus on profit has devastating environmental and social impacts. Computing relies on the extraction of rare materials, energy-intensive processes, and exploitative labor practices. <a href="https://thischangeseverything.org/">Naomi Klein’s <em>This Changes Everything</em></a> examines how capitalism exacerbates climate change, with insights into the environmental toll of computing technologies. <a href="https://cup.columbia.edu/book/artificial-whiteness/9780231194914">Yarden Katz’s <em>Artificial Whiteness</em></a> connects the development of AI to broader systems of capitalist and racial oppression.</p>
+<h3 id="what-does-any-of-this-have-to-do-with-physics">What does any of this have to do with Physics?</h3>
+<p>Physics is a social and historical enterprise. It has both made incredible strides forward and created great harm here and around the world. To study physics is to understand it not only as a field of knowledge and skills, but as a social and historical driver of society. Physics is not neutral; it is not color blind; and it is not without fault.</p>
+<p>It might make us uncomfortable to learn these histories and alternative explanations, but they are important. Understanding that the experience of others in physics is not like our own is equally important. Through understanding the history and motivation for physics and how people different from us have experienced physics, we can actively choose how to take physics forward in the future.</p>
+<p><strong>So learn the content, develop the skills, and question the history.</strong></p>
+<h2 id="mathematical-preliminaries">Mathematical Preliminaries</h2>
+<p>We need a few things to get us started with making models of classical phenomenon. A few of those topics might be familiar to you; things like vectors, and derivatives. But we&rsquo;ll also need to introduce some new ideas, like the concept of <a href="https://en.wikipedia.org/wiki/Discretization">Discretization</a>. We will introduce a powerful method for solving many different Differential Equations &ndash; Euler-Cromer Integration. We start by introducing the concept of Euler Discretization, and then we&rsquo;ll move on to Euler-Cromer Integration later (as it corrects issues with energy conservation).</p>
+<h3 id="euler-discretization">Euler Discretization</h3>
+<p>Another useful formulation of Classical Mechanics uses discrete points in time to make approximate predictions of the motion. This is called the <a href="https://en.wikipedia.org/wiki/Euler_method">Euler Method</a>. The Euler Method is a simple numerical method to solve ordinary differential equations. The method is based on the idea of approximating the derivative of a function by a finite difference.</p>
+<p>We posit discrete time, like snapshots of the motion where a given measure of time $t_i$ exists in a discrete set of times between $t_0$ and $t_f$. That is, $t_i \in {t_0, t_1, t_2, \ldots, t_f}$. We conceive of the motion as discrete like the points in the figure below.</p>
+<p><strong>ADD FIGURE</strong></p>
+<p>In this case, the points are equally spaced in time, such that $t_{i+1} - t_i = \Delta t$. This gives a simple table of the motion of the object at each time step:</p>
+<table>
+  <thead>
+      <tr>
+          <th>time</th>
+          <th>position</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>$t_0$</td>
+          <td>$y_0$</td>
+      </tr>
+      <tr>
+          <td>$t_1$</td>
+          <td>$y_1$</td>
+      </tr>
+      <tr>
+          <td>$t_2$</td>
+          <td>$y_2$</td>
+      </tr>
+      <tr>
+          <td>$\ldots$</td>
+          <td>$\ldots$</td>
+      </tr>
+  </tbody>
+</table>
+<p>where $y_i$ is the position of the object at time $t_i$. Here, $t_i = t_0 + i\Delta t$ &ndash; equal time spacing &ndash; and $y(t_i) = y_i$ indicates the position of the object at time $t_i$.</p>
+<h4 id="taking-finite-differences-to-define-kinematic-quantities">Taking finite differences to define kinematic quantities</h4>
+<p>This formulation can be used to predict the motion of the object.  Let&rsquo;s first define the average velocity over a time step, $\Delta t$, like this:</p>
+<p>$$v(t) = \dfrac{y(t+\Delta t) - y(t)}{\Delta t}$$</p>
+<p>Now, we know that at time, $t_i$, the velocity is $v_i$: $v(t_i) = v_i$ If we make the time step small, $\Delta t \rightarrow 0$, then the average velocity is approximately the velocity at time $t_i$. Thus, we can write the velocity at time $t_{i}$ as:</p>
+<p>$$v_{i} = \dfrac{y_{i+1} - y_i}{\Delta t}$$</p>
+<p><strong>Note</strong> If we take the limit that $\Delta t \rightarrow 0$, then the average velocity becomes the instantaneous velocity. This stems from the <a href="https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus">Fundamental Theorem of Calculus</a>.</p>
+<p>$$\lim_{\Delta t \rightarrow 0} \dfrac{y(t+\Delta t) - y(t)}{\Delta t} = \dfrac{dy}{dt} = \dot{y}$$</p>
+<p>What about the acceleration? We can use the same idea to approximate the acceleration. The average acceleration is given by:</p>
+<p>$$a(t) = \dfrac{v(t+\Delta t) - v(t)}{\Delta t}$$</p>
+<p>And thus, the acceleration at time $t_i$ is:</p>
+<p>$$a_i = \dfrac{v_{i+1} - v_i}{\Delta t}$$</p>
+<p>Again, if we take the limit that $\Delta t \rightarrow 0$, then the average acceleration becomes the instantaneous acceleration:</p>
+<p>$$\lim_{\Delta t \rightarrow 0} \dfrac{v(t+\Delta t) - v(t)}{\Delta t} = \dfrac{dv}{dt} = \dot{v}$$</p>
+<h4 id="predicting-the-motion">Predicting the motion</h4>
+<p>Now that we conceptually understand how we can arrive at an acceleration or velocity from a discrete table of data, we can use that information instead to predict the velocity and location of the system. As we derived earlier:</p>
+<p>$$a_i = \dfrac{v_{i+1} - v_i}{\Delta t}$$
+$$v_{i} = \dfrac{y_{i+1} - y_i}{\Delta t}$$</p>
+<p>Suppose instead, you have the initial acceleration, $a_0$ and the initial location and velocity ($y_0$ and $v_0$) where the zero subscripts refer to the index (the first one in an array). Then, we can predict the new velocity and position using the Euler method:</p>
+<p>$$v_{1} = v_0 + a_0*\Delta t$$
+$$y_{1} = y_0 + v_0*\Delta t$$</p>
+<p>As we will see below, we can use Newton&rsquo;s Second Law to develop this idea and this pair of equations into an algorithm that will allow us to predict the velocity and location of any system.</p>
+<h4 id="video-summary-13-minutes">Video Summary (13 minutes)</h4>
+<p>There&rsquo;s many videos covering the topic of Euler&rsquo;s method. Here&rsquo;s a video that covers the basics of Euler&rsquo;s method and how it can be used to solve differential equations. It somewhat follows the notes above, but it&rsquo;s always good to hear another perspective.</p>
+<div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/_0mvWedqW7c"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    title="YouTube video player"
+    loading="lazy">
+  </iframe>
+</div>
+
+<ul>
+<li><em>Source: <a href="https://youtube.com/watch?v=_0mvWedqW7c">https://youtube.com/watch?v=_0mvWedqW7c</a></em></li>
+</ul>
+<h3 id="discretizing-newtons-second-law">Discretizing Newton&rsquo;s Second Law</h3>
+<p>We can use the Euler Method to discretize Newton&rsquo;s Second Law, and this allows us to predict the motion of the object using iterative methods. These methods are well-suited for computers, and we will learn how to implement them soon.</p>
+<p>Let there be a 1D net force acting the x-direction on an object of mass $m$, $F(x)$. Here the force changes with position. We can discretize this force as a function of position, $F(x_i)$. The net force acting on the object is:</p>
+<p>$$F(x_i) = F_i$$</p>
+<p>Using Newton&rsquo;s Second Law, we can write the acceleration of the object as:</p>
+<p>$$a_i = \dfrac{F_i}{m}$$</p>
+<p>But the definition of the average acceleration gives:</p>
+<p>$$a_i = \dfrac{v_{i+1} - v_i}{\Delta t}$$</p>
+<p>Or in terms of the predicted velocity, $v_{i+1}$:</p>
+<p>$$v_{i+1} = v_i + a_i\Delta t$$</p>
+<p>Or in terms of the net force:</p>
+<p>$$v_{i+1} = v_i + \dfrac{F_i}{m}\Delta t$$</p>
+<p><strong>This is the Euler formulation for predicting the velocity of the object in the next time step &ndash; given the velocity at the current time step.</strong></p>
+<p>We pause here and will return to this formulation later, but this discretization is the basis for many numerical methods in classical mechanics, and we can apply it to solve the falling object problem above.</p>
+<h4 id="looking-ahead">Looking Ahead</h4>
+<p>The development of the forward Euler scheme is the basis for many numerical methods in physics, and especially in classical mechanics. The video below is a longer introduction to the Euler Method and how it can be used to solve differential equations. It&rsquo;s a bit more advanced than the previous video, but it&rsquo;s a good introduction to the topic. We will revisit this topic a number of times, and you will have a chance to implement these methods in Python. <em>This video will be posted again when we cover numerical methods in more detail.</em></p>
+<div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/MstPeOTCVzQ"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    title="YouTube video player"
+    loading="lazy">
+  </iframe>
+</div>
+
+<ul>
+<li><em>Source: <a href="https://www.youtube.com/watch?v=MstPeOTCVzQ">https://www.youtube.com/watch?v=MstPeOTCVzQ</a></em></li>
+</ul>
+<h2 id="additional-preliminaries">Additional Preliminaries</h2>
+<p>As you have noticed, much of what we do in classical mechanics involves solving differential equations. We will explore how to solve these equations. But also notice that most of the work involves vector manipulation and/or decomposition. Thus, we will need to be comfortable with vectors. Below are some mathematical concepts of vectors that we will use frequently.</p>
+<h3 id="vectors-and-coordinates">Vectors and Coordinates</h3>
+<p>The figure below shows a vector in two dimensions.</p>
+<figure class="figure " role="figure" aria-label="Vector in Two Dimensions; the vector is defined by its magnitude, $A$, and its direction, $\theta$. [SVG File](../images/vector-graphics/vector-decomposition-2d.svg)">
+  <img src="/images/vector-graphics/vector-decomposition-2d.png" alt="Vector in Two Dimensions; the vector is defined by its magnitude, $A$, and its direction, $\theta$. [SVG File](../images/vector-graphics/vector-decomposition-2d.svg)" loading="lazy"><figcaption class="figure-caption">Vector in Two Dimensions; the vector is defined by its magnitude, $A$, and its direction, $\theta$. <a href="../images/vector-graphics/vector-decomposition-2d.svg">SVG File</a></figcaption></figure>
+
+<p>The vector is defined by its magnitude, $A$, and its direction, $\theta$. The vector can be decomposed into two components, $A_x$ and $A_y$, in the $x$ and $y$ directions, respectively.</p>
+<p>The magnitude of the vector is given by the Pythagorean theorem:</p>
+<p>$$|\vec{A}| = A = \sqrt{A_x^2 + A_y^2}$$</p>
+<p>The angle of the vector is given by the tangent of the angle:</p>
+<p>$$\theta = \tan^{-1}\left(\dfrac{A_y}{A_x}\right)$$</p>
+<p>We can find the <em>vector components</em> using the magnitude and angle:</p>
+<p>$$A_x = A\cos(\theta)$$
+$$A_y = A\sin(\theta)$$</p>
+<p>It&rsquo;s important to note that the vector components are the projections of the vector onto the $x$ and $y$ axes. The vector components are scalars, and the vector is a sum of the components. We can write the vector in several common forms:</p>
+<p>$$\vec{A} = A_x\hat{x} + A_y\hat{y}  = A_x\hat{i} + A_y\hat{j} = A_x\hat{e}_x + A_y\hat{e}_y.$$</p>
+<h4 id="unit-vectors">Unit Vectors</h4>
+<p>The unit vectors, $\hat{x}$, $\hat{y}$, $\hat{i}$, $\hat{j}$, $\hat{e}_x$, and $\hat{e}_y$, are the basis vectors in the $x$ and $y$ directions. The unit vectors are used to define the vector components.</p>
+<p>Interestingly, the angle of the vector is not needed to write the vector in Plane Polar Coordinates ($r$, $\theta$). The vector can be written as:</p>
+<p>$$\vec{A} = A\hat{A}$$</p>
+<p>where $\hat{A}$ is the unit vector in the direction of $\vec{A}$. Let&rsquo;s check that works out:</p>
+<p>$$\vec{A} = A_x\hat{x} + A_y\hat{y}$$</p>
+<p>$$|\vec{A}| = A = \sqrt{A_x^2 + A_y^2}$$</p>
+<p>$$\hat{A} = \dfrac{\vec{A}}{|\vec{A}|} = \dfrac{A_x\hat{x} + A_y\hat{y}}{\sqrt{A_x^2 + A_y^2}}$$</p>
+<p>Such that,</p>
+<p>$$\vec{A} = A\hat{A} = A_x\hat{x} + A_y\hat{y}$$</p>
+<p>Cartesian unit vectors are fixed in space and time when in an inertial reference frame. However, the unit vectors in Plane Polar Coordinates are not fixed in space and time. They rotate with the vector. This is a common source of confusion when working with vectors in different coordinate systems, which we will come back to later.</p>
+<p>The magnitude of a unit vector is always one, $|\hat{A}| = 1$. And unit vectors are orthogonal to each other, $\hat{x} \cdot \hat{y} = 0$.</p>
+<h4 id="multiplication-of-vectors">Multiplication of Vectors</h4>
+<h5 id="dot-scalar-product">Dot (Scalar) Product</h5>
+<p>A dot product of two vectors is a scalar quantity. The dot product of two 3D vectors, $\vec{a}$ and $\vec{b}$, is given by:</p>
+<p>$$\vec{a} \cdot \vec{b} = a_xb_x + a_yb_y + a_zb_z$$</p>
+<p>This product is also equal to the product of the magnitudes of the vectors and the cosine of the angle between them:</p>
+<p>$$\vec{a} \cdot \vec{b} = |\vec{a}| |\vec{b}|\cos(\theta)$$</p>
+<p>The figure below shows the relationship between the vectors and the angle.</p>
+<figure class="figure " role="figure" aria-label="Dot Product of Two Vectors; the dot product is the product of the magnitudes of the vectors and the cosine of the angle between them. [SVG File](../images/vector-graphics/vector_dot_product.svg)">
+  <img src="/images/vector-graphics/vector_dot_product.png" alt="Dot Product of Two Vectors; the dot product is the product of the magnitudes of the vectors and the cosine of the angle between them. [SVG File](../images/vector-graphics/vector_dot_product.svg)" loading="lazy"><figcaption class="figure-caption">Dot Product of Two Vectors; the dot product is the product of the magnitudes of the vectors and the cosine of the angle between them. <a href="../images/vector-graphics/vector_dot_product.svg">SVG File</a></figcaption></figure>
+
+<p>Much like scalar multiplication, a dot produce is distributive:</p>
+<p>$$\vec{a} \cdot (\vec{b} + \vec{c}) = \vec{a} \cdot \vec{b} + \vec{a} \cdot \vec{c}$$</p>
+<p>Here&rsquo;s the proof:</p>
+<p>$$\vec{a} \cdot (\vec{b} + \vec{c}) = a_x(b_x + c_x) + a_y(b_y + c_y) + a_z(b_z + c_z)$$</p>
+<p>$$= a_xb_x + a_xc_x + a_yb_y + a_yc_y + a_zb_z + a_zc_z$$</p>
+<p>$$= \vec{a} \cdot \vec{b} + \vec{a} \cdot \vec{c}$$</p>
+<h5 id="cross-vector-product">Cross (Vector) Product</h5>
+<p>The cross product of two vectors is a vector quantity. The cross product of two 3D vectors, $\vec{a}$ and $\vec{b}$, is given by:</p>
+<p>$$\vec{a} \times \vec{b} = \begin{vmatrix} \hat{x} &amp; \hat{y} &amp; \hat{z} \ a_x &amp; a_y &amp; a_z \ b_x &amp; b_y &amp; b_z \end{vmatrix}$$</p>
+<p>This results in a vector that has the following components:</p>
+<p>$$\vec{a} \times \vec{b} = (a_yb_z - a_zb_y)\hat{x} - (a_xb_z-a_zb_x)\hat{y} + (a_xb_y - a_yb_x)\hat{z}$$</p>
+<p>A few notes about cross products:</p>
+<ol>
+<li>$\vec{a} \times \vec{b}$ always produces a vector and never a scalar.</li>
+<li>$(\vec{a} \times \vec{b})_i$ denotes the $i$-th component of the cross product.</li>
+<li>$\vec{a} \times \vec{b} \neq \vec{b} \times \vec{a}$; order matters.</li>
+</ol>
+<p>What is the relationship between $\vec{a} \times \vec{b}$ and $\vec{a} \cdot \vec{b}$? The right-hand rule gives the direction of the cross product. The magnitude of the cross product is given by:</p>
+<p>$$|\vec{a} \times \vec{b}| = |\vec{a}||\vec{b}|\sin(\phi)$$
+$$|\vec{b} \times \vec{a}| = |\vec{a}||\vec{b}|\sin(\phi)$$</p>
+<p>And thus both magnitudes are the same, however, the directions are opposite.</p>
+<p>$$\vec{a} \times \vec{b} = -\vec{b} \times \vec{a}$$</p>
+<h3 id="units">Units</h3>
+<p>In classical mechanics, we will use the <a href="https://en.wikipedia.org/wiki/International_System_of_Units">International System of Units (SI)</a>. The SI units are the standard units used in science and engineering. The primary units we will use in this course are related to the motion of objects:</p>
+<ul>
+<li><strong>Length</strong>: The meter, $m$, is the standard unit of length, $[r] = \mathrm{length}$.</li>
+<li><strong>Mass</strong>: The kilogram, $kg$, is the standard unit of mass, $[m] = \mathrm{mass}$.</li>
+<li><strong>Time</strong>: The second, $s$, is the standard unit of time, $[t] = \mathrm{time}$.</li>
+</ul>
+<p>From these basic units, we can derive the other units. We also use velocity, acceleration, force, momentum, and energy.</p>
+<ul>
+<li><strong>Velocity</strong>: The meter per second, $m/s$, is the standard unit of velocity, $[v] = \mathrm{length/time}$.</li>
+<li><strong>Acceleration</strong>: The meter per second squared, $m/s^2$, is the standard unit of acceleration, $[a] = \mathrm{length/time^2}$.</li>
+<li><strong>Force</strong>: The Newton, $N$, is the standard unit of force, $[F] = \mathrm{mass*length/(time)^2}$.</li>
+<li><strong>Momentum</strong>: The kilogram meter per second, $kg\cdot m/s$, is the standard unit of momentum, $[p] = \mathrm{mass*length/time}$.</li>
+<li><strong>Energy</strong>: The Joule, $J$, is the standard unit of energy, $[E] = \mathrm{mass*length}^2/\mathrm{time}^2$.</li>
+</ul>
+<h4 id="example-what-are-the-units-of-the-drag-coefficients">Example: What are the units of the drag coefficients?</h4>
+<p>Recall the drag force, $F_{air} = bv + cv^2$. The units of the drag coefficients, $b$ and $c$, can be found by examining the units of the force. The units of the force are:</p>
+<p>$$[F_{air}] = [b][v] + [c][v^2]$$</p>
+<p>$$\mathrm{mass<em>length/(time)^2} = [b]</em>\mathrm{length/time}+ [c]*(\mathrm{length/(time)})^2$$</p>
+<p>The units need to match on both sides of the equation. Thus, the units of the drag coefficients are:</p>
+<p>Thus, the units of the drag coefficients are:</p>
+<p>$$[b] = \mathrm{mass*length/(time)^2} * \mathrm{time/length} = \mathrm{mass/time}$$</p>
+<p>$$[c] = \mathrm{mass*length/(time)^2} * (\mathrm{time/(length)})^2 = \mathrm{mass/length}$$</p>
+<h2 id="additional-resources-for-exploration-of-science-computing-and-society">Additional Resources for Exploration of Science, Computing, and Society</h2>
+<p>For deeper dives into some of sociocultural and historical issues referenced above, consider the following materials:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Resource</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="https://REPLACE.ME">Clifford&rsquo;s <em>The Tragedy of American Science: From Truman to Trump</em></a></td>
+          <td>A science historian explores the wartime and capitalist underpinnings of the growth of science identifying where decisions were made to center defense spending and the enrichment of a few over the societal good that science could do if different choices were made.</td>
+      </tr>
+      <tr>
+          <td><a href="https://www.penguinrandomhouse.com/books/44425/turings-cathedral-by-george-dyson/">George Dyson’s <em>Turing’s Cathedral</em></a></td>
+          <td>Chronicles the origins of the modern computer, focusing on <a href="https://en.wikipedia.org/wiki/John_von_Neumann">John von Neumann</a> and his team at Princeton in the 1940s. This book delves into the intersection of mathematics, physics, and computation, highlighting the development of the first stored-program computers and their role in shaping the digital age.</td>
+      </tr>
+      <tr>
+          <td><a href="https://www.penguinrandomhouse.com/books/60765/the-information-by-james-gleick/">James Gleick’s <em>The Information</em></a></td>
+          <td>Explores the transformative impact of information theory on science, technology, and culture. From the invention of writing to the digital age, Gleick highlights key figures like Michigander <a href="https://en.wikipedia.org/wiki/Claude_Shannon">Claude Shannon</a>, who revolutionized communication with his groundbreaking mathematical theory of information.</td>
+      </tr>
+      <tr>
+          <td><a href="https://www.stevenlevy.com/hackers-heroes-of-the-computer-revolution">Steven Levy’s <em>Hackers</em></a></td>
+          <td>Chronicles the rise of hacker culture, from early computer pioneers to the creators of the personal computer revolution. Levy examines the &ldquo;hacker ethic,&rdquo; emphasizing creativity, open access, and the joy of problem-solving, which shaped the tools and technologies we use today.</td>
+      </tr>
+      <tr>
+          <td><a href="https://www.penguinrandomhouse.com/books/241363/weapons-of-math-destruction-by-cathy-oneil/">Cathy O’Neil’s <em>Weapons of Math Destruction</em></a></td>
+          <td>Explores how algorithms, often marketed as objective, exacerbate inequality in policing, hiring, and credit scoring. O’Neil critically examines the dangers of data-driven systems that disproportionately harm marginalized communities while remaining opaque and unregulated.</td>
+      </tr>
+      <tr>
+          <td><a href="https://www.ruhabenjamin.com/race-after-technology">Ruha Benjamin’s <em>Race After Technology</em></a></td>
+          <td>Analyzes how algorithms and technologies reinforce systemic racism under the guise of neutrality. Benjamin introduces the concept of the “New Jim Code,” highlighting the ways in which technological tools amplify inequities while appearing fair and impartial.</td>
+      </tr>
+      <tr>
+          <td><a href="https://www.dukeupress.edu/dark-matters">Simone Browne’s <em>Dark Matters</em></a></td>
+          <td>Examines how surveillance technologies are deeply rooted in practices of racialized social control. Browne connects historical practices like slave surveillance to modern tools like facial recognition and predictive policing, revealing the persistence of systemic inequities in new forms.</td>
+      </tr>
+      <tr>
+          <td><a href="https://katecrawford.net/atlas">Kate Crawford’s <em>Atlas of AI</em></a></td>
+          <td>Explores the hidden costs of artificial intelligence, from resource extraction to labor exploitation and military applications. Crawford critiques AI as an extractive industry that reshapes power dynamics and perpetuates global inequalities while causing significant environmental damage.</td>
+      </tr>
+      <tr>
+          <td><a href="https://shoshanazuboff.com/book/about/">Shoshana Zuboff’s <em>The Age of Surveillance Capitalism</em></a></td>
+          <td>Investigates how corporations and governments exploit personal data for profit and control. Zuboff coins the term &ldquo;surveillance capitalism&rdquo; to describe how the tech industry commodifies human behavior, eroding privacy and autonomy while reshaping society’s power structures.</td>
+      </tr>
+  </tbody>
+</table>
+
+
+    
+    <nav style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                
+                <a href="/course-materials/assignment-overview/">← Assignments Overview</a>
+                
+            </div>
+            <div style="text-align: right;">
+                
+                <a href="/course-materials/weekly-materials/">Weekly Course Materials →</a>
+                
+            </div>
+        </div>
+    </nav>
+    
+</article>
+
+    </main>
+
+    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
+        
+        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
+        
+        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
+    </footer>
+</body>
+</html>

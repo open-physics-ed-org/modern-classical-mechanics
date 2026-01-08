@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=54896&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12 - The Core Principle of Classical Mechanics? The Principle of Least Action | Classical Mechanics</title>
+    <meta name="description" content="Classical Mechanics">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+    
+    <link rel="stylesheet" href="/css/accessibility.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        nav {
+            background: #f4f4f4;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #222;
+            margin-top: 1.5em;
+        }
+        h1 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "SF Mono", Monaco, Consolas, monospace;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: #0066cc;
+        }
+        .menu-home {
+            font-weight: bold;
+            margin-right: 30px;
+        }
+    </style>
+</head>
+<body>
+    <nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li class="menu-home"><a href="/">Classical Mechanics</a></li>
+            
+            
+            <li><a href="/course-information/">Course Information</a></li>
+            
+            
+            
+            <li><a href="/course-materials/">Course Materials</a></li>
+            
+            
+            
+            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
+            
+            
+            
+            <li><a href="/programming-resources/">Programming Resources</a></li>
+            
+            
+        </ul>
+    </nav>
+
+    <main role="main">
+        
+<article>
+    <header>
+        <h1>12 - The Core Principle of Classical Mechanics? The Principle of Least Action</h1>
+        
+    </header>
+
+    <p><a href="https://github.com/dannycab/phy321msu/issues"><img src="https://img.shields.io/badge/report%20issues-GitHub-blue" alt="Report Issues"></a>
+<a href="https://github.com/dannycab/phy321msu/issues"><img src="https://img.shields.io/github/issues/dannycab/phy321msu" alt="GitHub Issues"></a></p>
+<h2 id="learning-goals">Learning Goals</h2>
+<div class="admonition admonition-admonition note" role="note" aria-label="Admonition"><p class="admonition-title">After studying Lesson 12, you should be able to:</p><div class="admonition-content">
+    <ul>
+<li>Derive and interpret the equations of motion in polar coordinates, identifying the radial and angular components of forces and accelerations.</li>
+<li>Analyze constrained motion, such as a skateboarder on a circular track, by applying Newton&rsquo;s laws in polar coordinates and simplifying equations based on system constraints.</li>
+<li>Formulate and solve the Lagrangian for systems with constraints, such as the plane pendulum, using generalized coordinates to simplify the analysis.</li>
+<li>Compare and contrast Newtonian and Lagrangian mechanics, focusing on their approaches to deriving equations of motion and their applicability to different systems.</li>
+<li>Explore the conditions under which constrained systems exhibit simple harmonic motion and solve for the motion using small-angle approximations.</li>
+</ul>
+
+  </div>
+</div>
+
+<p><a href="https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion">Newtonian Mechanics</a> is an incredibly useful model of the natural world. In fact, it wasn&rsquo;t until the mid 1970s that we were able to truly <a href="https://en.wikipedia.org/wiki/Tests_of_general_relativity">test Einstein&rsquo;s gravity as a true replacement</a> for Newton. That being said, for most terrestrial situations (macroscopic objects moving at low speeds), Newton&rsquo;s mechanics is very good. However, the problem with Newton is that it requires a few things:</p>
+<ol>
+<li>We must be able identify each interaction on the object or model an average behavior from many smaller interactions (e.g., models of friction vs. detailed E&amp;M forces)</li>
+<li>We must be able to mathematically describe the size and direction of the interaction at all times we want to model</li>
+<li>We must be able to vectorially add the interactions to produce the net force $\sum_i \vec{F}<em>i = \vec{F}</em>{net}$.</li>
+</ol>
+<p>In many cases, we can do this. But consider a bead sliding inside a cone. How would you write down the contact force between the cone and the bead for all space and time?</p>
+<p>This is where <a href="https://en.wikipedia.org/wiki/Lagrangian_mechanics">Lagrangian Mechanics</a> comes in. It is a powerful and elegant way to describe the motion of particles and systems. It is based on the <a href="https://en.wikipedia.org/wiki/Calculus_of_variations">Calculus of Variations</a>, a field of mathematics that is concerned with finding the path that minimizes or maximizes (called &ldquo;extremization&rdquo;) a certain quantity. In the case of Lagrangian Mechanics, the quantity we are extremizing is the <a href="https://en.wikipedia.org/wiki/Action_(physics)">action</a>.</p>
+<h3 id="the-princple-of-least-action-19-minute-video">The Princple of Least Action (19 minute video)</h3>
+<p>The video below discusses the concept of the Principle of Least Action, which is the foundation of Lagrangian Mechanics.</p>
+<div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/Q_CQDSlmboA"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    title="YouTube video player"
+    loading="lazy">
+  </iframe>
+</div>
+
+<p>Source: <a href="https://youtube.com/watch?v=Q_CQDSlmboA">https://youtube.com/watch?v=Q_CQDSlmboA</a></p>
+<h3 id="introduction-to-lagrangian-dynamics-10-minute-video">Introduction to Lagrangian Dynamics (10 minute video)</h3>
+<p>The concept of Lagrangian dynamics can be a bit abstract at first, especially if you are used to Newtonian mechanics. The basic idea is that instead of focusing on forces, we focus on the kinetic and potential energy of the system to derive the equations of motion. The procedure to compute the equations of motion is straghtforward, but the set up of these problems can be tricky at first.</p>
+<p>The basic steps are:</p>
+<ol>
+<li><strong>Identify the generalized coordinates</strong>: These are the variables that describe the configuration of the system (e.g., angles, distances).</li>
+<li><strong>Write down the Lagrangian</strong>: The Lagrangian $\mathcal{L}$ is defined as the difference between the kinetic energy $T$ and potential energy $V$ of the system:
+$$ \mathcal{L} = T - V $$</li>
+<li><strong>Apply the Euler-Lagrange equations</strong>: The equations of motion are derived from the Lagrangian using the Euler-Lagrange equations:
+$$ \frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{q}_i} \right) - \frac{\partial \mathcal{L}}{\partial q_i} = 0 $$
+where $q_i$ are the generalized coordinates and $\dot{q}_i$ are their time derivatives (velocities).</li>
+</ol>
+<p>But we need practice applying these steps to get comfortable with the process. Parth G. has a lovely video below about the basics of Lagrangian Dynamics. We will do a lot of this in class and go over many examples. This video is a nice introduction to the concept.</p>
+<div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/KpLno70oYHE"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    title="YouTube video player"
+    loading="lazy">
+  </iframe>
+</div>
+
+<p>Source: <a href="https://youtube.com/watch?v=KpLno70oYHE">https://youtube.com/watch?v=KpLno70oYHE</a></p>
+<h2 id="introduction-to-lagrangian-mechanics">Introduction to Lagrangian Mechanics</h2>
+<h3 id="deriving-newtons-second-law-in-plane-polar-coordinates">Deriving Newton&rsquo;s Second Law in Plane Polar Coordinates</h3>
+<p>To get started with Lagrangian mechanics, we will start by deriving Newton&rsquo;s second law in plane polar coordinates. This is not a necessary step for anything we will do in Lagrangian mechanics, but it is a good way to get comfortable with the coordinate system. And it will also help us see how we can think about forces in a coordinate system that is not Cartesian because Lagrangian mechanics can be used with <a href="https://en.wikipedia.org/wiki/Generalized_coordinates">generalized coordinates</a>.</p>
+<p>We start by sketching the location of a particle in plane polar coordinates, as shown below:</p>
+<p><img src="/images/notes/week12/coordinate-system.png" alt="Position vector in polar coordinates"></p>
+<p>The red arrow represents the position vector $\vec{r}$, which is a length $r$ from the origin at an angle $\phi$ from the $x$-axis. At the tip of the vector we have drawn the Cartesian unit vectors $\hat{x}$ and $\hat{y}$ in blue, and the polar unit vectors $\hat{r}$ and $\hat{\phi}$ in green. Notice that the polar unit vectors are rotated by an angle $\phi$ from the Cartesian unit vectors. We can simply write the position vector in terms of these unit vectors as:</p>
+<p>$$\vec{r} = r \hat{r};\text{where};r = |\vec{r}|.$$</p>
+<p>We start by taking the derivative of the position vector $\vec{r}$ with respect to time $t$ to find the velocity $\vec{v}$. Using the product and chain rules, we have:</p>
+<p>$$\dfrac{d\vec{r}}{dt} = \frac{d}{dt}(r \hat{r}) = \dot{r} \hat{r} + r \frac{d\hat{r}}{dt}.$$</p>
+<p>What is $\frac{d\hat{r}}{dt}$?</p>
+<p>We note that the green unit vectors for $\hat{r}$ and $\hat{\phi}$ are not constant, they change direction as the particle moves. We can write them in terms of the Cartesian unit vectors, which do not change with time, as follows:</p>
+<p>$$\hat{r} = \cos(\phi) \hat{x} + \sin(\phi) \hat{y},;;;;;; \hat{\phi} = -\sin(\phi) \hat{x} + \cos(\phi) \hat{y}.$$</p>
+<p>So now,we can differentiate $\hat{r}$ with respect to time $t$ using the chain rule:</p>
+<p>$$\begin{align*}
+\frac{d\hat{r}}{dt} &amp;= \frac{d}{dt}(\cos(\phi) \hat{x} + \sin(\phi) \hat{y}) \
+&amp;= \frac{d}{dt}(\cos(\phi)) \hat{x} + \cos(\phi) \frac{d\hat{x}}{dt} + \frac{d}{dt}(\sin(\phi)) \hat{y} + \sin(\phi) \frac{d\hat{y}}{dt} \
+&amp;= -\sin(\phi) \dot{\phi} \hat{x} + \cos(\phi) \dot{\phi} \hat{y} \quad (\text{since } \frac{d\hat{x}}{dt} = 0 \text{ and } \frac{d\hat{y}}{dt} = 0) \
+&amp;= \dot{\phi} \hat{\phi}
+\end{align*}$$</p>
+<p>And so our expression for the velocity $\vec{v} = \frac{d\vec{r}}{dt}$ becomes:</p>
+<p>$$\vec{v} = \dot{r} \hat{r} + r \dot{\phi} \hat{\phi}.$$</p>
+<p>We differentiate again to find the acceleration $\vec{a} = \frac{d\vec{v}}{dt}$. Using the product and chain rules again, we have:</p>
+<p>$$\begin{align*}
+\frac{d\vec{v}}{dt} &amp;= \frac{d}{dt}(\dot{r} \hat{r} + r \dot{\phi} \hat{\phi}) \
+&amp;= \frac{d}{dt}(\dot{r} \hat{r}) + \frac{d}{dt}(r \dot{\phi} \hat{\phi}) \
+&amp;= \ddot{r} \hat{r} + \dot{r} \frac{d\hat{r}}{dt} + \dot{r} \dot{\phi} \hat{\phi} + r \ddot{\phi} \hat{\phi} + r \dot{\phi} \frac{d\hat{\phi}}{dt} \
+\end{align*}$$</p>
+<p>We found $\frac{d\hat{r}}{dt} = \dot{\phi} \hat{\phi}$ in the previous step, and we also need to find $\frac{d\hat{\phi}}{dt}$. We can differentiate $\hat{\phi}$ in a similar way:</p>
+<p>$$\begin{align*}
+\frac{d\hat{\phi}}{dt} &amp;= \frac{d}{dt}(-\sin(\phi) \hat{x} + \cos(\phi) \hat{y}) \
+&amp;= \frac{d}{dt}(-\sin(\phi)) \hat{x} + (-\sin(\phi)) \frac{d\hat{x}}{dt} + \frac{d}{dt}(\cos(\phi)) \hat{y} + \cos(\phi) \frac{d\hat{y}}{dt} \
+&amp;= -\cos(\phi) \dot{\phi} \hat{x} - \sin(\phi) \dot{\phi} \hat{y} \quad (\text{since } \frac{d\hat{x}}{dt} = 0 \text{ and } \frac{d\hat{y}}{dt} = 0) \
+&amp;= -\dot{\phi} \hat{r} \quad (\text{since } \hat{r} = \cos(\phi) \hat{x} + \sin(\phi) \hat{y}).\
+\end{align*}$$</p>
+<p>We return to our expression for the acceleration $\vec{a}$:</p>
+<p>$$\begin{align*}
+\vec{a} &amp;= \ddot{r} \hat{r} + \dot{r} \frac{d\hat{r}}{dt} + \dot{r} \dot{\phi} \hat{\phi} + r \ddot{\phi} \hat{\phi} + r \dot{\phi} \frac{d\hat{\phi}}{dt} \
+&amp;= \ddot{r} \hat{r} + \dot{r} (\dot{\phi} \hat{\phi}) + \dot{r} \dot{\phi} \hat{\phi} + r \ddot{\phi} \hat{\phi} + r \dot{\phi} (-\dot{\phi} \hat{r}) \
+&amp;= \ddot{r} \hat{r} + \dot{r} \dot{\phi} \hat{\phi} + \dot{r} \dot{\phi} \hat{\phi} + r \ddot{\phi} \hat{\phi} - r \dot{\phi}^2 \hat{r}.\
+&amp;= \left(\ddot{r} - r \dot{\phi}^2\right) \hat{r} + \left(2 \dot{r} \dot{\phi} + r \ddot{\phi}\right) \hat{\phi}.
+\end{align*}$$</p>
+<p>Using Newton&rsquo;s second law, we know that the acceleration $\vec{a}$ is equal to the net force $\vec{F}$ divided by the mass $m$ of the particle:</p>
+<p>$$\vec{a} = \frac{\vec{F}}{m}.$$</p>
+<p>Equating the two expressions for $\vec{a}$, we have:</p>
+<p>$$\vec{F}<em>{net} = m\left[\left(\ddot{r} - r \dot{\phi}^2\right) \hat{r} + \left(2 \dot{r} \dot{\phi} + r \ddot{\phi}\right) \hat{\phi}\right]$$
+$$\vec{F}</em>{net} = \vec{F}<em>{r} + \vec{F}</em>{\phi}$$</p>
+<p>Where we can identify the radial and angular components of the net force as:</p>
+<p>$$\vec{F}<em>{r} = m\left(\ddot{r} - r \dot{\phi}^2\right) \hat{r}$$
+$$\vec{F}</em>{\phi} = m\left(2 \dot{r} \dot{\phi} + r \ddot{\phi}\right) \hat{\phi}$$</p>
+<p>This gives us the net force in terms of the radial and angular components in polar coordinates.</p>
+<h3 id="skateboard-example">Skateboard Example</h3>
+<p>Let&rsquo;s see the utility of using polar coordinates by applying it to a skateboarder moving on a circular track. In this case, the skateboarder is constrained to move along a circular path of radius $r$. Consider a skateboarder moving on that circular track as shown below:</p>
+<p><img src="/images/notes/week12/skateboard.png" alt="Skateboarder on a circular track"></p>
+<p>At this point in the track, we can draw the free body diagram of the skateboarder. The forces acting on the skateboarder are the Earth&rsquo;s gravitational force and the normal force of the ramp.</p>
+<p><img src="/images/notes/week12/skateboard-free-body.png" alt="Free body diagram of skateboarder"></p>
+<p>We can use Newton&rsquo;s law in polar coordinates to analyze the forces acting on the skateboarder. This is because the normal force is always perpendicular to the surface of the ramp and will only have a radial component in polar coordinates. Thus we need only decompose the gravitational force into its radial and angular components.</p>
+<p>The sum of all forces in the radial direction are given by:</p>
+<p>$$\sum F_r = ma_r = -F_{ramp} + mg \cos(\phi) = m\left(\ddot{r} - r \dot{\phi}^2\right)$$</p>
+<p>We note that $r=R$, that is the radius is fixed, so</p>
+<p>$$\ddot{r} = 0$$.</p>
+<p>Therefore, we can simplify the equation to:</p>
+<p>$$-F_{ramp} + mg \cos(\phi) = -mR \dot{\phi}^2.$$</p>
+<p>In the tangential direction, we have:</p>
+<p>$$\sum F_{\phi} = ma_{\phi} = -mg \sin(\phi) = m\left(2 \dot{r} \dot{\phi} + r \ddot{\phi}\right)$$</p>
+<p>Because $r=R$ is constant, we have $\dot{r} = 0$. Thus, the equation simplifies to:</p>
+<p>$$-mg \sin(\phi) = mR \ddot{\phi}$$</p>
+<p>Or, we can express this as:</p>
+<p>$$\ddot{\phi} = -\frac{g}{R} \sin(\phi).$$</p>
+<h4 id="the-normal-force-as-a-function-of-time">The Normal Force as a Function of Time</h4>
+<p>We can solve this equation using numerical methods to find $\phi(t)$, the angular position of the skateboarder as a function of time. This can be used to then find the normal force as a function of time by substituting $\phi(t)$ back into the radial equation we derived above:</p>
+<p>$$F_{ramp} = mg \cos(\phi(t)) + mR \dot{\phi}^2(t).$$</p>
+<p>Note that this force is a <a href="https://en.wikipedia.org/wiki/Constraint_force">force of constraint</a> because it is not an external force acting on the skateboarder but rather a force that arises from the constraint of the circular track. These forces are important in mechanics and can be analyzed using Lagrangian mechanics as well. They are not typically conservative forces and do not have a potential energy associated with them.</p>
+<h4 id="simple-harmonic-motion">Simple Harmonic Motion</h4>
+<p>If we consider small angles, i.e., $\sin(\phi) \approx \phi$, then the equation of motion for $\ddot{\phi}$ becomes:</p>
+<p>$$\ddot{\phi} \approx -\frac{g}{R} \phi.$$
+on (SHM) with angular frequency $\omega = \sqrt{\frac{g}{R}}$. Thus, for small angles, the motion of the skateboarder on the circular track will exhibit SHM. The solution to this equation will be:</p>
+<p>$$\phi(t) = A \cos(\omega t) + B \sin(\omega t),$$</p>
+<p>where $A$ and $B$ are constants determined by the initial conditions of the problem.</p>
+<h3 id="newtons-laws-and-equations-of-motion">Newton&rsquo;s Laws and Equations of Motion</h3>
+<p>So far you have studied the work of physics from the perspective of Newtonian Mechanics, which is based on forces and their effects on motion. The idea behind using Newton&rsquo;s Laws is that:</p>
+<ol>
+<li>We can identify all the interactions with a body (i.e., all the forces and torques acting on it).</li>
+<li>We can write models of those interactions as mathematical expressions (i.e., force laws like $\vec{F} = -k \vec{x}$ for a spring or $b v^2$ for drag).</li>
+<li>We can vectorially sum all the individual interactions to find the net result (i.e., $\sum \vec{F}<em>i = \vec{F}</em>{net}$).</li>
+<li>We can then use Newton&rsquo;s second law to find the acceleration of the body, $\vec{a} = \frac{\vec{F}_{net}}{m}$.</li>
+</ol>
+<p>This process has produced our <strong><a href="https://en.wikipedia.org/wiki/Equation_of_motion">equations of motion</a></strong> for a system. Which we then investigated in detail throughout the course.</p>
+<div class="admonition admonition-admonition " role="note" aria-label="Admonition"><p class="admonition-title">Spring Example</p><div class="admonition-content">
+    <p>We have solved the spring problem many times using Newton&rsquo;s Laws. The spring ($k$) is attached to a block of mass $m$ on a frictionless surface. There is a dashpot connected to the block with a damping coefficient $b$. We know the drag force is opposite the motion. We can write:</p>
+<p>$$F_{spring} = -k x$$</p>
+<p>$$F_{drag} = -b v$$</p>
+<p>Thus, the net force on the block is:</p>
+<p>$$F_{net} = F_{spring} + F_{drag} = -k \vec{x} - b \vec{v}$$</p>
+<p>We can then substitute this into Newton&rsquo;s second law to find the acceleration of the block:</p>
+<p>$$a = \frac{F_{net}}{m} = -\frac{k}{m} x - \frac{b}{m} v$$</p>
+<p>And thus our equation of motion for the block is:</p>
+<p>$$\ddot{x} = -\frac{k}{m} x - \frac{b}{m} \dot{x}$$</p>
+
+  </div>
+</div>
+
+<h2 id="lagrangian-formulation">Lagrangian Formulation</h2>
+<p>The Lagrangian Formulation is rooted in classical optimization, but it is equivalent to Newton&rsquo;s work. However, it uses energy (a scalar) to do so. This means we can exploit coordinate transformations that do not change the scalar value of the energy.</p>
+<p>Epistemologically, Lagrange&rsquo;s approach is an exploration of phase space to determine paths the dynamical system can take. You can think of this as one level of abstraction above plotting the known phase space, because we don&rsquo;t yet have the equations of motion.</p>
+<p>Let&rsquo;s try an example we have seen before, the spring-mass system.</p>
+<h3 id="example-spring-mass-system">Example: Spring-Mass System</h3>
+<p>As you will learn, to get the EOM for a non-dissipative system, we form a function called the <strong>Lagrangian</strong>:</p>
+<p>The Lagrangian is defined as:</p>
+<p>$$
+\mathcal{L} = T - V
+$$</p>
+<p>Where:</p>
+<ul>
+<li>$T$ is the <strong>kinetic energy</strong> of the system.</li>
+<li>$V$ is the <strong>potential energy</strong> of the system.</li>
+</ul>
+<p>For a 1D spring-mass system, we have:</p>
+<p>$$T = \frac{1}{2} m \dot{x}^2 \quad V = \frac{1}{2} k x^2$$</p>
+<p>Now we follow the optimization routine, which is applying the Euler-Lagrange equations to the Lagrangian. The Euler-Lagrange equation for $\mathcal{L}(x,\dot{x},t)$ is given by:</p>
+<p>$$
+\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{x}} \right) - \frac{\partial \mathcal{L}}{\partial x} = 0.
+$$</p>
+<p>Our Lagrangian for the spring-mass system is:</p>
+<p>$$\mathcal{L}(x, \dot{x}) = T - V = \frac{1}{2} m \dot{x}^2 - \frac{1}{2} k x^2$$</p>
+<p>Now we can compute the necessary derivatives:</p>
+<p>$$\frac{\partial \mathcal{L}}{\partial \dot{x}} = m \dot{x}$$
+$$\frac{\partial \mathcal{L}}{\partial x} = -k x$$</p>
+<p>Now we can substitute these into the Euler-Lagrange equation:</p>
+<p>$$
+\frac{d}{dt} \left( m \dot{x} \right) - (-k x) = 0
+$$</p>
+<p>$$m\ddot{x} + kx = 0$$</p>
+<p>This is the same equation of motion we derived using Newton&rsquo;s laws for the spring-mass system.</p>
+<p>$$\ddot{x} = -\frac{k}{m} x$$
+This shows that Lagrangian mechanics can reproduce the same equations of motion as Newtonian mechanics, but it does so by focusing on the energy of the system rather than forces directly.</p>
+<h3 id="why-does-this-work">Why does this work?</h3>
+<p>Lagrangian mechanics works because it is based on the <a href="https://en.wikipedia.org/wiki/Action_principles">principle of least action</a> (or stationary action). This principle states that the actual path taken by a system between two points in phase space is the one that <a href="https://en.wikipedia.org/wiki/Hamilton%27s_principle">minimizes (or makes stationary) the action</a>, which is the integral of the Lagrangian over time.</p>
+<p>This is not magic, it&rsquo;s an application of the <a href="https://en.wikipedia.org/wiki/Calculus_of_variations">calculus of variations</a>. The action is a functional, and the Euler-Lagrange equations provide a way to find the stationary points of that functional. By applying these equations to the Lagrangian, we can derive the equations of motion for a system.</p>
+<p>We can think of this as a system that evolves in time, but does so in a way that is optimal in some sense. The approach allows us to find the path the system will take by exploiting <a href="https://en.wikipedia.org/wiki/Hamilton%27s_principle">Hamilton&rsquo;s principle</a>: <em>The path taken by a dynamical system between two points in phase space is the one that minimizes the time integral of the Lagrangian</em>.</p>
+<p>Mathematically,</p>
+<p>$$\delta \int_{t_1}^{t_2} \mathcal{L}(x(t), \dot{x}(t), t) dt = 0$$</p>
+<p>Where $\delta$ indicates that we are looking for a stationary point of the action integral. This is precisely the formulation of the calculus of variations, which allows us to find the path that minimizes (or makes stationary) the action integral.</p>
+<p>So, we know that the equation that will produce the $\mathcal{L}$ that minimizes the action integral is given by the Euler-Lagrange equations.</p>
+<p>$$\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{x}} \right) - \frac{\partial \mathcal{L}}{\partial x} = 0$$</p>
+<p>In fact, this approach holds in each Cartesian coordinate, so that the equations of motion can be derived in any coordinate system.</p>
+<p>$$\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{x}_i} \right) - \frac{\partial \mathcal{L}}{\partial x_i} = 0$$</p>
+<p>where $x_i$ can be $x, y, z$ if $\mathcal{L}(x,y,z,\dot{x},\dot{y},\dot{z},t)$.</p>
+<h3 id="generalized-coordinates">Generalized Coordinates</h3>
+<p>As it turns out, our approach can make use of an phase coordinate $(\theta, \phi, x, y, \rho, z, \ldots)$ and their first derivatives $(\dot{\theta}, \dot{\phi}, \dot{x}, \dot{y}, \dot{\rho}, \dot{z}, \ldots)$. In fact, we can do so for any set of <a href="https://en.wikipedia.org/wiki/Generalized_coordinates">generalized coordinates</a> that describe the configuration of a system. Generalized coordinates are a set of coordinates that uniquely define the configuration of a system relative to some reference configuration. We denote them as $q_i$ where $i$ runs from 1 to $n$, and their time derivatives as $\dot{q}_i$.</p>
+<p>The generalized position is given by:</p>
+<p>$$\vec{q} = (q_1, q_2, \ldots, q_n)$$</p>
+<p>And the generalized velocity (or time derivative of the generalized coordinates) is given by:</p>
+<p>$$\vec{\dot{q}} = \left(\dot{q}_1, \dot{q}_2, \ldots, \dot{q}_n\right)$$</p>
+<p>These $N$ coordinates would give tise to a set of $N$ equations of motion (subject to potential reductions due to constraints). The Lagrangian can be expressed in terms of these generalized coordinates and velocities:</p>
+<p>$$
+\mathcal{L} = \mathcal{L}(q_1, q_2, \ldots, q_n, \dot{q}_1, \dot{q}_2, \ldots, \dot{q}_n, t)
+$$</p>
+<p>The Euler-Lagrange equations can then be applied to each generalized coordinate $q_i$:</p>
+<p>$$
+\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{q}_i} \right) - \frac{\partial \mathcal{L}}{\partial q_i} = 0, \quad i = 1, 2, \ldots, n
+$$</p>
+<h3 id="example-plane-pendulum">Example: Plane Pendulum</h3>
+<p>To get some intuition for how Lagrangian mechanics works, let&rsquo;s consider an example we have seen before: the plane pendulum.</p>
+<p>A pendulum bob of mass $m$ is attached to a fixed point by a rod of length $l$. The bob swings in a vertical plane under the influence of gravity as shown below. We define $U=0$ at the top of ceiling where the rod is attached.</p>
+<p><img src="/images/notes/week12/plane-pendulum.png" alt="Pendulum Diagram"></p>
+<p>The location of the bob is $\langle x, y \rangle$. We can use the $x,y$ coordinates to &ldquo;naively&rdquo; setup the Lagrangian and see what happens.</p>
+<p>The kinetic energy $T$ of the pendulum bob is given by:</p>
+<p>$$T(\dot{x}, \dot{y}) = \frac{1}{2} m (\dot{x}^2 + \dot{y}^2).$$</p>
+<p>The potential energy $V$ of the pendulum bob is given by:</p>
+<p>$$V(x,y) = +mgy.$$</p>
+<p>Note $y$ is negative in the downward direction.</p>
+<p>So we can write the Lagrangian $\mathcal{L}$ as:</p>
+<p>$$
+\mathcal{L}(x, y, \dot{x}, \dot{y}) = T - V = \frac{1}{2} m (\dot{x}^2 + \dot{y}^2) - mgy
+$$</p>
+<p>We will get two equations of motion from the Euler-Lagrange equations, one for $x$ and one for $y$. For $x$, we have:</p>
+<p>$$\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{x}} \right) - \frac{\partial \mathcal{L}}{\partial x} = 0$$
+$$\frac{d}{dt} \left( m \dot{x} \right) = 0.$$</p>
+<p>This suggests that the momentum in the $x$-direction ($p_x= m\dot{x}$) is conserved, which cannot be correct for a pendulum.</p>
+<p>For $y$, we have:</p>
+<p>$$\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{y}} \right) - \frac{\partial \mathcal{L}}{\partial y} = 0$$
+$$\frac{d}{dt} \left( m \dot{y} \right) - (-mg) = 0$$
+$$m\ddot{y} + mg = 0$$
+$$\ddot{y} = -g.$$</p>
+<p>There&rsquo;s no tension force? That can&rsquo;t be right.</p>
+<p><strong>We failed to include the constraint of the pendulum!</strong> The pendulum is constrained to move along a circular arc of radius $l$. This means that the coordinates $x$ and $y$ are not independent, and we cannot just use $x,y$ as coordinates. This is a classic example of why we need to use generalized coordinates in Lagrangian mechanics.</p>
+<p>The constraint for the pendulum is given by:</p>
+<p>$$x^2 + y^2 = l^2$$</p>
+<p>This tells us that,</p>
+<p>$$\dot{x}^2 + \dot{y}^2 = \dot{r}^2 + r^2 \dot{\phi}^2 = l^2 \dot{\phi}^2$$</p>
+<p>where $r=l$ is constant. So the constraint tells us that the motion of the pendulum is constrained to a circle of radius $l$ and it provides a relationship between the velocities $\dot{x}$ and $\dot{y}$.</p>
+<p>So as you might have guessed, we need to use a different coordinate system to describe the motion of the pendulum. We can use <strong>plane polar coordinates</strong> $(r, \phi)$ where $r=l$ is constant and $\phi$ is the angle from the vertical.</p>
+<p>$$\mathcal{L}(x, y, \dot{x}, \dot{y}) \rightarrow \mathcal{L}(r, \phi, \dot{r}, \dot{\phi})$$</p>
+<p>The kinetic energy $T$ in polar coordinates is given by:</p>
+<p>$$T = \frac{1}{2} m \left( \dot{x}^2 + \dot{y}^2 \right) = \frac{1}{2} ml^2\dot{\phi}^2 = T(\dot{r}, \dot{\phi}).$$</p>
+<p>The potential energy $V$ becomes:</p>
+<p>$$V = mgy = - mg l \cos(\phi) = V(r, \phi)$$</p>
+<p>Now we can write the Lagrangian $\mathcal{L}$ in terms of the polar coordinates:</p>
+<p>$$
+\mathcal{L}(r, \phi, \dot{r}, \dot{\phi}) = T - V = \frac{1}{2} m l^2 \dot{\phi}^2 + mgl \cos(\phi)
+$$</p>
+<p>Notice that it is actually only a function of $\phi$ and $\dot{\phi}$, because $r=l$ is constant.</p>
+<p>$$\mathcal{L}(l, \phi, \dot{\phi}) = \frac{1}{2} m l^2 \dot{\phi}^2 - mgl \cos(\phi)$$</p>
+<p>Thus, we have a 1D equation of motion. This makes sense because the pendulum is constrained to move in a circular arc, and we can describe its motion using just one coordinate $\phi$.</p>
+<p>Now we can apply the Euler-Lagrange equation to find the equation of motion for $\phi$:</p>
+<p>$$
+\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{\phi}} \right) - \frac{\partial \mathcal{L}}{\partial \phi} = 0
+$$</p>
+<p>$$-mgl \sin(\phi) + \frac{d}{dt} (ml^2 \dot{\phi}) = 0$$</p>
+<p>And thus the $\phi$ equation of motion becomes:</p>
+<p>$$ml^2 \ddot{\phi} + mgl \sin(\phi) = 0$$</p>
+<p>or,</p>
+<p>$$\ddot{\phi} = - \frac{g}{l} \sin(\phi).$$</p>
+<p>As we have seen, for small $\phi$, this reduces to simple harmonic motion:</p>
+<p>$$\ddot{\phi} \approx -\frac{g}{l} \phi \quad \text{for small } \phi.$$</p>
+
+
+    
+    <nav style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                
+                <a href="/course-materials/13_notes/">← 13 - Applying the Lagrangian Formulation</a>
+                
+            </div>
+            <div style="text-align: right;">
+                
+                <a href="/course-materials/11_notes/">11 - Reformulating Classical Mechanics using the Calculus of Variations →</a>
+                
+            </div>
+        </div>
+    </nav>
+    
+</article>
+
+    </main>
+
+    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
+        
+        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
+        
+        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,45 @@
+baseURL = ""
+languageCode = "en"
+title = "Classical Mechanics"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "monokai"
+    lineNos = false
+
+[params]
+  author = "Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine"
+  description = "Classical Mechanics"
+  math = true
+
+# KaTeX configuration for math rendering
+[params.katex]
+  enable = true
+
+
+[[menu.main]]
+  identifier = "course-information"
+  name = "Course Information"
+  url = "/course-information/"
+  weight = 1
+
+[[menu.main]]
+  identifier = "course-materials"
+  name = "Course Materials"
+  url = "/course-materials/"
+  weight = 2
+
+[[menu.main]]
+  identifier = "logistics-resources"
+  name = "Logistics & Resources"
+  url = "/logistics-resources/"
+  weight = 3
+
+[[menu.main]]
+  identifier = "programming-resources"
+  name = "Programming Resources"
+  url = "/programming-resources/"
+  weight = 4
