@@ -9,7 +9,9 @@ date: '2026-01-08'
 - [Posted materials](/course-materials/weekly-materials/) were adapted from https://mhjensen.github.io/Physics321/doc/web/course.html. They are not meant to be a replacement for textbook readings and deeper research. 
 - Examples and exercises in these materials are often inspired by the recommended textbooks below.
 
-{{< admonition type="tip" title="Reading from the course materials is **strongly recommended** before each lecture. This will help you follow along and engage with the content. The examples and approaches we use in class follow these materials closely." >}}
+{{< admonition type="tip" >}}
+Reading from the course materials is **strongly recommended** before each lecture. This will help you follow along and engage with the content. The examples and approaches we use in class follow these materials closely.
+
 The [calendar](/logistics-resources/schedule-cal/) includes suggested readings for each week.
 {{< /admonition >}}
 

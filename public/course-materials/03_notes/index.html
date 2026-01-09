@@ -1,120 +1,238 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>03 - What is Mathematical Modeling? | Classical Mechanics</title>
-    <meta name="description" content="Classical Mechanics">
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>03 - What is Mathematical Modeling? | Classical Mechanics</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+
+Learning Goals
+After studying Lesson 03, you should be able to:
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
-    
-    <link rel="stylesheet" href="//localhost:1313/css/accessibility.css">
+Define the concept of a &ldquo;model&rdquo; in physics and explain its role in predicting and explaining natural phenomena.
+Differentiate between various types of observations (e.g., qualitative, quantitative, historical) and their significance in building models.
+Develop equations of motion (EOM) for simple physical systems, such as a falling object or a simple harmonic oscillator.
+Analyze the iterative process of refining models based on experimental observations and theoretical predictions..
+
+
+  
+
+
+Nature reveals itself to us through interactions. We can tell from observations that it is nature&rsquo;s interactions that lead to its evolution. Explaining how nature can change and predicting how it will change in the future is our work as scientists. In this our work, we observe nature and its interactions to make models of those observations. We aim to predict and explain our observations of nature through building and testing mathematical models.">
+<meta name="author" content="Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine">
+<link rel="canonical" href="//localhost:1313/course-materials/03_notes/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
+<link rel="icon" href="//localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="//localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="//localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="//localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="//localhost:1313/course-materials/03_notes/">
+<noscript>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
+        #theme-toggle,
+        .top-link {
+            display: none;
         }
-        nav {
-            background: #f4f4f4;
-            padding: 15px;
-            margin-bottom: 30px;
-            border-radius: 5px;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-        nav a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            color: #222;
-            margin-top: 1.5em;
-        }
-        h1 {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-        code {
-            background: #f4f4f4;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: "SF Mono", Monaco, Consolas, monospace;
-        }
-        pre {
-            background: #f4f4f4;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-        pre code {
-            background: none;
-            padding: 0;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        a {
-            color: #0066cc;
-        }
-        .menu-home {
-            font-weight: bold;
-            margin-right: 30px;
-        }
+
     </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}], throwOnError: false});"></script>
+
+
 </head>
-<body>
-    <nav role="navigation" aria-label="Main navigation">
-        <ul>
-            <li class="menu-home"><a href="//localhost:1313/">Classical Mechanics</a></li>
-            
-            
-            <li><a href="/course-information/">Course Information</a></li>
-            
-            
-            
-            <li><a href="/course-materials/">Course Materials</a></li>
-            
-            
-            
-            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
-            
-            
-            
-            <li><a href="/programming-resources/">Programming Resources</a></li>
-            
-            
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="//localhost:1313/" accesskey="h" title="Classical Mechanics (Alt + H)">Classical Mechanics</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="//localhost:1313/course-information/" title="Course Information">
+                    <span>Course Information</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/course-materials/" title="Course Materials">
+                    <span>Course Materials</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/logistics-resources/" title="Logistics &amp; Resources">
+                    <span>Logistics &amp; Resources</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/programming-resources/" title="Programming Resources">
+                    <span>Programming Resources</span>
+                </a>
+            </li>
         </ul>
     </nav>
+</header>
+<main class="main">
 
-    <main role="main">
-        
-<article>
-    <header>
-        <h1>03 - What is Mathematical Modeling?</h1>
-        
-    </header>
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="//localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="//localhost:1313/course-materials/">Course Materials</a></div>
+    <h1 class="post-title entry-hint-parent">
+      03 - What is Mathematical Modeling?
+    </h1>
+    <div class="post-meta"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span>
 
-    <p><a href="https://github.com/dannycab/phy321msu/issues"><img src="https://img.shields.io/badge/report%20issues-GitHub-blue" alt="Report Issues"></a>
-<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="License: CC BY-NC-SA 4.0"></a></p>
-<h2 id="learning-goals">Learning Goals</h2>
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#learning-goals" aria-label="Learning Goals">Learning Goals</a></li>
+                <li>
+                    <a href="#what-is-a-model" aria-label="What is a model?">What is a model?</a><ul>
+                        
+                <li>
+                    <a href="#history-and-philosophy-of-science" aria-label="History and Philosophy of Science">History and Philosophy of Science</a></li>
+                <li>
+                    <a href="#short-film-on-modeling-in-science-8-minutes" aria-label="Short Film on Modeling in Science (8 minutes)">Short Film on Modeling in Science (8 minutes)</a></li>
+                <li>
+                    <a href="#feynman-on-the-process-of-science-10-minutes" aria-label="Feynman on the Process of Science (10 minutes)">Feynman on the Process of Science (10 minutes)</a></li></ul>
+                </li>
+                <li>
+                    <a href="#making-classical-models" aria-label="Making Classical Models">Making Classical Models</a><ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#what-is-dynamics" aria-label="What is Dynamics?">What is Dynamics?</a></li></ul>
+                    
+                <li>
+                    <a href="#newtonian-examples-of-classical-models" aria-label="Newtonian Examples of Classical Models">Newtonian Examples of Classical Models</a><ul>
+                        
+                <li>
+                    <a href="#example-falling-ball-with-no-air-resistance" aria-label="Example: Falling Ball with No Air Resistance">Example: Falling Ball with No Air Resistance</a></li>
+                <li>
+                    <a href="#example-simple-harmonic-oscillator" aria-label="Example: Simple Harmonic Oscillator">Example: Simple Harmonic Oscillator</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#turning-observations-into-models" aria-label="Turning Observations into Models">Turning Observations into Models</a><ul>
+                        
+                <li>
+                    <a href="#modeling-process" aria-label="Modeling Process">Modeling Process</a></li>
+                <li>
+                    <a href="#example-falling-ball-in-1d" aria-label="Example: Falling Ball in 1D">Example: Falling Ball in 1D</a><ul>
+                        
+                <li>
+                    <a href="#question-what-happens-with-ddoty--0" aria-label="Question: What happens with $\ddot{y} = 0$?">Question: What happens with $\ddot{y} = 0$?</a></li>
+                <li>
+                    <a href="#question-can-we-solve-this-differential-equation" aria-label="Question can we solve this differential equation?">Question can we solve this differential equation?</a></li></ul>
+                </li>
+                <li>
+                    <a href="#discrete-formulation-of-newtonian-mechanics" aria-label="Discrete Formulation of Newtonian Mechanics">Discrete Formulation of Newtonian Mechanics</a><ul>
+                        
+                <li>
+                    <a href="#euler-cromer-step" aria-label="Euler-Cromer Step">Euler-Cromer Step</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#analytical-solutions-to-the-air-resistance-problem" aria-label="Analytical Solutions to the Air-Resistance Problem">Analytical Solutions to the Air-Resistance Problem</a><ul>
+                        
+                <li>
+                    <a href="#linear-drag" aria-label="Linear Drag">Linear Drag</a></li>
+                <li>
+                    <a href="#quadratic-drag" aria-label="Quadratic Drag">Quadratic Drag</a><ul>
+                        
+                <li>
+                    <a href="#assume-we-start-at-rest-v0--0" aria-label="Assume we start at rest, $v(0) = 0$">Assume we start at rest, $v(0) = 0$</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p><a href="https://github.com/dannycab/phy321msu/issues"><img alt="Report Issues" loading="lazy" src="https://img.shields.io/badge/report%20issues-GitHub-blue"></a>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="License: CC BY-NC-SA 4.0" loading="lazy" src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg"></a></p>
+<h2 id="learning-goals">Learning Goals<a hidden class="anchor" aria-hidden="true" href="#learning-goals">#</a></h2>
 <div class="admonition admonition-admonition note" role="note" aria-label="Admonition"><p class="admonition-title">After studying Lesson 03, you should be able to:</p><div class="admonition-content">
     <ul>
 <li>Define the concept of a &ldquo;model&rdquo; in physics and explain its role in predicting and explaining natural phenomena.</li>
@@ -137,11 +255,11 @@
   </div>
 </div>
 
-<h2 id="what-is-a-model">What is a model?</h2>
+<h2 id="what-is-a-model">What is a model?<a hidden class="anchor" aria-hidden="true" href="#what-is-a-model">#</a></h2>
 <p>Physics is a science that builds models. Typically, these models are represented mathematically in the form of equations or formula, but we can use charts, graphs, and animations to represent our models. Models used in physics are often constructed by a community of scientists who have agreed on the model&rsquo;s utility and accuracy. Physics is, after all, a social endeavor &ndash; a global activity in which humans exchange and evaluate ideas and perform labor to produce new knowledge and practices. Experimental observations are used to validate these models. This experimental evidence can be table-top work conducted at the scale of a single lab or small set of experiments, or a big scientific endeavor with many moving parts and people such as DUNE, the LHC or LIGO.</p>
 <p>Modeling is the process of constructing a model. This process is often iterative where the initial ideas and assumptions are used to formulate a model. It is then tested against observations, experience, and expectations, and, later refined. This process is repeated until the model is accurate enough to be useful. Physicists are model builders and model users. There is an enormous body of literature in natural philosophy, history of science, science education, and elsewhere covering the idea of a model and concepts and practices of modeling.</p>
 <p>Suffice to say, academics can spend a lot of time talking about the things that we are doing everyday.</p>
-<h3 id="history-and-philosophy-of-science">History and Philosophy of Science</h3>
+<h3 id="history-and-philosophy-of-science">History and Philosophy of Science<a hidden class="anchor" aria-hidden="true" href="#history-and-philosophy-of-science">#</a></h3>
 <p>If you would like to dive deeper into models and modeling, there&rsquo;s excellent work in the <a href="https://en.wikipedia.org/wiki/History_and_philosophy_of_science">history and philosophy of science</a>. The field studies how science develops knowledge, practice, culture, and so on. It studies important events and provides critical information on important and, often, overlooked folks who do science. For example, historian and gender studies professor <a href="https://en.wikipedia.org/wiki/Sharon_Traweek">Sharon Traweek</a> studies the high energy physics field. Her book, <a href="https://en.wikipedia.org/wiki/Beamtimes_and_Lifetimes">Beamtimes and Lifetimes: The World of High Energy Physicists</a> is excellent.</p>
 <div class="admonition admonition-admonition note" role="note" aria-label="Admonition"><p class="admonition-title">Dame Nancy Cartwright (philosopher of science)</p><div class="admonition-content">
     <p>One of the more interesting scholars is <a href="https://en.wikipedia.org/wiki/Nancy_Cartwright_(philosopher)">Dame Nancy Cartwright</a> who wrote a lot about the &lsquo;practice of science.&rsquo; Her philosophical work informed many of the innovations in physics and broader science education &ndash; including many science courses at MSU.</p>
@@ -150,7 +268,7 @@
   </div>
 </div>
 
-<h3 id="short-film-on-modeling-in-science-8-minutes">Short Film on Modeling in Science (8 minutes)</h3>
+<h3 id="short-film-on-modeling-in-science-8-minutes">Short Film on Modeling in Science (8 minutes)<a hidden class="anchor" aria-hidden="true" href="#short-film-on-modeling-in-science-8-minutes">#</a></h3>
 <p>Geoscientist <a href="https://mnky9800n.github.io/">John Aiken</a> made this short video when he was a graduate student at Georgia Tech. John cut clips from a lecture <a href="https://en.wikipedia.org/wiki/Richard_Feynman">Richard Feynman</a> gave. In this lecture, Feynman talks about the nature of models and the process of science.  John also interviewed different science researchers and teachers about their understanding of what a model is.</p>
 <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
@@ -167,7 +285,7 @@
 <ul>
 <li><em>Source: <a href="https://www.youtube.com/watch?v=dkTncoPqo5Y">https://www.youtube.com/watch?v=dkTncoPqo5Y</a></em></li>
 </ul>
-<h3 id="feynman-on-the-process-of-science-10-minutes">Feynman on the Process of Science (10 minutes)</h3>
+<h3 id="feynman-on-the-process-of-science-10-minutes">Feynman on the Process of Science (10 minutes)<a hidden class="anchor" aria-hidden="true" href="#feynman-on-the-process-of-science-10-minutes">#</a></h3>
 <p><a href="https://en.wikipedia.org/wiki/Richard_Feynman">Richard Feynman</a> was a physicist who made significant contributions to physics, especially in the field of quantum mechanics. He was awarded the <a href="https://www.nobelprize.org/prizes/physics/1965/feynman/">Nobel Prize in Physics in 1965</a> for his work in quantum electrodynamics. In his time, he was known as a great teacher and communicator of physics. And <a href="https://www.feynmanlectures.caltech.edu/">his lectures</a> are still used in physics education today &ndash; even for planning our classes.</p>
 <p>Feynman was a gifted communicator; his lectures are lively and conceptual. Here&rsquo;s the longer version of the lecture he gave on the nature of models and the process of science.</p>
 <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
@@ -192,11 +310,11 @@
   </div>
 </div>
 
-<h2 id="making-classical-models">Making Classical Models</h2>
+<h2 id="making-classical-models">Making Classical Models<a hidden class="anchor" aria-hidden="true" href="#making-classical-models">#</a></h2>
 <p>The central enterprise of physics is making and testing models of physical systems. These models we developed are based on the assumptions we make about the physical systems we are studying. As we characterize the system, we make simplifying assumptions that allow us to describe the system in terms of a few key quantities. These quantities are often called the <a href="https://en.wikipedia.org/wiki/Degrees_of_freedom_(physics_and_chemistry)">&ldquo;degrees of freedom&rdquo;</a> of the system.</p>
 <p>In Classical Mechanics, we will use formulations of physics, such as <a href="https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion">Newton&rsquo;s Laws</a>, to describe the motion of particles. We can also use the <a href="https://en.wikipedia.org/wiki/Lagrangian_mechanics">Lagrangian</a> and <a href="https://en.wikipedia.org/wiki/Hamiltonian_mechanics">Hamiltonian</a> formulations of mechanics. These formulations are mathematical expressions of the physical laws that govern the motion of particles. They borrow from the idea that Newton&rsquo;s Laws are but an expression of a deeper principle, that nature works to <a href="https://en.wikipedia.org/wiki/Action_principles">minimize the &ldquo;action&rdquo;</a>. This is not energy! The action, as we will learn, is a quantity that provides theoretical constraints on the ways that a system may travel through all possible points in its phase space. And if this reads like a word salad, that&rsquo;s ok for now. We will get there.</p>
 <p>Typically, the models we develop are expressed as <a href="https://en.wikipedia.org/wiki/Differential_equation">differential equations</a> that describe how the system evolves in time. Our work in classical mechanics is to develop techniques and tools that let us investigate the solutions (later, families of solutions and qualitative different phases spaces) to these equations. These differential equations are commonly called <a href="https://en.wikipedia.org/wiki/Equations_of_motion">equations of motion</a> (EOM). An equation of motion describes the evolution of the agents (particles) as they interact with their surroundings and each other.</p>
-<h4 id="what-is-dynamics">What is Dynamics?</h4>
+<h4 id="what-is-dynamics">What is Dynamics?<a hidden class="anchor" aria-hidden="true" href="#what-is-dynamics">#</a></h4>
 <p>Dynamics is the study of the time evolution of any system in question. In classical mechanics, dynamics is the study of the motion of particles and the forces that cause that motion. In other physics, dynamics can refer to the study of the evolution of a system in time and space. And here, space might be an abstraction, such as a <a href="https://en.wikipedia.org/wiki/Phase_space">phase space</a>. We study phase spaces later.</p>
 <p>Dynamics is a general term used frequently to mean the same thing in fields as distinct as economics, education, political science, engineering, biology, and chemistry. You might have read about <a href="https://en.wikipedia.org/wiki/Population_model">population models</a>, <a href="https://www.pewresearch.org/politics/2025/06/26/voting-patterns-in-the-2024-election/">voter pattern evolution</a>, or even <a href="https://en.wikipedia.org/wiki/Chemical_kinetics">chemical kinetics</a>. All of these are examples of dynamics of various systems.</p>
 <div class="admonition admonition-admonition hint" role="note" aria-label="Admonition"><p class="admonition-title">When studying dynamics goes wrong</p><div class="admonition-content">
@@ -207,15 +325,15 @@
   </div>
 </div>
 
-<h3 id="newtonian-examples-of-classical-models">Newtonian Examples of Classical Models</h3>
+<h3 id="newtonian-examples-of-classical-models">Newtonian Examples of Classical Models<a hidden class="anchor" aria-hidden="true" href="#newtonian-examples-of-classical-models">#</a></h3>
 <p>From a Newtonian perspective, our equations of motion are often second-order differential equations. This stems from the fact that Newton&rsquo;s second law relates the acceleration of a particle to the forces acting on it and that the second derivative of position is acceleration. The second law is given by the equation:</p>
 <p>$$\vec{F}_{\text{net}} = m \vec{a} = m\ddot{\vec{x}}$$</p>
 <p>where $\vec{x}$ is the position vector and $\ddot{\vec{x}}=\frac{d^2\vec{x}}{dt^2}$ is the acceleration vector. Thus, Newton&rsquo;s second law is a general EOM that describes the dynamics of a particle of mass, $m$:</p>
 <p>$$\frac{d^2\vec{x}}{dt^2} = \dfrac{\vec{F}_{\text{net}}}{m}$$</p>
-<h4 id="example-falling-ball-with-no-air-resistance">Example: Falling Ball with No Air Resistance</h4>
+<h4 id="example-falling-ball-with-no-air-resistance">Example: Falling Ball with No Air Resistance<a hidden class="anchor" aria-hidden="true" href="#example-falling-ball-with-no-air-resistance">#</a></h4>
 <p>Consider a ball of mass $m$ falling down. We define the positive $y$ direction to be down as in the figure showing the FBD of the ball.</p>
 <figure class="figure " role="figure" aria-label="Free Body Diagram of a falling ball; the arrows label the direction of forces acting on the ball. [SVG File](../images/vector-graphics/falling_ball_no_air_resistance_fbd.svg)">
-  <img src="//localhost:1313/images/vector-graphics/falling_ball_no_air_resistance_fbd.png" alt="Free Body Diagram of a falling ball; the arrows label the direction of forces acting on the ball. [SVG File](../images/vector-graphics/falling_ball_no_air_resistance_fbd.svg)" loading="lazy"><figcaption class="figure-caption">Free Body Diagram of a falling ball; the arrows label the direction of forces acting on the ball. <a href="../images/vector-graphics/falling_ball_no_air_resistance_fbd.svg">SVG File</a></figcaption></figure>
+  <img src="/images/vector-graphics/falling_ball_no_air_resistance_fbd.png" alt="Free Body Diagram of a falling ball; the arrows label the direction of forces acting on the ball. [SVG File](../images/vector-graphics/falling_ball_no_air_resistance_fbd.svg)" loading="lazy"><figcaption class="figure-caption">Free Body Diagram of a falling ball; the arrows label the direction of forces acting on the ball. <a href="../images/vector-graphics/falling_ball_no_air_resistance_fbd.svg">SVG File</a></figcaption></figure>
 
 <p>We can apply Newton&rsquo;s laws to obtain the specific EOM for the ball.</p>
 <p>$$\vec{F}_{\text{net}} = m \vec{a} = m\ddot{\vec{x}}$$</p>
@@ -224,10 +342,10 @@
 <p>Thus,</p>
 <p>$$\ddot{y} = g$$</p>
 <p>is the specific EOM for the ball.</p>
-<h4 id="example-simple-harmonic-oscillator">Example: Simple Harmonic Oscillator</h4>
+<h4 id="example-simple-harmonic-oscillator">Example: Simple Harmonic Oscillator<a hidden class="anchor" aria-hidden="true" href="#example-simple-harmonic-oscillator">#</a></h4>
 <p>We will spend a lot of time studying the <a href="https://en.wikipedia.org/wiki/Harmonic_oscillator">simple harmonic oscillator</a> (SHO). The SHO is a system that oscillates back and forth around an equilibrium position. It is a very common system in physics and is used a base model for many more complex systems. Consider a mass, $m$, attached to a spring with spring constant, $k$, sitting on a frictionless horizontal plane as in the figure below.</p>
 <figure class="figure " role="figure" aria-label="Free Body Diagram of a Simple Harmonic Oscillator; the arrows label the direction of forces acting on the mass. [SVG File](../images/vector-graphics/simple_harmonic_oscillator_setup_1D_horizontal.svg)">
-  <img src="//localhost:1313/images/vector-graphics/simple_harmonic_oscillator_setup_1D_horizontal.png" alt="Free Body Diagram of a Simple Harmonic Oscillator; the arrows label the direction of forces acting on the mass. [SVG File](../images/vector-graphics/simple_harmonic_oscillator_setup_1D_horizontal.svg)" loading="lazy"><figcaption class="figure-caption">Free Body Diagram of a Simple Harmonic Oscillator; the arrows label the direction of forces acting on the mass. <a href="../images/vector-graphics/simple_harmonic_oscillator_setup_1D_horizontal.svg">SVG File</a></figcaption></figure>
+  <img src="/images/vector-graphics/simple_harmonic_oscillator_setup_1D_horizontal.png" alt="Free Body Diagram of a Simple Harmonic Oscillator; the arrows label the direction of forces acting on the mass. [SVG File](../images/vector-graphics/simple_harmonic_oscillator_setup_1D_horizontal.svg)" loading="lazy"><figcaption class="figure-caption">Free Body Diagram of a Simple Harmonic Oscillator; the arrows label the direction of forces acting on the mass. <a href="../images/vector-graphics/simple_harmonic_oscillator_setup_1D_horizontal.svg">SVG File</a></figcaption></figure>
 
 <p>The EOM for the SHO can be derived form Newton&rsquo;s Second Law.</p>
 <p>$$\vec{F}_{\text{net}} = m \vec{a} = m\ddot{\vec{x}}$$</p>
@@ -236,14 +354,14 @@
 <p>And thus,</p>
 <p>$$\ddot{x} = -\dfrac{k}{m}x$$</p>
 <p>is the specific EOM for the SHO. As we will learn, this restoring force causes the mass to oscillate back and forth around the equilibrium position, with a well known frequency, $\omega = \sqrt{\dfrac{k}{m}}$.</p>
-<h2 id="turning-observations-into-models">Turning Observations into Models</h2>
+<h2 id="turning-observations-into-models">Turning Observations into Models<a hidden class="anchor" aria-hidden="true" href="#turning-observations-into-models">#</a></h2>
 <p>One of the more challenging aspects of physics is how we work to make models of the observations we have. This a long and challenging process in general, but if we have a general schematic, we can make progress. The hand drawn figure below provides such a schematic.</p>
 <figure class="figure " role="figure" aria-label="Framework for making models: Schematic diagram showing the process of turning observations into models in physics. [SVG File](../images/vector-graphics/turning_observations_into_models_diagram.svg)">
-  <img src="//localhost:1313/images/vector-graphics/turning_observations_into_models_diagram.png" alt="Framework for making models: Schematic diagram showing the process of turning observations into models in physics. [SVG File](../images/vector-graphics/turning_observations_into_models_diagram.svg)" loading="lazy"><figcaption class="figure-caption">Framework for making models: Schematic diagram showing the process of turning observations into models in physics. <a href="../images/vector-graphics/turning_observations_into_models_diagram.svg">SVG File</a></figcaption></figure>
+  <img src="/images/vector-graphics/turning_observations_into_models_diagram.png" alt="Framework for making models: Schematic diagram showing the process of turning observations into models in physics. [SVG File](../images/vector-graphics/turning_observations_into_models_diagram.svg)" loading="lazy"><figcaption class="figure-caption">Framework for making models: Schematic diagram showing the process of turning observations into models in physics. <a href="../images/vector-graphics/turning_observations_into_models_diagram.svg">SVG File</a></figcaption></figure>
 
 <p>In the schematic, our observations are the starting point. Using our framework for physics (e.g., Newton&rsquo;s Laws) and making the appropriate assumptions (in blue), we can develop a model (in red) of the system. By conducting analysis and investigating the evolution of the model, we produce predictions (in green). We can then compare those predictions to our observations to evaluate how well our model describes the system.</p>
 <p>In this class, we mostly focus on the elements circled in purple where we develop models, and use them to predict. The core part of this class is the orange circled elements of modeling and predicting. We will spend a lot of time developing the tools and techniques to make these predictions.</p>
-<h3 id="modeling-process">Modeling Process</h3>
+<h3 id="modeling-process">Modeling Process<a hidden class="anchor" aria-hidden="true" href="#modeling-process">#</a></h3>
 <p>Making models of physical systems is greatly helped by considering the following steps:</p>
 <ul>
 <li>Identify the phenomenon or system of interest.</li>
@@ -255,10 +373,10 @@
 <li><strong>Obtain the equations of motion</strong>, and make predictions.</li>
 </ul>
 <p>Let&rsquo;s return to an example you have seen before: the falling ball.</p>
-<h3 id="example-falling-ball-in-1d">Example: Falling Ball in 1D</h3>
+<h3 id="example-falling-ball-in-1d">Example: Falling Ball in 1D<a hidden class="anchor" aria-hidden="true" href="#example-falling-ball-in-1d">#</a></h3>
 <p>Consider a ball of mass $m$ falling with air resistance. Here, we have already done some of the work above. We have identified the phenomenon, and started to indicate the interactions.</p>
 <figure class="figure " role="figure" aria-label="FBD of a falling ball with air resistance. [SVG file](../images/vector-graphics/falling_ball_framework_applied.svg)">
-  <img src="//localhost:1313/images/vector-graphics/falling_ball_framework_applied.png" alt="FBD of a falling ball with air resistance. [SVG file](../images/vector-graphics/falling_ball_framework_applied.svg)" loading="lazy"><figcaption class="figure-caption">FBD of a falling ball with air resistance. <a href="../images/vector-graphics/falling_ball_framework_applied.svg">SVG file</a></figcaption></figure>
+  <img src="/images/vector-graphics/falling_ball_framework_applied.png" alt="FBD of a falling ball with air resistance. [SVG file](../images/vector-graphics/falling_ball_framework_applied.svg)" loading="lazy"><figcaption class="figure-caption">FBD of a falling ball with air resistance. <a href="../images/vector-graphics/falling_ball_framework_applied.svg">SVG file</a></figcaption></figure>
 
 <p>In the figure above, we have identified the forces acting on the ball. We have the gravitational force, $W = mg$, and the air resistance, $F_{\text{air}}$. We have chosen the linear model for air-resistance, which is a choice of model given the assumption that the ball moves very slowly &ndash; <em>this is not a good assumption in this case</em>, but makes the mathematical analysis simpler. We also selected the gravitational interaction model as a constant force near the surface of the Earth, thus neglecting variations in $g$ with height or location.</p>
 <p>We have also chosen our coordinate system, with the positive $y$ direction pointing down.</p>
@@ -268,12 +386,12 @@
 <p>$$F_{\text{net,y}} = W - F_{\text{air}} = mg - bv = m \ddot{y}$$</p>
 <p>So that the EOM is,</p>
 <p>$$\ddot{y} = g - \dfrac{b}{m}v$$</p>
-<h4 id="question-what-happens-with-ddoty--0">Question: What happens with $\ddot{y} = 0$?</h4>
+<h4 id="question-what-happens-with-ddoty--0">Question: What happens with $\ddot{y} = 0$?<a hidden class="anchor" aria-hidden="true" href="#question-what-happens-with-ddoty--0">#</a></h4>
 <p>Once the ball has no acceleration, the two forces are balanced. This is the terminal velocity of the ball. We can solve for this by setting $\ddot{y} = 0$:</p>
 <p>$$0 = g - \dfrac{b}{m}v_{\text{term}}$$</p>
 <p>$$v_{\text{term}} = \dfrac{mg}{b}$$</p>
 <p>This is the terminal velocity of the ball for linear drag. When the ball reaches this speed (and does so asymptotically), the forces are balanced and the ball will fall at a constant speed.</p>
-<h4 id="question-can-we-solve-this-differential-equation">Question can we solve this differential equation?</h4>
+<h4 id="question-can-we-solve-this-differential-equation">Question can we solve this differential equation?<a hidden class="anchor" aria-hidden="true" href="#question-can-we-solve-this-differential-equation">#</a></h4>
 <p>The differential equation $\ddot{y} = g - \dfrac{b}{m}v$ is a second-order differential equation for $y$. We can solve this equation analytically by recasting it as a first-order differential equation for $v$, which we solve for and then integrate to find $y(t)$.</p>
 <p>$$\dot{v} = g - \dfrac{b}{m}v$$</p>
 <p>We will do that later, for now, let&rsquo;s hack off the drag bit and return to the simple falling ball. Our simplified EOM is:</p>
@@ -306,7 +424,7 @@ $$y(t) = y_0 + v_0 t + \dfrac{1}{2}at^2$$</p>
   </div>
 </div>
 
-<h3 id="discrete-formulation-of-newtonian-mechanics">Discrete Formulation of Newtonian Mechanics</h3>
+<h3 id="discrete-formulation-of-newtonian-mechanics">Discrete Formulation of Newtonian Mechanics<a hidden class="anchor" aria-hidden="true" href="#discrete-formulation-of-newtonian-mechanics">#</a></h3>
 <p>Most of our experience so far has been solving problems where we can find continuous functions that are the anti-derivatives of the functions we are integrating. This leads to standard formulae that we can use to predict or plot our results.</p>
 <p>However, there are very few systems for which we can write down EOMs that have known analytical solutions. In these cases, we need to turn to numerical methods to solve the equations of motion. To do this, we need a discrete formulation of the EOMs.</p>
 <p>For now, let&rsquo;s focus on 1D:</p>
@@ -330,15 +448,14 @@ $$y(t) = y_0 + v_0 t + \dfrac{1}{2}at^2$$</p>
 <p>We can then write the position update equation:</p>
 <p>$$y(t+\Delta t) = y(t) + v_{\textrm{avg}} \Delta t$$</p>
 <p>What is left is to determine what should be the estimate for $v_{\textrm{avg}}$.</p>
-<div class="admonition admonition-admonition " role="note" aria-label="Admonition"><p class="admonition-title">Choosing $v_{\textrm{avg}}$</p><div class="admonition-content">
-    <p>:class: tip</p>
-<p>The idea that we have to pick a value for $v_{\textrm{avg}}$ is a key point in numerical methods. It might seem silly or overly subtle and it is certainly the latter. We can select $v(t)$, $v(t+\Delta t)$, or some average of the two. The choice of $v_{\textrm{avg}}$ is the key to the accuracy of the method.</p>
+<div class="admonition admonition-admonition tip" role="note" aria-label="Admonition"><p class="admonition-title">Choosing $v_{\textrm{avg}}$</p><div class="admonition-content">
+    <p>The idea that we have to pick a value for $v_{\textrm{avg}}$ is a key point in numerical methods. It might seem silly or overly subtle and it is certainly the latter. We can select $v(t)$, $v(t+\Delta t)$, or some average of the two. The choice of $v_{\textrm{avg}}$ is the key to the accuracy of the method.</p>
 <p>As we will show in a later homework, the best choice is $v(t+\Delta t)$ as it preserves the energy of the system.</p>
 
   </div>
 </div>
 
-<h4 id="euler-cromer-step">Euler-Cromer Step</h4>
+<h4 id="euler-cromer-step">Euler-Cromer Step<a hidden class="anchor" aria-hidden="true" href="#euler-cromer-step">#</a></h4>
 <p>Taking the definition of $v_{avg}$ to be the predicted velocity, we obtain the <a href="https://en.wikipedia.org/wiki/Semi-implicit_Euler_method">Euler-Cromer</a> step for the position and velocity:</p>
 <p>$$v(t+\Delta t) = v(t) + \dfrac{F(t)}{m} \Delta t$$
 $$y(t+\Delta t) = y(t) + v(t+\Delta t) \Delta t$$</p>
@@ -346,9 +463,8 @@ $$y(t+\Delta t) = y(t) + v(t+\Delta t) \Delta t$$</p>
 <p>In three-dimensions, this method is simply written in a vector form:</p>
 <p>$$\vec{v}(t+\Delta t) = \vec{v}(t) + \dfrac{\vec{F}(t)}{m} \Delta t$$
 $$\vec{r}(t+\Delta t) = \vec{r}(t) + \vec{v}(t+\Delta t) \Delta t$$</p>
-<div class="admonition admonition-admonition " role="note" aria-label="Admonition"><p class="admonition-title">Erasing Contributions in Physics</p><div class="admonition-content">
-    <p>:class: warning
-This method is called the Semi-Implicit Euler method or the Euler-Cromer method. It should be called the Euler-Aspel-Cromer method because Euler started it, Aspel improved it, and Cromer formalized it.</p>
+<div class="admonition admonition-admonition warning" role="note" aria-label="Admonition"><p class="admonition-title">Erasing Contributions in Physics</p><div class="admonition-content">
+    <p>This method is called the Semi-Implicit Euler method or the Euler-Cromer method. It should be called the Euler-Aspel-Cromer method because Euler started it, Aspel improved it, and Cromer formalized it.</p>
 <p>It is not called that because physics and physicists tend to erase the contributions of marginalized groups including young people, women, and folks from non-dominant groups.</p>
 <p><strong>Don&rsquo;t believe it?</strong></p>
 <p>Read about the <a href="https://physics.mit.edu/about-physics/our-history/">history of the MIT physics department</a> and try to find the contributions of the many technical staff, non-tenure track faculty, and students who have made the department what it is today.</p>
@@ -357,11 +473,11 @@ This method is called the Semi-Implicit Euler method or the Euler-Cromer method.
   </div>
 </div>
 
-<h2 id="analytical-solutions-to-the-air-resistance-problem">Analytical Solutions to the Air-Resistance Problem</h2>
+<h2 id="analytical-solutions-to-the-air-resistance-problem">Analytical Solutions to the Air-Resistance Problem<a hidden class="anchor" aria-hidden="true" href="#analytical-solutions-to-the-air-resistance-problem">#</a></h2>
 <p>While we have made a big deal about numerical solutions, it turns out that we can solve the air-resistance problem analytically, at least, in one-dimension with up to $v^2$ drag.</p>
 <p>We start with the EOM for velocity that we derived previously</p>
 <p>$$\dot{v} = g - \dfrac{b}{m}v - \dfrac{c}{m}v^2$$</p>
-<h3 id="linear-drag">Linear Drag</h3>
+<h3 id="linear-drag">Linear Drag<a hidden class="anchor" aria-hidden="true" href="#linear-drag">#</a></h3>
 <p>Let&rsquo;s take the linear limit first, $c=0$.</p>
 <p>$$\dot{v} = g - \dfrac{b}{m}v$$</p>
 <p>We can solve this equation by separating variables:</p>
@@ -380,7 +496,7 @@ This method is called the Semi-Implicit Euler method or the Euler-Cromer method.
 <p>$$v(t) = \dfrac{mg}{b}\left(1 - e^{-\dfrac{b}{m}t}\right)$$</p>
 <p>And as $t \to \infty$, we find the terminal velocity:</p>
 <p>$$v_{\text{term}} = \lim_{t \to \infty} v(t) = \dfrac{mg}{b}$$</p>
-<h3 id="quadratic-drag">Quadratic Drag</h3>
+<h3 id="quadratic-drag">Quadratic Drag<a hidden class="anchor" aria-hidden="true" href="#quadratic-drag">#</a></h3>
 <p>In the case of quadratic drag, we have:</p>
 <p>$$\dot{v} = g - \dfrac{c}{m}v^2$$</p>
 <p>We can find the terminal velocity by setting $\dot{v} = 0$:</p>
@@ -390,7 +506,7 @@ This method is called the Semi-Implicit Euler method or the Euler-Cromer method.
 <p>$$\dot{v} = g\left(1 - \dfrac{v^2}{v_{\text{term}}^2}\right)$$</p>
 <p>We can separate variables and integrate:</p>
 <p>$$\int \dfrac{dv}{1 - \dfrac{v^2}{v_{\text{term}}^2}} = \int g dt$$</p>
-<h4 id="assume-we-start-at-rest-v0--0">Assume we start at rest, $v(0) = 0$</h4>
+<h4 id="assume-we-start-at-rest-v0--0">Assume we start at rest, $v(0) = 0$<a hidden class="anchor" aria-hidden="true" href="#assume-we-start-at-rest-v0--0">#</a></h4>
 <p>We can solve for $v(t)$, by using the proper limits:</p>
 <p>$$\int_{0}^{v(t)} \dfrac{dv}{1 - \dfrac{v^2}{v_{\text{term}}^2}} = \int_{0}^{t} g dt$$</p>
 <p>This is a known integral and yields:</p>
@@ -403,31 +519,103 @@ This method is called the Semi-Implicit Euler method or the Euler-Cromer method.
 <p>$$\lim_{t\rightarrow \infty} v(t) = v_{\text{term}} = \sqrt{\dfrac{mg}{c}}$$</p>
 
 
-    
-    <nav style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
-        <div style="display: flex; justify-content: space-between;">
-            <div>
-                
-                <a href="/course-materials/04_notes/">← 04 - Why does fluid drag complicate things?</a>
-                
-            </div>
-            <div style="text-align: right;">
-                
-                <a href="/course-materials/assignment-overview/">Assignments Overview →</a>
-                
-            </div>
-        </div>
-    </nav>
-    
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="//localhost:1313/course-materials/assignment-overview/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>Assignments Overview</span>
+  </a>
+  <a class="next" href="//localhost:1313/course-materials/04_notes/">
+    <span class="title">Next »</span>
+    <br>
+    <span>04 - Why does fluid drag complicate things?</span>
+  </a>
+</nav>
+
+  </footer>
 </article>
-
     </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="//localhost:1313/">Classical Mechanics</a></span> · 
 
-    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
         
-        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
         
-        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
-    </footer>
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
 </body>
+
 </html>

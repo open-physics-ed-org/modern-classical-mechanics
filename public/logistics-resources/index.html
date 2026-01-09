@@ -1,158 +1,323 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logistics &amp; Resources | Classical Mechanics</title>
-    <meta name="description" content="Classical Mechanics">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
-    
-    <link rel="stylesheet" href="//localhost:1313/css/accessibility.css">
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Logistics &amp; Resources | Classical Mechanics</title>
+<meta name="keywords" content="">
+<meta name="description" content="This section contains course materials for Logistics &amp; Resources.">
+<meta name="author" content="Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine">
+<link rel="canonical" href="//localhost:1313/logistics-resources/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
+<link rel="icon" href="//localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="//localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="//localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="//localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="//localhost:1313/logistics-resources/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="//localhost:1313/logistics-resources/">
+<noscript>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
+        #theme-toggle,
+        .top-link {
+            display: none;
         }
-        nav {
-            background: #f4f4f4;
-            padding: 15px;
-            margin-bottom: 30px;
-            border-radius: 5px;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-        nav a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            color: #222;
-            margin-top: 1.5em;
-        }
-        h1 {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-        code {
-            background: #f4f4f4;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: "SF Mono", Monaco, Consolas, monospace;
-        }
-        pre {
-            background: #f4f4f4;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-        pre code {
-            background: none;
-            padding: 0;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        a {
-            color: #0066cc;
-        }
-        .menu-home {
-            font-weight: bold;
-            margin-right: 30px;
-        }
+
     </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}], throwOnError: false});"></script>
+
+
 </head>
-<body>
-    <nav role="navigation" aria-label="Main navigation">
-        <ul>
-            <li class="menu-home"><a href="//localhost:1313/">Classical Mechanics</a></li>
-            
-            
-            <li><a href="/course-information/">Course Information</a></li>
-            
-            
-            
-            <li><a href="/course-materials/">Course Materials</a></li>
-            
-            
-            
-            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
-            
-            
-            
-            <li><a href="/programming-resources/">Programming Resources</a></li>
-            
-            
+<body class="list" id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="//localhost:1313/" accesskey="h" title="Classical Mechanics (Alt + H)">Classical Mechanics</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="//localhost:1313/course-information/" title="Course Information">
+                    <span>Course Information</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/course-materials/" title="Course Materials">
+                    <span>Course Materials</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/logistics-resources/" title="Logistics &amp; Resources">
+                    <span class="active">Logistics &amp; Resources</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/programming-resources/" title="Programming Resources">
+                    <span>Programming Resources</span>
+                </a>
+            </li>
         </ul>
     </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="//localhost:1313/">Home</a></div>
+  <h1>
+    Logistics &amp; Resources
+  </h1>
+</header>
+<div class="post-content"><p>This section contains course materials for Logistics &amp; Resources.</p>
 
-    <main role="main">
-        
-<article>
-    <h1>Logistics &amp; Resources</h1>
-    <p>This section contains course materials for Logistics &amp; Resources.</p>
 
+</div>
 
-    
-    <section style="margin-top: 30px;">
-        <h2>Pages in this section:</h2>
-        <ul>
-            
-            <li style="margin-bottom: 10px;">
-                <a href="/logistics-resources/schedule-cal/"><strong>Course Calendar</strong></a>
-                
-            </li>
-            
-            <li style="margin-bottom: 10px;">
-                <a href="/logistics-resources/slides/"><strong>Slides</strong></a>
-                
-            </li>
-            
-            <li style="margin-bottom: 10px;">
-                <a href="/logistics-resources/gradescope-submissions/"><strong>Submitting Assignments on Gradescope</strong></a>
-                
-            </li>
-            
-            <li style="margin-bottom: 10px;">
-                <a href="/logistics-resources/iclicker-setup/"><strong>i-Clicker Setup Instructions</strong></a>
-                
-            </li>
-            
-            <li style="margin-bottom: 10px;">
-                <a href="/logistics-resources/finding-research/"><strong>Finding Research Opportunities</strong></a>
-                
-            </li>
-            
-        </ul>
-    </section>
-    
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Course Calendar
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> Topics are subject to change based on course pace and student needs.
+All assignments are turned in using Gradescope as a single PDF.
+📅 Class Week 1 Week Day Topic Readings to Prepare Important Events CW3 12 Jan Introduction to the course; reminders about vectors; software setup 📓 01 - Overture: What is Classical Physics?
+📚 MLB Ch 3.4 📝 Homework 1 Assigned (Due 23 Jan) 14 Jan Newton’s 1st and 2nd Law; Motion in 1 dimension 📚 JRT 1.1-1.4; AMS Ch 1-4 16 Jan Getting Started with VS Code; Using AI in this Class 📓 02 - Computing is a Necessary Tool for Science 📅 Class Week 2 Week Day Topic Readings to Prepare Important Events CW4 19 Jan Martin Luther King Jr. Day (No Class) 📝 Homework 2 Assigned (Due 30 Jan) 21 Jan Newton’s Laws; Motion in 2 and 3 dimensions 📚 JRT 1.4-1.6; AMS Ch 4.2 and 5 23 Jan Workshop day 📥 Homework 1 Due
+(Late after Sunday 11:59pm) 📅 Class Week 3 Week Day Topic Readings to Prepare Important Events CW5 26 Jan Modeling and equations of motion 📓 03 - What is Mathematical Modeling?
+📚 JRT 1.4-1.6 📝 Homework 3 Assigned (Due 6 Feb) 28 Jan Air Resistance 30 Jan Workshop day 📥 Homework 2 Due
+(Late after Sunday 11:59pm) 📅 Class Week 4 Week Day Topic Readings to Prepare Important Events CW6 2 Feb Air Resistance; Central Forces 📓 04 - Why does fluid drag complicate things?
+📚 JRT 2.1-2.4 📝 Homework 4 Assigned (Due 13 Feb) 4 Feb Euler-Cromer Integration 💻 Programming Resources
+(Euler Integration)
+(Numerical Integrators) 📓 02 - Computing is a Necessary Tool for Science - Euler Discretization
+📚 Newman, Computational Physics Ch 08 - Ordinary Differential Equations 6 Feb Workshop day 📥 Homework 3 Due
+(Late after Sunday 11:59pm) 📅 Class Week 5 Week Day Topic Readings to Prepare Important Events CW7 9 Feb Work Energy Theorem 📓 05 - Conservation Laws Govern and Constrain our Physics
+📚 JRT 4.1-4.3 11 Feb Conservative Forces and Potential 📚 JRT 4.1-4.4, 4.6 13 Feb No Classes Held 📥 Homework 4 Due
+(Late after Sunday 11:59pm) 📅 Class Week 6 Week Day Topic Readings to Prepare Important Events CW8 16 Feb Examples and Stability Analysis 📓 06 - Nature Often Seeks Stability
+📚 JRT 4.1-4.4, 4.6; MLB 6.6-6.8 📝 Midterm Project 1 Assigned (Due 27 Feb) 18 Feb Conservation of Momentum and Angular Momentum 📓 05 - Conservation Laws Govern and Constrain our Physics
+📚 JRT 3.1, 3.3-3.4 20 Feb Workshop day 📅 Class Week 7 Week Day Topic Readings to Prepare Important Events CW9 23 Feb Nonlinear dynamics, phase portraits 📓 07 - Introducing Nonlinear Dynamics
+📚 Strogatz, Nonlinear Dynamics 2.0-2.3; 5.0-5.2 📝 Homework 5 Assigned (Due 13 Mar) 25 Feb Phase portraits, numerical modeling PDFs posted are consistent with educational fair use; will be removed after course has concluded 27 Feb Workshop day 📥 Midterm Project 1 Due
+(Late after Sunday 11:59pm) 📅 Class Week 8 Week Day Topic Readings to Prepare Important Events CW10 2 Mar Spring Break (No Class) 4 Mar Spring Break (No Class) 6 Mar Spring Break (No Class) 📅 Class Week 9 Week Day Topic Readings to Prepare Important Events CW11 9 Mar Oscillations; Damping 📓 08 - Oscillations, Cycles, and Nature’s Recurrences
+📚 JRT 5.1-5.2, 5.4; MLB 7.1-7.2; 8.5 📝 Homework 6 Assigned (Due 20 Mar) 11 Mar Oscillations; Damping 13 Mar Workshop day 📥 Homework 5 Due
+(Late after Sunday 11:59pm) 📅 Class Week 10 Week Day Topic Readings to Prepare Important Events CW12 16 Mar Driven Oscillations; Resonance 📓 09 - Driving Oscillators and Resonance Phenomenon
+📚 JRT 5.5-5.6; MLB 8.6 📝 Homework 7 Assigned (Due 27 Mar) 18 Mar Driven Oscillations; Resonance 20 Mar Workshop day 📥 Homework 6 Due
+(Late after Sunday 11:59pm) 📅 Class Week 11 Week Day Topic Readings to Prepare Important Events CW13 23 Mar Introduction to Chaos 📓 10 - Investigating Systems that Exhibit Chaotic Dynamics 25 Mar Hallmarks of Classical Chaos Series 27 Mar Workshop day 📥 Homework 7 Due
+(Late after Sunday 11:59pm) 📅 Class Week 12 Week Day Topic Readings to Prepare Important Events CW14 30 Mar Calculus of Variations; Euler-Lagrange Equation 📓 11 - Reformulating Classical Mechanics using the Calculus of Variations
+📚 JRT 6.1-6.3; MLB 9.1-9.4 📝 Midterm Project 2 Assigned (Due 10 Apr) 1 Apr Euler-Lagrange Equation Examples 3 Apr Workshop day 📅 Class Week 13 Week Day Topic Readings to Prepare Important Events CW15 6 Apr Introduction to Lagrangian Dynamics 📓 12 - The Core Principle of Classical Mechanics? The Principle of Least Action
+📚 JRT 7.1-7.2, 7.5; MLB 9.5 📝 Homework 8 Assigned (Due 17 Apr) 8 Apr Lagrangian Dynamics Examples Session 10 Apr Workshop Day 📥 Midterm Project 2 Due
+(Late after Sunday 11:59pm) 📅 Class Week 14 Week Day Topic Readings to Prepare Important Events CW16 13 Apr Lagrangian Dynamics Examples 📓 13 - Applying the Lagrangian Formulation
+📚 JRT 7.3-7.7, 7.10 📝 Final Project Assigned
+Recorded Presentations (27 Apr)
+Computational Essay (1 May) 15 Apr Lagrangian Dynamics with Constraints 17 Apr Workshop day 📥 Homework 8 Due
+(Late after Sunday 11:59pm) 📅 Class Week 15 Week Day Topic Readings to Prepare Important Events CW17 20 Apr Final Project Prep 22 Apr Final Project Prep 24 Apr Final Project Prep 📅 Class Week 16 Week Day Topic Readings to Prepare Important Events CW18 27 Apr FINALS WEEK 🎉 Final Project Video Presentation Due at 11:59pm Send link to video
+(MSU Mediaspace or YouTube unlisted) 29 Apr FINALS WEEK 1 May FINALS WEEK 🎉 Final Project and Peer Reviews Due at 11:59pm Turn in project single zip file on D2L
+Peer reviews will use a form </p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span></footer>
+  <a class="entry-link" aria-label="post link to Course Calendar" href="//localhost:1313/logistics-resources/schedule-cal/"></a>
 </article>
 
-    </main>
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Slides
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Slides for PHY 321 appear in reverse chronological order, with the most recent slides at the top. The formats are PDF, HTML, and Markdown. The HTML slides are hosted on my website, and the Markdown slides are the source code for the HTML slides, built with Marp.
+Day 01 - Introduction - 12 Jan 2026 ...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span></footer>
+  <a class="entry-link" aria-label="post link to Slides" href="//localhost:1313/logistics-resources/slides/"></a>
+</article>
 
-    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Submitting Assignments on Gradescope
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>All of your assignments except for the final project will be submitted through Gradescope. This platform allows you to submit your homework online, and to view your graded assignments and feedback.
+To make it easier for you and for the graders, we would like you to follow the instructions below.
+Scan your handwritten solutions into one .pdf file and save that file onto your computer.
+Convert your Jupyter notebook into a .pdf file by doing the following:
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span></footer>
+  <a class="entry-link" aria-label="post link to Submitting Assignments on Gradescope" href="//localhost:1313/logistics-resources/gradescope-submissions/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">i-Clicker Setup Instructions
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>We will be using iClicker to make our class time more engaging. This will help me understand what you know, give everyone a chance to participate, and increase how much you learn in class. This will also provide you with feedback on how well you are comprehending course concepts, help you master challenging concepts, and allow you to review material after class.
+Participating in the iClicker sessions will not be counted towards your final grade; however, responding to the in-class clicker questions will be counted toward extra credit. I do not penalize you for not knowing the correct answer. I prefer to know what you know in-the-moment. The extra credit will be calculated by taking the total number of clicker questions you answer divided by the total number asked this term. This can earn you up to 1% extra credit toward your overall homework grade.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span></footer>
+  <a class="entry-link" aria-label="post link to i-Clicker Setup Instructions" href="//localhost:1313/logistics-resources/iclicker-setup/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Finding Research Opportunities
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>You’ve probably heard that you are supposed to network and gain experiences to set yourselves up for the next steps of your career and education. But how do you start that? In this activity you will do some basic research to FIND opportunities, and then you will draft a cold email to someone you would be interesting in working with to gain experience.
+Part A: Researching Much of this activity comes from the SPS Career Toolbox Tool #3.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span></footer>
+  <a class="entry-link" aria-label="post link to Finding Research Opportunities" href="//localhost:1313/logistics-resources/finding-research/"></a>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="//localhost:1313/">Classical Mechanics</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
         
-        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
         
-        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
-    </footer>
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
 </body>
+
 </html>

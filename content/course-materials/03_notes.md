@@ -308,9 +308,7 @@ $$y(t+\Delta t) = y(t) + v_{\textrm{avg}} \Delta t$$
 
 What is left is to determine what should be the estimate for $v_{\textrm{avg}}$. 
 
-{{< admonition type="admonition" title="Choosing $v_{\textrm{avg}}$" >}}
-:class: tip
-
+{{< admonition type="admonition" title="Choosing $v_{\textrm{avg}}$" class="tip" >}}
 The idea that we have to pick a value for $v_{\textrm{avg}}$ is a key point in numerical methods. It might seem silly or overly subtle and it is certainly the latter. We can select $v(t)$, $v(t+\Delta t)$, or some average of the two. The choice of $v_{\textrm{avg}}$ is the key to the accuracy of the method.
 
 As we will show in a later homework, the best choice is $v(t+\Delta t)$ as it preserves the energy of the system.
@@ -331,8 +329,7 @@ $$\vec{v}(t+\Delta t) = \vec{v}(t) + \dfrac{\vec{F}(t)}{m} \Delta t$$
 $$\vec{r}(t+\Delta t) = \vec{r}(t) + \vec{v}(t+\Delta t) \Delta t$$
 
 
-{{< admonition type="admonition" title="Erasing Contributions in Physics" >}}
-:class: warning
+{{< admonition type="admonition" title="Erasing Contributions in Physics" class="warning" >}}
 This method is called the Semi-Implicit Euler method or the Euler-Cromer method. It should be called the Euler-Aspel-Cromer method because Euler started it, Aspel improved it, and Cromer formalized it. 
 
 It is not called that because physics and physicists tend to erase the contributions of marginalized groups including young people, women, and folks from non-dominant groups. 

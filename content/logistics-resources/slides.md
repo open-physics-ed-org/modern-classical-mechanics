@@ -12,7 +12,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 40](/images/slides/day-40-project-presentations.png)](../slides/day-40-project-presentations.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-40-project-presentations.md) | [PDF](../slides/day-40-project-presentations.pdf)
 </div>
 
@@ -22,7 +23,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 39](/images/slides/day-39-project-session.png)](../slides/day-39-project-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-39-project-session.md) | [PDF](../slides/day-39-project-session.pdf)
 </div>
 
@@ -32,7 +34,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 38](/images/slides/day-38-project-session.png)](../slides/day-38-project-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-38-project-session.md) | [PDF](../slides/day-38-project-session.pdf)
 </div>
 
@@ -42,7 +45,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 37](/images/slides/day-37-homework-session.png)](../slides/day-37-homework-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-37-homework-session.md) | [PDF](../slides/day-37-homework-session.pdf)
 </div>
 
@@ -52,7 +56,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 36](/images/slides/day-36-lagrangian-examples.png)](../slides/day-36-lagrangian-examples.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-36-lagrangian-examples.md) | [PDF](../slides/day-36-lagrangian-examples.pdf)
 </div>
 
@@ -62,7 +67,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 35](/images/slides/day-35-lagrangian-examples.png)](../slides/day-35-lagrangian-examples.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-35-lagrangian-examples.md) | [PDF](../slides/day-35-lagrangian-examples.pdf)
 </div>
 
@@ -72,7 +78,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 34](/images/slides/day-34-homework-session.png)](../slides/day-34-homework-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-34-homework-session.md) | [PDF](../slides/day-34-homework-session.pdf)
 </div>
 
@@ -82,7 +89,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 33](/images/slides/day-33-lagrangian-examples.png)](../slides/day-33-lagrangian-examples.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-33-lagrangian-examples.md) | [PDF](../slides/day-33-lagrangian-examples.pdf)
 </div>
 
@@ -92,7 +100,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 32](/images/slides/day-32-introduction-to-lagrangian-dynamics.png)](../slides/day-32-introduction-to-lagrangian-dynamics.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-32-introduction-to-lagrangian-dynamics.md) | [PDF](../slides/day-32-introduction-to-lagrangian-dynamics.pdf)
 </div>
 
@@ -102,7 +111,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 31](/images/slides/day-31-homework-session.png)](../slides/day-31-homework-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-31-homework-session.md) | [PDF](../slides/day-31-homework-session.pdf)
 </div>
 
@@ -112,7 +122,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 30](/images/slides/day-30-euler-lagrange-equation.png)](../slides/day-30-euler-lagrange-equation.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-30-euler-lagrange-equation.md) | [PDF](../slides/day-30-euler-lagrange-equation.pdf)
 </div>
 
@@ -123,7 +134,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 29](/images/slides/day-29-calculus-of-variations.png)](../slides/day-29-calculus-of-variations.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-29-calculus-of-variations.md) | [PDF](../slides/day-29-calculus-of-variations.pdf)
 </div>
 
@@ -134,7 +146,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 28](/images/slides/day-28-homework-session.png)](../slides/day-28-homework-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-28-homework-session.md) | [PDF](../slides/day-28-homework-session.pdf)
 </div>
 
@@ -144,7 +157,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 27](/images/slides/day-27-hallmarks-of-chaos.png)](../slides/day-27-hallmarks-of-chaos.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-27-hallmarks-of-chaos.md) | [PDF](../slides/day-27-hallmarks-of-chaos.pdf)
 </div>
 
@@ -154,7 +168,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 26](/images/slides/day-26-introduction-to-chaos.png)](../slides/day-26-introduction-to-chaos.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-26-introduction-to-chaos.md) | [PDF](../slides/day-26-introduction-to-chaos.pdf)
 </div>
 
@@ -164,7 +179,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 25](/images/slides/day-25-resonance.png)](../slides/day-25-resonance.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-25-resonance.md) | [PDF](../slides/day-25-resonance.pdf)
 </div>
 
@@ -174,7 +190,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 24](/images/slides/day-24-driven-oscillations.png)](../slides/day-24-driven-oscillations.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-24-driven-oscillations.md) | [PDF](../slides/day-24-driven-oscillations.pdf)
 </div>
 
@@ -184,7 +201,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 23](/images/slides/day-23-homework-session.png)](../slides/day-23-homework-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-23-homework-session.md) | [PDF](../slides/day-23-homework-session.pdf)
 </div>
 
@@ -194,7 +212,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 22](/images/slides/day-22-damped-oscillations.png)](../slides/day-22-damped-oscillations.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-22-damped-oscillations.md) | [PDF](../slides/day-22-damped-oscillations.pdf)
 </div>
 
@@ -204,7 +223,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 21](/images/slides/day-21-oscillations.png)](../slides/day-21-oscillations.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-21-oscillations.md) | [PDF](../slides/day-21-oscillations.pdf)
 </div>
 
@@ -214,7 +234,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 20](/images/slides/day-20-homework-session.png)](../slides/day-20-homework-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-20-homework-session.md) | [PDF](../slides/day-20-homework-session.pdf)
 </div>
 
@@ -224,7 +245,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 19](/images/slides/day-19-phase-diagrams.png)](../slides/day-19-phase-diagrams.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-19-phase-diagrams.md) | [PDF](../slides/day-19-phase-diagrams.pdf)
 </div>
 
@@ -234,7 +256,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 18](/images/slides/day-18-introduction-to-nonlinear-dynamics.png)](../slides/day-18-introduction-to-nonlinear-dynamics.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-18-introduction-to-nonlinear-dynamics.md) | [PDF](../slides/day-18-introduction-to-nonlinear-dynamics.pdf)
 </div>
 
@@ -244,7 +267,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 17](/images/slides/day-17-homework-session.png)](../slides/day-17-homework-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-17-homework-session.md) | [PDF](../slides/day-17-homework-session.pdf)
 </div>
 
@@ -254,7 +278,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 16](/images/slides/day-16-conservation-of-momentum.png)](../slides/day-16-conservation-of-momentum.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-16-conservation-of-momentum.md) | [PDF](../slides/day-16-conservation-of-momentum.pdf)
 </div>
 
@@ -264,7 +289,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 15](/images/slides/day-15-potential-energy-and-stability.png)](../slides/day-15-potential-energy-and-stability.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-15-potential-energy-and-stability.md) | [PDF](../slides/day-15-potential-energy-and-stability.pdf)
 </div>
 
@@ -274,7 +300,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 14](/images/slides/day-14-homework-session.png)](../slides/day-14-homework-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-14-homework-session.md) | [PDF](../slides/day-14-homework-session.pdf)
 </div>
 
@@ -284,7 +311,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 13](/images/slides/day-13-conservative-forces.png)](../slides/day-13-conservative-forces.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-13-conservative-forces.md) | [PDF](../slides/day-13-conservative-forces.pdf)
 </div>
 
@@ -294,7 +322,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 12](/images/slides/day-12-conservation-of-energy.png)](../slides/day-12-conservation-of-energy.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-12-conservation-of-energy.md) | [PDF](../slides/day-12-conservation-of-energy.pdf)
 </div>
 
@@ -304,7 +333,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 11](/images/slides/day-11-homework-session.png)](../slides/day-11-homework-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-11-homework-session.md) | [PDF](../slides/day-11-homework-session.pdf)
 </div>
 
@@ -314,7 +344,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 10](/images/slides/day-10-integrating-eoms-numerically.png)](../slides/day-10-integrating-eoms-numerically.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-10-integrating-eoms-numerically.md) | [PDF](../slides/day-10-integrating-eoms-numerically.pdf)
 
 ### 💻 Programming Resources
@@ -328,7 +359,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 09](/images/slides/day-09-modeling-drag.png)](../slides/day-09-modeling-drag.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-09-modeling-drag.md) | [PDF](../slides/day-09-modeling-drag.pdf)
 </div>
 
@@ -338,7 +370,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 08](/images/slides/day-08-help-session.png)](../slides/day-08-help-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-08-help-session.md) | [PDF](../slides/day-08-help-session.pdf)
 </div>
 
@@ -348,7 +381,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 07](/images/slides/day-07-drag-forces.png)](../slides/day-07-drag-forces.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-07-drag-forces.md) | [PDF](../slides/day-07-drag-forces.pdf)
 </div>
 
@@ -358,7 +392,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 06](/images/slides/day-06-making-classical-models.png)](../slides/day-06-making-classical-models.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-06-making-classical-models.md) | [PDF](../slides/day-06-making-classical-models.pdf)
 </div>
 
@@ -368,7 +403,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 05](/images/slides/day-05-help-session.png)](../slides/day-05-help-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-05-help-session.md) | [PDF](../slides/day-05-help-session.pdf)
 </div>
 
@@ -378,7 +414,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 04](/images/slides/day-04-mathematical-prelims.png)](../slides/day-04-mathematical-prelims.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-04-mathematical-prelims.md) | [PDF](../slides/day-04-mathematical-prelims.pdf)
 </div>
 
@@ -388,7 +425,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 03](/images/slides/day-03-computing-setup.png)](../slides/day-03-computing-setup.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-03-computing-setup.md) | [PDF](../slides/day-03-computing-setup.pdf)
 </div>
 
@@ -398,7 +436,8 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 02](/images/slides/day-02-newtons-laws.png)](../slides/day-02-newtons-laws.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-02-newtons-laws.md) | [PDF](../slides/day-02-newtons-laws.pdf)
 </div>
 
@@ -408,6 +447,7 @@ Slides for PHY 321 appear in reverse chronological order, with the most recent s
 
 [![Day 01](/images/slides/day-01-introduction.png)](../slides/day-01-introduction.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-01-introduction.md) | [PDF](../slides/day-01-introduction.pdf)
 </div>

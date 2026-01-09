@@ -54,15 +54,17 @@ These check-ins will be graded for completion only and factor into your reflecti
 Each class week will have a similar structure:
 
 **Monday and Wednesday will be lecture days.** We will have a mix of lecture, clicker questions, and small group work. 
-{{< admonition type="tip" title="* These classes will follow the digital notes posted each week, so you can follow along, ask questions, and take notes as you see fit." >}}
-* While the examples are worked in the notes, and the information is explained there, the lectures will provide space for us to discuss and work through the material together to deepen your understanding and grow your physics, computing, and mathematical skills.
+{{< admonition type="tip" >}}
+* These classes will follow the digital notes posted each week, so you can follow along, ask questions, and take notes as you see fit.
+  * While the examples are worked in the notes, and the information is explained there, the lectures will provide space for us to discuss and work through the material together to deepen your understanding and grow your physics, computing, and mathematical skills.
   * **We strongly encourage you to attend class regularly.**
 {{< /admonition >}}
 
 **Friday's class is a workshop day.** We will work through activities and homework problems together, discuss the material, and work on computational problems. 
 
-{{< admonition type="tip" title="* These classes will be more interactive and will provide you with opportunities to work through problems and ask questions in a smaller group setting." >}}
-* **We strongly encourage you to attend this class in person.** Most students have found this part of the class to be the most helpful for their learning, and we get to learn more about you, which is important for us as instructors.
+{{< admonition type="tip" >}}
+* These classes will be more interactive and will provide you with opportunities to work through problems and ask questions in a smaller group setting.
+  * **We strongly encourage you to attend this class in person.** Most students have found this part of the class to be the most helpful for their learning, and we get to learn more about you, which is important for us as instructors.
 {{< /admonition >}}
 
 ### iClickers
@@ -90,8 +92,9 @@ You may work collaboratively on homework assignments, but you must turn in solut
 
 **That is, you are free to work in up to groups of 3.**
 
-{{< admonition type="important" title="* You and your classmates must write up your own solutions. Each of you is responsible for keeping a copy of the solutions you turn in." >}}
-* You must list the name of the person you worked with on the assignment. If you worked alone, you must write "I worked alone" on the assignment.
+{{< admonition type="important" >}}
+* You and your classmates must write up your own solutions. Each of you is responsible for keeping a copy of the solutions you turn in.
+  * You must list the name of the person you worked with on the assignment. If you worked alone, you must write "I worked alone" on the assignment.
   * You must be able to explain the solutions to your peers. **Do not copy solutions to problems or parts of problems with questioning every part, that is antithetical to the learning goals of the course.**
   * For assignments where you are asked to complete the exercise alone, you must do so (of course, discussion of the exercise with others is perfectly ok).
 {{< /admonition >}}

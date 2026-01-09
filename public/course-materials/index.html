@@ -1,213 +1,371 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Materials | Classical Mechanics</title>
-    <meta name="description" content="Classical Mechanics">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
-    
-    <link rel="stylesheet" href="//localhost:1313/css/accessibility.css">
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Course Materials | Classical Mechanics</title>
+<meta name="keywords" content="">
+<meta name="description" content="This section contains course materials for Course Materials.">
+<meta name="author" content="Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine">
+<link rel="canonical" href="//localhost:1313/course-materials/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
+<link rel="icon" href="//localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="//localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="//localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="//localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="//localhost:1313/course-materials/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="//localhost:1313/course-materials/">
+<noscript>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
+        #theme-toggle,
+        .top-link {
+            display: none;
         }
-        nav {
-            background: #f4f4f4;
-            padding: 15px;
-            margin-bottom: 30px;
-            border-radius: 5px;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-        nav a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            color: #222;
-            margin-top: 1.5em;
-        }
-        h1 {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-        code {
-            background: #f4f4f4;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: "SF Mono", Monaco, Consolas, monospace;
-        }
-        pre {
-            background: #f4f4f4;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-        pre code {
-            background: none;
-            padding: 0;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        a {
-            color: #0066cc;
-        }
-        .menu-home {
-            font-weight: bold;
-            margin-right: 30px;
-        }
+
     </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}], throwOnError: false});"></script>
+
+
 </head>
-<body>
-    <nav role="navigation" aria-label="Main navigation">
-        <ul>
-            <li class="menu-home"><a href="//localhost:1313/">Classical Mechanics</a></li>
-            
-            
-            <li><a href="/course-information/">Course Information</a></li>
-            
-            
-            
-            <li><a href="/course-materials/">Course Materials</a></li>
-            
-            
-            
-            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
-            
-            
-            
-            <li><a href="/programming-resources/">Programming Resources</a></li>
-            
-            
+<body class="list" id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="//localhost:1313/" accesskey="h" title="Classical Mechanics (Alt + H)">Classical Mechanics</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="//localhost:1313/course-information/" title="Course Information">
+                    <span>Course Information</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/course-materials/" title="Course Materials">
+                    <span class="active">Course Materials</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/logistics-resources/" title="Logistics &amp; Resources">
+                    <span>Logistics &amp; Resources</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/programming-resources/" title="Programming Resources">
+                    <span>Programming Resources</span>
+                </a>
+            </li>
         </ul>
     </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="//localhost:1313/">Home</a></div>
+  <h1>
+    Course Materials
+  </h1>
+</header>
+<div class="post-content"><p>This section contains course materials for Course Materials.</p>
 
-    <main role="main">
-        
-<article>
-    <h1>Course Materials</h1>
-    <p>This section contains course materials for Course Materials.</p>
 
+</div>
 
-    
-    <section style="margin-top: 30px;">
-        <h2>Pages in this section:</h2>
-        <ul>
-            
-            <li style="margin-bottom: 10px;">
-                <a href="/course-materials/01_notes/"><strong>01 - Overture: What is Classical Physics?</strong></a>
-                
-            </li>
-            
-            <li style="margin-bottom: 10px;">
-                <a href="/course-materials/hw1/"><strong>Homework 1 (Due 23 Jan)</strong></a>
-                
-            </li>
-            
-            <li style="margin-bottom: 10px;">
-                <a href="/course-materials/weekly-materials/"><strong>Weekly Course Materials</strong></a>
-                
-            </li>
-            
-            <li style="margin-bottom: 10px;">
-                <a href="/course-materials/02_notes/"><strong>02 - Computing is a Necessary Tool for Science</strong></a>
-                
-            </li>
-            
-            <li style="margin-bottom: 10px;">
-                <a href="/course-materials/assignment-overview/"><strong>Assignments Overview</strong></a>
-                
-            </li>
-            
-            <li style="margin-bottom: 10px;">
-                <a href="/course-materials/03_notes/"><strong>03 - What is Mathematical Modeling?</strong></a>
-                
-            </li>
-            
-            <li style="margin-bottom: 10px;">
-                <a href="/course-materials/04_notes/"><strong>04 - Why does fluid drag complicate things?</strong></a>
-                
-            </li>
-            
-            <li style="margin-bottom: 10px;">
-                <a href="/course-materials/05_notes/"><strong>05 - Conservation Laws Govern and Constrain our Physics</strong></a>
-                
-            </li>
-            
-            <li style="margin-bottom: 10px;">
-                <a href="/course-materials/06_notes/"><strong>06 - Nature Often Seeks Stability</strong></a>
-                
-            </li>
-            
-            <li style="margin-bottom: 10px;">
-                <a href="/course-materials/07_notes/"><strong>07 - Introducing Nonlinear Dynamics</strong></a>
-                
-            </li>
-            
-            <li style="margin-bottom: 10px;">
-                <a href="/course-materials/08_notes/"><strong>08 - Oscillations, Cycles, and Nature&#39;s Recurrences</strong></a>
-                
-            </li>
-            
-            <li style="margin-bottom: 10px;">
-                <a href="/course-materials/09_notes/"><strong>09 - Driving Oscillators and Resonance Phenomenon</strong></a>
-                
-            </li>
-            
-            <li style="margin-bottom: 10px;">
-                <a href="/course-materials/10_notes/"><strong>10 - Investigating Systems that Exhibit Chaotic Dynamics</strong></a>
-                
-            </li>
-            
-            <li style="margin-bottom: 10px;">
-                <a href="/course-materials/11_notes/"><strong>11 - Reformulating Classical Mechanics using the Calculus of Variations</strong></a>
-                
-            </li>
-            
-            <li style="margin-bottom: 10px;">
-                <a href="/course-materials/12_notes/"><strong>12 - The Core Principle of Classical Mechanics? The Principle of Least Action</strong></a>
-                
-            </li>
-            
-            <li style="margin-bottom: 10px;">
-                <a href="/course-materials/13_notes/"><strong>13 - Applying the Lagrangian Formulation</strong></a>
-                
-            </li>
-            
-        </ul>
-    </section>
-    
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">01 - Overture: What is Classical Physics?
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> Learning Goals After studying Lesson 01, you should be able to:
+identify physical situations where classical mechanics can be applied by considering size and rapidity of change, identify and share a form of classical physics that is new to you (e.g., not Hellenistic physics), draw appropriate free body diagrams for different classical physics systems, use Newton’s Second Law to setup the differential equations that model different classical physics systems, and perform a Taylor expansion of a one dimensional function, $F(v)$, around zero. Where do we situate Classical Mechanics? There are many different fields of physics; they are both distinct and overlapping. If we were to take a view of what kinds of physical systems that we wanted to investigate with different physics, we could organize them based on the system’s size and speed of change:
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span></footer>
+  <a class="entry-link" aria-label="post link to 01 - Overture: What is Classical Physics?" href="//localhost:1313/course-materials/01_notes/"></a>
 </article>
 
-    </main>
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Homework 1 (Due 23 Jan)
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Grading Breakdown
+Individual Exercise (10 points) - Ex 0 Pencil and Paper Exercises (60 points) - Ex 1-5 Numerical Exercise (40 points) - Ex 6 Practicalities about homeworks
+Individual exercises. You must work alone on these exercises and hand in your own answers. This should be submitted on D2L only (Homework 1 Exercise 0). Individual exercises are marked with “Individual Exercise” in the title and are counted separately from the rest of the homework. For pencil and paper, or numerical exercises, you may work in groups of up to 3. If you work as a pair/group you may hand in one answer only if you wish. Remember to write your name(s)! These exercises are marked with “Pencil and Paper Exercises” or “Numerical Exercise” in the title, and are counted together for the homework grade. Beyond the group you work on homework with, you may collaborate with others to discuss concepts and approaches, but you must write up your own answers (alone or as a group of 3). Homeworks are available approximately ten days before the deadline. You should anticipate this work. How do I(we) hand in? You can hand in the paper and pencil exercises as a single scanned PDF document. For this homework this applies to exercises 1-5. Your jupyter notebook file should be converted to a PDF file, attached to the same PDF file as for the pencil and paper exercises. All files should be uploaded to Gradescope. Make sure your work is legible. If we cannot read it, we cannot grade it. Instructions for submitting to Gradescope.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span></footer>
+  <a class="entry-link" aria-label="post link to Homework 1 (Due 23 Jan)" href="//localhost:1313/course-materials/hw1/"></a>
+</article>
 
-    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Weekly Course Materials
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>What This Course Is Really About Classical Mechanics is the physics of large, slow, mechanical systems—the world we see around us. But more importantly, it’s about learning to think like a physicist: observing nature, building mathematical models, and using those models to predict and explain how systems evolve.
+Throughout this course, you’ll develop a toolkit for understanding motion, forces, and the deep principles that govern how nature changes. You’ll move from solving simple differential equations to analyzing chaotic systems and discovering that the laws of physics themselves can be expressed through variational principles—paths that minimize (or maximize) a particular quantity called the action.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span></footer>
+  <a class="entry-link" aria-label="post link to Weekly Course Materials" href="//localhost:1313/course-materials/weekly-materials/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">02 - Computing is a Necessary Tool for Science
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> Learning Goals After studying Lesson 02, you should be able to:
+share an example of computing in physics history that is new to you, derive the Euler formulation for a 1 dimensional force ($F(x)$) and explain how the Euler algorithm predicts location, perform standard vector manipulation tasks including decomposition along orthogonal directions, and determine the units of variables and coefficients using base SI units as needed. Most Classical Mechanics Systems are Nonlinear One of the first ideas that we developed was a model of a falling ball in one-dimension. We obtained the following differential equation that described the motion of the ball:
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span></footer>
+  <a class="entry-link" aria-label="post link to 02 - Computing is a Necessary Tool for Science" href="//localhost:1313/course-materials/02_notes/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Assignments Overview
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>How Assignments Work in PHY 321 Assignments in this course are designed to deepen your understanding of the concepts in lectures and notes. They combine pencil-and-paper problem-solving with numerical computation. You’ll work on them individually or in groups (up to 3), and you’ll submit them on Gradescope as a single PDF.
+We have three types of assignments:
+Weekly Homeworks (8 total) - Short problem sets due most weeks Midterm Projects (2) - Larger investigations of specific topics Final Project - Culminating project with presentations and written essay 📝 Assignment Structure Weekly Homeworks Each homework typically includes:
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span></footer>
+  <a class="entry-link" aria-label="post link to Assignments Overview" href="//localhost:1313/course-materials/assignment-overview/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">03 - What is Mathematical Modeling?
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> Learning Goals After studying Lesson 03, you should be able to:
+Define the concept of a “model” in physics and explain its role in predicting and explaining natural phenomena. Differentiate between various types of observations (e.g., qualitative, quantitative, historical) and their significance in building models. Develop equations of motion (EOM) for simple physical systems, such as a falling object or a simple harmonic oscillator. Analyze the iterative process of refining models based on experimental observations and theoretical predictions.. Nature reveals itself to us through interactions. We can tell from observations that it is nature’s interactions that lead to its evolution. Explaining how nature can change and predicting how it will change in the future is our work as scientists. In this our work, we observe nature and its interactions to make models of those observations. We aim to predict and explain our observations of nature through building and testing mathematical models.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span></footer>
+  <a class="entry-link" aria-label="post link to 03 - What is Mathematical Modeling?" href="//localhost:1313/course-materials/03_notes/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">04 - Why does fluid drag complicate things?
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> Learning Goals After studying Lesson 04, you should be able to:
+Differentiate between the two primary forms of fluid drag ($F \sim v$ and $F \sim v^2$) and identify their applications in real-world scenarios. Explain the concept of the Reynolds number and its significance in characterizing fluid flow regimes. Describe the differences between low Reynolds number (laminar) and high Reynolds number (turbulent) flows, including their physical implications. Analyze the equations of motion for systems with linear and quadratic drag forces in one and two dimensions. Solve analytically the equations of motion for systems with linear drag and explain why quadratic drag systems often require numerical methods. Develop and interpret free body diagrams for objects experiencing fluid drag in two dimensions. Apply Newton’s Second Law to derive coupled differential equations for systems with drag forces and explain the challenges in solving them. Discuss the significance of the simple harmonic oscillator and gravitational bound systems as base models for more complex physical systems. As an object moves through the fluid, the molecules of the fluid collide with the object and exert a force on it. This collision changes the momentum of the object just a little bit. The collision does so in a random way, but the average effect of all those collisions is to exert a force on the object that is proportional to a function of the object’s velocity, $F(v)$. In some cases those collisions occur such that they make an impact; other times they might approach the object more slowly and slide over it in familiar frictional interaction. These two behaviors are both fluid drag, but they are different forms.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span></footer>
+  <a class="entry-link" aria-label="post link to 04 - Why does fluid drag complicate things?" href="//localhost:1313/course-materials/04_notes/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">05 - Conservation Laws Govern and Constrain our Physics
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> Learning Goals After studying Lesson 05, you should be able to:
+Predict the conditions under which the total energy of a system remains constant using the principle of energy conservation. Differentiate between various forms of energy (e.g., kinetic, potential, internal) and describe their transformations within a system. Analyze the role of energy conservation in systems with external forces and quantify energy changes throughout a process. Apply the concept of a point particle to simplify energy calculations and understand its limitations in modeling real-world systems. Predict the conditions under which the total linear and angular momentum of a system remain constant using conservation laws. Derive and apply the discrete update equations for linear and angular momentum in systems with external forces. We started with Newton’s Laws of Motion because they provide a framework for us to develop the equations of motion. However, there is a broader framework that can help us understand and organize our knowledge of physics. These are conservation laws.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span></footer>
+  <a class="entry-link" aria-label="post link to 05 - Conservation Laws Govern and Constrain our Physics" href="//localhost:1313/course-materials/05_notes/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">06 - Nature Often Seeks Stability
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> Learning Goals After studying Lesson 06, you should be able to:
+Analyze the stability of equilibrium points in physical systems and classify them as stable, unstable, or metastable. Use the simple harmonic oscillator (SHO) model to describe periodic motion and relate it to the potential energy landscapes. Derive the equations of motion for systems modeled as SHOs (or other second order oscillator equations) and solve for their trajectories. Compare the SHO model across different physical systems (e.g., pendulum, LC circuit) and identify their natural frequencies. Evaluate the energy conservation and stability properties of SHOs and extend these concepts to explain more complex systems. We have shown that we can develop trajectories of different physical systems by solving the differential equations that describe them. This is a useful approach, but it often means we are focused on a single trajectory. This might be fine if all the trajectories are the same or roughly so, say like the 1D falling ball, or the simple harmonic oscillator.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span></footer>
+  <a class="entry-link" aria-label="post link to 06 - Nature Often Seeks Stability" href="//localhost:1313/course-materials/06_notes/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">07 - Introducing Nonlinear Dynamics
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> Learning Goals After studying Lesson 07, you should be able to:
+Use the concept of phase space to analyze the motion of dynamical systems. Interpret phase portraits and identify the flow direction, critical points, and their stability. Determine critical points of first-order ordinary differential equations (ODEs) and classify them as stable or unstable. Compare the behavior of linear and nonlinear systems in phase space. Derive and analyze the phase portrait of the simple harmonic oscillator (SHO) and explain how they are related to energy of the SHO. Extend the analysis to damped systems and understand the concept of attractors in phase space. Predict the long-term behavior of damped systems based on their phase portraits. Use Python and libraries like Matplotlib to create phase portraits and streamplots. We have now built enough tools to tackle some challenging physical systems that have nonlinear equations of motion. The broader field of study that deals with these systems is called Nonlinear Dynamics. Nonlinear dynamics or nonlinear science is the study of systems that are described by nonlinear equations. These systems are often chaotic, meaning they are highly sensitive to initial conditions. In many cases, these systems are treated using dynamical systems theory.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span></footer>
+  <a class="entry-link" aria-label="post link to 07 - Introducing Nonlinear Dynamics" href="//localhost:1313/course-materials/07_notes/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="next" href="//localhost:1313/course-materials/page/2/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="//localhost:1313/">Classical Mechanics</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
         
-        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
         
-        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
-    </footer>
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
 </body>
+
 </html>

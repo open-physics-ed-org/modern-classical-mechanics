@@ -33,9 +33,7 @@ You have just begun a course that often presents physics as a set of timeless la
 
 **To be clear, politics are not distractions from “real” physics; they are part of how physics is made and understood.**
 
-{{< admonition type="admonition" title="Physics is the Work of Many" >}}
-:class: info
-
+{{< admonition type="admonition" title="Physics is the Work of Many" class="info" >}}
 ![ The Rubin Observatory Operations team successfully completed its US Department of Energy (DOE) and National Science Foundation (NSF) Joint Operations Review for 2020.](https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Joint_Ops_Review_Group_Photo_%28rubin-rubin-ops-group%29.jpg/960px-Joint_Ops_Review_Group_Photo_%28rubin-rubin-ops-group%29.jpg)
 *Image credit: Wikimedia Commons, Public Domain*
 

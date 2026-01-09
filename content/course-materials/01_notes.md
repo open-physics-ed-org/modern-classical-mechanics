@@ -10,14 +10,13 @@ math: true
 
 ## Learning Goals
 
-::: {admonition} After studying Lesson 01, you should be able to:
-:class: note
+{{< admonition type="admonition" title="After studying Lesson 01, you should be able to:" class="note" >}}
 * identify physical situations where classical mechanics can be applied by considering size and rapidity of change,
 * identify and share a form of classical physics that is new to you (e.g., not Hellenistic physics),
 * draw appropriate free body diagrams for different classical physics systems,
 * use Newton's Second Law to setup the differential equations that model different classical physics systems, and
 * perform a Taylor expansion of a one dimensional function, $F(v)$, around zero.
-:::
+{{< /admonition >}}
 
 ## Where do we situate Classical Mechanics?
 
@@ -36,9 +35,7 @@ The figure below shows how we might organize physics by size and speed.
 
 Plainly, Classical Physics is the physics that we developed before discovering relativity and quantum mechanics. It typically covers both mechanical systems and electromagnetic systems. It is also [the physics that we read about historically](https://en.wikipedia.org/wiki/History_of_physics), which has its [roots in ancient astronomy](https://en.wikipedia.org/wiki/History_of_astronomy) and has existed across many different cultures. 
 
-::: {admonition} Wherever there were people, there was Classical Physics.
-:class: note
-
+{{< admonition type="admonition" title="Wherever there were people, there was Classical Physics." class="note" >}}
 You might have heard of the development physics in the [Hellenistic age](https://en.wikipedia.org/wiki/Science_in_classical_antiquity#Hellenistic_age) where the Greeks used mathematics to study astronomical objects, or how [Newton's Laws of motion](https://en.wikipedia.org/wiki/Newton's_laws_of_motion) came to be. These are both examples of classical physics, and they are quite common for American schools to teach, especially in science courses in our K12 school systems. 
 
 But there are many more including [astronomical analyses in Sub-Saharan Africa](https://www.science.org/doi/10.1126/science.200.4343.766) in 300 BCE, massive [scientific expansion in China](https://en.wikipedia.org/wiki/Science_and_technology_of_the_Song_dynasty) during the Song dynasty, and studies that pushed the fields of optics, mechanics, and astronomy in the [Islamic Golden Age](https://en.wikipedia.org/wiki/Islamic_Golden_Age). 
@@ -46,7 +43,7 @@ But there are many more including [astronomical analyses in Sub-Saharan Africa](
 While we do not often present it, much to the detriment of our own field, [physics and astronomy were a large part of indigenous cultures](https://en.wikipedia.org/wiki/Indigenous_astronomy) across the world including in what become the United States. 
 
 **Truly, wherever there were people, there was Classical Physics.**
-:::
+{{< /admonition >}}
 
 ## What is Classical Mechanics?
 

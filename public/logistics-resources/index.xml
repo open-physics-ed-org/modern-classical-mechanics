@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Logistics &amp; Resources on Classical Mechanics</title>
     <link>//localhost:1313/logistics-resources/</link>
     <description>Recent content in Logistics &amp; Resources on Classical Mechanics</description>
-    <generator>Hugo</generator>
+    <generator>Hugo -- 0.154.3</generator>
     <language>en</language>
     <lastBuildDate>Thu, 08 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="//localhost:1313/logistics-resources/index.xml" rel="self" type="application/rss+xml" />
@@ -13,35 +13,1062 @@
       <link>//localhost:1313/logistics-resources/schedule-cal/</link>
       <pubDate>Thu, 08 Jan 2026 00:00:00 +0000</pubDate>
       <guid>//localhost:1313/logistics-resources/schedule-cal/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;strong&gt;Topics are subject to change based on course pace and student needs.&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;All assignments are turned in using Gradescope as a single PDF.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-class-week-1&#34;&gt;📅 Class Week 1&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;CW3&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;12 Jan&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Introduction to the course; reminders about vectors; software setup&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/01_notes/&#34;&gt;01 - Overture: What is Classical Physics?&lt;/a&gt;&lt;br&gt;📚 MLB Ch 3.4&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📝 &lt;a href=&#34;//localhost:1313/course-materials/hw1/&#34;&gt;Homework 1 Assigned (Due 23 Jan)&lt;/a&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;14 Jan&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Newton&amp;rsquo;s 1st and 2nd Law; Motion in 1 dimension&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📚 JRT 1.1-1.4; AMS Ch 1-4&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;16 Jan&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Getting Started with VS Code; Using AI in this Class&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/02_notes/&#34;&gt;02 - Computing is a Necessary Tool for Science&lt;/a&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-class-week-2&#34;&gt;📅 Class Week 2&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;CW4&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;19 Jan&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Martin Luther King Jr. Day (No Class)&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📝 Homework 2 Assigned (Due 30 Jan)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;21 Jan&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Newton&amp;rsquo;s Laws; Motion in 2 and 3 dimensions&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📚 JRT 1.4-1.6; AMS Ch 4.2 and 5&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;23 Jan&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Workshop day&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📥 &lt;strong&gt;Homework 1 Due&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;(Late after Sunday 11:59pm)&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-class-week-3&#34;&gt;📅 Class Week 3&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;CW5&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;26 Jan&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Modeling and equations of motion&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/03_notes/&#34;&gt;03 - What is Mathematical Modeling?&lt;/a&gt;&lt;br&gt;📚 JRT 1.4-1.6&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📝 Homework 3 Assigned (Due 6 Feb)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;28 Jan&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Air Resistance&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;30 Jan&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Workshop day&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📥 &lt;strong&gt;Homework 2 Due&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;(Late after Sunday 11:59pm)&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-class-week-4&#34;&gt;📅 Class Week 4&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;CW6&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;2 Feb&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Air Resistance; Central Forces&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/04_notes/&#34;&gt;04 - Why does fluid drag complicate things?&lt;/a&gt;&lt;br&gt;📚 JRT 2.1-2.4&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📝 Homework 4 Assigned (Due 13 Feb)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;4 Feb&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Euler-Cromer Integration 💻 Programming Resources&lt;br&gt; (&lt;a href=&#34;//localhost:1313/programming-resources/euler_integration/&#34;&gt;Euler Integration&lt;/a&gt;)&lt;br&gt;(&lt;a href=&#34;//localhost:1313/programming-resources/integrators/&#34;&gt;Numerical Integrators&lt;/a&gt;)&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/02_notes/#euler-discretization&#34;&gt;02 - Computing is a Necessary Tool for Science - Euler Discretization&lt;/a&gt;&lt;br&gt;📚 Newman, &lt;em&gt;Computational Physics&lt;/em&gt; &lt;a href=&#34;../docs/textbook-chapters/Newman_Ch8_ODEs.pdf&#34;&gt;Ch 08 - Ordinary Differential Equations&lt;/a&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;6 Feb&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Workshop day&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📥 &lt;strong&gt;Homework 3 Due&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;(Late after Sunday 11:59pm)&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-class-week-5&#34;&gt;📅 Class Week 5&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;CW7&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;9 Feb&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Work Energy Theorem&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/05_notes/&#34;&gt;05 - Conservation Laws Govern and Constrain our Physics&lt;/a&gt;&lt;br&gt;📚 JRT 4.1-4.3&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;11 Feb&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Conservative Forces and Potential&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📚 JRT 4.1-4.4, 4.6&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;13 Feb&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;No Classes Held&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📥 &lt;strong&gt;Homework 4 Due&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;(Late after Sunday 11:59pm)&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-class-week-6&#34;&gt;📅 Class Week 6&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;CW8&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;16 Feb&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Examples and Stability Analysis&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/06_notes/&#34;&gt;06 - Nature Often Seeks Stability&lt;/a&gt;&lt;br&gt;📚 JRT 4.1-4.4, 4.6; MLB 6.6-6.8&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📝 Midterm Project 1 Assigned (Due 27 Feb)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;18 Feb&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Conservation of Momentum and Angular Momentum&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/05_notes/#conservation-of-momentum-and-angular-momentum&#34;&gt;05 - Conservation Laws Govern and Constrain our Physics&lt;/a&gt;&lt;br&gt;📚 JRT 3.1, 3.3-3.4&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;20 Feb&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Workshop day&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-class-week-7&#34;&gt;📅 Class Week 7&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;CW9&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;23 Feb&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Nonlinear dynamics, phase portraits&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/07_notes/&#34;&gt;07 - Introducing Nonlinear Dynamics&lt;/a&gt;&lt;br&gt;📚 Strogatz, &lt;em&gt;Nonlinear Dynamics&lt;/em&gt; &lt;a href=&#34;../docs/textbook-chapters/strogatz_3rd_ch2.0-2.3.pdf&#34;&gt;2.0-2.3&lt;/a&gt;; &lt;a href=&#34;../docs/textbook-chapters/strogatz_3rd_ch5.0-5.2.pdf&#34;&gt;5.0-5.2&lt;/a&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📝 Homework 5 Assigned (Due 13 Mar)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;25 Feb&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Phase portraits, numerical modeling&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;PDFs posted are consistent with &lt;a href=&#34;https://www.copyright.gov/help/faq/faq-fairuse.html&#34;&gt;educational fair use&lt;/a&gt;; will be removed after course has concluded&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;27 Feb&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Workshop day&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📥 &lt;strong&gt;Midterm Project 1 Due&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;(Late after Sunday 11:59pm)&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-class-week-8&#34;&gt;📅 Class Week 8&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;CW10&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;2 Mar&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Spring Break (No Class)&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;4 Mar&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Spring Break (No Class)&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;6 Mar&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Spring Break (No Class)&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-class-week-9&#34;&gt;📅 Class Week 9&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;CW11&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;9 Mar&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Oscillations; Damping&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/08_notes/&#34;&gt;08 - Oscillations, Cycles, and Nature&amp;rsquo;s Recurrences&lt;/a&gt;&lt;br&gt;📚 JRT 5.1-5.2, 5.4; MLB 7.1-7.2; 8.5&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📝 Homework 6 Assigned (Due 20 Mar)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;11 Mar&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Oscillations; Damping&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;13 Mar&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Workshop day&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📥 &lt;strong&gt;Homework 5 Due&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;(Late after Sunday 11:59pm)&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-class-week-10&#34;&gt;📅 Class Week 10&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;CW12&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;16 Mar&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Driven Oscillations; Resonance&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/09_notes/&#34;&gt;09 - Driving Oscillators and Resonance Phenomenon&lt;/a&gt;&lt;br&gt;📚 JRT 5.5-5.6; MLB 8.6&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📝 Homework 7 Assigned (Due 27 Mar)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;18 Mar&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Driven Oscillations; Resonance&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;20 Mar&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Workshop day&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📥 &lt;strong&gt;Homework 6 Due&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;(Late after Sunday 11:59pm)&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-class-week-11&#34;&gt;📅 Class Week 11&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;CW13&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;23 Mar&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Introduction to Chaos&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/10_notes/&#34;&gt;10 - Investigating Systems that Exhibit Chaotic Dynamics&lt;/a&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;25 Mar&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Hallmarks of Classical Chaos Series&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;27 Mar&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Workshop day&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📥 &lt;strong&gt;Homework 7 Due&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;(Late after Sunday 11:59pm)&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-class-week-12&#34;&gt;📅 Class Week 12&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;CW14&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;30 Mar&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Calculus of Variations; Euler-Lagrange Equation&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/11_notes/&#34;&gt;11 - Reformulating Classical Mechanics using the Calculus of Variations&lt;/a&gt;&lt;br&gt;📚 JRT 6.1-6.3; MLB 9.1-9.4&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📝 Midterm Project 2 Assigned (Due 10 Apr)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;1 Apr&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Euler-Lagrange Equation Examples&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;3 Apr&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Workshop day&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-class-week-13&#34;&gt;📅 Class Week 13&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;CW15&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;6 Apr&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Introduction to Lagrangian Dynamics&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/12_notes/&#34;&gt;12 - The Core Principle of Classical Mechanics? The Principle of Least Action&lt;/a&gt;&lt;br&gt;📚 JRT 7.1-7.2, 7.5; MLB 9.5&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📝 Homework 8 Assigned (Due 17 Apr)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;8 Apr&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Lagrangian Dynamics Examples Session&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;10 Apr&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Workshop Day&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📥 &lt;strong&gt;Midterm Project 2 Due&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;(Late after Sunday 11:59pm)&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-class-week-14&#34;&gt;📅 Class Week 14&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;CW16&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;13 Apr&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Lagrangian Dynamics Examples&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/13_notes/&#34;&gt;13 - Applying the Lagrangian Formulation&lt;/a&gt;&lt;br&gt;📚 JRT 7.3-7.7, 7.10&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📝 Final Project Assigned&lt;br&gt;Recorded Presentations (27 Apr)&lt;br&gt;Computational Essay (1 May)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;15 Apr&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Lagrangian Dynamics with Constraints&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;17 Apr&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Workshop day&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;📥 &lt;strong&gt;Homework 8 Due&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;(Late after Sunday 11:59pm)&lt;/strong&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-class-week-15&#34;&gt;📅 Class Week 15&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;CW17&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;20 Apr&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Final Project Prep&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;22 Apr&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Final Project Prep&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;24 Apr&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;Final Project Prep&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;-class-week-16&#34;&gt;📅 Class Week 16&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;&#xA;          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;CW18&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;27 Apr&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;FINALS WEEK&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;🎉 &lt;strong&gt;Final Project Video Presentation Due at 11:59pm&lt;/strong&gt; &lt;br&gt; &lt;em&gt;Send link to video&lt;br&gt;(&lt;a href=&#34;https://mediaspace.msu.edu/&#34;&gt;MSU Mediaspace&lt;/a&gt; or YouTube unlisted)&lt;/em&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;29 Apr&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;FINALS WEEK&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;1 May&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;FINALS WEEK&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;&#xA;          &lt;td style=&#34;text-align: left&#34;&gt;🎉 &lt;strong&gt;Final Project and Peer Reviews Due at 11:59pm&lt;/strong&gt; &lt;br&gt; &lt;em&gt;Turn in project single zip file on D2L&lt;/em&gt;&lt;br&gt;&lt;em&gt;Peer reviews will use a form&lt;/em&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Topics are subject to change based on course pace and student needs.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;All assignments are turned in using Gradescope as a single PDF.&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-class-week-1&#34;&gt;📅 Class Week 1&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;CW3&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;12 Jan&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Introduction to the course; reminders about vectors; software setup&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/01_notes/&#34;&gt;01 - Overture: What is Classical Physics?&lt;/a&gt;&lt;br&gt;📚 MLB Ch 3.4&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📝 &lt;a href=&#34;//localhost:1313/course-materials/hw1/&#34;&gt;Homework 1 Assigned (Due 23 Jan)&lt;/a&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;14 Jan&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Newton&amp;rsquo;s 1st and 2nd Law; Motion in 1 dimension&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📚 JRT 1.1-1.4; AMS Ch 1-4&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;16 Jan&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Getting Started with VS Code; Using AI in this Class&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/02_notes/&#34;&gt;02 - Computing is a Necessary Tool for Science&lt;/a&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-class-week-2&#34;&gt;📅 Class Week 2&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;CW4&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;19 Jan&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Martin Luther King Jr. Day (No Class)&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📝 Homework 2 Assigned (Due 30 Jan)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;21 Jan&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Newton&amp;rsquo;s Laws; Motion in 2 and 3 dimensions&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📚 JRT 1.4-1.6; AMS Ch 4.2 and 5&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;23 Jan&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Workshop day&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📥 &lt;strong&gt;Homework 1 Due&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;(Late after Sunday 11:59pm)&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-class-week-3&#34;&gt;📅 Class Week 3&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;CW5&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;26 Jan&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Modeling and equations of motion&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/03_notes/&#34;&gt;03 - What is Mathematical Modeling?&lt;/a&gt;&lt;br&gt;📚 JRT 1.4-1.6&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📝 Homework 3 Assigned (Due 6 Feb)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;28 Jan&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Air Resistance&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;30 Jan&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Workshop day&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📥 &lt;strong&gt;Homework 2 Due&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;(Late after Sunday 11:59pm)&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-class-week-4&#34;&gt;📅 Class Week 4&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;CW6&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;2 Feb&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Air Resistance; Central Forces&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/04_notes/&#34;&gt;04 - Why does fluid drag complicate things?&lt;/a&gt;&lt;br&gt;📚 JRT 2.1-2.4&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📝 Homework 4 Assigned (Due 13 Feb)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;4 Feb&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Euler-Cromer Integration 💻 Programming Resources&lt;br&gt; (&lt;a href=&#34;//localhost:1313/programming-resources/euler_integration/&#34;&gt;Euler Integration&lt;/a&gt;)&lt;br&gt;(&lt;a href=&#34;//localhost:1313/programming-resources/integrators/&#34;&gt;Numerical Integrators&lt;/a&gt;)&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/02_notes/#euler-discretization&#34;&gt;02 - Computing is a Necessary Tool for Science - Euler Discretization&lt;/a&gt;&lt;br&gt;📚 Newman, &lt;em&gt;Computational Physics&lt;/em&gt; &lt;a href=&#34;../docs/textbook-chapters/Newman_Ch8_ODEs.pdf&#34;&gt;Ch 08 - Ordinary Differential Equations&lt;/a&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;6 Feb&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Workshop day&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📥 &lt;strong&gt;Homework 3 Due&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;(Late after Sunday 11:59pm)&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-class-week-5&#34;&gt;📅 Class Week 5&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;CW7&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;9 Feb&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Work Energy Theorem&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/05_notes/&#34;&gt;05 - Conservation Laws Govern and Constrain our Physics&lt;/a&gt;&lt;br&gt;📚 JRT 4.1-4.3&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;11 Feb&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Conservative Forces and Potential&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📚 JRT 4.1-4.4, 4.6&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;13 Feb&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;No Classes Held&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📥 &lt;strong&gt;Homework 4 Due&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;(Late after Sunday 11:59pm)&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-class-week-6&#34;&gt;📅 Class Week 6&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;CW8&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;16 Feb&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Examples and Stability Analysis&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/06_notes/&#34;&gt;06 - Nature Often Seeks Stability&lt;/a&gt;&lt;br&gt;📚 JRT 4.1-4.4, 4.6; MLB 6.6-6.8&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📝 Midterm Project 1 Assigned (Due 27 Feb)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;18 Feb&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Conservation of Momentum and Angular Momentum&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/05_notes/#conservation-of-momentum-and-angular-momentum&#34;&gt;05 - Conservation Laws Govern and Constrain our Physics&lt;/a&gt;&lt;br&gt;📚 JRT 3.1, 3.3-3.4&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;20 Feb&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Workshop day&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-class-week-7&#34;&gt;📅 Class Week 7&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;CW9&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;23 Feb&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Nonlinear dynamics, phase portraits&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/07_notes/&#34;&gt;07 - Introducing Nonlinear Dynamics&lt;/a&gt;&lt;br&gt;📚 Strogatz, &lt;em&gt;Nonlinear Dynamics&lt;/em&gt; &lt;a href=&#34;../docs/textbook-chapters/strogatz_3rd_ch2.0-2.3.pdf&#34;&gt;2.0-2.3&lt;/a&gt;; &lt;a href=&#34;../docs/textbook-chapters/strogatz_3rd_ch5.0-5.2.pdf&#34;&gt;5.0-5.2&lt;/a&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📝 Homework 5 Assigned (Due 13 Mar)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;25 Feb&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Phase portraits, numerical modeling&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;PDFs posted are consistent with &lt;a href=&#34;https://www.copyright.gov/help/faq/faq-fairuse.html&#34;&gt;educational fair use&lt;/a&gt;; will be removed after course has concluded&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;27 Feb&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Workshop day&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📥 &lt;strong&gt;Midterm Project 1 Due&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;(Late after Sunday 11:59pm)&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-class-week-8&#34;&gt;📅 Class Week 8&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;CW10&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;2 Mar&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Spring Break (No Class)&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;4 Mar&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Spring Break (No Class)&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;6 Mar&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Spring Break (No Class)&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-class-week-9&#34;&gt;📅 Class Week 9&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;CW11&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;9 Mar&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Oscillations; Damping&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/08_notes/&#34;&gt;08 - Oscillations, Cycles, and Nature&amp;rsquo;s Recurrences&lt;/a&gt;&lt;br&gt;📚 JRT 5.1-5.2, 5.4; MLB 7.1-7.2; 8.5&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📝 Homework 6 Assigned (Due 20 Mar)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;11 Mar&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Oscillations; Damping&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;13 Mar&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Workshop day&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📥 &lt;strong&gt;Homework 5 Due&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;(Late after Sunday 11:59pm)&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-class-week-10&#34;&gt;📅 Class Week 10&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;CW12&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;16 Mar&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Driven Oscillations; Resonance&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/09_notes/&#34;&gt;09 - Driving Oscillators and Resonance Phenomenon&lt;/a&gt;&lt;br&gt;📚 JRT 5.5-5.6; MLB 8.6&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📝 Homework 7 Assigned (Due 27 Mar)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;18 Mar&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Driven Oscillations; Resonance&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;20 Mar&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Workshop day&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📥 &lt;strong&gt;Homework 6 Due&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;(Late after Sunday 11:59pm)&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-class-week-11&#34;&gt;📅 Class Week 11&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;CW13&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;23 Mar&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Introduction to Chaos&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/10_notes/&#34;&gt;10 - Investigating Systems that Exhibit Chaotic Dynamics&lt;/a&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;25 Mar&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Hallmarks of Classical Chaos Series&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;27 Mar&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Workshop day&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📥 &lt;strong&gt;Homework 7 Due&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;(Late after Sunday 11:59pm)&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-class-week-12&#34;&gt;📅 Class Week 12&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;CW14&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;30 Mar&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Calculus of Variations; Euler-Lagrange Equation&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/11_notes/&#34;&gt;11 - Reformulating Classical Mechanics using the Calculus of Variations&lt;/a&gt;&lt;br&gt;📚 JRT 6.1-6.3; MLB 9.1-9.4&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📝 Midterm Project 2 Assigned (Due 10 Apr)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;1 Apr&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Euler-Lagrange Equation Examples&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;3 Apr&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Workshop day&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-class-week-13&#34;&gt;📅 Class Week 13&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;CW15&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;6 Apr&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Introduction to Lagrangian Dynamics&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/12_notes/&#34;&gt;12 - The Core Principle of Classical Mechanics? The Principle of Least Action&lt;/a&gt;&lt;br&gt;📚 JRT 7.1-7.2, 7.5; MLB 9.5&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📝 Homework 8 Assigned (Due 17 Apr)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;8 Apr&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Lagrangian Dynamics Examples Session&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;10 Apr&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Workshop Day&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📥 &lt;strong&gt;Midterm Project 2 Due&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;(Late after Sunday 11:59pm)&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-class-week-14&#34;&gt;📅 Class Week 14&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;CW16&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;13 Apr&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Lagrangian Dynamics Examples&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📓 &lt;a href=&#34;//localhost:1313/course-materials/13_notes/&#34;&gt;13 - Applying the Lagrangian Formulation&lt;/a&gt;&lt;br&gt;📚 JRT 7.3-7.7, 7.10&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📝 Final Project Assigned&lt;br&gt;Recorded Presentations (27 Apr)&lt;br&gt;Computational Essay (1 May)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;15 Apr&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Lagrangian Dynamics with Constraints&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;17 Apr&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Workshop day&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;📥 &lt;strong&gt;Homework 8 Due&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;(Late after Sunday 11:59pm)&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-class-week-15&#34;&gt;📅 Class Week 15&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;CW17&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;20 Apr&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Final Project Prep&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;22 Apr&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Final Project Prep&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;24 Apr&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;Final Project Prep&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;-class-week-16&#34;&gt;📅 Class Week 16&lt;/h2&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Week&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Day&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: center&#34;&gt;&lt;strong&gt;Topic&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Readings to Prepare&lt;/strong&gt;&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Important Events&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;CW18&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;27 Apr&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;FINALS WEEK&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;🎉 &lt;strong&gt;Final Project Video Presentation Due at 11:59pm&lt;/strong&gt; &lt;br&gt; &lt;em&gt;Send link to video&lt;br&gt;(&lt;a href=&#34;https://mediaspace.msu.edu/&#34;&gt;MSU Mediaspace&lt;/a&gt; or YouTube unlisted)&lt;/em&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;29 Apr&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;FINALS WEEK&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;1 May&lt;/td&gt;
+          &lt;td style=&#34;text-align: center&#34;&gt;&lt;strong&gt;FINALS WEEK&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;🎉 &lt;strong&gt;Final Project and Peer Reviews Due at 11:59pm&lt;/strong&gt; &lt;br&gt; &lt;em&gt;Turn in project single zip file on D2L&lt;/em&gt;&lt;br&gt;&lt;em&gt;Peer reviews will use a form&lt;/em&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</description>
     </item>
     <item>
       <title>Slides</title>
       <link>//localhost:1313/logistics-resources/slides/</link>
       <pubDate>Thu, 08 Jan 2026 00:00:00 +0000</pubDate>
       <guid>//localhost:1313/logistics-resources/slides/</guid>
-      <description>&lt;p&gt;Slides for PHY 321 appear in reverse chronological order, with the most recent slides at the top. The formats are PDF, HTML, and Markdown. The HTML slides are hosted on my website, and the Markdown slides are the source code for the HTML slides, built with &lt;a href=&#34;https://marp.app/&#34;&gt;Marp&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;!-- ## Days 40-42 - Project Presentations  - 01 Dec 2025 - 05 Dec 2025&#xA;&#xA;[![Day 40](/images/slides/day-40-project-presentations.png)](../slides/day-40-project-presentations.pdf)&#xA;&#xA;&lt;div class=&#34;directive info&#34;&gt;&lt;p class=&#34;admonition-title&#34;&gt;### 📂 Download Slides&lt;/p&gt;&#xA;[HTML](../slides/day-40-project-presentations.md) | [PDF](../slides/day-40-project-presentations.pdf)&#xA;&lt;/div&gt;&#xA;&#xA;---&#xA;&#xA;## Day 39 - Project Work Session  - 26 Nov 2025&#xA;&#xA;[![Day 39](/images/slides/day-39-project-session.png)](../slides/day-39-project-session.pdf)&#xA;&#xA;&lt;div class=&#34;directive info&#34;&gt;&lt;p class=&#34;admonition-title&#34;&gt;### 📂 Download Slides&lt;/p&gt;</description>
+      <description>&lt;p&gt;Slides for PHY 321 appear in reverse chronological order, with the most recent slides at the top. The formats are PDF, HTML, and Markdown. The HTML slides are hosted on my website, and the Markdown slides are the source code for the HTML slides, built with &lt;a href=&#34;https://marp.app/&#34;&gt;Marp&lt;/a&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;!-- ## Days 40-42 - Project Presentations  - 01 Dec 2025 - 05 Dec 2025
+
+[![Day 40](/images/slides/day-40-project-presentations.png)](../slides/day-40-project-presentations.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-40-project-presentations.md) | [PDF](../slides/day-40-project-presentations.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 39 - Project Work Session  - 26 Nov 2025
+
+[![Day 39](/images/slides/day-39-project-session.png)](../slides/day-39-project-session.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-39-project-session.md) | [PDF](../slides/day-39-project-session.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 38 - Project Work Session  - 24 Nov 2025
+
+[![Day 38](/images/slides/day-38-project-session.png)](../slides/day-38-project-session.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-38-project-session.md) | [PDF](../slides/day-38-project-session.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 37 - Help Session  - 21 Nov 2025
+
+[![Day 37](/images/slides/day-37-homework-session.png)](../slides/day-37-homework-session.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-37-homework-session.md) | [PDF](../slides/day-37-homework-session.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 36 - Lagrangian Examples III  - 19 Nov 2025
+
+[![Day 36](/images/slides/day-36-lagrangian-examples.png)](../slides/day-36-lagrangian-examples.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-36-lagrangian-examples.md) | [PDF](../slides/day-36-lagrangian-examples.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 35 - Lagrangian Examples II  - 17 Nov 2025
+
+[![Day 35](/images/slides/day-35-lagrangian-examples.png)](../slides/day-35-lagrangian-examples.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-35-lagrangian-examples.md) | [PDF](../slides/day-35-lagrangian-examples.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 34 - Help Session  - 14 Nov 2025
+
+[![Day 34](/images/slides/day-34-homework-session.png)](../slides/day-34-homework-session.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-34-homework-session.md) | [PDF](../slides/day-34-homework-session.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 33 - Lagrangian Examples  - 12 Nov 2025
+
+[![Day 33](/images/slides/day-33-lagrangian-examples.png)](../slides/day-33-lagrangian-examples.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-33-lagrangian-examples.md) | [PDF](../slides/day-33-lagrangian-examples.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 32 - Introduction to Lagrangian Dynamics - 10 Nov 2025
+
+[![Day 32](/images/slides/day-32-introduction-to-lagrangian-dynamics.png)](../slides/day-32-introduction-to-lagrangian-dynamics.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-32-introduction-to-lagrangian-dynamics.md) | [PDF](../slides/day-32-introduction-to-lagrangian-dynamics.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 31 - Midterm Help Session - 7 Nov 2025
+
+[![Day 31](/images/slides/day-31-homework-session.png)](../slides/day-31-homework-session.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-31-homework-session.md) | [PDF](../slides/day-31-homework-session.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 30 - Euler-Lagrange Equations - 5 Nov 2025
+
+[![Day 30](/images/slides/day-30-euler-lagrange-equation.png)](../slides/day-30-euler-lagrange-equation.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-30-euler-lagrange-equation.md) | [PDF](../slides/day-30-euler-lagrange-equation.pdf)
+&lt;/div&gt;
+
+---
+
+
+## Day 29 - Calculus of Variations - 3 Nov 2025
+
+[![Day 29](/images/slides/day-29-calculus-of-variations.png)](../slides/day-29-calculus-of-variations.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-29-calculus-of-variations.md) | [PDF](../slides/day-29-calculus-of-variations.pdf)
+&lt;/div&gt;
+
+---
+
+
+## Day 28 - Homework Session - 31 Oct 2025
+
+[![Day 28](/images/slides/day-28-homework-session.png)](../slides/day-28-homework-session.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-28-homework-session.md) | [PDF](../slides/day-28-homework-session.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 27 - Hallmarks of Chaos - 29 Oct 2025
+
+[![Day 27](/images/slides/day-27-hallmarks-of-chaos.png)](../slides/day-27-hallmarks-of-chaos.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-27-hallmarks-of-chaos.md) | [PDF](../slides/day-27-hallmarks-of-chaos.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 26 - Introduction to Chaos - 27 Oct 2025
+
+[![Day 26](/images/slides/day-26-introduction-to-chaos.png)](../slides/day-26-introduction-to-chaos.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-26-introduction-to-chaos.md) | [PDF](../slides/day-26-introduction-to-chaos.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 25 - Driven Oscillations - 24 Oct 2025
+
+[![Day 25](/images/slides/day-25-resonance.png)](../slides/day-25-resonance.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-25-resonance.md) | [PDF](../slides/day-25-resonance.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 24 - Driven Oscillations - 22 Oct 2025
+
+[![Day 24](/images/slides/day-24-driven-oscillations.png)](../slides/day-24-driven-oscillations.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-24-driven-oscillations.md) | [PDF](../slides/day-24-driven-oscillations.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 23 - Help Session - 17 Oct 2025
+
+[![Day 23](/images/slides/day-23-homework-session.png)](../slides/day-23-homework-session.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-23-homework-session.md) | [PDF](../slides/day-23-homework-session.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 22 - Damped Oscillations - 15 Oct 2025
+
+[![Day 22](/images/slides/day-22-damped-oscillations.png)](../slides/day-22-damped-oscillations.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-22-damped-oscillations.md) | [PDF](../slides/day-22-damped-oscillations.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 21 - Oscillations - 13 Oct 2025
+
+[![Day 21](/images/slides/day-21-oscillations.png)](../slides/day-21-oscillations.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-21-oscillations.md) | [PDF](../slides/day-21-oscillations.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 20 - Help Session - 10 Oct 2025
+
+[![Day 20](/images/slides/day-20-homework-session.png)](../slides/day-20-homework-session.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-20-homework-session.md) | [PDF](../slides/day-20-homework-session.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 19 - Phase Diagrams - 08 Oct 2025
+
+[![Day 19](/images/slides/day-19-phase-diagrams.png)](../slides/day-19-phase-diagrams.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-19-phase-diagrams.md) | [PDF](../slides/day-19-phase-diagrams.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 18 - Introduction to Nonlinear Dynamics - 06 Oct 2025
+
+[![Day 18](/images/slides/day-18-introduction-to-nonlinear-dynamics.png)](../slides/day-18-introduction-to-nonlinear-dynamics.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-18-introduction-to-nonlinear-dynamics.md) | [PDF](../slides/day-18-introduction-to-nonlinear-dynamics.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 17 - Help Session - 03 Oct 2025
+
+[![Day 17](/images/slides/day-17-homework-session.png)](../slides/day-17-homework-session.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-17-homework-session.md) | [PDF](../slides/day-17-homework-session.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 16 - Conservation of Momentum - 01 Oct 2025
+
+[![Day 16](/images/slides/day-16-conservation-of-momentum.png)](../slides/day-16-conservation-of-momentum.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-16-conservation-of-momentum.md) | [PDF](../slides/day-16-conservation-of-momentum.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 15 - Potential Energy and Stability - 29 Sep 2025
+
+[![Day 15](/images/slides/day-15-potential-energy-and-stability.png)](../slides/day-15-potential-energy-and-stability.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-15-potential-energy-and-stability.md) | [PDF](../slides/day-15-potential-energy-and-stability.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 14 - Help Session - 26 Sep 2025
+
+[![Day 14](/images/slides/day-14-homework-session.png)](../slides/day-14-homework-session.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-14-homework-session.md) | [PDF](../slides/day-14-homework-session.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 13 - Conservative Forces - 24 Sep 2025
+
+[![Day 13](/images/slides/day-13-conservative-forces.png)](../slides/day-13-conservative-forces.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-13-conservative-forces.md) | [PDF](../slides/day-13-conservative-forces.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 12 - Modeling Drag - 22 Sep 2025
+
+[![Day 12](/images/slides/day-12-conservation-of-energy.png)](../slides/day-12-conservation-of-energy.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-12-conservation-of-energy.md) | [PDF](../slides/day-12-conservation-of-energy.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 11 - Help Session - 17 Sep 2025
+
+[![Day 11](/images/slides/day-11-homework-session.png)](../slides/day-11-homework-session.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-11-homework-session.md) | [PDF](../slides/day-11-homework-session.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 10 - Modeling Drag - 17 Sep 2025
+
+[![Day 10](/images/slides/day-10-integrating-eoms-numerically.png)](../slides/day-10-integrating-eoms-numerically.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-10-integrating-eoms-numerically.md) | [PDF](../slides/day-10-integrating-eoms-numerically.pdf)
+
+### 💻 Programming Resources
+* [Euler Integration](/programming-resources/euler_integration/)
+* [Numerical Integrators](/programming-resources/integrators/)
+&lt;/div&gt;
+
+---
+
+## Day 09 - Modeling Drag - 15 Sep 2025
+
+[![Day 09](/images/slides/day-09-modeling-drag.png)](../slides/day-09-modeling-drag.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-09-modeling-drag.md) | [PDF](../slides/day-09-modeling-drag.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 08 - Help Session - 12 Sep 2025
+
+[![Day 08](/images/slides/day-08-help-session.png)](../slides/day-08-help-session.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-08-help-session.md) | [PDF](../slides/day-08-help-session.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 07 - Drag Forces - 10 Sep 2025
+
+[![Day 07](/images/slides/day-07-drag-forces.png)](../slides/day-07-drag-forces.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-07-drag-forces.md) | [PDF](../slides/day-07-drag-forces.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 06 - Making Classical Models - 08 Sep 2025
+
+[![Day 06](/images/slides/day-06-making-classical-models.png)](../slides/day-06-making-classical-models.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-06-making-classical-models.md) | [PDF](../slides/day-06-making-classical-models.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 05 - Help Session - 05 Sep 2025
+
+[![Day 05](/images/slides/day-05-help-session.png)](../slides/day-05-help-session.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-05-help-session.md) | [PDF](../slides/day-05-help-session.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 04 - Mathematical Prelims - 03 Sep 2025
+
+[![Day 04](/images/slides/day-04-mathematical-prelims.png)](../slides/day-04-mathematical-prelims.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-04-mathematical-prelims.md) | [PDF](../slides/day-04-mathematical-prelims.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 03 - Computing Setup - 29 Aug 2025
+
+[![Day 03](/images/slides/day-03-computing-setup.png)](../slides/day-03-computing-setup.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-03-computing-setup.md) | [PDF](../slides/day-03-computing-setup.pdf)
+&lt;/div&gt;
+
+---
+
+## Day 02 - Newton&#39;s Laws - 27 Aug 2025
+
+[![Day 02](/images/slides/day-02-newtons-laws.png)](../slides/day-02-newtons-laws.pdf)
+
+&lt;div class=&#34;directive info&#34;&gt;
+### 📂 Download Slides
+[HTML](../slides/day-02-newtons-laws.md) | [PDF](../slides/day-02-newtons-laws.pdf)
+&lt;/div&gt;
+
+--- --&gt;
+&lt;h2 id=&#34;day-01---introduction---12-jan-2026&#34;&gt;Day 01 - Introduction - 12 Jan 2026&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;../slides/day-01-introduction.pdf&#34;&gt;&lt;img alt=&#34;Day 01&#34; loading=&#34;lazy&#34; src=&#34;//localhost:1313/images/slides/day-01-introduction.png&#34;&gt;&lt;/a&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Submitting Assignments on Gradescope</title>
       <link>//localhost:1313/logistics-resources/gradescope-submissions/</link>
       <pubDate>Thu, 08 Jan 2026 00:00:00 +0000</pubDate>
       <guid>//localhost:1313/logistics-resources/gradescope-submissions/</guid>
-      <description>&lt;p&gt;All of your assignments except for the final project will be submitted through &lt;a href=&#34;https://www.gradescope.com/&#34;&gt;Gradescope&lt;/a&gt;. This platform allows you to submit your homework online, and to view your graded assignments and feedback.&lt;/p&gt;&#xA;&lt;p&gt;To make it easier for you and for the graders, we would like you to follow the instructions below.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Scan your handwritten solutions into one .pdf file and save that file onto your&#xA;computer.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Convert your Jupyter notebook into a .pdf file by doing the following:&lt;/p&gt;</description>
+      <description>&lt;p&gt;All of your assignments except for the final project will be submitted through &lt;a href=&#34;https://www.gradescope.com/&#34;&gt;Gradescope&lt;/a&gt;. This platform allows you to submit your homework online, and to view your graded assignments and feedback.&lt;/p&gt;
+&lt;p&gt;To make it easier for you and for the graders, we would like you to follow the instructions below.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Scan your handwritten solutions into one .pdf file and save that file onto your
+computer.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Convert your Jupyter notebook into a .pdf file by doing the following:&lt;/p&gt;</description>
     </item>
     <item>
       <title>i-Clicker Setup Instructions</title>
       <link>//localhost:1313/logistics-resources/iclicker-setup/</link>
       <pubDate>Thu, 08 Jan 2026 00:00:00 +0000</pubDate>
       <guid>//localhost:1313/logistics-resources/iclicker-setup/</guid>
-      <description>&lt;p&gt;We will be using iClicker to make our class time more engaging. This will help me understand what you know, give everyone a chance to participate, and increase how much you learn in class. This will also provide you with feedback on how well you are comprehending course concepts, help you master challenging concepts, and allow you to review material after class.&lt;/p&gt;&#xA;&lt;p&gt;Participating in the iClicker sessions will not be counted towards your final grade; however, responding to the in-class clicker questions will be counted toward extra credit. I do not penalize you for not knowing the correct answer. I prefer to know what you know in-the-moment. The extra credit will be calculated by taking the total number of clicker questions you answer divided by the total number asked this term. &lt;strong&gt;This can earn you up to 1% extra credit toward your overall homework grade.&lt;/strong&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;We will be using iClicker to make our class time more engaging. This will help me understand what you know, give everyone a chance to participate, and increase how much you learn in class. This will also provide you with feedback on how well you are comprehending course concepts, help you master challenging concepts, and allow you to review material after class.&lt;/p&gt;
+&lt;p&gt;Participating in the iClicker sessions will not be counted towards your final grade; however, responding to the in-class clicker questions will be counted toward extra credit. I do not penalize you for not knowing the correct answer. I prefer to know what you know in-the-moment. The extra credit will be calculated by taking the total number of clicker questions you answer divided by the total number asked this term. &lt;strong&gt;This can earn you up to 1% extra credit toward your overall homework grade.&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Finding Research Opportunities</title>
       <link>//localhost:1313/logistics-resources/finding-research/</link>
       <pubDate>Thu, 08 Jan 2026 00:00:00 +0000</pubDate>
       <guid>//localhost:1313/logistics-resources/finding-research/</guid>
-      <description>&lt;p&gt;You&amp;rsquo;ve probably heard that you are supposed to network and gain experiences to set yourselves up for the next steps of your career and education. But how do you start that? In this activity you will do some basic research to FIND opportunities, and then you will draft a cold email to someone you would be interesting in working with to gain experience.&lt;/p&gt;&#xA;&lt;h2 id=&#34;part-a-researching&#34;&gt;Part A: Researching&lt;/h2&gt;&#xA;&lt;p&gt;Much of this activity comes from the &lt;a href=&#34;https://www.spsnational.org/sites/all/careerstoolbox/&#34;&gt;SPS Career Toolbox Tool #3&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>&lt;p&gt;You&amp;rsquo;ve probably heard that you are supposed to network and gain experiences to set yourselves up for the next steps of your career and education. But how do you start that? In this activity you will do some basic research to FIND opportunities, and then you will draft a cold email to someone you would be interesting in working with to gain experience.&lt;/p&gt;
+&lt;h2 id=&#34;part-a-researching&#34;&gt;Part A: Researching&lt;/h2&gt;
+&lt;p&gt;Much of this activity comes from the &lt;a href=&#34;https://www.spsnational.org/sites/all/careerstoolbox/&#34;&gt;SPS Career Toolbox Tool #3&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

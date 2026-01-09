@@ -1,120 +1,228 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>08 - Oscillations, Cycles, and Nature&#39;s Recurrences | Classical Mechanics</title>
-    <meta name="description" content="Classical Mechanics">
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>08 - Oscillations, Cycles, and Nature&#39;s Recurrences | Classical Mechanics</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+
+Learning Goals
+After studying Lesson 08, you should be able to:
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
-    
-    <link rel="stylesheet" href="//localhost:1313/css/accessibility.css">
+Analyze the behavior of simple harmonic oscillators (SHOs) and derive their equations of motion from potential energy functions.
+Explore the role of damping in oscillatory systems and classify the behavior into underdamped, overdamped, and critically damped cases.
+Investigate nonlinear oscillators, such as the Duffing and Van der Pol oscillators, and understand their unique behaviors, including limit cycles and chaotic dynamics.
+Visualize oscillatory motion and damping effects using Python and Matplotlib, interpreting graphical representations to infer physical insights.
+
+
+  
+
+
+Oscillatory or periodic behavior is a common phenomenon in nature. We see it in the motion of pendulums, springs, and other mechanical systems. But oscillations are not limited to mechanical systems; they can also be found in electrical circuits, biological systems, and even in the behavior of populations in ecology. The study of periodic motion is foundational to the understanding of many physical systems because many present themselves with local minima in their potential energy. Alternatively, some systems are confined in ways that lead to periodic motion.">
+<meta name="author" content="Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine">
+<link rel="canonical" href="//localhost:1313/course-materials/08_notes/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
+<link rel="icon" href="//localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="//localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="//localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="//localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="//localhost:1313/course-materials/08_notes/">
+<noscript>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
+        #theme-toggle,
+        .top-link {
+            display: none;
         }
-        nav {
-            background: #f4f4f4;
-            padding: 15px;
-            margin-bottom: 30px;
-            border-radius: 5px;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-        nav a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            color: #222;
-            margin-top: 1.5em;
-        }
-        h1 {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-        code {
-            background: #f4f4f4;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: "SF Mono", Monaco, Consolas, monospace;
-        }
-        pre {
-            background: #f4f4f4;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-        pre code {
-            background: none;
-            padding: 0;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        a {
-            color: #0066cc;
-        }
-        .menu-home {
-            font-weight: bold;
-            margin-right: 30px;
-        }
+
     </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}], throwOnError: false});"></script>
+
+
 </head>
-<body>
-    <nav role="navigation" aria-label="Main navigation">
-        <ul>
-            <li class="menu-home"><a href="//localhost:1313/">Classical Mechanics</a></li>
-            
-            
-            <li><a href="/course-information/">Course Information</a></li>
-            
-            
-            
-            <li><a href="/course-materials/">Course Materials</a></li>
-            
-            
-            
-            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
-            
-            
-            
-            <li><a href="/programming-resources/">Programming Resources</a></li>
-            
-            
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="//localhost:1313/" accesskey="h" title="Classical Mechanics (Alt + H)">Classical Mechanics</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="//localhost:1313/course-information/" title="Course Information">
+                    <span>Course Information</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/course-materials/" title="Course Materials">
+                    <span>Course Materials</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/logistics-resources/" title="Logistics &amp; Resources">
+                    <span>Logistics &amp; Resources</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/programming-resources/" title="Programming Resources">
+                    <span>Programming Resources</span>
+                </a>
+            </li>
         </ul>
     </nav>
+</header>
+<main class="main">
 
-    <main role="main">
-        
-<article>
-    <header>
-        <h1>08 - Oscillations, Cycles, and Nature&#39;s Recurrences</h1>
-        
-    </header>
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="//localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="//localhost:1313/course-materials/">Course Materials</a></div>
+    <h1 class="post-title entry-hint-parent">
+      08 - Oscillations, Cycles, and Nature&#39;s Recurrences
+    </h1>
+    <div class="post-meta"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span>
 
-    <p><a href="https://github.com/dannycab/phy321msu/issues"><img src="https://img.shields.io/badge/report%20issues-GitHub-blue" alt="Report Issues"></a>
-<a href="https://github.com/dannycab/phy321msu/issues"><img src="https://img.shields.io/github/issues/dannycab/phy321msu" alt="GitHub Issues"></a></p>
-<h2 id="learning-goals">Learning Goals</h2>
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#learning-goals" aria-label="Learning Goals">Learning Goals</a></li>
+                <li>
+                    <a href="#reminder-of-the-sho" aria-label="Reminder of the SHO">Reminder of the SHO</a></li>
+                <li>
+                    <a href="#nonlinear-oscillators" aria-label="Nonlinear oscillators">Nonlinear oscillators</a><ul>
+                        
+                <li>
+                    <a href="#synchronization-21-minute-video" aria-label="Synchronization (21 minute video)">Synchronization (21 minute video)</a></li></ul>
+                </li>
+                <li>
+                    <a href="#modeling-oscillations" aria-label="Modeling Oscillations">Modeling Oscillations</a><ul>
+                        
+                <li>
+                    <a href="#why-do-we-often-see-oscillations-in-physics" aria-label="Why do we often see oscillations in physics?">Why do we often see oscillations in physics?</a></li></ul>
+                </li>
+                <li>
+                    <a href="#the-exact-solution-for-the-simple-harmonic-oscillator" aria-label="The Exact Solution for the Simple Harmonic Oscillator">The Exact Solution for the Simple Harmonic Oscillator</a><ul>
+                        
+                <li>
+                    <a href="#complex-forms-of-the-sho-solution" aria-label="Complex forms of the SHO solution">Complex forms of the SHO solution</a></li>
+                <li>
+                    <a href="#but-the-solution-to-the-motion-of-the-sho-is-real" aria-label="But the solution to the motion of the SHO is real!">But the solution to the motion of the SHO is real!</a></li>
+                <li>
+                    <a href="#complex-conjugates" aria-label="Complex Conjugates">Complex Conjugates</a><ul>
+                        
+                <li>
+                    <a href="#what-does-that-mean-for-the-sho" aria-label="What does that mean for the SHO?">What does that mean for the SHO?</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#damped-harmonic-oscillations" aria-label="Damped Harmonic Oscillations">Damped Harmonic Oscillations</a><ul>
+                        
+                <li>
+                    <a href="#common-simplifications" aria-label="Common simplifications">Common simplifications</a></li>
+                <li>
+                    <a href="#finding-the-solution" aria-label="Finding the solution">Finding the solution</a></li>
+                <li>
+                    <a href="#case-studies-of-damped-oscillations" aria-label="Case Studies of Damped Oscillations">Case Studies of Damped Oscillations</a><ul>
+                        
+                <li>
+                    <a href="#no-damping-beta0" aria-label="No Damping $\beta=0$">No Damping $\beta=0$</a></li>
+                <li>
+                    <a href="#weak-damping-beta2--omega_02" aria-label="Weak Damping $\beta^2 &lt; \omega_0^2$">Weak Damping $\beta^2 &lt; \omega_0^2$</a></li>
+                <li>
+                    <a href="#strong-damping-beta2--omega_02" aria-label="Strong Damping $\beta^2 &gt; \omega_0^2$">Strong Damping $\beta^2 &gt; \omega_0^2$</a></li>
+                <li>
+                    <a href="#critical-damping-beta2--omega_02" aria-label="Critical Damping $\beta^2 = \omega_0^2$">Critical Damping $\beta^2 = \omega_0^2$</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p><a href="https://github.com/dannycab/phy321msu/issues"><img alt="Report Issues" loading="lazy" src="https://img.shields.io/badge/report%20issues-GitHub-blue"></a>
+<a href="https://github.com/dannycab/phy321msu/issues"><img alt="GitHub Issues" loading="lazy" src="https://img.shields.io/github/issues/dannycab/phy321msu"></a></p>
+<h2 id="learning-goals">Learning Goals<a hidden class="anchor" aria-hidden="true" href="#learning-goals">#</a></h2>
 <div class="admonition admonition-admonition note" role="note" aria-label="Admonition"><p class="admonition-title">After studying Lesson 08, you should be able to:</p><div class="admonition-content">
     <ul>
 <li>Analyze the behavior of simple harmonic oscillators (SHOs) and derive their equations of motion from potential energy functions.</li>
@@ -129,7 +237,7 @@
 <p>Oscillatory or periodic behavior is a common phenomenon in nature. We see it in the motion of pendulums, springs, and other mechanical systems. But oscillations are not limited to mechanical systems; they can also be found in electrical circuits, biological systems, and even in the behavior of populations in ecology. The study of periodic motion is foundational to the understanding of many physical systems because many present themselves with local minima in their potential energy. Alternatively, some systems are confined in ways that lead to periodic motion.</p>
 <p>This behavior can be cyclic over time scales ranging from microseconds to millennia; the recurrent patterns in nature are a major field of study in physics, mathematics, engineering, and elsewhere.</p>
 <p>The most common of these is the simple harmonic oscillator, which is a system that experiences a restoring force proportional to its displacement from equilibrium. The motion of that system is not just periodic, but sinusoidal, a particular kind of periodicity in which we obtain a sinusoidal function with very nice properties.</p>
-<h2 id="reminder-of-the-sho">Reminder of the SHO</h2>
+<h2 id="reminder-of-the-sho">Reminder of the SHO<a hidden class="anchor" aria-hidden="true" href="#reminder-of-the-sho">#</a></h2>
 <p>The simple harmonic oscillator (SHO) is a system that experiences a restoring force proportional to its displacement from equilibrium. The equation of motion for a simple harmonic oscillator is given by:</p>
 <p>$$m\ddot{x} = -k x.$$</p>
 <p>The associated potential energy is given by:</p>
@@ -140,7 +248,7 @@
 <p>$$x(t) = A \cos(\omega t) + B \sin(\omega t),$$
 $$x(t) = C \cos(\omega t + \phi),$$
 $$x(t) = C_1 e^{i \omega t} + C_2 e^{-i \omega t}.$$</p>
-<h2 id="nonlinear-oscillators">Nonlinear oscillators</h2>
+<h2 id="nonlinear-oscillators">Nonlinear oscillators<a hidden class="anchor" aria-hidden="true" href="#nonlinear-oscillators">#</a></h2>
 <p>While the SHO is a well known and well-studied system, many systems are not simple harmonic oscillators. In fact, most systems are not simple harmonic oscillators. The potential energy of a system can be more complicated than a simple quadratic function. For example, the potential energy of a pendulum is given by:</p>
 <p>$$U(\theta) = mgL(1 - \cos(\theta)).$$</p>
 <p>The general motion of a pendulum is thus not simple harmonic motion, but it can be approximated as simple harmonic motion for small angles.</p>
@@ -158,7 +266,7 @@ $$x(t) = C_1 e^{i \omega t} + C_2 e^{-i \omega t}.$$</p>
 </ul>
 <p>$$\ddot{x} - \mu(1-x^2)\dot{x} + x - A \sin(\omega t)$$</p>
 <p>All of the tools we develop to investigate the SHO can be ported to these systems.</p>
-<h3 id="synchronization-21-minute-video">Synchronization (21 minute video)</h3>
+<h3 id="synchronization-21-minute-video">Synchronization (21 minute video)<a hidden class="anchor" aria-hidden="true" href="#synchronization-21-minute-video">#</a></h3>
 <p>One of the most interesting aspects of an oscillator is that they can couple to each other. This leads to things like <a href="https://en.wikipedia.org/wiki/Beat_(acoustics)">beats</a>, where two oscillators with slightly different frequencies can create a new frequency that is the difference of the two. This is a common phenomenon in music, where two instruments playing slightly out of tune can create a new frequency that is the difference of the two.</p>
 <p>But even more interesting is the phenomenon of <a href="https://en.wikipedia.org/wiki/Synchronization">synchronization</a>.</p>
 <p>How do fireflies end up blinking together? How do walking people end up moving in step? How does your heart physically push blood through your body?</p>
@@ -179,7 +287,7 @@ $$x(t) = C_1 e^{i \omega t} + C_2 e^{-i \omega t}.$$</p>
 </div>
 
 <p><em>In this video, you&rsquo;ll see real-world examples and demonstrations of synchronization, from metronomes to fireflies. Pay attention to how simple coupling between oscillators can lead to surprising collective behavior.</em></p>
-<h2 id="modeling-oscillations">Modeling Oscillations</h2>
+<h2 id="modeling-oscillations">Modeling Oscillations<a hidden class="anchor" aria-hidden="true" href="#modeling-oscillations">#</a></h2>
 <p>We continue our study of physics phenomena that exhibits recurrent or periodic behavior. Some systems repeat their motion in a regular pattern, and we call them oscillators.</p>
 <p>We have met this behavior many times. This is because we often look at the behavior of stems just a little bit away from equilibrium. Systems with local stable equilibria will have oscillatory behavior in a region around that equilibrium point. Note below the made up example of a potential energy function that has local minima and maxima.</p>
 <p>Near the local minima, the system will oscillate back and forth. The potential energy function will look like a parabola.</p>
@@ -197,8 +305,8 @@ $$x(t) = C_1 e^{i \omega t} + C_2 e^{-i \omega t}.$$</p>
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>grid(<span style="color:#66d9ef">True</span>)
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
-</span></span></code></pre></div><p><img src="output_5_0.png" alt="png"></p>
-<h3 id="why-do-we-often-see-oscillations-in-physics">Why do we often see oscillations in physics?</h3>
+</span></span></code></pre></div><p><img alt="png" loading="lazy" src="output_5_0.png"></p>
+<h3 id="why-do-we-often-see-oscillations-in-physics">Why do we often see oscillations in physics?<a hidden class="anchor" aria-hidden="true" href="#why-do-we-often-see-oscillations-in-physics">#</a></h3>
 <p>Oscillatory behavior is common in physics because many systems have a stable equilibrium point. When we disturb the system from equilibrium, it will oscillate back and forth around that equilibrium point. Let&rsquo;s assume there&rsquo;s a given stable equilibrium point at $x=a$, we can write the potential energy function as a Taylor series expansion around that point:</p>
 <p>$$U(x) \approx U(a) + \dfrac{dU}{dx}\bigg|<em>{x=a}(x-a) + \dfrac{1}{2}\dfrac{d^2U}{dx^2}\bigg|</em>{x=a}(x-a)^2 + \cdots$$</p>
 <p>The linear term is zero because the equilibrium point is a minimum, $\dfrac{dU}{dx}\bigg|_{x=a}=0$. The quadratic term is remains as does the constant term. So up to the quadratic term, the potential energy function is a parabola.</p>
@@ -209,7 +317,7 @@ $$x(t) = C_1 e^{i \omega t} + C_2 e^{-i \omega t}.$$</p>
 <p>$$\Delta U = \dfrac{1}{2}k(x_f-a)^2 - \dfrac{1}{2}k(x_i-a)^2$$
 $$\Delta U = U_f - U_i$$</p>
 <p>This is just the change in potential energy for any spring-mass system (any SHO) if $k&gt;0$.</p>
-<h2 id="the-exact-solution-for-the-simple-harmonic-oscillator">The Exact Solution for the Simple Harmonic Oscillator</h2>
+<h2 id="the-exact-solution-for-the-simple-harmonic-oscillator">The Exact Solution for the Simple Harmonic Oscillator<a hidden class="anchor" aria-hidden="true" href="#the-exact-solution-for-the-simple-harmonic-oscillator">#</a></h2>
 <p>This potential $U=\frac{1}{2}kx^2$ is the potential for the simple harmonic oscillator when $k&gt;0$ and we are modeling around a stable critical point. We know that this potential energy will produce a restoring force.</p>
 <p>$$F = -\dfrac{dU}{dx} = -kx$$</p>
 <p>Thus our equation of motion is:</p>
@@ -223,7 +331,7 @@ $$\Delta U = U_f - U_i$$</p>
 $$x(t) = C\cos(\omega t + \phi)$$
 $$x(t) = D\sin(\omega t + \phi)$$</p>
 <p>Where $A$, $B$, $C$, $D$, and $\phi$ are constants that depend on the initial conditions of the system. The phase $\phi$ is the phase angle of the oscillation. Each solution is equivalent to the others and can be written as the other form. And each solution has two arbitrary constants that depend on the initial conditions of the system.</p>
-<h3 id="complex-forms-of-the-sho-solution">Complex forms of the SHO solution</h3>
+<h3 id="complex-forms-of-the-sho-solution">Complex forms of the SHO solution<a hidden class="anchor" aria-hidden="true" href="#complex-forms-of-the-sho-solution">#</a></h3>
 <p>These forms are useful, but often lead to more complex algebra. We can write the solution in terms of complex exponentials, which have the advantage of simplifying the algebra. Let&rsquo;s try a complex form of the solution:</p>
 <p>$$x(t) = e^{i\omega t};\textrm{where};i^2=-1$$</p>
 <p>Take its derivatives:</p>
@@ -232,7 +340,7 @@ $$\ddot{x}(t) = (i\omega)(i\omega) e^{i\omega t} = -\omega^2 e^{i\omega t} = -\o
 <p>Note that $e^{-i\omega t}$ is also a solution to the differential equation that will produce this same result. So the general solution is the linear combination of these two solutions:</p>
 <p>$$x(t) = C_1 e^{i\omega t} + C_2 e^{-i\omega t}$$</p>
 <p>where $C_1$ and $C_2$ are constants that depend on the initial conditions of the system and <strong>can be complex</strong>. We still have two arbitrary constants that depend on the initial conditions of the system, which is needed for a second-order differential equation.</p>
-<h3 id="but-the-solution-to-the-motion-of-the-sho-is-real">But the solution to the motion of the SHO is real!</h3>
+<h3 id="but-the-solution-to-the-motion-of-the-sho-is-real">But the solution to the motion of the SHO is real!<a hidden class="anchor" aria-hidden="true" href="#but-the-solution-to-the-motion-of-the-sho-is-real">#</a></h3>
 <p>Yes, that is true. The solution must be a real function of time. This puts conditions on the constants $C_1$ and $C_2$. Using the Euler formula:</p>
 <p>$$e^{i\theta} = \cos(\theta) + i\sin(\theta)$$</p>
 <p>we can apply this to the functional form of the solution, such that,</p>
@@ -248,10 +356,10 @@ $$B_2 = i(C_1 - C_2)$$</p>
 <p>But $B_1$ and $B_2$ must be real because the rest of the solution is real.  What does that mean? Let&rsquo;s write $C_1$ and $C_2$ in terms of $B_1$ and $B_2$:</p>
 <p>$$C_1 = \dfrac{1}{2}\left(B_1-iB_2\right)$$
 $$C_2 = \dfrac{1}{2}\left(B_1+iB_2\right)$$</p>
-<h3 id="complex-conjugates">Complex Conjugates</h3>
+<h3 id="complex-conjugates">Complex Conjugates<a hidden class="anchor" aria-hidden="true" href="#complex-conjugates">#</a></h3>
 <p>These values of $C_1$ and $C_2$ are the complex conjugates of each other. The complex conjugate of a complex number $z=a+ib$ is $z^*=a-ib$. The complex conjugate of a complex number is the same as the original number, but with the sign of the imaginary part reversed.</p>
 <p>We can draw these in the complex plane where the $x$-axis is the real part and the $y$-axis is the imaginary part.</p>
-<p><img src="/images/notes/week8/conjugates_graph.png" alt="Complex Conjugates"></p>
+<p><img alt="Complex Conjugates" loading="lazy" src="/images/notes/week8/conjugates_graph.png"></p>
 <p>In the graph we can see that the complex conjugates are a reflection of each other. This is because the imaginary part of the complex conjugate is the negative of the original imaginary part.</p>
 <p>The mathematics is quite useful for us. Consider the produce of two complex conjugates:</p>
 <p>$$z = a + ib$$
@@ -262,7 +370,7 @@ $$z^* = a - ib$$</p>
 <p>$$|z| = \sqrt{zz^*} = \sqrt{a^2 + b^2},m$$</p>
 <p>which is also real! Given that $C_1$ and $C_2$ are complex conjugates ($C_2 = C_1^*$), we can write the general solution to the SHO as:</p>
 <p>$$x(t) = C_1 e^{i\omega t} + C_1^* e^{-i\omega t}$$</p>
-<h4 id="what-does-that-mean-for-the-sho">What does that mean for the SHO?</h4>
+<h4 id="what-does-that-mean-for-the-sho">What does that mean for the SHO?<a hidden class="anchor" aria-hidden="true" href="#what-does-that-mean-for-the-sho">#</a></h4>
 <p>There&rsquo;s a few more mathematical properties for complex conjugates that are useful for the SHO. The general solution to the SHO is. Let:</p>
 <p>$$z = a + ib$$
 $$z^* = a - ib$$</p>
@@ -330,17 +438,17 @@ $$x(t) = 2Re\left(C_1 e^{i\omega t}\right)$$</p>
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#39;t&#39;</span>)
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;x&#39;</span>, rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
-</span></span></code></pre></div><p><img src="output_10_0.png" alt="png"></p>
-<p><img src="output_10_1.png" alt="png"></p>
-<p><img src="output_10_2.png" alt="png"></p>
-<h2 id="damped-harmonic-oscillations">Damped Harmonic Oscillations</h2>
+</span></span></code></pre></div><p><img alt="png" loading="lazy" src="output_10_0.png"></p>
+<p><img alt="png" loading="lazy" src="output_10_1.png"></p>
+<p><img alt="png" loading="lazy" src="output_10_2.png"></p>
+<h2 id="damped-harmonic-oscillations">Damped Harmonic Oscillations<a hidden class="anchor" aria-hidden="true" href="#damped-harmonic-oscillations">#</a></h2>
 <p>The firs complication we can add to an oscillator is a bit of damping, or friction. It&rsquo;s common to see this in real systems. Here, we add a force that removes energy from the system. This is often modeled as a force that is proportional to the velocity of the system:
 $$F_{damping} = -b\dot{x}$$</p>
 <p>where $b$ is a constant that depends on the system. The equation of motion is then:</p>
 <p>$$m\ddot{x} = -kx - b\dot{x}$$
 or, rearranging terms,</p>
 <p>$$m\ddot{x} + b\dot{x} + kx = 0$$</p>
-<h3 id="common-simplifications">Common simplifications</h3>
+<h3 id="common-simplifications">Common simplifications<a hidden class="anchor" aria-hidden="true" href="#common-simplifications">#</a></h3>
 <p>We often rewrite the equation in terms of $\ddot{x}$:</p>
 <p>$$\ddot{x} + \dfrac{b}{m}\dot{x} + \dfrac{k}{m}x = 0$$</p>
 <p>And then we define a few constants:</p>
@@ -358,7 +466,7 @@ $$2\beta = \dfrac{b}{m} \text{ (damping constant)}$$</p>
   </div>
 </div>
 
-<h3 id="finding-the-solution">Finding the solution</h3>
+<h3 id="finding-the-solution">Finding the solution<a hidden class="anchor" aria-hidden="true" href="#finding-the-solution">#</a></h3>
 <p>Let&rsquo;s assume a solution of the form and see where that gets us:</p>
 <p>$$x(t) = e^{r t}$$</p>
 <p>So that the derivatives are:</p>
@@ -379,15 +487,15 @@ $$r_2 = -\beta - \sqrt{\beta^2 - \omega_0^2}$$</p>
 <p>Where $A$ and $B$ are constants that depend on the initial conditions of the system.</p>
 <p>In full detail that solution is:</p>
 <p>$$x(t) = e^{-\beta t}\left(A e^{\sqrt{\beta^2 - \omega_0^2} t} + B e^{-\sqrt{\beta^2 - \omega_0^2} t}\right).$$</p>
-<h3 id="case-studies-of-damped-oscillations">Case Studies of Damped Oscillations</h3>
+<h3 id="case-studies-of-damped-oscillations">Case Studies of Damped Oscillations<a hidden class="anchor" aria-hidden="true" href="#case-studies-of-damped-oscillations">#</a></h3>
 <p>Let&rsquo;s look a the three cases of damping. We can classify the system based on the value of $\beta$ and $\omega_0$.</p>
-<h4 id="no-damping-beta0">No Damping $\beta=0$</h4>
+<h4 id="no-damping-beta0">No Damping $\beta=0$<a hidden class="anchor" aria-hidden="true" href="#no-damping-beta0">#</a></h4>
 <p>This is just the case of the SHO. The solution is:</p>
 <p>$$x(t) = e^{-\beta t}\left(A e^{\sqrt{\beta^2 - \omega_0^2} t} + B e^{-\sqrt{\beta^2 - \omega_0^2} t}\right).$$</p>
 <p>$$x(t) = e^0 \left(A e^{\sqrt{-\omega^2} t} + B e^{\sqrt{-\omega^2 t}}\right)$$</p>
 <p>$$x(t) = C_1 e^{i\omega t} + C_2 e^{-i\omega t}$$</p>
 <p>This is the same solution we had before. The system oscillates with a frequency $\omega_0$ and the amplitude is constant.</p>
-<h4 id="weak-damping-beta2--omega_02">Weak Damping $\beta^2 &lt; \omega_0^2$</h4>
+<h4 id="weak-damping-beta2--omega_02">Weak Damping $\beta^2 &lt; \omega_0^2$<a hidden class="anchor" aria-hidden="true" href="#weak-damping-beta2--omega_02">#</a></h4>
 <p>Technically, weak means $\beta^2 \ll \omega_0^2$, but whatever. Let&rsquo;s just work this out:</p>
 <p>$$\beta^2 - \omega_0^2 &lt; 0$$</p>
 <p>So that</p>
@@ -424,8 +532,8 @@ $$r_2 = -\beta - \sqrt{\beta^2 - \omega_0^2}$$</p>
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>grid()
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
-</span></span></code></pre></div><p><img src="output_13_0.png" alt="png"></p>
-<h4 id="strong-damping-beta2--omega_02">Strong Damping $\beta^2 &gt; \omega_0^2$</h4>
+</span></span></code></pre></div><p><img alt="png" loading="lazy" src="output_13_0.png"></p>
+<h4 id="strong-damping-beta2--omega_02">Strong Damping $\beta^2 &gt; \omega_0^2$<a hidden class="anchor" aria-hidden="true" href="#strong-damping-beta2--omega_02">#</a></h4>
 <p>Again, the assumption is really $\beta^2 \gg \omega_0^2$, but let&rsquo;s just work this out. In the case of strong damping, we have:</p>
 <p>$$\beta^2 - \omega_0^2 &gt; 0$$</p>
 <p>So that $\sqrt{\beta^2 - \omega_0^2}$ is a real number. We can write the solution as:</p>
@@ -453,8 +561,8 @@ $$r_2 = -\beta - \sqrt{\beta^2 - \omega_0^2}$$</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
-</span></span></code></pre></div><p><img src="output_15_0.png" alt="png"></p>
-<h4 id="critical-damping-beta2--omega_02">Critical Damping $\beta^2 = \omega_0^2$</h4>
+</span></span></code></pre></div><p><img alt="png" loading="lazy" src="output_15_0.png"></p>
+<h4 id="critical-damping-beta2--omega_02">Critical Damping $\beta^2 = \omega_0^2$<a hidden class="anchor" aria-hidden="true" href="#critical-damping-beta2--omega_02">#</a></h4>
 <p>This is the case where we naively would find:</p>
 <p>$$\sqrt{\beta^2 - \omega_0^2} = 0$$</p>
 <p>so that,</p>
@@ -485,34 +593,106 @@ $$x(t) = t e^{-\beta t}$$</p>
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>grid()
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
-</span></span></code></pre></div><p><img src="output_17_0.png" alt="png"></p>
+</span></span></code></pre></div><p><img alt="png" loading="lazy" src="output_17_0.png"></p>
 
 
-    
-    <nav style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
-        <div style="display: flex; justify-content: space-between;">
-            <div>
-                
-                <a href="/course-materials/09_notes/">← 09 - Driving Oscillators and Resonance Phenomenon</a>
-                
-            </div>
-            <div style="text-align: right;">
-                
-                <a href="/course-materials/07_notes/">07 - Introducing Nonlinear Dynamics →</a>
-                
-            </div>
-        </div>
-    </nav>
-    
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="//localhost:1313/course-materials/07_notes/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>07 - Introducing Nonlinear Dynamics</span>
+  </a>
+  <a class="next" href="//localhost:1313/course-materials/09_notes/">
+    <span class="title">Next »</span>
+    <br>
+    <span>09 - Driving Oscillators and Resonance Phenomenon</span>
+  </a>
+</nav>
+
+  </footer>
 </article>
-
     </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="//localhost:1313/">Classical Mechanics</a></span> · 
 
-    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
         
-        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
         
-        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
-    </footer>
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
 </body>
+
 </html>

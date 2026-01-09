@@ -1,124 +1,173 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slides | Classical Mechanics</title>
-    <meta name="description" content="Classical Mechanics">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
-    
-    <link rel="stylesheet" href="//localhost:1313/css/accessibility.css">
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Slides | Classical Mechanics</title>
+<meta name="keywords" content="">
+<meta name="description" content="Slides for PHY 321 appear in reverse chronological order, with the most recent slides at the top. The formats are PDF, HTML, and Markdown. The HTML slides are hosted on my website, and the Markdown slides are the source code for the HTML slides, built with Marp.
+
+
+Day 01 - Introduction - 12 Jan 2026
+">
+<meta name="author" content="Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine">
+<link rel="canonical" href="//localhost:1313/logistics-resources/slides/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
+<link rel="icon" href="//localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="//localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="//localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="//localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="//localhost:1313/logistics-resources/slides/">
+<noscript>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
+        #theme-toggle,
+        .top-link {
+            display: none;
         }
-        nav {
-            background: #f4f4f4;
-            padding: 15px;
-            margin-bottom: 30px;
-            border-radius: 5px;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-        nav a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            color: #222;
-            margin-top: 1.5em;
-        }
-        h1 {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-        code {
-            background: #f4f4f4;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: "SF Mono", Monaco, Consolas, monospace;
-        }
-        pre {
-            background: #f4f4f4;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-        pre code {
-            background: none;
-            padding: 0;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        a {
-            color: #0066cc;
-        }
-        .menu-home {
-            font-weight: bold;
-            margin-right: 30px;
-        }
+
     </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}], throwOnError: false});"></script>
+
+
 </head>
-<body>
-    <nav role="navigation" aria-label="Main navigation">
-        <ul>
-            <li class="menu-home"><a href="//localhost:1313/">Classical Mechanics</a></li>
-            
-            
-            <li><a href="/course-information/">Course Information</a></li>
-            
-            
-            
-            <li><a href="/course-materials/">Course Materials</a></li>
-            
-            
-            
-            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
-            
-            
-            
-            <li><a href="/programming-resources/">Programming Resources</a></li>
-            
-            
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="//localhost:1313/" accesskey="h" title="Classical Mechanics (Alt + H)">Classical Mechanics</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="//localhost:1313/course-information/" title="Course Information">
+                    <span>Course Information</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/course-materials/" title="Course Materials">
+                    <span>Course Materials</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/logistics-resources/" title="Logistics &amp; Resources">
+                    <span>Logistics &amp; Resources</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/programming-resources/" title="Programming Resources">
+                    <span>Programming Resources</span>
+                </a>
+            </li>
         </ul>
     </nav>
+</header>
+<main class="main">
 
-    <main role="main">
-        
-<article>
-    <header>
-        <h1>Slides</h1>
-        
-    </header>
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="//localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="//localhost:1313/logistics-resources/">Logistics &amp; Resources</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Slides
+    </h1>
+    <div class="post-meta"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span>
 
-    <p>Slides for PHY 321 appear in reverse chronological order, with the most recent slides at the top. The formats are PDF, HTML, and Markdown. The HTML slides are hosted on my website, and the Markdown slides are the source code for the HTML slides, built with <a href="https://marp.app/">Marp</a>.</p>
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#day-01---introduction---12-jan-2026" aria-label="Day 01 - Introduction - 12 Jan 2026">Day 01 - Introduction - 12 Jan 2026</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>Slides for PHY 321 appear in reverse chronological order, with the most recent slides at the top. The formats are PDF, HTML, and Markdown. The HTML slides are hosted on my website, and the Markdown slides are the source code for the HTML slides, built with <a href="https://marp.app/">Marp</a>.</p>
 <hr>
 <!-- ## Days 40-42 - Project Presentations  - 01 Dec 2025 - 05 Dec 2025
 
 [![Day 40](/images/slides/day-40-project-presentations.png)](../slides/day-40-project-presentations.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-40-project-presentations.md) | [PDF](../slides/day-40-project-presentations.pdf)
 </div>
 
@@ -128,7 +177,8 @@
 
 [![Day 39](/images/slides/day-39-project-session.png)](../slides/day-39-project-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-39-project-session.md) | [PDF](../slides/day-39-project-session.pdf)
 </div>
 
@@ -138,7 +188,8 @@
 
 [![Day 38](/images/slides/day-38-project-session.png)](../slides/day-38-project-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-38-project-session.md) | [PDF](../slides/day-38-project-session.pdf)
 </div>
 
@@ -148,7 +199,8 @@
 
 [![Day 37](/images/slides/day-37-homework-session.png)](../slides/day-37-homework-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-37-homework-session.md) | [PDF](../slides/day-37-homework-session.pdf)
 </div>
 
@@ -158,7 +210,8 @@
 
 [![Day 36](/images/slides/day-36-lagrangian-examples.png)](../slides/day-36-lagrangian-examples.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-36-lagrangian-examples.md) | [PDF](../slides/day-36-lagrangian-examples.pdf)
 </div>
 
@@ -168,7 +221,8 @@
 
 [![Day 35](/images/slides/day-35-lagrangian-examples.png)](../slides/day-35-lagrangian-examples.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-35-lagrangian-examples.md) | [PDF](../slides/day-35-lagrangian-examples.pdf)
 </div>
 
@@ -178,7 +232,8 @@
 
 [![Day 34](/images/slides/day-34-homework-session.png)](../slides/day-34-homework-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-34-homework-session.md) | [PDF](../slides/day-34-homework-session.pdf)
 </div>
 
@@ -188,7 +243,8 @@
 
 [![Day 33](/images/slides/day-33-lagrangian-examples.png)](../slides/day-33-lagrangian-examples.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-33-lagrangian-examples.md) | [PDF](../slides/day-33-lagrangian-examples.pdf)
 </div>
 
@@ -198,7 +254,8 @@
 
 [![Day 32](/images/slides/day-32-introduction-to-lagrangian-dynamics.png)](../slides/day-32-introduction-to-lagrangian-dynamics.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-32-introduction-to-lagrangian-dynamics.md) | [PDF](../slides/day-32-introduction-to-lagrangian-dynamics.pdf)
 </div>
 
@@ -208,7 +265,8 @@
 
 [![Day 31](/images/slides/day-31-homework-session.png)](../slides/day-31-homework-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-31-homework-session.md) | [PDF](../slides/day-31-homework-session.pdf)
 </div>
 
@@ -218,7 +276,8 @@
 
 [![Day 30](/images/slides/day-30-euler-lagrange-equation.png)](../slides/day-30-euler-lagrange-equation.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-30-euler-lagrange-equation.md) | [PDF](../slides/day-30-euler-lagrange-equation.pdf)
 </div>
 
@@ -229,7 +288,8 @@
 
 [![Day 29](/images/slides/day-29-calculus-of-variations.png)](../slides/day-29-calculus-of-variations.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-29-calculus-of-variations.md) | [PDF](../slides/day-29-calculus-of-variations.pdf)
 </div>
 
@@ -240,7 +300,8 @@
 
 [![Day 28](/images/slides/day-28-homework-session.png)](../slides/day-28-homework-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-28-homework-session.md) | [PDF](../slides/day-28-homework-session.pdf)
 </div>
 
@@ -250,7 +311,8 @@
 
 [![Day 27](/images/slides/day-27-hallmarks-of-chaos.png)](../slides/day-27-hallmarks-of-chaos.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-27-hallmarks-of-chaos.md) | [PDF](../slides/day-27-hallmarks-of-chaos.pdf)
 </div>
 
@@ -260,7 +322,8 @@
 
 [![Day 26](/images/slides/day-26-introduction-to-chaos.png)](../slides/day-26-introduction-to-chaos.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-26-introduction-to-chaos.md) | [PDF](../slides/day-26-introduction-to-chaos.pdf)
 </div>
 
@@ -270,7 +333,8 @@
 
 [![Day 25](/images/slides/day-25-resonance.png)](../slides/day-25-resonance.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-25-resonance.md) | [PDF](../slides/day-25-resonance.pdf)
 </div>
 
@@ -280,7 +344,8 @@
 
 [![Day 24](/images/slides/day-24-driven-oscillations.png)](../slides/day-24-driven-oscillations.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-24-driven-oscillations.md) | [PDF](../slides/day-24-driven-oscillations.pdf)
 </div>
 
@@ -290,7 +355,8 @@
 
 [![Day 23](/images/slides/day-23-homework-session.png)](../slides/day-23-homework-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-23-homework-session.md) | [PDF](../slides/day-23-homework-session.pdf)
 </div>
 
@@ -300,7 +366,8 @@
 
 [![Day 22](/images/slides/day-22-damped-oscillations.png)](../slides/day-22-damped-oscillations.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-22-damped-oscillations.md) | [PDF](../slides/day-22-damped-oscillations.pdf)
 </div>
 
@@ -310,7 +377,8 @@
 
 [![Day 21](/images/slides/day-21-oscillations.png)](../slides/day-21-oscillations.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-21-oscillations.md) | [PDF](../slides/day-21-oscillations.pdf)
 </div>
 
@@ -320,7 +388,8 @@
 
 [![Day 20](/images/slides/day-20-homework-session.png)](../slides/day-20-homework-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-20-homework-session.md) | [PDF](../slides/day-20-homework-session.pdf)
 </div>
 
@@ -330,7 +399,8 @@
 
 [![Day 19](/images/slides/day-19-phase-diagrams.png)](../slides/day-19-phase-diagrams.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-19-phase-diagrams.md) | [PDF](../slides/day-19-phase-diagrams.pdf)
 </div>
 
@@ -340,7 +410,8 @@
 
 [![Day 18](/images/slides/day-18-introduction-to-nonlinear-dynamics.png)](../slides/day-18-introduction-to-nonlinear-dynamics.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-18-introduction-to-nonlinear-dynamics.md) | [PDF](../slides/day-18-introduction-to-nonlinear-dynamics.pdf)
 </div>
 
@@ -350,7 +421,8 @@
 
 [![Day 17](/images/slides/day-17-homework-session.png)](../slides/day-17-homework-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-17-homework-session.md) | [PDF](../slides/day-17-homework-session.pdf)
 </div>
 
@@ -360,7 +432,8 @@
 
 [![Day 16](/images/slides/day-16-conservation-of-momentum.png)](../slides/day-16-conservation-of-momentum.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-16-conservation-of-momentum.md) | [PDF](../slides/day-16-conservation-of-momentum.pdf)
 </div>
 
@@ -370,7 +443,8 @@
 
 [![Day 15](/images/slides/day-15-potential-energy-and-stability.png)](../slides/day-15-potential-energy-and-stability.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-15-potential-energy-and-stability.md) | [PDF](../slides/day-15-potential-energy-and-stability.pdf)
 </div>
 
@@ -380,7 +454,8 @@
 
 [![Day 14](/images/slides/day-14-homework-session.png)](../slides/day-14-homework-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-14-homework-session.md) | [PDF](../slides/day-14-homework-session.pdf)
 </div>
 
@@ -390,7 +465,8 @@
 
 [![Day 13](/images/slides/day-13-conservative-forces.png)](../slides/day-13-conservative-forces.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-13-conservative-forces.md) | [PDF](../slides/day-13-conservative-forces.pdf)
 </div>
 
@@ -400,7 +476,8 @@
 
 [![Day 12](/images/slides/day-12-conservation-of-energy.png)](../slides/day-12-conservation-of-energy.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-12-conservation-of-energy.md) | [PDF](../slides/day-12-conservation-of-energy.pdf)
 </div>
 
@@ -410,7 +487,8 @@
 
 [![Day 11](/images/slides/day-11-homework-session.png)](../slides/day-11-homework-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-11-homework-session.md) | [PDF](../slides/day-11-homework-session.pdf)
 </div>
 
@@ -420,7 +498,8 @@
 
 [![Day 10](/images/slides/day-10-integrating-eoms-numerically.png)](../slides/day-10-integrating-eoms-numerically.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-10-integrating-eoms-numerically.md) | [PDF](../slides/day-10-integrating-eoms-numerically.pdf)
 
 ### 💻 Programming Resources
@@ -434,7 +513,8 @@
 
 [![Day 09](/images/slides/day-09-modeling-drag.png)](../slides/day-09-modeling-drag.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-09-modeling-drag.md) | [PDF](../slides/day-09-modeling-drag.pdf)
 </div>
 
@@ -444,7 +524,8 @@
 
 [![Day 08](/images/slides/day-08-help-session.png)](../slides/day-08-help-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-08-help-session.md) | [PDF](../slides/day-08-help-session.pdf)
 </div>
 
@@ -454,7 +535,8 @@
 
 [![Day 07](/images/slides/day-07-drag-forces.png)](../slides/day-07-drag-forces.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-07-drag-forces.md) | [PDF](../slides/day-07-drag-forces.pdf)
 </div>
 
@@ -464,7 +546,8 @@
 
 [![Day 06](/images/slides/day-06-making-classical-models.png)](../slides/day-06-making-classical-models.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-06-making-classical-models.md) | [PDF](../slides/day-06-making-classical-models.pdf)
 </div>
 
@@ -474,7 +557,8 @@
 
 [![Day 05](/images/slides/day-05-help-session.png)](../slides/day-05-help-session.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-05-help-session.md) | [PDF](../slides/day-05-help-session.pdf)
 </div>
 
@@ -484,7 +568,8 @@
 
 [![Day 04](/images/slides/day-04-mathematical-prelims.png)](../slides/day-04-mathematical-prelims.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-04-mathematical-prelims.md) | [PDF](../slides/day-04-mathematical-prelims.pdf)
 </div>
 
@@ -494,7 +579,8 @@
 
 [![Day 03](/images/slides/day-03-computing-setup.png)](../slides/day-03-computing-setup.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-03-computing-setup.md) | [PDF](../slides/day-03-computing-setup.pdf)
 </div>
 
@@ -504,43 +590,105 @@
 
 [![Day 02](/images/slides/day-02-newtons-laws.png)](../slides/day-02-newtons-laws.pdf)
 
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-02-newtons-laws.md) | [PDF](../slides/day-02-newtons-laws.pdf)
 </div>
 
 --- -->
-<h2 id="day-01---introduction---12-jan-2026">Day 01 - Introduction - 12 Jan 2026</h2>
-<p><a href="../slides/day-01-introduction.pdf"><img src="/images/slides/day-01-introduction.png" alt="Day 01"></a></p>
-<div class="directive info"><p class="admonition-title">### 📂 Download Slides</p>
+<h2 id="day-01---introduction---12-jan-2026">Day 01 - Introduction - 12 Jan 2026<a hidden class="anchor" aria-hidden="true" href="#day-01---introduction---12-jan-2026">#</a></h2>
+<p><a href="../slides/day-01-introduction.pdf"><img alt="Day 01" loading="lazy" src="/images/slides/day-01-introduction.png"></a></p>
+<div class="directive info">
+### 📂 Download Slides
 [HTML](../slides/day-01-introduction.md) | [PDF](../slides/day-01-introduction.pdf)
 </div>
 
 
-    
-    <nav style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
-        <div style="display: flex; justify-content: space-between;">
-            <div>
-                
-                <a href="/logistics-resources/gradescope-submissions/">← Submitting Assignments on Gradescope</a>
-                
-            </div>
-            <div style="text-align: right;">
-                
-                <a href="/logistics-resources/schedule-cal/">Course Calendar →</a>
-                
-            </div>
-        </div>
-    </nav>
-    
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+
+  </footer>
 </article>
-
     </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="//localhost:1313/">Classical Mechanics</a></span> · 
 
-    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
         
-        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
         
-        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
-    </footer>
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
 </body>
+
 </html>

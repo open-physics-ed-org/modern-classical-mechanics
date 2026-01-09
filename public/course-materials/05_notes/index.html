@@ -1,120 +1,271 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>05 - Conservation Laws Govern and Constrain our Physics | Classical Mechanics</title>
-    <meta name="description" content="Classical Mechanics">
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>05 - Conservation Laws Govern and Constrain our Physics | Classical Mechanics</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+
+Learning Goals
+After studying Lesson 05, you should be able to:
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
-    
-    <link rel="stylesheet" href="//localhost:1313/css/accessibility.css">
+Predict the conditions under which the total energy of a system remains constant using the principle of energy conservation.
+Differentiate between various forms of energy (e.g., kinetic, potential, internal) and describe their transformations within a system.
+Analyze the role of energy conservation in systems with external forces and quantify energy changes throughout a process.
+Apply the concept of a point particle to simplify energy calculations and understand its limitations in modeling real-world systems.
+Predict the conditions under which the total linear and angular momentum of a system remain constant using conservation laws.
+Derive and apply the discrete update equations for linear and angular momentum in systems with external forces.
+
+
+  
+
+
+We started with Newton&rsquo;s Laws of Motion because they provide a framework for us to develop the equations of motion. However, there is a broader framework that can help us understand and organize our knowledge of physics. These are conservation laws.">
+<meta name="author" content="Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine">
+<link rel="canonical" href="//localhost:1313/course-materials/05_notes/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
+<link rel="icon" href="//localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="//localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="//localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="//localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="//localhost:1313/course-materials/05_notes/">
+<noscript>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
+        #theme-toggle,
+        .top-link {
+            display: none;
         }
-        nav {
-            background: #f4f4f4;
-            padding: 15px;
-            margin-bottom: 30px;
-            border-radius: 5px;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-        nav a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            color: #222;
-            margin-top: 1.5em;
-        }
-        h1 {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-        code {
-            background: #f4f4f4;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: "SF Mono", Monaco, Consolas, monospace;
-        }
-        pre {
-            background: #f4f4f4;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-        pre code {
-            background: none;
-            padding: 0;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        a {
-            color: #0066cc;
-        }
-        .menu-home {
-            font-weight: bold;
-            margin-right: 30px;
-        }
+
     </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}], throwOnError: false});"></script>
+
+
 </head>
-<body>
-    <nav role="navigation" aria-label="Main navigation">
-        <ul>
-            <li class="menu-home"><a href="//localhost:1313/">Classical Mechanics</a></li>
-            
-            
-            <li><a href="/course-information/">Course Information</a></li>
-            
-            
-            
-            <li><a href="/course-materials/">Course Materials</a></li>
-            
-            
-            
-            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
-            
-            
-            
-            <li><a href="/programming-resources/">Programming Resources</a></li>
-            
-            
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="//localhost:1313/" accesskey="h" title="Classical Mechanics (Alt + H)">Classical Mechanics</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="//localhost:1313/course-information/" title="Course Information">
+                    <span>Course Information</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/course-materials/" title="Course Materials">
+                    <span>Course Materials</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/logistics-resources/" title="Logistics &amp; Resources">
+                    <span>Logistics &amp; Resources</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/programming-resources/" title="Programming Resources">
+                    <span>Programming Resources</span>
+                </a>
+            </li>
         </ul>
     </nav>
+</header>
+<main class="main">
 
-    <main role="main">
-        
-<article>
-    <header>
-        <h1>05 - Conservation Laws Govern and Constrain our Physics</h1>
-        
-    </header>
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="//localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="//localhost:1313/course-materials/">Course Materials</a></div>
+    <h1 class="post-title entry-hint-parent">
+      05 - Conservation Laws Govern and Constrain our Physics
+    </h1>
+    <div class="post-meta"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span>
 
-    <p><a href="https://github.com/dannycab/phy321msu/issues"><img src="https://img.shields.io/badge/report%20issues-GitHub-blue" alt="Report Issues"></a>
-<a href="https://github.com/dannycab/phy321msu/issues"><img src="https://img.shields.io/github/issues/dannycab/phy321msu" alt="GitHub Issues"></a></p>
-<h2 id="learning-goals">Learning Goals</h2>
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#learning-goals" aria-label="Learning Goals">Learning Goals</a></li>
+                <li>
+                    <a href="#what-is-energy" aria-label="What is Energy?">What is Energy?</a><ul>
+                        
+                <li>
+                    <a href="#feynman-on-the-units-of-energy-2-minute-video" aria-label="Feynman on the units of energy (2 minute video)">Feynman on the units of energy (2 minute video)</a></li></ul>
+                </li>
+                <li>
+                    <a href="#energy-is-a-challenging-concept" aria-label="Energy is a challenging concept">Energy is a challenging concept</a><ul>
+                        
+                <li>
+                    <a href="#how-do-we-get-light-from-a-circuit-when-we-close-a-switch-14-minute-video" aria-label="How do we get light from a circuit when we close a switch? (14 minute video)">How do we get light from a circuit when we close a switch? (14 minute video)</a></li></ul>
+                </li>
+                <li>
+                    <a href="#the-point-particle" aria-label="The Point Particle">The Point Particle</a><ul>
+                        
+                <li>
+                    <a href="#point-particle-and-real-models-6-minute-video" aria-label="Point Particle and Real Models (6 minute video)">Point Particle and Real Models (6 minute video)</a></li>
+                <li>
+                    <a href="#kinetic-energy-of-a-point-mass" aria-label="Kinetic Energy of a Point Mass">Kinetic Energy of a Point Mass</a></li>
+                <li>
+                    <a href="#work" aria-label="Work">Work</a></li>
+                <li>
+                    <a href="#work-energy-theorem" aria-label="Work-Energy Theorem">Work-Energy Theorem</a></li></ul>
+                </li>
+                <li>
+                    <a href="#conservation-of-momentum-and-angular-momentum" aria-label="Conservation of Momentum and Angular Momentum">Conservation of Momentum and Angular Momentum</a></li>
+                <li>
+                    <a href="#conservation-of-energy" aria-label="Conservation of Energy">Conservation of Energy</a><ul>
+                        
+                <li>
+                    <a href="#the-work-energy-theorem" aria-label="The Work-Energy Theorem">The Work-Energy Theorem</a><ul>
+                        
+                <li>
+                    <a href="#kinetic-energy" aria-label="Kinetic Energy">Kinetic Energy</a></li></ul>
+                </li>
+                <li>
+                    <a href="#developing-the-work-energy-theorem" aria-label="Developing the Work-Energy Theorem">Developing the Work-Energy Theorem</a><ul>
+                        
+                <li>
+                    <a href="#overall-effect-of-the-forces" aria-label="Overall Effect of the Forces">Overall Effect of the Forces</a></li>
+                <li>
+                    <a href="#work-done-in-more-than-one-dimension" aria-label="Work done in more than one dimension">Work done in more than one dimension</a></li></ul>
+                </li>
+                <li>
+                    <a href="#example-the-simple-harmonic-oscillator" aria-label="Example: The Simple Harmonic Oscillator">Example: The Simple Harmonic Oscillator</a></li>
+                <li>
+                    <a href="#example-a-lattice-chain" aria-label="Example: A Lattice Chain">Example: A Lattice Chain</a></li>
+                <li>
+                    <a href="#conservative-forces" aria-label="Conservative Forces">Conservative Forces</a><ul>
+                        
+                <li>
+                    <a href="#why-do-these-imply-each-other" aria-label="Why do these imply each other?">Why do these imply each other?</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#summary-of-results" aria-label="Summary of Results">Summary of Results</a></li>
+                <li>
+                    <a href="#linear-and-angular-momentum" aria-label="Linear and Angular Momentum">Linear and Angular Momentum</a><ul>
+                        
+                <li>
+                    <a href="#linear-momentum" aria-label="Linear Momentum">Linear Momentum</a><ul>
+                        
+                <li>
+                    <a href="#linear-momentum-and-newtons-second-law" aria-label="Linear Momentum and Newton&rsquo;s Second Law">Linear Momentum and Newton&rsquo;s Second Law</a></li>
+                <li>
+                    <a href="#forces-internal-to-a-system-zero-out" aria-label="Forces internal to a system zero out">Forces internal to a system zero out</a></li>
+                <li>
+                    <a href="#concrete-examples" aria-label="Concrete Examples">Concrete Examples</a><ul>
+                        
+                <li>
+                    <a href="#two-particles" aria-label="Two Particles">Two Particles</a></li>
+                <li>
+                    <a href="#three-particles" aria-label="Three Particles">Three Particles</a></li>
+                <li>
+                    <a href="#n-particles" aria-label="N Particles">N Particles</a></li></ul>
+                </li>
+                <li>
+                    <a href="#mathematical-form-of-conservation-of-linear-momentum" aria-label="Mathematical Form of Conservation of Linear Momentum">Mathematical Form of Conservation of Linear Momentum</a></li></ul>
+                </li>
+                <li>
+                    <a href="#angular-momentum" aria-label="Angular Momentum">Angular Momentum</a><ul>
+                        
+                <li>
+                    <a href="#definition-of-angular-momentum" aria-label="Definition of Angular Momentum">Definition of Angular Momentum</a></li>
+                <li>
+                    <a href="#when-is-angular-momentum-conserved" aria-label="When is Angular Momentum Conserved?">When is Angular Momentum Conserved?</a></li></ul>
+                </li>
+                <li>
+                    <a href="#are-we-sure-there-are-no-internal-torques-that-matter" aria-label="Are we sure there are no internal torques that matter?">Are we sure there are no internal torques that matter?</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p><a href="https://github.com/dannycab/phy321msu/issues"><img alt="Report Issues" loading="lazy" src="https://img.shields.io/badge/report%20issues-GitHub-blue"></a>
+<a href="https://github.com/dannycab/phy321msu/issues"><img alt="GitHub Issues" loading="lazy" src="https://img.shields.io/github/issues/dannycab/phy321msu"></a></p>
+<h2 id="learning-goals">Learning Goals<a hidden class="anchor" aria-hidden="true" href="#learning-goals">#</a></h2>
 <div class="admonition admonition-admonition note" role="note" aria-label="Admonition"><p class="admonition-title">After studying Lesson 05, you should be able to:</p><div class="admonition-content">
     <ul>
 <li>Predict the conditions under which the total energy of a system remains constant using the principle of energy conservation.</li>
@@ -136,13 +287,13 @@
 <li><strong>Conservation of Angular Momentum</strong>: The total angular momentum of an isolated system remains constant over time.</li>
 </ol>
 <p>We will discuss them briefly below, before we dive into the details of conservation of energy. The concept of energy is so important and complimentary to our understanding of motion that we will focus on it before returning to momentum and angular momentum.</p>
-<h2 id="what-is-energy">What is Energy?</h2>
+<h2 id="what-is-energy">What is Energy?<a hidden class="anchor" aria-hidden="true" href="#what-is-energy">#</a></h2>
 <p><a href="https://en.wikipedia.org/wiki/Energy">Energy</a> is a central concept of science. It is also a very challenging conceptual idea. Physicists are known to say things like,</p>
 <blockquote>
 <p><em>&ldquo;I can&rsquo;t tell you what energy is, but I can tell you how to calculate it.&rdquo;</em></p>
 </blockquote>
 <p>Richard Feynman is known to have had a disdain for the wildly different units of energy that we use in physics.</p>
-<h3 id="feynman-on-the-units-of-energy-2-minute-video">Feynman on the units of energy (2 minute video)</h3>
+<h3 id="feynman-on-the-units-of-energy-2-minute-video">Feynman on the units of energy (2 minute video)<a hidden class="anchor" aria-hidden="true" href="#feynman-on-the-units-of-energy-2-minute-video">#</a></h3>
 <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
     src="https://www.youtube-nocookie.com/embed/roX2NXDUTsM"
@@ -164,9 +315,9 @@
 <p>$$\dfrac{dE}{dt} = 0$$</p>
 <p>If this equation holds between any two states of a system, we say that energy is conserved. A simpler statement is thus,</p>
 <p>$$E_{before} = E_{after}$$</p>
-<h2 id="energy-is-a-challenging-concept">Energy is a challenging concept</h2>
+<h2 id="energy-is-a-challenging-concept">Energy is a challenging concept<a hidden class="anchor" aria-hidden="true" href="#energy-is-a-challenging-concept">#</a></h2>
 <p>To frame how interesting and complex energy can be, consider this video from Veritasium:</p>
-<h3 id="how-do-we-get-light-from-a-circuit-when-we-close-a-switch-14-minute-video">How do we get light from a circuit when we close a switch? (14 minute video)</h3>
+<h3 id="how-do-we-get-light-from-a-circuit-when-we-close-a-switch-14-minute-video">How do we get light from a circuit when we close a switch? (14 minute video)<a hidden class="anchor" aria-hidden="true" href="#how-do-we-get-light-from-a-circuit-when-we-close-a-switch-14-minute-video">#</a></h3>
 <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
     src="https://www.youtube-nocookie.com/embed/bHIhgxav9LY"
@@ -236,9 +387,9 @@
       </tr>
   </tbody>
 </table>
-<h2 id="the-point-particle">The Point Particle</h2>
+<h2 id="the-point-particle">The Point Particle<a hidden class="anchor" aria-hidden="true" href="#the-point-particle">#</a></h2>
 <p>Critical to the understanding of energy is that it is a property of a system. A system can consist of a single object or be made of many different objects. In the case of modeling the motion of a single object, we often introduce the concept of a <a href="https://en.wikipedia.org/wiki/Point_mass">point mass</a> or <a href="https://en.wikipedia.org/wiki/Point_particle">point particle</a>. A point mass is an idealized object that has mass but no size or shape. It has no internal structure and thus no internal energy. It is a useful abstraction for modeling the motion of objects in classical mechanics.</p>
-<h3 id="point-particle-and-real-models-6-minute-video">Point Particle and Real Models (6 minute video)</h3>
+<h3 id="point-particle-and-real-models-6-minute-video">Point Particle and Real Models (6 minute video)<a hidden class="anchor" aria-hidden="true" href="#point-particle-and-real-models-6-minute-video">#</a></h3>
 <p>The video below is from an introductory physics course at Georgia Tech. It covers the important aspects of a point particle and how we miss some of the details when we focus exclusively on the point particle model.</p>
 <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
@@ -253,21 +404,21 @@
 </div>
 
 <p><em>Click the image above to watch the video on YouTube (6 minutes)</em> <a href="https://www.youtube.com/watch?v=fbiNKrqVajM">https://www.youtube.com/watch?v=fbiNKrqVajM</a></p>
-<h3 id="kinetic-energy-of-a-point-mass">Kinetic Energy of a Point Mass</h3>
+<h3 id="kinetic-energy-of-a-point-mass">Kinetic Energy of a Point Mass<a hidden class="anchor" aria-hidden="true" href="#kinetic-energy-of-a-point-mass">#</a></h3>
 <p>In that case of a point particle, we often focus on the kinetic energy of the object. The classical kinetic energy of a point mass is given by the equation:</p>
 <p>$$K = \frac{1}{2}mv^2$$</p>
 <p>where $m$ is the mass of the object and $v$ is its velocity. The kinetic energy of a point mass is a scalar quantity, which as we will learn is much easier to work with than a vector quantity.</p>
 <p>However, we can loose some information by moving to an energy-only framework; we typically focus on the behavior before and after a process and not the details of the process itself when using energy conservation.</p>
-<h3 id="work">Work</h3>
+<h3 id="work">Work<a hidden class="anchor" aria-hidden="true" href="#work">#</a></h3>
 <p>Work is a concept closely related to energy, it describes the transfer of energy from one system to another. Our definition of work is macroscopic and thus will not related to temperature. Increases in temperature are related to internal energy, and thus the micrscopic motion of the particles in a system. As we consider a point particle moving from one location to another under a given force, we can define the work done by that force as:</p>
 <p>$$W = \int_{x_i}^{x_f} F(x) dx$$</p>
 <p>where $F(x)$ is the one-dimensional force acting on the particle between locations $x_i$ and $x_f$. More generally, if there is a position dependent force, we can write the work done by that force as:</p>
 <p>$$W = \int_{C} \vec{F} \cdot d\vec{l}$$</p>
 <p>where $C$ is the path taken by the particle and $d\vec{l}$ is a differential displacement vector along that path.</p>
-<h3 id="work-energy-theorem">Work-Energy Theorem</h3>
+<h3 id="work-energy-theorem">Work-Energy Theorem<a hidden class="anchor" aria-hidden="true" href="#work-energy-theorem">#</a></h3>
 <p>The work-energy theorem show the relationship between work and the change in kinetic energy of a point mass. The work done on a point mass is equal to the change in its kinetic energy:</p>
 <p>$$W = \Delta K = K_f - K_i$$</p>
-<h2 id="conservation-of-momentum-and-angular-momentum">Conservation of Momentum and Angular Momentum</h2>
+<h2 id="conservation-of-momentum-and-angular-momentum">Conservation of Momentum and Angular Momentum<a hidden class="anchor" aria-hidden="true" href="#conservation-of-momentum-and-angular-momentum">#</a></h2>
 <p><a href="https://en.wikipedia.org/wiki/Momentum">Linear Momentum</a> is a vector quantity that describes the motion of an object. It is defined as the product of an object&rsquo;s mass and its velocity:</p>
 <p>$$\vec{p} = m\vec{v}$$</p>
 <p><a href="https://en.wikipedia.org/wiki/Angular_momentum">Angular Momentum</a> is a vector quantity that describes the rotational motion of an object. It is defined as the cross product of the position vector and the momentum vector:</p>
@@ -288,7 +439,7 @@
 <p>$$L_{x,i} = L_{x,f} \qquad L_{y,i} = L_{y,f} \qquad L_{z,i} = L_{z,f}$$</p>
 <p>If the angular momentum is conserved in each direction, then the total angular momentum is conserved. The angular momentum will be the same before and after a process.</p>
 <p>After we get a handle on energy, we will return to momentum and angular momentum.</p>
-<h2 id="conservation-of-energy">Conservation of Energy</h2>
+<h2 id="conservation-of-energy">Conservation of Energy<a hidden class="anchor" aria-hidden="true" href="#conservation-of-energy">#</a></h2>
 <p>One expression of a conservation law is the <a href="https://en.wikipedia.org/wiki/Conservation_of_energy">conservation of energy</a>. For an isolated and closed system, the total energy is conserved. That is, before and after any process, we can account for all the energy in the system and it is the same. More generally, conservation of energy accounts for the energy &ldquo;lost&rdquo; to the surroundings. All of the changes to the system must be accounted for in changes the surroundings.</p>
 <p>For a given choice of system that interacts with its surroundings, the change in energy of the system is equal to the work done on the system and any heat exchanged with the surroundings. This is a statement of the <a href="https://en.wikipedia.org/wiki/First_law_of_thermodynamics">first law of thermodynamics</a>. We can write that statement mathematically as:</p>
 <p>$$\Delta E_{\text{system}} = W + Q$$</p>
@@ -304,7 +455,7 @@
 <p>We can rewrite this energy equation as an update equation for the energy of the system:</p>
 <p>$$E_{\text{system,f}} = E_{\text{system,i}} + W + Q$$</p>
 <p>From this equation, we can see that the final state of the system&rsquo;s energy is determined by the sum of its initial energy, the work done on the system, and the heat exchanged with the surroundings.</p>
-<h3 id="the-work-energy-theorem">The Work-Energy Theorem</h3>
+<h3 id="the-work-energy-theorem">The Work-Energy Theorem<a hidden class="anchor" aria-hidden="true" href="#the-work-energy-theorem">#</a></h3>
 <p>We often model a system as a single object that interacts with its surroundings. In this case, it&rsquo;s often beneficial to select the object alone to be the system of interest. Then all of our work is to explain and predict the dynamics of the object.</p>
 <p>This simplification allows us to employ a more specialized case of the general energy equation. We can write the work-energy theorem as:</p>
 <p>$$\Delta E_{\text{object}} = W_{\text{net}}$$
@@ -319,7 +470,7 @@ where $\Delta E_{\text{object}}$ is the change in energy of the object and $W_{\
   </div>
 </div>
 
-<h4 id="kinetic-energy">Kinetic Energy</h4>
+<h4 id="kinetic-energy">Kinetic Energy<a hidden class="anchor" aria-hidden="true" href="#kinetic-energy">#</a></h4>
 <p>Our model of <a href="https://en.wikipedia.org/wiki/Kinetic_energy">kinetic energy</a> stems from a <a href="https://en.wikipedia.org/wiki/Willem_%27s_Gravesande">series of experiments dropping stones into clay</a>. The depth of the hole made was proportional to the square of the impact speed.</p>
 <p>Through many additional experiments we have quantified the kinetic energy of a point particle as:</p>
 <p>$$K = \frac{1}{2}m\vec{v}\cdot\vec{v}.$$</p>
@@ -340,7 +491,7 @@ where $\Delta E_{\text{object}}$ is the change in energy of the object and $W_{\
 <p>Then we find that the kinetic energy is:</p>
 <p>$$T = \left(1 + \frac{1}{2}\frac{v^2}{c^2} + \ldots - 1\right)mc^2 = \frac{1}{2}mv^2 + \ldots.$$</p>
 <p>We have recovered the classical expression for kinetic energy. The higher order terms in the expansion are negligible when $v/c \ll 1$.</p>
-<h3 id="developing-the-work-energy-theorem">Developing the Work-Energy Theorem</h3>
+<h3 id="developing-the-work-energy-theorem">Developing the Work-Energy Theorem<a hidden class="anchor" aria-hidden="true" href="#developing-the-work-energy-theorem">#</a></h3>
 <p>Let&rsquo;s start with our definition of the classical kinetic energy of a point particle:</p>
 <p>$$T = \frac{1}{2}m\vec{v}\cdot\vec{v}.$$</p>
 <p>We ask how does $T$ change with time? We take the time derivative of $T$:</p>
@@ -358,12 +509,12 @@ where $\Delta E_{\text{object}}$ is the change in energy of the object and $W_{\
 <p>$$\Delta T = \vec{F}_{net}\cdot\Delta \vec{x}.$$</p>
 <p>This is the work done on the object by the net force. We can write that as:</p>
 <p>$$\Delta T = W_{\text{net}}.$$</p>
-<h4 id="overall-effect-of-the-forces">Overall Effect of the Forces</h4>
+<h4 id="overall-effect-of-the-forces">Overall Effect of the Forces<a hidden class="anchor" aria-hidden="true" href="#overall-effect-of-the-forces">#</a></h4>
 <p>Consider that we are looking at the changes in the object&rsquo;s motion over a longer period of space and time. This discrete model above helps us understand the relationship between the work done on the object and the change in its kinetic energy in a small interval, but what about the overall effect of the forces on the object?</p>
 <p>Consider a discrete set of $n$ spatial intervals, $\Delta x_i$, where $i$ is the index of the interval.</p>
 <p>$$x = {x_0, x_1, x_2, \ldots, x_n}$$</p>
 <p>At each of these spatial intervals, we experience a different net force, like in the figure below.</p>
-<p><img src="/images/notes/week5/discrete-force-intervals.png" alt="Work done by a net force"></p>
+<p><img alt="Work done by a net force" loading="lazy" src="/images/notes/week5/discrete-force-intervals.png"></p>
 <p>$$F_{net} = {F_{net,0}, F_{net,1}, F_{net,2}, \ldots, F_{net,n}}$$</p>
 <p>The work done by this force is the change in kinetic energy of the object:</p>
 <p>$$W_{\text{net}} = \sum_{i=0}^{n} F_{net,i}\Delta x_i = \Delta T.$$</p>
@@ -374,16 +525,16 @@ where $\Delta E_{\text{object}}$ is the change in energy of the object and $W_{\
 <p>Thus, in our continuous limit, we can write the work done by the net force as:</p>
 <p>$$\Delta T = W_{\text{net}} = \int_{x_i}^{x_f} F_{net}(x)dx.$$</p>
 <p>What about in more than one dimension?</p>
-<h4 id="work-done-in-more-than-one-dimension">Work done in more than one dimension</h4>
+<h4 id="work-done-in-more-than-one-dimension">Work done in more than one dimension<a hidden class="anchor" aria-hidden="true" href="#work-done-in-more-than-one-dimension">#</a></h4>
 <p>Consider a path $C$ that we have discretized into $n$ intervals. The object starts at $\vec{r}_0$ and ends at $\vec{r}_n$. Each interval is $\Delta \vec{r}<em>i$ and the net force is $\vec{F}</em>{net,i}$. The figure below shows the work done by the net force in each interval.</p>
-<p><img src="/images/notes/week5/path-integral-work.png" alt="Work done by a net force"></p>
+<p><img alt="Work done by a net force" loading="lazy" src="/images/notes/week5/path-integral-work.png"></p>
 <p>The work done by the net force is:</p>
 <p>$$W_{\text{net}} = \sum_{i=0}^{n} \vec{F}_{net,i}\cdot\Delta \vec{r}_i.$$</p>
 <p>as $\Delta \vec{r}_i \rightarrow 0$ and $n \rightarrow \infty$, we have a continuous function of the net force. We can write that as:</p>
 <p>$$W_{\text{net}} = \int_{C} \vec{F}_{net}\cdot d\vec{r}.$$</p>
 <p>The work can be positive, if the force and displacement are in the same direction, or negative, if they are in opposite directions. It can also be zero, if the force is perpendicular to the displacement.</p>
 <p>If the force is <strong>always</strong> perpendicular to the displacement, then the work done by the force is zero. This is because the dot product of two perpendicular vectors is zero. But what kind of motion is possible?</p>
-<h3 id="example-the-simple-harmonic-oscillator">Example: The Simple Harmonic Oscillator</h3>
+<h3 id="example-the-simple-harmonic-oscillator">Example: The Simple Harmonic Oscillator<a hidden class="anchor" aria-hidden="true" href="#example-the-simple-harmonic-oscillator">#</a></h3>
 <p>Consider, again, the humble <a href="https://en.wikipedia.org/wiki/Harmonic_oscillator">SHO</a>. If we have a horizontal spring mass system, we know we can write the force on the mass as:</p>
 <p>$$F_s = -kx.$$</p>
 <p>Let&rsquo;s allow the spring to move from $x_i$ to $x_f$, while the speed changes from $v_i$ to $v_f$.</p>
@@ -407,9 +558,9 @@ where $\Delta E_{\text{object}}$ is the change in energy of the object and $W_{\
 <p>$$E_{tot} = T + U_s = \dfrac{1}{2}mv^2 + \dfrac{1}{2}kx^2 = \text{constant}.$$</p>
 <p>You have likely seen this previously in your study of the SHO. It is a very important result. But it is also the case that we don&rsquo;t always have a potential energy function.</p>
 <p>We need to have a <a href="https://en.wikipedia.org/wiki/Conservative_force">conservative force</a> to have a potential energy function. A conservative force is one where the work done by the force is independent of the path taken. Above, we assumed that in our calculations because the force was only dependent on the position of the object. That is a key feature of a conservative force.</p>
-<h3 id="example-a-lattice-chain">Example: A Lattice Chain</h3>
+<h3 id="example-a-lattice-chain">Example: A Lattice Chain<a hidden class="anchor" aria-hidden="true" href="#example-a-lattice-chain">#</a></h3>
 <p>A less obivous example that produces a potential energy function is a <a href="https://en.wikipedia.org/wiki/Lattice_chain">lattice chain</a>. Here we model an electron moving in 1D near but not too near a long chain of atoms. The picture below shows the model.</p>
-<p><img src="/images/notes/week5/lattice-chain.png" alt="Lattice chain model"></p>
+<p><img alt="Lattice chain model" loading="lazy" src="/images/notes/week5/lattice-chain.png"></p>
 <p>Here the location of the particle and it&rsquo;s initial velocty are zero. The force model for a chain of atoms in this arrangement is:</p>
 <p>$$F(x) = -F_0 \sin \left(\dfrac{2\pi x}{b}\right)$$</p>
 <p>where $b$ is the spacing between the atoms and $F_0$ is a constant.</p>
@@ -426,7 +577,7 @@ where $\Delta E_{\text{object}}$ is the change in energy of the object and $W_{\
 where $C$ is a constant. We can choose $C$ so that $U(0) = 0$; only the difference in potential energy matter. Then we have:</p>
 <p>$$U(x) = \dfrac{b}{2\pi}F_0 \cos \left(\dfrac{2\pi x}{b}\right).$$</p>
 <p>This is just <strong>another</strong> conservative force.</p>
-<h3 id="conservative-forces">Conservative Forces</h3>
+<h3 id="conservative-forces">Conservative Forces<a hidden class="anchor" aria-hidden="true" href="#conservative-forces">#</a></h3>
 <p>These forces occur frequently enough in physics and their properties are so important that they deserve their own attention. There are a few key properties of conservative forces that we should note:</p>
 <ol>
 <li>if the work is independent of the path taken, then the force is conservative.</li>
@@ -434,7 +585,7 @@ where $C$ is a constant. We can choose $C$ so that $U(0) = 0$; only the differen
 <li>if the curl of the force is zero, then the force is conservative.</li>
 </ol>
 <p>It turns out that all of these statements are equivalent. And if any one of them is true, the rest hold, and we can develop a potential energy function for the force.</p>
-<h4 id="why-do-these-imply-each-other">Why do these imply each other?</h4>
+<h4 id="why-do-these-imply-each-other">Why do these imply each other?<a hidden class="anchor" aria-hidden="true" href="#why-do-these-imply-each-other">#</a></h4>
 <p>Let&rsquo;s start with the curl of the force. The <a href="https://en.wikipedia.org/wiki/Curl">curl</a> of a vector field is a measure of the rotation of the field. It is a <a href="https://en.wikipedia.org/wiki/Vector_calculus_operator">vector differential operator</a>. Operationally, taking the curl amounts to a cross product of the del operator with the vector field. The curl of a vector field $\vec{F}$ is defined as:</p>
 <p>$$\nabla \times \vec{F} = \begin{vmatrix}\hat{i} &amp; \hat{j} &amp; \hat{k} \ \partial_x &amp; \partial_y &amp; \partial_z \ F_x &amp; F_y &amp; F_z \end{vmatrix} = \left(\dfrac{\partial F_z}{\partial y} - \dfrac{\partial F_y}{\partial z}\right)\hat{i} + \left(\dfrac{\partial F_x}{\partial z} - \dfrac{\partial F_z}{\partial x}\right)\hat{j} + \left(\dfrac{\partial F_y}{\partial x} - \dfrac{\partial F_x}{\partial y}\right)\hat{k}.$$</p>
 <p>In the event that the curl vanishes, we know that each term in the curl is zero. In this case, we can investigate what this implies about other aspects of the force. We write <a href="https://en.wikipedia.org/wiki/Stokes%27_theorem">Stokes&rsquo; theorem</a> for the force as:</p>
@@ -444,13 +595,13 @@ where $C$ is a constant. We can choose $C$ so that $U(0) = 0$; only the differen
 <p>$$\oint_C \vec{F}\cdot d\vec{r} = 0.$$</p>
 <p>This is true for any closed path $C$. This is the second statement above.</p>
 <p>We can equivalent write the integral of the force around a closed path as the work around a different path. The figure below shows these paths $C_1$ and $C_2$ that make up the first loop, and the paths $C_3$ and $C_4$ that make up the second loop. The work done by the force along each path is shown in the figure.</p>
-<p><img src="/images/notes/week5/closed-path-work.png" alt="Work done by a net force"></p>
+<p><img alt="Work done by a net force" loading="lazy" src="/images/notes/week5/closed-path-work.png"></p>
 <p>We can take the integral of both paths and write:</p>
 <p>$$\oint_C \vec{F}\cdot d\vec{r} = \int_{C_1} \vec{F}\cdot d\vec{r} + \int_{C_2} \vec{F}\cdot d\vec{r} = \int_{C_3} \vec{F}\cdot d\vec{r} + \int_{C_4} \vec{F}\cdot d\vec{r} = 0.$$</p>
 <p>Because both paths are closed and start and return to the same point, we can know that each contribution on each part of the path is equal and opposite. Thus, we can write:</p>
 <p>$$\int_{C_n} \vec{F}\cdot d\vec{r} = -\int_{C_m} \vec{F}\cdot d\vec{r}.$$</p>
 <p>This holds for any $n$ and $m$ where they make a closed path $C$. This is the first statement above.</p>
-<h2 id="summary-of-results">Summary of Results</h2>
+<h2 id="summary-of-results">Summary of Results<a hidden class="anchor" aria-hidden="true" href="#summary-of-results">#</a></h2>
 <p>We covered a lot fo ground. Let&rsquo;s remind ourselves of the key results.</p>
 <p>The total energy of a system is the sum of the kinetic and potential energies:</p>
 <p>$$E = T + V = K +U.$$</p>
@@ -474,7 +625,7 @@ $$\nabla \times \vec{F} = \begin{vmatrix}\hat{i} &amp; \hat{j} &amp; \hat{k} \ \
 <li>The work done by a conservative force is path independent. We can write the work done by a conservative force as:</li>
 </ol>
 <p>$$W = \int_{C} \vec{F}\cdot d\vec{r} = -\int_{C} \nabla U\cdot d\vec{r} = -\Delta U.$$</p>
-<h2 id="linear-and-angular-momentum">Linear and Angular Momentum</h2>
+<h2 id="linear-and-angular-momentum">Linear and Angular Momentum<a hidden class="anchor" aria-hidden="true" href="#linear-and-angular-momentum">#</a></h2>
 <p>We&rsquo;ve talked about the central conservation laws of classical mechanics:</p>
 <ul>
 <li>Conservation of energy - in a process, if energy is conserved, the total energy of the system is the same before and after the process. More strongly, in a closed system, the total energy is constant for any process ($dE_{sys}/dt=0$).</li>
@@ -482,7 +633,7 @@ $$\nabla \times \vec{F} = \begin{vmatrix}\hat{i} &amp; \hat{j} &amp; \hat{k} \ \
 <li>Conservation of angular momentum - in a process, if angular momentum is conserved, the total angular momentum of the system is the same before and after the process. More strongly, in a closed system, the total <em>vector</em> angular momentum is constant for any process ($d\vec{L}_{sys}/dt=0$).</li>
 </ul>
 <p>We&rsquo;ve worked with the conservation of energy a lot because it&rsquo;s a fundamental concept in physics and it lends itself to a scalar equation analysis. This can be quite a bit simpler in many cases, but an energy only view of the world can be limiting.</p>
-<h3 id="linear-momentum">Linear Momentum</h3>
+<h3 id="linear-momentum">Linear Momentum<a hidden class="anchor" aria-hidden="true" href="#linear-momentum">#</a></h3>
 <p>As we move into the formal study of linear momentum, we will start with a reminder of the definition of momentum, and the mathematical form of the conservation of momentum.</p>
 <p>Linear momentum is a vector quantity defined as the product of an object&rsquo;s mass and its velocity. It is denoted by the symbol $\vec{p}$ and is defined as:</p>
 <p>$$\vec{p} = m\vec{v}$$</p>
@@ -491,7 +642,7 @@ $$\nabla \times \vec{F} = \begin{vmatrix}\hat{i} &amp; \hat{j} &amp; \hat{k} \ \
 <p>where $\gamma$ is the Lorentz factor,</p>
 <p>$$\gamma = \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}}.$$</p>
 <p>As you can calculate, the relativistic momentum reduces to the classical momentum when the velocity is much less than the speed of light. As $v/c \rightarrow 0$, $\gamma \rightarrow 1$, and the relativistic momentum reduces to the classical momentum.</p>
-<h4 id="linear-momentum-and-newtons-second-law">Linear Momentum and Newton&rsquo;s Second Law</h4>
+<h4 id="linear-momentum-and-newtons-second-law">Linear Momentum and Newton&rsquo;s Second Law<a hidden class="anchor" aria-hidden="true" href="#linear-momentum-and-newtons-second-law">#</a></h4>
 <p>You have seen in our discussion of Newton&rsquo;s Second Law that the net force on a system is equal to the mass of the system times the acceleration of the system. This can be written as:</p>
 <p>$$\vec{F}_{net}=m\vec{a}.$$</p>
 <p>However, this definition and our thinking here with it is a bit limited. What about systems of objects that are interacting with each other? What about deformable systems? What happens if something is shedding mass, like a rocket or jet?</p>
@@ -500,7 +651,7 @@ $$\nabla \times \vec{F} = \begin{vmatrix}\hat{i} &amp; \hat{j} &amp; \hat{k} \ \
 <p>We can extend that definition to a system of objects, where the net force on the system is equal to the rate of change of the total momentum of the system:</p>
 <p>$$\vec{F}<em>{net}=\frac{d\vec{p}</em>{sys}}{dt}.$$</p>
 <p>The second step might not be obvious, but by working through a few examples we can see how this is a more useful and general definition of force.</p>
-<h4 id="forces-internal-to-a-system-zero-out">Forces internal to a system zero out</h4>
+<h4 id="forces-internal-to-a-system-zero-out">Forces internal to a system zero out<a hidden class="anchor" aria-hidden="true" href="#forces-internal-to-a-system-zero-out">#</a></h4>
 <p>Consider an abstract system of $N$ particles. You might think of them as point particles but they could be extended objects. They experience outside forces and internal forces; i.e., we go a tag all the particles in our system and we can tell which ones are interacting with each other. We can also tell which ones are interacting with the outside world. This is a bit silly, but it can help us visualize what we are arguing below.</p>
 <p>The total force on the system is given by the sum of all the masses times the acceleration of each particle:</p>
 <p>$$\vec{F}<em>{total} = \sum</em>{i=1}^{N} m_i\vec{a}<em>i = \sum</em>{i=1}^{N} \vec{F}_i$$</p>
@@ -510,9 +661,9 @@ $$\nabla \times \vec{F} = \begin{vmatrix}\hat{i} &amp; \hat{j} &amp; \hat{k} \ \
 <p>$$\vec{F}<em>{i}^{int} = \sum</em>{j\neq i}^{N} \vec{F}_{ij},$$</p>
 <p>where the sum is over all particles that are not $i$ because there&rsquo;s no force between a particle and itself.</p>
 <p>Cool, what happens to the internal force equation when we sum over all particles in the system?</p>
-<h4 id="concrete-examples">Concrete Examples</h4>
+<h4 id="concrete-examples">Concrete Examples<a hidden class="anchor" aria-hidden="true" href="#concrete-examples">#</a></h4>
 <p>We have a generic setup, let&rsquo;s see what happens when we apply this to a few examples: 2 particles, 3 particles, and then N particles.</p>
-<h5 id="two-particles">Two Particles</h5>
+<h5 id="two-particles">Two Particles<a hidden class="anchor" aria-hidden="true" href="#two-particles">#</a></h5>
 <p>With two particles the sum is easy to write out fully.</p>
 <p>$$\vec{F}<em>{int} = \sum</em>{i=1}^{2} \vec{F}_{i}^{int}$$</p>
 <p>$$\vec{F}<em>{int} = \sum</em>{i=1}^2 \sum_{j\neq i}^{2} \vec{F}_{ij}$$</p>
@@ -521,7 +672,7 @@ $$\nabla \times \vec{F} = \begin{vmatrix}\hat{i} &amp; \hat{j} &amp; \hat{k} \ \
 <p>$$\vec{F}<em>{12} = -\vec{F}</em>{21}$$</p>
 <p>So here the internal forces sum to zero.</p>
 <p>$$\vec{F}_{int} = 0$$</p>
-<h5 id="three-particles">Three Particles</h5>
+<h5 id="three-particles">Three Particles<a hidden class="anchor" aria-hidden="true" href="#three-particles">#</a></h5>
 <p>We can write this out in a similar way.</p>
 <p>$$\vec{F}<em>{int} = \sum</em>{i=1}^{3} \vec{F}_{i}^{int}$$</p>
 <p>$$\vec{F}<em>{int} = \sum</em>{i=1}^3 \sum_{j\neq i}^{3} \vec{F}_{ij}$$</p>
@@ -530,7 +681,7 @@ $$\nabla \times \vec{F} = \begin{vmatrix}\hat{i} &amp; \hat{j} &amp; \hat{k} \ \
 <p>$$\vec{F}<em>{int} = (\vec{F}</em>{12} + \vec{F}<em>{21}) + (\vec{F}</em>{13} + \vec{F}<em>{31}) + (\vec{F}</em>{23} + \vec{F}_{32}) = 0$$</p>
 <p>Every interaction on body $i$ has a corresponding equal and opposite interaction on body $j$, and the internal forces are again zero.</p>
 <p>$$\vec{F}_{int} = 0$$</p>
-<h5 id="n-particles">N Particles</h5>
+<h5 id="n-particles">N Particles<a hidden class="anchor" aria-hidden="true" href="#n-particles">#</a></h5>
 <p>Clearly, there seems to be a pattern here. Namely that the internal forces are always zero. We can write out the sum for $N$ particles in a way that suggests this is always true.</p>
 <p>$$\vec{F}<em>{int} = \sum</em>{i=1}^{N} \vec{F}_{i}^{int}$$</p>
 <p>$$\vec{F}<em>{int} = \sum</em>{i=1}^N \sum_{j\neq i}^{N} \vec{F}_{ij}$$</p>
@@ -539,7 +690,7 @@ $$\nabla \times \vec{F} = \begin{vmatrix}\hat{i} &amp; \hat{j} &amp; \hat{k} \ \
 <p>Internal forces will always appear as third law pairs, so the internal interactions will always sum to zero. This is a very powerful result.</p>
 <p>$$\vec{F}_{int} = 0,\mathrm{,,always}$$</p>
 <p><strong>For a given system, only external forces can change the momentum.</strong></p>
-<h4 id="mathematical-form-of-conservation-of-linear-momentum">Mathematical Form of Conservation of Linear Momentum</h4>
+<h4 id="mathematical-form-of-conservation-of-linear-momentum">Mathematical Form of Conservation of Linear Momentum<a hidden class="anchor" aria-hidden="true" href="#mathematical-form-of-conservation-of-linear-momentum">#</a></h4>
 <p>Let&rsquo;s look back at the system momentum,</p>
 <p>$$\vec{p}<em>{sys} = \sum</em>{i=1}^{N} m_i\vec{v}<em>i = \sum</em>{i=1}^{N} \vec{p}_i.$$</p>
 <p>If we take the time derivative of the system momentum, and assume we have point particles, so the masses are not changing,</p>
@@ -558,7 +709,7 @@ $$\nabla \times \vec{F} = \begin{vmatrix}\hat{i} &amp; \hat{j} &amp; \hat{k} \ \
 <p>$$\Delta \vec{p}<em>{sys} = \vec{p}</em>{sys,f} - \vec{p}<em>{sys,i} = \sum</em>{i=1}^{N} \vec{F}_{ext,i}\Delta t,$$</p>
 <p>so that,</p>
 <p>$$\vec{p}<em>{sys,f} = \vec{p}</em>{sys,i} + \vec{F}_{ext}\Delta t.$$</p>
-<h3 id="angular-momentum">Angular Momentum</h3>
+<h3 id="angular-momentum">Angular Momentum<a hidden class="anchor" aria-hidden="true" href="#angular-momentum">#</a></h3>
 <p><a href="https://en.wikipedia.org/wiki/Angular_momentum">Angular momentum</a> is a complex and rich quantity that has deep connections to the shape and structure of a system. The &ldquo;configuration&rdquo; or how it is distributed in space can have a big impact on the dynamics of a system. Our study of classical angular momentum will be a stepping stone to our study of <a href="https://en.wikipedia.org/wiki/Angular_momentum_operator">quantum angular momentum</a> and the <a href="%5Bhttps://en.wikipedia.org/wiki/Spin_(physics)%5D">spin</a> of particles.</p>
 <div class="admonition admonition-admonition information" role="note" aria-label="Admonition"><p class="admonition-title">Quantum Mechanical Spin</p><div class="admonition-content">
     <a href="https://en.wikipedia.org/wiki/Spin_(physics)">Spin</a> is a quantum mechanical property that is not related to the rotation of a particle, but it is a form of angular momentum, and it&rsquo;s essential to the structure of the universe - it tells us if we have <a href="https://en.wikipedia.org/wiki/Fermion">fermionic</a> or <a href="https://en.wikipedia.org/wiki/Boson">bosonic</a> particles, it is what gives us the <a href="https://en.wikipedia.org/wiki/Pauli_exclusion_principle">Pauli Exclusion Principle</a>, and it is what gives us the <a href="https://en.wikipedia.org/wiki/Zeeman_effect">Zeeman Effect</a> and the <a href="https://en.wikipedia.org/wiki/Stark_effect">Stark Effect</a>.
@@ -566,12 +717,12 @@ $$\nabla \times \vec{F} = \begin{vmatrix}\hat{i} &amp; \hat{j} &amp; \hat{k} \ \
 </div>
 
 <p>For the moment, we will limit ourselves to classical angular momentum and we will focus on the abstract case of a single particle. As we work through the semester, we will revisit angular momentum and introduce how to work with distributions of mass and extended objects.</p>
-<h4 id="definition-of-angular-momentum">Definition of Angular Momentum</h4>
+<h4 id="definition-of-angular-momentum">Definition of Angular Momentum<a hidden class="anchor" aria-hidden="true" href="#definition-of-angular-momentum">#</a></h4>
 <p>For a particle with a momentum $\vec{p}$, the angular momentum is defined as the cross product of the position vector $\vec{r}$ and the momentum vector $\vec{p}$,</p>
 <p>$$\vec{L} = \vec{r} \times \vec{p} = m \left(\vec{r} \times \vec{v}\right).$$</p>
 <p>This is a quantity that depends on the location of the particle relative origin of coordinates. This means you have some latitude in choosing the origin of coordinates, and you can choose the origin to simplify the problem.</p>
 <p>This also means the angular momentum is a vector quantity, and it points in the direction perpendicular to the plane defined by the position and momentum vectors.</p>
-<h4 id="when-is-angular-momentum-conserved">When is Angular Momentum Conserved?</h4>
+<h4 id="when-is-angular-momentum-conserved">When is Angular Momentum Conserved?<a hidden class="anchor" aria-hidden="true" href="#when-is-angular-momentum-conserved">#</a></h4>
 <p>We can ask this by computing the time derivative of the angular momentum,</p>
 <p>$$\dfrac{d\vec{L}}{dt} = \dfrac{d}{dt}\left(\vec{r} \times \vec{p}\right) = 0?$$</p>
 <p>We did a calculation like this on a homework where we computed</p>
@@ -593,7 +744,7 @@ $$\nabla \times \vec{F} = \begin{vmatrix}\hat{i} &amp; \hat{j} &amp; \hat{k} \ \
 <p>$$\Delta \vec{L}<em>{sys} = \vec{L}</em>{sys,f} - \vec{L}_{sys,i} = 0.$$</p>
 <p>If there&rsquo;s a net torque, we have a discrete update equation for the angular momentum,</p>
 <p>$$\vec{L}<em>{sys,f} = \vec{L}</em>{sys,i} + \vec{\tau}_{net}\Delta t.$$</p>
-<h3 id="are-we-sure-there-are-no-internal-torques-that-matter">Are we sure there are no internal torques that matter?</h3>
+<h3 id="are-we-sure-there-are-no-internal-torques-that-matter">Are we sure there are no internal torques that matter?<a hidden class="anchor" aria-hidden="true" href="#are-we-sure-there-are-no-internal-torques-that-matter">#</a></h3>
 <p>We can ask the same question we asked about internal forces. Are there internal torques that matter?  As before, let us define the total force on particle $i$ as the sum of internal and external forces,</p>
 <p>$$\vec{F}<em>{i} = \vec{F}</em>{i}^{int} + \vec{F}_{i}^{ext}.$$</p>
 <p>We assume there are no external forces, and so the net force on the system is the sum of the internal forces,</p>
@@ -626,31 +777,103 @@ $$\nabla \times \vec{F} = \begin{vmatrix}\hat{i} &amp; \hat{j} &amp; \hat{k} \ \
 </ul>
 
 
-    
-    <nav style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
-        <div style="display: flex; justify-content: space-between;">
-            <div>
-                
-                <a href="/course-materials/06_notes/">← 06 - Nature Often Seeks Stability</a>
-                
-            </div>
-            <div style="text-align: right;">
-                
-                <a href="/course-materials/04_notes/">04 - Why does fluid drag complicate things? →</a>
-                
-            </div>
-        </div>
-    </nav>
-    
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="//localhost:1313/course-materials/04_notes/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>04 - Why does fluid drag complicate things?</span>
+  </a>
+  <a class="next" href="//localhost:1313/course-materials/06_notes/">
+    <span class="title">Next »</span>
+    <br>
+    <span>06 - Nature Often Seeks Stability</span>
+  </a>
+</nav>
+
+  </footer>
 </article>
-
     </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="//localhost:1313/">Classical Mechanics</a></span> · 
 
-    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
         
-        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
         
-        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
-    </footer>
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
 </body>
+
 </html>

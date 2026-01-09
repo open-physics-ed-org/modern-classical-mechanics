@@ -36,9 +36,7 @@ $$\begin{aligned}
 
 But the equation for $v$ is still nonlinear. Clearly we need a different approach to solving this problem. In fact, we need a more generic approach to investigate equations of motion for systems like this. Most models of physical systems cannot be solved in closed analytical form. But, this approach to writing $N$th order differential equations as a system of $N$ first-order differential equations is a powerful tool in computational physics.
 
-{{< admonition type="admonition" title="Limitations of only working with analytically solvable problems" >}}
-:class: warning
-
+{{< admonition type="admonition" title="Limitations of only working with analytically solvable problems" class="warning" >}}
 The problems that we often present in physics classes lend themselves to analytical solutions because we (collectively as a physics community) decided on the kinds of illustrative problems for students to work and solve. We did this at a time when computing was inaccessible and less pervasive in society, but also when we knew little about how people learn.
 
 The choices we made in the past convey a false impression that most physics problems can be solved analytically. But more importantly, our choices convey that finding the solution is the goal of physics. This is not the case. The goal of physics is to understand the world around us. When we continue to focus exclusively on systems that can be solved analytically, we continue to perpetuate those impressions. 
@@ -71,9 +69,7 @@ While the history of computing is often celebrated as a story of innovation, it 
 
 In fact, the principal catalysts for physics research and the development of computing technologies have been the military-industrial complex (e.g., nuclear energy, the internet, autonomous robotics). Defense contractors, often through national laboratories and using classified contracts, have worked to extract tax dollars in exchange for the development of technologies for war and destruction (e.g., nuclear weapons, surveillance technologies, and armed drones). For a critical trace of the history of science in the United States since World War II, consider Clifford's [*The Tragedy of American Science: From Truman to Trump*](https://www.haymarketbooks.org/books/1467-the-tragedy-of-american-science).
 
-{{< admonition type="admonition" title="Humans as Computers" >}}
-:class: note
-
+{{< admonition type="admonition" title="Humans as Computers" class="note" >}}
 Of course, the electronic computer was a huge development for science. Prior to that, humans were employed to do the calculations that we now do with computational algorithms. This work occurred in a wide variety of labs where data were entered into tables, calculations were done by hand, and the results were tabulated manually. 
 
 Frequently the work was done by those with less power in the laboratory and broader society (e.g., women, immigrants, and folks of color). A notable and well-known example is the work of the [Harvard Computers](https://en.wikipedia.org/wiki/Harvard_Computers) in the late 19th and early 20th centuries where women were employed to do the calculations that led to significant discoveries in astronomy. 

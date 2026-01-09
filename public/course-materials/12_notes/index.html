@@ -1,120 +1,214 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>12 - The Core Principle of Classical Mechanics? The Principle of Least Action | Classical Mechanics</title>
-    <meta name="description" content="Classical Mechanics">
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>12 - The Core Principle of Classical Mechanics? The Principle of Least Action | Classical Mechanics</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+
+Learning Goals
+After studying Lesson 12, you should be able to:
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
-            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
-    
-    <link rel="stylesheet" href="//localhost:1313/css/accessibility.css">
+Derive and interpret the equations of motion in polar coordinates, identifying the radial and angular components of forces and accelerations.
+Analyze constrained motion, such as a skateboarder on a circular track, by applying Newton&rsquo;s laws in polar coordinates and simplifying equations based on system constraints.
+Formulate and solve the Lagrangian for systems with constraints, such as the plane pendulum, using generalized coordinates to simplify the analysis.
+Compare and contrast Newtonian and Lagrangian mechanics, focusing on their approaches to deriving equations of motion and their applicability to different systems.
+Explore the conditions under which constrained systems exhibit simple harmonic motion and solve for the motion using small-angle approximations.
+
+
+  
+
+
+Newtonian Mechanics is an incredibly useful model of the natural world. In fact, it wasn&rsquo;t until the mid 1970s that we were able to truly test Einstein&rsquo;s gravity as a true replacement for Newton. That being said, for most terrestrial situations (macroscopic objects moving at low speeds), Newton&rsquo;s mechanics is very good. However, the problem with Newton is that it requires a few things:">
+<meta name="author" content="Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine">
+<link rel="canonical" href="//localhost:1313/course-materials/12_notes/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
+<link rel="icon" href="//localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="//localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="//localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="//localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="//localhost:1313/course-materials/12_notes/">
+<noscript>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
+        #theme-toggle,
+        .top-link {
+            display: none;
         }
-        nav {
-            background: #f4f4f4;
-            padding: 15px;
-            margin-bottom: 30px;
-            border-radius: 5px;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-        nav a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            color: #222;
-            margin-top: 1.5em;
-        }
-        h1 {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-        code {
-            background: #f4f4f4;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-family: "SF Mono", Monaco, Consolas, monospace;
-        }
-        pre {
-            background: #f4f4f4;
-            padding: 15px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-        pre code {
-            background: none;
-            padding: 0;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        a {
-            color: #0066cc;
-        }
-        .menu-home {
-            font-weight: bold;
-            margin-right: 30px;
-        }
+
     </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}], throwOnError: false});"></script>
+
+
 </head>
-<body>
-    <nav role="navigation" aria-label="Main navigation">
-        <ul>
-            <li class="menu-home"><a href="//localhost:1313/">Classical Mechanics</a></li>
-            
-            
-            <li><a href="/course-information/">Course Information</a></li>
-            
-            
-            
-            <li><a href="/course-materials/">Course Materials</a></li>
-            
-            
-            
-            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
-            
-            
-            
-            <li><a href="/programming-resources/">Programming Resources</a></li>
-            
-            
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="//localhost:1313/" accesskey="h" title="Classical Mechanics (Alt + H)">Classical Mechanics</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="//localhost:1313/course-information/" title="Course Information">
+                    <span>Course Information</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/course-materials/" title="Course Materials">
+                    <span>Course Materials</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/logistics-resources/" title="Logistics &amp; Resources">
+                    <span>Logistics &amp; Resources</span>
+                </a>
+            </li>
+            <li>
+                <a href="//localhost:1313/programming-resources/" title="Programming Resources">
+                    <span>Programming Resources</span>
+                </a>
+            </li>
         </ul>
     </nav>
+</header>
+<main class="main">
 
-    <main role="main">
-        
-<article>
-    <header>
-        <h1>12 - The Core Principle of Classical Mechanics? The Principle of Least Action</h1>
-        
-    </header>
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="//localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="//localhost:1313/course-materials/">Course Materials</a></div>
+    <h1 class="post-title entry-hint-parent">
+      12 - The Core Principle of Classical Mechanics? The Principle of Least Action
+    </h1>
+    <div class="post-meta"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span>
 
-    <p><a href="https://github.com/dannycab/phy321msu/issues"><img src="https://img.shields.io/badge/report%20issues-GitHub-blue" alt="Report Issues"></a>
-<a href="https://github.com/dannycab/phy321msu/issues"><img src="https://img.shields.io/github/issues/dannycab/phy321msu" alt="GitHub Issues"></a></p>
-<h2 id="learning-goals">Learning Goals</h2>
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#learning-goals" aria-label="Learning Goals">Learning Goals</a><ul>
+                        
+                <li>
+                    <a href="#the-princple-of-least-action-19-minute-video" aria-label="The Princple of Least Action (19 minute video)">The Princple of Least Action (19 minute video)</a></li>
+                <li>
+                    <a href="#introduction-to-lagrangian-dynamics-10-minute-video" aria-label="Introduction to Lagrangian Dynamics (10 minute video)">Introduction to Lagrangian Dynamics (10 minute video)</a></li></ul>
+                </li>
+                <li>
+                    <a href="#introduction-to-lagrangian-mechanics" aria-label="Introduction to Lagrangian Mechanics">Introduction to Lagrangian Mechanics</a><ul>
+                        
+                <li>
+                    <a href="#deriving-newtons-second-law-in-plane-polar-coordinates" aria-label="Deriving Newton&rsquo;s Second Law in Plane Polar Coordinates">Deriving Newton&rsquo;s Second Law in Plane Polar Coordinates</a></li>
+                <li>
+                    <a href="#skateboard-example" aria-label="Skateboard Example">Skateboard Example</a><ul>
+                        
+                <li>
+                    <a href="#the-normal-force-as-a-function-of-time" aria-label="The Normal Force as a Function of Time">The Normal Force as a Function of Time</a></li>
+                <li>
+                    <a href="#simple-harmonic-motion" aria-label="Simple Harmonic Motion">Simple Harmonic Motion</a></li></ul>
+                </li>
+                <li>
+                    <a href="#newtons-laws-and-equations-of-motion" aria-label="Newton&rsquo;s Laws and Equations of Motion">Newton&rsquo;s Laws and Equations of Motion</a></li></ul>
+                </li>
+                <li>
+                    <a href="#lagrangian-formulation" aria-label="Lagrangian Formulation">Lagrangian Formulation</a><ul>
+                        
+                <li>
+                    <a href="#example-spring-mass-system" aria-label="Example: Spring-Mass System">Example: Spring-Mass System</a></li>
+                <li>
+                    <a href="#why-does-this-work" aria-label="Why does this work?">Why does this work?</a></li>
+                <li>
+                    <a href="#generalized-coordinates" aria-label="Generalized Coordinates">Generalized Coordinates</a></li>
+                <li>
+                    <a href="#example-plane-pendulum" aria-label="Example: Plane Pendulum">Example: Plane Pendulum</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p><a href="https://github.com/dannycab/phy321msu/issues"><img alt="Report Issues" loading="lazy" src="https://img.shields.io/badge/report%20issues-GitHub-blue"></a>
+<a href="https://github.com/dannycab/phy321msu/issues"><img alt="GitHub Issues" loading="lazy" src="https://img.shields.io/github/issues/dannycab/phy321msu"></a></p>
+<h2 id="learning-goals">Learning Goals<a hidden class="anchor" aria-hidden="true" href="#learning-goals">#</a></h2>
 <div class="admonition admonition-admonition note" role="note" aria-label="Admonition"><p class="admonition-title">After studying Lesson 12, you should be able to:</p><div class="admonition-content">
     <ul>
 <li>Derive and interpret the equations of motion in polar coordinates, identifying the radial and angular components of forces and accelerations.</li>
@@ -135,7 +229,7 @@
 </ol>
 <p>In many cases, we can do this. But consider a bead sliding inside a cone. How would you write down the contact force between the cone and the bead for all space and time?</p>
 <p>This is where <a href="https://en.wikipedia.org/wiki/Lagrangian_mechanics">Lagrangian Mechanics</a> comes in. It is a powerful and elegant way to describe the motion of particles and systems. It is based on the <a href="https://en.wikipedia.org/wiki/Calculus_of_variations">Calculus of Variations</a>, a field of mathematics that is concerned with finding the path that minimizes or maximizes (called &ldquo;extremization&rdquo;) a certain quantity. In the case of Lagrangian Mechanics, the quantity we are extremizing is the <a href="https://en.wikipedia.org/wiki/Action_(physics)">action</a>.</p>
-<h3 id="the-princple-of-least-action-19-minute-video">The Princple of Least Action (19 minute video)</h3>
+<h3 id="the-princple-of-least-action-19-minute-video">The Princple of Least Action (19 minute video)<a hidden class="anchor" aria-hidden="true" href="#the-princple-of-least-action-19-minute-video">#</a></h3>
 <p>The video below discusses the concept of the Principle of Least Action, which is the foundation of Lagrangian Mechanics.</p>
 <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
@@ -150,7 +244,7 @@
 </div>
 
 <p>Source: <a href="https://youtube.com/watch?v=Q_CQDSlmboA">https://youtube.com/watch?v=Q_CQDSlmboA</a></p>
-<h3 id="introduction-to-lagrangian-dynamics-10-minute-video">Introduction to Lagrangian Dynamics (10 minute video)</h3>
+<h3 id="introduction-to-lagrangian-dynamics-10-minute-video">Introduction to Lagrangian Dynamics (10 minute video)<a hidden class="anchor" aria-hidden="true" href="#introduction-to-lagrangian-dynamics-10-minute-video">#</a></h3>
 <p>The concept of Lagrangian dynamics can be a bit abstract at first, especially if you are used to Newtonian mechanics. The basic idea is that instead of focusing on forces, we focus on the kinetic and potential energy of the system to derive the equations of motion. The procedure to compute the equations of motion is straghtforward, but the set up of these problems can be tricky at first.</p>
 <p>The basic steps are:</p>
 <ol>
@@ -175,11 +269,11 @@ where $q_i$ are the generalized coordinates and $\dot{q}_i$ are their time deriv
 </div>
 
 <p>Source: <a href="https://youtube.com/watch?v=KpLno70oYHE">https://youtube.com/watch?v=KpLno70oYHE</a></p>
-<h2 id="introduction-to-lagrangian-mechanics">Introduction to Lagrangian Mechanics</h2>
-<h3 id="deriving-newtons-second-law-in-plane-polar-coordinates">Deriving Newton&rsquo;s Second Law in Plane Polar Coordinates</h3>
+<h2 id="introduction-to-lagrangian-mechanics">Introduction to Lagrangian Mechanics<a hidden class="anchor" aria-hidden="true" href="#introduction-to-lagrangian-mechanics">#</a></h2>
+<h3 id="deriving-newtons-second-law-in-plane-polar-coordinates">Deriving Newton&rsquo;s Second Law in Plane Polar Coordinates<a hidden class="anchor" aria-hidden="true" href="#deriving-newtons-second-law-in-plane-polar-coordinates">#</a></h3>
 <p>To get started with Lagrangian mechanics, we will start by deriving Newton&rsquo;s second law in plane polar coordinates. This is not a necessary step for anything we will do in Lagrangian mechanics, but it is a good way to get comfortable with the coordinate system. And it will also help us see how we can think about forces in a coordinate system that is not Cartesian because Lagrangian mechanics can be used with <a href="https://en.wikipedia.org/wiki/Generalized_coordinates">generalized coordinates</a>.</p>
 <p>We start by sketching the location of a particle in plane polar coordinates, as shown below:</p>
-<p><img src="/images/notes/week12/coordinate-system.png" alt="Position vector in polar coordinates"></p>
+<p><img alt="Position vector in polar coordinates" loading="lazy" src="/images/notes/week12/coordinate-system.png"></p>
 <p>The red arrow represents the position vector $\vec{r}$, which is a length $r$ from the origin at an angle $\phi$ from the $x$-axis. At the tip of the vector we have drawn the Cartesian unit vectors $\hat{x}$ and $\hat{y}$ in blue, and the polar unit vectors $\hat{r}$ and $\hat{\phi}$ in green. Notice that the polar unit vectors are rotated by an angle $\phi$ from the Cartesian unit vectors. We can simply write the position vector in terms of these unit vectors as:</p>
 <p>$$\vec{r} = r \hat{r};\text{where};r = |\vec{r}|.$$</p>
 <p>We start by taking the derivative of the position vector $\vec{r}$ with respect to time $t$ to find the velocity $\vec{v}$. Using the product and chain rules, we have:</p>
@@ -225,11 +319,11 @@ $$\vec{F}</em>{net} = \vec{F}<em>{r} + \vec{F}</em>{\phi}$$</p>
 <p>$$\vec{F}<em>{r} = m\left(\ddot{r} - r \dot{\phi}^2\right) \hat{r}$$
 $$\vec{F}</em>{\phi} = m\left(2 \dot{r} \dot{\phi} + r \ddot{\phi}\right) \hat{\phi}$$</p>
 <p>This gives us the net force in terms of the radial and angular components in polar coordinates.</p>
-<h3 id="skateboard-example">Skateboard Example</h3>
+<h3 id="skateboard-example">Skateboard Example<a hidden class="anchor" aria-hidden="true" href="#skateboard-example">#</a></h3>
 <p>Let&rsquo;s see the utility of using polar coordinates by applying it to a skateboarder moving on a circular track. In this case, the skateboarder is constrained to move along a circular path of radius $r$. Consider a skateboarder moving on that circular track as shown below:</p>
-<p><img src="/images/notes/week12/skateboard.png" alt="Skateboarder on a circular track"></p>
+<p><img alt="Skateboarder on a circular track" loading="lazy" src="/images/notes/week12/skateboard.png"></p>
 <p>At this point in the track, we can draw the free body diagram of the skateboarder. The forces acting on the skateboarder are the Earth&rsquo;s gravitational force and the normal force of the ramp.</p>
-<p><img src="/images/notes/week12/skateboard-free-body.png" alt="Free body diagram of skateboarder"></p>
+<p><img alt="Free body diagram of skateboarder" loading="lazy" src="/images/notes/week12/skateboard-free-body.png"></p>
 <p>We can use Newton&rsquo;s law in polar coordinates to analyze the forces acting on the skateboarder. This is because the normal force is always perpendicular to the surface of the ramp and will only have a radial component in polar coordinates. Thus we need only decompose the gravitational force into its radial and angular components.</p>
 <p>The sum of all forces in the radial direction are given by:</p>
 <p>$$\sum F_r = ma_r = -F_{ramp} + mg \cos(\phi) = m\left(\ddot{r} - r \dot{\phi}^2\right)$$</p>
@@ -243,17 +337,17 @@ $$\vec{F}</em>{\phi} = m\left(2 \dot{r} \dot{\phi} + r \ddot{\phi}\right) \hat{\
 <p>$$-mg \sin(\phi) = mR \ddot{\phi}$$</p>
 <p>Or, we can express this as:</p>
 <p>$$\ddot{\phi} = -\frac{g}{R} \sin(\phi).$$</p>
-<h4 id="the-normal-force-as-a-function-of-time">The Normal Force as a Function of Time</h4>
+<h4 id="the-normal-force-as-a-function-of-time">The Normal Force as a Function of Time<a hidden class="anchor" aria-hidden="true" href="#the-normal-force-as-a-function-of-time">#</a></h4>
 <p>We can solve this equation using numerical methods to find $\phi(t)$, the angular position of the skateboarder as a function of time. This can be used to then find the normal force as a function of time by substituting $\phi(t)$ back into the radial equation we derived above:</p>
 <p>$$F_{ramp} = mg \cos(\phi(t)) + mR \dot{\phi}^2(t).$$</p>
 <p>Note that this force is a <a href="https://en.wikipedia.org/wiki/Constraint_force">force of constraint</a> because it is not an external force acting on the skateboarder but rather a force that arises from the constraint of the circular track. These forces are important in mechanics and can be analyzed using Lagrangian mechanics as well. They are not typically conservative forces and do not have a potential energy associated with them.</p>
-<h4 id="simple-harmonic-motion">Simple Harmonic Motion</h4>
+<h4 id="simple-harmonic-motion">Simple Harmonic Motion<a hidden class="anchor" aria-hidden="true" href="#simple-harmonic-motion">#</a></h4>
 <p>If we consider small angles, i.e., $\sin(\phi) \approx \phi$, then the equation of motion for $\ddot{\phi}$ becomes:</p>
 <p>$$\ddot{\phi} \approx -\frac{g}{R} \phi.$$
 on (SHM) with angular frequency $\omega = \sqrt{\frac{g}{R}}$. Thus, for small angles, the motion of the skateboarder on the circular track will exhibit SHM. The solution to this equation will be:</p>
 <p>$$\phi(t) = A \cos(\omega t) + B \sin(\omega t),$$</p>
 <p>where $A$ and $B$ are constants determined by the initial conditions of the problem.</p>
-<h3 id="newtons-laws-and-equations-of-motion">Newton&rsquo;s Laws and Equations of Motion</h3>
+<h3 id="newtons-laws-and-equations-of-motion">Newton&rsquo;s Laws and Equations of Motion<a hidden class="anchor" aria-hidden="true" href="#newtons-laws-and-equations-of-motion">#</a></h3>
 <p>So far you have studied the work of physics from the perspective of Newtonian Mechanics, which is based on forces and their effects on motion. The idea behind using Newton&rsquo;s Laws is that:</p>
 <ol>
 <li>We can identify all the interactions with a body (i.e., all the forces and torques acting on it).</li>
@@ -276,11 +370,11 @@ on (SHM) with angular frequency $\omega = \sqrt{\frac{g}{R}}$. Thus, for small a
   </div>
 </div>
 
-<h2 id="lagrangian-formulation">Lagrangian Formulation</h2>
+<h2 id="lagrangian-formulation">Lagrangian Formulation<a hidden class="anchor" aria-hidden="true" href="#lagrangian-formulation">#</a></h2>
 <p>The Lagrangian Formulation is rooted in classical optimization, but it is equivalent to Newton&rsquo;s work. However, it uses energy (a scalar) to do so. This means we can exploit coordinate transformations that do not change the scalar value of the energy.</p>
 <p>Epistemologically, Lagrange&rsquo;s approach is an exploration of phase space to determine paths the dynamical system can take. You can think of this as one level of abstraction above plotting the known phase space, because we don&rsquo;t yet have the equations of motion.</p>
 <p>Let&rsquo;s try an example we have seen before, the spring-mass system.</p>
-<h3 id="example-spring-mass-system">Example: Spring-Mass System</h3>
+<h3 id="example-spring-mass-system">Example: Spring-Mass System<a hidden class="anchor" aria-hidden="true" href="#example-spring-mass-system">#</a></h3>
 <p>As you will learn, to get the EOM for a non-dissipative system, we form a function called the <strong>Lagrangian</strong>:</p>
 <p>The Lagrangian is defined as:</p>
 <p>$$
@@ -310,7 +404,7 @@ $$</p>
 <p>This is the same equation of motion we derived using Newton&rsquo;s laws for the spring-mass system.</p>
 <p>$$\ddot{x} = -\frac{k}{m} x$$
 This shows that Lagrangian mechanics can reproduce the same equations of motion as Newtonian mechanics, but it does so by focusing on the energy of the system rather than forces directly.</p>
-<h3 id="why-does-this-work">Why does this work?</h3>
+<h3 id="why-does-this-work">Why does this work?<a hidden class="anchor" aria-hidden="true" href="#why-does-this-work">#</a></h3>
 <p>Lagrangian mechanics works because it is based on the <a href="https://en.wikipedia.org/wiki/Action_principles">principle of least action</a> (or stationary action). This principle states that the actual path taken by a system between two points in phase space is the one that <a href="https://en.wikipedia.org/wiki/Hamilton%27s_principle">minimizes (or makes stationary) the action</a>, which is the integral of the Lagrangian over time.</p>
 <p>This is not magic, it&rsquo;s an application of the <a href="https://en.wikipedia.org/wiki/Calculus_of_variations">calculus of variations</a>. The action is a functional, and the Euler-Lagrange equations provide a way to find the stationary points of that functional. By applying these equations to the Lagrangian, we can derive the equations of motion for a system.</p>
 <p>We can think of this as a system that evolves in time, but does so in a way that is optimal in some sense. The approach allows us to find the path the system will take by exploiting <a href="https://en.wikipedia.org/wiki/Hamilton%27s_principle">Hamilton&rsquo;s principle</a>: <em>The path taken by a dynamical system between two points in phase space is the one that minimizes the time integral of the Lagrangian</em>.</p>
@@ -322,7 +416,7 @@ This shows that Lagrangian mechanics can reproduce the same equations of motion 
 <p>In fact, this approach holds in each Cartesian coordinate, so that the equations of motion can be derived in any coordinate system.</p>
 <p>$$\frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{x}_i} \right) - \frac{\partial \mathcal{L}}{\partial x_i} = 0$$</p>
 <p>where $x_i$ can be $x, y, z$ if $\mathcal{L}(x,y,z,\dot{x},\dot{y},\dot{z},t)$.</p>
-<h3 id="generalized-coordinates">Generalized Coordinates</h3>
+<h3 id="generalized-coordinates">Generalized Coordinates<a hidden class="anchor" aria-hidden="true" href="#generalized-coordinates">#</a></h3>
 <p>As it turns out, our approach can make use of an phase coordinate $(\theta, \phi, x, y, \rho, z, \ldots)$ and their first derivatives $(\dot{\theta}, \dot{\phi}, \dot{x}, \dot{y}, \dot{\rho}, \dot{z}, \ldots)$. In fact, we can do so for any set of <a href="https://en.wikipedia.org/wiki/Generalized_coordinates">generalized coordinates</a> that describe the configuration of a system. Generalized coordinates are a set of coordinates that uniquely define the configuration of a system relative to some reference configuration. We denote them as $q_i$ where $i$ runs from 1 to $n$, and their time derivatives as $\dot{q}_i$.</p>
 <p>The generalized position is given by:</p>
 <p>$$\vec{q} = (q_1, q_2, \ldots, q_n)$$</p>
@@ -336,10 +430,10 @@ $$</p>
 <p>$$
 \frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{q}_i} \right) - \frac{\partial \mathcal{L}}{\partial q_i} = 0, \quad i = 1, 2, \ldots, n
 $$</p>
-<h3 id="example-plane-pendulum">Example: Plane Pendulum</h3>
+<h3 id="example-plane-pendulum">Example: Plane Pendulum<a hidden class="anchor" aria-hidden="true" href="#example-plane-pendulum">#</a></h3>
 <p>To get some intuition for how Lagrangian mechanics works, let&rsquo;s consider an example we have seen before: the plane pendulum.</p>
 <p>A pendulum bob of mass $m$ is attached to a fixed point by a rod of length $l$. The bob swings in a vertical plane under the influence of gravity as shown below. We define $U=0$ at the top of ceiling where the rod is attached.</p>
-<p><img src="/images/notes/week12/plane-pendulum.png" alt="Pendulum Diagram"></p>
+<p><img alt="Pendulum Diagram" loading="lazy" src="/images/notes/week12/plane-pendulum.png"></p>
 <p>The location of the bob is $\langle x, y \rangle$. We can use the $x,y$ coordinates to &ldquo;naively&rdquo; setup the Lagrangian and see what happens.</p>
 <p>The kinetic energy $T$ of the pendulum bob is given by:</p>
 <p>$$T(\dot{x}, \dot{y}) = \frac{1}{2} m (\dot{x}^2 + \dot{y}^2).$$</p>
@@ -392,31 +486,103 @@ $$</p>
 <p>$$\ddot{\phi} \approx -\frac{g}{l} \phi \quad \text{for small } \phi.$$</p>
 
 
-    
-    <nav style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
-        <div style="display: flex; justify-content: space-between;">
-            <div>
-                
-                <a href="/course-materials/13_notes/">← 13 - Applying the Lagrangian Formulation</a>
-                
-            </div>
-            <div style="text-align: right;">
-                
-                <a href="/course-materials/11_notes/">11 - Reformulating Classical Mechanics using the Calculus of Variations →</a>
-                
-            </div>
-        </div>
-    </nav>
-    
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="//localhost:1313/course-materials/11_notes/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>11 - Reformulating Classical Mechanics using the Calculus of Variations</span>
+  </a>
+  <a class="next" href="//localhost:1313/course-materials/13_notes/">
+    <span class="title">Next »</span>
+    <br>
+    <span>13 - Applying the Lagrangian Formulation</span>
+  </a>
+</nav>
+
+  </footer>
 </article>
-
     </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="//localhost:1313/">Classical Mechanics</a></span> · 
 
-    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
         
-        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
         
-        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
-    </footer>
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
 </body>
+
 </html>
