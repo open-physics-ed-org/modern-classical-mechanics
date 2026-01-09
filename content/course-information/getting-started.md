@@ -1,7 +1,7 @@
 ---
 title: Getting Started
 weight: 1
-date: '2026-01-08'
+date: '2026-01-09'
 ---
 
 PHY 321 is a course that has been organized to encourage your deep learning of classical mechanics, to provide you with opportunities for growth and agency, to initiate a process of lifelong self-education, and to enculturate you into the practices of physics. Because of this, it might seem there's a lot for you to do. So this document will help you get started with the course.
@@ -20,6 +20,7 @@ Most importantly:
 * consider your views of using generative AI in your classes, do some research, and be prepared to discuss your thoughts in class. **We will generate a class policy together.**
 * complete the [pre-class survey](https://forms.cloud.microsoft/r/7Ar26hXDgm) by the end of the first week of classes.
 * complete the [office hours poll](https://crab.fit/phy-321-spring-2026-office-hours-poll-464860) by the end of the first week of classes.
+* join the [course Microsoft Team](https://teams.microsoft.com/l/team/19%3AIr0eKL1QHnlQB1RsC6tL17haYAABE9rDsDoTGBZdlXU1%40thread.tacv2/conversations?groupId=e971ed12-c07e-4696-993b-86e11e55c523&tenantId=22177130-642f-41d9-9211-74237ad5687d) for announcements and discussions.
 {{< /admonition >}}
 
 

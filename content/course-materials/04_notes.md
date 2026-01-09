@@ -1,12 +1,12 @@
 ---
 title: 04 - Why does fluid drag complicate things?
 weight: 4
-date: '2026-01-08'
+date: '2026-01-09'
 math: true
 ---
 
 [![Report Issues](https://img.shields.io/badge/report%20issues-GitHub-blue)](https://github.com/dannycab/phy321msu/issues) 
-[![GitHub Issues](https://img.shields.io/github/issues/dannycab/phy321msu)](https://github.com/dannycab/phy321msu/issues)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ## Learning Goals
 
@@ -27,17 +27,15 @@ The first form ($F \sim v^2$) describes the behavior of things like a skydiver f
 
 This form of air resistance cannot describe the behavior of objects approaching the speed of sound in the fluid. Objects moving a speeds that high can produce [shock fronts](https://en.wikipedia.org/wiki/Shock_wave) that forces the fluid to go through abrupt changes in density, pressure, and temperature. Below is a figure of a shock front produced the nose of a jet flying at supersonic speeds.
 
-![A shock front from a supersonic jet](https://upload.wikimedia.org/wikipedia/commons/7/7b/Schlierenfoto_Mach_1-2_Pfeilfl%C3%BCgel_-_NASA.jpg)
 
-Source: [Wikipedia](https://commons.wikimedia.org/wiki/File:Schlierenfoto_Mach_1-2_Pfeilfl%C3%BCgel_-_NASA.jpg)
+{{< figure src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Schlierenfoto_Mach_1-2_Pfeilfl%C3%BCgel_-_NASA.jpg" caption="A shock front from a supersonic jet. Source: [Wikipedia](https://commons.wikimedia.org/wiki/File:Schlierenfoto_Mach_1-2_Pfeilfl%C3%BCgel_-_NASA.jpg)" >}}
 
 The second form ($F \sim v$) describes the flow of a viscous fluid around a solid object. You might think of this as pulling an object through some viscous oil, honey, or even molasses. The movement of the fluid around the object exerts a force and slows the motion of the object.  In water, this form can explain the motion of some of the smallest creatures on Earth, like the [water bear](https://en.wikipedia.org/wiki/Tardigrade), an amoeba, or a paramecium. 
 
-What is interesting here is that these creatures have had to adapt to this form of fluid drag. [Edward Purcell](https://en.wikipedia.org/wiki/Edward_M._Purcell) wrote a paper in 1977 called [Life at Low Reynolds Number](../docs/papers/purcell_AJP_1977.pdf) that describes the motion of these creatures. He demonstrates that the physics in this regime requires creature to have adapted forms of locomotion that can take advantage of that environment. The figure below is reproduced from Purcell showing the decreasing physical scale and, thus, lower [Reynold's numbers](https://en.wikipedia.org/wiki/Reynolds_number).
+What is interesting here is that these creatures have had to adapt to this form of fluid drag. [Edward Purcell](https://en.wikipedia.org/wiki/Edward_M._Purcell) wrote a paper in 1977 called [Life at Low Reynolds Number](../docs/papers/purcell_AJP_1977.pdf)[^fairuse] that describes the motion of these creatures. He demonstrates that the physics in this regime requires creature to have adapted forms of locomotion that can take advantage of that environment. The figure below is reproduced from Purcell showing the decreasing physical scale and, thus, lower [Reynold's numbers](https://en.wikipedia.org/wiki/Reynolds_number).
 
-![Figure 3 from Purcell's 1977 paper showing Reynold's numbers](/images/notes/week4/purcell_fig3.png)
 
-Source: [Purcell's Life at Low Reynolds Number, Figure 3](https://pubs.aip.org/aapt/ajp/article/45/1/3/1043148/Life-at-low-Reynolds-number)
+{{< figure src="/images/notes/week4/purcell_fig3.png" caption="An illustration of the Reynold's number for different bodies in water. Source: [Purcell's, *Life at Low Reynolds Number*, Figure 3](https://pubs.aip.org/aapt/ajp/article/45/1/3/1043148/Life-at-low-Reynolds-number)" >}}
 
 
 ## Why do we often neglect air resistance?
@@ -48,12 +46,14 @@ We often start with that approach because the mathematical tools that we have av
 
 This is one reason why we neglect [air resistance](https://en.wikipedia.org/wiki/Air_resistance) in our first explorations of motion. Our models of air resistance are more complicated and require more advanced mathematics to solve. The equations of motion can be coupled and non-linear. In some cases, we cannot solve the equations of motion analytically and must resort to numerical methods like [Euler's method](https://en.wikipedia.org/wiki/Euler_method), or the more often used [Runge-Kutta method](https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods).
 
+[^fairuse]: Posted for educational access under [fair use](https://en.wikipedia.org/wiki/Fair_use) and will direct to original article when course is archived.
+
 ### The Reynolds Number
 
 The different forms of fluid drag are often described by a dimensionless number called the [Reynolds Number](https://en.wikipedia.org/wiki/Reynolds_number). The Reynolds number is a ratio of the inertial forces to the viscous forces in a fluid. 
 
-* What are inertial forces? They are the ones associated with resistance to motion, the mass of the object. The more massive the object in a given setup, the higher the inertial contribution.
-* What are viscous forces? They are the ones associated with the interaction of the fluid with the object. The more viscous the fluid - the harder it for is to flow under the same conditions, the higher the viscous contribution.
+* **What are inertial forces?** They are the ones associated with resistance to motion, the mass of the object. The more massive the object in a given setup, the higher the inertial contribution.
+* **What are viscous forces?** They are the ones associated with the interaction of the fluid with the object. The more viscous the fluid - the harder it for is to flow under the same conditions, the higher the viscous contribution.
 
 The Reynolds number is defined as:
 
@@ -75,61 +75,59 @@ Viscosity is the measure of the fluid's resistance to flow. It's how the fluid s
 
 We can sometimes measure viscosity with a [viscometer](https://en.wikipedia.org/wiki/Viscometer), which uses a [capillary tube](https://en.wikipedia.org/wiki/Capillary_tube) to measure the time it takes for a fluid to flow through a tube of known dimensions. However, this works best for [Newtonian fluids](https://en.wikipedia.org/wiki/Newtonian_fluid), which are fluids that have a constant viscosity. 
 
-##### Non-Newtonian fluids (in your kitchen; 1 minute video)
-
+{{< admonition type="admonition" title="Non-Newtonian fluids (in your kitchen; 1 minute video)" class="tip" >}}
 Not all fluids are Newtonian, and some fluids have a viscosity that changes with the rate of flow. These [non-Newtonian fluids](https://en.wikipedia.org/wiki/Non-Newtonian_fluid) can be [shear thinning](https://en.wikipedia.org/wiki/Shear_thinning) or [shear thickening](https://en.wikipedia.org/wiki/Shear_thickening). Shear thinning fluids become less viscous when they are stirred or shaken, while shear thickening fluids become more viscous when they are stirred or shaken.
 
 Below is a video from [America's Test Kitchen](https://www.americastestkitchen.com/) that demonstrates the behavior of a non-Newtonian fluid. The fluid is made from cornstarch and water, and it's called [oobleck](https://en.wikipedia.org/wiki/Oobleck). 
 
 {{< youtube FrLh1GILomc >}}
 
-Source: <https://www.youtube.com/watch?v=FrLh1GILomc>
+- *Source: <https://www.youtube.com/watch?v=FrLh1GILomc>*
 
 The physics of cooking is fascinating and covers the field of [soft matter physics](https://en.wikipedia.org/wiki/Soft_matter). There's a free course on the subject offered by [Harvard and EdX](https://pll.harvard.edu/course/science-cooking-haute-cuisine-soft-matter-science-physics).
+{{< /admonition >}}
 
 ### Low Reynolds Number Flows
 
 A low Reynolds number flow is a flow where the viscous forces dominate the inertial forces. The object is moving slowly, or the fluid is very viscous, or the object is very small. We typically think of these flows as being in the range of $Re < 1$. In these flows, the motion of the fluid is typically laminar; it flows in fairly smooth and parallel layers. Low Reynolds number flows can produce dynamics that is counterintutive. Below are a couple videos that explain the physics of low Reynolds number flows.
 
-#### Physics of Life - Life at Low Reynolds Number (15 minute video)
-
+{{< admonition type="admonition" title="Physics of Life - Life at Low Reynolds Number (15 minute video)" class="tip" >}}
 This video focuses on the biological aspects of the problem as the physics of low Reynolds numbers is important for understanding the motion of microorganisms. 
 
-*Embedding of this video is not supported in this notebook. Please click the image or the link below to watch the video on YouTube.*
+> Some YouTube videos are unable to be embedded in Jupyter Books. Click the image below to watch the video on YouTube.
 
 {{< youtube gZk2bMaqs1E >}}
 
-[Physics of Life - Life at Low Reynolds Number (YouTube)](https://youtube.com/watch?v=gZk2bMaqs1E)
+- *Source: <https://youtube.com/watch?v=gZk2bMaqs1E>*
+{{< /admonition >}}
 
-Source: <https://youtube.com/watch?v=gZk2bMaqs1E>
-
-#### G.I. Taylor's Low Reynolds Number Flows (32 minute video)
-
-This video is a classic from [G.I. Taylor](https://en.wikipedia.org/wiki/Geoffrey_Ingram_Taylor) who was a physicist interested in sharing the conceptual beauty of physics with the general public. He was also a pioneer in the field of fluid mechanics. In fact, Taylor's [groundbreaking paper](../../docs/papers/taylor_1922.pdf) on the stability of fluid flows between two rotating cylinders set off studies into turbulence. The [Taylor-Couette flow](https://en.wikipedia.org/wiki/Taylor%E2%80%93Couette_flow) is a critical tool for [studies of turbulence](https://pubmed.ncbi.nlm.nih.gov/20365623/).
+{{< admonition type="admonition" title="G.I. Taylor's Low Reynolds Number Flows (32 minute video)" class="tip" >}}
+This video is a classic from [G.I. Taylor](https://en.wikipedia.org/wiki/Geoffrey_Ingram_Taylor) who was a physicist interested in sharing the conceptual beauty of physics with the general public. He was also a pioneer in the field of fluid mechanics. In fact, Taylor's [groundbreaking paper](../docs/papers/taylor_1922.pdf)[^fairuse] on the stability of fluid flows between two rotating cylinders set off studies into turbulence. The [Taylor-Couette flow](https://en.wikipedia.org/wiki/Taylor%E2%80%93Couette_flow) is a critical tool for [studies of turbulence](https://pubmed.ncbi.nlm.nih.gov/20365623/).
 
 {{< youtube 8Dst6V4CQME >}}
 
-Source: <https://youtube.com/watch?v=8Dst6V4CQME>
+- *Source: <https://youtube.com/watch?v=8Dst6V4CQME>*
+{{< /admonition >}}
 
 ### High Reynolds Number Flows
 
 In high Reynolds number flows, the inertial forces dominate the viscous forces. The object is moving quickly, or the fluid is not very viscous, or the object is very large. We typically think of these flows as being in the range of $Re > 1000$. In these flows, the motion of the fluid is typically [turbulent](https://en.wikipedia.org/wiki/Turbulence). Turbulent flows are characterized by chaotic and irregular motion. The fluid moves in a complex and unpredictable way, with eddies and vortices forming and dissipating. Turbulent flows can be very difficult to predict and model, but they are also very common in nature.
 
-#### Von Kármán's Vortex Street (2 minute video)
-
+{{< admonition type="admonition" title="Von Kármán's Vortex Street (2 minute video)" class="tip" >}}
 The [von Kármán vortex street](https://en.wikipedia.org/wiki/Von_K%C3%A1rm%C3%A1n_vortex_street) is a pattern of alternating vortices that can form when a fluid flows past a "bluff" body, such as a cylinder or a sphere. The vortices are shed from the body in a regular pattern, creating a repeating pattern of alternating vortices. The von Kármán vortex street is an example of a high Reynolds number flow, and it can be used to study the behavior of turbulent flows. Below is a video of a von Kármán vortex street simulation.
 
 {{< youtube f3LmjJ1N7YE >}}
 
-Source: <https://youtube.com/watch?v=f3LmjJ1N7YE>
+- *Source: <https://youtube.com/watch?v=f3LmjJ1N7YE>*
+{{< /admonition >}}
 
-#### Turbulent Flow (24 minute video)
-
+{{< admonition type="admonition" title="Turbulent Flow (24 minute video)" class="tip" >}}
 Turbulence is a major research area in science. We don't fully understand it. We are trying to determine what triggers it, how to control it, and how to predict if and when it will occur. The problem of turbulence is frequently multi-scale such that behavior at one time or length scale is not well explained or connected to another scale. Additionally, the mathematics of turbulence is very difficult. It makes for an interesting and challenging research area. Below is a video that explains the some of the physics of turbulence. The first 4 minutes or so are at least worth watching.
 
 {{< youtube RkewD966Y90 >}}
 
-Source: <https://youtube.com/watch?v=RkewD966Y90>
+- *Source: <https://youtube.com/watch?v=RkewD966Y90>*
+{{< /admonition >}}
 
 
 
@@ -153,7 +151,12 @@ where $D$ is the drag coefficient and $\vec{v}$ is the velocity vector. Note tha
 
 To start this analysis, we need to define a coordinate system. Below, we draw the particle at some random time with the vecolicty vector shown. The axes are typical: $x$ is horizontal and $y$ is vertical. The drag force is always opposite to the velocity vector, so it will always be in the opposite direction of the velocity vector. 
 
-![Coordinate System](/images/notes/week4/2d-falling-ball.png)
+
+{{< figure src="/images/notes/week4/2d-falling-ball.png" caption="Coordinate system choice for the 2D falling ball." >}}
+
+{{< admonition type="caution" >}}
+Redraw vector figure and post SVG
+{{< /admonition >}}
 
 In this coordinate system, the properties of the particle are:
 
@@ -165,11 +168,16 @@ where $\hat{x}$ and $\hat{y}$ are the unit vectors in the $x$ and $y$ directions
 
 The free body diagram at the point in time shown above is shown below. You see the gravitational force pointing directly downward and the drag force pointing in the opposite direction of the velocity vector. We continue to apply our coordinate system to the forces.
 
-![Free Body Diagram](/images/notes/week4/2d-falling-ball-fbd.png)
+
+{{< figure src="/images/notes/week4/2d-falling-ball-fbd.png" caption="Free Body Diagram for the 2D falling ball." >}}
+
+{{< admonition type="caution" >}}
+Redraw vector figure and post SVG
+{{< /admonition >}}
 
 #### Apply Newton's Second Law
 
-We now apply Newton's Seccond Law to the particle in the chosen coordinate system. The forces acting on the particle are the gravitational force and the drag force. 
+We now apply Newton's Second Law to the particle in the chosen coordinate system. The forces acting on the particle are the gravitational force and the drag force. 
 
 $$\vec{F}_{net} = \vec{F}_{gravity} + \vec{F}_{drag}$$
 
@@ -216,7 +224,12 @@ where $\gamma$ is a proxy for the drag coefficient. The linear drag force is pro
 
 We have the same set up as before and same FBD.
 
-![Coordinate System](/images/notes/week4/2d-falling-ball.png)
+
+{{< figure src="/images/notes/week4/2d-falling-ball.png" caption="Coordinate System for the 2D falling ball." >}}
+
+{{< admonition type="caution" >}}
+Redraw vector figure and post SVG
+{{< /admonition >}}
 
 And thus the same coordinate system. The properties of the particle are the same as above. 
 
@@ -319,11 +332,20 @@ where $G$ is the gravitational constant, $m_1$ and $m_2$ are the masses of the o
 
 But we need to be more clear about the forces and the vector relationships. Consider the figure below with the massive object at the origin and the satellite at some distance $r$ from the origin. What is the vector $\vec{r}$ that describes the location of the satellite?
 
-![Gravitational Bound System](/images/notes/week4/grav_01.png)
+{{< figure src="/images/notes/week4/grav_01.png" caption="Gravitationally bound system with one body at the origin." >}}
+
+{{< admonition type="error" >}}
+Draw vector figure and post SVG
+{{< /admonition >}}
+
 
 If we move the sun from the origin a little, we can start to see what $\vec{r}$ is. The vector $\vec{r}$ is the vector from the sun to the satellite. See the figure below to see the sketch.
 
-![Gravitational Bound System](/images/notes/week4/grav_02.png)
+{{< figure src="/images/notes/week4/grav_02.png" caption="Gravitationally bound system with neither body at the origin." >}}
+
+{{< admonition type="error" >}}
+Draw vector figure and post SVG
+{{< /admonition >}}
 
 So if the location of the sun is $\vec{r}_{sun}$ and the Earth is $\vec{r}_{earth}$, then the vector $\vec{r}$ is:
 
@@ -339,7 +361,12 @@ where $M_{sun} = 2\times10^{30} \mathrm{kg}$ is the mass of the sun and $M_{eart
 
 In the figure below, we show the earth at some distance $r$ from the origin at an angle $\phi$ from the $x$-axis. This distance is about $1.5 \times 10^{11}\;\mathrm{m}$ or $1\;\mathrm{A.U.}$ ([astronomical unit](https://en.wikipedia.org/wiki/Astronomical_unit)). While not entirely obvious, the scale of these numbers allow us to assume the Sun is at the origin, and doesn't move. Although this is not a good assumption for the real solar system, the sun orbits the [barycenter](https://en.wikipedia.org/wiki/Barycenter) of the solar system, which is about 1 solar radii from the center of the sun.
 
-![Gravitational Bound System](/images/notes/week4/grav_03.png)
+
+{{< figure src="/images/notes/week4/grav_03.png" caption="Vector analysis for a gravitationally bound system with neither body at the origin." >}}
+
+{{< admonition type="error" >}}
+Draw vector figure and post SVG
+{{< /admonition >}}
 
 Let's use the standard $x$ and $y$ axes to write the equations of motion. We can apply Newton's Second Law to the earth in the chosen coordinate system. 
 
@@ -363,9 +390,9 @@ We can't solve these equations without more information. We need to know the ini
 
 We have three potential ways to solve these EOMs:
 
-1) Direct Integration: We can integrate the equations of motion directly. This is possible in some cases where the equations are simple enough; think about the falling ball without air resistance, or the linear 1D drag case.
-2) Decouple and Solve: We try to solve the coupled differential equations by decoupling them. This is possible in some cases, but not all. We can frequently decouple the equations by writing them in terms of the velocity, or by making a change of position variables.
-3) Numerical Integration: We use numerical methods to predict the motion in small time steps. This is the most common method for solving complex systems.
+1) **Direct Integration:** We can integrate the equations of motion directly. This is possible in some cases where the equations are simple enough; think about the falling ball without air resistance, or the linear 1D drag case.
+2) **Decouple and Solve:** We try to solve the coupled differential equations by decoupling them. This is possible in some cases, but not all. We can frequently decouple the equations by writing them in terms of the velocity, or by making a change of position variables.
+3) **Numerical Integration:** We use numerical methods to predict the motion in small time steps. This is the most common method for solving complex systems.
 
 ### The Simple Harmonic Oscillator (SHO)
 
@@ -375,7 +402,7 @@ $$F = -ks$$
 
 where $k$ is the spring constant and $s$ is the displacement from the equilibrium position, $x-L_0$. The quantity $L_0$ is the relaxed length of the spring. The figure below shows the typical horizontal spring system.
 
-![SHO](/images/notes/week3/sho_horizontal.png)
+{{< figure src="/images/vector-graphics/simple_harmonic_oscillator_setup_1D_horizontal.png" caption="Free Body Diagram of a Simple Harmonic Oscillator; the arrows label the direction of forces acting on the mass. [SVG File](../images/vector-graphics/simple_harmonic_oscillator_setup_1D_horizontal.svg)" >}}
 
 We can typically choose to measure the displacement from the equilibrium position, and write the force instead as:
 
@@ -425,3 +452,5 @@ $$\ddot{x}(t) = -D \omega^2 \cos(\omega t + \phi) = -\omega^2 x(t)$$
 So we have several forms of the general solution to the simple harmonic oscillator. We can use these solutions to understand the behavior of the system. We can also use these solutions to understand the behavior of more complex systems that can be approximated by the simple harmonic oscillator. 
 
 One critical aspect of these solutions is that they have 2 free parameters, $A$ and $B$, or $D$ and $\phi$. These parameters are determined by the initial conditions of the system. **There are N free parameters in the general solution to an Nth order differential equation.**
+
+

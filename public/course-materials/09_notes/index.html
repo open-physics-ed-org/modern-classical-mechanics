@@ -1,222 +1,120 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="auto">
-
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
-<title>09 - Driving Oscillators and Resonance Phenomenon | Classical Mechanics</title>
-<meta name="keywords" content="">
-<meta name="description" content="
-
-Learning Goals
-After studying Lesson 09, you should be able to:
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09 - Driving Oscillators and Resonance Phenomenon | Classical Mechanics</title>
+    <meta name="description" content="Classical Mechanics">
     
-Analyze the behavior of driven oscillators and understand the role of external forces in maintaining oscillatory motion.
-Explore the phenomenon of resonance, identifying conditions under which resonance occurs and its implications in physical systems.
-Solve linear differential equations for driven oscillators using the principles of superposition and uniqueness, distinguishing between transient and steady-state solutions.
-Investigate the amplitude and phase response of driven oscillators as a function of driving frequency, deriving and interpreting key relationships.
-
-
-  
-
-
-Thus far, we have either worked with energy conserving systems or systems that dissipate energy to the point of stopping their motion. The primary examples have been conservative systems, potential energy oscillators, and systems with damping that extract all the kinetic energy from the system. Driven Systems are systems that are driven by external forcing. We use &ldquo;forcing&rdquo; because it&rsquo;s not always a push or a pull. Radio systems use electromagnetic waves to drive the system. Climate systems are driven by thermal forcing.">
-<meta name="author" content="Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine">
-<link rel="canonical" href="//localhost:1313/course-materials/09_notes/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
-<link rel="icon" href="//localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="//localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="//localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="//localhost:1313/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="//localhost:1313/course-materials/09_notes/">
-<noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+    
+    <link rel="stylesheet" href="//localhost:1313/css/accessibility.css">
     <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
         }
-
+        nav {
+            background: #f4f4f4;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #222;
+            margin-top: 1.5em;
+        }
+        h1 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "SF Mono", Monaco, Consolas, monospace;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: #0066cc;
+        }
+        .menu-home {
+            font-weight: bold;
+            margin-right: 30px;
+        }
     </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-                color-scheme: dark;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .toc {
-                background: var(--entry);
-            }
-        }
-
-        @media (prefers-color-scheme: light) {
-            .list::-webkit-scrollbar-thumb {
-                border-color: var(--code-bg);
-            }
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else if (localStorage.getItem("pref-theme") === "light") {
-       document.querySelector("html").dataset.theme = 'light';
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"
-    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}], throwOnError: false});"></script>
-
-
 </head>
-<body id="top">
-    <header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="//localhost:1313/" accesskey="h" title="Classical Mechanics (Alt + H)">Classical Mechanics</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu">
-            <li>
-                <a href="//localhost:1313/course-information/" title="Course Information">
-                    <span>Course Information</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/course-materials/" title="Course Materials">
-                    <span>Course Materials</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/logistics-resources/" title="Logistics &amp; Resources">
-                    <span>Logistics &amp; Resources</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/programming-resources/" title="Programming Resources">
-                    <span>Programming Resources</span>
-                </a>
-            </li>
+<body>
+    <nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li class="menu-home"><a href="//localhost:1313/">Classical Mechanics</a></li>
+            
+            
+            <li><a href="/course-information/">Course Information</a></li>
+            
+            
+            
+            <li><a href="/course-materials/">Course Materials</a></li>
+            
+            
+            
+            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
+            
+            
+            
+            <li><a href="/programming-resources/">Programming Resources</a></li>
+            
+            
         </ul>
     </nav>
-</header>
-<main class="main">
 
-<article class="post-single">
-  <header class="post-header">
-    <div class="breadcrumbs"><a href="//localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="//localhost:1313/course-materials/">Course Materials</a></div>
-    <h1 class="post-title entry-hint-parent">
-      09 - Driving Oscillators and Resonance Phenomenon
-    </h1>
-    <div class="post-meta"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span>
+    <main role="main">
+        
+<article>
+    <header>
+        <h1>09 - Driving Oscillators and Resonance Phenomenon</h1>
+        
+    </header>
 
-</div>
-  </header> <div class="toc">
-    <details >
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">Table of Contents</span>
-        </summary>
-
-        <div class="inner"><ul>
-                <li>
-                    <a href="#learning-goals" aria-label="Learning Goals">Learning Goals</a></li>
-                <li>
-                    <a href="#collapse-of-the-tacoma-narrows-bridge-9-minute-video" aria-label="Collapse of the Tacoma Narrows Bridge (9 minute video)">Collapse of the Tacoma Narrows Bridge (9 minute video)</a><ul>
-                        
-                <li>
-                    <a href="#quantum-mechanical-resonance" aria-label="Quantum Mechanical Resonance">Quantum Mechanical Resonance</a></li></ul>
-                </li>
-                <li>
-                    <a href="#solving-linear-differential-equations" aria-label="Solving Linear Differential Equations">Solving Linear Differential Equations</a></li>
-                <li>
-                    <a href="#driven-oscillations" aria-label="Driven Oscillations">Driven Oscillations</a><ul>
-                        
-                <li>
-                    <a href="#driving-the-oscillator" aria-label="Driving the Oscillator">Driving the Oscillator</a></li>
-                <li>
-                    <a href="#linearity-of-differential-equations" aria-label="Linearity of Differential Equations">Linearity of Differential Equations</a><ul>
-                        
-                <li>
-                    <a href="#effect-of-a-linear-operator-on-our-solutions" aria-label="Effect of a Linear Operator on our Solutions">Effect of a Linear Operator on our Solutions</a></li></ul>
-                </li>
-                <li>
-                    <a href="#homogeneous-and-particular-solutions" aria-label="Homogeneous and Particular Solutions">Homogeneous and Particular Solutions</a></li>
-                <li>
-                    <a href="#example-sinusoidal-driving-force" aria-label="Example: Sinusoidal Driving Force">Example: Sinusoidal Driving Force</a><ul>
-                        
-                <li>
-                    <a href="#two-birds-one-stone" aria-label="Two Birds, One Stone">Two Birds, One Stone</a></li>
-                <li>
-                    <a href="#particular-solution" aria-label="Particular Solution">Particular Solution</a></li>
-                <li>
-                    <a href="#writing-the-complex-amplitude" aria-label="Writing the Complex Amplitude">Writing the Complex Amplitude</a></li>
-                <li>
-                    <a href="#back-to-the-particular-solution" aria-label="Back to the Particular Solution">Back to the Particular Solution</a></li></ul>
-                </li>
-                <li>
-                    <a href="#general-solution" aria-label="General Solution">General Solution</a></li>
-                <li>
-                    <a href="#resonance-and-tuning" aria-label="Resonance and Tuning">Resonance and Tuning</a><ul>
-                        
-                <li>
-                    <a href="#achieving-resonance" aria-label="Achieving Resonance">Achieving Resonance</a>
-                </li>
-            </ul>
-            </li>
-            </ul>
-            </li>
-            </ul>
-        </div>
-    </details>
-</div>
-
-  <div class="post-content"><p><a href="https://github.com/dannycab/phy321msu/issues"><img alt="Report Issues" loading="lazy" src="https://img.shields.io/badge/report%20issues-GitHub-blue"></a>
-<a href="https://github.com/dannycab/phy321msu/issues"><img alt="GitHub Issues" loading="lazy" src="https://img.shields.io/github/issues/dannycab/phy321msu"></a></p>
-<h2 id="learning-goals">Learning Goals<a hidden class="anchor" aria-hidden="true" href="#learning-goals">#</a></h2>
+    <p><a href="https://github.com/dannycab/phy321msu/issues"><img src="https://img.shields.io/badge/report%20issues-GitHub-blue" alt="Report Issues"></a>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="License: CC BY-NC-SA 4.0"></a></p>
+<h2 id="learning-goals">Learning Goals</h2>
 <div class="admonition admonition-admonition note" role="note" aria-label="Admonition"><p class="admonition-title">After studying Lesson 09, you should be able to:</p><div class="admonition-content">
     <ul>
 <li>Analyze the behavior of driven oscillators and understand the role of external forces in maintaining oscillatory motion.</li>
@@ -230,8 +128,8 @@ Thus far, we have either worked with energy conserving systems or systems that d
 
 <p>Thus far, we have either worked with energy conserving systems or systems that dissipate energy to the point of stopping their motion. The primary examples have been conservative systems, potential energy oscillators, and systems with damping that extract all the kinetic energy from the system. <a href="https://en.wikipedia.org/wiki/Driven_oscillator">Driven Systems</a> are systems that are driven by external forcing. We use &ldquo;forcing&rdquo; because it&rsquo;s not always a push or a pull. Radio systems use electromagnetic waves to drive the system. Climate systems are driven by thermal forcing.</p>
 <p>Driven oscillators are a specific type of driven system, we expect them to demonstrate recurrent bahevior. Driven ooscillators are quite common. Analog radios use a driven oscillator that is tuned to a specific frequency (99.5 FM is tuned to 99.5 MHz). When you dial the radio you are &ldquo;tuning&rdquo; the oscillator to the frequency of the broadcast. This is an illustration of the phenomenon of <a href="https://en.wikipedia.org/wiki/Resonance">resonance</a>. Resonance is a phenomenon where a system is driven at a frequency that matches (or closely matches) its natural frequency. When this happens, the amplitude of the oscillation can grow very large. Resonance is the phenomenon that caused the <a href="https://en.wikipedia.org/wiki/Tacoma_Narrows_Bridge_(1940)">collapse of the Tacoma Narrows Bridge</a> in 1940.</p>
-<h2 id="collapse-of-the-tacoma-narrows-bridge-9-minute-video">Collapse of the Tacoma Narrows Bridge (9 minute video)<a hidden class="anchor" aria-hidden="true" href="#collapse-of-the-tacoma-narrows-bridge-9-minute-video">#</a></h2>
-<p>Resonance is the phenomenon that caused the <a href="https://en.wikipedia.org/wiki/Tacoma_Narrows_Bridge_(1940)">collapse of the Tacoma Narrows Bridge</a> in 1940. The video below describes the collapse and how the bridge was rebuilt to avoid the same problem.</p>
+<div class="admonition admonition-admonition tip" role="note" aria-label="Admonition"><p class="admonition-title">Collapse of the Tacoma Narrows Bridge (9 minute video)</p><div class="admonition-content">
+    <p>Resonance is the phenomenon that caused the <a href="https://en.wikipedia.org/wiki/Tacoma_Narrows_Bridge_(1940)">collapse of the Tacoma Narrows Bridge</a> in 1940. The video below describes the collapse and how the bridge was rebuilt to avoid the same problem.</p>
 <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
     src="https://www.youtube-nocookie.com/embed/mXTSnZgrfxM"
@@ -243,13 +141,17 @@ Thus far, we have either worked with energy conserving systems or systems that d
     loading="lazy">
   </iframe>
 </div>
+<ul>
+<li><em>Source: <a href="https://www.youtube.com/watch?v=mXTSnZgrfxM">https://www.youtube.com/watch?v=mXTSnZgrfxM</a></em></li>
+</ul>
+  </div>
+</div>
 
-<p>Source: <a href="https://www.youtube.com/watch?v=mXTSnZgrfxM">https://www.youtube.com/watch?v=mXTSnZgrfxM</a></p>
-<h3 id="quantum-mechanical-resonance">Quantum Mechanical Resonance<a hidden class="anchor" aria-hidden="true" href="#quantum-mechanical-resonance">#</a></h3>
+<h3 id="quantum-mechanical-resonance">Quantum Mechanical Resonance</h3>
 <p>You might have heard about resonance in the context of <a href="https://en.wikipedia.org/wiki/Resonance_(quantum_mechanics)">quantum mechanics</a> or most likely in <a href="https://en.wikipedia.org/wiki/Particle_physics">particle physics</a> or <a href="https://en.wikipedia.org/wiki/Nuclear_physics">nuclear physics</a>. In these cases, typically resonance is a phenomenon where a system is driven at a frequency that matches some natural spacing of energy levels. In quantum mechanics, frequency of light is related to it&rsquo;s energy by $E = h \nu$, where $h$ is Planck&rsquo;s constant and $\nu$ is the frequency of the light.</p>
 <p>The energy levels of a system are quantized, they are separated by discrete amounts. When a system is driven at a frequency that matches the energy level separation, the system can absorb energy from the driving force. This can cause the system to transition to a higher energy state. A quantum system also ejects an amount of energy as a photon (randomly) and transitions to a lower energy state.</p>
 <p>Probing these transitions can tell you about particle properties and reactions. This is a large field of study in particle and nuclear physics.</p>
-<h2 id="solving-linear-differential-equations">Solving Linear Differential Equations<a hidden class="anchor" aria-hidden="true" href="#solving-linear-differential-equations">#</a></h2>
+<h2 id="solving-linear-differential-equations">Solving Linear Differential Equations</h2>
 <p>Much of the work we have done so far has been solving homogeneous linear differential equations. These are equations that have a form like this:</p>
 <p>$$\frac{d^2 x}{dt^2} + 2\beta\frac{dx}{dt} + \omega_0^2 x = 0.$$</p>
 <p>All of the driven systems that we will work with will be described by a linear differential equation. The general form of a linear differential equation is:</p>
@@ -257,7 +159,7 @@ Thus far, we have either worked with energy conserving systems or systems that d
 <p>The $f(t)$ is the driving force. The $a_i$ are constants. The $n$ is the order of the differential equation.</p>
 <p>We&rsquo;ve never solved a driven differential equation before, but we have two powerful tools: superposition and uniqueness. Superposition tells us that we can solve the homogeneous part of the equation and then add a particular solution to get the full solution. Uniqueness tells us that if we have a solution that fits the driver and the initial conditions, then it is unique.</p>
 <p>As the homogenous solutions for our oscillators will typically die out, we will refer to them as transient solutions. The particular solution will be the steady state solution.</p>
-<h2 id="driven-oscillations">Driven Oscillations<a hidden class="anchor" aria-hidden="true" href="#driven-oscillations">#</a></h2>
+<h2 id="driven-oscillations">Driven Oscillations</h2>
 <p>We have seen that oscillators that have only a potential energy term will oscillate forever &ndash; energy is conserved. While the oscillations can take any shape, they are periodic.</p>
 <p>Damped oscillators dissipate energy, and so the oscillations will eventually die out. With the damped harmonic oscillator, the oscillations are still periodic, but the amplitude decreases over time. For that model,</p>
 <p>$$\ddot{x} + 2\beta \dot{x} + \omega_0^2 x = 0$$</p>
@@ -272,19 +174,26 @@ Thus far, we have either worked with energy conserving systems or systems that d
   </div>
 </div>
 
-<h3 id="driving-the-oscillator">Driving the Oscillator<a hidden class="anchor" aria-hidden="true" href="#driving-the-oscillator">#</a></h3>
+<h3 id="driving-the-oscillator">Driving the Oscillator</h3>
 <p>For the damped harmonic oscillator, we had
 $$m\ddot{x} + b \dot{x} + k x = 0$$</p>
 <p>Now we will add a driving force $F(t)$ to the system, so that the equation of motion becomes
 $$m\ddot{x} +b \dot{x} + k x = F(t)$$</p>
 <p>We can represent that setup in the picture below. The blue spring with spring constant $k$ is attached to a red mass $m$. There is a dashpot (damping) in green with damping constant $b=2\beta$. The driving force $F(t)$ is shown in black and called &ldquo;driver&rdquo;.</p>
-<p><img alt="driven oscillator" loading="lazy" src="/images/notes/week9/driven_oscillator.png"></p>
+<figure class="figure " role="figure" aria-label="Schematic of a driven oscillator with dashpot">
+  <img src="/images/notes/week9/driven_oscillator.png" alt="Schematic of a driven oscillator with dashpot" loading="lazy"><figcaption class="figure-caption">Schematic of a driven oscillator with dashpot</figcaption></figure>
+
+<div class="admonition admonition-error " role="note" aria-label="Error"><p class="admonition-title">Error</p><div class="admonition-content">
+    Redraw as vector graphic and post SVG
+  </div>
+</div>
+
 <p>We write that differential equation as:</p>
 <p>$$\ddot{x} + 2\beta \dot{x} + \omega_0^2 x = F(t)/m=f(t)$$</p>
 <p>where $\omega_0^2 = k/m$ and $2\beta = b/m$. The function $f(t)$ is the driving force per unit mass.</p>
 <p><strong>Note that this differential equation remains linear.</strong></p>
 <p>Why? Because the &ldquo;operations&rdquo; on x(t) are linear.</p>
-<h3 id="linearity-of-differential-equations">Linearity of Differential Equations<a hidden class="anchor" aria-hidden="true" href="#linearity-of-differential-equations">#</a></h3>
+<h3 id="linearity-of-differential-equations">Linearity of Differential Equations</h3>
 <p>A linear differential equation has many nice properties. In particular, the superposition of solutions and the uniqueness of solutions. So it is worth knowing when you have one.</p>
 <p><strong>Claim:</strong> $\dfrac{d}{dt}$ is a linear operator.</p>
 <p>What is an operator? It is simply a function that takes a function as an input and returns another function as an output. The derivative is a function that takes a function and returns another function, namely the slope of the tangent line to the original function everywhere it is defined and differentiable.</p>
@@ -299,7 +208,7 @@ $$m\ddot{x} +b \dot{x} + k x = F(t)$$</p>
 <p>$$\mathcal{D} x(t) = \left(\dfrac{d^2}{dt^2} + 2\beta \dfrac{d}{dt} + \omega_0^2\right) x(t) = f(t)$$</p>
 <p>The operator $\mathcal{D}$ is a linear differential operator. This compact notation expresses the linearity of the differential equation.</p>
 <p>$$\mathcal{D} x(t) = f(t)$$</p>
-<h4 id="effect-of-a-linear-operator-on-our-solutions">Effect of a Linear Operator on our Solutions<a hidden class="anchor" aria-hidden="true" href="#effect-of-a-linear-operator-on-our-solutions">#</a></h4>
+<h4 id="effect-of-a-linear-operator-on-our-solutions">Effect of a Linear Operator on our Solutions</h4>
 <p>Because $\mathcal{D}$ is a linear operator, we can distribute it. This results in our finding a linear combination of solutions to the differential equation. This is built up quite easily in three steps.</p>
 <ol>
 <li>We can allow the operator to act on a function scaled by a scalar constant $a$:</li>
@@ -316,7 +225,7 @@ $$m\ddot{x} +b \dot{x} + k x = F(t)$$</p>
 <p>This is the superposition principle in action. But we have to be careful when we apply it. For example, when,</p>
 <p>$$\mathcal{D} x(t) = f(t)$$</p>
 <p>we must first solve the homogeneous equation, $\mathcal{D} x(t) = 0$.</p>
-<h3 id="homogeneous-and-particular-solutions">Homogeneous and Particular Solutions<a hidden class="anchor" aria-hidden="true" href="#homogeneous-and-particular-solutions">#</a></h3>
+<h3 id="homogeneous-and-particular-solutions">Homogeneous and Particular Solutions</h3>
 <p>The damped driven oscillator is a linear differential equation. But that means that any solution to the equation where the driving force is zero is a solution to the equation where the driving force is non-zero. And, thus must be added to the solution of the non-homogeneous equation.</p>
 <p>Let&rsquo;s use the language of differential operators to express this. We want to solve:</p>
 <p>$$\mathcal{D} x(t) = f(t)$$</p>
@@ -331,7 +240,7 @@ $$m\ddot{x} +b \dot{x} + k x = F(t)$$</p>
 <p>That is what defines the particular solution. In our case, that it is specific to the driving force $f(t)$ we have chosen.</p>
 <p><strong>Summary:</strong> When solving $\mathcal{D} x(t) = f(t)$, the solution is the sum of the homogeneous solution $x_h(t)$ and a particular solution $x_p(t)$. We typically solve the homogeneous equation $\mathcal{D} x_h(t) = 0$ first.</p>
 <p>The solutions $x_h(t)$ satisfies the unknowns set by the initial conditions. The particular solution $x_p(t)$ is a solution to the non-homogeneous equation $\mathcal{D} x_p(t) = f(t)$, so it will not depend on the initial conditions, how it is particular to the driving force $f(t)$.</p>
-<h3 id="example-sinusoidal-driving-force">Example: Sinusoidal Driving Force<a hidden class="anchor" aria-hidden="true" href="#example-sinusoidal-driving-force">#</a></h3>
+<h3 id="example-sinusoidal-driving-force">Example: Sinusoidal Driving Force</h3>
 <p>Let&rsquo;s consider a sinusoidal driving force. We will use the following notation for the driving force:</p>
 <p>$$f(t) = f_0 \cos(\omega t)$$</p>
 <p>where $f_0$ is the amplitude of the driving force and $\omega$ is the angular frequency of the driving force. <strong>Note that $\omega$ is not necessarily the same as $\omega_0$.</strong></p>
@@ -344,7 +253,7 @@ $$m\ddot{x} +b \dot{x} + k x = F(t)$$</p>
 <p>where $y(t)$ is the solution to the differential equation with a sine driving force and $\mathcal{D}$ is the same linear differential operator. Writing both the $x(t)$ of $y(t)$ differential equations out, we have</p>
 <p>$$\ddot{x} + 2\beta \dot{x} + \omega_0^2 x = f_0 \cos(\omega t)$$
 $$\ddot{y} + 2\beta \dot{y} + \omega_0^2 y = f_0 \sin(\omega t)$$</p>
-<h4 id="two-birds-one-stone">Two Birds, One Stone<a hidden class="anchor" aria-hidden="true" href="#two-birds-one-stone">#</a></h4>
+<h4 id="two-birds-one-stone">Two Birds, One Stone</h4>
 <p>We can cleverly combine these two equations into a singlle differential equation by using complex numbers.</p>
 <p>$$z(t) = x(t) + i y(t).$$</p>
 <p>We can similarly write $f(t)$ as a complex sum:</p>
@@ -353,7 +262,7 @@ $$\ddot{y} + 2\beta \dot{y} + \omega_0^2 y = f_0 \sin(\omega t)$$</p>
 <p>$$\mathcal{D} z(t) = f_0 e^{i \omega t}.$$</p>
 <p>Written out, we have</p>
 <p>$$\ddot{z} + 2\beta \dot{z} + \omega_0^2 z = f_0 e^{i \omega t}.$$</p>
-<h4 id="particular-solution">Particular Solution<a hidden class="anchor" aria-hidden="true" href="#particular-solution">#</a></h4>
+<h4 id="particular-solution">Particular Solution</h4>
 <p>We note the particular solution depends on the driving force. We can try one that follows the complex exponential form of the driving force.</p>
 <p>$$z_p(t) = C e^{i \omega t}$$</p>
 <p>where $C$ is a complex constant. We can find $C$ by substituting $z_p(t)$ into the differential equation.</p>
@@ -367,7 +276,7 @@ $$\left(-\omega^2 + 2\beta i \omega + \omega_0^2\right) C e^{i \omega t} = f_0 e
 <p>$$Re(z(t)) = x(t) \qquad Im(z(t)) = y(t).$$</p>
 <p>And we can write the coefficient $C$ as a magnitude $A$ and a phase $\delta$:</p>
 <p>$$C = A e^{-i \delta}$$</p>
-<h4 id="writing-the-complex-amplitude">Writing the Complex Amplitude<a hidden class="anchor" aria-hidden="true" href="#writing-the-complex-amplitude">#</a></h4>
+<h4 id="writing-the-complex-amplitude">Writing the Complex Amplitude</h4>
 <p>Let&rsquo;s find that form of $C$.</p>
 <p>$$A^2 = CC^*$$
 $$A^2 = \left(\dfrac{f_0}{\omega_0^2 - \omega^2 + 2\beta i \omega}\right) \left(\dfrac{f_0}{\omega_0^2 - \omega^2 - 2\beta i \omega}\right)$$
@@ -382,13 +291,13 @@ $$A^2 = \dfrac{f_0^2}{\left(\omega_0^2 - \omega^2\right)^2 + 4\beta^2 \omega^2}$
 <p>$$\tan(\delta) = \dfrac{2\beta \omega}{\omega_0^2 - \omega^2}$$</p>
 <p>$$\delta = \arctan\left(\dfrac{2\beta \omega}{\omega_0^2 - \omega^2}\right)$$</p>
 <p>Again, this number is fully determined without initial conditions.</p>
-<h4 id="back-to-the-particular-solution">Back to the Particular Solution<a hidden class="anchor" aria-hidden="true" href="#back-to-the-particular-solution">#</a></h4>
+<h4 id="back-to-the-particular-solution">Back to the Particular Solution</h4>
 <p>We proposed a solution $z_p(t) = C e^{i \omega t}$, where $C$ is a complex constant. This became</p>
 <p>$$z_p(t) = A e^{-i \delta} e^{i \omega t} = A e^{i(\omega t - \delta)}$$</p>
 <p>where $A$ is a real number and $\delta$ is a real number. Note we can write the particular solutions for both $x(t)$ and $y(t)$ as</p>
 <p>$$x_p(t) = Re\left(z_p(t)\right) = A \cos(\omega t - \delta)$$
 $$y_p(t) = Im\left(z_p(t)\right) = A \sin(\omega t - \delta)$$</p>
-<h3 id="general-solution">General Solution<a hidden class="anchor" aria-hidden="true" href="#general-solution">#</a></h3>
+<h3 id="general-solution">General Solution</h3>
 <p>The proposed general solution was</p>
 <p>$$x(t) = x_h(t) + x_p(t)$$</p>
 <p>And for our sinusoidal driving force, we have found the particular solution, so that we can write:</p>
@@ -400,15 +309,22 @@ $$y_p(t) = Im\left(z_p(t)\right) = A \sin(\omega t - \delta)$$</p>
 <p>For a weakly damped system, $\beta^2 &lt; \omega_0^2$, which is the case that is most interesting to us, we can write the solution as,</p>
 <p>$$x(t) = A \cos(\omega t - \delta) + A_{tr}e^{-\beta t} \cos(\omega_1 t - \delta_{tr})$$</p>
 <p>where $A_{tr}$ is the amplitude of the transient solution, $\omega_1 = \sqrt{\omega_0^2 - \beta^2}$ is the damped frequency (per usual), and $\delta_{tr}$ is the phase of the transient solution.</p>
-<h3 id="resonance-and-tuning">Resonance and Tuning<a hidden class="anchor" aria-hidden="true" href="#resonance-and-tuning">#</a></h3>
+<h3 id="resonance-and-tuning">Resonance and Tuning</h3>
 <p>A curious thing about the long term behavior (after the transients die out) is that we can observe large amplitudes at particular choices of driving. Consider the long term (stady state) solution to the driven damped harmonic oscillator:</p>
 <p>$$x_{longterm}(t) = A \cos(\omega t - \delta)$$</p>
 <p>where,</p>
 <p>$$A^2 = \dfrac{f_0^2}{\left(\omega_0^2 - \omega^2\right)^2 + 4\beta^2 \omega^2}.$$</p>
 <p>Let&rsquo;s allow $\beta$ to be small so that $4\beta^2 \omega^2$ is small. If we focus on the denominator, we can see that the amplitude will be small when $\omega$ is far from $\omega_0$. But if we choose $\omega$ to be close to $\omega_0$, then the denominator will be small, and the amplitude will be large.</p>
 <p>The second result is a <a href="https://en.wikipedia.org/wiki/Resonance">resonance</a> effect. The system will resonate at a particular frequency, $\omega_0$, and the amplitude of the oscillations will be large. Below is a sketch of the response of a driven damped harmonic oscillator to a sinusoidal driving force. The amplitude of the oscillations is plotted as a function of the driving frequency $\omega$.</p>
-<p><img alt="Resonance Sketch" loading="lazy" src="/images/notes/week9/resonance.png"></p>
-<h4 id="achieving-resonance">Achieving Resonance<a hidden class="anchor" aria-hidden="true" href="#achieving-resonance">#</a></h4>
+<figure class="figure " role="figure" aria-label="Resonant phenomenon depicted as the driver frequency is swept.t">
+  <img src="/images/notes/week9/resonance.png" alt="Resonant phenomenon depicted as the driver frequency is swept.t" loading="lazy"><figcaption class="figure-caption">Resonant phenomenon depicted as the driver frequency is swept.t</figcaption></figure>
+
+<div class="admonition admonition-error " role="note" aria-label="Error"><p class="admonition-title">Error</p><div class="admonition-content">
+    Redraw as vector graphic and post SVG
+  </div>
+</div>
+
+<h4 id="achieving-resonance">Achieving Resonance</h4>
 <p>There&rsquo;s two ways that we can approach this. Let&rsquo;s focus on the denominator of the amplitude equation:</p>
 <p>$$\left(\omega_0^2 - \omega^2\right)^2 + 4\beta^2 \omega^2$$</p>
 <p>When that denominator is small, the amplitude will be large. There&rsquo;s two ways to make the denominator small.</p>
@@ -427,103 +343,31 @@ $$y_p(t) = Im\left(z_p(t)\right) = A \sin(\omega t - \delta)$$</p>
 <p>We can a strong response when $\omega_0^2 \gg 2\beta^2$ or when $\omega_2 \approx \omega_0$.</p>
 
 
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="//localhost:1313/course-materials/08_notes/">
-    <span class="title">« Prev</span>
-    <br>
-    <span>08 - Oscillations, Cycles, and Nature&#39;s Recurrences</span>
-  </a>
-  <a class="next" href="//localhost:1313/course-materials/10_notes/">
-    <span class="title">Next »</span>
-    <br>
-    <span>10 - Investigating Systems that Exhibit Chaotic Dynamics</span>
-  </a>
-</nav>
-
-  </footer>
-</article>
-    </main>
     
-<footer class="footer">
-        <span>&copy; 2026 <a href="//localhost:1313/">Classical Mechanics</a></span> · 
+    <nav style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                
+                <a href="/course-materials/10_notes/">← 10 - Investigating Systems that Exhibit Chaotic Dynamics</a>
+                
+            </div>
+            <div style="text-align: right;">
+                
+                <a href="/course-materials/08_notes/">08 - Oscillations, Cycles, and Nature&#39;s Recurrences →</a>
+                
+            </div>
+        </div>
+    </nav>
+    
+</article>
 
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
+    </main>
 
-<script>
-    let menu = document.getElementById('menu');
-    if (menu) {
+    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
         
-        const scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-            menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
+        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
         
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
+        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
+    </footer>
 </body>
-
 </html>

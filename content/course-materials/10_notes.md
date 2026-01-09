@@ -1,13 +1,13 @@
 ---
 title: 10 - Investigating Systems that Exhibit Chaotic Dynamics
 weight: 10
-date: '2026-01-08'
+date: '2026-01-09'
 math: true
 highlight: true
 ---
 
 [![Report Issues](https://img.shields.io/badge/report%20issues-GitHub-blue)](https://github.com/dannycab/phy321msu/issues) 
-[![GitHub Issues](https://img.shields.io/github/issues/dannycab/phy321msu)](https://github.com/dannycab/phy321msu/issues)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ## Learning Goals
 
@@ -40,15 +40,13 @@ Chaotic systems are typically [nonlinear](https://en.wikipedia.org/wiki/Nonlinea
 
 We have seen how systems can have fixed points - both stable and unstable - and we have seen periodic behavior. These are common in many dynamical systems. In our study of the harmonic oscillator, we observed that the system can exhibit periodic behavior when undamped or driven, but we also saw how it can settle to a stable fixed point when damped. As we move to study chaotic systems, we begin to see other kinds of behavior. Systems can have [limit cycles](https://en.wikipedia.org/wiki/Limit_cycle) - periodic orbits that are stable or unstable. Below we show the limit cycle of the [Van der Pol oscillator](https://en.wikipedia.org/wiki/Van_der_Pol_oscillator), 
 
-![Limit Cycle](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/VanDerPolPhaseSpace.png/640px-VanDerPolPhaseSpace.png)
 
-Source: [Wikipedia](https://commons.wikimedia.org/wiki/File:VanDerPolPhaseSpace.png)
+{{< figure src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/VanDerPolPhaseSpace.png/640px-VanDerPolPhaseSpace.png" caption="Illustration of a limit cycle observed in the Van der Pol oscillator. *Source: [Wikipedia](https://commons.wikimedia.org/wiki/File:VanDerPolPhaseSpace.png)*" >}}
+
 
 One of the most interesting types of [attractors](https://en.wikipedia.org/wiki/Attractor) in dynamical systems is the [strange attractor](https://en.wikipedia.org/wiki/Strange_attractor). These are fractal structures in phase space towards which the system evolves over time. Strange attractors are complex and often exhibit self-similarity, meaning they look similar at different scales. The [Lorenz attractor](https://en.wikipedia.org/wiki/Lorenz_system) is a famous example of a strange attractor, displaying a butterfly-shaped pattern.
 
-![Lorenz Attractor](https://upload.wikimedia.org/wikipedia/commons/1/13/A_Trajectory_Through_Phase_Space_in_a_Lorenz_Attractor.gif)
-
-Source: [Wikipedia](https://commons.wikimedia.org/wiki/File:A_Trajectory_Through_Phase_Space_in_a_Lorenz_Attractor.gif)
+{{< figure src="https://upload.wikimedia.org/wikipedia/commons/1/13/A_Trajectory_Through_Phase_Space_in_a_Lorenz_Attractor.gif" caption="Illustration of a Lorenz Attractor. *Source: [Wikipedia]https://commons.wikimedia.org/wiki/File:A_Trajectory_Through_Phase_Space_in_a_Lorenz_Attractor.gif)*" >}}
 
 ### Long-term Unpredictability
 
@@ -338,7 +336,7 @@ Once you have simulated the Duffing oscillator, you can plot the results to visu
 
 This first set of plots should look similar to the one below.
 
-![Duffing](/images/notes/week10/first_duffing.png)
+{{< figure src="/images/notes/week10/first_duffing.png" caption="Duffing oscillator time series and phase space diagram" >}}
 
 
 ```python
@@ -396,9 +394,9 @@ In the cells below, we scaffold some of the code to simulate the Lorenz attracto
 
 For the parameters, we will use the canonical values of $\sigma = 10$, $\rho = 28$, and $\beta = \frac{8}{3}$. Choose initial conditions of $x=1$, $y=1$, and $z=1$ and simulate for 50 time units. If you do, your solution will look like the one below.
 
-![Lorenz Time Series](/images/notes/week10/lorenz-1.png)
+{{< figure src="/images/notes/week10/lorenz-1.png" caption="Lorenz Time Series" >}}
 
-![Lorenz Phase Space](/images/notes/week10/lorenz-2.png)
+{{< figure src="/images/notes/week10/lorenz-2.png" caption="Lorenz Phase Space" >}}
 
 
 ```python

@@ -2,13 +2,6 @@ baseURL = ""
 languageCode = "en"
 title = "Classical Mechanics"
 
-# Hugo theme configuration
-# Default: PaperMod (modern, accessible theme with ToC and WCAG support)
-# To change theme, replace with any Hugo theme module path
-[module]
-  [[module.imports]]
-    path = "github.com/adityatelange/hugo-PaperMod"
-
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
@@ -21,12 +14,6 @@ title = "Classical Mechanics"
   author = "Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine"
   description = "Classical Mechanics"
   math = true
-
-  # PaperMod theme configuration
-  ShowToc = true
-  TocOpen = false
-  ShowBreadCrumbs = true
-  ShowPostNavLinks = true
 
 # KaTeX configuration for math rendering
 [params.katex]

@@ -1,13 +1,13 @@
 ---
 title: 07 - Introducing Nonlinear Dynamics
 weight: 7
-date: '2026-01-08'
+date: '2026-01-09'
 math: true
 highlight: true
 ---
 
 [![Report Issues](https://img.shields.io/badge/report%20issues-GitHub-blue)](https://github.com/dannycab/phy321msu/issues) 
-[![GitHub Issues](https://img.shields.io/github/issues/dannycab/phy321msu)](https://github.com/dannycab/phy321msu/issues)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ## Learning Goals
 
@@ -30,11 +30,11 @@ Nonlinear dynamics is the science that has helped us understand the dynamics of 
 
 Differential equations are the language of classical mechanics. They describe how the systems we investigate evolve over time. They track the [state variables](https://en.wikipedia.org/wiki/State_variable) of the system, which are what define the system. For us, this is often the position components and the velocity components of the system. The video below gives a good overview of what differential equations are and why they are important for our study. It also provides an introduction to the concept of a [phase space](https://en.wikipedia.org/wiki/Phase_space), which is the space defined by all the state variables of the system.
 
-### Differential equations, a tourist's guide (27 min)
-
+{{< admonition type="admonition" title="Differential equations, a tourist's guide (27 min)" class="tip" >}}
 {{< youtube p_di4Zn4wz4 >}}
 
-Source: <https://www.youtube.com/watch?v=p_di4Zn4wz4>
+- *Source: <https://www.youtube.com/watch?v=p_di4Zn4wz4>*
+{{< /admonition >}}
 
 ## Phase Portraits
 
@@ -46,11 +46,11 @@ We can also use a technique called [phase portraits](https://en.wikipedia.org/wi
 
 We will go into the details of how to construct and develop phase portraits in class. This video from [Steve Brunton](https://www.me.washington.edu/facultyfinder/steve-brunton) is a good overview of the process. It's quite detailed and takes a mathematical perspective, so don't worry if you don't understand everything in the video. We have plenty of time to investigate how this works in practice.
 
-### Drawing Phase Portraits for Nonlinear Systems (26 min)
-
+{{< admonition type="admonition" title="Drawing Phase Portraits for Nonlinear Systems (26 min)" class="tip" >}}
 {{< youtube vBwyD4JJlSs >}}
 
-Source: <https://www.youtube.com/watch?v=vBwyD4JJlSs>
+- *Source: <https://www.youtube.com/watch?v=vBwyD4JJlSs>*
+{{< /admonition >}}
 
 ## Critical Points; Phase Space; Trajectories
 

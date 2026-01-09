@@ -1,7 +1,7 @@
 ---
 title: Submitting Assignments on Gradescope
 weight: 2
-date: '2026-01-08'
+date: '2026-01-09'
 ---
 
 All of your assignments except for the final project will be submitted through [Gradescope](https://www.gradescope.com/). This platform allows you to submit your homework online, and to view your graded assignments and feedback.

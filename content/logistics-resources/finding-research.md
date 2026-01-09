@@ -1,7 +1,7 @@
 ---
 title: Finding Research Opportunities
 weight: 4
-date: '2026-01-08'
+date: '2026-01-09'
 ---
 
 You've probably heard that you are supposed to network and gain experiences to set yourselves up for the next steps of your career and education. But how do you start that? In this activity you will do some basic research to FIND opportunities, and then you will draft a cold email to someone you would be interesting in working with to gain experience.

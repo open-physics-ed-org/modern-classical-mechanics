@@ -1,13 +1,13 @@
 ---
 title: 08 - Oscillations, Cycles, and Nature's Recurrences
 weight: 8
-date: '2026-01-08'
+date: '2026-01-09'
 math: true
 highlight: true
 ---
 
 [![Report Issues](https://img.shields.io/badge/report%20issues-GitHub-blue)](https://github.com/dannycab/phy321msu/issues) 
-[![GitHub Issues](https://img.shields.io/github/issues/dannycab/phy321msu)](https://github.com/dannycab/phy321msu/issues)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ## Learning Goals
 
@@ -68,7 +68,7 @@ $$\ddot{x} - \mu(1-x^2)\dot{x} + x - A \sin(\omega t)$$
 
 All of the tools we develop to investigate the SHO can be ported to these systems.
 
-### Synchronization (21 minute video)
+{{< admonition type="admonition" title="Synchronization (21 minute video)" class="tip" >}}
 One of the most interesting aspects of an oscillator is that they can couple to each other. This leads to things like [beats](https://en.wikipedia.org/wiki/Beat_(acoustics)), where two oscillators with slightly different frequencies can create a new frequency that is the difference of the two. This is a common phenomenon in music, where two instruments playing slightly out of tune can create a new frequency that is the difference of the two.
 
 But even more interesting is the phenomenon of [synchronization](https://en.wikipedia.org/wiki/Synchronization). 
@@ -87,6 +87,7 @@ The video below is a good introduction to the topic of synchronization and worth
 {{< youtube t-_VPRCtiUg >}}
 
 *In this video, you'll see real-world examples and demonstrations of synchronization, from metronomes to fireflies. Pay attention to how simple coupling between oscillators can lead to surprising collective behavior.*
+{{< /admonition >}}
 
 ## Modeling Oscillations
 
@@ -222,7 +223,11 @@ These values of $C_1$ and $C_2$ are the complex conjugates of each other. The co
 
 We can draw these in the complex plane where the $x$-axis is the real part and the $y$-axis is the imaginary part.
 
-![Complex Conjugates](/images/notes/week8/conjugates_graph.png)
+{{< figure src="/images/notes/week8/conjugates_graph.png" caption="Complex conjugates" >}}
+
+{{< admonition type="error" >}}
+Redraw as vector graphic and rewrite text.
+{{< /admonition >}}
 
 In the graph we can see that the complex conjugates are a reflection of each other. This is because the imaginary part of the complex conjugate is the negative of the original imaginary part.
 

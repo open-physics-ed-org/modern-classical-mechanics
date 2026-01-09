@@ -1,7 +1,7 @@
 ---
 title: Course Commitments
 weight: 1
-date: '2026-01-08'
+date: '2026-01-09'
 ---
 
 ## Commitment to an Inclusive Classroom

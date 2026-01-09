@@ -1,264 +1,120 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="auto">
-
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
-<title>04 - Why does fluid drag complicate things? | Classical Mechanics</title>
-<meta name="keywords" content="">
-<meta name="description" content="
-
-Learning Goals
-After studying Lesson 04, you should be able to:
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04 - Why does fluid drag complicate things? | Classical Mechanics</title>
+    <meta name="description" content="Classical Mechanics">
     
-Differentiate between the two primary forms of fluid drag ($F \sim v$ and $F \sim v^2$) and identify their applications in real-world scenarios.
-Explain the concept of the Reynolds number and its significance in characterizing fluid flow regimes.
-Describe the differences between low Reynolds number (laminar) and high Reynolds number (turbulent) flows, including their physical implications.
-Analyze the equations of motion for systems with linear and quadratic drag forces in one and two dimensions.
-Solve analytically the equations of motion for systems with linear drag and explain why quadratic drag systems often require numerical methods.
-Develop and interpret free body diagrams for objects experiencing fluid drag in two dimensions.
-Apply Newton&rsquo;s Second Law to derive coupled differential equations for systems with drag forces and explain the challenges in solving them.
-Discuss the significance of the simple harmonic oscillator and gravitational bound systems as base models for more complex physical systems.
-
-
-  
-
-
-As an object moves through the fluid, the molecules of the fluid collide with the object and exert a force on it. This collision changes the momentum of the object just a little bit. The collision does so in a random way, but the average effect of all those collisions is to exert a force on the object that is proportional to a function of the object&rsquo;s velocity, $F(v)$. In some cases those collisions occur such that they make an impact; other times they might approach the object more slowly and slide over it in familiar frictional interaction. These two behaviors are both fluid drag, but they are different forms.">
-<meta name="author" content="Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine">
-<link rel="canonical" href="//localhost:1313/course-materials/04_notes/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
-<link rel="icon" href="//localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="//localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="//localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="//localhost:1313/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="//localhost:1313/course-materials/04_notes/">
-<noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+    
+    <link rel="stylesheet" href="//localhost:1313/css/accessibility.css">
     <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
         }
-
+        nav {
+            background: #f4f4f4;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #222;
+            margin-top: 1.5em;
+        }
+        h1 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "SF Mono", Monaco, Consolas, monospace;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: #0066cc;
+        }
+        .menu-home {
+            font-weight: bold;
+            margin-right: 30px;
+        }
     </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-                color-scheme: dark;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .toc {
-                background: var(--entry);
-            }
-        }
-
-        @media (prefers-color-scheme: light) {
-            .list::-webkit-scrollbar-thumb {
-                border-color: var(--code-bg);
-            }
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else if (localStorage.getItem("pref-theme") === "light") {
-       document.querySelector("html").dataset.theme = 'light';
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"
-    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}], throwOnError: false});"></script>
-
-
 </head>
-<body id="top">
-    <header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="//localhost:1313/" accesskey="h" title="Classical Mechanics (Alt + H)">Classical Mechanics</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu">
-            <li>
-                <a href="//localhost:1313/course-information/" title="Course Information">
-                    <span>Course Information</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/course-materials/" title="Course Materials">
-                    <span>Course Materials</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/logistics-resources/" title="Logistics &amp; Resources">
-                    <span>Logistics &amp; Resources</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/programming-resources/" title="Programming Resources">
-                    <span>Programming Resources</span>
-                </a>
-            </li>
+<body>
+    <nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li class="menu-home"><a href="//localhost:1313/">Classical Mechanics</a></li>
+            
+            
+            <li><a href="/course-information/">Course Information</a></li>
+            
+            
+            
+            <li><a href="/course-materials/">Course Materials</a></li>
+            
+            
+            
+            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
+            
+            
+            
+            <li><a href="/programming-resources/">Programming Resources</a></li>
+            
+            
         </ul>
     </nav>
-</header>
-<main class="main">
 
-<article class="post-single">
-  <header class="post-header">
-    <div class="breadcrumbs"><a href="//localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="//localhost:1313/course-materials/">Course Materials</a></div>
-    <h1 class="post-title entry-hint-parent">
-      04 - Why does fluid drag complicate things?
-    </h1>
-    <div class="post-meta"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span>
+    <main role="main">
+        
+<article>
+    <header>
+        <h1>04 - Why does fluid drag complicate things?</h1>
+        
+    </header>
 
-</div>
-  </header> <div class="toc">
-    <details >
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">Table of Contents</span>
-        </summary>
-
-        <div class="inner"><ul>
-                <li>
-                    <a href="#learning-goals" aria-label="Learning Goals">Learning Goals</a></li>
-                <li>
-                    <a href="#why-do-we-often-neglect-air-resistance" aria-label="Why do we often neglect air resistance?">Why do we often neglect air resistance?</a><ul>
-                        
-                <li>
-                    <a href="#the-reynolds-number" aria-label="The Reynolds Number">The Reynolds Number</a><ul>
-                        
-                <li>
-                    <a href="#what-is-a-characteristic-length" aria-label="What is a characteristic length?">What is a characteristic length?</a></li>
-                <li>
-                    <a href="#what-is-dynamic-viscosity" aria-label="What is dynamic viscosity?">What is dynamic viscosity?</a><ul>
-                        
-                <li>
-                    <a href="#measuring-viscosity" aria-label="Measuring viscosity">Measuring viscosity</a></li>
-                <li>
-                    <a href="#non-newtonian-fluids-in-your-kitchen-1-minute-video" aria-label="Non-Newtonian fluids (in your kitchen; 1 minute video)">Non-Newtonian fluids (in your kitchen; 1 minute video)</a></li></ul>
-                </li></ul>
-                </li>
-                <li>
-                    <a href="#low-reynolds-number-flows" aria-label="Low Reynolds Number Flows">Low Reynolds Number Flows</a><ul>
-                        
-                <li>
-                    <a href="#physics-of-life---life-at-low-reynolds-number-15-minute-video" aria-label="Physics of Life - Life at Low Reynolds Number (15 minute video)">Physics of Life - Life at Low Reynolds Number (15 minute video)</a></li>
-                <li>
-                    <a href="#gi-taylors-low-reynolds-number-flows-32-minute-video" aria-label="G.I. Taylor&rsquo;s Low Reynolds Number Flows (32 minute video)">G.I. Taylor&rsquo;s Low Reynolds Number Flows (32 minute video)</a></li></ul>
-                </li>
-                <li>
-                    <a href="#high-reynolds-number-flows" aria-label="High Reynolds Number Flows">High Reynolds Number Flows</a><ul>
-                        
-                <li>
-                    <a href="#von-k%c3%a1rm%c3%a1ns-vortex-street-2-minute-video" aria-label="Von Kármán&rsquo;s Vortex Street (2 minute video)">Von Kármán&rsquo;s Vortex Street (2 minute video)</a></li>
-                <li>
-                    <a href="#turbulent-flow-24-minute-video" aria-label="Turbulent Flow (24 minute video)">Turbulent Flow (24 minute video)</a></li></ul>
-                </li></ul>
-                </li>
-                <li>
-                    <a href="#developing-equations-of-motion" aria-label="Developing Equations of Motion">Developing Equations of Motion</a><ul>
-                        
-                <li>
-                    <a href="#two-dimensional-quadratic-drag" aria-label="Two-Dimensional Quadratic Drag">Two-Dimensional Quadratic Drag</a><ul>
-                        
-                <li>
-                    <a href="#define-the-coordinate-system" aria-label="Define the Coordinate System">Define the Coordinate System</a></li>
-                <li>
-                    <a href="#apply-newtons-second-law" aria-label="Apply Newton&rsquo;s Second Law">Apply Newton&rsquo;s Second Law</a><ul>
-                        
-                <li>
-                    <a href="#why-cant-we-solve-these-equations" aria-label="Why can&rsquo;t we solve these equations?">Why can&rsquo;t we solve these equations?</a></li></ul>
-                </li></ul>
-                </li>
-                <li>
-                    <a href="#linear-drag-in-two-dimensions" aria-label="Linear Drag in Two-Dimensions">Linear Drag in Two-Dimensions</a><ul>
-                        
-                <li>
-                    <a href="#apply-newtons-second-law-1" aria-label="Apply Newton&rsquo;s Second Law">Apply Newton&rsquo;s Second Law</a></li>
-                <li>
-                    <a href="#solve-the-equations" aria-label="Solve the Equations">Solve the Equations</a><ul>
-                        
-                <li>
-                    <a href="#velocity-in-the-x-direction" aria-label="Velocity in the $x$ direction">Velocity in the $x$ direction</a></li>
-                <li>
-                    <a href="#velocity-in-the-y-direction" aria-label="Velocity in the $y$ direction">Velocity in the $y$ direction</a></li></ul>
-                </li>
-                <li>
-                    <a href="#trajectories" aria-label="Trajectories">Trajectories</a></li></ul>
-                </li>
-                <li>
-                    <a href="#2d-gravitational-bound-system" aria-label="2D Gravitational Bound System">2D Gravitational Bound System</a><ul>
-                        
-                <li>
-                    <a href="#define-the-coordinate-system-1" aria-label="Define the Coordinate System">Define the Coordinate System</a></li>
-                <li>
-                    <a href="#how-do-we-then-get-the-trajectories" aria-label="How do we then get the trajectories?">How do we then get the trajectories?</a></li></ul>
-                </li>
-                <li>
-                    <a href="#the-simple-harmonic-oscillator-sho" aria-label="The Simple Harmonic Oscillator (SHO)">The Simple Harmonic Oscillator (SHO)</a><ul>
-                        
-                <li>
-                    <a href="#how-do-we-solve-this" aria-label="How do we solve this?">How do we solve this?</a>
-                </li>
-            </ul>
-            </li>
-            </ul>
-            </li>
-            </ul>
-        </div>
-    </details>
-</div>
-
-  <div class="post-content"><p><a href="https://github.com/dannycab/phy321msu/issues"><img alt="Report Issues" loading="lazy" src="https://img.shields.io/badge/report%20issues-GitHub-blue"></a>
-<a href="https://github.com/dannycab/phy321msu/issues"><img alt="GitHub Issues" loading="lazy" src="https://img.shields.io/github/issues/dannycab/phy321msu"></a></p>
-<h2 id="learning-goals">Learning Goals<a hidden class="anchor" aria-hidden="true" href="#learning-goals">#</a></h2>
+    <p><a href="https://github.com/dannycab/phy321msu/issues"><img src="https://img.shields.io/badge/report%20issues-GitHub-blue" alt="Report Issues"></a>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="License: CC BY-NC-SA 4.0"></a></p>
+<h2 id="learning-goals">Learning Goals</h2>
 <div class="admonition admonition-admonition note" role="note" aria-label="Admonition"><p class="admonition-title">After studying Lesson 04, you should be able to:</p><div class="admonition-content">
     <ul>
 <li>Differentiate between the two primary forms of fluid drag ($F \sim v$ and $F \sim v^2$) and identify their applications in real-world scenarios.</li>
@@ -277,34 +133,36 @@ As an object moves through the fluid, the molecules of the fluid collide with th
 <p>As an object moves through the fluid, the molecules of the fluid collide with the object and exert a force on it. This collision changes the momentum of the object just a little bit. The collision does so in a random way, but the average effect of all those collisions is to exert a force on the object that is proportional to a function of the object&rsquo;s velocity, $F(v)$. In some cases those collisions occur such that they make an impact; other times they might approach the object more slowly and slide over it in familiar frictional interaction. These two behaviors are both fluid drag, but they are different forms.</p>
 <p>The first form ($F \sim v^2$) describes the behavior of things like a skydiver falling, a high-speed car, or a baseball thrown through the air. But it can also be valid for the movement of fish in water, or a submarine moving through the ocean.  Through those collisions, the distribution of those forces can cause intra-body forces, which can result in damage or deformation of the object. However, we often model the body as solid and focus on the way this form of air resistance changes the motion.</p>
 <p>This form of air resistance cannot describe the behavior of objects approaching the speed of sound in the fluid. Objects moving a speeds that high can produce <a href="https://en.wikipedia.org/wiki/Shock_wave">shock fronts</a> that forces the fluid to go through abrupt changes in density, pressure, and temperature. Below is a figure of a shock front produced the nose of a jet flying at supersonic speeds.</p>
-<p><img alt="A shock front from a supersonic jet" loading="lazy" src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Schlierenfoto_Mach_1-2_Pfeilfl%C3%BCgel_-_NASA.jpg"></p>
-<p>Source: <a href="https://commons.wikimedia.org/wiki/File:Schlierenfoto_Mach_1-2_Pfeilfl%C3%BCgel_-_NASA.jpg">Wikipedia</a></p>
+<figure class="figure " role="figure" aria-label="A shock front from a supersonic jet. Source: [Wikipedia](https://commons.wikimedia.org/wiki/File:Schlierenfoto_Mach_1-2_Pfeilfl%C3%BCgel_-_NASA.jpg)">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Schlierenfoto_Mach_1-2_Pfeilfl%C3%BCgel_-_NASA.jpg" alt="A shock front from a supersonic jet. Source: [Wikipedia](https://commons.wikimedia.org/wiki/File:Schlierenfoto_Mach_1-2_Pfeilfl%C3%BCgel_-_NASA.jpg)" loading="lazy"><figcaption class="figure-caption">A shock front from a supersonic jet. Source: <a href="https://commons.wikimedia.org/wiki/File:Schlierenfoto_Mach_1-2_Pfeilfl%C3%BCgel_-_NASA.jpg">Wikipedia</a></figcaption></figure>
+
 <p>The second form ($F \sim v$) describes the flow of a viscous fluid around a solid object. You might think of this as pulling an object through some viscous oil, honey, or even molasses. The movement of the fluid around the object exerts a force and slows the motion of the object.  In water, this form can explain the motion of some of the smallest creatures on Earth, like the <a href="https://en.wikipedia.org/wiki/Tardigrade">water bear</a>, an amoeba, or a paramecium.</p>
-<p>What is interesting here is that these creatures have had to adapt to this form of fluid drag. <a href="https://en.wikipedia.org/wiki/Edward_M._Purcell">Edward Purcell</a> wrote a paper in 1977 called <a href="../docs/papers/purcell_AJP_1977.pdf">Life at Low Reynolds Number</a> that describes the motion of these creatures. He demonstrates that the physics in this regime requires creature to have adapted forms of locomotion that can take advantage of that environment. The figure below is reproduced from Purcell showing the decreasing physical scale and, thus, lower <a href="https://en.wikipedia.org/wiki/Reynolds_number">Reynold&rsquo;s numbers</a>.</p>
-<p><img alt="Figure 3 from Purcell&rsquo;s 1977 paper showing Reynold&rsquo;s numbers" loading="lazy" src="/images/notes/week4/purcell_fig3.png"></p>
-<p>Source: <a href="https://pubs.aip.org/aapt/ajp/article/45/1/3/1043148/Life-at-low-Reynolds-number">Purcell&rsquo;s Life at Low Reynolds Number, Figure 3</a></p>
-<h2 id="why-do-we-often-neglect-air-resistance">Why do we often neglect air resistance?<a hidden class="anchor" aria-hidden="true" href="#why-do-we-often-neglect-air-resistance">#</a></h2>
+<p>What is interesting here is that these creatures have had to adapt to this form of fluid drag. <a href="https://en.wikipedia.org/wiki/Edward_M._Purcell">Edward Purcell</a> wrote a paper in 1977 called <a href="../docs/papers/purcell_AJP_1977.pdf">Life at Low Reynolds Number</a><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> that describes the motion of these creatures. He demonstrates that the physics in this regime requires creature to have adapted forms of locomotion that can take advantage of that environment. The figure below is reproduced from Purcell showing the decreasing physical scale and, thus, lower <a href="https://en.wikipedia.org/wiki/Reynolds_number">Reynold&rsquo;s numbers</a>.</p>
+<figure class="figure " role="figure" aria-label="An illustration of the Reynold&#39;s number for different bodies in water. Source: [Purcell&#39;s, *Life at Low Reynolds Number*, Figure 3](https://pubs.aip.org/aapt/ajp/article/45/1/3/1043148/Life-at-low-Reynolds-number)">
+  <img src="/images/notes/week4/purcell_fig3.png" alt="An illustration of the Reynold&#39;s number for different bodies in water. Source: [Purcell&#39;s, *Life at Low Reynolds Number*, Figure 3](https://pubs.aip.org/aapt/ajp/article/45/1/3/1043148/Life-at-low-Reynolds-number)" loading="lazy"><figcaption class="figure-caption">An illustration of the Reynold&rsquo;s number for different bodies in water. Source: <a href="https://pubs.aip.org/aapt/ajp/article/45/1/3/1043148/Life-at-low-Reynolds-number">Purcell&rsquo;s, <em>Life at Low Reynolds Number</em>, Figure 3</a></figcaption></figure>
+
+<h2 id="why-do-we-often-neglect-air-resistance">Why do we often neglect air resistance?</h2>
 <p>We&rsquo;re in the business of making models of physical systems using the concepts and tools of Classical Mechanics. We&rsquo;ve focused on Newton&rsquo;s Laws, which are a formulation of mechanics that starts from the concept of the force.</p>
 <p>We often start with that approach because the mathematical tools that we have available to us when we are first learning physics are geometry and algebra. Forces are a vector concept and Newton&rsquo;s Second Law is a vector equation that holds in each of the three dimensions of space. This formulation lends itself to a decomposing problems often into two or three separate problems, one for each dimension, and then using some algebra to solve the problems. However, that mathematics limits the kinds of explorations we can do.</p>
 <p>This is one reason why we neglect <a href="https://en.wikipedia.org/wiki/Air_resistance">air resistance</a> in our first explorations of motion. Our models of air resistance are more complicated and require more advanced mathematics to solve. The equations of motion can be coupled and non-linear. In some cases, we cannot solve the equations of motion analytically and must resort to numerical methods like <a href="https://en.wikipedia.org/wiki/Euler_method">Euler&rsquo;s method</a>, or the more often used <a href="https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods">Runge-Kutta method</a>.</p>
-<h3 id="the-reynolds-number">The Reynolds Number<a hidden class="anchor" aria-hidden="true" href="#the-reynolds-number">#</a></h3>
+<h3 id="the-reynolds-number">The Reynolds Number</h3>
 <p>The different forms of fluid drag are often described by a dimensionless number called the <a href="https://en.wikipedia.org/wiki/Reynolds_number">Reynolds Number</a>. The Reynolds number is a ratio of the inertial forces to the viscous forces in a fluid.</p>
 <ul>
-<li>What are inertial forces? They are the ones associated with resistance to motion, the mass of the object. The more massive the object in a given setup, the higher the inertial contribution.</li>
-<li>What are viscous forces? They are the ones associated with the interaction of the fluid with the object. The more viscous the fluid - the harder it for is to flow under the same conditions, the higher the viscous contribution.</li>
+<li><strong>What are inertial forces?</strong> They are the ones associated with resistance to motion, the mass of the object. The more massive the object in a given setup, the higher the inertial contribution.</li>
+<li><strong>What are viscous forces?</strong> They are the ones associated with the interaction of the fluid with the object. The more viscous the fluid - the harder it for is to flow under the same conditions, the higher the viscous contribution.</li>
 </ul>
 <p>The Reynolds number is defined as:</p>
 <p>$$Re = \frac{\rho v L}{\mu}$$</p>
 <p>where $\rho$ is the density of the fluid, $v$ is the velocity of the object in that fluid, $L$ is a characteristic length of the object, and $\mu$ is the dynamic viscosity of the fluid.</p>
 <p>You can probably see who the Reynolds number characterizes the system of the object and the fluid as their are properties of both the object and the fluid in the equation. The Reynolds number can be measured quite accurately in a lab because the laboratory setups are typically designed to make the measurement of the Reynolds number easier. We will often estimate it in theoretical physics.</p>
-<h4 id="what-is-a-characteristic-length">What is a characteristic length?<a hidden class="anchor" aria-hidden="true" href="#what-is-a-characteristic-length">#</a></h4>
+<h4 id="what-is-a-characteristic-length">What is a characteristic length?</h4>
 <p>This length is a generic length scale associated with the flow, this can be the order of magnitude size of the object, or, in the absence of an object, the same for the pipe or channel in which the flow is occurring. If it&rsquo;s an airplane, it can be the wingspan, or the length of the fuselage. If it&rsquo;s a car, it can be the length of the car. If it&rsquo;s a sphere, it can be the radius, and so on.</p>
-<h4 id="what-is-dynamic-viscosity">What is dynamic viscosity?<a hidden class="anchor" aria-hidden="true" href="#what-is-dynamic-viscosity">#</a></h4>
+<h4 id="what-is-dynamic-viscosity">What is dynamic viscosity?</h4>
 <p>Viscosity is the measure of the fluid&rsquo;s resistance to flow. It&rsquo;s how the fluid slides past itself. It&rsquo;s a bit of a harder quantity to describe, but you can think of it as the &ldquo;stickiness&rdquo; of the fluid. The higher the viscosity, the more sticky the fluid is &ndash; really, for a given setup, the more viscous fluid will flow more slowly. The lower the viscosity, the higher tendency for a fluid to flow. Compare honey to water in the same vessel and temperature, and you&rsquo;ll observe the difference in viscosity.</p>
-<h5 id="measuring-viscosity">Measuring viscosity<a hidden class="anchor" aria-hidden="true" href="#measuring-viscosity">#</a></h5>
+<h5 id="measuring-viscosity">Measuring viscosity</h5>
 <p>We can sometimes measure viscosity with a <a href="https://en.wikipedia.org/wiki/Viscometer">viscometer</a>, which uses a <a href="https://en.wikipedia.org/wiki/Capillary_tube">capillary tube</a> to measure the time it takes for a fluid to flow through a tube of known dimensions. However, this works best for <a href="https://en.wikipedia.org/wiki/Newtonian_fluid">Newtonian fluids</a>, which are fluids that have a constant viscosity.</p>
-<h5 id="non-newtonian-fluids-in-your-kitchen-1-minute-video">Non-Newtonian fluids (in your kitchen; 1 minute video)<a hidden class="anchor" aria-hidden="true" href="#non-newtonian-fluids-in-your-kitchen-1-minute-video">#</a></h5>
-<p>Not all fluids are Newtonian, and some fluids have a viscosity that changes with the rate of flow. These <a href="https://en.wikipedia.org/wiki/Non-Newtonian_fluid">non-Newtonian fluids</a> can be <a href="https://en.wikipedia.org/wiki/Shear_thinning">shear thinning</a> or <a href="https://en.wikipedia.org/wiki/Shear_thickening">shear thickening</a>. Shear thinning fluids become less viscous when they are stirred or shaken, while shear thickening fluids become more viscous when they are stirred or shaken.</p>
+<div class="admonition admonition-admonition tip" role="note" aria-label="Admonition"><p class="admonition-title">Non-Newtonian fluids (in your kitchen; 1 minute video)</p><div class="admonition-content">
+    <p>Not all fluids are Newtonian, and some fluids have a viscosity that changes with the rate of flow. These <a href="https://en.wikipedia.org/wiki/Non-Newtonian_fluid">non-Newtonian fluids</a> can be <a href="https://en.wikipedia.org/wiki/Shear_thinning">shear thinning</a> or <a href="https://en.wikipedia.org/wiki/Shear_thickening">shear thickening</a>. Shear thinning fluids become less viscous when they are stirred or shaken, while shear thickening fluids become more viscous when they are stirred or shaken.</p>
 <p>Below is a video from <a href="https://www.americastestkitchen.com/">America&rsquo;s Test Kitchen</a> that demonstrates the behavior of a non-Newtonian fluid. The fluid is made from cornstarch and water, and it&rsquo;s called <a href="https://en.wikipedia.org/wiki/Oobleck">oobleck</a>.</p>
 <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
@@ -317,14 +175,21 @@ As an object moves through the fluid, the molecules of the fluid collide with th
     loading="lazy">
   </iframe>
 </div>
-
-<p>Source: <a href="https://www.youtube.com/watch?v=FrLh1GILomc">https://www.youtube.com/watch?v=FrLh1GILomc</a></p>
+<ul>
+<li><em>Source: <a href="https://www.youtube.com/watch?v=FrLh1GILomc">https://www.youtube.com/watch?v=FrLh1GILomc</a></em></li>
+</ul>
 <p>The physics of cooking is fascinating and covers the field of <a href="https://en.wikipedia.org/wiki/Soft_matter">soft matter physics</a>. There&rsquo;s a free course on the subject offered by <a href="https://pll.harvard.edu/course/science-cooking-haute-cuisine-soft-matter-science-physics">Harvard and EdX</a>.</p>
-<h3 id="low-reynolds-number-flows">Low Reynolds Number Flows<a hidden class="anchor" aria-hidden="true" href="#low-reynolds-number-flows">#</a></h3>
+
+  </div>
+</div>
+
+<h3 id="low-reynolds-number-flows">Low Reynolds Number Flows</h3>
 <p>A low Reynolds number flow is a flow where the viscous forces dominate the inertial forces. The object is moving slowly, or the fluid is very viscous, or the object is very small. We typically think of these flows as being in the range of $Re &lt; 1$. In these flows, the motion of the fluid is typically laminar; it flows in fairly smooth and parallel layers. Low Reynolds number flows can produce dynamics that is counterintutive. Below are a couple videos that explain the physics of low Reynolds number flows.</p>
-<h4 id="physics-of-life---life-at-low-reynolds-number-15-minute-video">Physics of Life - Life at Low Reynolds Number (15 minute video)<a hidden class="anchor" aria-hidden="true" href="#physics-of-life---life-at-low-reynolds-number-15-minute-video">#</a></h4>
-<p>This video focuses on the biological aspects of the problem as the physics of low Reynolds numbers is important for understanding the motion of microorganisms.</p>
-<p><em>Embedding of this video is not supported in this notebook. Please click the image or the link below to watch the video on YouTube.</em></p>
+<div class="admonition admonition-admonition tip" role="note" aria-label="Admonition"><p class="admonition-title">Physics of Life - Life at Low Reynolds Number (15 minute video)</p><div class="admonition-content">
+    <p>This video focuses on the biological aspects of the problem as the physics of low Reynolds numbers is important for understanding the motion of microorganisms.</p>
+<blockquote>
+<p>Some YouTube videos are unable to be embedded in Jupyter Books. Click the image below to watch the video on YouTube.</p>
+</blockquote>
 <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
     src="https://www.youtube-nocookie.com/embed/gZk2bMaqs1E"
@@ -336,11 +201,15 @@ As an object moves through the fluid, the molecules of the fluid collide with th
     loading="lazy">
   </iframe>
 </div>
+<ul>
+<li><em>Source: <a href="https://youtube.com/watch?v=gZk2bMaqs1E">https://youtube.com/watch?v=gZk2bMaqs1E</a></em></li>
+</ul>
 
-<p><a href="https://youtube.com/watch?v=gZk2bMaqs1E">Physics of Life - Life at Low Reynolds Number (YouTube)</a></p>
-<p>Source: <a href="https://youtube.com/watch?v=gZk2bMaqs1E">https://youtube.com/watch?v=gZk2bMaqs1E</a></p>
-<h4 id="gi-taylors-low-reynolds-number-flows-32-minute-video">G.I. Taylor&rsquo;s Low Reynolds Number Flows (32 minute video)<a hidden class="anchor" aria-hidden="true" href="#gi-taylors-low-reynolds-number-flows-32-minute-video">#</a></h4>
-<p>This video is a classic from <a href="https://en.wikipedia.org/wiki/Geoffrey_Ingram_Taylor">G.I. Taylor</a> who was a physicist interested in sharing the conceptual beauty of physics with the general public. He was also a pioneer in the field of fluid mechanics. In fact, Taylor&rsquo;s <a href="../../docs/papers/taylor_1922.pdf">groundbreaking paper</a> on the stability of fluid flows between two rotating cylinders set off studies into turbulence. The <a href="https://en.wikipedia.org/wiki/Taylor%E2%80%93Couette_flow">Taylor-Couette flow</a> is a critical tool for <a href="https://pubmed.ncbi.nlm.nih.gov/20365623/">studies of turbulence</a>.</p>
+  </div>
+</div>
+
+<div class="admonition admonition-admonition tip" role="note" aria-label="Admonition"><p class="admonition-title">G.I. Taylor&#39;s Low Reynolds Number Flows (32 minute video)</p><div class="admonition-content">
+    <p>This video is a classic from <a href="https://en.wikipedia.org/wiki/Geoffrey_Ingram_Taylor">G.I. Taylor</a> who was a physicist interested in sharing the conceptual beauty of physics with the general public. He was also a pioneer in the field of fluid mechanics. In fact, Taylor&rsquo;s <a href="../docs/papers/taylor_1922.pdf">groundbreaking paper</a>[^fairuse] on the stability of fluid flows between two rotating cylinders set off studies into turbulence. The <a href="https://en.wikipedia.org/wiki/Taylor%E2%80%93Couette_flow">Taylor-Couette flow</a> is a critical tool for <a href="https://pubmed.ncbi.nlm.nih.gov/20365623/">studies of turbulence</a>.</p>
 <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
     src="https://www.youtube-nocookie.com/embed/8Dst6V4CQME"
@@ -352,12 +221,16 @@ As an object moves through the fluid, the molecules of the fluid collide with th
     loading="lazy">
   </iframe>
 </div>
+<ul>
+<li><em>Source: <a href="https://youtube.com/watch?v=8Dst6V4CQME">https://youtube.com/watch?v=8Dst6V4CQME</a></em></li>
+</ul>
+  </div>
+</div>
 
-<p>Source: <a href="https://youtube.com/watch?v=8Dst6V4CQME">https://youtube.com/watch?v=8Dst6V4CQME</a></p>
-<h3 id="high-reynolds-number-flows">High Reynolds Number Flows<a hidden class="anchor" aria-hidden="true" href="#high-reynolds-number-flows">#</a></h3>
+<h3 id="high-reynolds-number-flows">High Reynolds Number Flows</h3>
 <p>In high Reynolds number flows, the inertial forces dominate the viscous forces. The object is moving quickly, or the fluid is not very viscous, or the object is very large. We typically think of these flows as being in the range of $Re &gt; 1000$. In these flows, the motion of the fluid is typically <a href="https://en.wikipedia.org/wiki/Turbulence">turbulent</a>. Turbulent flows are characterized by chaotic and irregular motion. The fluid moves in a complex and unpredictable way, with eddies and vortices forming and dissipating. Turbulent flows can be very difficult to predict and model, but they are also very common in nature.</p>
-<h4 id="von-kármáns-vortex-street-2-minute-video">Von Kármán&rsquo;s Vortex Street (2 minute video)<a hidden class="anchor" aria-hidden="true" href="#von-kármáns-vortex-street-2-minute-video">#</a></h4>
-<p>The <a href="https://en.wikipedia.org/wiki/Von_K%C3%A1rm%C3%A1n_vortex_street">von Kármán vortex street</a> is a pattern of alternating vortices that can form when a fluid flows past a &ldquo;bluff&rdquo; body, such as a cylinder or a sphere. The vortices are shed from the body in a regular pattern, creating a repeating pattern of alternating vortices. The von Kármán vortex street is an example of a high Reynolds number flow, and it can be used to study the behavior of turbulent flows. Below is a video of a von Kármán vortex street simulation.</p>
+<div class="admonition admonition-admonition tip" role="note" aria-label="Admonition"><p class="admonition-title">Von Kármán&#39;s Vortex Street (2 minute video)</p><div class="admonition-content">
+    <p>The <a href="https://en.wikipedia.org/wiki/Von_K%C3%A1rm%C3%A1n_vortex_street">von Kármán vortex street</a> is a pattern of alternating vortices that can form when a fluid flows past a &ldquo;bluff&rdquo; body, such as a cylinder or a sphere. The vortices are shed from the body in a regular pattern, creating a repeating pattern of alternating vortices. The von Kármán vortex street is an example of a high Reynolds number flow, and it can be used to study the behavior of turbulent flows. Below is a video of a von Kármán vortex street simulation.</p>
 <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
     src="https://www.youtube-nocookie.com/embed/f3LmjJ1N7YE"
@@ -369,10 +242,14 @@ As an object moves through the fluid, the molecules of the fluid collide with th
     loading="lazy">
   </iframe>
 </div>
+<ul>
+<li><em>Source: <a href="https://youtube.com/watch?v=f3LmjJ1N7YE">https://youtube.com/watch?v=f3LmjJ1N7YE</a></em></li>
+</ul>
+  </div>
+</div>
 
-<p>Source: <a href="https://youtube.com/watch?v=f3LmjJ1N7YE">https://youtube.com/watch?v=f3LmjJ1N7YE</a></p>
-<h4 id="turbulent-flow-24-minute-video">Turbulent Flow (24 minute video)<a hidden class="anchor" aria-hidden="true" href="#turbulent-flow-24-minute-video">#</a></h4>
-<p>Turbulence is a major research area in science. We don&rsquo;t fully understand it. We are trying to determine what triggers it, how to control it, and how to predict if and when it will occur. The problem of turbulence is frequently multi-scale such that behavior at one time or length scale is not well explained or connected to another scale. Additionally, the mathematics of turbulence is very difficult. It makes for an interesting and challenging research area. Below is a video that explains the some of the physics of turbulence. The first 4 minutes or so are at least worth watching.</p>
+<div class="admonition admonition-admonition tip" role="note" aria-label="Admonition"><p class="admonition-title">Turbulent Flow (24 minute video)</p><div class="admonition-content">
+    <p>Turbulence is a major research area in science. We don&rsquo;t fully understand it. We are trying to determine what triggers it, how to control it, and how to predict if and when it will occur. The problem of turbulence is frequently multi-scale such that behavior at one time or length scale is not well explained or connected to another scale. Additionally, the mathematics of turbulence is very difficult. It makes for an interesting and challenging research area. Below is a video that explains the some of the physics of turbulence. The first 4 minutes or so are at least worth watching.</p>
 <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
     src="https://www.youtube-nocookie.com/embed/RkewD966Y90"
@@ -384,27 +261,45 @@ As an object moves through the fluid, the molecules of the fluid collide with th
     loading="lazy">
   </iframe>
 </div>
+<ul>
+<li><em>Source: <a href="https://youtube.com/watch?v=RkewD966Y90">https://youtube.com/watch?v=RkewD966Y90</a></em></li>
+</ul>
+  </div>
+</div>
 
-<p>Source: <a href="https://youtube.com/watch?v=RkewD966Y90">https://youtube.com/watch?v=RkewD966Y90</a></p>
-<h2 id="developing-equations-of-motion">Developing Equations of Motion<a hidden class="anchor" aria-hidden="true" href="#developing-equations-of-motion">#</a></h2>
+<h2 id="developing-equations-of-motion">Developing Equations of Motion</h2>
 <p>As you might have noticed in the last few weeks, our principal work is using models to develop equations of motion. Those equations of motion can then be analyzed, integrated, and plotted to understand the behavior of the system. This week, we will focus on the equations of motion for a few different systems.</p>
 <p>We will set up the equations of motion for a 2D quadratic drag system and show it&rsquo;s intractable analytically. Here is where our use of <a href="https://en.wikipedia.org/wiki/Euler%E2%80%93Cromer_method">Euler-Cromer integration</a> can get us out of trouble. We will also develop the analytical solution to the 2D drag case when the drag is linear, which will show us how to solve these problems and compare them things we know.We will then quickly introduce two additional systems that are very common &ldquo;base models&rdquo; for more complex systems: (1) the gravitational bound planet system (a proxy for other central force systems) and (2) the simple harmonic oscillator (a common proxy for many oscillatory systems).</p>
-<h3 id="two-dimensional-quadratic-drag">Two-Dimensional Quadratic Drag<a hidden class="anchor" aria-hidden="true" href="#two-dimensional-quadratic-drag">#</a></h3>
+<h3 id="two-dimensional-quadratic-drag">Two-Dimensional Quadratic Drag</h3>
 <p>The drag force in 2D can be written in terms of the velocity vector of the object as:</p>
 <p>$$\vec{F}_{drag} = -D |\vec{v}| \vec{v}$$</p>
 <p>where $D$ is the drag coefficient and $\vec{v}$ is the velocity vector. Note that this force is written entirely using velocity, there is no dependence on position. However, the velocity vector is also function of time, $\vec{v} = \vec{v}(t)$.</p>
-<h4 id="define-the-coordinate-system">Define the Coordinate System<a hidden class="anchor" aria-hidden="true" href="#define-the-coordinate-system">#</a></h4>
+<h4 id="define-the-coordinate-system">Define the Coordinate System</h4>
 <p>To start this analysis, we need to define a coordinate system. Below, we draw the particle at some random time with the vecolicty vector shown. The axes are typical: $x$ is horizontal and $y$ is vertical. The drag force is always opposite to the velocity vector, so it will always be in the opposite direction of the velocity vector.</p>
-<p><img alt="Coordinate System" loading="lazy" src="/images/notes/week4/2d-falling-ball.png"></p>
+<figure class="figure " role="figure" aria-label="Coordinate system choice for the 2D falling ball.">
+  <img src="/images/notes/week4/2d-falling-ball.png" alt="Coordinate system choice for the 2D falling ball." loading="lazy"><figcaption class="figure-caption">Coordinate system choice for the 2D falling ball.</figcaption></figure>
+
+<div class="admonition admonition-caution " role="note" aria-label="Caution"><p class="admonition-title">Caution</p><div class="admonition-content">
+    Redraw vector figure and post SVG
+  </div>
+</div>
+
 <p>In this coordinate system, the properties of the particle are:</p>
 <p>$$\vec{r} = x \hat{x} + y \hat{y} = \langle x, y \rangle$$
 $$\vec{v} = v_x \hat{x} + v_y \hat{y} = \langle v_x, v_y \rangle$$
 $$\vec{a} = a_x \hat{x} + a_y \hat{y} = \langle a_x, a_y \rangle$$</p>
 <p>where $\hat{x}$ and $\hat{y}$ are the unit vectors in the $x$ and $y$ directions, respectively. And the magnitude of the velocity vector is $|\vec{v}| = \sqrt{v_x^2 + v_y^2}$ as you might imagine.</p>
 <p>The free body diagram at the point in time shown above is shown below. You see the gravitational force pointing directly downward and the drag force pointing in the opposite direction of the velocity vector. We continue to apply our coordinate system to the forces.</p>
-<p><img alt="Free Body Diagram" loading="lazy" src="/images/notes/week4/2d-falling-ball-fbd.png"></p>
-<h4 id="apply-newtons-second-law">Apply Newton&rsquo;s Second Law<a hidden class="anchor" aria-hidden="true" href="#apply-newtons-second-law">#</a></h4>
-<p>We now apply Newton&rsquo;s Seccond Law to the particle in the chosen coordinate system. The forces acting on the particle are the gravitational force and the drag force.</p>
+<figure class="figure " role="figure" aria-label="Free Body Diagram for the 2D falling ball.">
+  <img src="/images/notes/week4/2d-falling-ball-fbd.png" alt="Free Body Diagram for the 2D falling ball." loading="lazy"><figcaption class="figure-caption">Free Body Diagram for the 2D falling ball.</figcaption></figure>
+
+<div class="admonition admonition-caution " role="note" aria-label="Caution"><p class="admonition-title">Caution</p><div class="admonition-content">
+    Redraw vector figure and post SVG
+  </div>
+</div>
+
+<h4 id="apply-newtons-second-law">Apply Newton&rsquo;s Second Law</h4>
+<p>We now apply Newton&rsquo;s Second Law to the particle in the chosen coordinate system. The forces acting on the particle are the gravitational force and the drag force.</p>
 <p>$$\vec{F}<em>{net} = \vec{F}</em>{gravity} + \vec{F}_{drag}$$</p>
 <p>How do we apply the coordinate system to the forces? We focus on the diagram above. We start by writing the sum of the forces. For this, we take $F_{gravity,x}$ to be a positive value, $mg$, where $g$ is the magnitude of the acceleration due to gravity.</p>
 <p>$$F_{net,x} =  F_{drag,x}$$
@@ -420,19 +315,26 @@ $$\ddot{y} = -\frac{D}{m} \dot{y}\sqrt{\dot{x}^2 + \dot{y}^2} - g$$</p>
 $$\dot{v}_y = -\frac{D}{m} {v_y}\sqrt{{v_x}^2 + {v_y}^2} - g$$</p>
 <p>Rats! There is no analytical solution to these equations.</p>
 <p>These are called <a href="https://math.libretexts.org/Bookshelves/Differential_Equations/Differential_Equations_(Chasnov)/07:_Systems_of_Equations/7.02:_Coupled_First-Order_Equations">coupled differential equations</a> because the equations are linked by the terms $\dot{x}$ and $\dot{y}$. This means that we cannot solve them independently. We need another approach to solve these equations.</p>
-<h5 id="why-cant-we-solve-these-equations">Why can&rsquo;t we solve these equations?<a hidden class="anchor" aria-hidden="true" href="#why-cant-we-solve-these-equations">#</a></h5>
+<h5 id="why-cant-we-solve-these-equations">Why can&rsquo;t we solve these equations?</h5>
 <p>We cannot form a solution because they are coupled and non-linear. Sometimes, we can decouple these equations (as we will see later) and produce partial differentials of the form:</p>
 <p>$$f_1(v_x)dv_x = g_1(t)dt$$
 $$f_2(v_y)dv_y = g_2(t)dt$$</p>
 <p>These lead to independent equations of motion. We can use separation of variables to try to solve them. This is not possible in all cases, so functions are still not integrable analytically. But we cannot even form these partials, so an analytical solution is not possible in this case.</p>
-<h3 id="linear-drag-in-two-dimensions">Linear Drag in Two-Dimensions<a hidden class="anchor" aria-hidden="true" href="#linear-drag-in-two-dimensions">#</a></h3>
+<h3 id="linear-drag-in-two-dimensions">Linear Drag in Two-Dimensions</h3>
 <p>As we saw above, the quadratic drag case is intractable. However, the linear drag case is analytically solvable. The drag force in 2D can be written in terms of the velocity vector of the object as:</p>
 <p>$$\vec{F}_{lin} = -m \gamma \vec{v}$$</p>
 <p>where $\gamma$ is a proxy for the drag coefficient. The linear drag force is proportional to the velocity vector.</p>
 <p>We have the same set up as before and same FBD.</p>
-<p><img alt="Coordinate System" loading="lazy" src="/images/notes/week4/2d-falling-ball.png"></p>
+<figure class="figure " role="figure" aria-label="Coordinate System for the 2D falling ball.">
+  <img src="/images/notes/week4/2d-falling-ball.png" alt="Coordinate System for the 2D falling ball." loading="lazy"><figcaption class="figure-caption">Coordinate System for the 2D falling ball.</figcaption></figure>
+
+<div class="admonition admonition-caution " role="note" aria-label="Caution"><p class="admonition-title">Caution</p><div class="admonition-content">
+    Redraw vector figure and post SVG
+  </div>
+</div>
+
 <p>And thus the same coordinate system. The properties of the particle are the same as above.</p>
-<h4 id="apply-newtons-second-law-1">Apply Newton&rsquo;s Second Law<a hidden class="anchor" aria-hidden="true" href="#apply-newtons-second-law-1">#</a></h4>
+<h4 id="apply-newtons-second-law-1">Apply Newton&rsquo;s Second Law</h4>
 <p>We now apply Newton&rsquo;s Seccond Law to the particle in the chosen coordinate system. The forces acting on the particle are the gravitational force and the drag force.</p>
 <p>$$\vec{F}<em>{net} = \vec{F}</em>{gravity} + \vec{F}_{lin}$$</p>
 <p>Again, the gravitation force magnitude is $mg$, so we write the forces in terms of the components of the vectors:</p>
@@ -444,9 +346,9 @@ $$m a_y = -m \gamma v_y - mg$$</p>
 <p>Notice that $v_x$ and $v_y$ are the components of the velocity vector; they can be positive, negative, or zero. We can clean this up in terms of the velocity components, and we have two linear, uncoupled differential equations:</p>
 <p>$$\dot{v}_x = -\gamma v_x$$
 $$\dot{v}_y = - \gamma v_y - g$$</p>
-<h4 id="solve-the-equations">Solve the Equations<a hidden class="anchor" aria-hidden="true" href="#solve-the-equations">#</a></h4>
+<h4 id="solve-the-equations">Solve the Equations</h4>
 <p>We can try to solve these equations by integrating them. We can integrate the first equation to get the velocity in the $x$ direction as a function of time.</p>
-<h5 id="velocity-in-the-x-direction">Velocity in the $x$ direction<a hidden class="anchor" aria-hidden="true" href="#velocity-in-the-x-direction">#</a></h5>
+<h5 id="velocity-in-the-x-direction">Velocity in the $x$ direction</h5>
 <p>$$\dot{v}_x = -\gamma v_x$$</p>
 <p>We separate the variables and integrate:</p>
 <p>$$\frac{dv_x}{v_x} = -\gamma dt$$</p>
@@ -455,7 +357,7 @@ $$\dot{v}_y = - \gamma v_y - g$$</p>
 <p>$$\ln(v_x) - \ln(v_{0,x}) = -\gamma t$$</p>
 <p>$$v_x(t) = v_{0,x} e^{-\gamma t}$$</p>
 <p>We see an exponential decay in the velocity in the $x$ direction.</p>
-<h5 id="velocity-in-the-y-direction">Velocity in the $y$ direction<a hidden class="anchor" aria-hidden="true" href="#velocity-in-the-y-direction">#</a></h5>
+<h5 id="velocity-in-the-y-direction">Velocity in the $y$ direction</h5>
 <p>Now we can try to do the same for $v_y$:</p>
 <p>$$\dot{v}_y = -\gamma v_y - g$$</p>
 <p>We separate the variables and integrate:</p>
@@ -470,7 +372,7 @@ $$\dot{v}_y = - \gamma v_y - g$$</p>
 <p>$$\left(\dfrac{g}{\gamma} + v_y\right) = \left(\dfrac{g}{\gamma} + v_{0,y}\right) e^{-\gamma t}$$</p>
 <p>$$v_y(t) = \dfrac{g}{\gamma}\left(e^{-\gamma t} - 1\right) + v_{0,y} e^{-\gamma t}$$</p>
 <p>In the $y$ direction, the story appears more complex.</p>
-<h4 id="trajectories">Trajectories<a hidden class="anchor" aria-hidden="true" href="#trajectories">#</a></h4>
+<h4 id="trajectories">Trajectories</h4>
 <p>One of the main concepts we will discuss the trajectory of a system. We borrow that language and idea from projectile motion &ndash;  the location of the particle as a function of time is the trajectory. In this class, we will consider the word trajectory to mean the evolution of any property of the system as a function of time. This connects strongly to the concept of phase space, which we will discuss in the future.</p>
 <p>In the prior example, we found the trajectory of the velocity in the $x$ and $y$ directions.</p>
 <p>$$v_x(t) = v_{0,x} e^{-\gamma t}$$
@@ -479,22 +381,43 @@ $$v_y(t) = \dfrac{g}{\gamma}\left(e^{-\gamma t} - 1\right) + v_{0,y} e^{-\gamma 
 <p>Those integrals are doable, but they can be a little messy. We won&rsquo;t do them here, but quote the results consistent with the above equations.</p>
 <p>$$x(t) = x_0 + \dfrac{1}{\gamma}v_{0,x}\left(1 - e^{-\gamma t}\right)$$
 $$y(t) = y_0 - \dfrac{g}{\gamma}t + \dfrac{1}{\gamma}\left(\dfrac{g}{\gamma} + v_{0,y}\right)\left(1 - e^{-\gamma t}\right)$$</p>
-<h3 id="2d-gravitational-bound-system">2D Gravitational Bound System<a hidden class="anchor" aria-hidden="true" href="#2d-gravitational-bound-system">#</a></h3>
+<h3 id="2d-gravitational-bound-system">2D Gravitational Bound System</h3>
 <p>Consider a massive object (a large star) and a smaller satellite (a moon or small planet). We know that <a href="https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation">Newton&rsquo;s Universal Law of Gravitation</a> tells us the force between two objects that interact gravitationally is:</p>
 <p>$$F = \dfrac{G m_1 m_2}{r^2}$$</p>
 <p>where $G$ is the gravitational constant, $m_1$ and $m_2$ are the masses of the objects, and $r$ is the distance between the objects.</p>
 <p>But we need to be more clear about the forces and the vector relationships. Consider the figure below with the massive object at the origin and the satellite at some distance $r$ from the origin. What is the vector $\vec{r}$ that describes the location of the satellite?</p>
-<p><img alt="Gravitational Bound System" loading="lazy" src="/images/notes/week4/grav_01.png"></p>
+<figure class="figure " role="figure" aria-label="Gravitationally bound system with one body at the origin.">
+  <img src="/images/notes/week4/grav_01.png" alt="Gravitationally bound system with one body at the origin." loading="lazy"><figcaption class="figure-caption">Gravitationally bound system with one body at the origin.</figcaption></figure>
+
+<div class="admonition admonition-error " role="note" aria-label="Error"><p class="admonition-title">Error</p><div class="admonition-content">
+    Draw vector figure and post SVG
+  </div>
+</div>
+
 <p>If we move the sun from the origin a little, we can start to see what $\vec{r}$ is. The vector $\vec{r}$ is the vector from the sun to the satellite. See the figure below to see the sketch.</p>
-<p><img alt="Gravitational Bound System" loading="lazy" src="/images/notes/week4/grav_02.png"></p>
+<figure class="figure " role="figure" aria-label="Gravitationally bound system with neither body at the origin.">
+  <img src="/images/notes/week4/grav_02.png" alt="Gravitationally bound system with neither body at the origin." loading="lazy"><figcaption class="figure-caption">Gravitationally bound system with neither body at the origin.</figcaption></figure>
+
+<div class="admonition admonition-error " role="note" aria-label="Error"><p class="admonition-title">Error</p><div class="admonition-content">
+    Draw vector figure and post SVG
+  </div>
+</div>
+
 <p>So if the location of the sun is $\vec{r}<em>{sun}$ and the Earth is $\vec{r}</em>{earth}$, then the vector $\vec{r}$ is:</p>
 <p>$$\vec{r} = \vec{r}<em>{earth} - \vec{r}</em>{sun}$$</p>
 <p>Let&rsquo;s return to the simplified model with the sun at the origin, and consider the earth at some distance $r$ from the origin. The force on the earth is:</p>
 <p>$$\vec{F}<em>{grav} = -G \dfrac{M</em>{sun} M_{earth}}{|\vec{r}|^3} \vec{r}$$</p>
 <p>where $M_{sun} = 2\times10^{30} \mathrm{kg}$ is the mass of the sun and $M_{earth} = 6 \times 10^{24} \mathrm{kg}$ is the mass of the earth.</p>
-<h4 id="define-the-coordinate-system-1">Define the Coordinate System<a hidden class="anchor" aria-hidden="true" href="#define-the-coordinate-system-1">#</a></h4>
+<h4 id="define-the-coordinate-system-1">Define the Coordinate System</h4>
 <p>In the figure below, we show the earth at some distance $r$ from the origin at an angle $\phi$ from the $x$-axis. This distance is about $1.5 \times 10^{11};\mathrm{m}$ or $1;\mathrm{A.U.}$ (<a href="https://en.wikipedia.org/wiki/Astronomical_unit">astronomical unit</a>). While not entirely obvious, the scale of these numbers allow us to assume the Sun is at the origin, and doesn&rsquo;t move. Although this is not a good assumption for the real solar system, the sun orbits the <a href="https://en.wikipedia.org/wiki/Barycenter">barycenter</a> of the solar system, which is about 1 solar radii from the center of the sun.</p>
-<p><img alt="Gravitational Bound System" loading="lazy" src="/images/notes/week4/grav_03.png"></p>
+<figure class="figure " role="figure" aria-label="Vector analysis for a gravitationally bound system with neither body at the origin.">
+  <img src="/images/notes/week4/grav_03.png" alt="Vector analysis for a gravitationally bound system with neither body at the origin." loading="lazy"><figcaption class="figure-caption">Vector analysis for a gravitationally bound system with neither body at the origin.</figcaption></figure>
+
+<div class="admonition admonition-error " role="note" aria-label="Error"><p class="admonition-title">Error</p><div class="admonition-content">
+    Draw vector figure and post SVG
+  </div>
+</div>
+
 <p>Let&rsquo;s use the standard $x$ and $y$ axes to write the equations of motion. We can apply Newton&rsquo;s Second Law to the earth in the chosen coordinate system.</p>
 <p>$$\vec{F}<em>{net} = \vec{F}</em>{gravity} = m\vec{a} = m\langle a_x, a_y \rangle$$</p>
 <p>So that the forces in the $x$ and $y$ directions are:</p>
@@ -503,24 +426,26 @@ $$y(t) = y_0 - \dfrac{g}{\gamma}t + \dfrac{1}{\gamma}\left(\dfrac{g}{\gamma} + v
 <p>$$a_x = -G \dfrac{M_{sun} x}{(x^2+y^2)^{3/2}} \qquad a_y = -G \dfrac{M_{sun} y}{(x^2+y^2)^{3/2}}$$</p>
 <p>This gives us a set of coupled differential equations.</p>
 <p>$$\ddot{x} = -G \dfrac{M_{sun} x}{(x^2+y^2)^{3/2}} \qquad \ddot{y} = -G \dfrac{M_{sun} y}{(x^2+y^2)^{3/2}}$$</p>
-<h4 id="how-do-we-then-get-the-trajectories">How do we then get the trajectories?<a hidden class="anchor" aria-hidden="true" href="#how-do-we-then-get-the-trajectories">#</a></h4>
+<h4 id="how-do-we-then-get-the-trajectories">How do we then get the trajectories?</h4>
 <p>We can&rsquo;t solve these equations without more information. We need to know the initial conditions of the system (the initial position and velocity of the Earth). We can then integrate these equations to get the position of the Earth as a function of time.</p>
 <p>We have three potential ways to solve these EOMs:</p>
 <ol>
-<li>Direct Integration: We can integrate the equations of motion directly. This is possible in some cases where the equations are simple enough; think about the falling ball without air resistance, or the linear 1D drag case.</li>
-<li>Decouple and Solve: We try to solve the coupled differential equations by decoupling them. This is possible in some cases, but not all. We can frequently decouple the equations by writing them in terms of the velocity, or by making a change of position variables.</li>
-<li>Numerical Integration: We use numerical methods to predict the motion in small time steps. This is the most common method for solving complex systems.</li>
+<li><strong>Direct Integration:</strong> We can integrate the equations of motion directly. This is possible in some cases where the equations are simple enough; think about the falling ball without air resistance, or the linear 1D drag case.</li>
+<li><strong>Decouple and Solve:</strong> We try to solve the coupled differential equations by decoupling them. This is possible in some cases, but not all. We can frequently decouple the equations by writing them in terms of the velocity, or by making a change of position variables.</li>
+<li><strong>Numerical Integration:</strong> We use numerical methods to predict the motion in small time steps. This is the most common method for solving complex systems.</li>
 </ol>
-<h3 id="the-simple-harmonic-oscillator-sho">The Simple Harmonic Oscillator (SHO)<a hidden class="anchor" aria-hidden="true" href="#the-simple-harmonic-oscillator-sho">#</a></h3>
+<h3 id="the-simple-harmonic-oscillator-sho">The Simple Harmonic Oscillator (SHO)</h3>
 <p>In 1D, the simple harmonic oscillator is a system where the force is proportional to the displacement from the equilibrium position. The force is given by:</p>
 <p>$$F = -ks$$</p>
 <p>where $k$ is the spring constant and $s$ is the displacement from the equilibrium position, $x-L_0$. The quantity $L_0$ is the relaxed length of the spring. The figure below shows the typical horizontal spring system.</p>
-<p><img alt="SHO" loading="lazy" src="/images/notes/week3/sho_horizontal.png"></p>
+<figure class="figure " role="figure" aria-label="Free Body Diagram of a Simple Harmonic Oscillator; the arrows label the direction of forces acting on the mass. [SVG File](../images/vector-graphics/simple_harmonic_oscillator_setup_1D_horizontal.svg)">
+  <img src="/images/vector-graphics/simple_harmonic_oscillator_setup_1D_horizontal.png" alt="Free Body Diagram of a Simple Harmonic Oscillator; the arrows label the direction of forces acting on the mass. [SVG File](../images/vector-graphics/simple_harmonic_oscillator_setup_1D_horizontal.svg)" loading="lazy"><figcaption class="figure-caption">Free Body Diagram of a Simple Harmonic Oscillator; the arrows label the direction of forces acting on the mass. <a href="../images/vector-graphics/simple_harmonic_oscillator_setup_1D_horizontal.svg">SVG File</a></figcaption></figure>
+
 <p>We can typically choose to measure the displacement from the equilibrium position, and write the force instead as:</p>
 <p>$$F = m a_x = m \dot{v}_x  = m\ddot{x} = -kx$$</p>
 <p>So the equation of motion that we will try to solve is:</p>
 <p>$$\ddot{x} = -\dfrac{k}{m}x$$</p>
-<h4 id="how-do-we-solve-this">How do we solve this?<a hidden class="anchor" aria-hidden="true" href="#how-do-we-solve-this">#</a></h4>
+<h4 id="how-do-we-solve-this">How do we solve this?</h4>
 <p>$$\dfrac{d^2x}{dt^2} = -\dfrac{k}{m}x = - \omega^2 x$$</p>
 <p>where $\omega = \sqrt{\dfrac{k}{m}}$ is the natural oscillation frequency of the system.</p>
 <p>It might seem strange, but let&rsquo;s try the following potential solution to the differential equation:</p>
@@ -542,105 +467,41 @@ $$\ddot{x}(t) = -A \omega^2 \cos(\omega t) - B \omega^2 \sin(\omega t) = -\omega
 $$\ddot{x}(t) = -D \omega^2 \cos(\omega t + \phi) = -\omega^2 x(t)$$</p>
 <p>So we have several forms of the general solution to the simple harmonic oscillator. We can use these solutions to understand the behavior of the system. We can also use these solutions to understand the behavior of more complex systems that can be approximated by the simple harmonic oscillator.</p>
 <p>One critical aspect of these solutions is that they have 2 free parameters, $A$ and $B$, or $D$ and $\phi$. These parameters are determined by the initial conditions of the system. <strong>There are N free parameters in the general solution to an Nth order differential equation.</strong></p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Posted for educational access under <a href="https://en.wikipedia.org/wiki/Fair_use">fair use</a> and will direct to original article when course is archived.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
 
 
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="//localhost:1313/course-materials/03_notes/">
-    <span class="title">« Prev</span>
-    <br>
-    <span>03 - What is Mathematical Modeling?</span>
-  </a>
-  <a class="next" href="//localhost:1313/course-materials/05_notes/">
-    <span class="title">Next »</span>
-    <br>
-    <span>05 - Conservation Laws Govern and Constrain our Physics</span>
-  </a>
-</nav>
-
-  </footer>
-</article>
-    </main>
     
-<footer class="footer">
-        <span>&copy; 2026 <a href="//localhost:1313/">Classical Mechanics</a></span> · 
+    <nav style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                
+                <a href="/course-materials/05_notes/">← 05 - Conservation Laws Govern and Constrain our Physics</a>
+                
+            </div>
+            <div style="text-align: right;">
+                
+                <a href="/course-materials/03_notes/">03 - What is Mathematical Modeling? →</a>
+                
+            </div>
+        </div>
+    </nav>
+    
+</article>
 
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
+    </main>
 
-<script>
-    let menu = document.getElementById('menu');
-    if (menu) {
+    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
         
-        const scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-            menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
+        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
         
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
+        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
+    </footer>
 </body>
-
 </html>

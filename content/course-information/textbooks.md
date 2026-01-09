@@ -1,7 +1,7 @@
 ---
 title: Textbooks and Course Materials
 weight: 3
-date: '2026-01-08'
+date: '2026-01-09'
 ---
 
 ## Course Materials:

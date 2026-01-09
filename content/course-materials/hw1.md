@@ -1,7 +1,7 @@
 ---
 title: Homework 1 (Due 23 Jan)
 weight: 1
-date: '2026-01-08'
+date: '2026-01-09'
 math: true
 highlight: true
 ---
@@ -122,7 +122,7 @@ The notation that we use for vectors was developed relatively recently in mathem
 
 The three vectors $\boldsymbol{a}$, $\boldsymbol{b}$, and $\boldsymbol{c}$ are the three sides of a triangle *ABC*. The angles $\alpha$, $\beta$, and $\gamma$ are the angles opposite the sides $\boldsymbol{a}$, $\boldsymbol{b}$, and $\boldsymbol{c}$, respectively as shown below.
 
-![triangle](/images/assignments/1.15-triangle.png)
+{{< figure src="/images/assignments/1.15-triangle.png" alt="triangle" >}}
 
 *(Figure: A triangle with sides $\boldsymbol{a}$, $\boldsymbol{b}$, and $\boldsymbol{c}$ and angles $\alpha$, $\beta$, and $\gamma$; reproduced from JRT.)*
 
@@ -176,3 +176,32 @@ import matplotlib.pyplot as plt
 ```python
 ## your code here
 ```
+
+# Extra Credit — Integrating Research 
+
+{{< admonition type="admonition" title="Earning and Submitting Your Summary" class="alert" >}}
+Earn up to 5 extra credit points per homework by engaging with MSU research activities. These points can boost your grade above 100% or help offset missed exercises.
+
+**Send via email to Danny <caball14@msu.edu>**
+{{< /admonition >}}
+
+Earn up to 5 extra credit points per homework by engaging with MSU research activities. These points can boost your grade above 100% or help offset missed exercises.
+
+To receive full credit:
+
+1. **Attend** an MSU research talk (see approved clubs and seminars below).
+2. **Write** a summary of the talk (at least 150 words).
+3. **Submit** your summary with your homework (email to <caball14@msu.edu>).
+
+**Approved talks include:**
+- Society for Physics Students (SPS): Meets Monday nights (alternates with Astronomy Club)
+- Astronomy Club: Meets Monday nights (alternates with SPS)
+- Any [physics and astronomy seminar](https://pa.msu.edu/news-events-seminars/index.aspx) of interest
+- Any MSU research seminar/workshop relevant to physics (get approval if unsure)
+- Any other physics-related event approved in advance
+
+If you have questions, please contact Danny.
+
+**Note:** You can earn 5% extra credit on each homework by attending a seminar, workshop, or other physics-related event and submitting a short reflection (about 150 words) on your experience.
+
+

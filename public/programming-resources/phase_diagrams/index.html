@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plotting Phase Diagrams | Classical Mechanics</title>
+    <meta name="description" content="Classical Mechanics">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+    
+    <link rel="stylesheet" href="//localhost:1313/css/accessibility.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        nav {
+            background: #f4f4f4;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #222;
+            margin-top: 1.5em;
+        }
+        h1 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "SF Mono", Monaco, Consolas, monospace;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: #0066cc;
+        }
+        .menu-home {
+            font-weight: bold;
+            margin-right: 30px;
+        }
+    </style>
+</head>
+<body>
+    <nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li class="menu-home"><a href="//localhost:1313/">Classical Mechanics</a></li>
+            
+            
+            <li><a href="/course-information/">Course Information</a></li>
+            
+            
+            
+            <li><a href="/course-materials/">Course Materials</a></li>
+            
+            
+            
+            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
+            
+            
+            
+            <li><a href="/programming-resources/">Programming Resources</a></li>
+            
+            
+        </ul>
+    </nav>
+
+    <main role="main">
+        
+<article>
+    <header>
+        <h1>Plotting Phase Diagrams</h1>
+        
+    </header>
+
+    <p>In this notebook, we provide examples from class where we have plotted 1D and 2D phase diagrams. We will use the <code>matplotlib</code> library to create these plots.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> style
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, <span style="color:#ae81ff">1000</span>)
+</span></span><span style="display:flex;"><span>mu <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>xdot <span style="color:#f92672">=</span> mu <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>sin(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fig, ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">5</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>plot(x, xdot, <span style="color:#e6db74">&#39;k&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\dot{\phi} = -\sin(\phi)$&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>axhline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>axvline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot([<span style="color:#ae81ff">0</span>], [<span style="color:#ae81ff">0</span>], 
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#39;C1o&#39;</span>, 
+</span></span><span style="display:flex;"><span>         markersize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>         label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Stable fixed points&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot([<span style="color:#f92672">-</span>np<span style="color:#f92672">.</span>pi, np<span style="color:#f92672">.</span>pi], [<span style="color:#ae81ff">0</span>,  <span style="color:#ae81ff">0</span>], 
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#39;C2o&#39;</span>, 
+</span></span><span style="display:flex;"><span>         markersize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>, 
+</span></span><span style="display:flex;"><span>         markerfacecolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;none&#39;</span>,
+</span></span><span style="display:flex;"><span>         markeredgewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>         markeredgecolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;C2&#39;</span>,
+</span></span><span style="display:flex;"><span>         label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Unstable fixed points&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot([np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>], [ <span style="color:#ae81ff">0</span>], 
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#39;k&lt;&#39;</span>, 
+</span></span><span style="display:flex;"><span>         markersize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>         label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Flow to the left&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot([<span style="color:#f92672">-</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">0</span>], 
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#39;k&gt;&#39;</span>, 
+</span></span><span style="display:flex;"><span>         markersize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>         label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Flow to the right&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>legend(loc<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;upper left&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>xlim(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, np<span style="color:#f92672">.</span>pi)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>xticks <span style="color:#f92672">=</span> [<span style="color:#f92672">-</span>np<span style="color:#f92672">.</span>pi, <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>, <span style="color:#f92672">-</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">0</span>, np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>, np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>, np<span style="color:#f92672">.</span>pi]
+</span></span><span style="display:flex;"><span>xticks_labels <span style="color:#f92672">=</span> [<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\pi$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\frac{3\pi}</span><span style="color:#e6db74">{4}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\frac{\pi}</span><span style="color:#e6db74">{2}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\frac{\pi}</span><span style="color:#e6db74">{4}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$0$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\frac{\pi}</span><span style="color:#e6db74">{4}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\frac{\pi}</span><span style="color:#e6db74">{2}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\frac{3\pi}</span><span style="color:#e6db74">{4}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\pi$&#39;</span>]
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_xticks(xticks)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_xticklabels(xticks_labels)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>ylim(<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\phi$&#39;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\dfrac{d\phi}{d\tau}$&#39;</span>, rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>grid()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><p><img src="output_1_0.png" alt="png"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> style
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, <span style="color:#ae81ff">1000</span>)
+</span></span><span style="display:flex;"><span>mu <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.6</span>
+</span></span><span style="display:flex;"><span>xdot <span style="color:#f92672">=</span> mu <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>sin(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fig, ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">5</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>plot(x, xdot, <span style="color:#e6db74">&#39;k&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\dot{\phi} = 0.6-\sin(\phi)$&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>axhline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>axvline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot([<span style="color:#ae81ff">0.643</span>], [<span style="color:#ae81ff">0</span>], 
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#39;C1o&#39;</span>, 
+</span></span><span style="display:flex;"><span>         markersize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>         label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Stable fixed points&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot([<span style="color:#ae81ff">2.5</span>], [<span style="color:#ae81ff">0</span>], 
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#39;C2o&#39;</span>, 
+</span></span><span style="display:flex;"><span>         markersize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>, 
+</span></span><span style="display:flex;"><span>         markerfacecolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;none&#39;</span>,
+</span></span><span style="display:flex;"><span>         markeredgewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>         markeredgecolor<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;C2&#39;</span>,
+</span></span><span style="display:flex;"><span>         label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Unstable fixed points&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot([np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>], [ <span style="color:#ae81ff">0</span>], 
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#39;k&lt;&#39;</span>, 
+</span></span><span style="display:flex;"><span>         markersize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>         label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Flow to the left&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot([<span style="color:#f92672">-</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">0</span>], 
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#39;k&gt;&#39;</span>, 
+</span></span><span style="display:flex;"><span>         markersize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>         label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Flow to the right&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>legend(loc<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;upper left&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>xlim(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, np<span style="color:#f92672">.</span>pi)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>xticks <span style="color:#f92672">=</span> [<span style="color:#f92672">-</span>np<span style="color:#f92672">.</span>pi, <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>, <span style="color:#f92672">-</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">0</span>, np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>, np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>, np<span style="color:#f92672">.</span>pi]
+</span></span><span style="display:flex;"><span>xticks_labels <span style="color:#f92672">=</span> [<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\pi$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\frac{3\pi}</span><span style="color:#e6db74">{4}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\frac{\pi}</span><span style="color:#e6db74">{2}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\frac{\pi}</span><span style="color:#e6db74">{4}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$0$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\frac{\pi}</span><span style="color:#e6db74">{4}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\frac{\pi}</span><span style="color:#e6db74">{2}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\frac{3\pi}</span><span style="color:#e6db74">{4}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\pi$&#39;</span>]
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_xticks(xticks)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_xticklabels(xticks_labels)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>ylim(<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\phi$&#39;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\dfrac{d\phi}{d\tau}$&#39;</span>, rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>grid()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><p><img src="output_2_0.png" alt="png"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> style
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, <span style="color:#ae81ff">1000</span>)
+</span></span><span style="display:flex;"><span>mu <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.2</span>
+</span></span><span style="display:flex;"><span>xdot <span style="color:#f92672">=</span> mu <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>sin(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fig, ax <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">5</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>plot(x, xdot, <span style="color:#e6db74">&#39;k&#39;</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\dot{\phi} = 1.2-\sin(\phi)$&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>axhline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>axvline(<span style="color:#ae81ff">0</span>, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;black&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>plot([<span style="color:#f92672">-</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>], [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>], 
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#39;k&gt;&#39;</span>, 
+</span></span><span style="display:flex;"><span>         markersize<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>,
+</span></span><span style="display:flex;"><span>         label<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Flow to the right&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>legend(loc<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;upper left&#39;</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>xlim(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi, np<span style="color:#f92672">.</span>pi)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>xticks <span style="color:#f92672">=</span> [<span style="color:#f92672">-</span>np<span style="color:#f92672">.</span>pi, <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>, <span style="color:#f92672">-</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">0</span>, np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>, np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi<span style="color:#f92672">/</span><span style="color:#ae81ff">4</span>, np<span style="color:#f92672">.</span>pi]
+</span></span><span style="display:flex;"><span>xticks_labels <span style="color:#f92672">=</span> [<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\pi$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\frac{3\pi}</span><span style="color:#e6db74">{4}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\frac{\pi}</span><span style="color:#e6db74">{2}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\frac{\pi}</span><span style="color:#e6db74">{4}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$0$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\frac{\pi}</span><span style="color:#e6db74">{4}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\frac{\pi}</span><span style="color:#e6db74">{2}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$-\frac{3\pi}</span><span style="color:#e6db74">{4}</span><span style="color:#e6db74">$&#39;</span>, <span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\pi$&#39;</span>]
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_xticks(xticks)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_xticklabels(xticks_labels)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>ylim(<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\phi$&#39;</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\dfrac{d\phi}{d\tau}$&#39;</span>, rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>ax<span style="color:#f92672">.</span>grid()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><p><img src="output_3_0.png" alt="png"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> style
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the system of differential equations</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(x, v):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> v
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">g</span>(x, v):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span>x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a grid of points</span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">20</span>)
+</span></span><span style="display:flex;"><span>v <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">20</span>)
+</span></span><span style="display:flex;"><span>X, V <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>meshgrid(x, v)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Compute the derivatives at each point in the grid</span>
+</span></span><span style="display:flex;"><span>U <span style="color:#f92672">=</span> f(X, V)
+</span></span><span style="display:flex;"><span>W <span style="color:#f92672">=</span> g(X, V)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## create side-by-side plots</span>
+</span></span><span style="display:flex;"><span>fig, (ax1, ax2) <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">8</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Plot the vector field using quiver</span>
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>quiver(X, V, U, W, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;C0&#39;</span>, lw<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set the labels and title</span>
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$x$&#39;</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\dot</span><span style="color:#e6db74">{x}</span><span style="color:#e6db74">$&#39;</span>, rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;Phase Diagram for $\ddot</span><span style="color:#e6db74">{x}</span><span style="color:#e6db74"> = -x$ with quiver&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set the limits</span>
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>set_xlim(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>set_ylim(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add a grid</span>
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>grid()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Plot the streamlines using streamplot</span>
+</span></span><span style="display:flex;"><span>ax2<span style="color:#f92672">.</span>streamplot(X, V, U, W, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;C1&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set the labels and title</span>
+</span></span><span style="display:flex;"><span>ax2<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$x$&#39;</span>)
+</span></span><span style="display:flex;"><span>ax2<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\dot</span><span style="color:#e6db74">{x}</span><span style="color:#e6db74">$&#39;</span>, rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>ax2<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;Phase Diagram for $\ddot</span><span style="color:#e6db74">{x}</span><span style="color:#e6db74"> = -x$ with streamplot&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set the limits</span>
+</span></span><span style="display:flex;"><span>ax2<span style="color:#f92672">.</span>set_xlim(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>ax2<span style="color:#f92672">.</span>set_ylim(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add a grid</span>
+</span></span><span style="display:flex;"><span>ax2<span style="color:#f92672">.</span>grid()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><p><img src="output_4_0.png" alt="png"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> style
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the system of differential equations</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">f</span>(x, v):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> v
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">g</span>(x, v):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">-</span>x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a grid of points</span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">20</span>)
+</span></span><span style="display:flex;"><span>v <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">20</span>)
+</span></span><span style="display:flex;"><span>X, V <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>meshgrid(x, v)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Compute the derivatives at each point in the grid</span>
+</span></span><span style="display:flex;"><span>U <span style="color:#f92672">=</span> f(X, V)
+</span></span><span style="display:flex;"><span>W <span style="color:#f92672">=</span> g(X, V)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## create side-by-side plots</span>
+</span></span><span style="display:flex;"><span>fig, ax1 <span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>, figsize<span style="color:#f92672">=</span>(<span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">8</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Plot the streamlines using streamplot</span>
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>streamplot(X, V, U, W, color<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;C1&#39;</span>, linewidth<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set the labels and title</span>
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>set_xlabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$x$&#39;</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>set_ylabel(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;$\dot</span><span style="color:#e6db74">{x}</span><span style="color:#e6db74">$&#39;</span>, rotation<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>set_title(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;Phase Diagram for $\ddot</span><span style="color:#e6db74">{x}</span><span style="color:#e6db74"> = -x$ with streamplot&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set the limits</span>
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>set_xlim(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>set_ylim(<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add a grid</span>
+</span></span><span style="display:flex;"><span>ax1<span style="color:#f92672">.</span>grid()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><p><img src="output_5_0.png" alt="png"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"></code></pre></div>
+
+    
+    <nav style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                
+                <a href="/programming-resources/chaotic_dynamics/">← Modeling Chaotic Systems - Activity</a>
+                
+            </div>
+            <div style="text-align: right;">
+                
+                <a href="/programming-resources/integrators/">Numerical Integrators →</a>
+                
+            </div>
+        </div>
+    </nav>
+    
+</article>
+
+    </main>
+
+    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
+        
+        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
+        
+        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
+    </footer>
+</body>
+</html>

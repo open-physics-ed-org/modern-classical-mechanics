@@ -1,12 +1,12 @@
 ---
 title: 05 - Conservation Laws Govern and Constrain our Physics
 weight: 5
-date: '2026-01-08'
+date: '2026-01-09'
 math: true
 ---
 
 [![Report Issues](https://img.shields.io/badge/report%20issues-GitHub-blue)](https://github.com/dannycab/phy321msu/issues) 
-[![GitHub Issues](https://img.shields.io/github/issues/dannycab/phy321msu)](https://github.com/dannycab/phy321msu/issues)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ## Learning Goals
 
@@ -37,12 +37,14 @@ We will discuss them briefly below, before we dive into the details of conservat
 
 Richard Feynman is known to have had a disdain for the wildly different units of energy that we use in physics.
 
-### Feynman on the units of energy (2 minute video)
-
+{{< admonition type="admonition" title="Feynman on the units of energy (2 minute video)" class="tip" >}}
 {{< youtube roX2NXDUTsM >}}
+
+- *Source: <https://www.youtube.com/embed/roX2NXDUTsM>*
 
 Feynman is quoted as saying: 
 > *"It is important to realize that in physics today, we have no knowledge of what energy is."*
+{{< /admonition >}}
 
 Energy is a number, a quantity, that when we compute it, we find it stays the same before and after a process - so long as we account for all the interactions and uses in that case. 
 
@@ -58,9 +60,11 @@ $$E_{before} = E_{after}$$
 
 To frame how interesting and complex energy can be, consider this video from Veritasium:
 
-### How do we get light from a circuit when we close a switch? (14 minute video)
-
+{{< admonition type="admonition" title="How do we get light from a circuit when we close a switch? (14 minute video)" class="tip" >}}
 {{< youtube bHIhgxav9LY >}}
+
+- *Source: <https://www.youtube.com/embed/bHIhgxav9LY>*
+{{< /admonition >}}
 
 There a many potential forms of energy and lots of processes that convert energy from one form to another. Below is a table of some common forms in physics. In addition, we have listed subsets of these forms that are often useful to distinguish. We will do analyses that include most of these forms.
 
@@ -81,13 +85,15 @@ There a many potential forms of energy and lots of processes that convert energy
 
 Critical to the understanding of energy is that it is a property of a system. A system can consist of a single object or be made of many different objects. In the case of modeling the motion of a single object, we often introduce the concept of a [point mass](https://en.wikipedia.org/wiki/Point_mass) or [point particle](https://en.wikipedia.org/wiki/Point_particle). A point mass is an idealized object that has mass but no size or shape. It has no internal structure and thus no internal energy. It is a useful abstraction for modeling the motion of objects in classical mechanics.
 
-### Point Particle and Real Models (6 minute video)
-
+{{< admonition type="admonition" title="Point Particle and Real Models (6 minute video)" class="tip" >}}
 The video below is from an introductory physics course at Georgia Tech. It covers the important aspects of a point particle and how we miss some of the details when we focus exclusively on the point particle model.
+
+> Some YouTube videos are unable to be embedded in Jupyter Books. Click the image below to watch the video on YouTube.
 
 {{< youtube fbiNKrqVajM >}}
 
-*Click the image above to watch the video on YouTube (6 minutes)* <https://www.youtube.com/watch?v=fbiNKrqVajM>
+- *Source: <https://www.youtube.com/watch?v=fbiNKrqVajM>*
+{{< /admonition >}}
 
 ### Kinetic Energy of a Point Mass
 
@@ -293,7 +299,11 @@ $$x = {x_0, x_1, x_2, \ldots, x_n}$$
 
 At each of these spatial intervals, we experience a different net force, like in the figure below.
 
-![Work done by a net force](/images/notes/week5/discrete-force-intervals.png)
+{{< figure src="/images/notes/week5/discrete-force-intervals.png" caption="A discrete force model." >}}
+
+{{< admonition type="error" >}}
+Redraw as vector graphic and post SVG
+{{< /admonition >}}
 
 $$F_{net} = {F_{net,0}, F_{net,1}, F_{net,2}, \ldots, F_{net,n}}$$
 
@@ -319,8 +329,12 @@ What about in more than one dimension?
 
 Consider a path $C$ that we have discretized into $n$ intervals. The object starts at $\vec{r}_0$ and ends at $\vec{r}_n$. Each interval is $\Delta \vec{r}_i$ and the net force is $\vec{F}_{net,i}$. The figure below shows the work done by the net force in each interval.
 
-![Work done by a net force](/images/notes/week5/path-integral-work.png)
 
+{{< figure src="/images/notes/week5/path-integral-work.png" caption="Work done by a discrete net force along a path." >}}
+
+{{< admonition type="error" >}}
+Redraw as vector graphic and post SVG
+{{< /admonition >}}
 
 The work done by the net force is:
 
@@ -388,9 +402,13 @@ We need to have a [conservative force](https://en.wikipedia.org/wiki/Conservativ
 
 A less obivous example that produces a potential energy function is a [lattice chain](https://en.wikipedia.org/wiki/Lattice_chain). Here we model an electron moving in 1D near but not too near a long chain of atoms. The picture below shows the model.
 
-![Lattice chain model](/images/notes/week5/lattice-chain.png)
+{{< figure src="/images/notes/week5/lattice-chain.png" caption="Lattice chain force model, $F(x) = -F_0 \sin(\frac{2 \pi x}{b})$" >}}
 
-Here the location of the particle and it's initial velocty are zero. The force model for a chain of atoms in this arrangement is:
+{{< admonition type="error" >}}
+Redraw as vector graphic and post SVG
+{{< /admonition >}}
+
+Here the location of the particle and it's initial velocity are zero. The force model for a chain of atoms in this arrangement is:
 
 $$F(x) = -F_0 \sin \left(\dfrac{2\pi x}{b}\right)$$
 
@@ -451,7 +469,12 @@ This is true for any closed path $C$. This is the second statement above.
 
 We can equivalent write the integral of the force around a closed path as the work around a different path. The figure below shows these paths $C_1$ and $C_2$ that make up the first loop, and the paths $C_3$ and $C_4$ that make up the second loop. The work done by the force along each path is shown in the figure.
 
-![Work done by a net force](/images/notes/week5/closed-path-work.png)
+
+{{< figure src="/images/notes/week5/closed-path-work.png" caption="Illustration of path independence of work for a conservative force." >}}
+
+{{< admonition type="error" >}}
+Redraw as vector graphic and post SVG
+{{< /admonition >}}
 
 We can take the integral of both paths and write:
 
@@ -485,7 +508,10 @@ Conservative forces are those where the work done by the force is independent of
 2. Their curl is zero: $\nabla \times \vec{F} = 0$.
 
 We calculate the curl as:
+
+
 $$\nabla \times \vec{F} = \begin{vmatrix}\hat{i} & \hat{j} & \hat{k} \\ \partial_x & \partial_y & \partial_z \\ F_x & F_y & F_z \end{vmatrix} = \left(\dfrac{\partial F_z}{\partial y} - \dfrac{\partial F_y}{\partial z}\right)\hat{i} + \left(\dfrac{\partial F_x}{\partial z} - \dfrac{\partial F_z}{\partial x}\right)\hat{j} + \left(\dfrac{\partial F_y}{\partial x} - \dfrac{\partial F_x}{\partial y}\right)\hat{k}.$$
+
 
 3. The force is given by the negative gradient of the potential energy: $\vec{F} = -\nabla U$. This stems from the definition of the potential energy as the work done by the force.
 

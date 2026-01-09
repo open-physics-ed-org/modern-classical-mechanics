@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14 - Classical Mechanics Thus Far | Classical Mechanics</title>
+    <meta name="description" content="Classical Mechanics">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+    
+    <link rel="stylesheet" href="//localhost:1313/css/accessibility.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        nav {
+            background: #f4f4f4;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #222;
+            margin-top: 1.5em;
+        }
+        h1 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "SF Mono", Monaco, Consolas, monospace;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: #0066cc;
+        }
+        .menu-home {
+            font-weight: bold;
+            margin-right: 30px;
+        }
+    </style>
+</head>
+<body>
+    <nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li class="menu-home"><a href="//localhost:1313/">Classical Mechanics</a></li>
+            
+            
+            <li><a href="/course-information/">Course Information</a></li>
+            
+            
+            
+            <li><a href="/course-materials/">Course Materials</a></li>
+            
+            
+            
+            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
+            
+            
+            
+            <li><a href="/programming-resources/">Programming Resources</a></li>
+            
+            
+        </ul>
+    </nav>
+
+    <main role="main">
+        
+<article>
+    <header>
+        <h1>14 - Classical Mechanics Thus Far</h1>
+        
+    </header>
+
+    <p><a href="https://github.com/dannycab/phy321msu/issues"><img src="https://img.shields.io/badge/report%20issues-GitHub-blue" alt="Report Issues"></a>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="License: CC BY-NC-SA 4.0"></a></p>
+<h2 id="learning-goals">Learning Goals</h2>
+<div class="admonition admonition-admonition note" role="note" aria-label="Admonition"><p class="admonition-title">After studying Lesson 14, you should be able to:</p><div class="admonition-content">
+    <ul>
+<li>Synthesize the major conceptual frameworks of classical mechanics, including Newtonian, energy-based, and Lagrangian formulations.</li>
+<li>Identify the appropriate formulation of classical mechanics to apply to different types of physical systems based on their constraints and symmetries.</li>
+<li>Recognize how conservation laws emerge from symmetries and apply them to simplify problem solving.</li>
+<li>Distinguish between linear and nonlinear systems and understand the implications for analytical and numerical solution methods.</li>
+<li>Connect the mathematical formalism of classical mechanics to physical intuition about motion, energy, and stability.</li>
+</ul>
+
+  </div>
+</div>
+
+<h2 id="where-weve-been-a-journey-through-classical-mechanics">Where We&rsquo;ve Been: A Journey Through Classical Mechanics</h2>
+<p>Over the course of our study, we have developed a deep understanding of classical mechanics - the physics of large, slow, mechanical systems. We started with the fundamental question of what classical mechanics is and where it fits in the broader landscape of physics. We discovered that classical mechanics governs systems that are large enough that quantum effects are negligible and slow enough that relativistic effects don&rsquo;t matter.</p>
+<figure class="figure " role="figure" aria-label="Physics by size and speed showing that slower systems are classical, faster systems typically require relativity, and small systems are often quantized. [SVG File](https://upload.wikimedia.org/wikipedia/commons/5/56/Modernphysicsfields.svg)">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Modernphysicsfields.svg/640px-Modernphysicsfields.svg.png" alt="Physics by size and speed showing that slower systems are classical, faster systems typically require relativity, and small systems are often quantized. [SVG File](https://upload.wikimedia.org/wikipedia/commons/5/56/Modernphysicsfields.svg)" loading="lazy"><figcaption class="figure-caption">Physics by size and speed showing that slower systems are classical, faster systems typically require relativity, and small systems are often quantized. <a href="https://upload.wikimedia.org/wikipedia/commons/5/56/Modernphysicsfields.svg">SVG File</a></figcaption></figure>
+
+<p>But more importantly, we learned that classical mechanics is not just one thing. It&rsquo;s a rich tapestry of different formulations, each offering unique insights and tools for understanding the motion of physical systems. Let&rsquo;s review the major themes and frameworks we&rsquo;ve developed.</p>
+<h3 id="the-three-pillars-of-our-classical-mechanics">The Three Pillars of Our Classical Mechanics</h3>
+<p>Throughout our journey, we&rsquo;ve encountered three major formulations of classical mechanics. Each has its strengths, and knowing when to use which approach is a key skill we&rsquo;ve developed.</p>
+<h4 id="newtonian-mechanics-forces-and-accelerations">Newtonian Mechanics: Forces and Accelerations</h4>
+<p>We began with <a href="https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion">Newton&rsquo;s Laws of Motion</a>, the foundation upon which all of classical mechanics rests. Newton&rsquo;s Second Law provided us with the fundamental relationship:</p>
+<p>$$\vec{F}_{net} = m\vec{a}$$</p>
+<p>or more generally,</p>
+<p>$$\vec{F}_{net} = \frac{d\vec{p}}{dt}$$</p>
+<p>This vector formulation allowed us to analyze forces and their effects on motion. We learned to draw free body diagrams, decompose forces into components, and set up the differential equations that govern motion. We applied this framework to problems ranging from blocks on inclined planes to falling objects with air resistance.</p>
+<div class="admonition admonition-tip " role="note" aria-label="Tip"><p class="admonition-title">Tip</p><div class="admonition-content">
+    <p><strong>Strengths of the Newtonian approach:</strong></p>
+<ul>
+<li>Direct physical intuition about forces and motion</li>
+<li>Natural for problems with explicitly known forces</li>
+<li>Vector formulation makes direction of motion clear</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Can be cumbersome for systems with constraints</li>
+<li>Requires careful attention to coordinate systems</li>
+<li>Forces of constraint must be explicitly calculated</li>
+</ul>
+
+  </div>
+</div>
+
+<h4 id="energy-methods-conservation-and-work">Energy Methods: Conservation and Work</h4>
+<p>We discovered that there&rsquo;s another way to think about mechanics - through the lens of energy. The principle of energy conservation states that for an isolated system:</p>
+<p>$$\frac{dE}{dt} = 0$$</p>
+<p>or more simply,</p>
+<p>$$E_{before} = E_{after}$$</p>
+<p>We learned about different forms of energy - kinetic energy $T = \frac{1}{2}mv^2$, potential energy $V$, and internal energy. We discovered the Work-Energy Theorem:</p>
+<p>$$\Delta T = W_{net}$$</p>
+<p>and learned to identify conservative forces for which we can define potential energy functions through:</p>
+<p>$$\vec{F} = -\nabla V$$</p>
+<p>The energy formulation gave us powerful tools for analyzing motion without having to track all the details of forces at every instant.</p>
+<div class="admonition admonition-tip " role="note" aria-label="Tip"><p class="admonition-title">Tip</p><div class="admonition-content">
+    <p><strong>Strengths of energy methods:</strong></p>
+<ul>
+<li>Scalar quantities are often easier to work with than vectors</li>
+<li>Conservation laws provide powerful constraints</li>
+<li>Natural for analyzing before/after states</li>
+<li>Works well with conservative forces</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Doesn&rsquo;t directly give equations of motion</li>
+<li>Requires identifying all forms of energy</li>
+<li>Can miss directional information</li>
+</ul>
+
+  </div>
+</div>
+
+<h4 id="lagrangian-mechanics-symmetries-and-generalized-coordinates">Lagrangian Mechanics: Symmetries and Generalized Coordinates</h4>
+<p>Finally, we encountered the most elegant and general formulation: Lagrangian mechanics. We learned to construct the Lagrangian:</p>
+<p>$$\mathcal{L} = T - V$$</p>
+<p>and apply the Euler-Lagrange equation:</p>
+<p>$$\frac{d}{dt}\left(\frac{\partial \mathcal{L}}{\partial \dot{q}_i}\right) - \frac{\partial \mathcal{L}}{\partial q_i} = 0$$</p>
+<p>This formulation introduced us to generalized coordinates, which allowed us to choose coordinates that naturally fit the problem&rsquo;s constraints and symmetries. We discovered that cyclic coordinates correspond to conserved quantities through Noether&rsquo;s theorem, and we learned to work with generalized forces and generalized momenta.</p>
+<div class="admonition admonition-tip " role="note" aria-label="Tip"><p class="admonition-title">Tip</p><div class="admonition-content">
+    <p><strong>Strengths of Lagrangian mechanics:</strong></p>
+<ul>
+<li>Freedom to choose any convenient coordinates</li>
+<li>Constraints can be incorporated directly</li>
+<li>Symmetries reveal conserved quantities</li>
+<li>Single systematic procedure for any system</li>
+<li>Extends naturally to more advanced physics</li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Can seem abstract compared to forces</li>
+<li>Requires identifying appropriate coordinates</li>
+<li>May produce complex equations for simple problems</li>
+</ul>
+
+  </div>
+</div>
+
+<h3 id="conservation-laws-the-deep-structure-of-physics">Conservation Laws: The Deep Structure of Physics</h3>
+<p>One of the most profound insights we gained is that conservation laws are not just convenient calculation tools - they reflect deep symmetries in nature. We studied three fundamental conservation laws:</p>
+<h4 id="conservation-of-energy">Conservation of Energy</h4>
+<p>Energy is conserved when the system has no explicit time dependence. For a closed system:</p>
+<p>$$E_{total} = T + V = \text{constant}$$</p>
+<p>We learned that while we cannot always say precisely what energy &ldquo;is,&rdquo; we can always calculate it, and we can trust that it remains constant in isolated systems.</p>
+<h4 id="conservation-of-linear-momentum">Conservation of Linear Momentum</h4>
+<p>Linear momentum is conserved when there are no external forces. For a system of particles:</p>
+<p>$$\vec{p}<em>{sys} = \sum</em>{i} m_i\vec{v}_i = \text{constant}$$</p>
+<p>We discovered that internal forces always cancel in pairs by Newton&rsquo;s Third Law, so only external forces change the total momentum of a system.</p>
+<h4 id="conservation-of-angular-momentum">Conservation of Angular Momentum</h4>
+<p>Angular momentum is conserved when there is no net external torque:</p>
+<p>$$\vec{L} = \vec{r} \times \vec{p} = \text{constant}$$</p>
+<p>This conservation law is particularly powerful for systems with rotational symmetry, where certain coordinates are cyclic.</p>
+<div class="admonition admonition-admonition tip" role="note" aria-label="Admonition"><p class="admonition-title">Noether&#39;s Theorem and The Symmetries of Reality  (13 minute video)</p><div class="admonition-content">
+    <p>One of the most beautiful results in physics is <a href="https://en.wikipedia.org/wiki/Noether%27s_theorem">Noether&rsquo;s theorem</a>, which tells us that every continuous symmetry corresponds to a conservation law. Time translation symmetry gives conservation of energy, spatial translation symmetry gives conservation of momentum, and rotational symmetry gives conservation of angular momentum.</p>
+<p>This video provides an accessible introduction to this profound connection:</p>
+<blockquote>
+<p>Some YouTube videos are unable to be embedded in Jupyter Books. Click the image below to watch the video on YouTube.</p>
+</blockquote>
+<div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/04ERSb06dOg"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    title="YouTube video player"
+    loading="lazy">
+  </iframe>
+</div>
+<ul>
+<li><em>Source: <a href="https://www.youtube.com/watch?v=04ERSb06dOg">https://www.youtube.com/watch?v=04ERSb06dOg</a></em></li>
+</ul>
+
+  </div>
+</div>
+
+<h3 id="the-oscillator-a-central-character-in-our-story">The Oscillator: A Central Character in Our Story</h3>
+<p>Throughout our journey, one system appeared again and again: the harmonic oscillator. We studied it in many contexts because it represents a universal behavior - whenever a system is displaced slightly from stable equilibrium, it tends to oscillate.</p>
+<h4 id="the-simple-harmonic-oscillator">The Simple Harmonic Oscillator</h4>
+<p>We started with the ideal spring-mass system governed by Hooke&rsquo;s Law:</p>
+<p>$$F = -kx$$</p>
+<p>This led to the differential equation:</p>
+<p>$$\ddot{x} + \omega_0^2 x = 0$$</p>
+<p>where $\omega_0 = \sqrt{k/m}$ is the natural frequency. The solution is sinusoidal motion:</p>
+<p>$$x(t) = A\cos(\omega_0 t + \phi)$$</p>
+<p>We learned that the energy sloshes back and forth between kinetic and potential:</p>
+<p>$$E = \frac{1}{2}kA^2 = \frac{1}{2}mv^2 + \frac{1}{2}kx^2$$</p>
+<h4 id="damped-oscillations">Damped Oscillations</h4>
+<p>Real systems experience damping. We studied how damping affects oscillations:</p>
+<p>$$\ddot{x} + 2\beta\dot{x} + \omega_0^2 x = 0$$</p>
+<p>We discovered three regimes:</p>
+<ul>
+<li><strong>Underdamped</strong> ($\beta &lt; \omega_0$): Oscillations that decay exponentially</li>
+<li><strong>Critically damped</strong> ($\beta = \omega_0$): Fastest return to equilibrium without oscillating</li>
+<li><strong>Overdamped</strong> ($\beta &gt; \omega_0$): Slow exponential decay to equilibrium</li>
+</ul>
+<h4 id="driven-oscillations-and-resonance">Driven Oscillations and Resonance</h4>
+<p>When we drive an oscillator with an external periodic force, we found:</p>
+<p>$$\ddot{x} + 2\beta\dot{x} + \omega_0^2 x = \frac{F_0}{m}\cos(\omega_D t)$$</p>
+<p>The steady-state response exhibits resonance - the amplitude peaks when the driving frequency matches the natural frequency. We learned about the importance of the quality factor $Q$ and how resonance appears everywhere in nature, from musical instruments to bridges to quantum systems.</p>
+<h4 id="nonlinear-oscillators">Nonlinear Oscillators</h4>
+<p>The simple harmonic oscillator is an idealization. Real systems often exhibit nonlinear behavior. We explored how nonlinearities can lead to complex dynamics, including amplitude-dependent frequencies and even chaotic motion in certain regimes. We discussed examples such as the pendulum at large angles and systems with nonlinear restoring forces including familiar systems like the <a href="https://en.wikipedia.org/wiki/Duffing_equation">Duffing oscillator</a>.</p>
+<div class="admonition admonition-admonition tip" role="note" aria-label="Admonition"><p class="admonition-title">Resonance in the Real World (8 minute video)</p><div class="admonition-content">
+    <p>Resonance is not just a mathematical curiosity - it&rsquo;s everywhere in the physical world around us. From the Tacoma Narrows Bridge collapse to how we tune radio stations, resonance plays a crucial role.</p>
+<blockquote>
+<p>Some YouTube videos are unable to be embedded in Jupyter Books. Click the image below to watch the video on YouTube.</p>
+</blockquote>
+<p><a href="https://www.youtube.com/watch?v=17tqXgvCN0E"><img src="https://i3.ytimg.com/vi/17tqXgvCN0E/hqdefault.jpg" alt="Shattering a wine glass"></a></p>
+<ul>
+<li><em>Source: <a href="https://www.youtube.com/watch?v=17tqXgvCN0E">https://www.youtube.com/watch?v=17tqXgvCN0E</a></em></li>
+</ul>
+
+  </div>
+</div>
+
+<h2 id="the-power-of-multiple-perspectives">The Power of Multiple Perspectives</h2>
+<p>Perhaps the most important lesson from our study of classical mechanics is that there are multiple valid ways to understand the same physics. Newton&rsquo;s force-based approach, energy methods, and Lagrangian mechanics all describe the same reality - they just offer different perspectives.</p>
+<h3 id="complementary-views">Complementary Views</h3>
+<p>Each formulation highlights different aspects:</p>
+<ul>
+<li><strong>Newtonian</strong>: Emphasizes causality and forces</li>
+<li><strong>Energy</strong>: Emphasizes conservation and transformations</li>
+<li><strong>Lagrangian</strong>: Emphasizes symmetry and geometry</li>
+</ul>
+<p>Being fluent in all three makes you a more capable physicist. You can choose the perspective that makes each problem clearest.</p>
+<h3 id="a-model-for-scientific-thinking">A Model for Scientific Thinking</h3>
+<p>This multiplicity of perspectives is characteristic of deep scientific understanding. The same phenomenon can be understood from multiple angles, each valid and each offering unique insights. This is true not just in mechanics but throughout science.</p>
+<p>As you continue in physics and science more broadly, remember this lesson: seek multiple perspectives, understand their relationships, and choose the view that serves your purpose best.</p>
+<h2 id="final-thoughts-the-unity-of-classical-mechanics">Final Thoughts: The Unity of Classical Mechanics</h2>
+<p>We began by asking &ldquo;What is classical mechanics?&rdquo; We&rsquo;ve learned that it&rsquo;s the physics of large, slow, mechanical systems. But more than that, it&rsquo;s a remarkably unified framework for understanding motion, energy, and dynamics.</p>
+<p>The journey from Newton&rsquo;s Second Law to the Principle of Least Action represents not just historical development but increasing abstraction and generality. Each new formulation doesn&rsquo;t replace the previous one - it complements and extends it.</p>
+<h3 id="what-we-can-now-do">What We Can Now Do</h3>
+<p>With the tools and insights we&rsquo;ve developed, we can:</p>
+<ul>
+<li>Analyze the motion of complex mechanical systems</li>
+<li>Identify and exploit conservation laws</li>
+<li>Understand stability and oscillations</li>
+<li>Recognize and analyze nonlinear and chaotic behavior</li>
+<li>Use computational methods to explore realistic systems</li>
+<li>Connect mathematical formalism to physical intuition</li>
+<li>Choose the right approach for different types of problems</li>
+</ul>
+<h3 id="the-continuing-journey">The Continuing Journey</h3>
+<p>Classical mechanics is both an endpoint and a beginning. It&rsquo;s a complete and beautiful theory in its own right. But it&rsquo;s also the foundation for everything that follows in physics. The mathematical tools, physical intuition, and problem-solving approaches we&rsquo;ve developed will serve us throughout our study of physics.</p>
+<p>As we move forward, we carry with us not just equations and methods, but a way of thinking about the physical world - looking for symmetries, seeking conserved quantities, appreciating the interplay of forces and motion, and understanding that beneath the apparent complexity of nature lie elegant and universal principles.</p>
+<p>Classical mechanics has been the physics of the cosmos for centuries. While quantum mechanics and relativity extended our reach to the very small and very fast, classical mechanics remains the language we use to describe most of the motion we observe in our everyday world. It is, in the words of Richard Feynman, &ldquo;the most precise and most tested physical theory we have.&rdquo;</p>
+<p>We&rsquo;ve come far in our understanding, but the journey continues. The frameworks we&rsquo;ve built here will support us as we explore new domains of physics, and the habits of mind we&rsquo;ve developed will serve us throughout our scientific careers.</p>
+
+
+    
+    <nav style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                
+            </div>
+            <div style="text-align: right;">
+                
+                <a href="/course-materials/13_notes/">13 - Applying the Lagrangian Formulation →</a>
+                
+            </div>
+        </div>
+    </nav>
+    
+</article>
+
+    </main>
+
+    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
+        
+        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
+        
+        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
+    </footer>
+</body>
+</html>

@@ -1,217 +1,120 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="auto">
-
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
-<title>06 - Nature Often Seeks Stability | Classical Mechanics</title>
-<meta name="keywords" content="">
-<meta name="description" content="
-
-Learning Goals
-After studying Lesson 06, you should be able to:
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06 - Nature Often Seeks Stability | Classical Mechanics</title>
+    <meta name="description" content="Classical Mechanics">
     
-Analyze the stability of equilibrium points in physical systems and classify them as stable, unstable, or metastable.
-Use the simple harmonic oscillator (SHO) model to describe periodic motion and relate it to the potential energy landscapes.
-Derive the equations of motion for systems modeled as SHOs (or other second order oscillator equations) and solve for their trajectories.
-Compare the SHO model across different physical systems (e.g., pendulum, LC circuit) and identify their natural frequencies.
-Evaluate the energy conservation and stability properties of SHOs and extend these concepts to explain more complex systems.
-
-
-  
-
-
-We have shown that we can develop trajectories of different physical systems by solving the differential equations that describe them. This is a useful approach, but it often means we are focused on a single trajectory. This might be fine if all the trajectories are the same or roughly so, say like the 1D falling ball, or the simple harmonic oscillator.">
-<meta name="author" content="Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine">
-<link rel="canonical" href="//localhost:1313/course-materials/06_notes/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
-<link rel="icon" href="//localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="//localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="//localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="//localhost:1313/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="//localhost:1313/course-materials/06_notes/">
-<noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+    
+    <link rel="stylesheet" href="//localhost:1313/css/accessibility.css">
     <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
         }
-
+        nav {
+            background: #f4f4f4;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #222;
+            margin-top: 1.5em;
+        }
+        h1 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "SF Mono", Monaco, Consolas, monospace;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: #0066cc;
+        }
+        .menu-home {
+            font-weight: bold;
+            margin-right: 30px;
+        }
     </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-                color-scheme: dark;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .toc {
-                background: var(--entry);
-            }
-        }
-
-        @media (prefers-color-scheme: light) {
-            .list::-webkit-scrollbar-thumb {
-                border-color: var(--code-bg);
-            }
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else if (localStorage.getItem("pref-theme") === "light") {
-       document.querySelector("html").dataset.theme = 'light';
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"
-    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}], throwOnError: false});"></script>
-
-
 </head>
-<body id="top">
-    <header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="//localhost:1313/" accesskey="h" title="Classical Mechanics (Alt + H)">Classical Mechanics</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu">
-            <li>
-                <a href="//localhost:1313/course-information/" title="Course Information">
-                    <span>Course Information</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/course-materials/" title="Course Materials">
-                    <span>Course Materials</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/logistics-resources/" title="Logistics &amp; Resources">
-                    <span>Logistics &amp; Resources</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/programming-resources/" title="Programming Resources">
-                    <span>Programming Resources</span>
-                </a>
-            </li>
+<body>
+    <nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li class="menu-home"><a href="//localhost:1313/">Classical Mechanics</a></li>
+            
+            
+            <li><a href="/course-information/">Course Information</a></li>
+            
+            
+            
+            <li><a href="/course-materials/">Course Materials</a></li>
+            
+            
+            
+            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
+            
+            
+            
+            <li><a href="/programming-resources/">Programming Resources</a></li>
+            
+            
         </ul>
     </nav>
-</header>
-<main class="main">
 
-<article class="post-single">
-  <header class="post-header">
-    <div class="breadcrumbs"><a href="//localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="//localhost:1313/course-materials/">Course Materials</a></div>
-    <h1 class="post-title entry-hint-parent">
-      06 - Nature Often Seeks Stability
-    </h1>
-    <div class="post-meta"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span>
+    <main role="main">
+        
+<article>
+    <header>
+        <h1>06 - Nature Often Seeks Stability</h1>
+        
+    </header>
 
-</div>
-  </header> <div class="toc">
-    <details >
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">Table of Contents</span>
-        </summary>
-
-        <div class="inner"><ul>
-                <li>
-                    <a href="#learning-goals" aria-label="Learning Goals">Learning Goals</a></li>
-                <li>
-                    <a href="#why-do-we-study-stability-and-equilibria" aria-label="Why do we study stability and equilibria?">Why do we study stability and equilibria?</a><ul>
-                        
-                <li>
-                    <a href="#the-simple-harmonic-oscillator-models-many-systems" aria-label="The Simple Harmonic Oscillator Models Many Systems">The Simple Harmonic Oscillator Models Many Systems</a><ul>
-                        
-                <li>
-                    <a href="#another-sho-example---a-pendulum" aria-label="Another SHO Example - A Pendulum">Another SHO Example - A Pendulum</a></li>
-                <li>
-                    <a href="#stability-of-the-sho" aria-label="Stability of the SHO">Stability of the SHO</a></li></ul>
-                </li>
-                <li>
-                    <a href="#interpreting-your-analysis" aria-label="Interpreting your Analysis">Interpreting your Analysis</a></li>
-                <li>
-                    <a href="#where-are-we-going" aria-label="Where are we going?">Where are we going?</a><ul>
-                        
-                <li>
-                    <a href="#veritasium---the-butterfly-effect-and-chaotic-systems-13-minute-video" aria-label="Veritasium - The Butterfly Effect and Chaotic Systems (13 minute video)">Veritasium - The Butterfly Effect and Chaotic Systems (13 minute video)</a></li>
-                <li>
-                    <a href="#university-of-bristol---chaos-theory-and-randomness-8-minute-video" aria-label="University of Bristol - Chaos Theory and Randomness (8 minute video)">University of Bristol - Chaos Theory and Randomness (8 minute video)</a></li></ul>
-                </li></ul>
-                </li>
-                <li>
-                    <a href="#stability-and-equilibria" aria-label="Stability and Equilibria">Stability and Equilibria</a><ul>
-                        
-                <li>
-                    <a href="#what-is-an-equilibrium-point" aria-label="What is an equilibrium point?">What is an equilibrium point?</a></li>
-                <li>
-                    <a href="#how-can-we-identify-equilibrium-points" aria-label="How can we identify equilibrium points?">How can we identify equilibrium points?</a><ul>
-                        
-                <li>
-                    <a href="#what-is-happening-here-where-does-energy-come-into-play" aria-label="What is happening here? Where does energy come into play?">What is happening here? Where does energy come into play?</a></li></ul>
-                </li>
-                <li>
-                    <a href="#how-can-we-determine-the-stability-of-an-equilibrium-point" aria-label="How can we determine the stability of an equilibrium point?">How can we determine the stability of an equilibrium point?</a></li></ul>
-                </li>
-                <li>
-                    <a href="#our-new-toolkit" aria-label="Our new toolkit">Our new toolkit</a>
-                </li>
-            </ul>
-        </div>
-    </details>
-</div>
-
-  <div class="post-content"><p><a href="https://github.com/dannycab/phy321msu/issues"><img alt="Report Issues" loading="lazy" src="https://img.shields.io/badge/report%20issues-GitHub-blue"></a>
-<a href="https://github.com/dannycab/phy321msu/issues"><img alt="GitHub Issues" loading="lazy" src="https://img.shields.io/github/issues/dannycab/phy321msu"></a></p>
-<h2 id="learning-goals">Learning Goals<a hidden class="anchor" aria-hidden="true" href="#learning-goals">#</a></h2>
+    <p><a href="https://github.com/dannycab/phy321msu/issues"><img src="https://img.shields.io/badge/report%20issues-GitHub-blue" alt="Report Issues"></a>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="License: CC BY-NC-SA 4.0"></a></p>
+<h2 id="learning-goals">Learning Goals</h2>
 <div class="admonition admonition-admonition note" role="note" aria-label="Admonition"><p class="admonition-title">After studying Lesson 06, you should be able to:</p><div class="admonition-content">
     <ul>
 <li>Analyze the stability of equilibrium points in physical systems and classify them as stable, unstable, or metastable.</li>
@@ -226,17 +129,22 @@ We have shown that we can develop trajectories of different physical systems by 
 
 <p>We have shown that we can develop trajectories of different physical systems by solving the differential equations that describe them. This is a useful approach, but it often means we are focused on a single trajectory. This might be fine if all the trajectories are the same or roughly so, say like the 1D falling ball, or the simple harmonic oscillator.</p>
 <p>Systems can produce multiple families of trajectories depending on the parameter choices, and the initial conditions associated with the problem you are solving. A more general approach that starts us down the road of characterizing the many potential behaviors that a physical system can exhibit is to consider <a href="https://en.wikipedia.org/wiki/Stability_theory">stability</a>. As we will build the toolkit to investigate classical systems, understanding equilibrium points and their stability is a useful step.</p>
-<h2 id="why-do-we-study-stability-and-equilibria">Why do we study stability and equilibria?<a hidden class="anchor" aria-hidden="true" href="#why-do-we-study-stability-and-equilibria">#</a></h2>
+<h2 id="why-do-we-study-stability-and-equilibria">Why do we study stability and equilibria?</h2>
 <p>First, because nature is often moving towards a state of equilibrium because those states are associated, as we will see, with the lowest local energy state. It takes energy to move away from stable equilibrium, and physical systems tend to minimize their energy &ndash; because those configurations are often quite stable.</p>
 <p>Much of the physics that we do today focuses on <a href="https://en.wikipedia.org/wiki/Non-equilibrium_thermodynamics">non-equilibrium systems</a>. These are systems that are typically driven by external interactions to ensure the system remains out of equilibrium. The responses of these systems to this driving and how they might relax to equilibrium are often studied.</p>
 <p>Second, we can often start from the equilibrium points of a system and then perturb the system to see how it responds. We know how to solve problems around equilibrium points, and working with fully non-equilibrium systems is often much harder.</p>
 <p>We have gotten much better at working in non-equilibrium spaces, especially as we have developed computing tools that can help us simulate the behavior of systems that are far from equilibrium.</p>
-<h3 id="the-simple-harmonic-oscillator-models-many-systems">The Simple Harmonic Oscillator Models Many Systems<a hidden class="anchor" aria-hidden="true" href="#the-simple-harmonic-oscillator-models-many-systems">#</a></h3>
+<h3 id="the-simple-harmonic-oscillator-models-many-systems">The Simple Harmonic Oscillator Models Many Systems</h3>
 <p>You have used the simple harmonic oscillator frequently.</p>
 <p>There&rsquo;s a reason for that.</p>
 <p>It provides the simplest example of a system that exhibits periodic motion. It also is a system with one of the simplest energy landscapes &ndash; a parabola; and it has a global stable equilibrium point at the bottom of the potential well.</p>
 <p>There are many systems that we can transform into a simple harmonic oscillator. And it is not because the world is full of springs and masses. It is because the simple harmonic oscillator is a good model for many systems near their local equilibrium points. In fact, as you will see, it is the leading (non-constant) term in every Taylor expansion of a 1D potential energy function near a local minimum.</p>
-<h4 id="another-sho-example---a-pendulum">Another SHO Example - A Pendulum<a hidden class="anchor" aria-hidden="true" href="#another-sho-example---a-pendulum">#</a></h4>
+<h4 id="another-sho-example---a-pendulum">Another SHO Example - A Pendulum</h4>
+<div class="admonition admonition-error " role="note" aria-label="Error"><p class="admonition-title">Error</p><div class="admonition-content">
+    Add figure of pendulum
+  </div>
+</div>
+
 <p>Consider a pendulum of mass $m$ and length $L$ that is displaced from the vertical by an angle $\theta$. We can show that the complete equation of motion (without drag) is:</p>
 <p>$$mL\ddot{\theta} = - mg\sin \theta,$$</p>
 <p>$$\ddot{\theta} = -\frac{g}{L}\sin \theta.$$</p>
@@ -279,7 +187,7 @@ We have shown that we can develop trajectories of different physical systems by 
       </tr>
   </tbody>
 </table>
-<h4 id="stability-of-the-sho">Stability of the SHO<a hidden class="anchor" aria-hidden="true" href="#stability-of-the-sho">#</a></h4>
+<h4 id="stability-of-the-sho">Stability of the SHO</h4>
 <p>Regardless of the choice of physical model, the SHO equation is the same second order differential equation, which we write in general as:</p>
 <p>$$\frac{d^2 x}{dt^2} = -\omega^2 x$$</p>
 <p>For a given system, this results in a potential energy that is proportional to the square of the variable $x$ (the &ldquo;stretch&rdquo;) and to the square of the frequency $\omega$. This potential energy is always positive, and it can have a non-zero minimum.</p>
@@ -289,7 +197,7 @@ We have shown that we can develop trajectories of different physical systems by 
 <p>This gives us the equilibrium point at $x = 0$. We might have expected this, as the potential energy is a parabola, and the minimum of a parabola is at the vertex. We can also determine the stability of this equilibrium point by looking at the second derivative of the potential energy, and evaluating it at the equilibrium point.</p>
 <p>$$\frac{d^2U}{dx^2} = \xi \omega^2 &gt; 0$$</p>
 <p>This number is always positive, indicating that for an SHO, the equilibrium point is stable. This is a general result for the SHO, and it is true for all the systems listed above.</p>
-<h3 id="interpreting-your-analysis">Interpreting your Analysis<a hidden class="anchor" aria-hidden="true" href="#interpreting-your-analysis">#</a></h3>
+<h3 id="interpreting-your-analysis">Interpreting your Analysis</h3>
 <p>Above, we completed an analysis of the simplest system that we will work with. It lead us to find a global minimum in the potential energy, so that suggests a few things for us to think about:</p>
 <ol>
 <li><strong>The SHO is a conservative system - the total energy of the system is conserved.</strong> So any trajectory will oscillate between kinetic and potential energy, but the total energy will remain constant. This is not something that will always be true.</li>
@@ -297,12 +205,12 @@ We have shown that we can develop trajectories of different physical systems by 
 <li><strong>If the SHO starts at rest at the equilibrium point, it will remain there.</strong> It will take energy put into the system to move away from the equilibrium point. Because this a global minimum, all trajectories will oscillate around this point. However, in systems with local equilibrium points, the system can be perturbed away from the equilibrium point, and end up in a different equilibrium point. This is a common feature of many systems.</li>
 <li><strong>If there are interactions that remove energy from the system, the system will eventually come to rest at the equilibrium point.</strong> This is a common feature of many systems.</li>
 </ol>
-<h3 id="where-are-we-going">Where are we going?<a hidden class="anchor" aria-hidden="true" href="#where-are-we-going">#</a></h3>
+<h3 id="where-are-we-going">Where are we going?</h3>
 <p>This work we are doing to understand equations of motion, stability, and equilibrium points is foundational. Some of the most exciting physics we see today is rooted in understanding how systems move away from equilibrium, and how they respond to external driving. <a href="https://en.wikipedia.org/wiki/Chaos_theory">Chaos theory</a> is a field that has grown out of understanding how systems can be very sensitive to initial conditions, and how they can exhibit complex behavior.</p>
 <p>We will start to use these ideas from this week into next week as we build a set of additional tools like <a href="https://en.wikipedia.org/wiki/Phase_space">phase space diagrams</a> and using asymptotic behavior to investigate and explain the behavior of physical systems.</p>
 <p>To introduce some of those initial ideas here are two videos from different physics perspectives on the topic of chaos.</p>
-<h4 id="veritasium---the-butterfly-effect-and-chaotic-systems-13-minute-video">Veritasium - The Butterfly Effect and Chaotic Systems (13 minute video)<a hidden class="anchor" aria-hidden="true" href="#veritasium---the-butterfly-effect-and-chaotic-systems-13-minute-video">#</a></h4>
-<p>In this video, Derek Muller uses the typical example of the Butterfly Effect to introduce the idea of chaos theory. The philosophical aspects of the butterfly effect are interesting, but not real in any physical sense. Instead, it&rsquo;s a metaphor for the idea that small changes in initial conditions can lead to large changes in the system. Muller contrasts our understanding of determinism with uncertainty; he introduces the concepts of sensitivity to initial conditions and discusses the idea of an attractor.</p>
+<div class="admonition admonition-admonition tip" role="note" aria-label="Admonition"><p class="admonition-title">Veritasium - The Butterfly Effect and Chaotic Systems (13 minute video)</p><div class="admonition-content">
+    <p>In this video, Derek Muller uses the typical example of the Butterfly Effect to introduce the idea of chaos theory. The philosophical aspects of the butterfly effect are interesting, but not real in any physical sense. Instead, it&rsquo;s a metaphor for the idea that small changes in initial conditions can lead to large changes in the system. Muller contrasts our understanding of determinism with uncertainty; he introduces the concepts of sensitivity to initial conditions and discusses the idea of an attractor.</p>
 <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
     src="https://www.youtube-nocookie.com/embed/fDek6cYijxI"
@@ -314,9 +222,11 @@ We have shown that we can develop trajectories of different physical systems by 
     loading="lazy">
   </iframe>
 </div>
+  </div>
+</div>
 
-<h4 id="university-of-bristol---chaos-theory-and-randomness-8-minute-video">University of Bristol - Chaos Theory and Randomness (8 minute video)<a hidden class="anchor" aria-hidden="true" href="#university-of-bristol---chaos-theory-and-randomness-8-minute-video">#</a></h4>
-<p>In this video, two researchers from the University of Bristol (<a href="https://people.maths.bris.ac.uk/~majm/">Jens Marklof</a> and <a href="https://people.maths.bris.ac.uk/~te20281/">Henna Koivusalo</a>) discuss the idea of chaos theory from a more mathematical perspective - reminding us of the differences between randomness and chaos. The overlap between physicists and mathematicians in the study of chaos is significant. One important contribution is <a href="https://en.wikipedia.org/wiki/Dynamical_system">Dynamical systems</a>, which is a mathematical framework that is used to study these behaviors. The researchers who do this work are mathematicians, physicists, engineers, and computer scientists. They do experiments, but they also do a lot of mathematical modeling.</p>
+<div class="admonition admonition-admonition tip" role="note" aria-label="Admonition"><p class="admonition-title">University of Bristol - Chaos Theory and Randomness (8 minute video)</p><div class="admonition-content">
+    <p>In this video, two researchers from the University of Bristol (<a href="https://people.maths.bris.ac.uk/~majm/">Jens Marklof</a> and <a href="https://people.maths.bris.ac.uk/~te20281/">Henna Koivusalo</a>) discuss the idea of chaos theory from a more mathematical perspective - reminding us of the differences between randomness and chaos. The overlap between physicists and mathematicians in the study of chaos is significant. One important contribution is <a href="https://en.wikipedia.org/wiki/Dynamical_system">Dynamical systems</a>, which is a mathematical framework that is used to study these behaviors. The researchers who do this work are mathematicians, physicists, engineers, and computer scientists. They do experiments, but they also do a lot of mathematical modeling.</p>
 <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
     src="https://www.youtube-nocookie.com/embed/5fRhasVmcUE"
@@ -328,8 +238,10 @@ We have shown that we can develop trajectories of different physical systems by 
     loading="lazy">
   </iframe>
 </div>
+  </div>
+</div>
 
-<h2 id="stability-and-equilibria">Stability and Equilibria<a hidden class="anchor" aria-hidden="true" href="#stability-and-equilibria">#</a></h2>
+<h2 id="stability-and-equilibria">Stability and Equilibria</h2>
 <p>You have likely already heard of the concept of stability in other classes or contexts. The idea that something is &ldquo;stable&rdquo; is a well understood concept in everyday language, but here we mean to put some precision on the statement.</p>
 <ul>
 <li>What do we mean by stable?</li>
@@ -338,11 +250,11 @@ We have shown that we can develop trajectories of different physical systems by 
 </ul>
 <p>We will start this from the perspective of force and then relate it to the potential energy. Ultimately, we will develop a toolkit for understanding the stability of a system and how to analyze it.</p>
 <p>Further, we will introduce the idea of <a href="https://en.wikipedia.org/wiki/Fixed_point_(mathematics)">fixed points</a> and how they relate to stability. These fixed points, or equilibrium points, are the points where the system is at rest, or it would be if it were not disturbed. They are important to identify because they are the first concept in the larger narrative of stability. Later, we will see how systems can produce other structures like <a href="https://en.wikipedia.org/wiki/Limit_cycle">limit cycles</a> and <a href="https://en.wikipedia.org/wiki/Attractor">chaotic attractors</a>. Indeed, in some cases, we can parameterize the system, by choosing a tuneable variable, to produce any of these structures.</p>
-<h3 id="what-is-an-equilibrium-point">What is an equilibrium point?<a hidden class="anchor" aria-hidden="true" href="#what-is-an-equilibrium-point">#</a></h3>
+<h3 id="what-is-an-equilibrium-point">What is an equilibrium point?</h3>
 <p>This might have an obvious answer to you if you think about a vertical pendulum. Obviously, the bottom of the swing has some special meaning, and it is the point that the pendulum will return to if it is not disturbed. As, surely, you can surmise, this is an equilibrium point for this system.</p>
 <p>But what about the location at the top of the swing? The location directly opposite the bottom of the swing? It turns out that is also an equilibrium point. But there is something very different about these two points.</p>
 <p>The bottom of the swing is a stable equilibrium point, while the top of the swing is an unstable equilibrium point. This basic idea that we can identify points in the system where the system is at rest is a powerful concept. Moreover, we already have some intuition about the stability of these points; for example, the bottom of the swing is a lower potential energy state, while the top of the swing is a higher potential energy state.</p>
-<h3 id="how-can-we-identify-equilibrium-points">How can we identify equilibrium points?<a hidden class="anchor" aria-hidden="true" href="#how-can-we-identify-equilibrium-points">#</a></h3>
+<h3 id="how-can-we-identify-equilibrium-points">How can we identify equilibrium points?</h3>
 <p>Starting from Newton&rsquo;s second law, we can write the equation of motion for a system. This equation will be a differential equation that describes how the system evolves in time. For the pendulum without a small angle approximation, we have the following equation of motion:</p>
 <p>$$m L \ddot{\theta} = -m g \sin(\theta)$$</p>
 <p>Where $m$ is the mass of the pendulum, $L$ is the length of the pendulum, $g$ is the acceleration due to gravity, and $\theta$ is the angle of the pendulum from the vertical; measured from the bottom of the swing.</p>
@@ -352,7 +264,7 @@ We have shown that we can develop trajectories of different physical systems by 
 <p>Now, we know that the angle theta here is measurable around the entire circles as we did not make the small angle approximation. Thus, we find that the equilibrium points are at:</p>
 <p>$$\theta = 0;\mathrm{and};\theta = \pi,$$</p>
 <p>corresponding to the bottom and top of the swing, respectively. There are in fact an infinite number of equilibrium points for this system, but these are the only unique points. The others would correspond to multiple rotations around the circle.</p>
-<h4 id="what-is-happening-here-where-does-energy-come-into-play">What is happening here? Where does energy come into play?<a hidden class="anchor" aria-hidden="true" href="#what-is-happening-here-where-does-energy-come-into-play">#</a></h4>
+<h4 id="what-is-happening-here-where-does-energy-come-into-play">What is happening here? Where does energy come into play?</h4>
 <p>What we&rsquo;ve done is use the equation of motion to find the points where the system is at rest. But we can also think of this in terms of the potential energy of the system. The strength of the potential energy view is that there&rsquo;s another representation of the system that can be used to understand the stability of the equilibrium points, namely the graph of the potential energy. We can use this energy landscape to help us see the stability of the equilibrium points.</p>
 <p>The potential energy of the pendulum that we have been discussing is given by:</p>
 <p>$$U(\theta) = -m g L \cos(\theta).$$</p>
@@ -383,7 +295,7 @@ We have shown that we can develop trajectories of different physical systems by 
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>grid()
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
-</span></span></code></pre></div><p><img alt="png" loading="lazy" src="output_9_0.png"></p>
+</span></span></code></pre></div><p><img src="output_9_0.png" alt="png"></p>
 <p>We can see where the equilibrium points are by noticing they are the minima and maxima of the potential energy. In fact, these fixed points are the extrema of the potential energy. The bottom of the swing is a minimum, while the top of the swing is a maximum. This is a general property of fixed/equilibrium points that are derived from a potential energy function.</p>
 <p>We also can see then how we might find these points by looking at the potential energy. Given a potential energy function, we can find the equilibrium points by finding the extrema of the potential energy.</p>
 <p>Let&rsquo;s return to the pendulum example.</p>
@@ -400,7 +312,7 @@ We have shown that we can develop trajectories of different physical systems by 
 <p>In the case of the pendulum, we have:</p>
 <p>$$m L \ddot{\theta} = -\frac{dU}{d\theta},$$</p>
 <p>$$m L \ddot{\theta} = -m g L \sin(\theta).$$</p>
-<h3 id="how-can-we-determine-the-stability-of-an-equilibrium-point">How can we determine the stability of an equilibrium point?<a hidden class="anchor" aria-hidden="true" href="#how-can-we-determine-the-stability-of-an-equilibrium-point">#</a></h3>
+<h3 id="how-can-we-determine-the-stability-of-an-equilibrium-point">How can we determine the stability of an equilibrium point?</h3>
 <p>Clearly from our intuition, the bottom of the swing is a stable equilibrium point, while the top of the swing is an unstable equilibrium point. But how can we determine this mathematically? We have found that the equilibrium points are at $\theta = 0$ and $\theta = \pi$.</p>
 <p>Let&rsquo;s plot the potential energy again and include the equilibrium points. We know which are stable and which are unstable, but let&rsquo;s see if we can determine this from the potential energy.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
@@ -434,7 +346,7 @@ We have shown that we can develop trajectories of different physical systems by 
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>grid()
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
-</span></span></code></pre></div><p><img alt="png" loading="lazy" src="output_12_0.png"></p>
+</span></span></code></pre></div><p><img src="output_12_0.png" alt="png"></p>
 <p>So it&rsquo;s clear that the equilibrium points are the extrema of the potential energy. We can determine their stability in the same way we identified them. We look at the local curvature of the potential energy at the equilibrium points. If we find that the second derivative of the potential energy is positive, then the equilibrium point is stable. If the second derivative is negative, then the equilibrium point is unstable.</p>
 <p>Let&rsquo;s calculate the second derivative of the potential energy for the pendulum:</p>
 <p>$$U(\theta) = -m g L \cos(\theta),$$</p>
@@ -445,7 +357,7 @@ We have shown that we can develop trajectories of different physical systems by 
 <p>At the top of the swing, $\theta = \pm\pi$, we have:</p>
 <p>$$\frac{d^2U(\theta = \pm\pi)}{d\theta^2} = -m g L &lt; 0.$$</p>
 <p>Thus, we have confirmed that the bottom of the swing is a stable equilibrium point, while the top of the swing is an unstable equilibrium point.</p>
-<h2 id="our-new-toolkit">Our new toolkit<a hidden class="anchor" aria-hidden="true" href="#our-new-toolkit">#</a></h2>
+<h2 id="our-new-toolkit">Our new toolkit</h2>
 <p>We now have a set of tools to help us understand the stability of a system. We can find the equilibrium points by setting the acceleration to zero, or by setting the first derivative of the potential energy to zero. We can determine the stability of these points by looking at the curvature of the potential energy at these points.</p>
 <p>If we have a system that can be described fully by a potential energy function, we can use this toolkit to understand the stability of the system. We will develop a broader class of tools for when the system is not fully described by a potential energy function, or for multi-dimensional systems. But this is a good start.</p>
 <ol>
@@ -455,103 +367,31 @@ We have shown that we can develop trajectories of different physical systems by 
 </ol>
 
 
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="//localhost:1313/course-materials/05_notes/">
-    <span class="title">« Prev</span>
-    <br>
-    <span>05 - Conservation Laws Govern and Constrain our Physics</span>
-  </a>
-  <a class="next" href="//localhost:1313/course-materials/07_notes/">
-    <span class="title">Next »</span>
-    <br>
-    <span>07 - Introducing Nonlinear Dynamics</span>
-  </a>
-</nav>
-
-  </footer>
-</article>
-    </main>
     
-<footer class="footer">
-        <span>&copy; 2026 <a href="//localhost:1313/">Classical Mechanics</a></span> · 
+    <nav style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                
+                <a href="/course-materials/07_notes/">← 07 - Introducing Nonlinear Dynamics</a>
+                
+            </div>
+            <div style="text-align: right;">
+                
+                <a href="/course-materials/05_notes/">05 - Conservation Laws Govern and Constrain our Physics →</a>
+                
+            </div>
+        </div>
+    </nav>
+    
+</article>
 
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
+    </main>
 
-<script>
-    let menu = document.getElementById('menu');
-    if (menu) {
+    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
         
-        const scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-            menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
+        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
         
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
+        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
+    </footer>
 </body>
-
 </html>

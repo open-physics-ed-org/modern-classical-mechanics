@@ -1,12 +1,12 @@
 ---
 title: 13 - Applying the Lagrangian Formulation
 weight: 13
-date: '2026-01-08'
+date: '2026-01-09'
 math: true
 ---
 
 [![Report Issues](https://img.shields.io/badge/report%20issues-GitHub-blue)](https://github.com/dannycab/phy321msu/issues) 
-[![GitHub Issues](https://img.shields.io/github/issues/dannycab/phy321msu)](https://github.com/dannycab/phy321msu/issues)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ## Learning Goals
 
@@ -46,14 +46,15 @@ $$\dfrac{\partial \mathcal{L}}{\partial \dot{q}_i} = \dfrac{\partial T}{\partial
 
 where $p_{q_i}$ is the generalized momentum conjugate to the coordinate $q_i$.
 
-## The Standard Model Lagrangian (17 minute video)
-
+{{< admonition type="admonition" title="The Standard Model Lagrangian (17 minute video)" class="tip" >}}
 An understanding of physics formulated through [Lagrangian Mechanics](https://en.wikipedia.org/wiki/Lagrangian_mechanics) is a powerful and elegant way to describe the motion of particles and systems. But it can be much more than that. Much of the work of particle physics is done in the context of the [Standard Model](https://en.wikipedia.org/wiki/Standard_Model). The Standard Model is a theory that describes the electromagnetic, weak, and strong nuclear interactions. The Standard Model is a [quantum field theory](https://en.wikipedia.org/wiki/Quantum_field_theory), which is formulated through a Lagrangian.
 
 The video below provides an introduction to this equation and the Standard Model.
 
 {{< youtube PHiyQID7SBs >}}
 
+- *Source: <https://www.youtube.com/embed/PHiyQID7SBs>*
+{{< /admonition >}}
 
 ## Examples of Lagrangian Mechanics
 
@@ -63,7 +64,11 @@ We've seen the Lagrangian formulation of mechanics, and we have seen how to use 
 
 The [Atwood machine](https://en.wikipedia.org/wiki/Atwood_machine) consists of two masses, $M$ and $m$, connected by a massless string that passes over a massless pulley. The system is subject to gravity alone. The figure below shows the system along with a choice of coordinates $y_1$ and $y_2$ for the two masses. 
 
-![Atwood Machine](/images/notes/week13/atwood.png)
+{{< figure src="/images/notes/week13/atwood.png" caption="Atwood Machine" >}}
+
+{{< admonition type="error" >}}
+Redraw as vector graphic and post SVG
+{{< /admonition >}}
 
 These coordinates are measured from the center of the pulley and positive $y_1$ and $y_2$ are taken to be upward. Let's try to use the Lagrangian formalism to find the equations of motion for this system.
 
@@ -79,7 +84,11 @@ $$y_1 + \pi R + y_2 = l$$
 
 where $R$ is the radius of the pulley. That is shown in the figure below.
 
-![Unraveled String](/images/notes/week13/string-unraveled.png)
+{{< figure src="/images/notes/week13/string-unraveled.png" caption="Unraveled String" >}}
+
+{{< admonition type="error" >}}
+Redraw as vector graphic and post SVG
+{{< /admonition >}}
 
 The equation above is called an **equation of constraint**. It relates the coordinates $y_1$ and $y_2$ to each other. We can use this equation to eliminate one of the coordinates. Let's eliminate $y_2$:
 
@@ -250,7 +259,12 @@ $$z = \dfrac{1}{2}c(x^2 + y^2)$$
 
 where $c$ is a constant that describes the curvature of the bowl. The figure below shows the system.
 
-![Bead in a Parabolic Bowl](/images/notes/week13/paraboloid.png)
+{{< figure src="/images/notes/week13/paraboloid.png" caption="Bead in a Parabolic Bowl" >}}
+
+{{< admonition type="error" >}}
+Redraw as vector graphic and post SCG
+{{< /admonition >}}
+
 
 In this case the system is better solved in cylindrical coordinates. The coordinates are $(r, \phi, z)$, where $r$ is the distance from the $z$-axis, $\phi$ is the angle around the $z$-axis, and $z$ is the height above the $xy$-plane as shown above.
 

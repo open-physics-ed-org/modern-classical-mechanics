@@ -1,7 +1,7 @@
 ---
 title: 03 - What is Mathematical Modeling?
 weight: 3
-date: '2026-01-08'
+date: '2026-01-09'
 math: true
 ---
 
@@ -49,16 +49,15 @@ One of the more interesting scholars is [Dame Nancy Cartwright](https://en.wikip
 Her writing is very interesting, but the style of writing can be a challenge to read. This is the nature of academic writing in different disciplines. Her book called "How The Laws of Physics Lie" is worth a read. Here's a link to the [first chapter](http://www.generativescience.org/papers/nature/Cartwright-_1983.pdf).
 {{< /admonition >}}
 
-### Short Film on Modeling in Science (8 minutes)
-
+{{< admonition type="admonition" title="Short Film on Modeling in Science (8 minutes)" class="tip" >}}
 Geoscientist [John Aiken](https://mnky9800n.github.io/) made this short video when he was a graduate student at Georgia Tech. John cut clips from a lecture [Richard Feynman](https://en.wikipedia.org/wiki/Richard_Feynman) gave. In this lecture, Feynman talks about the nature of models and the process of science.  John also interviewed different science researchers and teachers about their understanding of what a model is. 
 
 {{< youtube dkTncoPqo5Y >}}
 
 - *Source: <https://www.youtube.com/watch?v=dkTncoPqo5Y>*
+{{< /admonition >}}
 
-### Feynman on the Process of Science (10 minutes)
-
+{{< admonition type="admonition" title="Feynman on the Process of Science (10 minutes)" class="warning" >}}
 [Richard Feynman](https://en.wikipedia.org/wiki/Richard_Feynman) was a physicist who made significant contributions to physics, especially in the field of quantum mechanics. He was awarded the [Nobel Prize in Physics in 1965](https://www.nobelprize.org/prizes/physics/1965/feynman/) for his work in quantum electrodynamics. In his time, he was known as a great teacher and communicator of physics. And [his lectures](https://www.feynmanlectures.caltech.edu/) are still used in physics education today -- even for planning our classes.
 
 Feynman was a gifted communicator; his lectures are lively and conceptual. Here's the longer version of the lecture he gave on the nature of models and the process of science.
@@ -67,11 +66,13 @@ Feynman was a gifted communicator; his lectures are lively and conceptual. Here'
 
 - *Source: <https://www.youtube.com/watch?v=EYPapE-3FRw>*
 
-{{< admonition type="admonition" title="Richard Feynman's Legacy" class="warning" >}}
+
 While we acknowledge the importance of Feynman's contributions to physics and physics teaching, we should remind ourselves that he was not a perfect person. Feynman was also known for his [sexist behavior and comments](https://thebaffler.com/outbursts/surely-youre-a-creep-mr-feynman-mcneill). (*Trigger warning*: this link recounts instances of harassment) 
 
 **We should not ignore this aspect of his life, and remind ourselves that we can learn from his physics and make a welcoming space for all people.** These are not mutually exclusive positions to hold.
 {{< /admonition >}}
+
+:::
 
 ## Making Classical Models
 
@@ -430,5 +431,9 @@ As $t \rightarrow \infty$, the $\tanh$ will tend to 1, and thus the system appro
 
 
 $$\lim_{t\rightarrow \infty} v(t) = v_{\text{term}} = \sqrt{\dfrac{mg}{c}}$$
+
+
+
+
 
 

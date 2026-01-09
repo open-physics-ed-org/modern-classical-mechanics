@@ -1,12 +1,12 @@
 ---
 title: 09 - Driving Oscillators and Resonance Phenomenon
 weight: 9
-date: '2026-01-08'
+date: '2026-01-09'
 math: true
 ---
 
 [![Report Issues](https://img.shields.io/badge/report%20issues-GitHub-blue)](https://github.com/dannycab/phy321msu/issues) 
-[![GitHub Issues](https://img.shields.io/github/issues/dannycab/phy321msu)](https://github.com/dannycab/phy321msu/issues)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ## Learning Goals
 
@@ -21,13 +21,13 @@ Thus far, we have either worked with energy conserving systems or systems that d
 
 Driven oscillators are a specific type of driven system, we expect them to demonstrate recurrent bahevior. Driven ooscillators are quite common. Analog radios use a driven oscillator that is tuned to a specific frequency (99.5 FM is tuned to 99.5 MHz). When you dial the radio you are "tuning" the oscillator to the frequency of the broadcast. This is an illustration of the phenomenon of [resonance](https://en.wikipedia.org/wiki/Resonance). Resonance is a phenomenon where a system is driven at a frequency that matches (or closely matches) its natural frequency. When this happens, the amplitude of the oscillation can grow very large. Resonance is the phenomenon that caused the [collapse of the Tacoma Narrows Bridge](https://en.wikipedia.org/wiki/Tacoma_Narrows_Bridge_(1940)) in 1940. 
 
-## Collapse of the Tacoma Narrows Bridge (9 minute video)
-
+{{< admonition type="admonition" title="Collapse of the Tacoma Narrows Bridge (9 minute video)" class="tip" >}}
 Resonance is the phenomenon that caused the [collapse of the Tacoma Narrows Bridge](https://en.wikipedia.org/wiki/Tacoma_Narrows_Bridge_(1940)) in 1940. The video below describes the collapse and how the bridge was rebuilt to avoid the same problem. 
 
 {{< youtube mXTSnZgrfxM >}}
 
-Source: <https://www.youtube.com/watch?v=mXTSnZgrfxM>
+- *Source: <https://www.youtube.com/watch?v=mXTSnZgrfxM>*
+{{< /admonition >}}
 
 ### Quantum Mechanical Resonance
 
@@ -86,7 +86,12 @@ $$m\ddot{x} +b \dot{x} + k x = F(t)$$
 
 We can represent that setup in the picture below. The blue spring with spring constant $k$ is attached to a red mass $m$. There is a dashpot (damping) in green with damping constant $b=2\beta$. The driving force $F(t)$ is shown in black and called "driver".
 
-![driven oscillator](/images/notes/week9/driven_oscillator.png)
+{{< figure src="/images/notes/week9/driven_oscillator.png" caption="Schematic of a driven oscillator with dashpot" >}}
+
+
+{{< admonition type="error" >}}
+Redraw as vector graphic and post SVG
+{{< /admonition >}}
 
 We write that differential equation as:
 
@@ -329,7 +334,12 @@ Let's allow $\beta$ to be small so that $4\beta^2 \omega^2$ is small. If we focu
 
 The second result is a [resonance](https://en.wikipedia.org/wiki/Resonance) effect. The system will resonate at a particular frequency, $\omega_0$, and the amplitude of the oscillations will be large. Below is a sketch of the response of a driven damped harmonic oscillator to a sinusoidal driving force. The amplitude of the oscillations is plotted as a function of the driving frequency $\omega$.
 
-![Resonance Sketch](/images/notes/week9/resonance.png)
+
+{{< figure src="/images/notes/week9/resonance.png" caption="Resonant phenomenon depicted as the driver frequency is swept.t" >}}
+
+{{< admonition type="error" >}}
+Redraw as vector graphic and post SVG
+{{< /admonition >}}
 
 #### Achieving Resonance
 

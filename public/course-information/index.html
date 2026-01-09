@@ -1,293 +1,158 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="auto">
-
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
-<title>Course Information | Classical Mechanics</title>
-<meta name="keywords" content="">
-<meta name="description" content="This section contains course materials for Course Information.">
-<meta name="author" content="Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine">
-<link rel="canonical" href="//localhost:1313/course-information/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
-<link rel="icon" href="//localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="//localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="//localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="//localhost:1313/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="//localhost:1313/course-information/index.xml" title="rss">
-<link rel="alternate" hreflang="en" href="//localhost:1313/course-information/">
-<noscript>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Information | Classical Mechanics</title>
+    <meta name="description" content="Classical Mechanics">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+    
+    <link rel="stylesheet" href="//localhost:1313/css/accessibility.css">
     <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
         }
-
+        nav {
+            background: #f4f4f4;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #222;
+            margin-top: 1.5em;
+        }
+        h1 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "SF Mono", Monaco, Consolas, monospace;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: #0066cc;
+        }
+        .menu-home {
+            font-weight: bold;
+            margin-right: 30px;
+        }
     </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-                color-scheme: dark;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .toc {
-                background: var(--entry);
-            }
-        }
-
-        @media (prefers-color-scheme: light) {
-            .list::-webkit-scrollbar-thumb {
-                border-color: var(--code-bg);
-            }
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else if (localStorage.getItem("pref-theme") === "light") {
-       document.querySelector("html").dataset.theme = 'light';
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"
-    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}], throwOnError: false});"></script>
-
-
 </head>
-<body class="list" id="top">
-    <header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="//localhost:1313/" accesskey="h" title="Classical Mechanics (Alt + H)">Classical Mechanics</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu">
-            <li>
-                <a href="//localhost:1313/course-information/" title="Course Information">
-                    <span class="active">Course Information</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/course-materials/" title="Course Materials">
-                    <span>Course Materials</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/logistics-resources/" title="Logistics &amp; Resources">
-                    <span>Logistics &amp; Resources</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/programming-resources/" title="Programming Resources">
-                    <span>Programming Resources</span>
-                </a>
-            </li>
+<body>
+    <nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li class="menu-home"><a href="//localhost:1313/">Classical Mechanics</a></li>
+            
+            
+            <li><a href="/course-information/">Course Information</a></li>
+            
+            
+            
+            <li><a href="/course-materials/">Course Materials</a></li>
+            
+            
+            
+            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
+            
+            
+            
+            <li><a href="/programming-resources/">Programming Resources</a></li>
+            
+            
         </ul>
     </nav>
-</header>
-<main class="main"> 
-<header class="page-header"><div class="breadcrumbs"><a href="//localhost:1313/">Home</a></div>
-  <h1>
-    Course Information
-  </h1>
-</header>
-<div class="post-content"><p>This section contains course materials for Course Information.</p>
+
+    <main role="main">
+        
+<article>
+    <h1>Course Information</h1>
+    <p>This section contains course materials for Course Information.</p>
 
 
-</div>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Course Commitments
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Commitment to an Inclusive Classroom I am deeply committed to creating an inclusive classroom - one where you and your classmates feel comfortable, intellectually challenged, and able to speak up about your ideas and experiences. This means that our classroom, our virtual environments, and our interactions need to be as inclusive as possible. Mutual respect, civility, and the ability to listen and observe others are central to creating a classroom that is inclusive. I will strive to do this and I ask that you do the same. If I can do anything to make the classroom a better learning environment for you, please let me know.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span></footer>
-  <a class="entry-link" aria-label="post link to Course Commitments" href="//localhost:1313/course-information/course-commitments/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Getting Started
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>PHY 321 is a course that has been organized to encourage your deep learning of classical mechanics, to provide you with opportunities for growth and agency, to initiate a process of lifelong self-education, and to enculturate you into the practices of physics. Because of this, it might seem there’s a lot for you to do. So this document will help you get started with the course.
-Getting Started Checklist
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span></footer>
-  <a class="entry-link" aria-label="post link to Getting Started" href="//localhost:1313/course-information/getting-started/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Teachers
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>📅 Class Meetings Location: STEM 3202
-Monday Wednesday Friday 12:40-13:30 12:40-13:30 12:40-13:30 Class Structure
-Monday &amp; Wednesday: Lecture-based instruction Friday: Activity-based workshops where we work through challenging exercises together 👨‍🏫 Instructor: Danny Caballero (he/they) Email: caball14@msu.edu Office: MWF BPS 1310A | TTh EGR 1515 Office Hours: TBD or schedule a meeting Danny leads the course, designs homework and exams, and assigns final grades. He’s responsible for course content and welcomes suggestions for improvement. Danny grades your midterms and final projects.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span></footer>
-  <a class="entry-link" aria-label="post link to Teachers" href="//localhost:1313/course-information/teachers/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Textbooks and Course Materials
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Course Materials: Posted materials were adapted from https://mhjensen.github.io/Physics321/doc/web/course.html. They are not meant to be a replacement for textbook readings and deeper research. Examples and exercises in these materials are often inspired by the recommended textbooks below. Tip
-Reading from the course materials is strongly recommended before each lecture. This will help you follow along and engage with the content. The examples and approaches we use in class follow these materials closely.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span></footer>
-  <a class="entry-link" aria-label="post link to Textbooks and Course Materials" href="//localhost:1313/course-information/textbooks/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Grading and Important Dates
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Grading scale There are no curves in this course. The grading scale is as follows.
-4.0 3.5 3.0 2.5 2.0 1.5 1.0 90% 80% 70% 65% 60% 55% 50% This class isn’t trying to trick you or order you in terms of capabilities or knowledge. Far from it, we recoagnize that each of you start with different skills and knowledge and learning will be different for each person. But if you keep up with the work and make real efforts on your midterms and final project, you will earn a good grade. If you are concerned at all, at anytime, talk with Danny.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span></footer>
-  <a class="entry-link" aria-label="post link to Grading and Important Dates" href="//localhost:1313/course-information/grading/"></a>
-</article>
-    </main>
     
-<footer class="footer">
-        <span>&copy; 2026 <a href="//localhost:1313/">Classical Mechanics</a></span> · 
+    <section style="margin-top: 30px;">
+        <h2>Pages in this section:</h2>
+        <ul>
+            
+            <li style="margin-bottom: 10px;">
+                <a href="/course-information/course-commitments/"><strong>Course Commitments</strong></a>
+                
+            </li>
+            
+            <li style="margin-bottom: 10px;">
+                <a href="/course-information/getting-started/"><strong>Getting Started</strong></a>
+                
+            </li>
+            
+            <li style="margin-bottom: 10px;">
+                <a href="/course-information/teachers/"><strong>Teachers</strong></a>
+                
+            </li>
+            
+            <li style="margin-bottom: 10px;">
+                <a href="/course-information/textbooks/"><strong>Textbooks and Course Materials</strong></a>
+                
+            </li>
+            
+            <li style="margin-bottom: 10px;">
+                <a href="/course-information/grading/"><strong>Grading and Important Dates</strong></a>
+                
+            </li>
+            
+        </ul>
+    </section>
+    
+</article>
 
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
+    </main>
 
-<script>
-    let menu = document.getElementById('menu');
-    if (menu) {
+    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
         
-        const scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-            menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
+        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
         
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
+        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
+    </footer>
 </body>
-
 </html>

@@ -1,237 +1,120 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="auto">
-
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
-<title>02 - Computing is a Necessary Tool for Science | Classical Mechanics</title>
-<meta name="keywords" content="">
-<meta name="description" content="
-
-Learning Goals
-After studying Lesson 02, you should be able to:
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02 - Computing is a Necessary Tool for Science | Classical Mechanics</title>
+    <meta name="description" content="Classical Mechanics">
     
-share an example of computing in physics history that is new to you,
-derive the Euler formulation for a 1 dimensional force ($F(x)$) and explain how the Euler algorithm predicts location,
-perform standard vector manipulation tasks including decomposition along orthogonal directions, and
-determine the units of variables and coefficients using base SI units as needed.
-
-
-  
-
-
-Most Classical Mechanics Systems are Nonlinear
-One of the first ideas that we developed was a model of a falling ball in one-dimension. We obtained the following differential equation that described the motion of the ball:">
-<meta name="author" content="Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine">
-<link rel="canonical" href="//localhost:1313/course-materials/02_notes/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
-<link rel="icon" href="//localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="//localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="//localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="//localhost:1313/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="//localhost:1313/course-materials/02_notes/">
-<noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+    
+    <link rel="stylesheet" href="//localhost:1313/css/accessibility.css">
     <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
         }
-
+        nav {
+            background: #f4f4f4;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #222;
+            margin-top: 1.5em;
+        }
+        h1 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "SF Mono", Monaco, Consolas, monospace;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: #0066cc;
+        }
+        .menu-home {
+            font-weight: bold;
+            margin-right: 30px;
+        }
     </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-                color-scheme: dark;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .toc {
-                background: var(--entry);
-            }
-        }
-
-        @media (prefers-color-scheme: light) {
-            .list::-webkit-scrollbar-thumb {
-                border-color: var(--code-bg);
-            }
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else if (localStorage.getItem("pref-theme") === "light") {
-       document.querySelector("html").dataset.theme = 'light';
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"
-    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}], throwOnError: false});"></script>
-
-
 </head>
-<body id="top">
-    <header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="//localhost:1313/" accesskey="h" title="Classical Mechanics (Alt + H)">Classical Mechanics</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu">
-            <li>
-                <a href="//localhost:1313/course-information/" title="Course Information">
-                    <span>Course Information</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/course-materials/" title="Course Materials">
-                    <span>Course Materials</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/logistics-resources/" title="Logistics &amp; Resources">
-                    <span>Logistics &amp; Resources</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/programming-resources/" title="Programming Resources">
-                    <span>Programming Resources</span>
-                </a>
-            </li>
+<body>
+    <nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li class="menu-home"><a href="//localhost:1313/">Classical Mechanics</a></li>
+            
+            
+            <li><a href="/course-information/">Course Information</a></li>
+            
+            
+            
+            <li><a href="/course-materials/">Course Materials</a></li>
+            
+            
+            
+            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
+            
+            
+            
+            <li><a href="/programming-resources/">Programming Resources</a></li>
+            
+            
         </ul>
     </nav>
-</header>
-<main class="main">
 
-<article class="post-single">
-  <header class="post-header">
-    <div class="breadcrumbs"><a href="//localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="//localhost:1313/course-materials/">Course Materials</a></div>
-    <h1 class="post-title entry-hint-parent">
-      02 - Computing is a Necessary Tool for Science
-    </h1>
-    <div class="post-meta"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span>
+    <main role="main">
+        
+<article>
+    <header>
+        <h1>02 - Computing is a Necessary Tool for Science</h1>
+        
+    </header>
 
-</div>
-  </header> <div class="toc">
-    <details >
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">Table of Contents</span>
-        </summary>
-
-        <div class="inner"><ul>
-                <li>
-                    <a href="#learning-goals" aria-label="Learning Goals">Learning Goals</a></li>
-                <li>
-                    <a href="#most-classical-mechanics-systems-are-nonlinear" aria-label="Most Classical Mechanics Systems are Nonlinear">Most Classical Mechanics Systems are Nonlinear</a></li>
-                <li>
-                    <a href="#scientific-computing" aria-label="Scientific Computing">Scientific Computing</a><ul>
-                        
-                <li>
-                    <a href="#history-of-computing" aria-label="History of Computing">History of Computing</a></li>
-                <li>
-                    <a href="#a-critical-perspective-on-computing" aria-label="A Critical Perspective on Computing">A Critical Perspective on Computing</a></li>
-                <li>
-                    <a href="#what-does-any-of-this-have-to-do-with-physics" aria-label="What does any of this have to do with Physics?">What does any of this have to do with Physics?</a></li></ul>
-                </li>
-                <li>
-                    <a href="#mathematical-preliminaries" aria-label="Mathematical Preliminaries">Mathematical Preliminaries</a><ul>
-                        
-                <li>
-                    <a href="#euler-discretization" aria-label="Euler Discretization">Euler Discretization</a><ul>
-                        
-                <li>
-                    <a href="#taking-finite-differences-to-define-kinematic-quantities" aria-label="Taking finite differences to define kinematic quantities">Taking finite differences to define kinematic quantities</a></li>
-                <li>
-                    <a href="#predicting-the-motion" aria-label="Predicting the motion">Predicting the motion</a></li>
-                <li>
-                    <a href="#video-summary-13-minutes" aria-label="Video Summary (13 minutes)">Video Summary (13 minutes)</a></li></ul>
-                </li>
-                <li>
-                    <a href="#discretizing-newtons-second-law" aria-label="Discretizing Newton&rsquo;s Second Law">Discretizing Newton&rsquo;s Second Law</a><ul>
-                        
-                <li>
-                    <a href="#looking-ahead" aria-label="Looking Ahead">Looking Ahead</a></li></ul>
-                </li></ul>
-                </li>
-                <li>
-                    <a href="#additional-preliminaries" aria-label="Additional Preliminaries">Additional Preliminaries</a><ul>
-                        
-                <li>
-                    <a href="#vectors-and-coordinates" aria-label="Vectors and Coordinates">Vectors and Coordinates</a><ul>
-                        
-                <li>
-                    <a href="#unit-vectors" aria-label="Unit Vectors">Unit Vectors</a></li>
-                <li>
-                    <a href="#multiplication-of-vectors" aria-label="Multiplication of Vectors">Multiplication of Vectors</a><ul>
-                        
-                <li>
-                    <a href="#dot-scalar-product" aria-label="Dot (Scalar) Product">Dot (Scalar) Product</a></li>
-                <li>
-                    <a href="#cross-vector-product" aria-label="Cross (Vector) Product">Cross (Vector) Product</a></li></ul>
-                </li></ul>
-                </li>
-                <li>
-                    <a href="#units" aria-label="Units">Units</a><ul>
-                        
-                <li>
-                    <a href="#example-what-are-the-units-of-the-drag-coefficients" aria-label="Example: What are the units of the drag coefficients?">Example: What are the units of the drag coefficients?</a></li></ul>
-                </li></ul>
-                </li>
-                <li>
-                    <a href="#additional-resources-for-exploration-of-science-computing-and-society" aria-label="Additional Resources for Exploration of Science, Computing, and Society">Additional Resources for Exploration of Science, Computing, and Society</a>
-                </li>
-            </ul>
-        </div>
-    </details>
-</div>
-
-  <div class="post-content"><p><a href="https://github.com/dannycab/phy321msu/issues"><img alt="Report Issues" loading="lazy" src="https://img.shields.io/badge/report%20issues-GitHub-blue"></a>
-<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="License: CC BY-NC-SA 4.0" loading="lazy" src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg"></a></p>
-<h2 id="learning-goals">Learning Goals<a hidden class="anchor" aria-hidden="true" href="#learning-goals">#</a></h2>
+    <p><a href="https://github.com/dannycab/phy321msu/issues"><img src="https://img.shields.io/badge/report%20issues-GitHub-blue" alt="Report Issues"></a>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="License: CC BY-NC-SA 4.0"></a></p>
+<h2 id="learning-goals">Learning Goals</h2>
 <div class="admonition admonition-admonition note" role="note" aria-label="Admonition"><p class="admonition-title">After studying Lesson 02, you should be able to:</p><div class="admonition-content">
     <ul>
 <li>share an example of computing in physics history that is new to you,</li>
@@ -243,7 +126,7 @@ One of the first ideas that we developed was a model of a falling ball in one-di
   </div>
 </div>
 
-<h2 id="most-classical-mechanics-systems-are-nonlinear">Most Classical Mechanics Systems are Nonlinear<a hidden class="anchor" aria-hidden="true" href="#most-classical-mechanics-systems-are-nonlinear">#</a></h2>
+<h2 id="most-classical-mechanics-systems-are-nonlinear">Most Classical Mechanics Systems are Nonlinear</h2>
 <p>One of the first ideas that we developed was a model of a falling ball in one-dimension. We obtained the following differential equation that described the motion of the ball:</p>
 <p>$$\ddot{y} = g - \dfrac{b}{m}\dot{y} - \dfrac{c}{m}\dot{y}^2.$$</p>
 <p>This <em>nonlinear</em> second-order differential equation is the <strong>equation of motion</strong> for the ball. It is nonlinear because the term $\dot{y}^2$ appears in the equation.</p>
@@ -263,11 +146,11 @@ One of the first ideas that we developed was a model of a falling ball in one-di
   </div>
 </div>
 
-<h2 id="scientific-computing">Scientific Computing<a hidden class="anchor" aria-hidden="true" href="#scientific-computing">#</a></h2>
+<h2 id="scientific-computing">Scientific Computing</h2>
 <p>We will explore a broad class of problems using plotting and numerical integration as principal tools. These techniques and algorithms, along with the software we use, fall within the broader field of <a href="https://en.wikipedia.org/wiki/Scientific_computing">scientific computing</a>. Scientific computing focuses on developing mathematical models and numerical methods to solve problems in the natural sciences and engineering.</p>
 <p>For historical context, the <a href="https://en.wikipedia.org/wiki/Timeline_of_scientific_computing">Timeline of the Development of Scientific Computing</a> provides an excellent overview. The roots of this field trace back to significant advancements long before modern electronic devices. Much of the foundational mathematics, such as <a href="https://en.wikipedia.org/wiki/Euler_method">Euler’s Method</a> for solving differential equations, was developed in the 18th century by <a href="https://en.wikipedia.org/wiki/Leonhard_Euler">Leonhard Euler</a>. Implementing these algorithms on computers was a natural progression in scientific problem-solving, and was catalyzed by tremendous investments in the military industrial complex after World War II including the notorious <a href="https://en.wikipedia.org/wiki/RAND_Corporation">RAND corporation</a>. Much of this work in scientific computing was driven by the need to solve complex problems in physics and engineering that were otherwise intractable, but there was the added &ldquo;benefit&rdquo; of advancing military technology during the Cold War. Silicon Valley and the modern computing industry owe much of their existence to these investments and the <a href="https://en.wikipedia.org/wiki/Red_Scare">hysteria of the Cold War era</a>.</p>
-<h3 id="history-of-computing">History of Computing<a hidden class="anchor" aria-hidden="true" href="#history-of-computing">#</a></h3>
-<p>The history of scientific computing is deeply intertwined with the evolution of computing itself, a fascinating and complex narrative encompassing technical, social, political, military, and economic perspectives. Contributions to computing originated worldwide, starting with tools like the <a href="https://en.wikipedia.org/wiki/Abacus">abacus</a> in ancient China. Mechanical innovations such as <a href="https://en.wikipedia.org/wiki/Pascal%27s_calculator">Pascal’s adding machine</a> and <a href="https://en.wikipedia.org/wiki/Analytical_Engine">Babbage’s Analytical Engine</a> marked significant milestones leading toward the modern computer.</p>
+<div class="admonition admonition-admonition tip" role="note" aria-label="Admonition"><p class="admonition-title">History of Computing</p><div class="admonition-content">
+    <p>The history of scientific computing is deeply intertwined with the evolution of computing itself, a fascinating and complex narrative encompassing technical, social, political, military, and economic perspectives. Contributions to computing originated worldwide, starting with tools like the <a href="https://en.wikipedia.org/wiki/Abacus">abacus</a> in ancient China. Mechanical innovations such as <a href="https://en.wikipedia.org/wiki/Pascal%27s_calculator">Pascal’s adding machine</a> and <a href="https://en.wikipedia.org/wiki/Analytical_Engine">Babbage’s Analytical Engine</a> marked significant milestones leading toward the modern computer.</p>
 <p>To get an introductory overview, the video below from Futurology is a helpful resource, but it is by no means comprehensive or critical.</p>
 <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
@@ -280,19 +163,24 @@ One of the first ideas that we developed was a model of a falling ball in one-di
     loading="lazy">
   </iframe>
 </div>
-
 <ul>
 <li><em>Source: <a href="https://www.youtube.com/watch?v=-M6lANfzFsM">https://www.youtube.com/watch?v=-M6lANfzFsM</a></em></li>
 </ul>
-<h3 id="a-critical-perspective-on-computing">A Critical Perspective on Computing<a hidden class="anchor" aria-hidden="true" href="#a-critical-perspective-on-computing">#</a></h3>
+
+  </div>
+</div>
+
+<h3 id="a-critical-perspective-on-computing">A Critical Perspective on Computing</h3>
 <p>While the history of computing is often celebrated as a story of innovation, it is deeply entangled with systems of power, exploitation, and violence. Computing technologies have not only been tools of scientific progress but also instruments for surveillance, war, and perpetuation of systemic biases.</p>
 <p>In fact, the principal catalysts for physics research and the development of computing technologies have been the military-industrial complex (e.g., nuclear energy, the internet, autonomous robotics). Defense contractors, often through national laboratories and using classified contracts, have worked to extract tax dollars in exchange for the development of technologies for war and destruction (e.g., nuclear weapons, surveillance technologies, and armed drones). For a critical trace of the history of science in the United States since World War II, consider Clifford&rsquo;s <a href="https://www.haymarketbooks.org/books/1467-the-tragedy-of-american-science"><em>The Tragedy of American Science: From Truman to Trump</em></a>.</p>
 <div class="admonition admonition-admonition note" role="note" aria-label="Admonition"><p class="admonition-title">Humans as Computers</p><div class="admonition-content">
     <p>Of course, the electronic computer was a huge development for science. Prior to that, humans were employed to do the calculations that we now do with computational algorithms. This work occurred in a wide variety of labs where data were entered into tables, calculations were done by hand, and the results were tabulated manually.</p>
 <p>Frequently the work was done by those with less power in the laboratory and broader society (e.g., women, immigrants, and folks of color). A notable and well-known example is the work of the <a href="https://en.wikipedia.org/wiki/Harvard_Computers">Harvard Computers</a> in the late 19th and early 20th centuries where women were employed to do the calculations that led to significant discoveries in astronomy.</p>
-<p><img alt="Harvard Computers" loading="lazy" src="/images/notes/week2/harvard-computers.png"></p>
+<figure class="figure " role="figure">
+  <img src="/images/notes/week2/harvard-computers.png" alt="Harvard Computers" loading="lazy"></figure>
 <p>One of the most important examples is the work done by African-American women at NASA in the 1960s, as depicted in the book and movie <a href="https://en.wikipedia.org/wiki/Hidden_Figures">Hidden Figures</a>.</p>
-<p><img alt="Hidden Figures" loading="lazy" src="/images/notes/week2/nasa-computers-hidden-figures.png"></p>
+<figure class="figure " role="figure">
+  <img src="/images/notes/week2/nasa-computers-hidden-figures.png" alt="Hidden Figures" loading="lazy"></figure>
 <p>Women highlighted in this work include: <a href="https://en.wikipedia.org/wiki/Williamina_Fleming">Williamina Fleming</a>, <a href="https://en.wikipedia.org/wiki/Florence_Cushman">Florence Cushman</a>, <a href="https://en.wikipedia.org/wiki/Katherine_Johnson">Katherine Johnson</a>, <a href="https://en.wikipedia.org/wiki/Dorothy_Vaughan">Dorothy Vaughan</a>, and <a href="https://en.wikipedia.org/wiki/Mary_Jackson">Mary Jackson</a>.</p>
 
   </div>
@@ -303,13 +191,13 @@ One of the first ideas that we developed was a model of a falling ball in one-di
 <p>The militarization of AI is one of the most alarming developments in computing. AI-driven drones and autonomous weapons, often described as the future of warfare, raise profound ethical and humanitarian concerns. <a href="https://shoshanazuboff.com/book/about/">Shoshana Zuboff’s <em>The Age of Surveillance Capitalism</em></a> discusses how the same technologies used for corporate profit are repurposed for state surveillance and military applications, blurring the lines between civilian and combatant spaces.</p>
 <p>Additionally, <a href="https://peterasaro.org/writing/Asaro%20Oxford%20AI%20Ethics%20AWS.pdf">Peter Asaro’s work on lethal autonomous weapons</a> questions the morality and legality of machines making life-and-death decisions. Meanwhile, <a href="https://katecrawford.net/atlas">Kate Crawford’s <em>Atlas of AI</em></a> explores how AI systems, from mining rare earth materials to deployment in warfare, are deeply intertwined with colonial exploitation and ecological destruction.</p>
 <p>The tech industry&rsquo;s focus on profit has devastating environmental and social impacts. Computing relies on the extraction of rare materials, energy-intensive processes, and exploitative labor practices. <a href="https://thischangeseverything.org/">Naomi Klein’s <em>This Changes Everything</em></a> examines how capitalism exacerbates climate change, with insights into the environmental toll of computing technologies. <a href="https://cup.columbia.edu/book/artificial-whiteness/9780231194914">Yarden Katz’s <em>Artificial Whiteness</em></a> connects the development of AI to broader systems of capitalist and racial oppression.</p>
-<h3 id="what-does-any-of-this-have-to-do-with-physics">What does any of this have to do with Physics?<a hidden class="anchor" aria-hidden="true" href="#what-does-any-of-this-have-to-do-with-physics">#</a></h3>
+<h3 id="what-does-any-of-this-have-to-do-with-physics">What does any of this have to do with Physics?</h3>
 <p>Physics is a social and historical enterprise. It has both made incredible strides forward and created great harm here and around the world. To study physics is to understand it not only as a field of knowledge and skills, but as a social and historical driver of society. Physics is not neutral; it is not color blind; and it is not without fault.</p>
 <p>It might make us uncomfortable to learn these histories and alternative explanations, but they are important. Understanding that the experience of others in physics is not like our own is equally important. Through understanding the history and motivation for physics and how people different from us have experienced physics, we can actively choose how to take physics forward in the future.</p>
 <p><strong>So learn the content, develop the skills, and question the history.</strong></p>
-<h2 id="mathematical-preliminaries">Mathematical Preliminaries<a hidden class="anchor" aria-hidden="true" href="#mathematical-preliminaries">#</a></h2>
+<h2 id="mathematical-preliminaries">Mathematical Preliminaries</h2>
 <p>We need a few things to get us started with making models of classical phenomenon. A few of those topics might be familiar to you; things like vectors, and derivatives. But we&rsquo;ll also need to introduce some new ideas, like the concept of <a href="https://en.wikipedia.org/wiki/Discretization">Discretization</a>. We will introduce a powerful method for solving many different Differential Equations &ndash; Euler-Cromer Integration. We start by introducing the concept of Euler Discretization, and then we&rsquo;ll move on to Euler-Cromer Integration later (as it corrects issues with energy conservation).</p>
-<h3 id="euler-discretization">Euler Discretization<a hidden class="anchor" aria-hidden="true" href="#euler-discretization">#</a></h3>
+<h3 id="euler-discretization">Euler Discretization</h3>
 <p>Another useful formulation of Classical Mechanics uses discrete points in time to make approximate predictions of the motion. This is called the <a href="https://en.wikipedia.org/wiki/Euler_method">Euler Method</a>. The Euler Method is a simple numerical method to solve ordinary differential equations. The method is based on the idea of approximating the derivative of a function by a finite difference.</p>
 <p>We posit discrete time, like snapshots of the motion where a given measure of time $t_i$ exists in a discrete set of times between $t_0$ and $t_f$. That is, $t_i \in {t_0, t_1, t_2, \ldots, t_f}$. We conceive of the motion as discrete like the points in the figure below.</p>
 <p><strong>ADD FIGURE</strong></p>
@@ -341,7 +229,7 @@ One of the first ideas that we developed was a model of a falling ball in one-di
   </tbody>
 </table>
 <p>where $y_i$ is the position of the object at time $t_i$. Here, $t_i = t_0 + i\Delta t$ &ndash; equal time spacing &ndash; and $y(t_i) = y_i$ indicates the position of the object at time $t_i$.</p>
-<h4 id="taking-finite-differences-to-define-kinematic-quantities">Taking finite differences to define kinematic quantities<a hidden class="anchor" aria-hidden="true" href="#taking-finite-differences-to-define-kinematic-quantities">#</a></h4>
+<h4 id="taking-finite-differences-to-define-kinematic-quantities">Taking finite differences to define kinematic quantities</h4>
 <p>This formulation can be used to predict the motion of the object.  Let&rsquo;s first define the average velocity over a time step, $\Delta t$, like this:</p>
 <p>$$v(t) = \dfrac{y(t+\Delta t) - y(t)}{\Delta t}$$</p>
 <p>Now, we know that at time, $t_i$, the velocity is $v_i$: $v(t_i) = v_i$ If we make the time step small, $\Delta t \rightarrow 0$, then the average velocity is approximately the velocity at time $t_i$. Thus, we can write the velocity at time $t_{i}$ as:</p>
@@ -354,7 +242,7 @@ One of the first ideas that we developed was a model of a falling ball in one-di
 <p>$$a_i = \dfrac{v_{i+1} - v_i}{\Delta t}$$</p>
 <p>Again, if we take the limit that $\Delta t \rightarrow 0$, then the average acceleration becomes the instantaneous acceleration:</p>
 <p>$$\lim_{\Delta t \rightarrow 0} \dfrac{v(t+\Delta t) - v(t)}{\Delta t} = \dfrac{dv}{dt} = \dot{v}$$</p>
-<h4 id="predicting-the-motion">Predicting the motion<a hidden class="anchor" aria-hidden="true" href="#predicting-the-motion">#</a></h4>
+<h4 id="predicting-the-motion">Predicting the motion</h4>
 <p>Now that we conceptually understand how we can arrive at an acceleration or velocity from a discrete table of data, we can use that information instead to predict the velocity and location of the system. As we derived earlier:</p>
 <p>$$a_i = \dfrac{v_{i+1} - v_i}{\Delta t}$$
 $$v_{i} = \dfrac{y_{i+1} - y_i}{\Delta t}$$</p>
@@ -362,8 +250,8 @@ $$v_{i} = \dfrac{y_{i+1} - y_i}{\Delta t}$$</p>
 <p>$$v_{1} = v_0 + a_0*\Delta t$$
 $$y_{1} = y_0 + v_0*\Delta t$$</p>
 <p>As we will see below, we can use Newton&rsquo;s Second Law to develop this idea and this pair of equations into an algorithm that will allow us to predict the velocity and location of any system.</p>
-<h4 id="video-summary-13-minutes">Video Summary (13 minutes)<a hidden class="anchor" aria-hidden="true" href="#video-summary-13-minutes">#</a></h4>
-<p>There&rsquo;s many videos covering the topic of Euler&rsquo;s method. Here&rsquo;s a video that covers the basics of Euler&rsquo;s method and how it can be used to solve differential equations. It somewhat follows the notes above, but it&rsquo;s always good to hear another perspective.</p>
+<div class="admonition admonition-admonition tip" role="note" aria-label="Admonition"><p class="admonition-title">Video Summary (13 minutes)</p><div class="admonition-content">
+    <p>There&rsquo;s many videos covering the topic of Euler&rsquo;s method. Here&rsquo;s a video that covers the basics of Euler&rsquo;s method and how it can be used to solve differential equations. It somewhat follows the notes above, but it&rsquo;s always good to hear another perspective.</p>
 <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
     src="https://www.youtube-nocookie.com/embed/_0mvWedqW7c"
@@ -375,11 +263,13 @@ $$y_{1} = y_0 + v_0*\Delta t$$</p>
     loading="lazy">
   </iframe>
 </div>
-
 <ul>
 <li><em>Source: <a href="https://youtube.com/watch?v=_0mvWedqW7c">https://youtube.com/watch?v=_0mvWedqW7c</a></em></li>
 </ul>
-<h3 id="discretizing-newtons-second-law">Discretizing Newton&rsquo;s Second Law<a hidden class="anchor" aria-hidden="true" href="#discretizing-newtons-second-law">#</a></h3>
+  </div>
+</div>
+
+<h3 id="discretizing-newtons-second-law">Discretizing Newton&rsquo;s Second Law</h3>
 <p>We can use the Euler Method to discretize Newton&rsquo;s Second Law, and this allows us to predict the motion of the object using iterative methods. These methods are well-suited for computers, and we will learn how to implement them soon.</p>
 <p>Let there be a 1D net force acting the x-direction on an object of mass $m$, $F(x)$. Here the force changes with position. We can discretize this force as a function of position, $F(x_i)$. The net force acting on the object is:</p>
 <p>$$F(x_i) = F_i$$</p>
@@ -393,8 +283,8 @@ $$y_{1} = y_0 + v_0*\Delta t$$</p>
 <p>$$v_{i+1} = v_i + \dfrac{F_i}{m}\Delta t$$</p>
 <p><strong>This is the Euler formulation for predicting the velocity of the object in the next time step &ndash; given the velocity at the current time step.</strong></p>
 <p>We pause here and will return to this formulation later, but this discretization is the basis for many numerical methods in classical mechanics, and we can apply it to solve the falling object problem above.</p>
-<h4 id="looking-ahead">Looking Ahead<a hidden class="anchor" aria-hidden="true" href="#looking-ahead">#</a></h4>
-<p>The development of the forward Euler scheme is the basis for many numerical methods in physics, and especially in classical mechanics. The video below is a longer introduction to the Euler Method and how it can be used to solve differential equations. It&rsquo;s a bit more advanced than the previous video, but it&rsquo;s a good introduction to the topic. We will revisit this topic a number of times, and you will have a chance to implement these methods in Python. <em>This video will be posted again when we cover numerical methods in more detail.</em></p>
+<div class="admonition admonition-admonition tip" role="note" aria-label="Admonition"><p class="admonition-title">Looking Ahead</p><div class="admonition-content">
+    <p>The development of the forward Euler scheme is the basis for many numerical methods in physics, and especially in classical mechanics. The video below is a longer introduction to the Euler Method and how it can be used to solve differential equations. It&rsquo;s a bit more advanced than the previous video, but it&rsquo;s a good introduction to the topic. We will revisit this topic a number of times, and you will have a chance to implement these methods in Python. <em>This video will be posted again when we cover numerical methods in more detail.</em></p>
 <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
     src="https://www.youtube-nocookie.com/embed/MstPeOTCVzQ"
@@ -406,13 +296,15 @@ $$y_{1} = y_0 + v_0*\Delta t$$</p>
     loading="lazy">
   </iframe>
 </div>
-
 <ul>
 <li><em>Source: <a href="https://www.youtube.com/watch?v=MstPeOTCVzQ">https://www.youtube.com/watch?v=MstPeOTCVzQ</a></em></li>
 </ul>
-<h2 id="additional-preliminaries">Additional Preliminaries<a hidden class="anchor" aria-hidden="true" href="#additional-preliminaries">#</a></h2>
+  </div>
+</div>
+
+<h2 id="additional-preliminaries">Additional Preliminaries</h2>
 <p>As you have noticed, much of what we do in classical mechanics involves solving differential equations. We will explore how to solve these equations. But also notice that most of the work involves vector manipulation and/or decomposition. Thus, we will need to be comfortable with vectors. Below are some mathematical concepts of vectors that we will use frequently.</p>
-<h3 id="vectors-and-coordinates">Vectors and Coordinates<a hidden class="anchor" aria-hidden="true" href="#vectors-and-coordinates">#</a></h3>
+<h3 id="vectors-and-coordinates">Vectors and Coordinates</h3>
 <p>The figure below shows a vector in two dimensions.</p>
 <figure class="figure " role="figure" aria-label="Vector in Two Dimensions; the vector is defined by its magnitude, $A$, and its direction, $\theta$. [SVG File](../images/vector-graphics/vector-decomposition-2d.svg)">
   <img src="/images/vector-graphics/vector-decomposition-2d.png" alt="Vector in Two Dimensions; the vector is defined by its magnitude, $A$, and its direction, $\theta$. [SVG File](../images/vector-graphics/vector-decomposition-2d.svg)" loading="lazy"><figcaption class="figure-caption">Vector in Two Dimensions; the vector is defined by its magnitude, $A$, and its direction, $\theta$. <a href="../images/vector-graphics/vector-decomposition-2d.svg">SVG File</a></figcaption></figure>
@@ -427,7 +319,7 @@ $$y_{1} = y_0 + v_0*\Delta t$$</p>
 $$A_y = A\sin(\theta)$$</p>
 <p>It&rsquo;s important to note that the vector components are the projections of the vector onto the $x$ and $y$ axes. The vector components are scalars, and the vector is a sum of the components. We can write the vector in several common forms:</p>
 <p>$$\vec{A} = A_x\hat{x} + A_y\hat{y}  = A_x\hat{i} + A_y\hat{j} = A_x\hat{e}_x + A_y\hat{e}_y.$$</p>
-<h4 id="unit-vectors">Unit Vectors<a hidden class="anchor" aria-hidden="true" href="#unit-vectors">#</a></h4>
+<h4 id="unit-vectors">Unit Vectors</h4>
 <p>The unit vectors, $\hat{x}$, $\hat{y}$, $\hat{i}$, $\hat{j}$, $\hat{e}_x$, and $\hat{e}_y$, are the basis vectors in the $x$ and $y$ directions. The unit vectors are used to define the vector components.</p>
 <p>Interestingly, the angle of the vector is not needed to write the vector in Plane Polar Coordinates ($r$, $\theta$). The vector can be written as:</p>
 <p>$$\vec{A} = A\hat{A}$$</p>
@@ -439,8 +331,8 @@ $$A_y = A\sin(\theta)$$</p>
 <p>$$\vec{A} = A\hat{A} = A_x\hat{x} + A_y\hat{y}$$</p>
 <p>Cartesian unit vectors are fixed in space and time when in an inertial reference frame. However, the unit vectors in Plane Polar Coordinates are not fixed in space and time. They rotate with the vector. This is a common source of confusion when working with vectors in different coordinate systems, which we will come back to later.</p>
 <p>The magnitude of a unit vector is always one, $|\hat{A}| = 1$. And unit vectors are orthogonal to each other, $\hat{x} \cdot \hat{y} = 0$.</p>
-<h4 id="multiplication-of-vectors">Multiplication of Vectors<a hidden class="anchor" aria-hidden="true" href="#multiplication-of-vectors">#</a></h4>
-<h5 id="dot-scalar-product">Dot (Scalar) Product<a hidden class="anchor" aria-hidden="true" href="#dot-scalar-product">#</a></h5>
+<h4 id="multiplication-of-vectors">Multiplication of Vectors</h4>
+<h5 id="dot-scalar-product">Dot (Scalar) Product</h5>
 <p>A dot product of two vectors is a scalar quantity. The dot product of two 3D vectors, $\vec{a}$ and $\vec{b}$, is given by:</p>
 <p>$$\vec{a} \cdot \vec{b} = a_xb_x + a_yb_y + a_zb_z$$</p>
 <p>This product is also equal to the product of the magnitudes of the vectors and the cosine of the angle between them:</p>
@@ -455,7 +347,7 @@ $$A_y = A\sin(\theta)$$</p>
 <p>$$\vec{a} \cdot (\vec{b} + \vec{c}) = a_x(b_x + c_x) + a_y(b_y + c_y) + a_z(b_z + c_z)$$</p>
 <p>$$= a_xb_x + a_xc_x + a_yb_y + a_yc_y + a_zb_z + a_zc_z$$</p>
 <p>$$= \vec{a} \cdot \vec{b} + \vec{a} \cdot \vec{c}$$</p>
-<h5 id="cross-vector-product">Cross (Vector) Product<a hidden class="anchor" aria-hidden="true" href="#cross-vector-product">#</a></h5>
+<h5 id="cross-vector-product">Cross (Vector) Product</h5>
 <p>The cross product of two vectors is a vector quantity. The cross product of two 3D vectors, $\vec{a}$ and $\vec{b}$, is given by:</p>
 <p>$$\vec{a} \times \vec{b} = \begin{vmatrix} \hat{x} &amp; \hat{y} &amp; \hat{z} \ a_x &amp; a_y &amp; a_z \ b_x &amp; b_y &amp; b_z \end{vmatrix}$$</p>
 <p>This results in a vector that has the following components:</p>
@@ -471,7 +363,7 @@ $$A_y = A\sin(\theta)$$</p>
 $$|\vec{b} \times \vec{a}| = |\vec{a}||\vec{b}|\sin(\phi)$$</p>
 <p>And thus both magnitudes are the same, however, the directions are opposite.</p>
 <p>$$\vec{a} \times \vec{b} = -\vec{b} \times \vec{a}$$</p>
-<h3 id="units">Units<a hidden class="anchor" aria-hidden="true" href="#units">#</a></h3>
+<h3 id="units">Units</h3>
 <p>In classical mechanics, we will use the <a href="https://en.wikipedia.org/wiki/International_System_of_Units">International System of Units (SI)</a>. The SI units are the standard units used in science and engineering. The primary units we will use in this course are related to the motion of objects:</p>
 <ul>
 <li><strong>Length</strong>: The meter, $m$, is the standard unit of length, $[r] = \mathrm{length}$.</li>
@@ -486,7 +378,7 @@ $$|\vec{b} \times \vec{a}| = |\vec{a}||\vec{b}|\sin(\phi)$$</p>
 <li><strong>Momentum</strong>: The kilogram meter per second, $kg\cdot m/s$, is the standard unit of momentum, $[p] = \mathrm{mass*length/time}$.</li>
 <li><strong>Energy</strong>: The Joule, $J$, is the standard unit of energy, $[E] = \mathrm{mass*length}^2/\mathrm{time}^2$.</li>
 </ul>
-<h4 id="example-what-are-the-units-of-the-drag-coefficients">Example: What are the units of the drag coefficients?<a hidden class="anchor" aria-hidden="true" href="#example-what-are-the-units-of-the-drag-coefficients">#</a></h4>
+<h4 id="example-what-are-the-units-of-the-drag-coefficients">Example: What are the units of the drag coefficients?</h4>
 <p>Recall the drag force, $F_{air} = bv + cv^2$. The units of the drag coefficients, $b$ and $c$, can be found by examining the units of the force. The units of the force are:</p>
 <p>$$[F_{air}] = [b][v] + [c][v^2]$$</p>
 <p>$$\mathrm{mass<em>length/(time)^2} = [b]</em>\mathrm{length/time}+ [c]*(\mathrm{length/(time)})^2$$</p>
@@ -494,7 +386,7 @@ $$|\vec{b} \times \vec{a}| = |\vec{a}||\vec{b}|\sin(\phi)$$</p>
 <p>Thus, the units of the drag coefficients are:</p>
 <p>$$[b] = \mathrm{mass*length/(time)^2} * \mathrm{time/length} = \mathrm{mass/time}$$</p>
 <p>$$[c] = \mathrm{mass*length/(time)^2} * (\mathrm{time/(length)})^2 = \mathrm{mass/length}$$</p>
-<h2 id="additional-resources-for-exploration-of-science-computing-and-society">Additional Resources for Exploration of Science, Computing, and Society<a hidden class="anchor" aria-hidden="true" href="#additional-resources-for-exploration-of-science-computing-and-society">#</a></h2>
+<h2 id="additional-resources-for-exploration-of-science-computing-and-society">Additional Resources for Exploration of Science, Computing, and Society</h2>
 <p>For deeper dives into some of sociocultural and historical issues referenced above, consider the following materials:</p>
 <table>
   <thead>
@@ -544,103 +436,31 @@ $$|\vec{b} \times \vec{a}| = |\vec{a}||\vec{b}|\sin(\phi)$$</p>
 </table>
 
 
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="//localhost:1313/course-materials/weekly-materials/">
-    <span class="title">« Prev</span>
-    <br>
-    <span>Weekly Course Materials</span>
-  </a>
-  <a class="next" href="//localhost:1313/course-materials/assignment-overview/">
-    <span class="title">Next »</span>
-    <br>
-    <span>Assignments Overview</span>
-  </a>
-</nav>
-
-  </footer>
-</article>
-    </main>
     
-<footer class="footer">
-        <span>&copy; 2026 <a href="//localhost:1313/">Classical Mechanics</a></span> · 
+    <nav style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                
+                <a href="/course-materials/assignment-overview/">← Assignments Overview</a>
+                
+            </div>
+            <div style="text-align: right;">
+                
+                <a href="/course-materials/weekly-materials/">Weekly Course Materials →</a>
+                
+            </div>
+        </div>
+    </nav>
+    
+</article>
 
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
+    </main>
 
-<script>
-    let menu = document.getElementById('menu');
-    if (menu) {
+    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
         
-        const scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-            menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
+        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
         
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
+        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
+    </footer>
 </body>
-
 </html>

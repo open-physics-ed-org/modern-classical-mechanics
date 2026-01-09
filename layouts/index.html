@@ -1,0 +1,22 @@
+{{ define "title" }}{{ .Site.Title }}{{ end }}
+{{ define "main" }}
+<article>
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+</article>
+
+{{ if .Site.Menus.main }}
+<section style="margin-top: 40px;">
+    <h2>Sections</h2>
+    <ul>
+        {{ range .Site.Menus.main }}
+        {{ if not .Parent }}
+        <li style="margin-bottom: 10px;">
+            <a href="{{ .URL }}"><strong>{{ .Name }}</strong></a>
+        </li>
+        {{ end }}
+        {{ end }}
+    </ul>
+</section>
+{{ end }}
+{{ end }}

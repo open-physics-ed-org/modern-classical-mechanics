@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modeling Chaotic Systems - Activity | Classical Mechanics</title>
+    <meta name="description" content="Classical Mechanics">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+    
+    <link rel="stylesheet" href="//localhost:1313/css/accessibility.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        nav {
+            background: #f4f4f4;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #222;
+            margin-top: 1.5em;
+        }
+        h1 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "SF Mono", Monaco, Consolas, monospace;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: #0066cc;
+        }
+        .menu-home {
+            font-weight: bold;
+            margin-right: 30px;
+        }
+    </style>
+</head>
+<body>
+    <nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li class="menu-home"><a href="//localhost:1313/">Classical Mechanics</a></li>
+            
+            
+            <li><a href="/course-information/">Course Information</a></li>
+            
+            
+            
+            <li><a href="/course-materials/">Course Materials</a></li>
+            
+            
+            
+            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
+            
+            
+            
+            <li><a href="/programming-resources/">Programming Resources</a></li>
+            
+            
+        </ul>
+    </nav>
+
+    <main role="main">
+        
+<article>
+    <header>
+        <h1>Modeling Chaotic Systems - Activity</h1>
+        
+    </header>
+
+    <p>Chaotic systems are complex and unpredictable, often exhibiting sensitive dependence on initial conditions. This can make numerically simulating them challenging. We have used a variety of integrators and noticed that some are better than others for different problems. Here, we will use the built-in integrator from the <code>scipy</code> library to simulate our systems (<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html"><code>solve_ivp</code></a>).</p>
+<p>This integrator is designed to be robust and efficient, making it a good choice for a wide range of problems. We can also specify the integrator to use, which can be helpful for specific applications. In our case, we will use the default integrator, which is a good general-purpose integrator. However, we can also specify other integrators, such as <code>RK45</code>, <code>RK23</code>, <code>DOP853</code>, etc., depending on our needs. For the most part, these integrators are using different methods of estimating the slope of the function at each step, which can affect the accuracy and stability of the simulation. They also have different efficiency and performance characteristics, which can be important for large-scale simulations.</p>
+<p>We start with a code that simulates a damped driven pendulum, and the plots we want to obtain. You will can use those to develop simulations of the <a href="https://en.wikipedia.org/wiki/Duffing_equation">Duffing oscillator</a> and the <a href="https://en.wikipedia.org/wiki/Lorenz_system">Lorenz system</a> later.</p>
+<h2 id="using-solve_ivp-to-simulate-chaotic-systems">Using solve_ivp to simulate chaotic systems</h2>
+<p>We have written a variety of integrators for solving ordinary differential equations (ODEs). In this activity, we will introduce the <code>solve_ivp</code> function from the <code>scipy.integrate</code> module, which is a versatile and powerful tool for solving ODEs. We will use it to simulate chaotic systems and explore its capabilities.</p>
+<p>To set up a <code>solve_ivp</code> simulation, we need to define the system of ODEs we want to solve. Let&rsquo;s focus on the damped driven pendulum, a classic example that we will use to illustrate the process.</p>
+<h3 id="damped-driving-pendulum">Damped Driving Pendulum</h3>
+<p>Consider a pendulum that can swing in a plane on a pivot. The pendulum hinge is driven by a horizontal oscillator that oscillates with a constant frequency and amplitude. The second order ODE that describes such a damped driven pendulum is:</p>
+<p>$$
+\frac{d^2\theta}{dt^2} + \beta \frac{d\theta}{dt} + \sin(\theta) = A \cos(\omega_D t)
+$$</p>
+<p>where $\theta$ is the angle of the pendulum, $\beta$ is the damping coefficient, $A$ is the amplitude of the driving force, and $\omega_D$ is the angular frequency of the driving force. We&rsquo;ve absorbed some constants into the parameters for simplicity.</p>
+<h3 id="using-solve_ivp">Using solve_ivp</h3>
+<p>To use <code>solve_ivp</code>, we need to convert this second-order ODE into a system of first-order ODEs. We can do this by introducing a new variable for the angular velocity:</p>
+<p>$$
+\begin{align*}
+\dot{\theta} &amp;= \omega \
+\dot{\omega} &amp;= -\sin(\theta) - \beta \omega + A \cos(\omega_D t)
+\end{align*}
+$$</p>
+<p>where $\omega$ is the angular velocity of the pendulum NOT the driver.</p>
+<p>Let&rsquo;s implement this system using <code>solve_ivp</code> and simulate its behavior over time.</p>
+<p>📝 <strong>Read over this code and run it.</strong> Make sure you make sense of what each part does. You will need to modify it for the next part of the activity.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> gridspec
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> scipy.integrate <span style="color:#f92672">import</span> solve_ivp
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the damped driven pendulum equations</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Note that they are first order ODEs</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">damped_driven_pendulum</span>(t, y, beta, A, omegaD<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">## Your code here</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Parameters that define the system</span>
+</span></span><span style="display:flex;"><span>beta <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>         <span style="color:#75715e"># Damping coefficient</span>
+</span></span><span style="display:flex;"><span>A <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>             <span style="color:#75715e"># Amplitude of driving force</span>
+</span></span><span style="display:flex;"><span>omegaD <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi  <span style="color:#75715e"># Driving frequency</span>
+</span></span><span style="display:flex;"><span>t_span <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">100</span>)   <span style="color:#75715e"># Time span for the simulation</span>
+</span></span><span style="display:flex;"><span>y0 <span style="color:#f92672">=</span> [<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">0</span>]     <span style="color:#75715e"># Initial conditions: theta = pi, omega = 0; Note that solve_ivp takes a list of initial conditions</span>
+</span></span><span style="display:flex;"><span>t_eval <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(t_span[<span style="color:#ae81ff">0</span>], t_span[<span style="color:#ae81ff">1</span>], <span style="color:#ae81ff">10000</span>)  <span style="color:#75715e"># Time points to evaluate; Note that solve_ivp takes a list of times to evaluate</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Solve the ODEs using solve_ivp</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Here we pass the function, time span, initial conditions, parameters, and time points to evaluate</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Any additional arguments to the function can be passed in args in the form of a tuple</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Note that the order of arguments in args must match the order of parameters in the function</span>
+</span></span><span style="display:flex;"><span>solution <span style="color:#f92672">=</span> solve_ivp(damped_driven_pendulum, t_span, y0, args<span style="color:#f92672">=</span>(beta, A, omegaD), t_eval<span style="color:#f92672">=</span>t_eval)
+</span></span></code></pre></div><h3 id="plotting-the-resulting-solution">Plotting the resulting solution</h3>
+<p>The solution from <code>solve_ivp</code> gives us the values of $\theta$ and $\omega$ over time. We can use this data to create plots that help us visualize the behavior of the damped driven pendulum. These results are evaluated at discrete time points, so we can use them to create time series plots or phase space plots.</p>
+<p>The solution object returned by <code>solve_ivp</code> contains several attributes, including <code>t</code> (the time points) and <code>y</code> (the values of the variables at each time point). We can use these to create our plots. Note that the first column of <code>y</code> corresponds to $\theta$ and the second column corresponds to $\omega$ because we defined them in that order in the <code>damped_driven_pendulum</code> function above.</p>
+<h4 id="-do-this">✅ Do This</h4>
+<ol>
+<li>Extract the solution for the position and velocity from your <code>solve_ivp</code> solution (e.g., <code>solution.y[0]</code> is the first column of data).</li>
+<li>Plot the position vs. time and the velocity vs. time.</li>
+<li>Plot the phase space ($x$ vs $\dot{x}$).</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">### Your Code Here ###</span>
+</span></span></code></pre></div><p>📝 What do you notice about the behavior of this system? Both short and long term? How can you see that in your plots?</p>
+<p><strong>Your Answer Here</strong></p>
+<h3 id="investigating-periodicity">Investigating Periodicity</h3>
+<p>As you recall, the damped driven oscillator has two solutions - a transient solution that decays to zero, and a steady-state solution that is periodic. You can see in the above plot that the system starts with a transient solution, but eventually settles into a periodic solution.  Let&rsquo;s truncate the time to see the periodic solution more clearly. Let&rsquo;s look at the last 40 seconds of the simulation. We used <code>t_eval</code> to only evaluate the solution at 1000 points, between 0 and 100. We don&rsquo;t need to recalculate the solution, we can just plot the last 60 seconds of the solution we already calculated.</p>
+<p>To check the periodicity, we investigate if the time series returns to the same value after a certain period. We can do this by plotting the time series after the transients have decayed. If the system is periodic, we should see a repeating pattern in the plot. Using the physics of the driver, we can plot a point at every period of the driver to see if the system returns to the same value, $T = \frac{2\pi}{\omega}$.</p>
+<p>We do that below to demonstrate that after the transient solution decays, the system settles into a single periodic solution.</p>
+<p>One route to chaos is <a href="https://en.wikipedia.org/wiki/Period-doubling_bifurcation">period-doubling bifurcation</a>, where the system goes from a single period to two periods. You can see that we are not at that point yet, but the <a href="https://en.wikipedia.org/wiki/Duffing_equation">Duffing oscillator</a> is a classic example of a system that exhibits period-doubling bifurcation.</p>
+<h4 id="-do-this-1">✅ Do This</h4>
+<ol>
+<li>Extract the solution for the position and velocity from your <code>solve_ivp</code> solution (e.g., <code>solution.y[0]</code> is the first column of data) <strong>for only the last 60 seconds</strong>.</li>
+<li>Plot the position vs. time and the velocity vs. time.</li>
+<li>Plot the phase space ($x$ vs $\dot{x}$).</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">### Your Code Here ###</span>
+</span></span></code></pre></div><p>📝 How does this view of the long term solution help us see the periodicity of the motion? How could we check if the motion follows the driving frequency?</p>
+<p><strong>Your Answer Here</strong></p>
+<h2 id="period-doubling-with-the-duffing-oscillator">Period Doubling with the Duffing Oscillator</h2>
+<p>The Duffing oscillator is a non-linear second-order differential equation that describes the motion of a damped and driven oscillator with a non-linear restoring force. Under certain conditions, it can exhibit chaotic behavior, including period-doubling bifurcations. There are many routes to chaos, but period-doubling is a classic example.</p>
+<p>The model is given by:</p>
+<p>$$\frac{d^2x}{dt^2} + \delta \frac{dx}{dt} + \alpha x + \beta x^3 = \gamma \cos(\omega t)$$</p>
+<p>We can rewrite this as a system of first-order ODEs by introducing a new variable for the velocity:</p>
+<p>$$
+\begin{align*}
+\dot{x} &amp;= v \
+\dot{v} &amp;= -\delta v - \alpha x - \beta x^3 + \gamma \cos(\omega t).
+\end{align*}
+$$</p>
+<h3 id="-numerically-integrate-the-duffing-oscillator">📝 Numerically Integrate the Duffing Oscillator</h3>
+<p>For our simulation we will observe the effect of the driving strength $\gamma$ on the behavior of the system. We start with the following parameters:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Parameter</th>
+          <th>Value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>$\delta$</td>
+          <td>0.2</td>
+      </tr>
+      <tr>
+          <td>$\alpha$</td>
+          <td>-1</td>
+      </tr>
+      <tr>
+          <td>$\beta$</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>$\gamma$</td>
+          <td>0.3</td>
+      </tr>
+      <tr>
+          <td>$\omega$</td>
+          <td>1.2</td>
+      </tr>
+  </tbody>
+</table>
+<p>Choose the initial conditions and time span for the simulation:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Condition</th>
+          <th>Value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Initial $x$</td>
+          <td>1.0</td>
+      </tr>
+      <tr>
+          <td>Initial $v$</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td>Time span</td>
+          <td>100 cycles of the driver</td>
+      </tr>
+      <tr>
+          <td>Evaluation points</td>
+          <td>10000</td>
+      </tr>
+  </tbody>
+</table>
+<p>Below we&rsquo;ve provided some of the code, but not the definition of the <code>duffing</code> function. You will need to write that function and fill in the missing code to complete the simulation.</p>
+<h4 id="-do-this-2">✅ Do This</h4>
+<ul>
+<li>📝 <strong>Write the rest of the code necessary to simulate the Duffing oscillator.</strong></li>
+<li>📝 <strong>Plot the results of your simulation in the next cell.</strong></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> gridspec
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> scipy.integrate <span style="color:#f92672">import</span> solve_ivp
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">duffing</span>(t, y, delta, alpha, beta, gamma, omega):
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">## Your Code Here ###</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>]  <span style="color:#75715e"># Replace with the correct return statement</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Parameters</span>
+</span></span><span style="display:flex;"><span>delta <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.3</span>
+</span></span><span style="display:flex;"><span>alpha <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>beta <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>gamma <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.2</span>
+</span></span><span style="display:flex;"><span>omega <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Time span and initial conditions</span>
+</span></span><span style="display:flex;"><span>cycles <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>tfinal <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>pi <span style="color:#f92672">*</span> cycles <span style="color:#f92672">/</span> omega
+</span></span><span style="display:flex;"><span>t_span <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, tfinal)
+</span></span><span style="display:flex;"><span>t_eval <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(t_span[<span style="color:#ae81ff">0</span>], t_span[<span style="color:#ae81ff">1</span>], <span style="color:#ae81ff">10000</span>)
+</span></span><span style="display:flex;"><span>y0 <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Solve the differential equations</span>
+</span></span><span style="display:flex;"><span>sol <span style="color:#f92672">=</span> solve_ivp(duffing, t_span, y0, args<span style="color:#f92672">=</span>(delta, alpha, beta, gamma, omega), t_eval<span style="color:#f92672">=</span>t_eval)
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> sol<span style="color:#f92672">.</span>y[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>v <span style="color:#f92672">=</span> sol<span style="color:#f92672">.</span>y[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>t <span style="color:#f92672">=</span> sol<span style="color:#f92672">.</span>t
+</span></span></code></pre></div><h3 id="-plotting-the-results">📝 Plotting the results</h3>
+<p>Once you have simulated the Duffing oscillator, you can plot the results to visualize its behavior over time. Your plot should be similar to the one above where you plot at least the position $x$ over time, and then a phase space plot of $x$ vs. $v$. Make sure that you label your axes and include a title for your plot; add starting and ending points to your plot so you are sure about the direction of the motion.</p>
+<p>This first set of plots should look similar to the one below.</p>
+<figure class="figure " role="figure">
+  <img src="/images/notes/week10/first_duffing.png" alt="plot of the Duffing oscillator" loading="lazy"></figure>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">### Your Code Here ###</span>
+</span></span></code></pre></div><h3 id="-investigating-periodicity">📝 Investigating Periodicity</h3>
+<p>Now that you have this solution, look at only the last few cycles of the simulation. You can do this by plotting only the last 10 cycles of the simulation. Include a mark at every cycle of the driver, $T = \frac{2\pi}{\omega}$. This will help you see if the system is periodic or not.</p>
+<h4 id="-do-this-3">✅ Do This</h4>
+<ul>
+<li>Plot your solution for only the last few cycles.</li>
+<li>Make sure to include the phase diagram in your plot.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">### Your Code Here ###</span>
+</span></span></code></pre></div><p>📝  What did you find the periodicity of this particular set up to be? How did you determine it?</p>
+<p><strong>Your Answer Here</strong></p>
+<h3 id="period-doubling">Period Doubling</h3>
+<p>Let&rsquo;s use the same code, or write this code in a new cell, or write a new function, to investigate the effect of increasing the driving strength $\gamma$ on the behavior of the system.</p>
+<p>You will <strong>run the code multiple times</strong>, changing the value of $\gamma$ each time. You can do this by changing the value in the code, or by writing a loop to run through a range of values. In either case, you will need to plot the long term behavior of the system for each value of $\gamma$, including the phase space plot. Your plot should also include a mark at every cycle of the driver, $T = \frac{2\pi}{\omega}$.</p>
+<p>For choices of $\gamma$, please use the following values: 0.2, 0.28, 0.29, 0.37, 0.50, 0.68, 0.74, 0.75.</p>
+<h4 id="-do-this-4">✅ Do This</h4>
+<ul>
+<li>Write a function, <code>solve_duffing</code> that calls <code>duffing</code> function, solves it for choices of initial conditions.</li>
+<li>Write a function, <code>plot_duffing</code> that plots the long term behavior of the oscillator.
+<ul>
+<li>Make sure that it only plots your solution for only the last few cycles.</li>
+<li>Make sure to include the phase diagram in your plot.</li>
+</ul>
+</li>
+<li>Run your code for every parameter choice for $\gamma$.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">duffing</span>(t, y, delta, alpha, beta, gamma, omega):
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">### Copy your code from above here ###</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">solve_duffing</span>(delta, alpha, beta, gamma, omega, cycles<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>, y0<span style="color:#f92672">=</span>[<span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.0</span>], num_points<span style="color:#f92672">=</span><span style="color:#ae81ff">100000</span>):
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Solve the differential equations (use solve_ivp)</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>] <span style="color:#75715e"># return x, v, t</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">plot_duffing</span>(t, x, v, T):
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Plot your solution for only the last few cycles.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Make sure to include the phase diagram in your plot.</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span>
+</span></span></code></pre></div><h4 id="gamma--02">$\gamma = 0.2$</h4>
+<p>Looks like period-1 behavior.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>delta <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.3</span>
+</span></span><span style="display:flex;"><span>alpha <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>beta <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>gamma <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.2</span>
+</span></span><span style="display:flex;"><span>omega <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.2</span>
+</span></span><span style="display:flex;"><span>T <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>pi <span style="color:#f92672">/</span> omega
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x, v, t <span style="color:#f92672">=</span> solve_duffing(delta, alpha, beta, gamma, omega)
+</span></span><span style="display:flex;"><span>plot_duffing(t, x, v, T)
+</span></span></code></pre></div><h4 id="gamma--028">$\gamma = 0.28$</h4>
+<p>Looks like period-2 behavior.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>delta <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.3</span>
+</span></span><span style="display:flex;"><span>alpha <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>beta <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>gamma <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.28</span>
+</span></span><span style="display:flex;"><span>omega <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>T <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>pi <span style="color:#f92672">/</span> omega
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x, v, t <span style="color:#f92672">=</span> solve_duffing(delta, alpha, beta, gamma, omega)
+</span></span><span style="display:flex;"><span>plot_duffing(t, x, v, T)
+</span></span></code></pre></div><h4 id="gamma--029">$\gamma = 0.29$</h4>
+<p>Looks like period-3 or 4 behavior.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>delta <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.3</span>
+</span></span><span style="display:flex;"><span>alpha <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>beta <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>gamma <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.29</span>
+</span></span><span style="display:flex;"><span>omega <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>T <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>pi <span style="color:#f92672">/</span> omega
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x, v, t <span style="color:#f92672">=</span> solve_duffing(delta, alpha, beta, gamma, omega)
+</span></span><span style="display:flex;"><span>plot_duffing(t, x, v, T)
+</span></span></code></pre></div><h4 id="gamma--037">$\gamma = 0.37$</h4>
+<p>Looks like period-5 behavior.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>delta <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.3</span>
+</span></span><span style="display:flex;"><span>alpha <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>beta <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>gamma <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.37</span>
+</span></span><span style="display:flex;"><span>omega <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>T <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>pi <span style="color:#f92672">/</span> omega
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x, v, t <span style="color:#f92672">=</span> solve_duffing(delta, alpha, beta, gamma, omega)
+</span></span><span style="display:flex;"><span>plot_duffing(t, x, v, T)
+</span></span></code></pre></div><h4 id="gamma--050">$\gamma = 0.50$</h4>
+<p>Looks chaotic. Remember this is increased forcing.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>delta <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.3</span>
+</span></span><span style="display:flex;"><span>alpha <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>beta <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>gamma <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.50</span>
+</span></span><span style="display:flex;"><span>omega <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>T <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>pi <span style="color:#f92672">/</span> omega
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x, v, t <span style="color:#f92672">=</span> solve_duffing(delta, alpha, beta, gamma, omega)
+</span></span><span style="display:flex;"><span>plot_duffing(t, x, v, T)
+</span></span></code></pre></div><h4 id="gamma--068">$\gamma = 0.68$</h4>
+<p>Still looks chaotic.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>delta <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.3</span>
+</span></span><span style="display:flex;"><span>alpha <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>beta <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>gamma <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.68</span>
+</span></span><span style="display:flex;"><span>omega <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>T <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>pi <span style="color:#f92672">/</span> omega
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x, v, t <span style="color:#f92672">=</span> solve_duffing(delta, alpha, beta, gamma, omega)
+</span></span><span style="display:flex;"><span>plot_duffing(t, x, v, T)
+</span></span></code></pre></div><h4 id="gamma--074">$\gamma = 0.74$</h4>
+<p>What happened?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>delta <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.3</span>
+</span></span><span style="display:flex;"><span>alpha <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>beta <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>gamma <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.74</span>
+</span></span><span style="display:flex;"><span>omega <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>T <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>pi <span style="color:#f92672">/</span> omega
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x, v, t <span style="color:#f92672">=</span> solve_duffing(delta, alpha, beta, gamma, omega)
+</span></span><span style="display:flex;"><span>plot_duffing(t, x, v, T)
+</span></span></code></pre></div><h4 id="gamma--075">$\gamma = 0.75$</h4>
+<p>This looks like a period-1 solution again.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>delta <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.3</span>
+</span></span><span style="display:flex;"><span>alpha <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>beta <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>gamma <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.75</span>
+</span></span><span style="display:flex;"><span>omega <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>T <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>pi <span style="color:#f92672">/</span> omega
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x, v, t <span style="color:#f92672">=</span> solve_duffing(delta, alpha, beta, gamma, omega)
+</span></span><span style="display:flex;"><span>plot_duffing(t, x, v, T)
+</span></span></code></pre></div><h2 id="sensitivity-to-initial-conditions-with-the-lorenz-attractor">Sensitivity to Initial Conditions with the Lorenz Attractor</h2>
+<p>The Lorenz attractor is a system of ordinary differential equations that model atmospheric convection. It is a classic example of a chaotic system that exhibits sensitive dependence on initial conditions. It also demonstrates the phenomenon of a <a href="https://en.wikipedia.org/wiki/Strange_attractor">strange attractor</a>. A strange attractor is a fractal structure in phase space that the system approaches asymptotically over time. For the Lorenz attractor, the strange attractor is a set of points in phase space that the system approaches as time goes to infinity - the butterfly shape that you might be familiar with.</p>
+<p>In this activity, we will simulate the Lorenz attractor using <code>solve_ivp</code> and explore how solutions diverge from each other based on small differences in initial conditions.</p>
+<h3 id="mathematical-model">Mathematical Model</h3>
+<p>The Lorenz model is given by:</p>
+<p>$$\frac{dx}{dt} = \sigma (y - x)$$
+$$\frac{dy}{dt} = x(\rho - z) - y$$
+$$\frac{dz}{dt} = xy - \beta z$$</p>
+<p>Where $\sigma$, $\rho$, and $\beta$ are system parameters. The canonical values are $\sigma = 10$, $\rho = 28$, and $\beta = \frac{8}{3}$.</p>
+<h3 id="-numerically-integrate-the-lorenz-attractor">📝 Numerically Integrate the Lorenz Attractor</h3>
+<p>In the cells below, we scaffold some of the code to simulate the Lorenz attractor. You will need to fill in the missing pieces. Once you plot the solution, you should be able to produce time series, and phase space plots of the Lorenz attractor. <strong>Note that the phase space for the Lorenz attractor is 3D (x,y,z), so you will need to use a 3D plotting function or plot projections.</strong></p>
+<p>For the parameters, we will use the canonical values of $\sigma = 10$, $\rho = 28$, and $\beta = \frac{8}{3}$. Choose initial conditions of $x=1$, $y=1$, and $z=1$ and simulate for 50 time units. If you do, your solution will look like the one below.</p>
+<figure class="figure " role="figure">
+  <img src="/images/notes/week10/lorenz-1.png" alt="Lorenz-1" loading="lazy"></figure>
+
+<figure class="figure " role="figure">
+  <img src="/images/notes/week10/lorenz-2.png" alt="Lorenz-2" loading="lazy"></figure>
+
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> matplotlib <span style="color:#f92672">import</span> gridspec
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> scipy.integrate <span style="color:#f92672">import</span> solve_ivp
+</span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#39;seaborn-v0_8-colorblind&#39;</span>)
+</span></span></code></pre></div><h4 id="-do-this-5">✅ Do This</h4>
+<ul>
+<li>Fix the <code>lorenz</code> function to solve the Lorenz differential equations.</li>
+<li>Plots the solutions as shown above (i.e., make the same types of plots)</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">lorenz</span>(t, sol, sigma, beta, rho):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">### Your Code Here ###</span>
+</span></span><span style="display:flex;"><span>    x, y, z <span style="color:#f92672">=</span> sol
+</span></span><span style="display:flex;"><span>    dxdt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    dydt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    dzdt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>] <span style="color:#75715e"># return dxdt, dydt, dzdt</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Parameters for the Lorenz system</span>
+</span></span><span style="display:flex;"><span>sigma <span style="color:#f92672">=</span> <span style="color:#ae81ff">10.0</span>
+</span></span><span style="display:flex;"><span>beta <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span><span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>rho <span style="color:#f92672">=</span> <span style="color:#ae81ff">28.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Time span and initial conditions</span>
+</span></span><span style="display:flex;"><span>t_span <span style="color:#f92672">=</span> (<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">50</span>)
+</span></span><span style="display:flex;"><span>t_eval <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(t_span[<span style="color:#ae81ff">0</span>], t_span[<span style="color:#ae81ff">1</span>], <span style="color:#ae81ff">10000</span>)
+</span></span><span style="display:flex;"><span>y0 <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Solve the differential equations</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sol <span style="color:#f92672">=</span> solve_ivp(lorenz, t_span, y0, args<span style="color:#f92672">=</span>(sigma, beta, rho), t_eval<span style="color:#f92672">=</span>t_eval)
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> sol<span style="color:#f92672">.</span>y[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>y <span style="color:#f92672">=</span> sol<span style="color:#f92672">.</span>y[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>z <span style="color:#f92672">=</span> sol<span style="color:#f92672">.</span>y[<span style="color:#ae81ff">2</span>]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">### Your Code Here ###</span>
+</span></span></code></pre></div><h3 id="-exploring-sensitivity-to-initial-conditions">📝 Exploring Sensitivity to Initial Conditions</h3>
+<p>Noe that you have a solution to the Lorenz attractor, you can observe how trajectories that start from slightly different initial conditions diverge over time. This is a hallmark of chaotic systems, where small differences in initial conditions can lead to vastly different outcomes. We can visualize this as a bundle of trajectories that start from nearby points in phase space and then diverge over time. For the Lorenz attractor, this is often visualized as a butterfly-shaped structure in phase space.</p>
+<p>For this activity, we will simulate the Lorenz attractor for two sets of initial conditions that are close together. We will then plot the trajectories in phase space to observe how they diverge over time.</p>
+<h4 id="-do-this-6">✅ Do This</h4>
+<p><strong>📝 Modify the code you wrote above to simulate the Lorenz attractor for two sets of initial conditions that are close together. Plot the trajectories in phase space to observe how they diverge over time. Do this as both a time series and in phase space.</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">### Your Code Here ###</span>
+</span></span></code></pre></div><h3 id="-the-strange-attractor">📝 The Strange Attractor</h3>
+<p>The two trajectories that you plotted above should look like they are diverging over time. This is very common in chaotic systems. However, when you plot the trajectories in the phase space, they seem to occupy a bounded region of space - this is especially true as the trajectories evolve.</p>
+<p>This bounded region is called a strange attractor. A strange attractor is a set of points in phase space that the system approaches asymptotically over time. For the Lorenz attractor, the strange attractor is a fractal structure that the system approaches as time goes to infinity.</p>
+<h4 id="-do-this-7">✅ Do This</h4>
+<ul>
+<li>Let&rsquo;s plot a ton of trajectories starting from different initial conditions to see the strange attractor. We can do this by looping over a range of initial conditions and plotting each trajectory in phase space.</li>
+</ul>
+<p>That will get very messy, so instead, let&rsquo;s integrate 100-1000 trajectories that are near the original trajectory. <strong>We will plot only the original and final location of each trajectory.</strong> This will give us a sense of the strange attractor without plotting every single trajectory.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Bundle of trajectories</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">lorenz</span>(t, sol, sigma, beta, rho):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">### Your Code Here ###</span>
+</span></span><span style="display:flex;"><span>    x, y, z <span style="color:#f92672">=</span> sol
+</span></span><span style="display:flex;"><span>    dxdt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    dydt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    dzdt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> [<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>] <span style="color:#75715e"># return dxdt, dydt, dzdt</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">solve_lorenz</span>(y0, sigma<span style="color:#f92672">=</span><span style="color:#ae81ff">10.0</span>, beta<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span><span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>, rho<span style="color:#f92672">=</span><span style="color:#ae81ff">28.0</span>, t_span<span style="color:#f92672">=</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">50</span>), t_eval<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>linspace(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">10000</span>)):
+</span></span><span style="display:flex;"><span>    sol <span style="color:#f92672">=</span> solve_ivp(lorenz, t_span, y0, args<span style="color:#f92672">=</span>(sigma, beta, rho), t_eval<span style="color:#f92672">=</span>t_eval)
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> sol<span style="color:#f92672">.</span>y[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>    y <span style="color:#f92672">=</span> sol<span style="color:#f92672">.</span>y[<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>    z <span style="color:#f92672">=</span> sol<span style="color:#f92672">.</span>y[<span style="color:#ae81ff">2</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> x, y, z, sol<span style="color:#f92672">.</span>t
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Example usage:</span>
+</span></span><span style="display:flex;"><span>y0 <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">1.0</span>]
+</span></span><span style="display:flex;"><span>x, y, z, t <span style="color:#f92672">=</span> solve_lorenz(y0)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># pick 1000 random initial conditions near the original one</span>
+</span></span><span style="display:flex;"><span>num_trajectories <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span>initial_conditions <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(loc<span style="color:#f92672">=</span>y0, scale<span style="color:#f92672">=</span><span style="color:#ae81ff">0.1</span>, size<span style="color:#f92672">=</span>(num_trajectories, <span style="color:#ae81ff">3</span>))
+</span></span><span style="display:flex;"><span>trajectories <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> ic <span style="color:#f92672">in</span> initial_conditions:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">### Your Code Here ###</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">pass</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"></code></pre></div>
+
+    
+    <nav style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                
+            </div>
+            <div style="text-align: right;">
+                
+                <a href="/programming-resources/phase_diagrams/">Plotting Phase Diagrams →</a>
+                
+            </div>
+        </div>
+    </nav>
+    
+</article>
+
+    </main>
+
+    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
+        
+        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
+        
+        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
+    </footer>
+</body>
+</html>

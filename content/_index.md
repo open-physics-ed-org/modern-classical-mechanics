@@ -1,7 +1,7 @@
 ---
 title: 'PHY 321: Classical Mechanics 1, Michigan State University, Spring 2026'
 weight: 0
-date: '2026-01-08'
+date: '2026-01-09'
 ---
 
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/dannycab/phy321msu)
@@ -20,6 +20,7 @@ date: '2026-01-08'
     * [01 - Overture: What is Classical Physics?](/course-materials/01_notes/)
     * [02 - Computing is a Necessary Tool for Science](/course-materials/02_notes/)
 * Review [Homework Assignment Instructions](/course-materials/assignment-overview/) and [Homework 1](/course-materials/hw1/)
+* Join the [course Microsoft Team](https://teams.microsoft.com/l/team/19%3AIr0eKL1QHnlQB1RsC6tL17haYAABE9rDsDoTGBZdlXU1%40thread.tacv2/conversations?groupId=e971ed12-c07e-4696-993b-86e11e55c523&tenantId=22177130-642f-41d9-9211-74237ad5687d) for announcements and discussions.
 {{< /admonition >}}
 
 ## Learning outcomes

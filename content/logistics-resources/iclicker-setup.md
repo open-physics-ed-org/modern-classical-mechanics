@@ -1,7 +1,7 @@
 ---
 title: i-Clicker Setup Instructions
 weight: 3
-date: '2026-01-08'
+date: '2026-01-09'
 ---
 
 We will be using iClicker to make our class time more engaging. This will help me understand what you know, give everyone a chance to participate, and increase how much you learn in class. This will also provide you with feedback on how well you are comprehending course concepts, help you master challenging concepts, and allow you to review material after class.

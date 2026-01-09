@@ -1,13 +1,13 @@
 ---
 title: 06 - Nature Often Seeks Stability
 weight: 6
-date: '2026-01-08'
+date: '2026-01-09'
 math: true
 highlight: true
 ---
 
 [![Report Issues](https://img.shields.io/badge/report%20issues-GitHub-blue)](https://github.com/dannycab/phy321msu/issues) 
-[![GitHub Issues](https://img.shields.io/github/issues/dannycab/phy321msu)](https://github.com/dannycab/phy321msu/issues)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ## Learning Goals
 
@@ -44,6 +44,10 @@ It provides the simplest example of a system that exhibits periodic motion. It a
 There are many systems that we can transform into a simple harmonic oscillator. And it is not because the world is full of springs and masses. It is because the simple harmonic oscillator is a good model for many systems near their local equilibrium points. In fact, as you will see, it is the leading (non-constant) term in every Taylor expansion of a 1D potential energy function near a local minimum.
 
 #### Another SHO Example - A Pendulum
+
+{{< admonition type="error" >}}
+Add figure of pendulum
+{{< /admonition >}}
 
 Consider a pendulum of mass $m$ and length $L$ that is displaced from the vertical by an angle $\theta$. We can show that the complete equation of motion (without drag) is:
 
@@ -113,17 +117,17 @@ We will start to use these ideas from this week into next week as we build a set
 
 To introduce some of those initial ideas here are two videos from different physics perspectives on the topic of chaos.
 
-#### Veritasium - The Butterfly Effect and Chaotic Systems (13 minute video)
-
+{{< admonition type="admonition" title="Veritasium - The Butterfly Effect and Chaotic Systems (13 minute video)" class="tip" >}}
 In this video, Derek Muller uses the typical example of the Butterfly Effect to introduce the idea of chaos theory. The philosophical aspects of the butterfly effect are interesting, but not real in any physical sense. Instead, it's a metaphor for the idea that small changes in initial conditions can lead to large changes in the system. Muller contrasts our understanding of determinism with uncertainty; he introduces the concepts of sensitivity to initial conditions and discusses the idea of an attractor. 
 
 {{< youtube fDek6cYijxI >}}
+{{< /admonition >}}
 
-#### University of Bristol - Chaos Theory and Randomness (8 minute video)
-
+{{< admonition type="admonition" title="University of Bristol - Chaos Theory and Randomness (8 minute video)" class="tip" >}}
 In this video, two researchers from the University of Bristol ([Jens Marklof](https://people.maths.bris.ac.uk/~majm/) and [Henna Koivusalo](https://people.maths.bris.ac.uk/~te20281/)) discuss the idea of chaos theory from a more mathematical perspective - reminding us of the differences between randomness and chaos. The overlap between physicists and mathematicians in the study of chaos is significant. One important contribution is [Dynamical systems](https://en.wikipedia.org/wiki/Dynamical_system), which is a mathematical framework that is used to study these behaviors. The researchers who do this work are mathematicians, physicists, engineers, and computer scientists. They do experiments, but they also do a lot of mathematical modeling.
 
 {{< youtube 5fRhasVmcUE >}}
+{{< /admonition >}}
 
 
 ## Stability and Equilibria

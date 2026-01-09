@@ -1,210 +1,122 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="auto">
-
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
-<title>11 - Reformulating Classical Mechanics using the Calculus of Variations | Classical Mechanics</title>
-<meta name="keywords" content="">
-<meta name="description" content="![Report Issues](https://img.s* hields.io/badge/report%20issues-GitHub-blue)
-
-Learning Goals
-:::{admonition} After studying Lesson 11, you should be able to:
-:class: note
-
-Explain the conceptual idea of the calculus of variations and its application to classical mechanics, including the conceptual outline of the derivation of the Euler-Lagrange equation.
-Analyze the shortest path problem in a plane and derive the equation of a straight line using the Euler-Lagrange equation.
-Apply the calculus of variations to derive Snell&rsquo;s Law, demonstrating the relationship between angles and velocities in different media.
-Solve the Brachistochrone problem to determine the cycloid curve as the path of least time for a bead sliding under gravity.
-Use Python to visualize solutions to variational problems, including plotting paths and interpreting their physical significance.
-:::
-
-We are eventually going to develop some deep principles of classical mechanics that will connect for us the motion of particles and the forces they experience to the energy that moves between aspects of the system. This formulation of mechanics is called Lagrangian Mechanics. It is a powerful and elegant way to describe the motion of particles and systems. It is based on the Calculus of Variations, a field of mathematics that is concerned with finding the path that minimizes or maximizes (called &ldquo;extremization&rdquo;) a certain quantity.">
-<meta name="author" content="Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine">
-<link rel="canonical" href="//localhost:1313/course-materials/11_notes/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
-<link rel="icon" href="//localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="//localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="//localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="//localhost:1313/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="//localhost:1313/course-materials/11_notes/">
-<noscript>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11 - Reformulating Classical Mechanics using the Calculus of Variations | Classical Mechanics</title>
+    <meta name="description" content="Classical Mechanics">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+    
+    <link rel="stylesheet" href="//localhost:1313/css/accessibility.css">
     <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
         }
-
+        nav {
+            background: #f4f4f4;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #222;
+            margin-top: 1.5em;
+        }
+        h1 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "SF Mono", Monaco, Consolas, monospace;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: #0066cc;
+        }
+        .menu-home {
+            font-weight: bold;
+            margin-right: 30px;
+        }
     </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-                color-scheme: dark;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .toc {
-                background: var(--entry);
-            }
-        }
-
-        @media (prefers-color-scheme: light) {
-            .list::-webkit-scrollbar-thumb {
-                border-color: var(--code-bg);
-            }
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else if (localStorage.getItem("pref-theme") === "light") {
-       document.querySelector("html").dataset.theme = 'light';
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"
-    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}], throwOnError: false});"></script>
-
-
 </head>
-<body id="top">
-    <header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="//localhost:1313/" accesskey="h" title="Classical Mechanics (Alt + H)">Classical Mechanics</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu">
-            <li>
-                <a href="//localhost:1313/course-information/" title="Course Information">
-                    <span>Course Information</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/course-materials/" title="Course Materials">
-                    <span>Course Materials</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/logistics-resources/" title="Logistics &amp; Resources">
-                    <span>Logistics &amp; Resources</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/programming-resources/" title="Programming Resources">
-                    <span>Programming Resources</span>
-                </a>
-            </li>
+<body>
+    <nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li class="menu-home"><a href="//localhost:1313/">Classical Mechanics</a></li>
+            
+            
+            <li><a href="/course-information/">Course Information</a></li>
+            
+            
+            
+            <li><a href="/course-materials/">Course Materials</a></li>
+            
+            
+            
+            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
+            
+            
+            
+            <li><a href="/programming-resources/">Programming Resources</a></li>
+            
+            
         </ul>
     </nav>
-</header>
-<main class="main">
 
-<article class="post-single">
-  <header class="post-header">
-    <div class="breadcrumbs"><a href="//localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="//localhost:1313/course-materials/">Course Materials</a></div>
-    <h1 class="post-title entry-hint-parent">
-      11 - Reformulating Classical Mechanics using the Calculus of Variations
-    </h1>
-    <div class="post-meta"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span>
+    <main role="main">
+        
+<article>
+    <header>
+        <h1>11 - Reformulating Classical Mechanics using the Calculus of Variations</h1>
+        
+    </header>
 
-</div>
-  </header> <div class="toc">
-    <details >
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">Table of Contents</span>
-        </summary>
-
-        <div class="inner"><ul>
-                <li>
-                    <a href="#learning-goals" aria-label="Learning Goals">Learning Goals</a><ul>
-                        
-                <li>
-                    <a href="#the-math-of-bubbles-17-minute-video" aria-label="The Math of Bubbles (17 minute video)">The Math of Bubbles (17 minute video)</a></li></ul>
-                </li>
-                <li>
-                    <a href="#the-euler-lagrange-equation" aria-label="The Euler-Lagrange Equation">The Euler-Lagrange Equation</a><ul>
-                        
-                <li>
-                    <a href="#canonical-conceptualization---finding-the-shortest-path-in-a-plane" aria-label="Canonical Conceptualization - Finding the Shortest Path in a Plane">Canonical Conceptualization - Finding the Shortest Path in a Plane</a></li>
-                <li>
-                    <a href="#setup-of-the-problem" aria-label="Setup of the Problem">Setup of the Problem</a></li>
-                <li>
-                    <a href="#deriving-the-euler-lagrange-equation" aria-label="Deriving the Euler-Lagrange Equation">Deriving the Euler-Lagrange Equation</a><ul>
-                        
-                <li>
-                    <a href="#integration-by-parts" aria-label="Integration by Parts">Integration by Parts</a></li></ul>
-                </li>
-                <li>
-                    <a href="#back-to-the-shortest-path-example" aria-label="Back to the Shortest Path Example">Back to the Shortest Path Example</a></li>
-                <li>
-                    <a href="#example-snells-law" aria-label="Example: Snell&rsquo;s Law">Example: Snell&rsquo;s Law</a></li>
-                <li>
-                    <a href="#example-brachistochrone-problem-16-minute-video" aria-label="Example: Brachistochrone Problem (16 minute video)">Example: Brachistochrone Problem (16 minute video)</a><ul>
-                        
-                <li>
-                    <a href="#velocity-of-the-bead" aria-label="Velocity of the Bead">Velocity of the Bead</a>
-                </li>
-            </ul>
-            </li>
-            </ul>
-            </li>
-            </ul>
-        </div>
-    </details>
-</div>
-
-  <div class="post-content"><p><a href="https://github.com/dannycab/phy321msu/issues">![Report Issues](https://img.s* hields.io/badge/report%20issues-GitHub-blue)</a>
-<a href="https://github.com/dannycab/phy321msu/issues"><img alt="GitHub Issues" loading="lazy" src="https://img.shields.io/github/issues/dannycab/phy321msu"></a></p>
-<h2 id="learning-goals">Learning Goals<a hidden class="anchor" aria-hidden="true" href="#learning-goals">#</a></h2>
-<p>:::{admonition} After studying Lesson 11, you should be able to:
-:class: note</p>
-<ul>
+    <p><a href="https://github.com/dannycab/phy321msu/issues"><img src="https://img.shields.io/badge/report%20issues-GitHub-blue" alt="Report Issues"></a>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="License: CC BY-NC-SA 4.0"></a></p>
+<h2 id="learning-goals">Learning Goals</h2>
+<div class="admonition admonition-admonition tip" role="note" aria-label="Admonition"><p class="admonition-title">After studying Lesson 11, you should be able to:</p><div class="admonition-content">
+    <ul>
 <li>Explain the conceptual idea of the calculus of variations and its application to classical mechanics, including the conceptual outline of the derivation of the Euler-Lagrange equation.</li>
 <li>Analyze the shortest path problem in a plane and derive the equation of a straight line using the Euler-Lagrange equation.</li>
 <li>Apply the calculus of variations to derive Snell&rsquo;s Law, demonstrating the relationship between angles and velocities in different media.</li>
@@ -216,7 +128,6 @@ We are eventually going to develop some deep principles of classical mechanics t
 <p>The conceptual idea of Lagrangian mechanics is to describe the motion of a system by defining a function called the <strong>Lagrangian</strong>. Under this framework, the stationary points (or paths) of the <a href="https://en.wikipedia.org/wiki/Action_(physics)">action integral</a>, which is the integral of the Lagrangian over time, correspond to the actual motion of the system. This means that if you can find the path that minimizes or maximizes this action, you can determine the equations of motion for the system. We will come back to this next week when we derive the Lagrangian equations of motion. But understand that we are seeking to extremize a particular integral to find the path that a system will take through configuration space.</p>
 <p>Our examples will start with simple systems, like the motion on a plane - where we will prove a line is the shortest path between two points (also known as a geodesic). We will also recover a form of <a href="https://en.wikipedia.org/wiki/Snell%27s_law">Snell&rsquo;s Law</a> of refraction, which describes how light bends when it passes through different media. We will use running from the shoreline to a point in the water as an example of how to apply these principles. Lastly, we will look at the <a href="https://en.wikipedia.org/wiki/Brachistochrone_problem">Brachistochrone problem</a>, which is the problem of finding the curve down which a bead will slide (without friction) from one point to another in the shortest time. This is a classic problem in the calculus of variations and leads us to the cycloid curve.</p>
 <p>This section is mathematically intensive and will require you to have a solid understanding of calculus, including differentiation and integration. This mathematics is also very powerful and underlies how we can develop equations of motion in particular systems. But is also describes the shape of surfaces like bubbles and droplets. The video below is a nice introduction to the concept of Calculus of Variations and its relation to <a href="https://en.wikipedia.org/wiki/Minimal_surface">minimal surfaces</a>.</p>
-<h3 id="the-math-of-bubbles-17-minute-video">The Math of Bubbles (17 minute video)<a hidden class="anchor" aria-hidden="true" href="#the-math-of-bubbles-17-minute-video">#</a></h3>
 <p>In the video below, we learn about the <a href="https://en.wikipedia.org/wiki/Soap_bubble">Soap Bubble Problem</a>, which is another classic problem in the calculus of variations. The goal is to find the shape of a soap bubble that minimizes surface area for a given volume.</p>
 <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
@@ -229,13 +140,18 @@ We are eventually going to develop some deep principles of classical mechanics t
     loading="lazy">
   </iframe>
 </div>
+<ul>
+<li><em>Source: <a href="https://youtube.com/watch?v=8SABptOYUVk">https://youtube.com/watch?v=8SABptOYUVk</a></em></li>
+</ul>
 
-<p>Source: <a href="https://youtube.com/watch?v=8SABptOYUVk">https://youtube.com/watch?v=8SABptOYUVk</a></p>
-<h2 id="the-euler-lagrange-equation">The Euler-Lagrange Equation<a hidden class="anchor" aria-hidden="true" href="#the-euler-lagrange-equation">#</a></h2>
+  </div>
+</div>
+
+<h2 id="the-euler-lagrange-equation">The Euler-Lagrange Equation</h2>
 <p>As we will use it, the <a href="https://en.wikipedia.org/wiki/Calculus_of_variations">Calculus of Variations</a> foucses on finding the conditions of extrema for quantities that can be expressed as an integral. This might be a very abstract concept, so we will start with a simple example.</p>
 <p>This approach might seem a bit alien at first, but it turns out to be an interesting way to develop an equivalent formulation of mechanics. Moreover, the Calculus of Variations is a powerful tool in many fields, and forms the basis for <a href="https://en.wikipedia.org/wiki/Lagrangian_mechanics">Lagrangian mechanics</a>.</p>
 <p>To do this, we will derive (in 1D) the <a href="https://en.wikipedia.org/wiki/Euler%E2%80%93Lagrange_equation">Euler-Lagrange equation</a>. This equation gives us a way to find the function that makes the integral of a given functional stationary (i.e., a local maximum or minimum).</p>
-<h3 id="canonical-conceptualization---finding-the-shortest-path-in-a-plane">Canonical Conceptualization - Finding the Shortest Path in a Plane<a hidden class="anchor" aria-hidden="true" href="#canonical-conceptualization---finding-the-shortest-path-in-a-plane">#</a></h3>
+<h3 id="canonical-conceptualization---finding-the-shortest-path-in-a-plane">Canonical Conceptualization - Finding the Shortest Path in a Plane</h3>
 <p>Using the Calculus of Variations, we can show that the shortest path between two points in a plane is a straight line. This is a classic example, but it illustrates the concept well. Consider a general path in two-dimensional space that connects two points, say $s_1 = \langle x_1, y_1 \rangle$ and $s_2 = \langle x_2, y_2 \rangle$. We can represent this path as a function $y(x)$. The figure below illustrates the setup.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
@@ -267,9 +183,9 @@ We are eventually going to develop some deep principles of classical mechanics t
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Show the plot</span>
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>grid(<span style="color:#66d9ef">True</span>)  <span style="color:#75715e"># Add grid for better readability</span>
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()  <span style="color:#75715e"># Display the plot</span>
-</span></span></code></pre></div><p><img alt="png" loading="lazy" src="output_4_0.png"></p>
+</span></span></code></pre></div><p><img src="output_4_0.png" alt="png"></p>
 <p>The blue solid line is the &lsquo;generic path&rsquo; that connects the two points $s_1$ and $s_2$. The green dotted line is the solution that we expect to get when we ask, &ldquo;what is the shortest path between these two points?&rdquo;</p>
-<h3 id="setup-of-the-problem">Setup of the Problem<a hidden class="anchor" aria-hidden="true" href="#setup-of-the-problem">#</a></h3>
+<h3 id="setup-of-the-problem">Setup of the Problem</h3>
 <p>Let&rsquo;s take a generic segment of the path $ds$ and express it in terms of its differential elements:</p>
 <p>$$ds = \sqrt{dx^2 + dy^2}.$$</p>
 <p>The length of the path from $s_1$ to $s_2$ can be expressed as an integral:</p>
@@ -282,7 +198,7 @@ We are eventually going to develop some deep principles of classical mechanics t
 <p>The function $y(x)$ defines the path that minimizes the length $l$. To find this path, we assume an incorrect function $Y(x)$ that is close to the true path $y(x)$, and we can express the difference between them as $\alpha\eta(x)$:</p>
 <p>$$Y(x) = \underbrace{y(x)}<em>{\textrm{correct}}+ \underbrace{\alpha\eta(x)}</em>{\textrm{minimize}}$$</p>
 <p>Note that $Y(x_1) = y(x_1)$ and $Y(x_2) = y(x_2)$, so the endpoints of the path are fixed. The function $\eta(x)$ represents a small perturbation to the path, and $\alpha$ is a small parameter that we will use to control the size of the perturbation.</p>
-<h3 id="deriving-the-euler-lagrange-equation">Deriving the Euler-Lagrange Equation<a hidden class="anchor" aria-hidden="true" href="#deriving-the-euler-lagrange-equation">#</a></h3>
+<h3 id="deriving-the-euler-lagrange-equation">Deriving the Euler-Lagrange Equation</h3>
 <p>The mathematical derivation involves extremizing the integral using a perturbation approach. The generic integral we are trying to minimize is for a function of the form:</p>
 <p>$$f(y(x),y&rsquo;(x),x)),$$</p>
 <p>where $f$ is a function of $y$, its derivative $y&rsquo;$, and the independent variable $x$. So that the integral we are minimizing can be expressed as:</p>
@@ -328,7 +244,7 @@ S &amp;= \int_{x_1}^{x_2} f(Y(x),Y&rsquo;(x),x) dx \
 <p>$$\begin{align}
 \int_{x_1}^{x_2}\left[ \dfrac{\partial f}{\partial y}\eta(x) + \dfrac{\partial f}{\partial y&rsquo;}\eta&rsquo;(x) \right] dx = 0.\
 \end{align}$$</p>
-<h4 id="integration-by-parts">Integration by Parts<a hidden class="anchor" aria-hidden="true" href="#integration-by-parts">#</a></h4>
+<h4 id="integration-by-parts">Integration by Parts</h4>
 <p>Now to deal with the integral here, we can use integration by parts:</p>
 <p>$$\int u&rsquo;v dx = [uv] - \int u v&rsquo; dx$$</p>
 <p>The first term $[uv]$ is called the &ldquo;surface term&rdquo; because it is the result of the integral and is evaluated at the boundaries of the integral, $x_1$ and $x_2$. We will apply integration by parts only to the second term in the integral.</p>
@@ -349,7 +265,7 @@ S &amp;= \int_{x_1}^{x_2} f(Y(x),Y&rsquo;(x),x) dx \
   </div>
 </div>
 
-<h3 id="back-to-the-shortest-path-example">Back to the Shortest Path Example<a hidden class="anchor" aria-hidden="true" href="#back-to-the-shortest-path-example">#</a></h3>
+<h3 id="back-to-the-shortest-path-example">Back to the Shortest Path Example</h3>
 <p>Now let&rsquo;s apply the Euler-Lagrange equation to our original problem of finding the shortest path between two points in a plane. We have:</p>
 <p>$$l = \int_{x_1}^{x_2} \sqrt{1 + y&rsquo;(x)^2} dx.$$</p>
 <p>Here, we can identify our function $f$ as:</p>
@@ -386,10 +302,17 @@ y&rsquo;(x) &amp;= \pm \sqrt{\frac{C^2}{1 - C^2}}\
 <p>Integrating gives us:</p>
 <p>$$y(x) = mx + b$$</p>
 <p>where $b$ is a constant of integration. This is the equation of a straight line!</p>
-<h3 id="example-snells-law">Example: Snell&rsquo;s Law<a hidden class="anchor" aria-hidden="true" href="#example-snells-law">#</a></h3>
+<h3 id="example-snells-law">Example: Snell&rsquo;s Law</h3>
 <p>Let&rsquo;s assume you are walking on the beach and need to get to a location in the water quickly. Where do you enter the water to minimize the time it takes to reach the location in the water? This is a classic problem in physics and can be solved using the Calculus of Variations.</p>
 <p>Consider the picture below where you can move at a speed $v_1$ on the shore and a speed $v_2$ in the water. We know that $v_1 &gt; v_2$, so you can move faster on the shore than in the water. We aim to minimize the time it takes to reach the point $\langle x_2, y_2 \rangle$ in the water from point $\langle x_1, y_1 \rangle$ on the shore. We take the shoreline to be a line at $x = 0$. and the location we cross the shoreline is $\langle 0, y \rangle$.</p>
-<p><img alt="Snell&rsquo;s Law Diagram" loading="lazy" src="/images/notes/week11/snells_shore.png"></p>
+<figure class="figure " role="figure" aria-label="Snell&#39;s Law Diagram">
+  <img src="/images/notes/week11/snells_shore.png" alt="Snell&#39;s Law Diagram" loading="lazy"><figcaption class="figure-caption">Snell&rsquo;s Law Diagram</figcaption></figure>
+
+<div class="admonition admonition-error " role="note" aria-label="Error"><p class="admonition-title">Error</p><div class="admonition-content">
+    Redraw as vector graphic and post SVG
+  </div>
+</div>
+
 <p>Notice the angle that we approach the shoreline at, $\theta_1$, and the angle that we approach the target in the water, $\theta_2$.</p>
 <p>The total time to travel from $\langle x_1, y_1 \rangle$ to $\langle 0, y \rangle$ and then to $\langle x_2, y_2 \rangle$ is:</p>
 <p>$$T = t_1 + t_2 = \dfrac{d_1}{v_1} + \dfrac{d_2}{v_2}$$</p>
@@ -415,8 +338,8 @@ $$\sin(\theta_2) = \frac{y_2 - y}{d_2}$$</p>
   </div>
 </div>
 
-<h3 id="example-brachistochrone-problem-16-minute-video">Example: Brachistochrone Problem (16 minute video)<a hidden class="anchor" aria-hidden="true" href="#example-brachistochrone-problem-16-minute-video">#</a></h3>
-<p>The <a href="https://en.wikipedia.org/wiki/Brachistochrone_problem">Brachistochrone problem</a> is a classic problem in the Calculus of Variations. It asks the question: &ldquo;What is the shape of the curve that a bead will follow under the influence of gravity to reach the bottom in the shortest time?&rdquo;  The video below discusses the problem and it history in detail;  <a href="https://en.wikipedia.org/wiki/Steven_Strogatz">Steven Strogatz</a> explains the problem and its solution. It&rsquo;s what helped spur the development of the calculus of variations and the work of Lagrange and others. The problem is deceptively simple: given two points in a vertical plane, find the curve down which a bead will slide (without friction) from one point to the other in the shortest time. The solution to this problem is not a straight line, but rather a cycloid curve.</p>
+<div class="admonition admonition-admonition tip" role="note" aria-label="Admonition"><p class="admonition-title">Example: Brachistochrone Problem (16 minute video)</p><div class="admonition-content">
+    <p>The <a href="https://en.wikipedia.org/wiki/Brachistochrone_problem">Brachistochrone problem</a> is a classic problem in the Calculus of Variations. It asks the question: &ldquo;What is the shape of the curve that a bead will follow under the influence of gravity to reach the bottom in the shortest time?&rdquo;  The video below discusses the problem and it history in detail;  <a href="https://en.wikipedia.org/wiki/Steven_Strogatz">Steven Strogatz</a> explains the problem and its solution. It&rsquo;s what helped spur the development of the calculus of variations and the work of Lagrange and others. The problem is deceptively simple: given two points in a vertical plane, find the curve down which a bead will slide (without friction) from one point to the other in the shortest time. The solution to this problem is not a straight line, but rather a cycloid curve.</p>
 <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
     src="https://www.youtube-nocookie.com/embed/Cld0p3a43fU"
@@ -428,15 +351,26 @@ $$\sin(\theta_2) = \frac{y_2 - y}{d_2}$$</p>
     loading="lazy">
   </iframe>
 </div>
+<ul>
+<li><em>Source: <a href="https://www.youtube.com/watch?v=Cld0p3a43fU">https://www.youtube.com/watch?v=Cld0p3a43fU</a></em></li>
+</ul>
+  </div>
+</div>
 
-<p>Source: <a href="https://www.youtube.com/watch?v=Cld0p3a43fU">https://www.youtube.com/watch?v=Cld0p3a43fU</a></p>
 <p>The setup is below, there&rsquo;s two points separated by a distance vertically and horizontally. What shape should we make a track so that a bead will roll down it in the shortest time?</p>
-<p><img alt="The Brachistochrone Problem" loading="lazy" src="/images/notes/week11/brachistochrone.png"></p>
+<figure class="figure " role="figure" aria-label="Setup for the Brachistochrone Problem">
+  <img src="/images/notes/week11/brachistochrone.png" alt="Setup for the Brachistochrone Problem" loading="lazy"><figcaption class="figure-caption">Setup for the Brachistochrone Problem</figcaption></figure>
+
+<div class="admonition admonition-error " role="note" aria-label="Error"><p class="admonition-title">Error</p><div class="admonition-content">
+    Redraw as vector graphic and post SVG
+  </div>
+</div>
+
 <p>The time it takes for the bead to roll down the curve is given by:</p>
 <p>$$T = \int_{1}^{2} \dfrac{ds}{v}$$</p>
 <p>where $ds$ is the differential arc length along the curve, and $v$ is the velocity of the bead at that point. The generic step is the same as before:</p>
 <p>$$ds = \sqrt{dx^2 + dy^2}.$$</p>
-<h4 id="velocity-of-the-bead">Velocity of the Bead<a hidden class="anchor" aria-hidden="true" href="#velocity-of-the-bead">#</a></h4>
+<h4 id="velocity-of-the-bead">Velocity of the Bead</h4>
 <p>What about $v$? Because the bead is moving under the influence of gravity, we can use conservation of energy to find the velocity. Note that we don&rsquo;t model the rolling of the bead, just the motion down the track. We also neglect all frictional forces. This is a major simplification, but it will give us an analytical solution.</p>
 <p>$$\Delta K + \Delta U = 0$$</p>
 <p>If the bead starts from rest, then $v_i = 0$, and we can write:</p>
@@ -520,106 +454,34 @@ $$y(\theta) = a(1 - \cos(\theta)).$$</p>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Show the plot</span>
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>grid(<span style="color:#66d9ef">True</span>)  <span style="color:#75715e"># Add grid for better readability</span>
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()  <span style="color:#75715e"># Display the plot</span>
-</span></span></code></pre></div><p><img alt="png" loading="lazy" src="output_12_0.png"></p>
+</span></span></code></pre></div><p><img src="output_12_0.png" alt="png"></p>
 
 
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="//localhost:1313/course-materials/10_notes/">
-    <span class="title">« Prev</span>
-    <br>
-    <span>10 - Investigating Systems that Exhibit Chaotic Dynamics</span>
-  </a>
-  <a class="next" href="//localhost:1313/course-materials/12_notes/">
-    <span class="title">Next »</span>
-    <br>
-    <span>12 - The Core Principle of Classical Mechanics? The Principle of Least Action</span>
-  </a>
-</nav>
-
-  </footer>
-</article>
-    </main>
     
-<footer class="footer">
-        <span>&copy; 2026 <a href="//localhost:1313/">Classical Mechanics</a></span> · 
+    <nav style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                
+                <a href="/course-materials/12_notes/">← 12 - The Core Principle of Classical Mechanics? The Principle of Least Action</a>
+                
+            </div>
+            <div style="text-align: right;">
+                
+                <a href="/course-materials/10_notes/">10 - Investigating Systems that Exhibit Chaotic Dynamics →</a>
+                
+            </div>
+        </div>
+    </nav>
+    
+</article>
 
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
+    </main>
 
-<script>
-    let menu = document.getElementById('menu');
-    if (menu) {
+    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
         
-        const scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-            menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
+        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
         
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
+        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
+    </footer>
 </body>
-
 </html>

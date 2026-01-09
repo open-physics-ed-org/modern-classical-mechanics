@@ -1,7 +1,7 @@
 ---
 title: Assignments Overview
 weight: 2
-date: '2026-01-08'
+date: '2026-01-09'
 ---
 
 ## How Assignments Work in PHY 321

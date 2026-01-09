@@ -1,7 +1,7 @@
 ---
 title: 02 - Computing is a Necessary Tool for Science
 weight: 2
-date: '2026-01-08'
+date: '2026-01-09'
 math: true
 ---
 
@@ -52,8 +52,7 @@ We will explore a broad class of problems using plotting and numerical integrati
 
 For historical context, the [Timeline of the Development of Scientific Computing](https://en.wikipedia.org/wiki/Timeline_of_scientific_computing) provides an excellent overview. The roots of this field trace back to significant advancements long before modern electronic devices. Much of the foundational mathematics, such as [Euler’s Method](https://en.wikipedia.org/wiki/Euler_method) for solving differential equations, was developed in the 18th century by [Leonhard Euler](https://en.wikipedia.org/wiki/Leonhard_Euler). Implementing these algorithms on computers was a natural progression in scientific problem-solving, and was catalyzed by tremendous investments in the military industrial complex after World War II including the notorious [RAND corporation](https://en.wikipedia.org/wiki/RAND_Corporation). Much of this work in scientific computing was driven by the need to solve complex problems in physics and engineering that were otherwise intractable, but there was the added "benefit" of advancing military technology during the Cold War. Silicon Valley and the modern computing industry owe much of their existence to these investments and the [hysteria of the Cold War era](https://en.wikipedia.org/wiki/Red_Scare).
 
-### History of Computing
-
+{{< admonition type="admonition" title="History of Computing" class="tip" >}}
 The history of scientific computing is deeply intertwined with the evolution of computing itself, a fascinating and complex narrative encompassing technical, social, political, military, and economic perspectives. Contributions to computing originated worldwide, starting with tools like the [abacus](https://en.wikipedia.org/wiki/Abacus) in ancient China. Mechanical innovations such as [Pascal’s adding machine](https://en.wikipedia.org/wiki/Pascal%27s_calculator) and [Babbage’s Analytical Engine](https://en.wikipedia.org/wiki/Analytical_Engine) marked significant milestones leading toward the modern computer.
 
 To get an introductory overview, the video below from Futurology is a helpful resource, but it is by no means comprehensive or critical.
@@ -62,6 +61,7 @@ To get an introductory overview, the video below from Futurology is a helpful re
 
 
 - *Source: <https://www.youtube.com/watch?v=-M6lANfzFsM>*
+{{< /admonition >}}
 
 ### A Critical Perspective on Computing
 
@@ -74,11 +74,11 @@ Of course, the electronic computer was a huge development for science. Prior to 
 
 Frequently the work was done by those with less power in the laboratory and broader society (e.g., women, immigrants, and folks of color). A notable and well-known example is the work of the [Harvard Computers](https://en.wikipedia.org/wiki/Harvard_Computers) in the late 19th and early 20th centuries where women were employed to do the calculations that led to significant discoveries in astronomy. 
 
-![Harvard Computers](/images/notes/week2/harvard-computers.png)
+{{< figure src="/images/notes/week2/harvard-computers.png" alt="Harvard Computers" >}}
 
 One of the most important examples is the work done by African-American women at NASA in the 1960s, as depicted in the book and movie [Hidden Figures](https://en.wikipedia.org/wiki/Hidden_Figures).
 
-![Hidden Figures](/images/notes/week2/nasa-computers-hidden-figures.png)
+{{< figure src="/images/notes/week2/nasa-computers-hidden-figures.png" alt="Hidden Figures" >}}
 
 Women highlighted in this work include: [Williamina Fleming](https://en.wikipedia.org/wiki/Williamina_Fleming), [Florence Cushman](https://en.wikipedia.org/wiki/Florence_Cushman), [Katherine Johnson](https://en.wikipedia.org/wiki/Katherine_Johnson), [Dorothy Vaughan](https://en.wikipedia.org/wiki/Dorothy_Vaughan), and [Mary Jackson](https://en.wikipedia.org/wiki/Mary_Jackson).
 {{< /admonition >}}
@@ -164,14 +164,14 @@ $$y_{1} = y_0 + v_0*\Delta t$$
 
 As we will see below, we can use Newton's Second Law to develop this idea and this pair of equations into an algorithm that will allow us to predict the velocity and location of any system.
 
-#### Video Summary (13 minutes)
-
+{{< admonition type="admonition" title="Video Summary (13 minutes)" class="tip" >}}
 There's many videos covering the topic of Euler's method. Here's a video that covers the basics of Euler's method and how it can be used to solve differential equations. It somewhat follows the notes above, but it's always good to hear another perspective.
 
 
 {{< youtube _0mvWedqW7c >}}
 
 - *Source: <https://youtube.com/watch?v=_0mvWedqW7c>*
+{{< /admonition >}}
 
 ### Discretizing Newton's Second Law
 
@@ -201,14 +201,14 @@ $$v_{i+1} = v_i + \dfrac{F_i}{m}\Delta t$$
 
 We pause here and will return to this formulation later, but this discretization is the basis for many numerical methods in classical mechanics, and we can apply it to solve the falling object problem above.
 
-#### Looking Ahead
-
+{{< admonition type="admonition" title="Looking Ahead" class="tip" >}}
 The development of the forward Euler scheme is the basis for many numerical methods in physics, and especially in classical mechanics. The video below is a longer introduction to the Euler Method and how it can be used to solve differential equations. It's a bit more advanced than the previous video, but it's a good introduction to the topic. We will revisit this topic a number of times, and you will have a chance to implement these methods in Python. *This video will be posted again when we cover numerical methods in more detail.*
 
 
 {{< youtube MstPeOTCVzQ >}}
 
 - *Source: <https://www.youtube.com/watch?v=MstPeOTCVzQ>*
+{{< /admonition >}}
 
 ## Additional Preliminaries
 

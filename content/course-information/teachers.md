@@ -1,7 +1,7 @@
 ---
 title: Teachers
 weight: 2
-date: '2026-01-08'
+date: '2026-01-09'
 ---
 
 ## 📅 Class Meetings
@@ -21,7 +21,7 @@ date: '2026-01-08'
 
 ## 👨‍🏫 Instructor: Danny Caballero (he/they)
 
-![Danny Caballero](/images/staff/dc.png)
+{{< figure src="/images/staff/dc.png" alt="Danny Caballero" >}}
 
 * **Email:** [caball14@msu.edu](mailto:caball14@msu.edu)
 * **Office:** MWF [BPS 1310A](http://tinyurl.com/dc-bps-office) | TTh [EGR 1515](http://tinyurl.com/dc-egr-office)

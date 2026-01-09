@@ -1,7 +1,7 @@
 ---
 title: '01 - Overture: What is Classical Physics?'
 weight: 1
-date: '2026-01-08'
+date: '2026-01-09'
 math: true
 ---
 
@@ -74,8 +74,7 @@ Ultimately, Classical Mechanics is a physics that allows us to interrogate the b
 
 While it might appear there's little room for using Classical Mechanics in research or in industry now, it turns out it is used everywhere. It is still the physics that enables us to understand fluid systems, nonlinear mechanical effects, continuum mechanics, animal locomotion, and many other systems and situations. Below are two examples of how Classical Mechanics is used in research and industry. We encourage to watch these videos as they demonstrate how the physics we will learn in class is central to continuing to understand nature.
 
-#### Fluid Mechanics at LANL (6 minute video)
-
+{{< admonition type="admonition" title="Fluid Mechanics at LANL (6 minute video)" class="tip" >}}
 [Researchers at Los Alamos National Lab](https://www.lanl.gov/org/ddste/aldsc/theoretical/fluid-dynamics-solid-mechanics/index.php) do a variety of research using fluid mechanics models.
 
 
@@ -83,12 +82,10 @@ While it might appear there's little room for using Classical Mechanics in resea
 
 
 - *Source: <https://www.youtube.com/watch?v=myuD81326_o>*
+{{< /admonition >}}
 
 
-
-#### Biologically-Inspired Robotics (2 minute video)
-
-
+{{< admonition type="admonition" title="Biologically-Inspired Robotics (2 minute video)" class="tip" >}}
 A [research lab at Georgia Tech](https://crablab.gatech.edu/) uses Classical Mechanics to model the motion of animals and then uses that information to build robots that can move like animals.
 
 
@@ -96,6 +93,7 @@ A [research lab at Georgia Tech](https://crablab.gatech.edu/) uses Classical Mec
 
 
 - *Source: <https://www.youtube.com/watch?v=Qme07fA3Fj4>*
+{{< /admonition >}}
 
 ### Classical Mechanics in this Class
 

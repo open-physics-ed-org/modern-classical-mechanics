@@ -1,12 +1,12 @@
 ---
 title: 12 - The Core Principle of Classical Mechanics? The Principle of Least Action
 weight: 12
-date: '2026-01-08'
+date: '2026-01-09'
 math: true
 ---
 
 [![Report Issues](https://img.shields.io/badge/report%20issues-GitHub-blue)](https://github.com/dannycab/phy321msu/issues) 
-[![GitHub Issues](https://img.shields.io/github/issues/dannycab/phy321msu)](https://github.com/dannycab/phy321msu/issues)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ## Learning Goals
 
@@ -28,32 +28,36 @@ In many cases, we can do this. But consider a bead sliding inside a cone. How wo
 
 This is where [Lagrangian Mechanics](https://en.wikipedia.org/wiki/Lagrangian_mechanics) comes in. It is a powerful and elegant way to describe the motion of particles and systems. It is based on the [Calculus of Variations](https://en.wikipedia.org/wiki/Calculus_of_variations), a field of mathematics that is concerned with finding the path that minimizes or maximizes (called "extremization") a certain quantity. In the case of Lagrangian Mechanics, the quantity we are extremizing is the [action](https://en.wikipedia.org/wiki/Action_(physics)).
 
-### The Princple of Least Action (19 minute video)
-
+{{< admonition type="admonition" title="The Principle of Least Action (19 minute video)" class="tip" >}}
 The video below discusses the concept of the Principle of Least Action, which is the foundation of Lagrangian Mechanics.
 
 {{< youtube Q_CQDSlmboA >}}
 
-Source: <https://youtube.com/watch?v=Q_CQDSlmboA>
+- *Source: <https://youtube.com/watch?v=Q_CQDSlmboA>*
+{{< /admonition >}}
 
-### Introduction to Lagrangian Dynamics (10 minute video)
-
+{{< admonition type="admonition" title="Introduction to Lagrangian Dynamics (10 minute video)" class="tip" >}}
 The concept of Lagrangian dynamics can be a bit abstract at first, especially if you are used to Newtonian mechanics. The basic idea is that instead of focusing on forces, we focus on the kinetic and potential energy of the system to derive the equations of motion. The procedure to compute the equations of motion is straghtforward, but the set up of these problems can be tricky at first. 
 
 The basic steps are:
 1. **Identify the generalized coordinates**: These are the variables that describe the configuration of the system (e.g., angles, distances).
 2. **Write down the Lagrangian**: The Lagrangian $\mathcal{L}$ is defined as the difference between the kinetic energy $T$ and potential energy $V$ of the system: 
+
    $$ \mathcal{L} = T - V $$
+
 3. **Apply the Euler-Lagrange equations**: The equations of motion are derived from the Lagrangian using the Euler-Lagrange equations:
+
     $$ \frac{d}{dt} \left( \frac{\partial \mathcal{L}}{\partial \dot{q}_i} \right) - \frac{\partial \mathcal{L}}{\partial q_i} = 0 $$
-    where $q_i$ are the generalized coordinates and $\dot{q}_i$ are their time derivatives (velocities).
+
+where $q_i$ are the generalized coordinates and $\dot{q}_i$ are their time derivatives (velocities).
 
 But we need practice applying these steps to get comfortable with the process. Parth G. has a lovely video below about the basics of Lagrangian Dynamics. We will do a lot of this in class and go over many examples. This video is a nice introduction to the concept.
 
 {{< youtube KpLno70oYHE >}}
 
 
-Source: <https://youtube.com/watch?v=KpLno70oYHE>
+- *Source: <https://youtube.com/watch?v=KpLno70oYHE>*
+{{< /admonition >}}
 
 ## Introduction to Lagrangian Mechanics 
 
@@ -63,7 +67,12 @@ To get started with Lagrangian mechanics, we will start by deriving Newton's sec
 
 We start by sketching the location of a particle in plane polar coordinates, as shown below:
 
-![Position vector in polar coordinates](/images/notes/week12/coordinate-system.png)
+
+{{< figure src="/images/notes/week12/coordinate-system.png" caption="Position vector in polar coordinates" >}}
+
+{{< admonition type="error" >}}
+Redraw as vector graphic and post SVG
+{{< /admonition >}}
 
 The red arrow represents the position vector $\vec{r}$, which is a length $r$ from the origin at an angle $\phi$ from the $x$-axis. At the tip of the vector we have drawn the Cartesian unit vectors $\hat{x}$ and $\hat{y}$ in blue, and the polar unit vectors $\hat{r}$ and $\hat{\phi}$ in green. Notice that the polar unit vectors are rotated by an angle $\phi$ from the Cartesian unit vectors. We can simply write the position vector in terms of these unit vectors as:
 
@@ -140,11 +149,21 @@ This gives us the net force in terms of the radial and angular components in pol
 
 Let's see the utility of using polar coordinates by applying it to a skateboarder moving on a circular track. In this case, the skateboarder is constrained to move along a circular path of radius $r$. Consider a skateboarder moving on that circular track as shown below:
 
-![Skateboarder on a circular track](/images/notes/week12/skateboard.png)
+
+{{< figure src="/images/notes/week12/skateboard.png" caption="Skateboarder on a circular track" >}}
+
+{{< admonition type="error" >}}
+Redraw as vector graphic and post SVG
+{{< /admonition >}}
 
 At this point in the track, we can draw the free body diagram of the skateboarder. The forces acting on the skateboarder are the Earth's gravitational force and the normal force of the ramp.
 
-![Free body diagram of skateboarder](/images/notes/week12/skateboard-free-body.png)
+{{< figure src="/images/notes/week12/skateboard-free-body.png" caption="Free body diagram of skateboarder" >}}
+
+{{< admonition type="error" >}}
+Redraw as vector graphic and post SVG
+{{< /admonition >}}
+
 
 We can use Newton's law in polar coordinates to analyze the forces acting on the skateboarder. This is because the normal force is always perpendicular to the surface of the ramp and will only have a radial component in polar coordinates. Thus we need only decompose the gravitational force into its radial and angular components.
 
@@ -154,7 +173,7 @@ $$\sum F_r = ma_r = -F_{ramp} + mg \cos(\phi) = m\left(\ddot{r} - r \dot{\phi}^2
 
 We note that $r=R$, that is the radius is fixed, so 
 
-$$\ddot{r} = 0$$. 
+$$\ddot{r} = 0.$$
 
 Therefore, we can simplify the equation to:
 
@@ -332,7 +351,12 @@ To get some intuition for how Lagrangian mechanics works, let's consider an exam
 
 A pendulum bob of mass $m$ is attached to a fixed point by a rod of length $l$. The bob swings in a vertical plane under the influence of gravity as shown below. We define $U=0$ at the top of ceiling where the rod is attached.
 
-![Pendulum Diagram](/images/notes/week12/plane-pendulum.png)
+
+{{< figure src="/images/notes/week12/plane-pendulum.png" caption="Plane pendulum bob" >}}
+
+{{< admonition type="error" >}}
+Redraw as vector graphic and post SVG
+{{< /admonition >}}
 
 The location of the bob is $\langle x, y \rangle$. We can use the $x,y$ coordinates to "naively" setup the Lagrangian and see what happens.
 

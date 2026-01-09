@@ -1,7 +1,7 @@
 ---
 title: Course Calendar
 weight: 1
-date: '2026-01-08'
+date: '2026-01-09'
 ---
 
 > **Topics are subject to change based on course pace and student needs.**
@@ -157,7 +157,7 @@ _All assignments are turned in using Gradescope as a single PDF._
 
 | **Week** | **Day**   | **Topic**                      | **Readings to Prepare** | **Important Events**                                                |
 |:--------:|:---------:|:------------------------------:|:-----------------------|:-------------------------------------------------------------------|
-| CW17     | 20 Apr     | Final Project Prep    |                  |                       |
+| CW17     | 20 Apr     | Final Project Prep    |   📓 [14 - Classical Mechanics Thus Far](/course-materials/14_notes/)            |                       |
 |          | 22 Apr     | Final Project Prep    |                        |      |
 |          | 24 Apr     | Final Project Prep    |                        |        |
 

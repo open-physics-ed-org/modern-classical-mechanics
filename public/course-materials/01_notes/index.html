@@ -1,229 +1,120 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="auto">
-
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
-<title>01 - Overture: What is Classical Physics? | Classical Mechanics</title>
-<meta name="keywords" content="">
-<meta name="description" content="
-
-Learning Goals
-After studying Lesson 01, you should be able to:
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01 - Overture: What is Classical Physics? | Classical Mechanics</title>
+    <meta name="description" content="Classical Mechanics">
     
-identify physical situations where classical mechanics can be applied by considering size and rapidity of change,
-identify and share a form of classical physics that is new to you (e.g., not Hellenistic physics),
-draw appropriate free body diagrams for different classical physics systems,
-use Newton&rsquo;s Second Law to setup the differential equations that model different classical physics systems, and
-perform a Taylor expansion of a one dimensional function, $F(v)$, around zero.
-
-
-  
-
-
-Where do we situate Classical Mechanics?
-There are many different fields of physics; they are both distinct and overlapping. If we were to take a view of what kinds of physical systems that we wanted to investigate with different physics, we could organize them based on the system&rsquo;s size and speed of change:">
-<meta name="author" content="Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine">
-<link rel="canonical" href="//localhost:1313/course-materials/01_notes/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
-<link rel="icon" href="//localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="//localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="//localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="//localhost:1313/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="//localhost:1313/course-materials/01_notes/">
-<noscript>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+    
+    <link rel="stylesheet" href="//localhost:1313/css/accessibility.css">
     <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
         }
-
+        nav {
+            background: #f4f4f4;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #222;
+            margin-top: 1.5em;
+        }
+        h1 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "SF Mono", Monaco, Consolas, monospace;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: #0066cc;
+        }
+        .menu-home {
+            font-weight: bold;
+            margin-right: 30px;
+        }
     </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-                color-scheme: dark;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .toc {
-                background: var(--entry);
-            }
-        }
-
-        @media (prefers-color-scheme: light) {
-            .list::-webkit-scrollbar-thumb {
-                border-color: var(--code-bg);
-            }
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else if (localStorage.getItem("pref-theme") === "light") {
-       document.querySelector("html").dataset.theme = 'light';
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"
-    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}], throwOnError: false});"></script>
-
-
 </head>
-<body id="top">
-    <header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="//localhost:1313/" accesskey="h" title="Classical Mechanics (Alt + H)">Classical Mechanics</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu">
-            <li>
-                <a href="//localhost:1313/course-information/" title="Course Information">
-                    <span>Course Information</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/course-materials/" title="Course Materials">
-                    <span>Course Materials</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/logistics-resources/" title="Logistics &amp; Resources">
-                    <span>Logistics &amp; Resources</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/programming-resources/" title="Programming Resources">
-                    <span>Programming Resources</span>
-                </a>
-            </li>
+<body>
+    <nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li class="menu-home"><a href="//localhost:1313/">Classical Mechanics</a></li>
+            
+            
+            <li><a href="/course-information/">Course Information</a></li>
+            
+            
+            
+            <li><a href="/course-materials/">Course Materials</a></li>
+            
+            
+            
+            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
+            
+            
+            
+            <li><a href="/programming-resources/">Programming Resources</a></li>
+            
+            
         </ul>
     </nav>
-</header>
-<main class="main">
 
-<article class="post-single">
-  <header class="post-header">
-    <div class="breadcrumbs"><a href="//localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="//localhost:1313/course-materials/">Course Materials</a></div>
-    <h1 class="post-title entry-hint-parent">
-      01 - Overture: What is Classical Physics?
-    </h1>
-    <div class="post-meta"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span>
+    <main role="main">
+        
+<article>
+    <header>
+        <h1>01 - Overture: What is Classical Physics?</h1>
+        
+    </header>
 
-</div>
-  </header> <div class="toc">
-    <details >
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">Table of Contents</span>
-        </summary>
-
-        <div class="inner"><ul>
-                <li>
-                    <a href="#learning-goals" aria-label="Learning Goals">Learning Goals</a></li>
-                <li>
-                    <a href="#where-do-we-situate-classical-mechanics" aria-label="Where do we situate Classical Mechanics?">Where do we situate Classical Mechanics?</a></li>
-                <li>
-                    <a href="#what-is-classical-mechanics" aria-label="What is Classical Mechanics?">What is Classical Mechanics?</a><ul>
-                        
-                <li>
-                    <a href="#modeling-large-slow-mechanical-systems" aria-label="Modeling Large, Slow, Mechanical Systems">Modeling Large, Slow, Mechanical Systems</a></li>
-                <li>
-                    <a href="#applications-of-classical-mechanics" aria-label="Applications of Classical Mechanics">Applications of Classical Mechanics</a><ul>
-                        
-                <li>
-                    <a href="#fluid-mechanics-at-lanl-6-minute-video" aria-label="Fluid Mechanics at LANL (6 minute video)">Fluid Mechanics at LANL (6 minute video)</a></li>
-                <li>
-                    <a href="#biologically-inspired-robotics-2-minute-video" aria-label="Biologically-Inspired Robotics (2 minute video)">Biologically-Inspired Robotics (2 minute video)</a></li></ul>
-                </li>
-                <li>
-                    <a href="#classical-mechanics-in-this-class" aria-label="Classical Mechanics in this Class">Classical Mechanics in this Class</a><ul>
-                        
-                <li>
-                    <a href="#analytical-and-numerical-models-compliment-each-other" aria-label="Analytical and Numerical Models Compliment Each Other">Analytical and Numerical Models Compliment Each Other</a></li>
-                <li>
-                    <a href="#computing-is-an-essential-tool-for-physics" aria-label="Computing is an Essential Tool for Physics">Computing is an Essential Tool for Physics</a></li>
-                <li>
-                    <a href="#what-we-hope-you-will-learn" aria-label="What We Hope You Will Learn">What We Hope You Will Learn</a></li></ul>
-                </li></ul>
-                </li>
-                <li>
-                    <a href="#how-do-we-formulate-classical-mechanics" aria-label="How do we formulate Classical Mechanics?">How do we formulate Classical Mechanics?</a><ul>
-                        
-                <li>
-                    <a href="#newtons-second-law" aria-label="Newton&rsquo;s Second Law">Newton&rsquo;s Second Law</a><ul>
-                        
-                <li>
-                    <a href="#example-a-block-on-an-inclined-ramp" aria-label="Example: A Block on an Inclined Ramp">Example: A Block on an Inclined Ramp</a></li>
-                <li>
-                    <a href="#example-falling-object-in-one-dimension" aria-label="Example: Falling Object in One Dimension">Example: Falling Object in One Dimension</a><ul>
-                        
-                <li>
-                    <a href="#air-drag" aria-label="Air Drag?">Air Drag?</a></li>
-                <li>
-                    <a href="#taylor-series-expansion" aria-label="Taylor Series Expansion">Taylor Series Expansion</a></li>
-                <li>
-                    <a href="#back-to-newtons-second-law" aria-label="Back to Newton&rsquo;s Second Law">Back to Newton&rsquo;s Second Law</a>
-                </li>
-            </ul>
-            </li>
-            </ul>
-            </li>
-            </ul>
-            </li>
-            </ul>
-        </div>
-    </details>
-</div>
-
-  <div class="post-content"><p><a href="https://github.com/dannycab/phy321msu/issues"><img alt="Report Issues" loading="lazy" src="https://img.shields.io/badge/report%20issues-GitHub-blue"></a>
-<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="License: CC BY-NC-SA 4.0" loading="lazy" src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg"></a></p>
-<h2 id="learning-goals">Learning Goals<a hidden class="anchor" aria-hidden="true" href="#learning-goals">#</a></h2>
+    <p><a href="https://github.com/dannycab/phy321msu/issues"><img src="https://img.shields.io/badge/report%20issues-GitHub-blue" alt="Report Issues"></a>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="License: CC BY-NC-SA 4.0"></a></p>
+<h2 id="learning-goals">Learning Goals</h2>
 <div class="admonition admonition-admonition note" role="note" aria-label="Admonition"><p class="admonition-title">After studying Lesson 01, you should be able to:</p><div class="admonition-content">
     <ul>
 <li>identify physical situations where classical mechanics can be applied by considering size and rapidity of change,</li>
@@ -236,7 +127,7 @@ There are many different fields of physics; they are both distinct and overlappi
   </div>
 </div>
 
-<h2 id="where-do-we-situate-classical-mechanics">Where do we situate Classical Mechanics?<a hidden class="anchor" aria-hidden="true" href="#where-do-we-situate-classical-mechanics">#</a></h2>
+<h2 id="where-do-we-situate-classical-mechanics">Where do we situate Classical Mechanics?</h2>
 <p>There are many different fields of physics; they are both distinct and overlapping. If we were to take a view of what kinds of physical systems that we wanted to investigate with different physics, we could organize them based on the system&rsquo;s size and speed of change:</p>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Classical_physics">Classical physics</a>: large, slow systems</li>
@@ -259,7 +150,7 @@ There are many different fields of physics; they are both distinct and overlappi
   </div>
 </div>
 
-<h2 id="what-is-classical-mechanics">What is Classical Mechanics?<a hidden class="anchor" aria-hidden="true" href="#what-is-classical-mechanics">#</a></h2>
+<h2 id="what-is-classical-mechanics">What is Classical Mechanics?</h2>
 <p>When we define <a href="https://en.wikipedia.org/wiki/Classical_mechanics">Classical Mechanics</a>, at least for the purposes of undergraduate study, we will define it as <strong>the physics of large, slow, mechanical systems</strong>.</p>
 <ul>
 <li><strong>Large</strong> - Systems are typically big enough that we can see them with our eyes, or maybe with some reasonably simple optical tools. We&rsquo;re typically excluding the microscopic world of atoms and molecules.</li>
@@ -273,15 +164,15 @@ There are many different fields of physics; they are both distinct and overlappi
   </div>
 </div>
 
-<h3 id="modeling-large-slow-mechanical-systems">Modeling Large, Slow, Mechanical Systems<a hidden class="anchor" aria-hidden="true" href="#modeling-large-slow-mechanical-systems">#</a></h3>
+<h3 id="modeling-large-slow-mechanical-systems">Modeling Large, Slow, Mechanical Systems</h3>
 <p><strong>Classical Mechanics is a physics that allows us to model these large, slow, mechanical systems.</strong></p>
 <p>Learning Classical Mechanics helps us develop an understanding of that process of making models and how we can use models to make predictions. It is a physics that results typically in <a href="https://en.wikipedia.org/wiki/Determinism">deterministic models</a>, where we can predict the future of a system given its current state. This is because the language of Classical Mechanics is <a href="https://en.wikipedia.org/wiki/Differential_equation">differential equations</a>, which describe how a system changes as a result of influences from its environment. It is often a <a href="https://en.wikipedia.org/wiki/Vector_(mathematics_and_physics)">vector-based physics</a> as it describes the pushes and pulls on a system in a given direction. However, we can often develop scalar models or systems of scalar equations that describe the motion of a system.</p>
 <p><strong>The majority of our work will be developing systems of scalar, often nonlinear, differential equations that we will investigate with analytical and numerical tools.</strong></p>
 <p>Ultimately, Classical Mechanics is a physics that allows us to interrogate the behavior of these systems and describe their <a href="https://en.wikipedia.org/wiki/Dynamics_(mechanics)">dynamics</a>. Through Classical Mechanics, we can describe the present state of a system, how it will evolve, and then use that information to make predictions about the future. What we learn from Classical Mechanics can become a set of powerful tools that we can use in many contexts.</p>
-<h3 id="applications-of-classical-mechanics">Applications of Classical Mechanics<a hidden class="anchor" aria-hidden="true" href="#applications-of-classical-mechanics">#</a></h3>
+<h3 id="applications-of-classical-mechanics">Applications of Classical Mechanics</h3>
 <p>While it might appear there&rsquo;s little room for using Classical Mechanics in research or in industry now, it turns out it is used everywhere. It is still the physics that enables us to understand fluid systems, nonlinear mechanical effects, continuum mechanics, animal locomotion, and many other systems and situations. Below are two examples of how Classical Mechanics is used in research and industry. We encourage to watch these videos as they demonstrate how the physics we will learn in class is central to continuing to understand nature.</p>
-<h4 id="fluid-mechanics-at-lanl-6-minute-video">Fluid Mechanics at LANL (6 minute video)<a hidden class="anchor" aria-hidden="true" href="#fluid-mechanics-at-lanl-6-minute-video">#</a></h4>
-<p><a href="https://www.lanl.gov/org/ddste/aldsc/theoretical/fluid-dynamics-solid-mechanics/index.php">Researchers at Los Alamos National Lab</a> do a variety of research using fluid mechanics models.</p>
+<div class="admonition admonition-admonition tip" role="note" aria-label="Admonition"><p class="admonition-title">Fluid Mechanics at LANL (6 minute video)</p><div class="admonition-content">
+    <p><a href="https://www.lanl.gov/org/ddste/aldsc/theoretical/fluid-dynamics-solid-mechanics/index.php">Researchers at Los Alamos National Lab</a> do a variety of research using fluid mechanics models.</p>
 <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
     src="https://www.youtube-nocookie.com/embed/myuD81326_o"
@@ -293,12 +184,14 @@ There are many different fields of physics; they are both distinct and overlappi
     loading="lazy">
   </iframe>
 </div>
-
 <ul>
 <li><em>Source: <a href="https://www.youtube.com/watch?v=myuD81326_o">https://www.youtube.com/watch?v=myuD81326_o</a></em></li>
 </ul>
-<h4 id="biologically-inspired-robotics-2-minute-video">Biologically-Inspired Robotics (2 minute video)<a hidden class="anchor" aria-hidden="true" href="#biologically-inspired-robotics-2-minute-video">#</a></h4>
-<p>A <a href="https://crablab.gatech.edu/">research lab at Georgia Tech</a> uses Classical Mechanics to model the motion of animals and then uses that information to build robots that can move like animals.</p>
+  </div>
+</div>
+
+<div class="admonition admonition-admonition tip" role="note" aria-label="Admonition"><p class="admonition-title">Biologically-Inspired Robotics (2 minute video)</p><div class="admonition-content">
+    <p>A <a href="https://crablab.gatech.edu/">research lab at Georgia Tech</a> uses Classical Mechanics to model the motion of animals and then uses that information to build robots that can move like animals.</p>
 <div class="youtube-embed" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
     src="https://www.youtube-nocookie.com/embed/Qme07fA3Fj4"
@@ -310,18 +203,20 @@ There are many different fields of physics; they are both distinct and overlappi
     loading="lazy">
   </iframe>
 </div>
-
 <ul>
 <li><em>Source: <a href="https://www.youtube.com/watch?v=Qme07fA3Fj4">https://www.youtube.com/watch?v=Qme07fA3Fj4</a></em></li>
 </ul>
-<h3 id="classical-mechanics-in-this-class">Classical Mechanics in this Class<a hidden class="anchor" aria-hidden="true" href="#classical-mechanics-in-this-class">#</a></h3>
+  </div>
+</div>
+
+<h3 id="classical-mechanics-in-this-class">Classical Mechanics in this Class</h3>
 <p>Classical mechanics is a topic which has been taught intensively over several centuries. It is, with its many variants and ways of presenting the educational material, normally the first physics course many of us meet. Frequently, it lays the foundation for further physics studies. Many of the equations and ways of reasoning about the underlying laws of motion and pertinent forces, shape our approaches and understanding of the methods and discourse of science, as well as the way we develop our insights and deeper understanding about physical systems.</p>
 <p>There are a wealth of well-tested (from both a physics point of view and a pedagogical standpoint) exercises and problems that can be solved analytically. And, indeed, you will solve a number of them. However, many of these problems represent idealized and less realistic situations. The large majority of these problems are solved by paper and pencil and are traditionally aimed at what we normally refer to as continuous models from which we may find an analytical solution. As a consequence, when teaching mechanics, it implies that we can seldomly venture beyond an idealized case in order to develop our understandings and insights about the underlying forces and laws of motion.</p>
 <p>On the other hand, numerical algorithms call for approximate discrete models and much of the development of methods for continuous models are nowadays being replaced by methods for discrete models in science and industry, simply because <strong>much larger classes of problems can be addressed</strong> with discrete models, often by simpler and more generic methodologies. For example, <a href="https://en.wikipedia.org/wiki/Numerical_integration">numerical integration</a> is an enormously important tool in physics, and it is a method that is based on discrete models.</p>
-<h4 id="analytical-and-numerical-models-compliment-each-other">Analytical and Numerical Models Compliment Each Other<a hidden class="anchor" aria-hidden="true" href="#analytical-and-numerical-models-compliment-each-other">#</a></h4>
+<h4 id="analytical-and-numerical-models-compliment-each-other">Analytical and Numerical Models Compliment Each Other</h4>
 <p>As we will see, when properly scaling the equations at hand, discrete models open up for more advanced abstractions and the possibility to study real life systems, with the added bonus that we can explore and deepen our basic understanding of various physical systems</p>
 <p>Analytical solutions are as important as before. In addition, such solutions provide us with invaluable benchmarks and tests for our discrete models. Such benchmarks, as we will see, allow us to discuss possible sources of errors and their behaviors. And finally, since most of our models are based on various algorithms from numerical mathematics, we have a unique opportunity to gain a deeper understanding of the mathematical approaches we are using.</p>
-<h4 id="computing-is-an-essential-tool-for-physics">Computing is an Essential Tool for Physics<a hidden class="anchor" aria-hidden="true" href="#computing-is-an-essential-tool-for-physics">#</a></h4>
+<h4 id="computing-is-an-essential-tool-for-physics">Computing is an Essential Tool for Physics</h4>
 <p>With computing and data science as important elements in essentially all aspects of a modern society, we could then try to define Computing as <strong>solving scientific problems using all possible tools, including symbolic computing, computers and numerical algorithms, and analytical paper and pencil solutions</strong>. Computing provides us with the tools to develop our own understanding of the scientific method by enhancing algorithmic thinking.</p>
 <p>The way we will teach this course reflects this definition of computing. The course contains both classical paper and pencil exercises as well as computational projects and exercises. The hope is that this will allow you to explore the physics of systems governed by the degrees of freedom of classical mechanics at a deeper level, and that these insights about the scientific method will help you to develop a better understanding of how the underlying forces and equations of motion and how they impact a given system. Furthermore, by introducing various numerical methods via computational projects and exercises, we aim at developing your competences and skills about these topics.</p>
 <p>These competences will enable you to</p>
@@ -343,10 +238,10 @@ There are many different fields of physics; they are both distinct and overlappi
 </li>
 </ul>
 <p>All these elements are central for maturing and gaining a better understanding of the modern scientific process <em>per se</em>.</p>
-<h4 id="what-we-hope-you-will-learn">What We Hope You Will Learn<a hidden class="anchor" aria-hidden="true" href="#what-we-hope-you-will-learn">#</a></h4>
+<h4 id="what-we-hope-you-will-learn">What We Hope You Will Learn</h4>
 <p>The power of the scientific method lies in identifying a given problem as a special case of an abstract class of problems, identifying general solution methods for this class of problems, and applying a general method to the specific problem (applying means, in the case of computing, calculations by pen and paper, symbolic computing, or numerical computing by ready-made and/or self-written software). This generic view on problems and methods is particularly important for understanding how to apply available, generic software to solve a particular problem.</p>
 <p><em>However, verification of algorithms and understanding their limitations requires much of the classical knowledge about continuous models.</em></p>
-<h2 id="how-do-we-formulate-classical-mechanics">How do we formulate Classical Mechanics?<a hidden class="anchor" aria-hidden="true" href="#how-do-we-formulate-classical-mechanics">#</a></h2>
+<h2 id="how-do-we-formulate-classical-mechanics">How do we formulate Classical Mechanics?</h2>
 <p>In the past, you have learned about <a href="https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion">Newton&rsquo;s Laws of Motion</a>. These laws are the foundation of classical mechanics. They are used to describe the motion of objects in the universe. We will use these laws to describe the motion of particles and rigid bodies. As we progress, we will learn other formulations of classical mechanics, such as the <a href="https://en.wikipedia.org/wiki/Lagrangian_mechanics">Lagrangian</a> and <a href="https://en.wikipedia.org/wiki/Hamiltonian_mechanics">Hamiltonian</a> reformulations.</p>
 <p>Newton&rsquo;s Laws of Motion are a vector formulation of classical mechanics. The laws are as follows:</p>
 <ol>
@@ -355,7 +250,7 @@ There are many different fields of physics; they are both distinct and overlappi
 <li><strong>Third Law</strong>: For every action, there is an equal and opposite reaction.</li>
 </ol>
 <p>These are the classic laws of motion that you have learned in other courses. How we formulate these laws mathematically is our principle task.</p>
-<h3 id="newtons-second-law">Newton&rsquo;s Second Law<a hidden class="anchor" aria-hidden="true" href="#newtons-second-law">#</a></h3>
+<h3 id="newtons-second-law">Newton&rsquo;s Second Law</h3>
 <p><a href="https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion#Newton's_second_law">Newton&rsquo;s Second Law</a> provides the mathematical foundation for classical mechanics. It provides a vector relationship between the net force acting on an object and its acceleration. The law is given by the equation:</p>
 <p>$$\vec{F}_{net} = m\vec{a}$$</p>
 <p>where $\vec{F}_{net}$ is the net force acting on the object, $m$ is the mass of the object, and $\vec{a}$ is the acceleration of the object. This equation is a vector equation, meaning that it must be satisfied in each direction.</p>
@@ -365,7 +260,7 @@ F_{net,y} &amp;= m a_y \
 F_{net,z} &amp;= m a_z
 \end{aligned}$$</p>
 <p>Each push in a Cartesian direction results in a proportional response &ndash; an acceleration in the same direction of the net push. Let&rsquo;s go through a common example to illustrate this relationship.</p>
-<h4 id="example-a-block-on-an-inclined-ramp">Example: A Block on an Inclined Ramp<a hidden class="anchor" aria-hidden="true" href="#example-a-block-on-an-inclined-ramp">#</a></h4>
+<h4 id="example-a-block-on-an-inclined-ramp">Example: A Block on an Inclined Ramp</h4>
 <p>Consider the box (mass, $m$) above on an inclined ramp (angle, $\theta$). The box is at rest subject to static friction, $\mu_s$. <em>What angle of inclination will cause the box to start sliding down the ramp?</em></p>
 <p>We start by drawing the <a href="https://en.wikipedia.org/wiki/Free_body_diagram">Free Body Diagram</a> (FBD) of the box.</p>
 <figure class="figure " role="figure" aria-label="Free Body Diagram of Box on a Inclined Ramp; the arrows label the direction of forces acting on the box. [SVG File](../images/vector-graphics/block_on_ramp_sliding_fbd.svg)">
@@ -412,7 +307,7 @@ $$\theta_{rubber} = \tan^{-1}(0.8) \approx 39^\circ$$</p>
 </div>
 </p>
 <p>Let&rsquo;s work an example that is dynamic, where the net force is not zero.</p>
-<h4 id="example-falling-object-in-one-dimension">Example: Falling Object in One Dimension<a hidden class="anchor" aria-hidden="true" href="#example-falling-object-in-one-dimension">#</a></h4>
+<h4 id="example-falling-object-in-one-dimension">Example: Falling Object in One Dimension</h4>
 <p>Consider an object of mass $m$ falling, but it is subject to air resistance. The free body diagram of the object shows that the forces acting on the object are:</p>
 <ul>
 <li>The force of gravity/weight, $W=mg$, acting downwards.</li>
@@ -422,11 +317,11 @@ $$\theta_{rubber} = \tan^{-1}(0.8) \approx 39^\circ$$</p>
   <img src="/images/vector-graphics/falling_ball_drag_fbd_dynamics.png" alt="Free Body Diagram of Falling Object; the arrows label the direction of forces acting on the object. [SVG File](../images/vector-graphics/falling_ball_drag_fbd_dynamics.svg)" loading="lazy"><figcaption class="figure-caption">Free Body Diagram of Falling Object; the arrows label the direction of forces acting on the object. <a href="../images/vector-graphics/falling_ball_drag_fbd_dynamics.svg">SVG File</a></figcaption></figure>
 
 <p>Here we have chosen positive $y$ to be the downward direction. We want to predict the motion ($a$, $v$, $y$) of the object as a function of time. This is a very common problem for classical mechanics.</p>
-<h5 id="air-drag">Air Drag?<a hidden class="anchor" aria-hidden="true" href="#air-drag">#</a></h5>
+<h5 id="air-drag">Air Drag?</h5>
 <p>First, we notice that we do not know the force due to <a href="https://en.wikipedia.org/wiki/Drag_(physics)">air resistance</a>. We do know that the force is related to the velocity of the object. So let&rsquo;s start by writing the air resistance force as a function of velocity:</p>
 <p>$$F_{air} = F(v)$$</p>
 <p>where $F(v)$ is some function of velocity.</p>
-<h5 id="taylor-series-expansion">Taylor Series Expansion<a hidden class="anchor" aria-hidden="true" href="#taylor-series-expansion">#</a></h5>
+<h5 id="taylor-series-expansion">Taylor Series Expansion</h5>
 <p>Because we know that the objects move slowly in classical mechanics, we can assume that the function can be expanded using a <a href="https://en.wikipedia.org/wiki/Taylor_series">Taylor Series</a>.  In general, the Taylor Series of a function $f(x)$ about a point $a$ is given by:</p>
 <p>$$f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^n$$</p>
 <p>where $f^{(n)}(a)$ is the $n$-th derivative of $f(x)$ evaluated at $x=a$. We can write the first few terms out,</p>
@@ -437,7 +332,7 @@ $$\theta_{rubber} = \tan^{-1}(0.8) \approx 39^\circ$$</p>
 <p>$$F(v) \approx F&rsquo;(0)v + \frac{F&rsquo;&rsquo;(0)}{2!}v^2$$</p>
 <p>We call the first term the <strong>linear drag</strong> term and the second term the <strong>quadratic drag</strong> term. The linear drag term is proportional to the velocity of the object, and the quadratic drag term is proportional to the square of the velocity of the object. We also typically replace the evaluated derivatives with constants, $b$ and $c$ &ndash; because they are constants that depend on the object and the fluid it is moving through. And thus,</p>
 <p>$$F_{air} \approx bv + cv^2$$</p>
-<h5 id="back-to-newtons-second-law">Back to Newton&rsquo;s Second Law<a hidden class="anchor" aria-hidden="true" href="#back-to-newtons-second-law">#</a></h5>
+<h5 id="back-to-newtons-second-law">Back to Newton&rsquo;s Second Law</h5>
 <p>In the $y$-direction, the net force acting on the object is:</p>
 <p>$$F_y = W - F_{air} = mg - bv - cv^2$$</p>
 <p>And thus, the acceleration of the object is:</p>
@@ -462,98 +357,29 @@ $$\dot{v} = g - \frac{b}{m}v - \frac{c}{m}v^2$$</p>
 <p><strong>How do we solve this equation to find the motion of the object as a function of time?</strong>  We will come back to this, but solving differential equations is the primary tool of classical mechanics. We will learn how to solve these equations analytically and numerically in this course.</p>
 
 
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-    </ul>
-<nav class="paginav">
-  <a class="next" href="//localhost:1313/course-materials/hw1/">
-    <span class="title">Next »</span>
-    <br>
-    <span>Homework 1 (Due 23 Jan)</span>
-  </a>
-</nav>
-
-  </footer>
-</article>
-    </main>
     
-<footer class="footer">
-        <span>&copy; 2026 <a href="//localhost:1313/">Classical Mechanics</a></span> · 
+    <nav style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                
+                <a href="/course-materials/hw1/">← Homework 1 (Due 23 Jan)</a>
+                
+            </div>
+            <div style="text-align: right;">
+                
+            </div>
+        </div>
+    </nav>
+    
+</article>
 
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
+    </main>
 
-<script>
-    let menu = document.getElementById('menu');
-    if (menu) {
+    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
         
-        const scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-            menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
+        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
         
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
+        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
+    </footer>
 </body>
-
 </html>

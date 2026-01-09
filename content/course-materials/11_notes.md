@@ -1,18 +1,17 @@
 ---
 title: 11 - Reformulating Classical Mechanics using the Calculus of Variations
 weight: 11
-date: '2026-01-08'
+date: '2026-01-09'
 math: true
 highlight: true
 ---
 
-[![Report Issues](https://img.s* hields.io/badge/report%20issues-GitHub-blue)](https://github.com/dannycab/phy321msu/issues) 
-[![GitHub Issues](https://img.shields.io/github/issues/dannycab/phy321msu)](https://github.com/dannycab/phy321msu/issues)
+[![Report Issues](https://img.shields.io/badge/report%20issues-GitHub-blue)](https://github.com/dannycab/phy321msu/issues) 
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ## Learning Goals
 
-:::{admonition} After studying Lesson 11, you should be able to:
-:class: note
+{{< admonition type="admonition" title="After studying Lesson 11, you should be able to:" class="tip" >}}
 * Explain the conceptual idea of the calculus of variations and its application to classical mechanics, including the conceptual outline of the derivation of the Euler-Lagrange equation.
 * Analyze the shortest path problem in a plane and derive the equation of a straight line using the Euler-Lagrange equation.
 * Apply the calculus of variations to derive Snell's Law, demonstrating the relationship between angles and velocities in different media.
@@ -28,14 +27,14 @@ Our examples will start with simple systems, like the motion on a plane - where 
 
 This section is mathematically intensive and will require you to have a solid understanding of calculus, including differentiation and integration. This mathematics is also very powerful and underlies how we can develop equations of motion in particular systems. But is also describes the shape of surfaces like bubbles and droplets. The video below is a nice introduction to the concept of Calculus of Variations and its relation to [minimal surfaces](https://en.wikipedia.org/wiki/Minimal_surface).
 
-### The Math of Bubbles (17 minute video)
 
 In the video below, we learn about the [Soap Bubble Problem](https://en.wikipedia.org/wiki/Soap_bubble), which is another classic problem in the calculus of variations. The goal is to find the shape of a soap bubble that minimizes surface area for a given volume.
 
 {{< youtube 8SABptOYUVk >}}
 
 
-Source: <https://youtube.com/watch?v=8SABptOYUVk>
+- *Source: <https://youtube.com/watch?v=8SABptOYUVk>*
+{{< /admonition >}}
 
 ## The Euler-Lagrange Equation
 
@@ -293,7 +292,12 @@ Let's assume you are walking on the beach and need to get to a location in the w
 
 Consider the picture below where you can move at a speed $v_1$ on the shore and a speed $v_2$ in the water. We know that $v_1 > v_2$, so you can move faster on the shore than in the water. We aim to minimize the time it takes to reach the point $\langle x_2, y_2 \rangle$ in the water from point $\langle x_1, y_1 \rangle$ on the shore. We take the shoreline to be a line at $x = 0$. and the location we cross the shoreline is $\langle 0, y \rangle$.
 
-![Snell's Law Diagram](/images/notes/week11/snells_shore.png)
+
+{{< figure src="/images/notes/week11/snells_shore.png" caption="Snell's Law Diagram" >}}
+
+{{< admonition type="error" >}}
+Redraw as vector graphic and post SVG
+{{< /admonition >}}
 
 Notice the angle that we approach the shoreline at, $\theta_1$, and the angle that we approach the target in the water, $\theta_2$.
 
@@ -333,17 +337,24 @@ $$\dfrac{\sin(\theta_1)}{v_1} - \dfrac{\sin(\theta_2)}{v_2} = 0$$
 $$\dfrac{\sin(\theta_1)}{v_1} = \dfrac{\sin(\theta_2)}{v_2}$$
 {{< /admonition >}}
 
-### Example: Brachistochrone Problem (16 minute video)
-
+{{< admonition type="admonition" title="Example: Brachistochrone Problem (16 minute video)" class="tip" >}}
 The [Brachistochrone problem](https://en.wikipedia.org/wiki/Brachistochrone_problem) is a classic problem in the Calculus of Variations. It asks the question: "What is the shape of the curve that a bead will follow under the influence of gravity to reach the bottom in the shortest time?"  The video below discusses the problem and it history in detail;  [Steven Strogatz](https://en.wikipedia.org/wiki/Steven_Strogatz) explains the problem and its solution. It's what helped spur the development of the calculus of variations and the work of Lagrange and others. The problem is deceptively simple: given two points in a vertical plane, find the curve down which a bead will slide (without friction) from one point to the other in the shortest time. The solution to this problem is not a straight line, but rather a cycloid curve. 
 
 {{< youtube Cld0p3a43fU >}}
 
-Source: <https://www.youtube.com/watch?v=Cld0p3a43fU>
+- *Source: <https://www.youtube.com/watch?v=Cld0p3a43fU>*
+{{< /admonition >}}
 
 The setup is below, there's two points separated by a distance vertically and horizontally. What shape should we make a track so that a bead will roll down it in the shortest time?
 
-![The Brachistochrone Problem](/images/notes/week11/brachistochrone.png)
+
+{{< figure src="/images/notes/week11/brachistochrone.png" caption="Setup for the Brachistochrone Problem" >}}
+
+{{< admonition type="error" >}}
+Redraw as vector graphic and post SVG
+{{< /admonition >}}
+
+
 
 The time it takes for the bead to roll down the curve is given by:
 

@@ -1,7 +1,7 @@
 ---
 title: Weekly Course Materials
 weight: 1
-date: '2026-01-08'
+date: '2026-01-09'
 ---
 
 ## What This Course Is Really About

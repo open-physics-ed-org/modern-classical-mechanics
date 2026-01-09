@@ -1,180 +1,118 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="auto">
-
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
-<title>Numerical Integrators | Classical Mechanics</title>
-<meta name="keywords" content="">
-<meta name="description" content="In this notebook, we provide a resource &ndash; various methods of integrating ordinary differential equations (ODEs) numerically. We will cover the following methods:
-
-Euler
-Euler-Cromer
-Velocity Verlet
-Runge-Kutta 2nd order
-Built-in Python integrators
-
-We have written these codes as simply as possible to make them easy to read and to see where the algorithms differ. We have also included an example of a simple harmonic oscillator to demonstrate the methods (recurrent oscillatory behavior is a good test of methods).">
-<meta name="author" content="Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine">
-<link rel="canonical" href="//localhost:1313/programming-resources/integrators/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.343cc480b9ffc8f04ccbe5e968ad674880cab773ec19905e93033065c1e7a804.css" integrity="sha256-NDzEgLn/yPBMy&#43;XpaK1nSIDKt3PsGZBekwMwZcHnqAQ=" rel="preload stylesheet" as="style">
-<link rel="icon" href="//localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="//localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="//localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="//localhost:1313/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="//localhost:1313/programming-resources/integrators/">
-<noscript>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numerical Integrators | Classical Mechanics</title>
+    <meta name="description" content="Classical Mechanics">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+    
+    <link rel="stylesheet" href="//localhost:1313/css/accessibility.css">
     <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
         }
-
+        nav {
+            background: #f4f4f4;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #222;
+            margin-top: 1.5em;
+        }
+        h1 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: "SF Mono", Monaco, Consolas, monospace;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: #0066cc;
+        }
+        .menu-home {
+            font-weight: bold;
+            margin-right: 30px;
+        }
     </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-                color-scheme: dark;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .toc {
-                background: var(--entry);
-            }
-        }
-
-        @media (prefers-color-scheme: light) {
-            .list::-webkit-scrollbar-thumb {
-                border-color: var(--code-bg);
-            }
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else if (localStorage.getItem("pref-theme") === "light") {
-       document.querySelector("html").dataset.theme = 'light';
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous"
-    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}], throwOnError: false});"></script>
-
-
 </head>
-<body id="top">
-    <header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="//localhost:1313/" accesskey="h" title="Classical Mechanics (Alt + H)">Classical Mechanics</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu">
-            <li>
-                <a href="//localhost:1313/course-information/" title="Course Information">
-                    <span>Course Information</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/course-materials/" title="Course Materials">
-                    <span>Course Materials</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/logistics-resources/" title="Logistics &amp; Resources">
-                    <span>Logistics &amp; Resources</span>
-                </a>
-            </li>
-            <li>
-                <a href="//localhost:1313/programming-resources/" title="Programming Resources">
-                    <span>Programming Resources</span>
-                </a>
-            </li>
+<body>
+    <nav role="navigation" aria-label="Main navigation">
+        <ul>
+            <li class="menu-home"><a href="//localhost:1313/">Classical Mechanics</a></li>
+            
+            
+            <li><a href="/course-information/">Course Information</a></li>
+            
+            
+            
+            <li><a href="/course-materials/">Course Materials</a></li>
+            
+            
+            
+            <li><a href="/logistics-resources/">Logistics &amp; Resources</a></li>
+            
+            
+            
+            <li><a href="/programming-resources/">Programming Resources</a></li>
+            
+            
         </ul>
     </nav>
-</header>
-<main class="main">
 
-<article class="post-single">
-  <header class="post-header">
-    <div class="breadcrumbs"><a href="//localhost:1313/">Home</a>&nbsp;»&nbsp;<a href="//localhost:1313/programming-resources/">Programming Resources</a></div>
-    <h1 class="post-title entry-hint-parent">
-      Numerical Integrators
-    </h1>
-    <div class="post-meta"><span title='2026-01-08 00:00:00 +0000 UTC'>January 8, 2026</span>&nbsp;·&nbsp;<span>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</span>
+    <main role="main">
+        
+<article>
+    <header>
+        <h1>Numerical Integrators</h1>
+        
+    </header>
 
-</div>
-  </header> <div class="toc">
-    <details >
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">Table of Contents</span>
-        </summary>
-
-        <div class="inner"><ul>
-                <li>
-                    <a href="#eulers-method" aria-label="Euler&rsquo;s Method">Euler&rsquo;s Method</a></li>
-                <li>
-                    <a href="#euler-cromer-method" aria-label="Euler-Cromer Method">Euler-Cromer Method</a></li>
-                <li>
-                    <a href="#velocity-verlet-method" aria-label="Velocity Verlet Method">Velocity Verlet Method</a></li>
-                <li>
-                    <a href="#runge-kutta-2nd-order-method" aria-label="Runge Kutta 2nd Order Method">Runge Kutta 2nd Order Method</a></li>
-                <li>
-                    <a href="#runge-kutta-4th-order-method" aria-label="Runge-Kutta 4th Order Method">Runge-Kutta 4th Order Method</a></li>
-                <li>
-                    <a href="#built-in-python-integrators" aria-label="Built-in Python Integrators">Built-in Python Integrators</a>
-                </li>
-            </ul>
-        </div>
-    </details>
-</div>
-
-  <div class="post-content"><p>In this notebook, we provide a resource &ndash; various methods of integrating ordinary differential equations (ODEs) numerically. We will cover the following methods:</p>
+    <p>In this notebook, we provide a resource &ndash; various methods of integrating ordinary differential equations (ODEs) numerically. We will cover the following methods:</p>
 <ul>
 <li>Euler</li>
 <li>Euler-Cromer</li>
@@ -188,7 +126,7 @@ We have written these codes as simply as possible to make them easy to read and 
 <p>where $\omega$ is the angular frequency of the oscillator. We can rewrite this as two first order ODEs:</p>
 <p>$$\frac{dx}{dt} = v$$
 $$\frac{dv}{dt} = -\omega^2 x$$</p>
-<h2 id="eulers-method">Euler&rsquo;s Method<a hidden class="anchor" aria-hidden="true" href="#eulers-method">#</a></h2>
+<h2 id="eulers-method">Euler&rsquo;s Method</h2>
 <p>Euler&rsquo;s method is the simplest numerical integrator. For the SHO, we can write the update equations as:</p>
 <p>$$x_{n+1} = x_n + v_n \Delta t$$
 $$v_{n+1} = v_n - \omega^2 x_n \Delta t$$</p>
@@ -262,9 +200,9 @@ $$v_{n+1} = v_n - \omega^2 x_n \Delta t$$</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
-</span></span></code></pre></div><p><img alt="png" loading="lazy" src="output_2_0.png"></p>
-<p><img alt="png" loading="lazy" src="output_2_1.png"></p>
-<h2 id="euler-cromer-method">Euler-Cromer Method<a hidden class="anchor" aria-hidden="true" href="#euler-cromer-method">#</a></h2>
+</span></span></code></pre></div><p><img src="output_2_0.png" alt="png"></p>
+<p><img src="output_2_1.png" alt="png"></p>
+<h2 id="euler-cromer-method">Euler-Cromer Method</h2>
 <p>The Euler-Cromer method is a slight modification of Euler&rsquo;s method. The update equations are:</p>
 <p>$$v_{n+1} = v_n - \omega^2 x_n \Delta t$$
 $$x_{n+1} = x_n + v_{n+1} \Delta t$$</p>
@@ -338,9 +276,9 @@ $$x_{n+1} = x_n + v_{n+1} \Delta t$$</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
-</span></span></code></pre></div><p><img alt="png" loading="lazy" src="output_4_0.png"></p>
-<p><img alt="png" loading="lazy" src="output_4_1.png"></p>
-<h2 id="velocity-verlet-method">Velocity Verlet Method<a hidden class="anchor" aria-hidden="true" href="#velocity-verlet-method">#</a></h2>
+</span></span></code></pre></div><p><img src="output_4_0.png" alt="png"></p>
+<p><img src="output_4_1.png" alt="png"></p>
+<h2 id="velocity-verlet-method">Velocity Verlet Method</h2>
 <p>The Velocity Verlet method is a symplectic integrator. The update equations are:</p>
 <p>$$x_{n+1} = x_n + v_n \Delta t + \frac{1}{2} a_n \Delta t^2$$
 $$v_{n+1} = v_n + \frac{1}{2} (a_n + a_{n+1}) \Delta t$$</p>
@@ -417,9 +355,9 @@ $$v_{n+1} = v_n + \frac{1}{2} (a_n + a_{n+1}) \Delta t$$</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
-</span></span></code></pre></div><p><img alt="png" loading="lazy" src="output_6_0.png"></p>
-<p><img alt="png" loading="lazy" src="output_6_1.png"></p>
-<h2 id="runge-kutta-2nd-order-method">Runge Kutta 2nd Order Method<a hidden class="anchor" aria-hidden="true" href="#runge-kutta-2nd-order-method">#</a></h2>
+</span></span></code></pre></div><p><img src="output_6_0.png" alt="png"></p>
+<p><img src="output_6_1.png" alt="png"></p>
+<h2 id="runge-kutta-2nd-order-method">Runge Kutta 2nd Order Method</h2>
 <p>The Runge Kutta 2nd Order method is a more accurate numerical integrator. The update equations are:</p>
 <p>$$k_{1x} = v_n \Delta t$$
 $$k_{1v} = -\omega^2 x_n \Delta t$$
@@ -503,9 +441,9 @@ $$v_{n+1} = v_n + k_{2v}$$</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
-</span></span></code></pre></div><p><img alt="png" loading="lazy" src="output_8_0.png"></p>
-<p><img alt="png" loading="lazy" src="output_8_1.png"></p>
-<h2 id="runge-kutta-4th-order-method">Runge-Kutta 4th Order Method<a hidden class="anchor" aria-hidden="true" href="#runge-kutta-4th-order-method">#</a></h2>
+</span></span></code></pre></div><p><img src="output_8_0.png" alt="png"></p>
+<p><img src="output_8_1.png" alt="png"></p>
+<h2 id="runge-kutta-4th-order-method">Runge-Kutta 4th Order Method</h2>
 <p>The Runge Kutta 4th Order method is a more accurate numerical integrator. The update equations are:</p>
 <p>$$k_{1x} = v_n \Delta t$$
 $$k_{1v} = -\omega^2 x_n \Delta t$$</p>
@@ -599,9 +537,9 @@ $$v_{n+1} = v_n + \frac{1}{6}(k_{1v} + 2k_{2v} + 2k_{3v} + k_{4v})$$</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
-</span></span></code></pre></div><p><img alt="png" loading="lazy" src="output_10_0.png"></p>
-<p><img alt="png" loading="lazy" src="output_10_1.png"></p>
-<h2 id="built-in-python-integrators">Built-in Python Integrators<a hidden class="anchor" aria-hidden="true" href="#built-in-python-integrators">#</a></h2>
+</span></span></code></pre></div><p><img src="output_10_0.png" alt="png"></p>
+<p><img src="output_10_1.png" alt="png"></p>
+<h2 id="built-in-python-integrators">Built-in Python Integrators</h2>
 <p>All of the approaches above use a fixed time step. Python has built-in integrators that can adapt the time step to the problem. We will use the <code>odeint</code> function from the <code>scipy.integrate</code> module. This function uses the LSODA (Livermore Solver for Ordinary Differential Equations) algorithm, which is a variable time step integrator. The <code>odeint</code> function requires the user to define a function that returns the derivatives of the dependent variables.</p>
 <p>The process for this method is different than the above approaches because the <code>odeint</code> function requires the user to define a function that returns the derivatives of the dependent variables. The function we use:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">derivs</span>(y, t, omega):
@@ -688,95 +626,35 @@ $$v_{n+1} = v_n + \frac{1}{6}(k_{1v} + 2k_{2v} + 2k_{3v} + k_{4v})$$</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>tight_layout()
 </span></span><span style="display:flex;"><span>plt<span style="color:#f92672">.</span>show()
-</span></span></code></pre></div><p><img alt="png" loading="lazy" src="output_12_0.png"></p>
-<p><img alt="png" loading="lazy" src="output_12_1.png"></p>
+</span></span></code></pre></div><p><img src="output_12_0.png" alt="png"></p>
+<p><img src="output_12_1.png" alt="png"></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"></code></pre></div>
 
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-    </ul>
-
-  </footer>
-</article>
-    </main>
     
-<footer class="footer">
-        <span>&copy; 2026 <a href="//localhost:1313/">Classical Mechanics</a></span> · 
+    <nav style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                
+                <a href="/programming-resources/phase_diagrams/">← Plotting Phase Diagrams</a>
+                
+            </div>
+            <div style="text-align: right;">
+                
+                <a href="/programming-resources/euler_integration/">Euler Integration →</a>
+                
+            </div>
+        </div>
+    </nav>
+    
+</article>
 
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
+    </main>
 
-<script>
-    let menu = document.getElementById('menu');
-    if (menu) {
+    <footer role="contentinfo" style="margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.9em;">
         
-        const scrollPosition = localStorage.getItem("menu-scroll-position");
-        if (scrollPosition) {
-            menu.scrollLeft = parseInt(scrollPosition, 10);
-        }
+        <p>Danny Caballero, Morten Hjorth-Jensen, Rachel Henderson, Alia Valentine</p>
         
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
+        <p>Built with <a href="https://gohugo.io/">Hugo</a> | Converted with jupyter2hugo</p>
+    </footer>
 </body>
-
 </html>
